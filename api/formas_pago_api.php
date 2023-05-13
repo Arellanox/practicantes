@@ -27,5 +27,3 @@ switch($api){
 }
 
 echo $master->returnApi($response);
-
-?>

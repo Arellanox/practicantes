@@ -21,7 +21,9 @@ $.post("modals/m_recepcion.php", function (html) {
   $.getScript(`${http}${servidor}/${appname}/vista/include/modal/js/registrar-paciente.js`);
   $.getScript(`${http}${servidor}/${appname}/vista/include/modal/js/editar-paciente.js`);
 
-  $.getScript(`${http}${servidor}/${appname}/vista/include/funciones/facturacion-pacientes/js/estudios-contado.js`);
+  $.getScript(`../../../vista/include/funciones/facturacion-pacientes/js/estudios-contado.js`);
+  $.getScript(`../../../vista/include/funciones/facturacion-pacientes/js/factura-paciente.js`);
+
 
 
   $.getScript(`modals/js/ujat-beneficiarios.js`)

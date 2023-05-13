@@ -95,7 +95,7 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
           showCancelButton: false
         }, function () {
           //Abrir el modal de estudios, precios y detalle
-          configurarEstudios(array_selected);
+          configurarModal(array_selected);
         }, 1, function () {
           //Termina el proceso  sin factura y fue a credito
           finalizarProcesoRecepcion(data, false, 'Credito');

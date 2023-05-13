@@ -38,14 +38,13 @@ $params = $master->setToNull(array(
     $referencia,
     $requiere_factura,
     $dato
-
 ));
 # datos de factura
 
 
 
 
-switch($api){
+switch ($api) {
     case 1:
         # guardar tickets
         $response = $master->insertByProcedure("sp_tickets_g", $params);
@@ -55,5 +54,3 @@ switch($api){
 }
 
 echo $master->returnApi($response);
-
-?>

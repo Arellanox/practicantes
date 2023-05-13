@@ -11,25 +11,30 @@ $(document).on('click', '#terminar-proceso-cargo', function (event) {
         showCancelButton: false
     }, function () {
         //Si fue si, abrir el modal de factura
-        configurarFactura();
+        configurarFactura(dataPaciente);
     }, 1, function () {
         //Si fue no, terminar el proceso con el tipo de pago contado...
-        finishProccess();
+        metodo();
     })
 
 })
 
+
 //Variable globales
 var tipo_pago = false, tipo_factura = false;
+var dataPaciente;
 //Vista de estudios que se le hicieron al paciente
-function configurarEstudios(data) {
+function configurarModal(data) {
     //Estatus en proceso
-    tipo_pago = 'Contado';
+    tipo_pago = $('#contado-tipo-pago').val();
     tipo_factura = false
-
+    dataPaciente = data;
     $('#nombre-paciente-contado').html(`${data['NOMBRE_COMPLETO']}`);
     //Mensaje de espera al usuario
     alertToast('Espere un momento', 'info', 4000);
+
+    rellenarSelect('#contado-tipo-pago', 'formas_pago_api', '2', 'ID_PAGO', 'DESCRIPCION');
+
     ajaxAwait({
         api: 1,
         turnos_id: data['ID_TURNO'],
@@ -37,7 +42,7 @@ function configurarEstudios(data) {
         //El arreglo debe contener tanto un arreglo de los estudios como el total de precio de los estudios
         //let row = data.response.data; // todos los datos
 
-        let data = data.response.data //Todos los datos para el detalle;
+        data = data.response.data; //Todos los datos para el detalle;
         let row = data.response.data['estudios']; // <-- Listas de estudios en bruto
 
         for (const key in row) {
@@ -72,18 +77,24 @@ function configurarEstudios(data) {
         $('#precio-total').html(`$${data['TOTAL']}`)
     })
 
-
     $('#modalEstudiosContado').modal('show');
 }
 
 //Vista de factura (faltan datos)
-function configurarFactura() {
+function configurarFactura(data) {
     tipo_factura = true;
+
+    $('#nombre-paciente-contado').html(`${data['NOMBRE_COMPLETO']}`);
+
+    //Mensaje de espera al usuario
+    alertToast('Espere un momento', 'info', 4000);
+
+    $('#modalFacturaPaciente').modal('show');
 
 }
 
 //Llamado como "metodo"
-function finishProccess() {
+function metodo() {
     //Termina el proceso del paciente con las llamadas que hizo el usuario
-    finalizarProcesoRecepcion(data, tipo_pago, tipo_factura);
+    finalizarProcesoRecepcion(data);
 }

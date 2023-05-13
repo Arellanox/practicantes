@@ -30,4 +30,5 @@ $menu = "Recepción";
   }
 </script>
 
+
 </html>
