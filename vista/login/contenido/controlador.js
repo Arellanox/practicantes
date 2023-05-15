@@ -31,22 +31,9 @@ function obtenerContenido(tabla) {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const page = urlParams.get('page')
-            if (page) {
-              $(location).attr('href', page);
-            } else {
-              // console.log(data.response.data)
 
-              switch (session['cargo']) {
-                case '10': case 10:
-                  $(location).attr('href', `${http}${servidor}/${appname}/vista/menu/recepcion/`);
-                  return true;
+            $(location).attr('href', `${http}${servidor}/${appname}/vista/menu/principal/`);
 
-                default:
-                  $(location).attr('href', `${http}${servidor}/${appname}/vista/menu/principal/`);
-                  return false;
-                // break;
-              }
-            }
           } else {
             $(this).find('button :submit').prop('disabled', false)
             if (data.response.msj == 'Oops! Tu contraseña es incorrecta.') {
