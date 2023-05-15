@@ -1,6 +1,6 @@
 <?php
 require_once('../php/phpqrcode/qrlib.php');
-require_once("../lib/libmergpdf/vendor/autoload.php");
+// require_once("../lib/libmergpdf/vendor/autoload.php");
 
 use iio\libmergepdf\Merger;
 use iio\libmergepdf\Pages;
@@ -468,13 +468,15 @@ class Miscelaneus
         // print_r(json_encode($pie_paginarregloPacientea));
         // print_r(json_encode($infoPaciente[0]));
         //exit;
-        $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
-        $renderpdf = $pdf->build();
+        // $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
+        // $pdf = '';
+        // $renderpdf = $pdf->build();
 
-        if ($lab == 1 && $tipo == 'url') {
-            $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
-        }
-        return $renderpdf;
+        // if ($lab == 1 && $tipo == 'url') {
+
+        //     $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
+        // }
+        return 1;
     }
 
     private function getBodyInfoSoma($master, $id_turno)
@@ -1181,20 +1183,20 @@ class Miscelaneus
         }, $response)];
     }
 
-    public function joinPdf($files = [])
-    {
-        $merger = new Merger;
-        if (!empty($files)) {
-            $merger->addIterator($files);
-            try {
-                $createpdf = $merger->merge();
-                return $createpdf;
-            } catch (Exception $e) {
-                echo $e;
-            }
-        }
-        return null;
-    }
+    // public function joinPdf($files = [])
+    // {
+    //     $merger = new Merger;
+    //     if (!empty($files)) {
+    //         $merger->addIterator($files);
+    //         try {
+    //             $createpdf = $merger->merge();
+    //             return $createpdf;
+    //         } catch (Exception $e) {
+    //             echo $e;
+    //         }
+    //     }
+    //     return null;
+    // }
 
     // public function changeLocationFile($old_directory,$new_directory){
     //     // if (copy(".." . $dir[1], $destination . basename($archivo))) {
@@ -1267,7 +1269,8 @@ class Miscelaneus
         return isset($name[0]['NOMBRE_COMPLETO']) ? $name[0]['NOMBRE_COMPLETO'] : "NONE";
     }
 
-    public function setToNull($params= array()){
+    public function setToNull($params = array())
+    {
         # esta funcion convierte en null 
         # todas aquellas variables que tengans strlen =0,
         # las que tengas la palabra "null" o las que no traigan contenido.
@@ -1275,8 +1278,8 @@ class Miscelaneus
 
         $formattedParams = array();
 
-        foreach($params as $param){
-            if(!isset($param) || strlen($param)==0 || strtolower($param)=="null"){
+        foreach ($params as $param) {
+            if (!isset($param) || strlen($param) == 0 || strtolower($param) == "null") {
                 $formattedParams[] = null;
             } else {
                 $formattedParams[] = $param;

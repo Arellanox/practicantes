@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "../clases/master_class.php";
-include "../clases/correo_class.php";
+// include "../clases/correo_class.php";
 
 $api = $_POST['api'];
 $master = new Master();
@@ -46,14 +46,14 @@ switch ($api) {
         $correo = $_POST['correo'];
         $response = $master->getByProcedure("sp_usuarios_b", [null, $correo]);
 
-        if (is_array($response)) {
-            $mail = new Correo();
-            $r = $mail->sendEmail("password", "¡Bimer! Recupera tu password", [$correo], $response[array_key_first($response)]["ID_USUARIO"]);
+        // if (is_array($response)) {
+        //     $mail = new Correo();
+        //     $r = $mail->sendEmail("password", "¡Bimer! Recupera tu password", [$correo], $response[array_key_first($response)]["ID_USUARIO"]);
 
-            if ($r) {
-                $master->setLog("Correo para recuperar password enviado.", "[logina_api case 3]");
-            }
-        }
+        //     if ($r) {
+        //         $master->setLog("Correo para recuperar password enviado.", "[logina_api case 3]");
+        //     }
+        // }
 
         echo $master->returnApi(1);
 
