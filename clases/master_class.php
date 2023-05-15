@@ -42,15 +42,16 @@ class Master extends Miscelaneus
             case "localhost":
             case "helicebiologicos.com":
                 # nube. conexion de pruebas
-                $host = "212.1.208.201";
-                $dbname = "u808450138_checkup_copio";
-                $username = "u808450138_hola";
-                $password = ":N1TFmb0z";
-
                 // $host = "212.1.208.201";
-                // $dbname = "u808450138_capacitaciones";
-                // $username = "u808450138_capacitador";
-                // $password = '7$V1HPRSVa*2';
+                // $dbname = "u808450138_checkup_copio";
+                // $username = "u808450138_hola";
+                // $password = ":N1TFmb0z";
+
+                # nube practicantes.
+                $host = "212.1.208.201";
+                $dbname = "u808450138_practicantes";
+                $username = "u808450138_practica";
+                $password = '+Eb5Rc~TpeV';
                 break;
             default:
                 $host = 'localhost'; //Servidor
