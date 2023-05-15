@@ -1,0 +1,224 @@
+<div class="modal fade" id="modalCambiarEstudios" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header header-modal">
+                <h5 class="modal-title" id="title-paciente_actualizar_estudios">Nombre paciente</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Cambio de estudios.</h5>
+
+                <div class="row" id="contenedor-tablas-estudios">
+                    <!-- Formulario -->
+                    <div class="col-4">
+                        <p><strong>Agregue</strong> automaticamente el estudio</p>
+
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOneLaB">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseLabClini" aria-expanded="true"
+                                        aria-controls="collapseLabClini">
+                                        Estudios de Laboratorio Clínico
+                                    </button>
+                                </h2>
+                                <div id="collapseLabClini" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOneLaB" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <select class="" id="select-edit-lab">
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button"
+                                                            class="btn btn-confirmar btn-agregar-estudios-admin"
+                                                            data-bs-tipo="select-edit-lab">
+                                                            <i class="bi bi-person-badge"></i> Agregar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingSixLab">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseLabBio" aria-expanded="false"
+                                        aria-controls="collapseLabBio">
+                                        Estudios de Laboratorio Biomolecular
+                                    </button>
+                                </h2>
+                                <div id="collapseLabBio" class="accordion-collapse collapse"
+                                    aria-labelledby="headingSixLab" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <select class="" id="select-edit-labbio">
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button"
+                                                                class="btn btn-confirmar btn-agregar-estudios-admin"
+                                                                data-bs-tipo="select-edit-labbio">
+                                                                <i class="bi bi-person-badge"></i> Agregar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwoRX">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseRX" aria-expanded="false" aria-controls="collapseRX">
+                                        Estudios de Rayos X
+                                    </button>
+                                </h2>
+                                <div id="collapseRX" class="accordion-collapse collapse" aria-labelledby="headingTwoRX"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <select class="" id="select-edit-rx">
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button"
+                                                            class="btn btn-confirmar btn-agregar-estudios-admin"
+                                                            data-bs-tipo="select-edit-rx">
+                                                            <i class="bi bi-person-badge"></i> Agregar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThreeUltra">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseUltra" aria-expanded="false"
+                                        aria-controls="collapseUltra">
+                                        Estudios de Ultrasonido
+                                    </button>
+                                </h2>
+                                <div id="collapseUltra" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThreeUltra" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <select class="" id="select-edit-us">
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button"
+                                                            class="btn btn-confirmar btn-agregar-estudios-admin"
+                                                            data-bs-tipo="select-edit-us">
+                                                            <i class="bi bi-person-badge"></i> Agregar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFourOtros">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOtrosEstudios" aria-expanded="false"
+                                        aria-controls="collapseOtrosEstudios">
+                                        Otros Estudios
+                                    </button>
+                                </h2>
+                                <div id="collapseOtrosEstudios" class="accordion-collapse collapse"
+                                    aria-labelledby="headingFourOtros" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <select class="" id="select-edit-otros">
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button"
+                                                            class="btn btn-confirmar btn-agregar-estudios-admin"
+                                                            data-bs-tipo="select-edit-otros">
+                                                            <i class="bi bi-person-badge"></i> Agregar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <p>Estudios <strong>actuales</strong> del paciente</p>
+                        <table class="table table-hover display responsive" id="tablaEstudiosActuales"
+                            style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <!-- <th scope="col d-flex justify-content-center" class="all">#</th> -->
+                                    <th scope="col d-flex justify-content-center" class="all">Nombre</th>
+                                    <th scope="col d-flex justify-content-center" class="all">
+                                        <i class="bi bi-trash"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-4" id="contenido-estudios-eliminados">
+                        <p>Estudios <strong>eliminados</strong> del paciente</p>
+                        <table class="table table-hover display responsive" id="tablaEstudiosEliminados"
+                            style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <!-- <th scope="col d-flex justify-content-center" class="all">#</th> -->
+                                    <th scope="col d-flex justify-content-center" class="all">Nombre</th>
+                                    <th scope="col d-flex justify-content-center" class="all">
+                                        <i class="bi bi-arrow-counterclockwise"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer" style="zoom:90%">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i>
+                    Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

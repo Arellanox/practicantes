@@ -1,0 +1,334 @@
+<div class="modal fade" id="modalPacienteAceptar" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header header-modal">
+        <h5 class="modal-title" id="title-paciente_aceptar">Nombre paciente</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="" id="formAceptarPacienteRecepcion">
+          <div class="row">
+            <div class="col-8">
+              <p>Acepte, cargue y añada los estudios e información correspondiente al paciente ha aceptar.</p>
+            </div>
+            <!-- <div class="col-4">
+              <button type="button" class="btn btn-confirmar" id="btn-obtenerID">
+                <i class="bi bi-person-badge"></i> Obtener ID
+              </button>
+            </div> -->
+          </div>
+          <p> <strong></strong> </p>
+          <div class="row">
+            <div class="col-12 col-lg-8">
+              <h4 class="mt-2">Cargar estudios</h4>
+              <p>Busqué y agregue estudios para las areas si es necesario</p>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Estudios de Laboratorio Clínico
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-12">
+                              <select class="" id="select-lab">
+                              </select>
+                            </div>
+                            <div class="col-12">
+                              <button type="button" class="btn btn-confirmar" id="btn-AgregarEstudioLab">
+                                <i class="bi bi-person-badge"></i> Agregar
+                              </button>
+                            </div>
+                            <!-- <div class="col-12 mt-3">
+                              <label for="paquete" class="form-label">Orden médica de laboratorio:</label>
+                              <input type="file" name="orden-medica-laboratorio[]" id="file-laboratorio" class="form-control input-form" value="">
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <ul class="list-group" id="list-estudios-laboratorio">
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      Estudios de Laboratorio Biomolecular
+                    </button>
+                  </h2>
+                  <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="accordion-body">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="row">
+                              <div class="col-12">
+                                <select class="" id="select-labbio">
+                                </select>
+                              </div>
+                              <div class="col-12">
+                                <button type="button" class="btn btn-confirmar" id="btn-AgregarEstudioLabBio">
+                                  <i class="bi bi-person-badge"></i> Agregar
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <ul class="list-group" id="list-estudios-laboratorio-biomolecular">
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Estudios de Rayos X
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-12">
+                              <select class="" id="select-rx">
+                              </select>
+                            </div>
+                            <div class="col-12">
+                              <button type="button" class="btn btn-confirmar" id="btn-agregarEstudioRX">
+                                <i class="bi bi-person-badge"></i> Agregar
+                              </button>
+                            </div>
+                            <!-- <div class="col-12 mt-3">
+                              <label for="paquete" class="form-label">Orden médica de Rayos X:</label>
+                              <input type="file" name="orden-medica-rx[]" id="file-r-x" class="form-control input-form" value="">
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <ul class="list-group" id="list-estudios-rx">
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Estudios de Ultrasonido
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-12">
+                              <select class="" id="select-us">
+                              </select>
+                            </div>
+                            <div class="col-12">
+                              <button type="button" class="btn btn-confirmar" id="btn-agregarEstudioImg">
+                                <i class="bi bi-person-badge"></i> Agregar
+                              </button>
+                            </div>
+                            <!-- <div class="col-12 mt-3">
+                              <label for="paquete" class="form-label">Orden médica de Ultrasonido:</label>
+                              <input type="file" name="orden-medica-us[]" id="file-ultra-sonido" class="form-control input-form">
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <ul class="list-group" id="list-estudios-ultrasonido">
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      Otros Estudios
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-12">
+                              <select class="" id="select-otros">
+                              </select>
+                            </div>
+                            <div class="col-12">
+                              <button type="button" class="btn btn-confirmar" id="btn-agregarEstudioOtros">
+                                <i class="bi bi-person-badge"></i> Agregar
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <ul class="list-group" id="list-estudios-otros">
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <h4 class="mt-2">Buscar un paquete</h4>
+              <div class="col-12">
+                <label for="paquete" class="form-label">Selecciona un paquete</label>
+                <select class="" id="select-paquetes">
+                </select>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkPaqueteAceptar">
+                  <label class="form-check-label" for="checkPaqueteAceptar">
+                    Sin paquete
+                  </label>
+                </div>
+                <h4 class="mt-3">Cargar información</h4>
+                <!-- <div class="col-12 mt-3">
+                  <label for="paquete" class="form-label">Suba credencial:</label>
+                  <input type="file" name="credencial" id="file-credencial" class="form-control input-form" value="">
+                </div> -->
+                <div class="mt-3">
+                  <label for="paquete" class="form-label">Segmento del paciente</label>
+                  <select class="" id="select-segmento-aceptar" name="segmento_id">
+
+                  </select>
+                </div>
+                <div class="mt-3">
+                  <label for="est_alergias" class="form-label fw-bold text-danger text-decoration-underline">Alergias:
+                  </label>
+                  <input type="text" name="est_alergias" value=""
+                    class="form-control input-form fw-bold text-danger text-decoration-underline" required=""
+                    id="alergias-aceptar-paciente">
+                </div>
+                <div class="mt-3">
+                  <textarea rows="4" cols="90" class="input-form" placeholder="Observaciones"
+                    id="Observaciones-aceptar"></textarea>
+                </div>
+
+                <div class="mt-3">
+                  <label for="est_diagnostico" class="form-label">Diagnóstico: </label>
+                  <input type="text" name="est_diagnostico" value="" class="form-control input-form" required=""
+                    id="diagnostico-aceptar-paciente">
+                </div>
+
+                <div class="mt-3">
+                  <label for="medico_tratante" class="form-label">Médico tratante: </label>
+                  <input type="text" name="medico_tratante" placeholder="Nombre del médico tratante"
+                    class="form-control input-form" id="medico-aceptar-paciente" style="text-transform:uppercase;"
+                    onkeyup="javascript:this.value=this.value.toUpperCase();">
+                  <input type="text" name="medico_correo" placeholder="Correo del médico tratante"
+                    class="form-control input-form" id="medico-correo-aceptar">
+                </div>
+
+                <!-- <div class="mt-3">
+                  <label for="est_medico_solicita" class="form-label">Médico que solicita: </label>
+                  <select class="input-form" style="width: 100%;" id="medico-aceptar-paciente" name="medico_solicita">
+
+                  </select>
+
+                  <script>
+                    $("#medico-aceptar-paciente").select2({
+                      tags: true,
+                      dropdownParent: $('#modalPacienteAceptar'),
+                      tokenSeparators: [",", " "],
+                      createSearchChoice: function (term, data) {
+                        if ($(data).filter(function () {
+                          return this.text.localeCompare(term) === 0;
+                        }).length === 0) {
+                          return {
+                            id: term,
+                            text: term
+                          };
+                        }
+                      },
+                      multiple: true,
+                      ajax: {
+                        url: 'http://localhost/nuevo_checkup/api/buscar_select_api.php?searchTerm=ger',
+                        dataType: "json",
+                        data: function (term, page) {
+                          return {
+                            searchTerm: term
+                          };
+                        },
+                        results: function (data, page) {
+                          return {
+                            results: data
+                          };
+                        }
+                      }
+                    });
+                  </script>
+
+                   <input type="text" name="est_medico_solicita" value="" class="form-control input-form" required=""
+                    id="diagnostico-aceptar-paciente"> 
+              </div> -->
+
+
+                <div class="col-12 mt-3">
+                  <p>Formas de pago: </p>
+                  <p>Total del paquete: <strong></strong></p>
+                  <p>Total de estudios individuales: <strong></strong></p>
+                </div>
+              </div>
+              <!-- <div class="overflow-auto" style="max-width: 100%; max-height: 220px;margin-bottom:10px;">
+                <ul class="list-group" id="list-estudiosPaciente">
+                  <li class="list-group-item">An item</li>
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                </ul>
+              </div> -->
+              <div class="col-12">
+
+              </div>
+            </div>
+            <!-- <div class="col-12 col-lg-6">
+              <p class="text-center">Identificación</p>
+              <div class="overflow-hidden" style="max-width: 100%; max-height: 235px;">
+                <img src="https://mdbootstrap.com/img/Others/documentation/img%20(131)-mini.jpg" class="img-fluid" alt="Responsive image" id="image-perfil">
+              </div>
+            </div> -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="zoom:90%">
+        <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i>
+          Cerrar</button>
+        <button type="button" class="btn btn-cancelar" id="siguienteForm"><i class="bi bi-arrow-right-circle"></i>
+          Siguiente</button>
+        <button type="submit" form="formAceptarPacienteRecepcion" class="btn btn-confirmar" id="btn-confirmar-paciente">
+          <i class="bi bi-check2-square"></i> Aceptar paciente
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

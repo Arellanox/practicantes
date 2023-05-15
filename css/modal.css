@@ -1,0 +1,51 @@
+.modal-header {
+  background-color: rgb(000, 078, 089);
+  color: white;
+}
+
+.modal-body {
+  background-color: #f6fdff;
+  color: rgb(000, 078, 089);
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+
+.modal-body label {
+  background-color: #f6fdff;
+  color: black;
+  font-weight: 500;
+}
+
+.modal-body p {
+  color: rgb(000, 175, 170);
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+
+
+.modal-footer {
+  background-color: rgb(216 223 225);
+}
+
+
+
+.bg-acordion {
+  background-color: #f6fdff;
+  color: rgb(000, 078, 089);
+}
+
+.bg-acordion button {
+  background-color: #f6fdff;
+  color: rgb(000, 078, 089);
+}
+
+.bg-acordion label {
+  background-color: #f6fdff;
+  color: rgb(000, 078, 089);
+  background-color: rgb(0 0 0 / 0);
+  padding-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}

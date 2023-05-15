@@ -1,0 +1,36 @@
+#nav{
+  zoom: 140%
+}
+#img{
+  position: relative;
+  left: 12px;
+}
+
+
+.botonesText{
+    font-family: 'Secular One', sans-serif;
+    margin-top: 100px;
+}
+#box1{
+  box-shadow: 0px 6px 6px 1px rgba(0,0,0,0.5);
+  background-color: rgb(0 175 170);
+  color: white;
+  margin-top: 50px;
+}
+
+#box1:hover{
+  background-color: rgb(0 175 170 / 69%);
+  color: black;
+}
+
+#box2{
+    box-shadow: 0px 6px 6px 1px rgba(0,0,0,0.5);
+    background-color: rgb(0, 55, 175);
+    color: white;
+    margin-top: 50px;
+}
+
+#box2:hover{
+  background-color: rgba(0, 61, 175, 0.69);
+  color: black;
+}

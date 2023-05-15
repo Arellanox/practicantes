@@ -1,0 +1,13 @@
+.off-canvas-container {
+    background-color: rgb(000, 078, 089);
+    color: white;
+}
+
+.off-canvas-container .bg-white-canvas {
+    background-color: #f6fdff;
+}
+
+.off-canvas-container h4 {
+    /* color: rgb(000, 175, 170) */
+    color: white;
+}

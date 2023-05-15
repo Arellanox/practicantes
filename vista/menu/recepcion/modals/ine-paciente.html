@@ -1,0 +1,179 @@
+<div class="modal fade" id="modalPacienteIne" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header header-modal">
+        <h5 class="modal-title" id="title-paciente_ine">?????</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-8">
+            <!-- HTML markup -->
+            <div style="height: 50vh;">
+              <video id="video" width="100%" height="100%"></video>
+            </div>
+            <div class="row">
+
+              <div class="col-4">
+                <select id="device-select" class="input-form"></select>
+              </div>
+              <div class="col-8">
+
+                <button type="button" class="btn btn-confirmar" id="start-button">
+                  <i class="bi bi-person-x"></i> Start camera
+                </button>
+                <button type="button" class="btn btn-confirmar" id="stop-button" disabled>Stop camera</button>
+                <button type="button" class="btn btn-confirmar" id="photo-button" disabled>Take photo</button>
+              </div>
+
+              <img src="" id="photo-preview" alt="">
+            </div>
+          </div>
+          <div class="col-4">
+            Informacion
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i>
+          Cancelar</button>
+        <button type="submit" form="formInePaciente" class="btn btn-confirmar" id="btn-subir-perfil-paciente">
+          <i class="bi bi-person-x"></i> Subir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  class Camera {
+    constructor(videoElement) {
+      this.video = videoElement;
+      this.stream = null;
+      this.deviceId = null;
+    }
+
+    async start() {
+      const constraints = {
+        video: {
+          deviceId: this.deviceId ? { exact: this.deviceId } : undefined,
+          aspectRatio: 1.7777777778,
+          resizeMode: 'crop-and-scale',
+          width: { max: 1920 },
+          height: { max: 1080 }
+        }
+      };
+
+      try {
+        this.stream = await navigator.mediaDevices.getUserMedia(constraints);
+        // const track = this.stream.getVideoTracks()[0];
+        // const capabilities = track.getCapabilities();
+        // const aspectRatio = capabilities.aspectRatio;
+        // const resizeMode = capabilities.resizeMode.includes('crop-and-scale') ? 'crop-and-scale' : 'none';
+        // constraints.video.width.max = capabilities.width.max;
+        // constraints.video.height.max = capabilities.height.max;
+        // constraints.video.aspectRatio = aspectRatio;
+        // constraints.video.resizeMode = resizeMode;
+        // this.stream = await navigator.mediaDevices.getUserMedia(constraints);
+        this.video.srcObject = this.stream;
+        await this.video.play();
+      } catch (err) {
+        console.error('Failed to start camera', err);
+        throw err;
+      }
+    }
+
+    stop() {
+      if (this.stream) {
+        this.stream.getTracks().forEach(track => track.stop());
+        this.stream = null;
+        this.video.srcObject = null;
+      }
+    }
+
+    takePhoto() {
+      const canvas = document.createElement('canvas');
+      canvas.width = this.video.videoWidth;
+      canvas.height = this.video.videoHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(this.video, 0, 0);
+      const dataUrl = canvas.toDataURL('image/png');
+      return dataUrl;
+    }
+
+    setDeviceId(deviceId) {
+      this.deviceId = deviceId;
+      if (this.stream) {
+        this.stop();
+        this.start();
+      }
+    }
+
+    async getDevices() {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const cameras = devices.filter(device => device.kind === 'videoinput');
+      return cameras;
+    }
+
+    async requestPermission() {
+      try {
+        await navigator.mediaDevices.getUserMedia({
+          video: true
+        });
+        return true;
+      } catch (err) {
+        console.error('Failed to request camera permission', err);
+        return false;
+      }
+    }
+
+    async checkPermission() {
+      const permission = await navigator.permissions.query({
+        name: 'camera'
+      });
+      return permission.state === 'granted';
+    }
+  }
+
+
+
+  $(document).ready(async function () {
+    const videoElement = $('#video')[0];
+    const startButton = $('#start-button');
+    const stopButton = $('#stop-button');
+    const photoButton = $('#photo-button');
+    const deviceSelect = $('#device-select');
+
+    const camera = new Camera(videoElement);
+    const cameras = await camera.getDevices();
+    cameras.forEach(camera => {
+      deviceSelect.append(`<option value="${camera.deviceId}">${camera.label}</option>`);
+    });
+
+    deviceSelect.change(function () {
+      const deviceId = $(this).val();
+      camera.setDeviceId(deviceId);
+    });
+
+    startButton.click(async function () {
+      await camera.start();
+      startButton.attr('disabled', true);
+      stopButton.attr('disabled', false);
+      photoButton.attr('disabled', false);
+    });
+
+    stopButton.click(function () {
+      camera.stop();
+      startButton.attr('disabled', false);
+      stopButton.attr('disabled', true);
+      photoButton.attr('disabled', true);
+    });
+
+    photoButton.click(function () {
+      const dataUrl = camera.takePhoto();
+      $('#photo-preview').attr('src', dataUrl);
+    });
+  });
+</script>

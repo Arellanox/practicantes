@@ -1,0 +1,79 @@
+<h4>Lista de documentos</h4>
+<div class="list-group">
+    <!-- <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+        The current button
+    </button> -->
+    <button type="button" id="btn-laboratorio-etiquetas" class="list-group-item list-group-item-action">
+        Etiquetas laboratorio
+    </button>
+
+    <button type="button" style="display: none;"
+        class="btn_documentacion_paciente list-group-item list-group-item-action" id="btn-PERFIL">
+        Perfil del paciente
+    </button>
+
+    <button type="button" style="display: none;"
+        class="btn_documentacion_paciente list-group-item list-group-item-action" id="btn-VERIFICACION_UJAT">
+        Verificacion UJAT
+    </button>
+
+    <button type="button" style="display: none;"
+        class="btn_documentacion_paciente list-group-item list-group-item-action" id="btn-PASE_UJAT">
+        Pase UJAT
+    </button>
+
+    <!-- <a class="dropdown-a align-items-center rounded collapsed" type="button">
+        <i class="bi bi-file-earmark-spreadsheet"></i> Credencial
+    </a> -->
+    <button type="button" style="display: none;" id="btn-credenciales" class="list-group-item list-group-item-action"
+        data-bs-toggle="collapse" data-bs-target="#board-credencial-paciente-btn" aria-expanded="false">
+        Credencial
+    </button>
+    <div class="collapse" id="board-credencial-paciente-btn">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+                <button type="button" style="display: none;"
+                    class="btn_documentacion_paciente list-group-item list-group-item-action" id="btn-front">
+                    Frontal
+                </button>
+            </li>
+            <li>
+                <button type="button" style="display: none;"
+                    class="btn_documentacion_paciente list-group-item list-group-item-action" id="btn-back">
+                    Trasero
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <button type="button" style="display: none;" id="btn-orden-medicas" class="list-group-item list-group-item-action"
+        data-bs-toggle="collapse" data-bs-target="#board-orden-medicas-paciente-btn" aria-expanded="false">
+        Ordenes Medicas
+    </button>
+    <div class="collapse" id="board-orden-medicas-paciente-btn">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li>
+                <a type="button" target="_blank" style="display: none;" class="list-group-item list-group-item-action"
+                    id="btn-LABORATORIOCLÍNICO">
+                    Laboratorio Clínico
+                </a>
+            </li>
+            <li>
+                <a type="button" target="_blank" style="display: none;" class="list-group-item list-group-item-action"
+                    id="btn-RAYOSX">
+                    Rayos X
+                </a>
+            </li>
+            <li>
+                <a type="button" target="_blank" style="display: none;" class="list-group-item list-group-item-action"
+                    id="btn-ULTRASONIDO">
+                    Ultrasonido
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+    <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+    <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
+</div>

@@ -1,0 +1,41 @@
+.container-avatar {
+    position: relative;
+    width: 48px;
+}
+
+.image-avatar {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+}
+
+.overlay-avatar {
+    border-radius: 0px 0px 100px 100px;
+    position: absolute;
+    top: 25px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000000a8;
+}
+
+.container-avatar:hover .overlay-avatar  {
+    opacity: 50;
+}
+
+.text-avatar {
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}

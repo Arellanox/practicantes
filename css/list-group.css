@@ -1,0 +1,7 @@
+.hover-list li:hover{
+   background-color:  rgb(000 175 170 / 10%);
+}
+
+#panel-informacion{
+  max-height: 70vh;
+}

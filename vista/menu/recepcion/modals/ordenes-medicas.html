@@ -1,0 +1,49 @@
+<div class="modal fade" id="modalOrdenesMedicas" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header header-modal">
+        <h5 class="modal-title" id="title-orden_medica">?????</h5>
+        <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="" id="formOrdenesMedicasPaciente">
+          <p class="text-center">Cargue las órdenes médicas a actualizar</p>
+          <div class="col-12 mt-3">
+            <div class="input-file-contenedor">
+              <label for="form-label">Orden Médica de Laboratorio Clínico</label>
+              <label for="orden-medica-laboratorio[]" class="input-file-label">
+                <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+              </label>
+              <input type="file" name="orden-medica-laboratorio[]" id="orden-medica-laboratorio[]"
+                accept="application/pdf" class="input-file">
+            </div>
+            <div class="input-file-contenedor">
+              <label for="form-label">Orden Médica de Ultrasonido</label>
+              <label for="orden-medica-us[]" class="input-file-label">
+                <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+              </label>
+              <input type="file" name="orden-medica-us[]" id="orden-medica-us[]" accept="application/pdf"
+                class="input-file">
+            </div>
+            <div class="input-file-contenedor">
+              <label for="form-label">Orden Médica de Rayos X</label>
+              <label for="orden-medica-rx[]" class="input-file-label">
+                <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+              </label>
+              <input type="file" name="orden-medica-rx[]" id="orden-medica-rx[]" accept="application/pdf"
+                class="input-file">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i>
+          Cancelar</button>
+        <button type="submit" form="formOrdenesMedicasPaciente" class="btn btn-confirmar"
+          id="btn-subir-perfil-paciente">
+          <i class="bi bi-person-x"></i> Subir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

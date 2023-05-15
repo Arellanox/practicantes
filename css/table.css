@@ -1,0 +1,56 @@
+table thead {
+  background-color: rgb(000, 078, 089);
+  /* background-color: #10ADA6; */
+  color: white;
+  border-color: #797D7F;
+}
+
+
+/* .btn-table {
+  padding-left: 8px;
+  padding-right: 8px; 
+padding-bottom: 2px;
+padding-top: 2px;
+text-decoration: none;
+color: black;
+border: 0px;
+background-color: rgb(255 255 255 / 0%);
+}
+
+.btn-table:hover {
+  color: rgb(000, 175, 170);
+}
+
+*/
+
+/* table tr {
+  padding-bottom: 50px;
+  padding-top: 10px;
+} */
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: 0.5em !important;
+  display: inline-block !important;
+  width: 300px !important;
+}
+
+
+table {
+  border-collapse: collapse;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.radiuszero {
+  border-radius: 0px;
+}
+
+table tbody tr.selected {
+  color: white;
+  box-shadow: inset 0 0 0 9999px rgb(0 130 148) !important;
+}
+
+/* table.dataTable tbody tr.selected{
+  box-shadow: inset 0 0 0 9999px rgb(0 130 148) !important;
+  color: white;
+} */

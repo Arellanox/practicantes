@@ -1,0 +1,226 @@
+<div class="modal fade" id="ModalBeneficiario" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-fullscreen-xxl-down modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header header-modal">
+                <h5 class="modal-title" id="title-beneficiario">Carga de Datos de beneficiario UJAT</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formBeneficiadoTrabajador">
+                    <div class="row">
+                        <div class="col row">
+                            <div class="col">
+                                <div class="card p-3 mb-2" style="min-width: 310px;">
+                                    <div class="row">
+                                        <p>Información del paciente beneficiado</p>
+
+                                        <div class="col-4">
+                                            <label for="clave_beneficiado" class="form-label">Clave</label>
+                                            <input type="text" name="clave_beneficiado" value=""
+                                                placeholder="Ejemplo: 1, 2, 3, después del - de la clave del trabajador"
+                                                class="form-control input-form" id="clave_beneficiado">
+                                        </div>
+
+                                        <div class="col-4">
+                                            <label for="parentesco" class="form-label">Parentesco</label>
+                                            <!-- <input type="text" name="parentesco" value="" class="form-control input-form"> -->
+                                            <select name="parentesco" class="input-form " id="parentesco_beneficiado">
+                                                <option value="1">TRABAJADOR</option>
+                                                <option value="2">MADRE</option>
+                                                <option value="3">PADRE</option>
+                                                <option value="4">ESPOSO (A)</option>
+                                                <option value="5">HIJO (A)</option>
+                                                <option value="6">CONCUBINA</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <label for="pase" class="form-label">Número de Pase</label>
+                                            <input type="text" name="pase" class="form-control input-form"
+                                                id="numero_pase">
+                                        </div>
+
+                                        <div class="col-8">
+                                            <label for="medico" class="form-label">Médico que Envía</label>
+                                            <input type="text" name="medico" value="" class="form-control input-form"
+                                                id="medico_envia">
+                                        </div>
+
+                                        <div class="col-4">
+                                            <label for="cedula-medico" class="form-label">Cédula médico</label>
+                                            <input type="text" name="cedula-medico" class="form-control input-form"
+                                                id="cedula_medico">
+                                        </div>
+
+                                        <div class="col-8">
+                                            <label for="diagnostico" class="form-label">Diagnóstico</label>
+                                            <input type="text" name="diagnostico" value=""
+                                                class="form-control input-form" id="diagnostico_beneficiado">
+                                        </div>
+
+                                        <div class="col-4">
+                                            <label for="ures" class="form-label">Ures</label>
+                                            <input type="text" name="ures" class="form-control input-form"
+                                                id="ures_beneficiado">
+                                        </div>
+
+                                        <div class="col-12 mt-3" id="contenedor-pase-ujat">
+
+                                            <!-- <label for="pase-ujat" class="form-label">Pase UJAT:</label>
+                                            <input type="file" name="pase-ujat[]" id="pase-ujat"
+                                                class="form-control input-form" value="" multiple id="input-multiple"> -->
+
+                                            <div class="input-file-contenedor">
+                                                <label for="form-label">Pase UJAT</label>
+                                                <label for="pase-ujat[]" class="input-file-label">
+                                                    <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+                                                </label>
+                                                <input type="file" name="pase-ujat[]" id="pase-ujat[]"
+                                                    accept="application/pdf" class="input-file">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-12" id="contenedor-url-pase" style="display:none !important">
+                                            <a type="button" target="_blank" class="btn btn-borrar me-2"
+                                                style="margin-bottom:4px" id="button-pase-ujat">
+                                                <i class="bi bi-file-earmark-pdf"></i> Pase
+                                                disponible</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <style>
+                                #contenedor-informacion-trabajador .select2-container {
+                                    max-width: 30em !important;
+                                }
+                            </style>
+                            <div class="col">
+                                <div class="card p-3" style="min-width: 310px;" id="contenedor-informacion-trabajador">
+                                    <p>Información del trabajador</p>
+                                    <label for="curp" class="form-label" id="label-identificacion">
+                                        Trabajador
+                                    </label>
+                                    <select name="trabajador_id" class="form-control input-form"
+                                        id="lista-pacientes-trabajadores"></select>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="checkPacienteBeneficia"
+                                            name="nuevo-trabajador">
+                                        <label class="form-check-label" for="checkPacienteBeneficia">
+                                            No existe el trabajador
+                                        </label>
+                                    </div>
+
+                                    <label for="categoria" class="form-label">Categoría</label>
+                                    <input type="text" name="trabajador-categoria" class="form-control input-form"
+                                        id="categoria_trabajador">
+
+                                    <div class="input-file-contenedor" id="contenedor-verificacion-ujat">
+                                        <label for="form-label">Verificación UJAT</label>
+                                        <label for="verificacion-ujat[]" class="input-file-label">
+                                            <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+                                        </label>
+                                        <input type="file" name="verificacion-ujat[]" id="verificacion-ujat[]"
+                                            accept="application/pdf" class="input-file">
+                                    </div>
+
+                                    <div class="col-12" id="contenedor-url-Verificacion"
+                                        style="display:none !important">
+                                        <a type="button" target="_blank" class="btn btn-borrar me-2"
+                                            style="margin-bottom:4px" id="button-Verificacion-ujat">
+                                            <i class="bi bi-file-earmark-pdf"></i> Verificacion
+                                            disponible</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8" style="display: none;width: 528px;" id="datos-nuevo-trabajador">
+                            <div class="card p-3">
+                                <p>Alta de trabajador</p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="nombre" class="form-label">Nombre(s)</label>
+                                        <input type="text" name="nombre" value="" class="form-control input-form"
+                                            id="input-name-trabajador">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="paterno" class="form-label">Apellido paterno</label>
+                                        <input type="text" name="paterno" value="" class="form-control input-form"
+                                            id="input-paterno-trabajador">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="materno" class="form-label">Apellido materno</label>
+                                        <input type="text" id="input-materno-trabajador" name="materno" value=""
+                                            class="form-control input-form">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="nacimiento" class="form-label">Fecha de nacimiento</label>
+                                        <input type="date" class="form-control input-form"
+                                            id="input-nacimiento-trabajador" name="nacimiento" placeholder=""
+                                            onchange="$(`input[class='form-control input-form edadTrabajador']`).val(calcularEdad(this.value))">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="edad" class="form-label">Edad</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control input-form edadTrabajador"
+                                                step="0.01" id="input-edad-trabajador" name="edad" placeholder=""
+                                                min="0" max="150">
+                                            <span class="input-span">años</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="numero_trabajador" class="form-label">Número del trabajador</label>
+                                        <input type="text" id="input-numero_trabajador-trabajador"
+                                            name="numero_trabajador" value="" class="form-control input-form">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="curp" class="form-label">CURP</label>
+                                        <input type="text" class="form-control input-form" name="curp" placeholder=""
+                                            id="curp-trabajador">
+                                        <!-- pattern="[A-Za-z]{4}[0-9]{6}[HMhm]{1}[A-Za-z]{5}[0-9]{2}" -->
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="pasaporte" class="form-label">Pasaporte</label>
+                                        <input type="text" class="form-control input-form"
+                                            id="input-pasaporte-trabajador" name="pasaporte" placeholder=""
+                                            id="pasaporte-trabajador">
+                                        <!-- Requerido si no tiene curp -->
+                                    </div>
+
+                                    <div class="col-12" style="margin-top: 30px;margin-bottom: 15px;">
+                                        <div class="container">
+                                            <div class="row" style="zoom:110%;">
+                                                <div class="col-md-auto">
+                                                    <label for="">Género: </label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="radio" id="mascuCues-trabajador" name="genero"
+                                                        value="MASCULINO">
+                                                    <label for="mascuCues-trabajador">Masculino</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="radio" id="FemeCues-trabajador" name="genero"
+                                                        value="FEMENINO">
+                                                    <label for="FemeCues-trabajador">Femenino</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="zoom:90%">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
+                    <i class="bi bi-arrow-left-short"></i> Cerrar
+                </button>
+                <button type="submit" form="formBeneficiadoTrabajador" class="btn btn-confirmar">
+                    <i class="bi bi-check2-square"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

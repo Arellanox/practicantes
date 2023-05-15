@@ -1,0 +1,53 @@
+  .btn-flotante-cumple {
+
+      color: #ffffff;
+      /* Color del texto */
+      border-radius: 5px;
+      /* Borde del boton */
+      letter-spacing: 2px;
+      /* Espacio entre letras */
+      background-color: #E91E63;
+      /* Color de fondo */
+      padding: 4px 7px 8px 7px;
+      /* Relleno del boton */
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      transition: all 300ms ease 0ms;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      z-index: 99;
+
+
+  }
+
+  .btn-flotante-cumple:hover {
+      background-color: #2c2fa5;
+      /* Color de fondo al pasar el cursor */
+      box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+      transform: translateY(-7px);
+  }
+
+  @media only screen and (max-width: 600px) {
+      .btn-flotante-cumple {
+          font-size: 14px;
+          padding: 7px 10px 7px 10px;
+          bottom: 20px;
+          right: 20px;
+      }
+  }
+
+
+  /* 
+  .btn-flotante-cumple {
+
+  }
+
+  .btn-flotante-cumple:focus {
+      transform: scale(1);
+  }
+
+  .btn-flotante-cumple:focus:not(:focus-visible) {
+      transform: scale(0.8);
+  }
+
+  */

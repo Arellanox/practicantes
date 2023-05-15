@@ -1,0 +1,210 @@
+<div class="accordion mt-2" id="accordinSignosSomatometria">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headSignosSoma">
+      <button class="accordion-button collapsed" id="collapseSignosSoma" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseSignosSomatometria" aria-expanded="false" aria-controls="collapseSignosSomatometria">
+        Singos Vitales y Somatometría
+      </button>
+    </h2>
+    <div id="collapseSignosSomatometria" class="accordion-collapse collapse" aria-labelledby="headSignosSoma"
+      data-bs-parent="#accordinSignosSomatometria">
+      <div class="accordion-body row">
+
+
+        <div class="row m-2">
+          <!-- Ultimos signos vitales -->
+          <!--  -->
+          <div class="col-8">
+            <h4>Signos vitales</h4>
+          </div>
+          <div class="col-4 text-start d-flex align-items-center" id="fecha-signos"> </div>
+          <!-- <hr class="dropdown-divider"> -->
+          <div class="col-12" id="div-panel-signos">
+            <div class="row">
+              <div class="col-12 col-xxl-6 ">
+                <div class="row">
+                  <div class="col-6 col-xxl-8 text-end info-detalle">
+                    <p>Frec. Card.:</p>
+                  </div>
+                  <div class="col-6 col-xxl-4 text-start d-flex align-items-center">
+                    <p class="none-p" id="frecuenciaCardiaca"></p>
+                  </div>
+                </div>
+                <hr style="margin: 3px" />
+              </div>
+              <div class="col-12 col-xxl-6">
+                <div class="row">
+                  <div class="col-6 col-xxl-8 text-end info-detalle">
+                    <p>Frec. Resp.:</p>
+                  </div>
+                  <div class="col-6 col-xxl-4 text-start d-flex align-items-center">
+                    <p class="none-p" id="frecuenciaRespiratoria"></p>
+                  </div>
+                </div>
+                <hr style="margin: 3px" />
+              </div>
+
+              <div class="col-12 col-xxl-6">
+                <div class="row">
+                  <div class="col-6 col-xxl-6 text-end info-detalle">
+                    <p>Sistólica:</p>
+                  </div>
+                  <div class="col-6 col-xxl-6 text-start d-flex align-items-center">
+                    <p class="none-p" id="sistolica"></p>
+                  </div>
+                </div>
+                <hr style="margin: 3px" />
+              </div>
+              <div class="col-12 col-xxl-6">
+                <div class="row">
+                  <div class="col-6 col-xxl-6 text-end info-detalle">
+                    <p>Diastólica:</p>
+                  </div>
+                  <div class="col-6 col-xxl-6 text-start d-flex align-items-center">
+                    <p class="none-p" id="diastolica"></p>
+                  </div>
+                </div>
+                <hr style="margin: 3px" />
+              </div>
+
+              <div class="col-12 col-xxl-6">
+                <div class="row">
+                  <div class="col-6 col-xxl-8 text-end info-detalle">
+                    <p>Sa. Ox.:</p>
+                  </div>
+                  <div class="col-6 col-xxl-4 text-start d-flex align-items-center">
+                    <p class="none-p" id="saturacionOxigeno"></p>
+                  </div>
+                </div>
+                <hr style="margin: 3px" />
+              </div>
+              <div class="col-12 col-xxl-6">
+                <div class="row">
+                  <div class="col-6 col-xxl-8 text-end info-detalle">
+                    <p>Temp:</p>
+                  </div>
+                  <div class="col-6 col-xxl-4 text-start d-flex align-items-center">
+                    <p class="none-p" id="temperatura"></p>
+                  </div>
+                </div>
+                <hr style="margin: 3px" />
+              </div>
+
+            </div>
+
+            <div class="accordion mt-2" id="accordinSomatrometria">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headSomatometria">
+                  <button class="accordion-button collapsed" id="collapseSOMATOMETRIABOTON" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapseSomato" aria-expanded="false"
+                    aria-controls="collapseSomato">
+                    Somatometría
+                  </button>
+                </h2>
+                <div id="collapseSomato" class="accordion-collapse collapse" aria-labelledby="headSomatometria"
+                  data-bs-parent="#accordinSomatrometria">
+                  <div class="accordion-body row">
+                    <div class="col-7 text-end info-detalle">
+                      <p>Estatura:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="estatura"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Peso:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="peso"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Masa corporal:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="masaCorporal"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Masa Muscular:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="masaMuscular"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Perímetro Cefálico:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="porcentajeGrasaVisceral"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Porcentaje de Agua:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="huesos"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Porcentaje de Grasa Visceral:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="metabolismo"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Huesos:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="edadCuerpo"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Metabolismo:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="perimetroCefalico"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Porcentaje de Proteínas:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="porcentajeProteinas"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+
+                    <div class="col-7 text-end info-detalle">
+                      <p>Edad del cuerpo:</p>
+                    </div>
+                    <div class="col-5 text-start d-flex align-items-center">
+                      <p class="none-p" id="porcentajeAgua"></p>
+                    </div>
+                    <hr style="margin: 3px" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--  style="max-width: 100%; max-height: 35vh;overflow-y: auto;overflow-x: hidden;" -->
+          <!--  -->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
