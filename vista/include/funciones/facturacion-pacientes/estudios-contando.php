@@ -126,12 +126,10 @@
             </div>
             <div class="modal-footer" style="zoom:90%">
                 <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
-                    <i class="bi bi-arrow-left-short"></i>
-                    Cerrar
+                    <i class="bi bi-arrow-left-short"></i> Cerrar
                 </button>
-                <button type="button" class="btn btn-confirm" data-bs-dismiss="modal" id="terminar-proceso-cargo">
-                    <i class="bi bi-arrow-left-short"></i>
-                    Pagar
+                <button type="button" class="btn btn-pantone-7408" data-bs-dismiss="modal" id="terminar-proceso-cargo">
+                    <i class="bi bi-box-arrow-down"></i> Guardar y pagar
                 </button>
             </div>
         </div>

@@ -86,7 +86,7 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
 
       if (array_selected['CLIENTE_ID'] == 1) {
         alertMensajeConfirm({
-          title: '¿Como será el pago del paciente?',
+          title: '¿Cuál es el tipo de pago del paciente?',
           icon: 'info',
           text: `Elege el tipo de pago para el paciente ${array_selected['NOMBRE_COMPLETO']}`,
           denyButtonText: `Credito`,
@@ -94,11 +94,14 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
           showDenyButton: true,
           showCancelButton: false
         }, function () {
-          configurarModal(array_selected);
+          //Abrir el modal de estudios, precios y detalle
+          configurarEstudios(array_selected);
         }, 1, function () {
+          //Termina el proceso  sin factura y fue a credito
           finalizarProcesoRecepcion(data, false, 'Credito');
         })
       } else {
+        //Termina el proceso sin factura y sin credito
         finalizarProcesoRecepcion(data);
       }
 
@@ -109,6 +112,7 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
 
 });
 
+//Finaliza el proceso del paciente
 function finalizarProcesoRecepcion(paciente, factura = false, pago = false) {
   let data = ajaxAwait({
     api: 19, // <-- desmarcar o marcar
