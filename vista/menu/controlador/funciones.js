@@ -124,7 +124,7 @@ async function ajaxAwait(dataJson, apiURL,
     alertBefore: false
   },
   //Callback
-  callbackBefore = function () {
+  callbackBefore = function (data) {
     alertMsj({
       title: 'Espera un momento...',
       text: 'Estamos cargando tu solicitud, esto puede demorar un rato',
@@ -133,7 +133,7 @@ async function ajaxAwait(dataJson, apiURL,
     })
   },
   //Callback, antes de devolver la data
-  callbackSuccess = function () {
+  callbackSuccess = function (data) {
     console.log('callback ajaxAwait por defecto')
   }
 ) {
@@ -1195,7 +1195,7 @@ function alertMsj(options, callback = function () { }) {
   })
 }
 
-function alertMensajeConfirm(options, callback = function () { }, set = 0) {
+function alertMensajeConfirm(options, callback = function () { }, set = 0, callbackDenied = function () { }) {
 
   //Options si existe
   switch (set) {
@@ -1255,6 +1255,8 @@ function alertMensajeConfirm(options, callback = function () { }, set = 0) {
   Swal.fire(options).then((result) => {
     if (result.isConfirmed || result.dismiss === "timer") {
       callback()
+    } else if (result.isDenied) {
+      callbackDenied();
     }
   })
 }

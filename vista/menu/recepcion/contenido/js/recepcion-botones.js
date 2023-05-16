@@ -83,23 +83,23 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
       text: `El paciente, ${array_selected['NOMBRE_COMPLETO']}, ya no se podrán hacer mas modificaciones.`,
       icon: 'warning'
     }, function () {
-      let data = ajaxAwait({
-        api: 19, // <-- desmarcar o marcar
-        turno_completado: 1,
-        id_turno: array_selected['ID_TURNO']
-      }, 'turnos_api')
 
-      if (data) {
-        // let row = data.response.data;
-        alertMsj({
-          title: '¡Paciente finalizado!',
-          text: `El paciente: ${array_selected['NOMBRE_COMPLETO']}, ha sido cerrado, ya no podrás crear modificaciones al paciente...`,
-          footer: 'Cargando nuevamente las tablas...',
-          icon: 'success',
-          showCancelButton: false,
+      if (array_selected['CLIENTE_ID'] == 1) {
+        alertMensajeConfirm({
+          title: '¿Como será el pago del paciente?',
+          icon: 'info',
+          text: `Elege el tipo de pago para el paciente ${array_selected['NOMBRE_COMPLETO']}`,
+          denyButtonText: `Credito`,
+          confirmButtonText: 'Contado',
+          showDenyButton: true,
+          showCancelButton: false
+        }, function () {
+          configurarModal(array_selected);
+        }, 1, function () {
+          finalizarProcesoRecepcion(data, false, 'Credito');
         })
-        try { tablaRecepcionPacientesIngrersados.ajax.reload() } catch (error) { }
-        // try { tablaRecepcionPacientes.ajax.reload() } catch (error) { }
+      } else {
+        finalizarProcesoRecepcion(data);
       }
 
     }, 1)
@@ -108,6 +108,29 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
   }
 
 });
+
+function finalizarProcesoRecepcion(paciente, factura = false, pago = false) {
+  let data = ajaxAwait({
+    api: 19, // <-- desmarcar o marcar
+    turno_completado: 1,
+    id_turno: paciente['ID_TURNO'],
+    factura: factura, // <-- si  o no
+    pago: pago, // <-- si o no
+  }, 'turnos_api')
+
+  if (data) {
+    // let row = data.response.data;
+    alertMsj({
+      title: '¡Paciente finalizado!',
+      text: `El paciente: ${paciente['NOMBRE_COMPLETO']}, ha sido cerrado, ya no podrás crear modificaciones al paciente...`,
+      footer: 'Cargando nuevamente las tablas...',
+      icon: 'success',
+      showCancelButton: false,
+    })
+    try { tablaRecepcionPacientesIngrersados.ajax.reload() } catch (error) { }
+    // try { tablaRecepcionPacientes.ajax.reload() } catch (error) { }
+  }
+}
 
 
 
@@ -136,7 +159,7 @@ $(document).on('click', '.btn-agregar-estudios-admin', function (event) {
   event.preventDefault();
   let tipo = $(this).attr('data-bs-tipo');
   let id = $(`#${tipo}`).val()
-  let name = $(`#${tipo} option:selected`).html()
+  let name = $(`#${tipo} option: selected`).html()
   console.log(id)
   console.log(tipo)
 
@@ -183,9 +206,9 @@ $(document).on('click', '#btn-cargar-documentos', function () {
     title: 'Documentación del paciente <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Cargue/Guarde la documentación del paciente"></i>',
     footer: 'Seleccione una opción.',
     html: `
-        <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-perfil-paciente">
-          <i class="bi bi-person-bounding-box"></i> Foto de Perfil
-        </button>
+      < button type = "button" class= "btn btn-hover me-2" style = "margin-bottom:4px" id = "btn-perfil-paciente" >
+      <i class="bi bi-person-bounding-box"></i> Foto de Perfil
+        </ >
         <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-credencial-paciente">
           <i class="bi bi-person-vcard-fill"></i> Credencial
         </button> 
