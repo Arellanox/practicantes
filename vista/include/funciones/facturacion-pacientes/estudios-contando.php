@@ -85,6 +85,9 @@
                         <div class="mb-2">
                             <label class="form-label" for="tipo_pago">Tipo de pago</label>
                             <select name="tipo_pago" class="input-form form-control" id="contado-tipo-pago"></select>
+
+                            <label for="referencia-contado" class="form-label">Referencia</label>
+                            <input type="text" id="referencia-contado" class="input-form form-control">
                         </div>
                         <div class="row d-flex justify-content-end">
                             <div class="col-8 text-end">Total de cargos:</div>
@@ -105,7 +108,7 @@
                 <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
                     <i class="bi bi-arrow-left-short"></i> Cerrar
                 </button>
-                <button type="button" class="btn btn-pantone-7408" data-bs-dismiss="modal" id="terminar-proceso-cargo">
+                <button type="button" class="btn btn-pantone-7408" id="terminar-proceso-cargo">
                     <i class="bi bi-box-arrow-down"></i> Guardar y pagar
                 </button>
             </div>

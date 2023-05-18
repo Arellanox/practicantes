@@ -18,6 +18,7 @@ $id_ticket = $_POST['id_ticket'];
 $turno_id = $_POST['turno_id'];
 $descuento_porcentaje = $_POST['descuento_porcentaje'];
 $descuento = $_POST['descuento'];
+$total_cargos = $_POST['total_cargos'];
 $subtotal = $_POST['subtotal'];
 $iva = $_POST['iva'];
 $total = $_POST['total'];
@@ -31,13 +32,14 @@ $params = $master->setToNull(array(
     $turno_id,
     $descuento_porcentaje,
     $descuento,
+    $total_cargos,
     $subtotal,
     $iva,
     $total,
     $pago,
     $referencia,
     $requiere_factura,
-    $dato
+    $dato // <-- No se usa
 ));
 # datos de factura
 
