@@ -1,3 +1,7 @@
+//Variable globales
+var tipo_pago = false, tipo_factura = false;
+var dataPaciente;
+
 
 $(document).on('click', '#terminar-proceso-cargo', function (event) {
     event.preventDefault();
@@ -12,6 +16,8 @@ $(document).on('click', '#terminar-proceso-cargo', function (event) {
     }, function () {
         //Si fue si, abrir el modal de factura
         configurarFactura(dataPaciente);
+
+        console.log(dataPaciente);
     }, 1, function () {
         //Si fue no, terminar el proceso con el tipo de pago contado...
         metodo();
@@ -20,9 +26,6 @@ $(document).on('click', '#terminar-proceso-cargo', function (event) {
 })
 
 
-//Variable globales
-var tipo_pago = false, tipo_factura = false;
-var dataPaciente;
 //Vista de estudios que se le hicieron al paciente
 function configurarModal(data) {
     //Estatus en proceso
@@ -37,13 +40,15 @@ function configurarModal(data) {
 
     ajaxAwait({
         api: 1,
-        turnos_id: data['ID_TURNO'],
-    }, 'cargos_turnos_api', { callbackAfter: true }, false, function (data) {
+        turno_id: data['ID_TURNO'],
+    }, 'cargos_turnos_api', { callbackAfter: true, returnData: false }, false, function (data) {
         //El arreglo debe contener tanto un arreglo de los estudios como el total de precio de los estudios
         //let row = data.response.data; // todos los datos
 
         data = data.response.data; //Todos los datos para el detalle;
-        let row = data.response.data['estudios']; // <-- Listas de estudios en bruto
+        let row = data['estudios']; // <-- Listas de estudios en bruto
+
+        $('.contenido-estudios').html('')
 
         for (const key in row) {
             if (Object.hasOwnProperty.call(row, key)) {
@@ -51,9 +56,9 @@ function configurarModal(data) {
 
                 //Crea la fila de la tabla, Nombre del servicio, cantidad, y precio antes de iva
                 let html = `<tr>
-                                <th>${element['DESCRIPCION']}</th> 
-                                <td>${element['CANTIDAD']}</td>
-                                <td>${element['PRECIO_VENTA']}</td>
+                                <th>${element['servicios']}</th> 
+                                <td>${ifnull(element['CANTIDAD'], 0)}</td>
+                                <td>$${ifnull(element['PRECIO'], 0)}</td>
                             </tr>`
 
                 //Adjunta a las tablas la area correspondiente
@@ -70,21 +75,24 @@ function configurarModal(data) {
 
 
         //Lista de precio, total de estudios, detalle fuera
-        $('#precio-total-cargo').html(`$${data['TOTAL_CARGO']}`)
-        $('#precio-descuento').html(`$${data['DESCUENTO']}`)
-        $('#precio-subtotal').html(`$${data['SUBTOTAL']}`)
-        $('#precio-iva').html(`$${data['IVA']}`)
-        $('#precio-total').html(`$${data['TOTAL']}`)
+        $('#precio-total-cargo').html(`$${ifnull(data['TOTAL_CARGO'])}`)
+        $('#precio-descuento').html(`$${ifnull(data['DESCUENTO'])}`)
+        $('#precio-subtotal').html(`$${ifnull(data['SUBTOTAL'])}`)
+        $('#precio-iva').html(`$${ifnull(data['IVA'])}`)
+        $('#precio-total').html(`$${ifnull(data['TOTAL'])}`)
+
+        $('#modalEstudiosContado').modal('show');
+
     })
 
-    $('#modalEstudiosContado').modal('show');
+
 }
 
 //Vista de factura (faltan datos)
 function configurarFactura(data) {
     tipo_factura = true;
 
-    $('#nombre-paciente-contado').html(`${data['NOMBRE_COMPLETO']}`);
+    $('#nombre-paciente-factura').html(`${data['NOMBRE_COMPLETO']}`);
 
     //Mensaje de espera al usuario
     alertToast('Espere un momento', 'info', 4000);

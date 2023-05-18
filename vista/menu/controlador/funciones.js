@@ -150,16 +150,16 @@ async function ajaxAwait(dataJson, apiURL,
         config.callbackBefore ? callbackBefore() : 1;
       },
       success: function (data) {
-
+        let row = data;
         try {
           if (config.response) {
-            if (mensajeAjax(data)) {
-              config.callbackAfter ? callbackSuccess(config.WithoutResponseData ? data.response.data : data) : 1;
-              config.returnData ? resolve(config.WithoutResponseData ? data.response.data : data) : resolve(1)
+            if (mensajeAjax(row)) {
+              config.callbackAfter ? callbackSuccess(config.WithoutResponseData ? row.response.data : row) : 1;
+              config.returnData ? resolve(config.WithoutResponseData ? row.response.data : row) : resolve(1)
             }
           } else {
-            config.callbackAfter ? callbackSuccess(config.WithoutResponseData ? data.response.data : data) : 1;
-            config.returnData ? resolve(config.WithoutResponseData ? data.response.data : data) : resolve(1)
+            config.callbackAfter ? callbackSuccess(config.WithoutResponseData ? row.response.data : row) : 1;
+            config.returnData ? resolve(config.WithoutResponseData ? row.response.data : row) : resolve(1)
           }
         } catch (error) {
           alertMensaje('error', 'Error', 'Datos/Configuración erronea', error);

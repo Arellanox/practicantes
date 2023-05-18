@@ -2,10 +2,12 @@
     <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header header-modal">
-                <h5 class="modal-title">Factura: <strong id="nombre-paciente-contado"></strong></h5>
+                <h5 class="modal-title">Factura: <strong id="nombre-paciente-factura"></strong></h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+
             </div>
             <div class="modal-footer" style="zoom:90%">
                 <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
