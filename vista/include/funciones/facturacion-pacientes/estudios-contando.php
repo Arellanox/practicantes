@@ -92,12 +92,16 @@
                         <div class="row d-flex justify-content-end">
                             <div class="col-8 text-end">Total de cargos:</div>
                             <div class="col-4 text-start" id="precio-total-cargo"> $0<!-- calculo --></div>
-                            <div class="col-8 text-end">#% de descuento:</div>
+
+                            <div class="col-8 text-end">
+                                Descuento ( % )
+                                <input type="number" placeholder="% de descuento:" class="form-control" value="0" id="descuento">
+                            </div>
                             <div class="col-4 text-start" id="precio-descuento"> $0<!-- calculo --></div>
                             <div class="col-8 text-end">Subtotal:</div>
                             <div class="col-4 text-start" id="precio-subtotal"> $0<!-- calculo --></div>
                             <div class="col-8 text-end">IVA:</div>
-                            <div class="col-4 text-start" id="precio-iva"> $0<!-- calculo --></div>
+                            <div class="col-4 text-start" id="precio-iva"> 16 %<!-- calculo --></div>
                             <div class="col-8 text-end">Total:</div>
                             <div class="col-4 text-start" id="precio-total"> $0<!-- calculo --></div>
                         </div>

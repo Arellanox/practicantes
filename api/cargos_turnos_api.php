@@ -17,6 +17,12 @@ $turno_id = $_POST['turno_id'];
 switch($api){
     case 1:
         $response = $master->getByProcedure('sp_cargos_turnos_b_angel',[$turno_id]);
+        $total_cargos = 0;
+
+        foreach($response as $e){
+            
+            $total_cargos = $total_cargos + $e['PRECIO'];
+        }
         
         // $areas = array();
         // foreach($response[1] as $current){
@@ -28,6 +34,7 @@ switch($api){
         //         }
 
             $response['estudios'] = $response;
+            $response['TOTAL_CARGO'] = $total_cargos;
 
         break;
     default:

@@ -353,8 +353,8 @@ function checkNumber(x, transform = 0) {
 function ifnull(data, siNull = '') {
   if (typeof data === 'undefined') return siNull;
   if (data) {
-    data = data.replace(/["]+/g, '&quot');
-    data = data.replace(/["]+/g, '&#44;');
+    data = `${data}`.replace(/["]+/g, '&quot');
+    data = `${data}`.replace(/["]+/g, '&#44;');
 
 
     return data;

@@ -25,7 +25,12 @@ $total = $_POST['total'];
 $pago =  $_POST['pago'];
 $referencia = $_POST['referencia'];
 $requiere_factura = $_POST['requiere_factura'];
-$dato = $_POST['dato'];
+$razon_social = $_POST['razon_social'];
+$domicilio = $_POST['domicilio'];
+$regimen_fiscal = $_POST['regimen_fiscal'];
+$rfc = $_POST['rfc'];
+$uso = $_POST['uso'];
+$metodo_pago = $_POST['metodo_pago'];
 
 $params = $master->setToNull(array(
     $id_ticket,
@@ -39,9 +44,18 @@ $params = $master->setToNull(array(
     $pago,
     $referencia,
     $requiere_factura,
-    $dato // <-- No se usa
+    $razon_social,
+    $domicilio,
+    $regimen_fiscal,
+    $rfc,
+    $uso,
+    $metodo_pago
+
 ));
 # datos de factura
+
+// print_r($params);
+// exit;
 
 
 
