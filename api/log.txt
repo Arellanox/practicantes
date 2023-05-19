@@ -1,0 +1,24 @@
+19/05/23 10:30:53 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Se ha intentado una operación de socket en un host no accesible.
+
+19/05/23 10:31:16 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Se ha intentado una operación de socket en un host no accesible.
+
+19/05/23 10:32:59 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2006] MySQL server has gone away
+19/05/23 10:33:49 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2006] MySQL server has gone away
+19/05/23 10:39:55 sp_recepcion_detalle_paciente_g Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'SERVICIO_ID' in 'where clause'
+19/05/23 10:39:55 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:39:55 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:39:56 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:39:56 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:39:56 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:48:17 sp_recepcion_detalle_paciente_g Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'SERVICIO_ID' in 'where clause'
+19/05/23 10:48:17 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:48:18 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:48:18 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:48:18 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:48:18 sp_recepcion_detalle_paciente_g Ha ocurrido un error(21000). 21000 1242 Subquery returns more than 1 row
+19/05/23 10:52:45 sp_recepcion_detalle_paciente_g Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'SERVICIO_ID' in 'where clause'
+19/05/23 11:01:54 sp_recepcion_detalle_paciente_g Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'SERVICIO_ID' in 'where clause'
+19/05/23 11:12:30 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [1130] Host '187.188.32.155' is not allowed to connect to this MariaDB server
+19/05/23 15:05:29 sp_tickets_b Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_practicantes.sp_tickets_b; expected 2, got 1
+19/05/23 15:10:04 sp_tickets_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'tur.s.DESCRIPCION' in 'field list'
+19/05/23 15:10:21 sp_tickets_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'tur.s.DESCRIPCION' in 'field list'

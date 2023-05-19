@@ -10,13 +10,13 @@ if (validarVista('FACTURACIÓN')) {
 
 
 
-function obtenerPacientesCredito() {
-    obtenerTitulo('Pacientes a credito'); //Aqui mandar el nombre de la area
-    $.post("contenido/credito.html", function (html) {
+function obtenerPacientesContado() {
+    obtenerTitulo('Pacientes a contados'); //Aqui mandar el nombre de la area
+    $.post("contenido/contado.html", function (html) {
         $("#body-js").html(html);
     }).done(function () {
         // Datatable
-        $.getScript("contenido/js/recepcion-tabla.js");
+        $.getScript("contenido/js/contados-tablas.js");
     });
 }
 
@@ -27,8 +27,8 @@ function hasLocation() {
     $("a").removeClass("navlinkactive");
     $("nav li a[href='#" + hash + "']").addClass("navlinkactive");
     switch (hash) {
-        case "CREDITO":
-            obtenerPacientesCredito();
+        case "CONTADO":
+            obtenerPacientesContado();
             break;
         default:
             window.location.hash = '#';
