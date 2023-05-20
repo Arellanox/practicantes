@@ -51,8 +51,8 @@ $params = $master->setToNull(array(
     $regimen_fiscal,
     $rfc,
     $uso,
-    $metodo_pago
-
+    $metodo_pago,
+    $_SESSION['id']
 ));
 # datos de factura
 
