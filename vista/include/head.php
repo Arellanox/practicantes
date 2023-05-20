@@ -26,6 +26,8 @@
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"> -->
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/font-awesome.min.css'; ?>">
+
 
 <!-- Summernote -->
 <!-- <link rel="stylesheet" href="<?php echo 'http://' . $url . '/' . $appname . '\js\framework/summernote/summernote-lite.css'; ?>">
@@ -75,6 +77,11 @@
                                 ?>"> -->
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/r-2.3.0/sl-1.4.0/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.12.1/api/processing().js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 <!-- <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.13.4/pagination/scrolling.js"></script> -->
 
 <!-- toastui Calendary -->

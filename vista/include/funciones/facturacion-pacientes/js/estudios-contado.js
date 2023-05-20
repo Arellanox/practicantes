@@ -74,6 +74,11 @@ function configurarModal(data) {
         data = data.response.data //Todos los datos para el detalle
 
 
+        //Quitar duplicidad
+        if (data['FACTURADO'] == 1) {
+            alertMensaje('warning', '¡Paciente Facturado!', 'Este paciente ya tiene factura, no puedes volver a tomar estos datos...');
+            return false;
+        }
 
 
         let row = data['estudios'] // <-- Listas de estudios en bruto
@@ -105,8 +110,8 @@ function configurarModal(data) {
 
 
         let total_cargos = data['TOTAL_CARGO']
-    
-       
+
+
 
         let subtotal = total_cargos
         $('#precio-subtotal').html(`$${subtotal.toFixed(2)}`)
@@ -194,7 +199,7 @@ function configurarFactura(data) {
 function metodo() {
     //Termina el proceso del paciente con las llamadas que hizo el usuario
 
-    
+
     finalizarProcesoRecepcion(dataPaciente)
     ajaxAwait({
         api: 1, turno_id: dataPaciente['ID_TURNO'],
