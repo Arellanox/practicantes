@@ -32,8 +32,6 @@ $rfc = $_POST['rfc'];
 $uso = $_POST['uso'];
 $metodo_pago = $_POST['metodo_pago'];
 
-
-
 $params = $master->setToNull(array(
     $id_ticket,
     $turno_id,
@@ -56,8 +54,8 @@ $params = $master->setToNull(array(
 ));
 # datos de factura
 
-//  print_r($params);
-//  exit;
+// print_r($params);
+// exit;
 
 
 
@@ -66,10 +64,6 @@ switch ($api) {
     case 1:
         # guardar tickets
         $response = $master->insertByProcedure("sp_tickets_g", $params);
-        break;
-    case 2:
-        //Recuperar datos del ticket
-        $response = $master->getByProcedure("sp_tickets_b", [$turno_id, $requiere_factura]);
         break;
     default:
         $response = "Api no definida.";

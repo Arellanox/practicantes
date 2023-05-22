@@ -85,13 +85,24 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
     }, function () {
 
       if (array_selected['CLIENTE_ID'] == 1) {
-        
+        alertMensajeConfirm({
+          title: '¿Cuál es el tipo de pago del paciente?',
+          icon: 'info',
+          text: `Elege el tipo de pago para el paciente ${array_selected['NOMBRE_COMPLETO']}`,
+          denyButtonText: `Credito`,
+          confirmButtonText: 'Contado',
+          showDenyButton: true,
+          showCancelButton: false
+        }, function () {
           //Abrir el modal de estudios, precios y detalle
           configurarModal(array_selected);
-        
+        }, 1, function () {
+          //Termina el proceso  sin factura y fue a credito
+          finalizarProcesoRecepcion(data, false, 'Credito');
+        })
       } else {
         //Termina el proceso sin factura y sin credito
-        finalizarProcesoRecepcion(array_selected);
+        finalizarProcesoRecepcion(data);
       }
 
     }, 1)

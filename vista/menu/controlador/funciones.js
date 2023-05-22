@@ -141,7 +141,6 @@ async function ajaxAwait(dataJson, apiURL,
     //Configura la funcion misma
     config = configAjaxAwait(config)
 
-
     $.ajax({
       url: `${http}${servidor}/${appname}/api/${apiURL}.php`,
       data: dataJson,
@@ -2603,41 +2602,7 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                 resolve(1);
 
                 break;
-              
-              
-              case 'PanelTickets':
 
-                ajaxAwait({
-                  api: 2,
-                  turno_id: id
-                }, 'tickets_api', { callbackAfter: true }, false, function (data) {
-                  data = data.response.data[0]
-                  
-                  $('#info-ticket-total_cargos').html(data['TOTAL_CARGOS'])
-                  $('#info-ticket-descuento').html(data['DESCUENTO'])
-                  $('#info-ticket-subtotal').html(data['SUBTOTAL'])
-                  $('#info-ticket-iva').html(data['IVA'])
-                  $('#info-ticket-total').html(data['TOTAL'])
-                }
-                )
-                
-                
-                
-                setTimeout(function () {
-                  $(panel).fadeIn(100);
-                }, 100);
-                resolve(1);
-                break;
-              
-              
-              case 'PanelFactura':
-                setTimeout(function () {
-                  $(panel).fadeIn(100);
-                }, 100);
-                resolve(1);
-                break;
-              
-              
               default:
                 //console.log('Sin opción panel')
                 setTimeout(function () {

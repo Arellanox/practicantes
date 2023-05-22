@@ -18,10 +18,8 @@ $(document).on('click', '#terminar-proceso-cargo', function (event) {
         //Si fue si, abrir el modal de factura
         $('#modalEstudiosContado').modal('hide')
         configurarFactura(dataPaciente)
-
     }, 1, function () {
         //Si fue no, terminar el proceso con el tipo de pago contado...
-        $('#modalEstudiosContado').modal('hide')
         metodo()
     })
 
@@ -42,8 +40,6 @@ $(document).on('submit', '#formularioPacienteFactura', function (event) {
             descuento_porcentaje: dataPrecios['descuento_porcentaje'], descuento: dataPrecios['descuento'], total_cargos: dataPrecios['total_cargos'],
             subtotal: dataPrecios['subtotal'], iva: dataPrecios['iva'], total: dataPrecios['total'], pago: $('#contado-tipo-pago').val(), referencia: $('#referencia-contado').val(), requiere_factura: 1
         }, 'tickets_api', 'formularioPacienteFactura', { callbackAfter: true }, false, function (data) {
-
-            finalizarProcesoRecepcion(dataPaciente)
             alertTicket(data, 'Factura y ticket guardado')
         })
     }, 1)
@@ -104,44 +100,21 @@ function configurarModal(data) {
         }
 
 
-        let total_cargos = data['TOTAL_CARGO']
-    
-       
-
-        let subtotal = total_cargos
-        $('#precio-subtotal').html(`$${subtotal.toFixed(2)}`)
-
-        let iva = subtotal * 0.16
-        $('#precio-iva').html(`$${iva.toFixed(2)}`)
-
-        let total = subtotal + iva
-        $('#precio-total').html(`$${total.toFixed(2)}`)
-
-        dataPrecios = {
-            descuento_porcentaje: 0,
-            descuento: 0,
-            total_cargos: total_cargos,
-            subtotal: subtotal,
-            iva: iva, total: total
-
-        }
-
-
         $(document).on('change, keyup', '#descuento', function () {
             let total_cargos = data['TOTAL_CARGO']
             let porcentaje_descuento = $(this).val()
             let descuento = porcentaje_descuento / 100 * total_cargos
 
-            $('#precio-descuento').html(`$${descuento.toFixed(2)}`)
+            $('#precio-descuento').html(`$${descuento}`)
 
             let subtotal = total_cargos - descuento
-            $('#precio-subtotal').html(`$${subtotal.toFixed(2)}`)
+            $('#precio-subtotal').html(`$${subtotal}`)
 
             let iva = subtotal * 0.16
-            $('#precio-iva').html(`$${iva.toFixed(2)}`)
+            $('#precio-iva').html(`$${iva}`)
 
             let total = subtotal + iva
-            $('#precio-total').html(`$${total.toFixed(2)}`)
+            $('#precio-total').html(`$${total}`)
 
             dataPrecios = {
                 descuento_porcentaje: porcentaje_descuento,
@@ -158,7 +131,7 @@ function configurarModal(data) {
 
 
         //Lista de precio, total de estudios, detalle fuera
-        $('#precio-total-cargo').html(`$${ifnull(data['TOTAL_CARGO'].toFixed(2))}`) //CHECAR LA FUNCION ifnull PARA RECIBIR DATOS NUMERICOS :)
+        $('#precio-total-cargo').html(`$${ifnull(data['TOTAL_CARGO'])}`) //CHECAR LA FUNCION ifnull PARA RECIBIR DATOS NUMERICOS :)
         // $('#precio-descuento').html(`$${ifnull(data['DESCUENTO'])}`)
         // $('#precio-subtotal').html(`$${ifnull(data['SUBTOTAL'])}`)
         // $('#precio-iva').html(`$${ifnull(data['IVA'])}`)
@@ -193,15 +166,11 @@ function configurarFactura(data) {
 //No requiere factura o el mensaje de factura le dio que no
 function metodo() {
     //Termina el proceso del paciente con las llamadas que hizo el usuario
-
-    
-    finalizarProcesoRecepcion(dataPaciente)
+    finalizarProcesoRecepcion(data)
     ajaxAwait({
         api: 1, turno_id: dataPaciente['ID_TURNO'],
-        descuento_porcentaje: dataPrecios['descuento_porcentaje'],
-        descuento: dataPrecios['descuento'], total_cargos: dataPrecios['total_cargos'],
-        subtotal: dataPrecios['subtotal'], iva: dataPrecios['iva'], total: dataPrecios['total'],
-        pago: $('#contado-tipo-pago').val(), referencia: $('#referencia-contado').val(), requiere_factura: 0
+        descuento_porcentaje: dataPrecios['descuento_porcentaje'], descuento: dataPrecios['descuento'], total_cargos: dataPrecios['total_cargos'],
+        subtotal: dataPrecios['subtotal'], iva: dataPrecios['iva'], total: dataPrecios['total'], pago: $('#contado-tipo-pago').val(), referencia: $('#referencia-contado').val(), requiere_factura: 0
     }, 'tickets_api', { callbackAfter: false }, function (data) {
         alertTicket(data, 'Ticket guardado')
     })
