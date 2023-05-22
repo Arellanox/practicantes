@@ -1,7 +1,7 @@
 <?php
 $menu = $_POST['menu'];
 $tip = $_POST['tip'];
-$appname = 'practicantes';
+$appname = 'nuevo_checkup';
 session_start();
 ?>
 <?php
@@ -61,8 +61,129 @@ switch ($menu) {
 ?>
   <nav class="navbar navbar-expand-lg border-3 border-bottom border-dark bg-navbar" style="padding-top: 5px; padding-bottom: 5px;" id="navbar_principal">
     <div class="container-fluid">
-      <a href="#" class="navbar-brand"> <img src="https://bimo-lab.com/archivos/sistema/bimo_banner.png" id="logo_empresa" />
+      <a href="https://bimo-lab.com/index.php" class="navbar-brand"> <img src="https://bimo-lab.com/archivos/sistema/bimo_banner.png" id="logo_empresa" />
+        <?php
+        if ($_SESSION['URLACTUAL'] == 'drjb.com.mx')
+          echo "| Vista de Capacitación";
+        ?>
       </a>
+
+      <?php
+
+      // $fecha_actual = new DateTime(); // obtiene la fecha actual en formato 'año-mes-día'
+      // $fecha_sumada = $fecha_actual->add(new DateInterval('P2D')); // suma 2 días a la fecha actual
+      // $fecha_sumada_string = $fecha_actual->format('Y-m-d'); // convierte la fecha sumada en una cadena de texto en formato 'año-mes-día'
+
+      // echo $fecha_sumada; // imprime la nueva fecha en formato 'año-mes-día'
+
+      if (false) :
+      ?>
+
+        <img src="https://bimo-lab.com/nuevo_checkup/1724986_dbc8d.gif" style="width: 90px; z-index: 99; position: absolute; left: 40px; top: 12px; transform: rotate(0.04turn);" />
+        <div class="contenido-extra-cumple">
+          <a href="#" class="btn-flotante-cumple" id="btn-flotante-cumple" data-bs-toggle="modal" data-bs-target="#modalCardCumpleaños" style="opacity: 0.02;">
+            <!-- <i class="bi bi-question-diamond"></i> -->
+            <img src="https://bimo-lab.com/nuevo_checkup/931950.png" alt="" id="paste-cumple" style="height: 300px;">
+          </a>
+
+          <div class="modal fade" id="modalCardCumpleaños" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+            <div class="modal-dialog modal-md modal-dialog-centered ">
+              <div class="modal-content">
+                <!-- <div class="modal-header header-modal">
+                <h5 class="modal-title" id="filtrador"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> -->
+                <div class="modal-body">
+                  <div id="tsparticles"></div>
+                  <div style="position: relative; width: 100%; height: 0; padding-top: 140.9524%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+                    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFhaaU2rcM&#x2F;watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+                    </iframe>
+                  </div>
+                  <!-- <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFhaaU2rcM&#x2F;watch?utm_content=DAFhaaU2rcM&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Tarjeta vertical felicitación cumpleaños empleado empresa elegante dorado</a> de Bimo Talento Humano -->
+                </div>
+                <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"> Cancelar</button>
+                <button type="submit" form="formNuevaBase" class="btn btn-confirmar" id="submit-registrarGrupo">
+                  Crear
+                </button>
+              </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <style>
+          #paste-cumple {
+            transition: height 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)
+          }
+
+          #btn-flotante-cumple {
+            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+          }
+
+          video::-webkit-media-controls {
+            display: none;
+          }
+        </style>
+        <script>
+          // autoHeightDiv('#container-card-cumple', 120)
+
+          // Obtener la imagen por su ID
+          const imagen = document.getElementById('paste-cumple');
+          const contenedor = document.getElementById('btn-flotante-cumple')
+
+          // Definir el tamaño final de la imagen
+          const alturaFinal = 40;
+
+          // Definir la opacidad inicial de la imagen
+          const opacidadFinal = 1;
+
+          // Calcular el tamaño y la opacidad de la imagen en cada paso de la transición
+          const alturaActual = imagen.offsetHeight;
+          const alturaPaso = (alturaActual - alturaFinal) / 50;
+          const opacidadActual = parseFloat(getComputedStyle(contenedor).opacity);
+          const opacidadPaso = (opacidadFinal - opacidadActual) / 50;
+
+
+          // Función para reducir gradualmente el tamaño de la imagen
+          function reducirImagen() {
+            const altura = imagen.offsetHeight;
+            const nuevaAltura = altura - alturaPaso * Math.pow((1 - altura / alturaFinal), 2.5);
+            const opacidad = parseFloat(getComputedStyle(contenedor).opacity);
+            const opacidadRestante = opacidadFinal - opacidad;
+            const nuevaOpacidad = opacidad + opacidadRestante * 0.05;
+            if (nuevaAltura > alturaFinal) {
+              imagen.style.height = `${nuevaAltura}px`;
+              contenedor.style.opacity = nuevaOpacidad;
+            } else {
+              imagen.style.height = `${alturaFinal}px`;
+              contenedor.style.opacity = opacidadFinal;
+              clearInterval(intervalo);
+            }
+          }
+
+          // Llamar a la función de reducción de tamaño en intervalos regulares
+          // setTimeout(() => {
+          const intervalo = setInterval(reducirImagen, 10);
+          // }, 500);
+
+
+
+
+          $(document).ready(async function() {
+            await loadFull(tsParticles);
+
+            $("#tsparticles")
+              .particles()
+              .ajax("https://bimo-lab.com/nuevo_checkup/vista/menu/principal/particles.json", function(container) {
+                // container is the particles container where you can play/pause or stop/start.
+                // the container is already started, you don't need to start it manually.
+              });
+          });
+        </script>
+      <?php endif; ?>
+
 
       <button class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop" style="color: white;border-color: #ffffff54;">
         <!-- onclick="openNav()" -->

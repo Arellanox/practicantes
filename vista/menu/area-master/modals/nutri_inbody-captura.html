@@ -1,0 +1,34 @@
+<div class="modal fade" id="ModalInterpretacionInbody" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header header-modal">
+                <h5 class="modal-title" id="filtrador">Carga de Estudio de Composición Corpotal: </h5>
+                <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="formCapturaInbody">
+                    <p class="text-center">Captura</p>
+                    <div class="row">
+                        <div class="input-file-contenedor">
+                            <label for="form-label"></label>
+                            <label for="inbody[]" class="input-file-label">
+                                <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+                            </label>
+                            <input type="file" name="inbody[]" id="inbody[]" class="input-file">
+                            <!-- accept="image/*" -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i>
+                    Cancelar</button>
+                <button type="submit" form="formCapturaInbody" class="btn btn-confirmar">
+                    <i class="bi bi-send-plus"></i> Subir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

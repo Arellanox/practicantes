@@ -214,8 +214,3 @@ $menu = $_POST['menu']; ?>
     </div>
   </div>
 <?php endif; ?>
-
-
-<?php if ($menu === "Pacientes a credito") : ?>
-
-<?php endif; ?>

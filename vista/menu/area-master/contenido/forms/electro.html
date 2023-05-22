@@ -1,0 +1,43 @@
+<!-- <p class="text-center">Rellene los campos de <strong>resultado</strong> </p> -->
+<style>
+    label {
+        font-size: 20px;
+    }
+
+    textarea {
+        font-size: 20px;
+    }
+</style>
+<div class="row">
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12">
+                <label for="tecnica_electro" class="form-label">Técnica</label>
+                <textarea required name="tecnica" id="tecnica_electro" class="md-textarea input-form" value="" rows="3"
+                    cols="80"></textarea>
+            </div>
+            <div class="col-12">
+                <label for="hallazgo_electro" class="form-label">Hallazgo</label>
+                <textarea required name="hallazgo" id="hallazgo_electro" class="md-textarea input-form" rows="3"
+                    cols="80"></textarea>
+            </div>
+            <div class="col-12">
+                <label for="interpretacion_electro" class="form-label">Interpretación</label>
+                <!-- Motivo de consulta -->
+                <textarea required name="interpretacion" id="interpretacion_electro" placeholder="Motivo de consulta"
+                    value="" class="md-textarea input-form" rows="3" cols="80"></textarea>
+            </div>
+            <div class="col-12">
+                <label for="observaciones" class="form-label">Observaciones/Comentarios</label>
+                <textarea name="comentario" id="observaciones" placeholder="Comentarios de la consulta (opcional)"
+                    class="md-textarea input-form" rows="3" cols="80"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div id="capturaElectro">
+
+        </div>
+    </div>
+
+</div>

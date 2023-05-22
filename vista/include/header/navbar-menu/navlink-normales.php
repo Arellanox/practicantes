@@ -9,7 +9,6 @@ if ($menu != "PrincipalMenu") : ?>
     </a>
   </li>
 <?php endif; ?>
-
 <!-- <?php if ($menu == "Mesometria") : ?>
   <li class="nav-item">
     <a href="<?php echo "$https$url/$appname/vista/menu/consultorio/"; ?>">
