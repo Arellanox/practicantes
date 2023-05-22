@@ -16,25 +16,35 @@ function formatoFechaSQL(fecha, formato) {
   return formato.replace(/dd|mm|yy|yyy/gi, matched => map[matched]);
 }
 
-function formatoFecha2(fecha, optionsDate = [3, 1, 2, 2, 1, 1, 1], non = false) {
-  if (fecha === null || fecha === undefined)
+function formatoFecha2(fecha, optionsDate = [3, 1, 2, 2, 1, 1, 1], formatMat = 'best fit') {
+  if (fecha == null)
     return '';
+  // let options = {
+  //   hourCycle: 'h12', //<-- Formato de 12 horas
+  //   timeZone: 'America/Mexico_City'
+  // } // p.m. - a.m.
+
   const options = {
     timeZone: 'America/Mexico_City',
-    hourCycle: 'h12', //<-- Formato de 12 horas
-    weekday: ['narrow', 'short', 'long'][optionsDate[0] - 1], //S - Sáb - Sábado
-    year: ['numeric', '2-digit'][optionsDate[1] - 1], //2022 - 22
-    month: ['narrow', 'short', 'long', 'numeric', '2-digit'][optionsDate[2] - 1], //N - Nov - Noviembre - /11/ - 11
-    day: ['numeric', '2-digit'][optionsDate[3] - 1], // 1 - 01
-    hour: ['numeric', '2-digit'][optionsDate[4] - 1], // 1 - 01
-    minute: ['numeric', '2-digit'][optionsDate[5] - 1], // 1 - 01
-    seconds: ['numeric', '2-digit'][optionsDate[6] - 1] // 1 - 01
+    hourCycle: 'h12',
+    weekday: ['narrow', 'short', 'long'][optionsDate[0] - 1],
+    year: ['numeric', '2-digit'][optionsDate[1] - 1],
+    month: ['narrow', 'short', 'long', 'numeric', '2-digit'][optionsDate[2] - 1],
+    day: ['numeric', '2-digit'][optionsDate[3] - 1],
+    hour: ['numeric', '2-digit'][optionsDate[4] - 1],
+    minute: ['numeric', '2-digit'][optionsDate[5] - 1],
+    seconds: ['numeric', '2-digit'][optionsDate[6] - 1]
   };
-  let date = new Date(fecha);
-  if (isNaN(date)) {
-    date = new Date(fecha + 'T00:00:00');
+
+  let date;
+  if (fecha.length == 10) {
+    date = new Date(fecha + 'T00:00:00')
+  } else {
+    date = new Date(fecha)
   }
-  return date.toLocaleDateString('es-MX', options);
+
+  // //console.log(date)
+  return date.toLocaleDateString('es-MX', options)
 }
 
 
@@ -140,6 +150,7 @@ async function ajaxAwait(dataJson, apiURL,
   return new Promise(function (resolve, reject) {
     //Configura la funcion misma
     config = configAjaxAwait(config)
+
 
     $.ajax({
       url: `${http}${servidor}/${appname}/api/${apiURL}.php`,
@@ -1589,6 +1600,10 @@ function inputBusquedaTable(
     {
       msj: 'Hola, soy un tooltip por defecto :)',
       place: 'bottom'
+    },
+    {
+      msj: 'Aqui puedo ocultar mensajes para ayudarte',
+      place: 'right'
     }
   ], //<- tooltips
   tooltipinput =
@@ -1644,7 +1659,7 @@ function inputBusquedaTable(
   //Diseño de registros
   $(`#${tablename}_wrapper`).children('div [class="row"]').eq(0).addClass('d-flex align-items-end')
 
-  $('#' + tablename + 'BuscarTablaLista').keyup(function () {
+  $('#' + tablename + 'BuscarTablaLista').on('keyup change click focus mouseenter mouseleave', function () {
     datatable.search($(this).val()).draw();
   });
 
@@ -2603,8 +2618,53 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
 
                 break;
 
+
+              case 'PanelTickets':
+
+                await ajaxAwait({
+                  api: 2,
+                  turno_id: id
+                }, 'tickets_api', { callbackAfter: true }, false, function (data) {
+                  data = data.response.data[0]
+
+                  $('#info-ticket-total_cargos').html(data['TOTAL_CARGOS'])
+                  $('#info-ticket-descuento').html(data['DESCUENTO'])
+                  $('#info-ticket-subtotal').html(data['SUBTOTAL'])
+                  $('#info-ticket-iva').html(data['IVA'])
+                  $('#info-ticket-total').html(data['TOTAL'])
+
+                  if (ifnull(data['RAZON_SOCIAL']) ||
+                    ifnull(data['DOMICILIO_FISCAL']) ||
+                    ifnull(data['REGIMEN_FISCAL']) ||
+                    ifnull(data['USO_DESCRIPCION']) ||
+                    ifnull(data['RFC']) ||
+                    ifnull(data['METODO_PAGO'])) {
+
+                    $('#info-factura-razon_social').val(data['RAZON_SOCIAL']);
+                    $('#info-factura-domicilio_fiscal').val(data['DOMICILIO_FISCAL']);
+                    $('#info-factura-regimen_fiscal').val(data['REGIMEN_FISCAL']);
+                    $('#info-factura-uso').val(data['USO_DESCRIPCION']);
+                    $('#info-factura-rfc').val(data['RFC']);
+                    $('#info-factura-metodo_pago').val(data['METODO_PAGO']);
+
+                    $('#panel-contenedor-factura').fadeIn(0);
+                  }
+                }
+                )
+
+
+
+                setTimeout(function () {
+                  $(panel).fadeIn(100);
+                }, 100);
+                resolve(1);
+                break;
+
+
+
+
               default:
-                //console.log('Sin opción panel')
+                console.log('Sin opción panel')
                 setTimeout(function () {
                   $(panel).fadeOut(100);
                 }, 100);
