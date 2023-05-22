@@ -145,12 +145,11 @@ tablaContados = $('#TablaContados').DataTable({
 
 
 
+
+
 selectDatatable("TablaContados", tablaContados, 0, 0, 0, 0, async function (select, data) {
     if (select) {
         await obtenerPanelInformacion(data['TURNO_ID'], 'tickets_api', 'PanelTickets', '#InformacionTickets')
-
-
-
     } else {
         await obtenerPanelInformacion(0, 'tickets_api', 'PanelTickets', '#InformacionTickets')
     }
@@ -163,3 +162,4 @@ inputBusquedaTable('TablaContados', tablaContados, [
         place: 'top'
     }
 ])
+

@@ -17,6 +17,8 @@ function obtenerPacientesContado() {
     }).done(function () {
         // Datatable
         $.getScript("contenido/js/contados-tablas.js");
+        // Botones
+        $.getScript("contenido/js/contados-botones.js");
     });
 }
 

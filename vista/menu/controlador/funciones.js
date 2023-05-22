@@ -2640,14 +2640,14 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                     ifnull(data['RFC']) ||
                     ifnull(data['METODO_PAGO'])) {
 
-                    $('#info-factura-razon_social').val(data['RAZON_SOCIAL']);
-                    $('#info-factura-domicilio_fiscal').val(data['DOMICILIO_FISCAL']);
-                    $('#info-factura-regimen_fiscal').val(data['REGIMEN_FISCAL']);
-                    $('#info-factura-uso').val(data['USO_DESCRIPCION']);
-                    $('#info-factura-rfc').val(data['RFC']);
-                    $('#info-factura-metodo_pago').val(data['METODO_PAGO']);
+                    $('#info-factura-razon_social').html(data['RAZON_SOCIAL']);
+                    $('#info-factura-domicilio_fiscal').html(data['DOMICILIO_FISCAL']);
+                    $('#info-factura-regimen_fiscal').html(data['REGIMEN_FISCAL']);
+                    $('#info-factura-uso').html(data['USO_DESCRIPCION']);
+                    $('#info-factura-rfc').html(data['RFC']);
+                    $('#info-factura-metodo_pago').html(data['METODO_PAGO']);
 
-                    $('#panel-contenedor-factura').fadeIn(0);
+                    $('.panel-contenedor-factura').fadeIn(0);
                   }
                 }
                 )
