@@ -21,10 +21,6 @@
           <div class="row">
 
             <div>
-              <style>
-
-              </style>
-
               <div id="tooltip">
                 <div id="arrow" data-popper-arrow></div>
                 <table class="table">
@@ -57,52 +53,6 @@
                   </tbody>
                 </table>
               </div>
-              <script>
-                setTimeout(() => {
-                  const button = document.querySelector('#select2-select-lab-container');
-                  const tooltip = document.querySelector('#tooltip');
-                  const arrow = document.querySelector('#arrow');
-                  // Pass the button, the tooltip, and some options, and Popper will do the
-                  // magic positioning for you:
-                  const popperInstance = Popper.createPopper(button, tooltip, {
-                    placement: 'right',
-                    options: {
-                      element: arrow,
-                    },
-                    modifiers: [
-                      {
-                        name: 'offset',
-                        options: {
-                          offset: [0, 20],
-                        },
-                      },
-                    ],
-                  });
-
-                  function show() {
-                    tooltip.setAttribute('data-show', '');
-
-                    // We need to tell Popper to update the tooltip position
-                    // after we show the tooltip, otherwise it will be incorrect
-                    popperInstance.update();
-                  }
-
-                  function hide() {
-                    tooltip.removeAttribute('data-show');
-                  }
-
-                  const showEvents = ['mouseenter', 'focus'];
-                  const hideEvents = ['mouseleave', 'blur'];
-
-                  showEvents.forEach((event) => {
-                    button.addEventListener(event, show);
-                  });
-
-                  hideEvents.forEach((event) => {
-                    button.addEventListener(event, hide);
-                  });
-                }, 5000);
-              </script>
             </div>
 
 
@@ -139,6 +89,7 @@
                               <input type="file" name="orden-medica-laboratorio[]" id="file-laboratorio" class="form-control input-form" value="">
                             </div> -->
                           </div>
+                          
                         </div>
                         <div class="col-6">
                           <ul class="list-group" id="list-estudios-laboratorio">
