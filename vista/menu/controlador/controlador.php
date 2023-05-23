@@ -118,7 +118,7 @@ include "../../variables.php";
   var delay = 100,
     setTimeoutConst;
   $(document).on({
-    mouseenter: function(e) { 
+    mouseenter: function(e) {
       tool = this;
       setTimeotConst = setTimeout(function() {
         return new bootstrap.Tooltip(tool).show();
