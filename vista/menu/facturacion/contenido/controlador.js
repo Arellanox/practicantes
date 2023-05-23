@@ -11,7 +11,7 @@ if (validarVista('FACTURACIÓN')) {
 
 
 function obtenerPacientesContado() {
-    obtenerTitulo('Pacientes a contados'); //Aqui mandar el nombre de la area
+    obtenerTitulo('Pacientes particulares (Contado)'); //Aqui mandar el nombre de la area
     $.post("contenido/contado.html", function (html) {
         $("#body-js").html(html);
     }).done(function () {

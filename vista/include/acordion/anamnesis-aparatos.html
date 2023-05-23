@@ -1,0 +1,1253 @@
+<div class="accordion">
+  <form id="formSistemaCardioVascular">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-sisteCardio">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-sisteCardio-Target" aria-expanded="false" aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Sistema Cardiovascular
+        </button>
+      </h2>
+      <div id="collapse-sub-sisteCardio-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-sisteCardio">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Disnea: </label>
+              <input type="hidden" name="check-disnea[]" value="69">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-disnea" name="check-disnea[]" value="1" required>
+              <label for="checkSi-disnea">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-disnea" name="check-disnea[]" value="2" required>
+              <label for="checkNo-disnea">No</label>
+            </div>
+            <div class="collapse" id="collapse-disnea">
+              <textarea name="check-disnea[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Frialdad de extremidades: </label>
+              <input type="hidden" name="check-frialExtremida[]" value="70">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-frialExtremida" name="check-frialExtremida[]" value="1" required>
+              <label for="checkSi-frialExtremida">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-frialExtremida" name="check-frialExtremida[]" value="2" required>
+              <label for="checkNo-frialExtremida">No</label>
+            </div>
+            <div class="collapse" id="collapse-frialExtremida">
+              <textarea name="check-frialExtremida[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Dolor torácico: </label>
+              <input type="hidden" name="check-dolorToraci[]" value="71">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-dolorToraci" name="check-dolorToraci[]" value="1" required>
+              <label for="checkSi-dolorToraci">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-dolorToraci" name="check-dolorToraci[]" value="2" required>
+              <label for="checkNo-dolorToraci">No</label>
+            </div>
+            <div class="collapse" id="collapse-dolorToraci">
+              <textarea name="check-dolorToraci[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Palpitaciones: </label>
+              <input type="hidden" name="check-palpita[]" value="72">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-palpita" name="check-palpita[]" value="1" required>
+              <label for="checkSi-palpita">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-palpita" name="check-palpita[]" value="2" required>
+              <label for="checkNo-palpita">No</label>
+            </div>
+            <div class="collapse" id="collapse-palpita">
+              <textarea name="check-palpita[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Edema: </label>
+              <input type="hidden" name="check-edema[]" value="73">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-edema" name="check-edema[]" value="1" required>
+              <label for="checkSi-edema">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-edema" name="check-edema[]" value="2" required>
+              <label for="checkNo-edema">No</label>
+            </div>
+            <div class="collapse" id="collapse-edema">
+              <textarea name="check-edema[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Úlceras cutáneas: </label>
+              <input type="hidden" name="check-ulceCutane[]" value="74">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-ulceCutane" name="check-ulceCutane[]" value="1" required>
+              <label for="checkSi-ulceCutane">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-ulceCutane" name="check-ulceCutane[]" value="2" required>
+              <label for="checkNo-ulceCutane">No</label>
+            </div>
+            <div class="collapse" id="collapse-ulceCutane">
+              <textarea name="check-ulceCutane[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Claudicación a la deambulación: </label>
+              <input type="hidden" name="check-claudiDeambula[]" value="75">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-claudiDeambula" name="check-claudiDeambula[]" value="1" required>
+              <label for="checkSi-claudiDeambula">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-claudiDeambula" name="check-claudiDeambula[]" value="2" required>
+              <label for="checkNo-claudiDeambula">No</label>
+            </div>
+            <div class="collapse" id="collapse-claudiDeambula">
+              <textarea name="check-claudiDeambula[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Cianosis: </label>
+              <input type="hidden" name="check-cianosis[]" value="76">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-cianosis" name="check-cianosis[]" value="1" required>
+              <label for="checkSi-cianosis">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-cianosis" name="check-cianosis[]" value="2" required>
+              <label for="checkNo-cianosis">No</label>
+            </div>
+            <div class="collapse" id="collapse-cianosis">
+              <textarea name="check-cianosis[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formAparatoRespiratorio">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-AparaRespiratorio">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-AparaRespiratorio-Target" aria-expanded="false"
+          aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Aparato Respiratorio
+        </button>
+      </h2>
+      <div id="collapse-sub-AparaRespiratorio-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-AparaRespiratorio">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Disnea: </label>
+              <input type="hidden" name="check-aparaRespir-disnea[]" value="77">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-disnea" name="check-aparaRespir-disnea[]" value="1"
+                required>
+              <label for="checkSi-aparaRespir-disnea">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-disnea" name="check-aparaRespir-disnea[]" value="2"
+                required>
+              <label for="checkNo-aparaRespir-disnea">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-disnea">
+              <textarea name="check-aparaRespir-disnea[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Tos: </label>
+              <input type="hidden" name="check-aparaRespir-tos[]" value="78">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-tos" name="check-aparaRespir-tos[]" value="1"
+                required>
+              <label for="checkSi-aparaRespir-tos">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-tos" name="check-aparaRespir-tos[]" value="2"
+                required>
+              <label for="checkNo-aparaRespir-tos">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-tos">
+              <textarea name="check-aparaRespir-tos[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Expectoración: </label>
+              <input type="hidden" name="check-aparaRespir-expectoracion[]" value="79">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-expectoracion"
+                name="check-aparaRespir-expectoracion[]" value="1" required>
+              <label for="checkSi-aparaRespir-expectoracion">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-expectoracion"
+                name="check-aparaRespir-expectoracion[]" value="2" required>
+              <label for="checkNo-aparaRespir-expectoracion">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-expectoracion">
+              <textarea name="check-aparaRespir-expectoracion[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Dolor: </label>
+              <input type="hidden" name="check-aparaRespir-dolor[]" value="80">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-dolor" name="check-aparaRespir-dolor[]" value="1"
+                required>
+              <label for="checkSi-aparaRespir-dolor">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-dolor" name="check-aparaRespir-dolor[]" value="2"
+                required>
+              <label for="checkNo-aparaRespir-dolor">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-dolor">
+              <textarea name="check-aparaRespir-dolor[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Asma: </label>
+              <input type="hidden" name="check-aparaRespir-asma[]" value="81">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-asma" name="check-aparaRespir-asma[]" value="1"
+                required>
+              <label for="checkSi-aparaRespir-asma">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-asma" name="check-aparaRespir-asma[]" value="2"
+                required>
+              <label for="checkNo-aparaRespir-asma">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-asma">
+              <textarea name="check-aparaRespir-asma[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Cianosis: </label>
+              <input type="hidden" name="check-aparaRespir-cianosis[]" value="82">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-cianosis" name="check-aparaRespir-cianosis[]"
+                value="1" required>
+              <label for="checkSi-aparaRespir-cianosis">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-cianosis" name="check-aparaRespir-cianosis[]"
+                value="2" required>
+              <label for="checkNo-aparaRespir-cianosis">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-cianosis">
+              <textarea name="check-aparaRespir-cianosis[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Roncador: </label>
+              <input type="hidden" name="check-aparaRespir-roncador[]" value="83">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-roncador" name="check-aparaRespir-roncador[]"
+                value="1" required>
+              <label for="checkSi-aparaRespir-roncador">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-roncador" name="check-aparaRespir-roncador[]"
+                value="2" required>
+              <label for="checkNo-aparaRespir-roncador">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-roncador">
+              <textarea name="check-aparaRespir-roncador[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Infecciones respiratorias: </label>
+              <input type="hidden" name="check-aparaRespir-infeccRespira[]" value="84">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparaRespir-infeccRespira"
+                name="check-aparaRespir-infeccRespira[]" value="1" required>
+              <label for="checkSi-aparaRespir-infeccRespira">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparaRespir-infeccRespira"
+                name="check-aparaRespir-infeccRespira[]" value="2" required>
+              <label for="checkNo-aparaRespir-infeccRespira">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparaRespir-infeccRespira">
+              <textarea name="check-aparaRespir-infeccRespira[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formAparatoDigestivo">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-aparatoDigestivo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-aparatoDigestivo-Target" aria-expanded="false"
+          aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Aparato Digestivo
+        </button>
+      </h2>
+      <div id="collapse-sub-aparatoDigestivo-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-aparatoDigestivo">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px; display: none;">
+            <div class="col-6">
+              <label>Digestión: </label>
+              <input type="hidden" name="check-aparatoDigestivo-roncador[]" value="85">
+            </div>
+            <div class="" id="collapse-aparatoDigestivo-roncador">
+              <textarea name="check-aparatoDigestivo-roncador[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Flatulencias: </label>
+              <input type="hidden" name="check-aparatoDigestivo-flatulencias[]" value="86">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-flatulencias"
+                name="check-aparatoDigestivo-flatulencias[]" value="1" required>
+              <label for="checkSi-aparatoDigestivo-flatulencias">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-flatulencias"
+                name="check-aparatoDigestivo-flatulencias[]" value="2" required>
+              <label for="checkNo-aparatoDigestivo-flatulencias">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-flatulencias">
+              <textarea name="check-aparatoDigestivo-flatulencias[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Meteorismo: </label>
+              <input type="hidden" name="check-aparatoDigestivo-meteorismo[]" value="87">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-meteorismo"
+                name="check-aparatoDigestivo-meteorismo[]" value="1" required>
+              <label for="checkSi-aparatoDigestivo-meteorismo">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-meteorismo"
+                name="check-aparatoDigestivo-meteorismo[]" value="2" required>
+              <label for="checkNo-aparatoDigestivo-meteorismo">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-meteorismo">
+              <textarea name="check-aparatoDigestivo-meteorismo[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Pirosis: </label>
+              <input type="hidden" name="check-aparatoDigestivo-pirosis[]" value="88">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-pirosis" name="check-aparatoDigestivo-pirosis[]"
+                value="1" required>
+              <label for="checkSi-aparatoDigestivo-pirosis">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-pirosis" name="check-aparatoDigestivo-pirosis[]"
+                value="2" required>
+              <label for="checkNo-aparatoDigestivo-pirosis">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-pirosis">
+              <textarea name="check-aparatoDigestivo-pirosis[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Disfagia: </label>
+              <input type="hidden" name="check-aparatoDigestivo-disfagia[]" value="89">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-disfagia"
+                name="check-aparatoDigestivo-disfagia[]" value="1" required>
+              <label for="checkSi-aparatoDigestivo-disfagia">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-disfagia"
+                name="check-aparatoDigestivo-disfagia[]" value="2" required>
+              <label for="checkNo-aparatoDigestivo-disfagia">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-disfagia">
+              <textarea name="check-aparatoDigestivo-disfagia[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Odinofagia: </label>
+              <input type="hidden" name="check-aparatoDigestivo-odinofagia[]" value="90">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-odinofagia"
+                name="check-aparatoDigestivo-odinofagia[]" value="1" required>
+              <label for="checkSi-aparatoDigestivo-odinofagia">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-odinofagia"
+                name="check-aparatoDigestivo-odinofagia[]" value="2" required>
+              <label for="checkNo-aparatoDigestivo-odinofagia">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-odinofagia">
+              <textarea name="check-aparatoDigestivo-odinofagia[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Reflujo: </label>
+              <input type="hidden" name="check-aparatoDigestivo-reflujo[]" value="91">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-reflujo" name="check-aparatoDigestivo-reflujo[]"
+                value="1" required>
+              <label for="checkSi-aparatoDigestivo-reflujo">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-reflujo" name="check-aparatoDigestivo-reflujo[]"
+                value="2" required>
+              <label for="checkNo-aparatoDigestivo-reflujo">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-reflujo">
+              <textarea name="check-aparatoDigestivo-reflujo[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Náuseas: </label>
+              <input type="hidden" name="check-aparatoDigestivo-Nauseas[]" value="92">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-Nauseas" name="check-aparatoDigestivo-Nauseas[]"
+                value="1" required>
+              <label for="checkSi-aparatoDigestivo-Nauseas">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-Nauseas" name="check-aparatoDigestivo-Nauseas[]"
+                value="2" required>
+              <label for="checkNo-aparatoDigestivo-Nauseas">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-Nauseas">
+              <textarea name="check-aparatoDigestivo-Nauseas[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Vómitos: </label>
+              <input type="hidden" name="check-aparatoDigestivo-Vómitos[]" value="93">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoDigestivo-Vómitos" name="check-aparatoDigestivo-Vómitos[]"
+                value="1" required>
+              <label for="checkSi-aparatoDigestivo-Vómitos">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoDigestivo-Vómitos" name="check-aparatoDigestivo-Vómitos[]"
+                value="2" required>
+              <label for="checkNo-aparatoDigestivo-Vómitos">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoDigestivo-Vómitos">
+              <textarea name="check-aparatoDigestivo-Vómitos[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Ritmo intestinal: </label>
+              <input type="hidden" name="check-aparatoDigestivo-ritmaIntestinal[]" value="94">
+            </div>
+            <div class="" id="collapse-aparatoDigestivo-ritmaIntestinal">
+              <textarea name="check-aparatoDigestivo-ritmaIntestinal[]" class="form-control input-form" rows="2"
+                cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Heces (Color, consistencia): </label>
+              <input type="hidden" name="check-aparatoDigestivo-hecesColroConsis[]" value="95">
+            </div>
+            <div class="" id="collapse-aparatoDigestivo-hecesColroConsis">
+              <textarea name="check-aparatoDigestivo-hecesColroConsis[]" class="form-control input-form" rows="2"
+                cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formAparatoGenitourinario">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-aparatoGenitourina">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-aparatoGenitourina-Target" aria-expanded="false"
+          aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Aparato Genitourinario
+        </button>
+      </h2>
+      <div id="collapse-sub-aparatoGenitourina-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-aparatoGenitourina">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Cantidad de orina al día: </label>
+              <input type="hidden" name="check-aparatoGenitourina-cantidadOrinaDia[]" value="96">
+            </div>
+            <div class="" id="collapse-aparatoGenitourina-cantidadOrinaDia">
+              <textarea name="check-aparatoGenitourina-cantidadOrinaDia[]" class="form-control input-form" rows="2"
+                cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Color de orina: </label>
+              <input type="hidden" name="check-aparatoGenitourina-colorOrina[]" value="97">
+            </div>
+            <div class="" id="collapse-aparatoGenitourina-colorOrina">
+              <textarea name="check-aparatoGenitourina-colorOrina[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Hematuria: </label>
+              <input type="hidden" name="check-aparatoGenitourina-Hematuria[]" value="98">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoGenitourina-Hematuria"
+                name="check-aparatoGenitourina-Hematuria[]" value="1" required>
+              <label for="checkSi-aparatoGenitourina-Hematuria">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoGenitourina-Hematuria"
+                name="check-aparatoGenitourina-Hematuria[]" value="2" required>
+              <label for="checkNo-aparatoGenitourina-Hematuria">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoGenitourina-Hematuria">
+              <textarea name="check-aparatoGenitourina-Hematuria[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Disuria: </label>
+              <input type="hidden" name="check-aparatoGenitourina-disuria[]" value="99">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoGenitourina-disuria"
+                name="check-aparatoGenitourina-disuria[]" value="1" required>
+              <label for="checkSi-aparatoGenitourina-disuria">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoGenitourina-disuria"
+                name="check-aparatoGenitourina-disuria[]" value="2" required>
+              <label for="checkNo-aparatoGenitourina-disuria">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoGenitourina-disuria">
+              <textarea name="check-aparatoGenitourina-disuria[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Poliaquiuria: </label>
+              <input type="hidden" name="check-aparatoGenitourina-poliaquiur[]" value="100">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoGenitourina-poliaquiur"
+                name="check-aparatoGenitourina-poliaquiur[]" value="1" required>
+              <label for="checkSi-aparatoGenitourina-poliaquiur">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoGenitourina-poliaquiur"
+                name="check-aparatoGenitourina-poliaquiur[]" value="2" required>
+              <label for="checkNo-aparatoGenitourina-poliaquiur">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoGenitourina-poliaquiur">
+              <textarea name="check-aparatoGenitourina-poliaquiur[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Tenesmo: </label>
+              <input type="hidden" name="check-aparatoGenitourina-tenesm[]" value="101">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoGenitourina-tenesm"
+                name="check-aparatoGenitourina-tenesm[]" value="1" required>
+              <label for="checkSi-aparatoGenitourina-tenesm">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoGenitourina-tenesm"
+                name="check-aparatoGenitourina-tenesm[]" value="2" required>
+              <label for="checkNo-aparatoGenitourina-tenesm">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoGenitourina-tenesm">
+              <textarea name="check-aparatoGenitourina-tenesm[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Micción imperiosa: </label>
+              <input type="hidden" name="check-aparatoGenitourina-micciImperi[]" value="102">
+            </div>
+            <div class="" id="collapse-aparatoGenitourina-micciImperi">
+              <textarea name="check-aparatoGenitourina-micciImperi[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Expulsión de arenilla: </label>
+              <input type="hidden" name="check-aparatoGenitourina-expulsiArenilla[]" value="103">
+            </div>
+            <div class="" id="collapse-aparatoGenitourina-expulsiArenilla">
+              <textarea name="check-aparatoGenitourina-expulsiArenilla[]" class="form-control input-form" rows="2"
+                cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formSistemaNervioso">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-sistemNervios">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-sistemNervios-Target" aria-expanded="false" aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Sistema Nervioso
+        </button>
+      </h2>
+      <div id="collapse-sub-sistemNervios-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-sistemNervios">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Cefalea: </label>
+              <input type="hidden" name="check-sistemNervios-Cefalea[]" value="104">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-sistemNervios-Cefalea" name="check-sistemNervios-Cefalea[]"
+                value="1" required>
+              <label for="checkSi-sistemNervios-Cefalea">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-sistemNervios-Cefalea" name="check-sistemNervios-Cefalea[]"
+                value="2" required>
+              <label for="checkNo-sistemNervios-Cefalea">No</label>
+            </div>
+            <div class="collapse" id="collapse-sistemNervios-Cefalea">
+              <textarea name="check-sistemNervios-Cefalea[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Parestesias: </label>
+              <input type="hidden" name="check-sistemNervios-Parestesias[]" value="105">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-sistemNervios-Parestesias"
+                name="check-sistemNervios-Parestesias[]" value="1" required>
+              <label for="checkSi-sistemNervios-Parestesias">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-sistemNervios-Parestesias"
+                name="check-sistemNervios-Parestesias[]" value="2" required>
+              <label for="checkNo-sistemNervios-Parestesias">No</label>
+            </div>
+            <div class="collapse" id="collapse-sistemNervios-Parestesias">
+              <textarea name="check-sistemNervios-Parestesias[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Pérdida de fuerza: </label>
+              <input type="hidden" name="check-sistemNervios-perdidFuerza[]" value="106">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-sistemNervios-perdidFuerza"
+                name="check-sistemNervios-perdidFuerza[]" value="1" required>
+              <label for="checkSi-sistemNervios-perdidFuerza">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-sistemNervios-perdidFuerza"
+                name="check-sistemNervios-perdidFuerza[]" value="2" required>
+              <label for="checkNo-sistemNervios-perdidFuerza">No</label>
+            </div>
+            <div class="collapse" id="collapse-sistemNervios-perdidFuerza">
+              <textarea name="check-sistemNervios-perdidFuerza[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Alteraciones en la marcha: </label>
+              <input type="hidden" name="check-sistemNervios-alterMarcha[]" value="107">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-sistemNervios-alterMarcha"
+                name="check-sistemNervios-alterMarcha[]" value="1" required>
+              <label for="checkSi-sistemNervios-alterMarcha">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-sistemNervios-alterMarcha"
+                name="check-sistemNervios-alterMarcha[]" value="2" required>
+              <label for="checkNo-sistemNervios-alterMarcha">No</label>
+            </div>
+            <div class="collapse" id="collapse-sistemNervios-alterMarcha">
+              <textarea name="check-sistemNervios-alterMarcha[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Alteraciones visuales: </label>
+              <input type="hidden" name="check-sistemNervios-alteracioVisuales[]" value="108">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-sistemNervios-alteracioVisuales"
+                name="check-sistemNervios-alteracioVisuales[]" value="1" required>
+              <label for="checkSi-sistemNervios-alteracioVisuales">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-sistemNervios-alteracioVisuales"
+                name="check-sistemNervios-alteracioVisuales[]" value="2" required>
+              <label for="checkNo-sistemNervios-alteracioVisuales">No</label>
+            </div>
+            <div class="collapse" id="collapse-sistemNervios-alteracioVisuales">
+              <textarea name="check-sistemNervios-alteracioVisuales[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="(Visión, borrosidad) ¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Temblor: </label>
+              <input type="hidden" name="check-sistemNervios-temblor[]" value="109">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-sistemNervios-temblor" name="check-sistemNervios-temblor[]"
+                value="1" required>
+              <label for="checkSi-sistemNervios-temblor">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-sistemNervios-temblor" name="check-sistemNervios-temblor[]"
+                value="2" required>
+              <label for="checkNo-sistemNervios-temblor">No</label>
+            </div>
+            <div class="collapse" id="collapse-sistemNervios-temblor">
+              <textarea name="check-sistemNervios-temblor[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Calambres: </label>
+              <input type="hidden" name="check-sistemNervios-Calambres[]" value="110">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-sistemNervios-Calambres" name="check-sistemNervios-Calambres[]"
+                value="1" required>
+              <label for="checkSi-sistemNervios-Calambres">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-sistemNervios-Calambres" name="check-sistemNervios-Calambres[]"
+                value="2" required>
+              <label for="checkNo-sistemNervios-Calambres">No</label>
+            </div>
+            <div class="collapse" id="collapse-sistemNervios-Calambres">
+              <textarea name="check-sistemNervios-Calambres[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formEndocriMetabolismo">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-EndrocrinoloMetabolism">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-EndrocrinoloMetabolism-Target" aria-expanded="false"
+          aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Endocrinología y Metabolismo
+        </button>
+      </h2>
+      <div id="collapse-sub-EndrocrinoloMetabolism-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-EndrocrinoloMetabolism">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Apetito: </label>
+              <input type="hidden" name="check-EndrocrinoloMetabolism-Apetito[]" value="112">
+            </div>
+            <div class="" id="collapse-EndrocrinoloMetabolism-Apetito">
+              <textarea name="check-EndrocrinoloMetabolism-Apetito[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Hábitos nutricionales: </label>
+              <input type="hidden" name="check-EndrocrinoloMetabolism-habitoNutrici[]" value="113">
+            </div>
+            <div class="" id="collapse-EndrocrinoloMetabolism-habitoNutrici">
+              <textarea name="check-EndrocrinoloMetabolism-habitoNutrici[]" class="form-control input-form" rows="2"
+                cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Patrón alimentario: </label>
+              <input type="hidden" name="check-EndrocrinoloMetabolism-patroAliment[]" value="114">
+            </div>
+            <div class="" id="collapse-EndrocrinoloMetabolism-patroAliment">
+              <textarea name="check-EndrocrinoloMetabolism-patroAliment[]" class="form-control input-form" rows="2"
+                cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Obesidad: </label>
+              <input type="hidden" name="check-EndrocrinoloMetabolism-Obesidad[]" value="115">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-EndrocrinoloMetabolism-Obesidad"
+                name="check-EndrocrinoloMetabolism-Obesidad[]" value="1" required>
+              <label for="checkSi-EndrocrinoloMetabolism-Obesidad">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-EndrocrinoloMetabolism-Obesidad"
+                name="check-EndrocrinoloMetabolism-Obesidad[]" value="2" required>
+              <label for="checkNo-EndrocrinoloMetabolism-Obesidad">No</label>
+            </div>
+            <div class="collapse" id="collapse-EndrocrinoloMetabolism-Obesidad">
+              <textarea name="check-EndrocrinoloMetabolism-Obesidad[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Delgadez: </label>
+              <input type="hidden" name="check-EndrocrinoloMetabolism-Delgadez[]" value="116">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-EndrocrinoloMetabolism-Delgadez"
+                name="check-EndrocrinoloMetabolism-Delgadez[]" value="1" required>
+              <label for="checkSi-EndrocrinoloMetabolism-Delgadez">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-EndrocrinoloMetabolism-Delgadez"
+                name="check-EndrocrinoloMetabolism-Delgadez[]" value="2" required>
+              <label for="checkNo-EndrocrinoloMetabolism-Delgadez">No</label>
+            </div>
+            <div class="collapse" id="collapse-EndrocrinoloMetabolism-Delgadez">
+              <textarea name="check-EndrocrinoloMetabolism-Delgadez[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Ganacia o pérdida de peso: </label>
+              <input type="hidden" name="check-EndrocrinoloMetabolism-gananperdiPeso[]" value="117">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-EndrocrinoloMetabolism-gananperdiPeso"
+                name="check-EndrocrinoloMetabolism-gananperdiPeso[]" value="1" required>
+              <label for="checkSi-EndrocrinoloMetabolism-gananperdiPeso">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-EndrocrinoloMetabolism-gananperdiPeso"
+                name="check-EndrocrinoloMetabolism-gananperdiPeso[]" value="2" required>
+              <label for="checkNo-EndrocrinoloMetabolism-gananperdiPeso">No</label>
+            </div>
+            <div class="collapse" id="collapse-EndrocrinoloMetabolism-gananperdiPeso">
+              <textarea name="check-EndrocrinoloMetabolism-gananperdiPeso[]" class="form-control input-form" rows="2"
+                cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formAparatoLocomotor">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-aparatoLocomot">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-aparatoLocomot-Target" aria-expanded="false" aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Aparato Locomotor
+        </button>
+      </h2>
+      <div id="collapse-sub-aparatoLocomot-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-aparatoLocomot">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Dolores osteo-articular: </label>
+              <input type="hidden" name="check-aparatoLocomot-DolorOsteoArticu[]" value="118">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoLocomot-DolorOsteoArticu"
+                name="check-aparatoLocomot-DolorOsteoArticu[]" value="1" required>
+              <label for="checkSi-aparatoLocomot-DolorOsteoArticu">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoLocomot-DolorOsteoArticu"
+                name="check-aparatoLocomot-DolorOsteoArticu[]" value="2" required>
+              <label for="checkNo-aparatoLocomot-DolorOsteoArticu">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoLocomot-DolorOsteoArticu">
+              <textarea name="check-aparatoLocomot-DolorOsteoArticu[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Reumatismo: </label>
+              <input type="hidden" name="check-aparatoLocomot-Reumatismo[]" value="119">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoLocomot-Reumatismo"
+                name="check-aparatoLocomot-Reumatismo[]" value="1" required>
+              <label for="checkSi-aparatoLocomot-Reumatismo">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoLocomot-Reumatismo"
+                name="check-aparatoLocomot-Reumatismo[]" value="2" required>
+              <label for="checkNo-aparatoLocomot-Reumatismo">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoLocomot-Reumatismo">
+              <textarea name="check-aparatoLocomot-Reumatismo[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Inflamación articular: </label>
+              <input type="hidden" name="check-aparatoLocomot-inflamaciArticu[]" value="120">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoLocomot-inflamaciArticu"
+                name="check-aparatoLocomot-inflamaciArticu[]" value="1" required>
+              <label for="checkSi-aparatoLocomot-inflamaciArticu">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoLocomot-inflamaciArticu"
+                name="check-aparatoLocomot-inflamaciArticu[]" value="2" required>
+              <label for="checkNo-aparatoLocomot-inflamaciArticu">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoLocomot-inflamaciArticu">
+              <textarea name="check-aparatoLocomot-inflamaciArticu[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Deformidades: </label>
+              <input type="hidden" name="check-aparatoLocomot-Deformidades[]" value="121">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-aparatoLocomot-Deformidades"
+                name="check-aparatoLocomot-Deformidades[]" value="1" required>
+              <label for="checkSi-aparatoLocomot-Deformidades">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-aparatoLocomot-Deformidades"
+                name="check-aparatoLocomot-Deformidades[]" value="2" required>
+              <label for="checkNo-aparatoLocomot-Deformidades">No</label>
+            </div>
+            <div class="collapse" id="collapse-aparatoLocomot-Deformidades">
+              <textarea name="check-aparatoLocomot-Deformidades[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formTermoregulacion">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-Termoregulacin">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-Termoregulacin-Target" aria-expanded="false" aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Termoregulación
+        </button>
+      </h2>
+      <div id="collapse-sub-Termoregulacin-Target" class="accordion-collapse collapse"
+        aria-labelledby="collap-sub-Termoregulacin">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Fiebre: </label>
+              <input type="hidden" name="check-Termoregulacin-Fiebre[]" value="122">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-Termoregulacin-Fiebre" name="check-Termoregulacin-Fiebre[]"
+                value="1" required>
+              <label for="checkSi-Termoregulacin-Fiebre">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-Termoregulacin-Fiebre" name="check-Termoregulacin-Fiebre[]"
+                value="2" required>
+              <label for="checkNo-Termoregulacin-Fiebre">No</label>
+            </div>
+            <div class="collapse" id="collapse-Termoregulacin-Fiebre">
+              <textarea name="check-Termoregulacin-Fiebre[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Escalofríos: </label>
+              <input type="hidden" name="check-Termoregulacin-Escalofríos[]" value="123">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-Termoregulacin-Escalofríos"
+                name="check-Termoregulacin-Escalofríos[]" value="1" required>
+              <label for="checkSi-Termoregulacin-Escalofríos">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-Termoregulacin-Escalofríos"
+                name="check-Termoregulacin-Escalofríos[]" value="2" required>
+              <label for="checkNo-Termoregulacin-Escalofríos">No</label>
+            </div>
+            <div class="collapse" id="collapse-Termoregulacin-Escalofríos">
+              <textarea name="check-Termoregulacin-Escalofríos[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Sudoración: </label>
+              <input type="hidden" name="check-Termoregulacin-Sudoración[]" value="124">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-Termoregulacin-Sudoración"
+                name="check-Termoregulacin-Sudoración[]" value="1" required>
+              <label for="checkSi-Termoregulacin-Sudoración">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-Termoregulacin-Sudoración"
+                name="check-Termoregulacin-Sudoración[]" value="2" required>
+              <label for="checkNo-Termoregulacin-Sudoración">No</label>
+            </div>
+            <div class="collapse" id="collapse-Termoregulacin-Sudoración">
+              <textarea name="check-Termoregulacin-Sudoración[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <!-- <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Transtornos: </label>
+              <input type="hidden" name="check-Termoregulacin-Transtornos[]" value="124">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-Termoregulacin-Transtornos" name="check-Termoregulacin-Transtornos[]" value="1" required >
+              <label for="checkSi-Termoregulacin-Transtornos">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required  id="checkNo-Termoregulacin-Transtornos" name="check-Termoregulacin-Transtornos[]" value="2" required>
+              <label for="checkNo-Termoregulacin-Transtornos" >No</label>
+            </div>
+            <div class="collapse" id="collapse-Termoregulacin-Transtornos">
+              <textarea name="check-Termoregulacin-Transtornos[]" class="form-control input-form" rows="2" cols="2" placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div> -->
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Transtornos congénitos de metabolismo: </label>
+              <input type="hidden" name="check-Termoregulacin-congenMetabolism[]" value="125">
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkSi-Termoregulacin-congenMetabolism"
+                name="check-Termoregulacin-congenMetabolism[]" value="1" required>
+              <label for="checkSi-Termoregulacin-congenMetabolism">Si</label>
+            </div>
+            <div class="col-3">
+              <input type="radio" required id="checkNo-Termoregulacin-congenMetabolism"
+                name="check-Termoregulacin-congenMetabolism[]" value="2" required>
+              <label for="checkNo-Termoregulacin-congenMetabolism">No</label>
+            </div>
+            <div class="collapse" id="collapse-Termoregulacin-congenMetabolism">
+              <textarea name="check-Termoregulacin-congenMetabolism[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form id="formPiel">
+    <div class="accordion-item bg-acordion">
+      <h2 class="accordion-header" id="collap-sub-piel">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapse-sub-piel-Target" aria-expanded="false" aria-controls="accordionEstudios">
+          <i class="bi bi-plus-circle-fill"></i>&nbsp;&nbsp;&nbsp; Piel
+        </button>
+      </h2>
+      <div id="collapse-sub-piel-Target" class="accordion-collapse collapse" aria-labelledby="collap-sub-piel">
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+        <div class="accordion-body">
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Cambios de coloración "manchas": </label>
+              <input type="hidden" name="check-piel-CambiosColoracion[]" value="126">
+            </div>
+            <div class="" id="collapse-piel-CambiosColoracion">
+              <textarea name="check-piel-CambiosColoracion[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Prurito: </label>
+              <input type="hidden" name="check-piel-prurito[]" value="127">
+            </div>
+            <div class="" id="collapse-piel-prurito">
+              <textarea name="check-piel-prurito[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Frialdad: </label>
+              <input type="hidden" name="check-piel-frialdad[]" value="128">
+            </div>
+            <div class="" id="collapse-piel-frialdad">
+              <textarea name="check-piel-frialdad[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+          <div class="row" style="zoom:110%;margin-left:5%;width: 90%;margin-top: 10px;">
+            <div class="col-6">
+              <label>Dematosis: </label>
+              <input type="hidden" name="check-piel-dematosis[]" value="129">
+            </div>
+            <div class="" id="collapse-piel-dematosis">
+              <textarea name="check-piel-dematosis[]" class="form-control input-form" rows="2" cols="2"
+                placeholder="¿Cuál?, tiempo, tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end p-2 div-btn-guardarAntPato"> <button type="button"
+            class="btn btn-confirmar m-1 guardarAnamn"> <i class="bi bi-paperclip"></i> Guardar </button> </div>
+      </div>
+    </div>
+  </form>
+</div>
