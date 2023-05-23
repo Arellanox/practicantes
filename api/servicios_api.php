@@ -507,7 +507,7 @@ switch ($api) {
             )
         );
         #Case incompleto
-        $pdf = new Reporte(json_encode($arrayGlobal), json_encode($responsePac[0]), null, null, 'resultados', 'url');
+        // $pdf = new Reporte(json_encode($arrayGlobal), json_encode($responsePac[0]), null, null, 'resultados', 'url');
         $pdf->build();
 
         break;
@@ -572,7 +572,7 @@ switch ($api) {
         // print_r($arrayPacienteEtiqueta);
         // print_r($arrayPacienteEtiqueta);
 
-        $pdf = new Reporte(json_encode($arrayPacienteEtiqueta[0]), null, null, null, 'etiquetas', 'url');
+        // $pdf = new Reporte(json_encode($arrayPacienteEtiqueta[0]), null, null, null, 'etiquetas', 'url');
         $pdf->build();
         break;
     default:
