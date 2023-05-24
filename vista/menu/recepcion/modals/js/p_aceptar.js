@@ -49,7 +49,7 @@ modalPacienteAceptar.addEventListener('show.bs.modal', event => {
   });
   rellenarSelect('#select-otros', "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 0,
-    cliente_id: array_selected['CLIENTE_ID']
+    cliente_id: array_selected['CLIENTE_ID'],
   });
 
 

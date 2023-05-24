@@ -19,6 +19,43 @@
           </div>
           <p> <strong></strong> </p>
           <div class="row">
+
+            <div>
+              <div id="tooltip">
+                <div id="arrow" data-popper-arrow></div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">First</th>
+                      <th scope="col">Last</th>
+                      <th scope="col">Handle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td colspan="2">Larry the Bird</td>
+                      <td>@twitter</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
             <div class="col-12 col-lg-8">
               <h4 class="mt-2">Cargar estudios</h4>
               <p>Busque y agregue estudios para las areas si es necesario</p>
@@ -36,9 +73,11 @@
                       <div class="row">
                         <div class="col-6">
                           <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 contenido_estudio">
+
                               <select class="" id="select-lab">
                               </select>
+
                             </div>
                             <div class="col-12">
                               <button type="button" class="btn btn-confirmar" id="btn-AgregarEstudioLab">
@@ -50,6 +89,7 @@
                               <input type="file" name="orden-medica-laboratorio[]" id="file-laboratorio" class="form-control input-form" value="">
                             </div> -->
                           </div>
+                          
                         </div>
                         <div class="col-6">
                           <ul class="list-group" id="list-estudios-laboratorio">
@@ -64,6 +104,7 @@
                   <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+
                       Estudios de Laboratorio Biomolecular
                     </button>
                   </h2>
@@ -325,6 +366,7 @@
           Cerrar</button>
         <button type="button" class="btn btn-cancelar" id="siguienteForm"><i class="bi bi-arrow-right-circle"></i>
           Siguiente</button>
+
         <button type="submit" form="formAceptarPacienteRecepcion" class="btn btn-confirmar" id="btn-confirmar-paciente">
           <i class="bi bi-check2-square"></i> Aceptar paciente
         </button>
@@ -332,3 +374,21 @@
     </div>
   </div>
 </div>
+
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="modalServicio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-body">
+      <h2 class="fs-5">Servicios</h2>
+      <hr>
+      <h2 class="fs-5" id="estudiosServicios">Estudio de</h2>
+      <ul class="list-group list-group-numbered">
+        <li class="list-group-item">Estudio 1</li>
+        <li class="list-group-item">Estudio 2</li>
+        <li class="list-group-item">Estudio 3</li>
+      </ul>
+    </div>
+  </div>
+</div>  -->

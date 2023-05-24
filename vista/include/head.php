@@ -91,3 +91,7 @@
 <!-- Bimo -->
 <link rel=" stylesheet" href="<?php echo 'http://' . $url . '/' . $appname . '\css\master.css?v=' . uniqid(); ?>">
 <link rel="icon" href="https://www.bimo-lab.com/archivos/sistema/LogoConFondoAppAndroid.png">
+
+<!-- PopersJs -->
+<!-- Development version -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
