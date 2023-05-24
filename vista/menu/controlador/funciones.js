@@ -3701,10 +3701,10 @@ function ScrollZoom(container, max_scale, factor) {
   }
 }
 
-//Servicios en cargar estudios
-function cargarServiciosEstudios(buttonIds, tooltip) {
-  const arrow = document.querySelector('#arrow');
-  const button = document.querySelector(buttonIds[0]);
+//Servicios en cargar estudios con popper
+
+function cargarServiciosEstudios(button, tooltip) {
+  const arrow = $('#arrow');
 
   const popperInstance = Popper.createPopper(button, tooltip, {
     placement: 'right',
@@ -3724,6 +3724,8 @@ function cargarServiciosEstudios(buttonIds, tooltip) {
   function show() {
     tooltip.setAttribute('data-show', '');
     popperInstance.update();
+
+
   }
 
   function hide() {
@@ -3734,17 +3736,11 @@ function cargarServiciosEstudios(buttonIds, tooltip) {
   const hideEvents = ['mouseleave', 'blur'];
 
   showEvents.forEach((event) => {
-    button.addEventListener(event, show);
+    $(button).on(event, show);
   });
 
   hideEvents.forEach((event) => {
-    button.addEventListener(event, hide);
+    $(button).on(event, hide);
   });
 }
 
-setTimeout(() => {
-  const buttonIds = [`#select2-select-lab-container, 
-                      #select2-select-labbio-container`];
-  const tooltip = document.querySelector('#tooltip');
-  cargarServiciosEstudios(buttonIds, tooltip);
-}, 5000);

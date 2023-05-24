@@ -1,1 +1,2 @@
 23/05/23 15:07:53 sp_status_paciente Ha ocurrido un error(42S02). 42S02 1146 Table 'u808450138_practicantes.esp' doesn't exist
+24/05/23 12:10:36 sp_status_paciente Ha ocurrido un error(42S02). 42S02 1146 Table 'u808450138_practicantes.esp' doesn't exist
