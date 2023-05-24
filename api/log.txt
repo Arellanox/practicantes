@@ -1,0 +1,12 @@
+23/05/23 13:43:16 sp_laboratorario_equipos_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_practicantes.sp_laboratorario_equipos_b does not exist
+23/05/23 13:43:30 sp_laboratorario_equipos_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_practicantes.sp_laboratorario_equipos_b does not exist
+23/05/23 13:44:11 sp_laboratorario_equipos_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_practicantes.sp_laboratorario_equipos_b does not exist
+23/05/23 13:44:44 sp_laboratorario_equipos_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_practicantes.sp_laboratorario_equipos_b does not exist
+23/05/23 13:44:49 sp_laboratorario_equipos_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_practicantes.sp_laboratorario_equipos_b does not exist
+23/05/23 13:45:49 sp_laboratorio_equipos_b Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_practicantes.sp_laboratorio_equipos_b; expected 2, got 0
+24/05/23 10:14:39 sp_status_paciente Ha ocurrido un error(42S02). 42S02 1146 Table 'u808450138_practicantes.esp' doesn't exist
+24/05/23 10:22:55 sp_status_paciente Ha ocurrido un error(42S02). 42S02 1146 Table 'u808450138_practicantes.esp' doesn't exist
+24/05/23 10:33:44 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Intento de acceso a un socket no permitido por sus permisos de acceso.
+
+24/05/23 10:33:44 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Intento de acceso a un socket no permitido por sus permisos de acceso.
+
