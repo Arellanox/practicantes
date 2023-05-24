@@ -3705,3 +3705,51 @@ function ScrollZoom(container, max_scale, factor) {
     target.css('transform', 'translate(' + (pos.x) + 'px,' + (pos.y) + 'px) scale(' + scale + ',' + scale + ')')
   }
 }
+
+//Servicios en cargar estudios
+function cargarServiciosEstudios(buttonIds, tooltip) {
+  const arrow = document.querySelector('#arrow');
+  const button = document.querySelector(buttonIds[0]);
+
+  const popperInstance = Popper.createPopper(button, tooltip, {
+    placement: 'right',
+    options: {
+      element: arrow,
+    },
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 20],
+        },
+      },
+    ],
+  });
+
+  function show() {
+    tooltip.setAttribute('data-show', '');
+    popperInstance.update();
+  }
+
+  function hide() {
+    tooltip.removeAttribute('data-show');
+  }
+
+  const showEvents = ['mouseenter', 'focus'];
+  const hideEvents = ['mouseleave', 'blur'];
+
+  showEvents.forEach((event) => {
+    button.addEventListener(event, show);
+  });
+
+  hideEvents.forEach((event) => {
+    button.addEventListener(event, hide);
+  });
+}
+
+setTimeout(() => {
+  const buttonIds = [`#select2-select-lab-container, 
+                      #select2-select-labbio-container`];
+  const tooltip = document.querySelector('#tooltip');
+  cargarServiciosEstudios(buttonIds, tooltip);
+}, 5000);

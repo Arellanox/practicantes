@@ -31,4 +31,7 @@ $.post("modals/m_recepcion.php", function (html) {
   $.getScript(`modals/js/p_actualizar_estudios.js`);
 
   $.getScript(`modals/js/qr-clientes.js`);
+
+  //  //Modal para vista de servicios
+  $.getScript(`modals/js/vista-servicios.js`);
 });
