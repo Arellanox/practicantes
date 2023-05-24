@@ -229,6 +229,14 @@ session_start();
                                     include 'forms/form_citologia.html';
                                     echo '</form>';
                                     break;
+
+                                    //<!--Formulario de Espirometria -->
+                                case 'formAreadeEspirometria':
+                                    echo '<form id="formEspiro">';
+                                    include 'forms/form_espiro.html';
+                                    echo '</form>';
+                                    break;
+
                             }
 
                             ?>

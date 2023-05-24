@@ -59,7 +59,7 @@ function hasLocation() {
 
       case "ESPIROMETRIA":
         control_turnos = 6;
-        formulario = "formSubirInterpretacionPRUEBA";
+        formulario = "formAreadeEspirometria";
         api_capturas = 3;
         api_interpretacion = 1;
         url_api = 'espirometria_api';
@@ -147,7 +147,7 @@ function obtenerContenidoVistaMaster(area, titulo, contenidoHTML = 'contenido.ht
   $.post("contenido/" + contenidoHTML, {
     form: formulario, tipovista: tipovista, control_turnos: control_turnos
   }, function (html) {
-    $("#body-js").html(html);
+    $("#body-js").html(html); 
   }).done(async function () {
     await obtenerTitulo(titulo);
 
