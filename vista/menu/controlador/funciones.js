@@ -2660,7 +2660,12 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                 resolve(1);
                 break;
 
-
+              case 'PanelTemperaturas':
+                setTimeout(function () {
+                  $(panel).fadeIn(100);
+                }, 100);
+                resolve(1);
+                break;
 
 
               default:
