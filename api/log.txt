@@ -1,0 +1,3 @@
+23/05/23 11:52:21 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2006] MySQL server has gone away
+23/05/23 19:16:37 sp_status_paciente Ha ocurrido un error(42S02). 42S02 1146 Table 'u808450138_practicantes.esp' doesn't exist
+23/05/23 20:28:50 sp_status_paciente Ha ocurrido un error(42S02). 42S02 1146 Table 'u808450138_practicantes.esp' doesn't exist
