@@ -5,6 +5,7 @@
             "NO"</b> según sea el caso</p>
 
     <div class="row">
+        
         <div class="col-6 mb-4">
             <div class="col-12 mt-4">
                 <div class="col-12">
@@ -193,6 +194,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="col-6 mb-4">
             <div class="col-12 mt-4">
@@ -408,13 +410,12 @@
             <div class="accordion" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <p class="accordion-button collapsed text-center" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                             En caso de que aplique la siguiente situación, conteste las preguntas marcando <b> "Si" o
                                 "No" </b> según sea el caso, si
                             no aplica favor de seleccionar <b> " No aplica"</b>
 
-                        </button>
+                        </p>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse show " aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
@@ -505,11 +506,11 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-check form-check-inline col-12 mb-2">
-                                                <input class="form-check-input" type="radio" name="esfuerzo_trabajo" id="14pr1">
+                                                <input class="form-check-input" type="checkbox" name="esfuerzo_trabajo" id="14pr1" onclick="uncheck()" >
                                                 <label class="form-check-label" for="14pr1">Ligero (menos de 200 kcal por hora)</label>
                                             
 
-                                                <div class="collapse">
+                                                <div class="esfuerzo_trabajo collapse" >
                                                     <p class="mt-2"><b>¿Cuanto dura este período en promedio?</b></p>
                                                     <div class="input-group mt-2 mb-2">    
                                                         <span class="input-group-text input-span">Por turno: </span>
@@ -533,10 +534,10 @@
                                             </p>
                                     
                                             <div class="form-check form-check-inline col-12 mb-2">
-                                                <input class="form-check-input" type="radio" name="esfuerzo_trabajo" id="14pr2">
+                                                <input class="form-check-input" type="checkbox" name="esfuerzo_trabajo" id="14pr2" onclick="uncheck()" >
                                                 <label class="form-check-label" for="14pr2">Moderado (200 a 350 kcal por hora)</label>
                                                
-                                                <div class="collapse">
+                                                <div class="esfuerzo_trabajo collapse">
                                                     <p class="mt-2"><b>¿Cuanto dura este período en promedio?</b></p>
                                                     <div class="input-group mt-2 mb-2">
                                                         <span class="input-group-text input-span">Por turno: </span>
@@ -562,10 +563,10 @@
                                             </p>
                                     
                                             <div class="form-check form-check-inline col-12 mb-2">
-                                                <input class="form-check-input" type="radio" name="esfuerzo_trabajo" id="14pr3">
+                                                <input class="form-check-input" type="checkbox" name="esfuerzo_trabajo" id="14pr3" onclick="uncheck()" >
                                                 <label class="form-check-label" for="14pr3">Pesado (sobre 350 kcal por hora)</label>
 
-                                                <div class="collapse">
+                                                <div class="esfuerzo_trabajo collapse">
                                                     <p class="mt-2"><b>¿Cuanto dura este período en promedio?</b></p>
                                                     <div class="input-group mt-2 mb-2">
                                                         <span class="input-group-text input-span">Por turno: </span>
@@ -768,10 +769,10 @@
             <div class="accordion " id="accordionFlushExample2">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingTwo">
-                        <button class="accordion-button collapsed text-center" type="button" data-bs-toggle="collapse"
+                        <p class="accordion-button collapsed text-center" 
                             data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                             Conteste las siguientes preguntas...
-                        </button>
+                        </p>
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo"
                         data-bs-parent="#accordionFlushExample2">
@@ -949,20 +950,43 @@
 
 
 <script>
-    $(document).on('change, keyup, click', 'input[type="checkbox"]', function(){
-        let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
-        if($(this).is(':checked')){
-            let children = $(parent).children("div[class='collapse']")
-            let input = children.find('textarea');
-            input.prop('required', true);
-            children.collapse('show')
-        }else{
-            let children = $(parent).children("div[class='collapse show']")
-            let input = children.find('textarea');
-            input.prop('required', false);
-            children.collapse('hide')
-        }
-    })
+    //FUNCIONES DE LOS BOTONES DE EL ESFUERZO DE TRABAJO
+       $(document).on('change, keyup, click', 'input:checkbox[name="esfuerzo_trabajo"]', function(){
+          let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+        $('.esfuerzo_trabajo').collapse('hide')
+
+          if($(this).is(':checked')){
+              let children = $(parent).children("div[class='esfuerzo_trabajo collapse']")
+              let input = children.find('textarea');
+              input.prop('required', true);
+              children.collapse('show')
+          }else{
+              let children = $(parent).children("div[class='esfuerzo_trabajo collapse show']")
+              let input = children.find('textarea');
+              input.prop('required', false);
+              children.collapse('hide')
+          }
+      })
+
+      //FUNCION PARA TODOS LOS CHECKBOX
+      $(document).on('change, keyup, click', 'input[type="checkbox"]', function () {
+            let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+            if ($(this).is(':checked')) {
+                let children = $(parent).children("div[class='collapse']")
+                let input = children.find('textarea');
+                input.prop('required', true);
+                children.collapse('show')
+            } else {
+                let children = $(parent).children("div[class='collapse show']")
+                let input = children.find('textarea');
+                input.prop('required', false);
+                children.collapse('hide')
+            }
+        })
+
+
 
     $(document).on('change, keyup, click', 'input:radio[name="2"]', function () {
 
@@ -1031,24 +1055,41 @@
                 })
         
 
-        $(document).on('change, keyup, click', 'input:radio[id="14pr1"]', function () {
+        function uncheck() {
+                var checkbox1 = document.getElementById("14pr1");
+                var checkbox2 = document.getElementById("14pr2");
+                var checkbox3 = document.getElementById("14pr3");
 
-                let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+                
+                var children = document.getElementsByClassName('texto')
 
-                if ($(this).isNot(':checked')) {  
-                    
-                    let children = $(parent).children("div[class='collapse show']")
-                    children.collapse('hide')
-                    alert('adios')
 
+                
+                checkbox1.onclick = function () {
+                    if (checkbox1.checked != false) {
+                        checkbox2.checked = null;
+                        checkbox3.checked = null
+
+                    }
                 }
-                else {
-                    let children = $(parent).children("div[class='collapse']")
-                    children.collapse('show')
-                    alert('hola')
+                checkbox2.onclick = function () {
+                    if (checkbox2.checked != false) {
+                        checkbox1.checked = null;
+                        checkbox3.checked = null
+                    }
                 }
-            })
 
+                checkbox3.onclick = function () {
+                     if (checkbox3.checked != false) {
+                        checkbox1.checked = null;
+                        checkbox2.checked = null
+                    }
+                }
+            }
+
+
+      
+            //FUNCIONES PARA LOS BOTONES DE NO APLICA
             $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
                    let acordion = $('#acordion')
 
@@ -1059,6 +1100,7 @@
                     }
                 })
 
+
              $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica2"]', function () {
                     let acordion = $('#acordion1')
 
@@ -1067,6 +1109,13 @@
                     }
                     else {
                         acordion.fadeIn(1000)
+                        
+                        
                     }
                 })
+
+                
+
+                
+                    
 </script>
