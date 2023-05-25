@@ -19,6 +19,7 @@ $abreviatura = $_POST['abreviatura']; #activar con valor 1
 $confirmar = $_POST['confirmar'];
 $id_turno = $_POST['id_turno'];
 $id_servicio = $_POST['id_servicio'];
+$id_grupo = $_POST['id_grupo'];
 $comentario = $_POST['comentario'];
 $tipo = $_POST['tipo_archivo'];
 $comentario_capturas = $_POST['comentario_capturas'];
@@ -577,7 +578,7 @@ switch ($api) {
         break;
     case 15:
         #Recupera el detalle de un servicio (Grupo o servicio);
-        $response = $master->getByProcedure('sp_detalle_grupo_b', [$grupo_id, $servicio_id]);
+        $response = $master->getByProcedure('sp_detalle_grupo_b', [$id_grupo, $id_servicio]);
         echo $master->returnApi($response);
         exit;
         break;

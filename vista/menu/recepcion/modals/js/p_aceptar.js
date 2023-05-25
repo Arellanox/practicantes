@@ -34,6 +34,22 @@ modalPacienteAceptar.addEventListener('show.bs.modal', event => {
   rellenarSelect("#select-lab", "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 6,
     cliente_id: array_selected['CLIENTE_ID']
+  }, function (data){
+    const button = document.querySelector('#select2-select-lab-container');
+    const tooltip = document.querySelector('#tooltip');
+    popperHover(button, tooltip, function(event){
+      if(event){
+dataJSON = {
+  api: 15
+}
+        let id = $('#select-lab').prop('selectedIndex');
+data[id]['ES_GRUPO'] ? dataJSON['ID_SERVICIO'] : dataJSON['ID_GRUPO'];
+
+        ajaxAwait(dataJSON, "servicios_api",{callbackAfter: true},false,function(data){
+          
+        })
+      }
+    })
   });
   rellenarSelect("#select-labbio", "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 12,

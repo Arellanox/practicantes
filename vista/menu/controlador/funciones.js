@@ -3706,8 +3706,10 @@ function ScrollZoom(container, max_scale, factor) {
   }
 }
 
-//Servicios en cargar estudios con poppe
-function cargarServiciosEstudios(button, tooltip) {
+//Servicios en cargar estudios con popper
+
+function cargarServiciosEstudios(button, tooltip, servicio_id) {
+
   const arrow = $('#arrow');
 
   const popperInstance = Popper.createPopper(button, tooltip, {
@@ -3729,6 +3731,12 @@ function cargarServiciosEstudios(button, tooltip) {
     tooltip.setAttribute('data-show', '');
     popperInstance.update();
 
+    ajaxAwait({
+      api: 0,
+      id: servicio_id
+    }, "servicios_api",{callbackAfter: true},false,function(data){
+      
+    })
 
   }
 
@@ -3779,7 +3787,6 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
 
   function hide() {
     tooltip.removeAttribute('data-show');
-
     callback(false);
   }
 
