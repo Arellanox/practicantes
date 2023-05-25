@@ -1,7 +1,6 @@
 setTimeout(function () {
     loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
-    loaderDiv("Out", null, "#preloader", '#loader');
-}, 3000)
+}, 1000)
 
 
 //Tabla de temperaturas por mes
@@ -12,28 +11,28 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     paging: false,
     scrollY: autoHeightDiv(0, 284),
     scrollCollapse: true,
-    /*  ajax: {
-         dataType: 'json',
-         data: { api: 2, estado: 1 },
-         method: 'POST',
-         url: '../../../api/tickets_api.php',
-         beforeSend: function () {
-             loader("In")
-         },
-         complete: function () {
-             loader("Out")
-             tablaContados.columns.adjust().draw()
-         },
-         error: function (jqXHR, textStatus, errorThrown) {
-             alertErrorAJAX(jqXHR, textStatus, errorThrown);
-         },
-         dataSrc: 'response.data'
-     }, */
+    ajax: {
+        dataType: 'json',
+        data: { api: 2, estado: 1 },
+        method: 'POST',
+        url: '../../../api/tickets_api.php',
+        beforeSend: function () {
+            loader("In")
+        },
+        complete: function () {
+            loader("Out")
+            tablaContados.columns.adjust().draw()
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alertErrorAJAX(jqXHR, textStatus, errorThrown);
+        },
+        dataSrc: 'response.data'
+    }/* ,
     columns: [
         { data: 'COUNT' },
         { data: 'Descripcion' },
         { data: 'Folio' }
-    ],
+    ] */,
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Descripcion', className: 'all' },
@@ -46,15 +45,21 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
 inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
     msj: 'Tabla de registro de temperatura mensual',
     place: 'top'
-}], false, "col-12")
+}], {
+    msj: "Filtre los resultados por el folio que escriba",
+    place: 'top'
+}, "col-12")
 
-
+loaderDiv("Out", null, "#loader-temperatura", '#loaderDivtemperatura');
 selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, function (select, data) {
     if (select) {
+        console.log("si entro en el select de temperaturas folio")
         getPanel(".informacion-temperatura", "#loader-temperatura", "#loaderDivtemperatura", null, "In", function (divClass) {
+            console.log(divClass);
             $(divClass).fadeIn(100);
         })
     } else {
+        console.log("entro en la condicion donde no selecciono nada ")
         getPanel(".informacion-temperatura", "#loader-temperatura", "#loaderDivtemperatura", null, "Out")
     }
 })

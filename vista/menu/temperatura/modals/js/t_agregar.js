@@ -47,34 +47,28 @@ $("#Termometro").on("change", function () {
 $("#formCapturarTemperatura").on("submit", function (e) {
     e.preventDefault();
 
-    data = new FormData(document.getElementById("formCapturarTemperatura"))
+    data = new FormData(document.getElementById("formCapturarTemperatura"));
+
+    ajaxAwaitFormData({
+        api: 1
+    }, 'temperatura_api', 'formCapturarTemperatura', { callbackAfter: true }, false, function (data) {
+        alertTemperatura("Temperatura capturada");
+    })
+
     console.log(data);
 })
 
-/* function cargarInformacionEquipo(id) {
-    console.log(id)
 
-    ajaxAwait({
-        api: 1,
-        id_equipo: id,
-    }, 'equipos_api', { callbackAfter: true, returnData: false }, false, function (data) {
 
-        data = data.response.data //Todos los datos para el detalle
-
-        //Pintar toda la informacion que se requiera del equipo
-
-        data.forEach(element => {
-            if (element['EQUIPOS_T_ID'] == 5) {
-                $("#enfriadorMarca").val(ifnull(element['MARCA']))
-            } else {
-                $("#termometroMarca").val(ifnull(element['MARCA']))
-            }
-        });
-    })
-}
- */
 
 function cargarTemperatura(data) {
     alertToast('Espere un momento', 'info', 4000)
     /*  $("#capturarTemperaturaModal").modal("hide"); */
+}
+
+
+function alertTemperatura(text) {
+    alertMensaje('success', text, 'Se ha guardado el registro correctamente');
+
+    $("#capturarTemperaturaModal").modal("hide");
 }

@@ -20,9 +20,9 @@ function obtenerTemperaturas() {
     }).done(function () {
         // Datatable
         $.getScript("contenido/js/temperatura-tablas.js");
-        // Botones
-        $.getScript("contenido/js/contados-botones.js");
-
+        /*    // Botones
+           $.getScript("contenido/js/contados-botones.js");
+    */
         // Filtros
         $.getScript("contenido/js/filtro-temperatura.js");
     });
