@@ -3706,8 +3706,7 @@ function ScrollZoom(container, max_scale, factor) {
   }
 }
 
-//Servicios en cargar estudios con popper
-
+//Servicios en cargar estudios con poppe
 function cargarServiciosEstudios(button, tooltip) {
   const arrow = $('#arrow');
 
@@ -3746,6 +3745,53 @@ function cargarServiciosEstudios(button, tooltip) {
 
   hideEvents.forEach((event) => {
     $(button).on(event, hide);
+  });
+}
+
+
+//Funcion para crear un tooltip grande
+function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (show_hide) => { }) {
+  $(tooltip).append(`<div id="arrow" data-popper-arrow></div>`)
+  const arrow = $('#arrow'); // Siempre Introducir un arrow
+
+  //Configuracion del popper
+  const popperInstance = Popper.createPopper(container, tooltip, {
+    placement: 'right',
+    options: {
+      element: arrow,
+    },
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 20],
+        },
+      },
+    ],
+  });
+
+  function show() {
+    tooltip.setAttribute('data-show', '');
+    popperInstance.update();
+
+    callback(true);
+  }
+
+  function hide() {
+    tooltip.removeAttribute('data-show');
+
+    callback(false);
+  }
+
+  const showEvents = ['mouseenter', 'focus'];
+  const hideEvents = ['mouseleave', 'blur'];
+
+  showEvents.forEach((event) => {
+    $(container).on(event, show);
+  });
+
+  hideEvents.forEach((event) => {
+    $(container).on(event, hide);
   });
 }
 
