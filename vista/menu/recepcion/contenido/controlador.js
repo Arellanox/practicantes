@@ -4,6 +4,8 @@
 // obtenerContenidoRecepcion();
 var tablaRecepcionPacientes, dataRecepcion = { api: 1 };
 
+var estudiosLab = [], estudiosLabBio = [], estudiosRX = [], estudiosUltra = [], estudiosOtros = []
+
 if (validarVista('RECEPCIÓN')) {
   hasLocation()
   $(window).on("hashchange", function (e) {

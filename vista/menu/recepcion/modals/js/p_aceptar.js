@@ -5,6 +5,15 @@ var url_paciente = null,
   validarEstudiosImg = 0,
   validarEstudiosOtros = 0;
 var estudiosEnviar = new Array();
+
+select2("#select-paquetes", "modalPacienteAceptar", 'Seleccione un paquete');
+select2("#select-lab", "modalPacienteAceptar", 'Seleccione un estudio');
+select2("#select-labbio", "modalPacienteAceptar", 'Seleccione un estudio');
+select2("#select-rx", "modalPacienteAceptar", 'Seleccione un estudio');
+select2("#select-us", "modalPacienteAceptar", 'Seleccione un estudio');
+select2("#select-otros", "modalPacienteAceptar", 'Seleccione un estudio');
+select2('#select-segmento-aceptar', "modalPacienteAceptar", 'Seleccione un segmento');
+
 const modalPacienteAceptar = document.getElementById('modalPacienteAceptar')
 modalPacienteAceptar.addEventListener('show.bs.modal', event => {
   document.getElementById("title-paciente_aceptar").innerHTML = array_selected[1];
@@ -34,38 +43,36 @@ modalPacienteAceptar.addEventListener('show.bs.modal', event => {
   rellenarSelect("#select-lab", "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 6,
     cliente_id: array_selected['CLIENTE_ID']
-  }, function (data){
-    const button = document.querySelector('#select2-select-lab-container');
-    const tooltip = document.querySelector('#tooltip');
-    popperHover(button, tooltip, function(event){
-      if(event){
-dataJSON = {
-  api: 15
-}
-        let id = $('#select-lab').prop('selectedIndex');
-data[id]['ES_GRUPO'] ? dataJSON['ID_SERVICIO'] : dataJSON['ID_GRUPO'];
-
-        ajaxAwait(dataJSON, "servicios_api",{callbackAfter: true},false,function(data){
-          
-        })
-      }
-    })
+  }, function (data) {
+    estudiosLab = data;
   });
   rellenarSelect("#select-labbio", "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 12,
     cliente_id: array_selected['CLIENTE_ID']
+  }, function (data) {
+    // Se usa en el hover  de  detalle
+    estudiosLabBio = data;
   });
   rellenarSelect('#select-us', "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 11,
     cliente_id: array_selected['CLIENTE_ID']
+  }, function (data) {
+    // Se usa en el hover  de  detalle
+    estudiosUltra = data;
   });
   rellenarSelect('#select-rx', "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 8,
     cliente_id: array_selected['CLIENTE_ID']
+  }, function (data) {
+    // Se usa en el hover  de  detalle
+    estudiosRX = data;
   });
   rellenarSelect('#select-otros', "servicios_api", 2, 'ID_SERVICIO', 'ABREVIATURA.DESCRIPCION', {
     id_area: 0,
     cliente_id: array_selected['CLIENTE_ID'],
+  }, function (data) {
+    // Se usa en el hover  de  detalle
+    estudiosOtros = data;
   });
 
 
@@ -335,10 +342,3 @@ function limpiarFormAceptar() {
 
 
 
-select2("#select-paquetes", "modalPacienteAceptar", 'Seleccione un paquete');
-select2("#select-lab", "modalPacienteAceptar", 'Seleccione un estudio');
-select2("#select-labbio", "modalPacienteAceptar", 'Seleccione un estudio');
-select2("#select-rx", "modalPacienteAceptar", 'Seleccione un estudio');
-select2("#select-us", "modalPacienteAceptar", 'Seleccione un estudio');
-select2("#select-otros", "modalPacienteAceptar", 'Seleccione un estudio');
-select2('#select-segmento-aceptar', "modalPacienteAceptar", 'Seleccione un segmento');
