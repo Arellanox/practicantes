@@ -575,6 +575,12 @@ switch ($api) {
         // $pdf = new Reporte(json_encode($arrayPacienteEtiqueta[0]), null, null, null, 'etiquetas', 'url');
         $pdf->build();
         break;
+    case 15:
+        #Recupera el detalle de un servicio (Grupo o servicio);
+        $response = $master->getByProcedure('sp_detalle_grupo_b', [$grupo_id, $servicio_id]);
+        echo $master->returnApi($response);
+        exit;
+        break;
     default:
         echo "Api no reconocida.";
         break;
