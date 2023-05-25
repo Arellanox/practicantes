@@ -1,13 +1,71 @@
-// $('#TablaContados thead tr')
-//     .clone(true)
-//     .addClass('filters')
-//     .appendTo('#TablaContados thead');
+setTimeout(function () {
+    loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
+    loaderDiv("Out", null, "#preloader", '#loader');
+}, 3000)
+
+
+//Tabla de temperaturas por mes
+tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
+    language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
+    lengthChange: false,
+    info: false,
+    paging: false,
+    scrollY: autoHeightDiv(0, 284),
+    scrollCollapse: true,
+    /*  ajax: {
+         dataType: 'json',
+         data: { api: 2, estado: 1 },
+         method: 'POST',
+         url: '../../../api/tickets_api.php',
+         beforeSend: function () {
+             loader("In")
+         },
+         complete: function () {
+             loader("Out")
+             tablaContados.columns.adjust().draw()
+         },
+         error: function (jqXHR, textStatus, errorThrown) {
+             alertErrorAJAX(jqXHR, textStatus, errorThrown);
+         },
+         dataSrc: 'response.data'
+     }, */
+    columns: [
+        { data: 'COUNT' },
+        { data: 'Descripcion' },
+        { data: 'Folio' }
+    ],
+    columnDefs: [
+        { target: 0, title: '#', className: 'all' },
+        { target: 1, title: 'Descripcion', className: 'all' },
+        { target: 2, title: 'Folio', className: 'all' }
+
+    ]
+})
+
+
+inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
+    msj: 'Tabla de registro de temperatura mensual',
+    place: 'top'
+}], false, "col-12")
+
+
+selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, function (select, data) {
+    if (select) {
+        getPanel(".informacion-temperatura", "#loader-temperatura", "#loaderDivtemperatura", null, "In", function (divClass) {
+            $(divClass).fadeIn(100);
+        })
+    } else {
+        getPanel(".informacion-temperatura", "#loader-temperatura", "#loaderDivtemperatura", null, "Out")
+    }
+})
 
 tablaTemperatura = $('#TablaTemperatura').DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
-    scrollY: autoHeightDiv(0, 374),
+    lengthChange: false,
+    info: false,
+    paging: false,
+    scrollY: autoHeightDiv(0, 284),
     scrollCollapse: true,
-    deferRender: true,
     /*  ajax: {
          dataType: 'json',
          data: { api: 2, estado: 1 },
@@ -45,9 +103,6 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
 
     ]
 })
-
-
-
 
 
 
