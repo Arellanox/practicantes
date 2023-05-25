@@ -1,0 +1,100 @@
+<div class="modal fade" id="capturarTemperaturaModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Nuevo registro de temperatura</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center my-2 px-5 mx-5">Los datos como la <strong>fecha de captura</strong> y el
+                    <strong>usuario</strong> que lo hizo que realizo la
+                    captura <strong>se
+                        agregan automaticamente.</strong>
+                <form id="formCapturarTemperatura" name="formCapturarTemperatura">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="Enfriador" class="form-label">Enfriador:</label>
+                                <select class="form-select input-form" name="Enfriador" id="Enfriador">
+                                    <option selected>Eliga un enfriador</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="Termometro" class="form-label">Termometro:</label>
+                                <select class="form-select input-form" name="Termometro" id="Termometro">
+                                    <option selected>Eliga un termometro</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="enfriadorMarca">Marca del enfriador:</label>
+                                <input type="text" name="enfriadorMarca" value="" class="form-control input-form"
+                                    id="enfriadorMarca" readonly disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="termometroMarca">Marca del termometro:</label>
+                                <input type="text" name="termometroMarca" value="" class="form-control input-form"
+                                    id="termometroMarca" readonly disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="intervalo">Intevalo Optimo:</label>
+                                <input type="text" name="intervalo" value="" class="form-control input-form"
+                                    id="intervalo" readonly disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="lectura">Lectura:</label>
+                                <input type="number" name="lectura" value="" class="form-control input-form" required
+                                    id="lectura">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6 d-flex align-self-center my-auto">
+                            <p id="usuarioQueCargar">
+
+                            </p>
+
+                            <!--    <div class="input-group mb-3">
+                                <span class="input-group-text input-span" id="basic-addon1">Usuario</span>
+                                <input type="text" class="form-control input-form" placeholder="Username"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+ -->
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="observaciones">Observaciones:</label>
+                                <input type="text" name="observaciones" value="" class="form-control input-form"
+                                    required id="observaciones">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i>
+                    Cancelar</button>
+                <button type="submit" form="formCapturarTemperatura" class="btn btn-confirmar"
+                    id="btn-subir-temperatura">
+                    <i class="bi bi-person-x"></i> Subir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

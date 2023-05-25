@@ -112,3 +112,10 @@
          </div>
      </li>
  <?php endif; ?>
+
+ <li class="nav-item">
+     <a href="<?php echo "$https$url/$appname/vista/menu/temperatura";
+                /*echo $https . $url . '/' . /$appname . '/vista/menu/principal/';*/ ?>">
+         <i class="bi bi-thermometer-high"></i> Temperatura
+     </a>
+ </li>
