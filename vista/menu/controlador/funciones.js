@@ -3769,13 +3769,14 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
 
   function createPopper() {
     popperInstance = Popper.createPopper(reference, popper, {
-      placement: 'right',
+      placement: 'right-start',
       modifiers: [
         {
           name: 'offset',
           options: {
             offset: [0, 20],
           },
+
         },
       ],
     });

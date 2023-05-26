@@ -5,41 +5,11 @@
 //     cargarServiciosEstudios(button, tooltip);
 //   }, 5000);
 
-//  //Estudios laboratorio biomolecular
-//   setTimeout(() => {
-//     const button = document.querySelector('#select2-select-labbio-container');
-//     const tooltip = document.querySelector('#tooltip');
-//     cargarServiciosEstudios(button, tooltip);
-//   }, 5000);
-
-//  //Estudios de rayos x
-//   setTimeout(() => {
-//     const button = document.querySelector('#select2-select-rx-container');
-//     const tooltip = document.querySelector('#tooltip');
-//     cargarServiciosEstudios(button, tooltip);
-//   }, 5000);
-
-//    //Estudios de ultrasonido
-//   setTimeout(() => {
-//     const button = document.querySelector('#select2-select-us-container');
-//     const tooltip = document.querySelector('#tooltip');
-//     cargarServiciosEstudios(button, tooltip);
-//   }, 5000);
-
-//   //Otros estudios
-//   setTimeout(() => {
-//     const button = document.querySelector('#select2-select-otros-container');
-//     const tooltip = document.querySelector('#tooltip');
-//     cargarServiciosEstudios(button, tooltip);
-//   }, 5000);
-
-
-
 const selectLab = document.querySelector('#select2-select-lab-container');
 const selectLabBio = document.querySelector('#select2-select-labbio-container')
 const selectRX = document.querySelector('#select2-select-rx-container')
 const selectUltras = document.querySelector('#select2-select-us-container')
-
+const selectOtros = document.querySelector('#select2-select-otros-container')
 //Contenido
 const tooltip = document.querySelector('#tooltip');
 
@@ -67,8 +37,18 @@ popperHover(selectRX, tooltip, function (event) {
 //hover estudios ultrasonido
 popperHover(selectUltras, tooltip, function (event) {
     if (event) {
-        ListaEstudiosShow('#estudiosUltra', estudiosUltra);
+        ListaEstudiosShow('#select-us', estudiosUltra);
+
+        
     }
+})
+
+//hover estudios otros
+popperHover(selectOtros, tooltip, function (event) {
+    if (event) {
+        ListaEstudiosShow('#select-otros', estudiosOtros);
+
+        }
 })
 
 
@@ -76,9 +56,46 @@ function ListaEstudiosShow(select, estudioData) {
     let dataJSON = {
         api: 15
     }
+
+  
     let id = $(select).prop('selectedIndex');
     parseInt(estudioData[id]['ES_GRUPO']) ? dataJSON['id_grupo'] = estudioData[id]['ID_SERVICIO'] : dataJSON['id_servicio'] = estudioData[id]['ID_SERVICIO'];
-    ajaxAwait(dataJSON, "servicios_api", { callbackAfter: true }, false, function (data) {
+    ajaxAwait(dataJSON, "servicios_api", { callbackAfter: true, callbackBefore: true }, function (){
+       //Antes de llamar 
+         //vaciar la lista de estudios
+         $('#container-label').fadeIn(0);
+$('#container-estudios').fadeOut(0);
+$('#container-grupos').fadeOut(0);
 
+    $('#listaContenidoEstudios').html('')
+    $('#listContenidoGrupos').html('')
+    
+    }, function (data) {
+        //Despues de llamar
+        let row = data.response.data
+
+        for (const key in row) {
+            if (Object.hasOwnProperty.call(row, key)) {
+                const element = row[key];
+                if(element['ES_GRUPO'] == 0){
+                    $('#listaContenidoEstudios').append(`<li class="list-group-item">${element['DESCRIPCION']}</li>`)
+                    
+
+               }else{
+                    $('#listContenidoGrupos').append(`<li class="list-group-item">${element['DESCRIPCION']}</li>`)
+               }
+               
+               
+            }
+            
+            
+        }
+
+        $('#container-label').fadeOut(0);
+        $('#container-estudios').fadeIn(0);
+        $('#container-grupos').fadeIn(0);
+        
     })
+    
 }
+
