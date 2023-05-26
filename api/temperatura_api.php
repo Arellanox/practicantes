@@ -14,23 +14,32 @@ $master = new Master();
 $api = $_POST['api'];
 $equipo =  $_POST['Enfriador'];
 $termometro = $_POST['Termometro'];
-$usuario = $_SESSION['ID_USUARIO'];
+$usuario = $_SESSION['id'];
 $lectura = $_POST['lectura'];
 $observaciones = $_POST['observaciones'];
 
 $parametros =  array(
-    "equipo" => $equipo,
-    "termometro" => $termometro,
-    "usuario" => $usuario,
-    "lectura" => $lectura,
-    "observaciones" => $observaciones
+    $equipo,
+    $termometro,
+    $usuario,
+    $lectura,
+    $observaciones
 );
+
+$anho = $_POST['anho'];
+$folio = $_POST['folio'];
 
 switch ($api) {
 
     case 1:
         # buscar equipos
-        $response = $master->insertByProcedure("", $parametros);
+        $response = $master->insertByProcedure("sp_temperatura_g", $parametros);
+        break;
+    case 2:
+        $response = $master->getByProcedure("sp_temperaturas_resultados_b", [$anho]);
+        break;
+    case 3:
+        $response = $master->getByProcedure("sp_temperatura_detalle_b", [$folio]);
         break;
     default:
         $response = "Api no definida.";

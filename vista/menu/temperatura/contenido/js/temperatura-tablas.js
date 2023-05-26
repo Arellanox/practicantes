@@ -13,26 +13,30 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     scrollCollapse: true,
     ajax: {
         dataType: 'json',
-        data: { api: 2, estado: 1 },
+        data: { api: 2 },
         method: 'POST',
-        url: '../../../api/tickets_api.php',
+        url: '../../../api/temperatura_api.php',
         beforeSend: function () {
             loader("In")
         },
         complete: function () {
             loader("Out")
-            tablaContados.columns.adjust().draw()
+            tablaTemperaturaFolio.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
         },
         dataSrc: 'response.data'
-    }/* ,
+    },
     columns: [
         { data: 'COUNT' },
-        { data: 'Descripcion' },
-        { data: 'Folio' }
-    ] */,
+        {
+            data: 'FECHA_REGISTRO', render: function (data) {
+                return formatoFecha2(data, [0, 1, 3, 0]).toUpperCase();
+            }
+        },
+        { data: 'FOLIO' }
+    ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Descripcion', className: 'all' },
@@ -52,17 +56,20 @@ inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
 
 loaderDiv("Out", null, "#loader-temperatura", '#loaderDivtemperatura');
 selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, function (select, data) {
+
     if (select) {
-        console.log("si entro en el select de temperaturas folio")
-        getPanel(".informacion-temperatura", "#loader-temperatura", "#loaderDivtemperatura", null, "In", function (divClass) {
-            console.log(divClass);
-            $(divClass).fadeIn(100);
-        })
+        $(".informacion-temperatura").fadeIn(0);
+        DataFolio.folio = data['ID_FOLIOS_TEMPERATURA']
+        tablaTemperatura.ajax.reload()
     } else {
-        console.log("entro en la condicion donde no selecciono nada ")
-        getPanel(".informacion-temperatura", "#loader-temperatura", "#loaderDivtemperatura", null, "Out")
+        $(".informacion-temperatura").fadeOut(0);
     }
 })
+
+var DataFolio = {
+    api: 3,
+    folio: 0
+};
 
 tablaTemperatura = $('#TablaTemperatura').DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
@@ -71,31 +78,38 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
     paging: false,
     scrollY: autoHeightDiv(0, 284),
     scrollCollapse: true,
-    /*  ajax: {
-         dataType: 'json',
-         data: { api: 2, estado: 1 },
-         method: 'POST',
-         url: '../../../api/tickets_api.php',
-         beforeSend: function () {
-             loader("In")
-         },
-         complete: function () {
-             loader("Out")
-             tablaContados.columns.adjust().draw()
-         },
-         error: function (jqXHR, textStatus, errorThrown) {
-             alertErrorAJAX(jqXHR, textStatus, errorThrown);
-         },
-         dataSrc: 'response.data'
-     }, */
+    ajax: {
+        dataType: 'json',
+        data: function (d) {
+            return $.extend(d, DataFolio);
+        },
+        method: 'POST',
+        url: '../../../api/temperatura_api.php',
+        beforeSend: function () {
+            $(".informacion-temperatura").fadeOut(0)
+            $("#loaderDivtemperatura").fadeIn(0);
+        },
+        complete: function () {
+            $(".informacion-temperatura").fadeIn(0)
+            $("#loaderDivtemperatura").fadeOut(0);
+            tablaTemperatura.columns.adjust().draw()
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alertErrorAJAX(jqXHR, textStatus, errorThrown);
+        },
+        dataSrc: 'response.data'
+    },
     columns: [
         { data: 'COUNT' },
-        { data: 'Enfriador' },
-        { data: 'Termometro' },
-        { data: 'Fecha' },
-        { data: 'Lectura' },
-        { data: ' Estatus' },
-        { data: 'Registrado' }
+        { data: 'EQUIPO' },
+        { data: 'TERMOMETRO' },
+        {
+            data: 'FECHA_REGISTRO', render: function (data) {
+                return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1], null);
+            }
+        },
+        { data: 'LECTURA' },
+        { data: 'USUARIO' }
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
@@ -103,12 +117,10 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { target: 2, title: 'Termometro', className: 'all' },
         { target: 3, title: 'Fecha', className: 'all' },
         { target: 4, title: 'Lectura', className: 'all' },
-        { target: 5, title: 'Estatus', className: 'all' },
-        { target: 6, title: 'Registrado', className: 'all' },
+        { target: 5, title: 'Registrado', className: 'all' },
 
     ]
 })
-
 
 
 

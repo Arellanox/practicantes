@@ -1,5 +1,28 @@
 enfriadorData = {}, termometroData = {}
 
+/* $(document).ready(function () {
+
+    $("#enfriadorMarca").val("")
+    $("#termometroMarca").val("")
+    $("#intervalo").val("")
+    $("#lectura").val("")
+    $("#observaciones").val("")
+
+
+    rellenarSelect("#Enfriador", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 5 }, function (data) {
+        enfriadorData = data
+        $("#enfriadorMarca").val(ifnull(enfriadorData[$("#Enfriador").prop("selectedIndex")]['MARCA']))
+    })
+
+    rellenarSelect("#Termometro", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 }, function (data) {
+        termometroData = data
+        $("#termometroMarca").val(ifnull(termometroData[$("#Termometro").prop("selectedIndex")]['MARCA']))
+    })
+
+    $("#usuarioQueCargar").html(`Capturando por:<strong>${session.nombre} ${session.apellidos}</strong>`)
+})
+ */
+
 $("#capturarTemperatura").on("click", function (e) {
     e.preventDefault();
 
@@ -53,9 +76,8 @@ $("#formCapturarTemperatura").on("submit", function (e) {
         api: 1
     }, 'temperatura_api', 'formCapturarTemperatura', { callbackAfter: true }, false, function (data) {
         alertTemperatura("Temperatura capturada");
+        console.log(data)
     })
-
-    console.log(data);
 })
 
 
@@ -71,4 +93,6 @@ function alertTemperatura(text) {
     alertMensaje('success', text, 'Se ha guardado el registro correctamente');
 
     $("#capturarTemperaturaModal").modal("hide");
+
+    tablaTemperatura.ajax.reload()
 }
