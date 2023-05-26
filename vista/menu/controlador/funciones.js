@@ -3734,8 +3734,8 @@ function cargarServiciosEstudios(button, tooltip, servicio_id) {
     ajaxAwait({
       api: 0,
       id: servicio_id
-    }, "servicios_api",{callbackAfter: true},false,function(data){
-      
+    }, "servicios_api", { callbackAfter: true }, false, function (data) {
+
     })
 
   }
@@ -3759,46 +3759,57 @@ function cargarServiciosEstudios(button, tooltip, servicio_id) {
 
 //Funcion para crear un tooltip grande
 function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (show_hide) => { }) {
-  $(tooltip).append(`<div id="arrow" data-popper-arrow></div>`)
+  $(tooltip).append(`<div id="arrow" data-popper-arrow></div>`);
   const arrow = $('#arrow'); // Siempre Introducir un arrow
 
-  //Configuracion del popper
-  const popperInstance = Popper.createPopper(container, tooltip, {
-    placement: 'right',
-    options: {
-      element: arrow,
-    },
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 20],
+  const reference = $(container)[0];
+  const popper = $(tooltip)[0];
+
+  let popperInstance = null;
+
+  function createPopper() {
+    popperInstance = Popper.createPopper(reference, popper, {
+      placement: 'right',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 20],
+          },
         },
-      },
-    ],
-  });
+      ],
+    });
+  }
+
+  function destroyPopper() {
+    if (popperInstance) {
+      popperInstance.destroy();
+      popperInstance = null;
+    }
+  }
 
   function show() {
+    if (!popperInstance) {
+      createPopper();
+    }
+
+    $(document).on('click', hide);
     tooltip.setAttribute('data-show', '');
     popperInstance.update();
 
     callback(true);
   }
 
-  function hide() {
-    tooltip.removeAttribute('data-show');
-    callback(false);
+  function hide(event) {
+    if (!$(event.target).closest(container).length) {
+      $(document).off('click', hide);
+      tooltip.removeAttribute('data-show');
+      callback(false);
+      destroyPopper();
+    }
   }
 
-  const showEvents = ['mouseenter', 'focus'];
-  const hideEvents = ['mouseleave', 'blur'];
-
-  showEvents.forEach((event) => {
-    $(container).on(event, show);
-  });
-
-  hideEvents.forEach((event) => {
-    $(container).on(event, hide);
-  });
+  $(container).on('click', hide);
+  $(container).on('mouseenter', show);
 }
 
