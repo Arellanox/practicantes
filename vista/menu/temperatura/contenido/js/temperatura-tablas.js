@@ -86,12 +86,14 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         method: 'POST',
         url: '../../../api/temperatura_api.php',
         beforeSend: function () {
-            $(".informacion-temperatura").fadeOut(0)
+            $("#TablaTemperaturaDia").fadeOut(0)
             $("#loaderDivtemperatura").fadeIn(0);
+            $("#loader-temperatura").fadeIn(0);
         },
         complete: function () {
-            $(".informacion-temperatura").fadeIn(0)
+            $("#TablaTemperaturaDia").fadeIn(0)
             $("#loaderDivtemperatura").fadeOut(0);
+            $("#loader-temperatura").fadeOut(0);
             tablaTemperatura.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -108,16 +110,20 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
                 return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1], null);
             }
         },
-        { data: 'LECTURA' },
+        {
+            data: 'LECTURA', render: function (data) {
+                return data + " " + "°C"
+            }
+        },
         { data: 'USUARIO' }
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Enfriador', className: 'all' },
-        { target: 2, title: 'Termometro', className: 'all' },
-        { target: 3, title: 'Fecha', className: 'all' },
+        { target: 2, title: 'Termometro', className: 'desktop' },
+        { target: 3, title: 'Fecha', className: 'min-tablet' },
         { target: 4, title: 'Lectura', className: 'all' },
-        { target: 5, title: 'Registrado', className: 'all' },
+        { target: 5, title: 'Registrado', className: 'desktop' },
 
     ]
 })
