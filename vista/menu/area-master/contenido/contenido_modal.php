@@ -232,7 +232,7 @@ session_start();
 
                                     //<!--Formulario de Espirometria -->
                                 case 'formAreadeEspirometria':
-                                    echo '<form id="formEspiro">';
+                                    echo '<form id="formAreadeEspirometria">';
                                     include 'forms/form_espiro.html';
                                     echo '</form>';
                                     break;
@@ -255,10 +255,13 @@ session_start();
                     <button type="submit" form="formSubirInterpretacionOftalmo" class="btn btn-confirmar btnResultados" id="btn-inter-oftal" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los cambios del reporte si desea ver la vista previa">
                         <i class="bi bi-clipboard2-plus"></i> Guardar Interpretación
                     </button>
+
                     <!-- BTN GLOBAL -->
                     <button type="submit" form="<?php echo $form; ?>" class="btn btn-confirmar btnResultados" id="btn-inter-areas" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los cambios del reporte si desea ver la vista previa">
                         <i class="bi bi-clipboard2-plus"></i> Guardar Interpretación
                     </button>
+
+
 
                     <button type="button" class="btn btn-confirmar btnResultados" id="btn-confirmar-reporte" data-bs-toggle="tooltip" data-bs-placement="top" title="Confirme el reporte una vez guardado los cambios">
                         <i class="bi bi-file-earmark-pdf"></i> Confirmar reporte

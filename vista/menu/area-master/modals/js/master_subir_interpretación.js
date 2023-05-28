@@ -30,10 +30,13 @@ $('#inputFilesInterpreArea').on('change', function () {
 // })
 
 
+
+//AQUI VOY A CONFIGURAR EL ENVIO DEL FORMULARIO DE ESPIROMETRIA
 //Formulario Para Subir Interpretacion
 $(`#${formulario}`).submit(function (event) {
     // alert(areaActiva)
     event.preventDefault();
+
     /*DATOS Y VALIDACION DEL REGISTRO*/
     if (confirmado != 1 || session.permisos['Actualizar reportes'] == 1) {
         var form = document.getElementById(`${formulario}`);

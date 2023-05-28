@@ -65,6 +65,8 @@ function hasLocation() {
         url_api = 'espirometria_api';
         obtenerContenidoVistaMaster(5, 'Resultados de Espirometría', 'contenido_modal.php');
         break;
+          
+      
       case "ELECTROCARDIOGRAMA":
         control_turnos = null;
         formulario = "formSubirInterpretacionElectro";
@@ -179,6 +181,7 @@ function obtenerContenidoVistaMaster(area, titulo, contenidoHTML = 'contenido.ht
         $('#btn-analisis').fadeIn(0)
         $('#btn-capturas-pdf').fadeIn(0)
         $('#formSubirInterpretacion').fadeIn(0)
+        
         // Subir resultado
         $.getScript("modals/js/master_subir_interpretación.js");
         break;
