@@ -2,7 +2,10 @@ $.post("modals/m_recepcion.php", function (html) {
   $("#modals-js").html(html);
 }).done(function () {
   // Modal para aceptar
-  $.getScript('modals/js/p_aceptar.js');
+  $.getScript('modals/js/p_aceptar.js').done(function () {
+    //  //Modal para vista de servicios
+    $.getScript(`modals/js/vista-servicios.js`);
+  });
   // Modal para rechazar
   $.getScript('modals/js/p_rechazar.js');
   // Modal para reagendar
@@ -32,6 +35,4 @@ $.post("modals/m_recepcion.php", function (html) {
 
   $.getScript(`modals/js/qr-clientes.js`);
 
-  //  //Modal para vista de servicios
-  $.getScript(`modals/js/vista-servicios.js`);
 });
