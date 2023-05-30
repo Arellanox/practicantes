@@ -3708,7 +3708,8 @@ function ScrollZoom(container, max_scale, factor) {
 
 //Servicios en cargar estudios con popper
 
-function cargarServiciosEstudios(button, tooltip) {
+function cargarServiciosEstudios(button, tooltip, servicio_id) {
+
   const arrow = $('#arrow');
 
   const popperInstance = Popper.createPopper(button, tooltip, {
@@ -3730,6 +3731,12 @@ function cargarServiciosEstudios(button, tooltip) {
     tooltip.setAttribute('data-show', '');
     popperInstance.update();
 
+    ajaxAwait({
+      api: 0,
+      id: servicio_id
+    }, "servicios_api", { callbackAfter: true }, false, function (data) {
+
+    })
 
   }
 
@@ -3747,5 +3754,63 @@ function cargarServiciosEstudios(button, tooltip) {
   hideEvents.forEach((event) => {
     $(button).on(event, hide);
   });
+}
+
+
+//Funcion para crear un tooltip grande
+function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (show_hide) => { }) {
+  $(tooltip).append(`<div id="arrow" data-popper-arrow></div>`);
+  const arrow = $('#arrow'); // Siempre Introducir un arrow
+
+  const reference = $(container)[0];
+  const popper = $(tooltip)[0];
+
+  let popperInstance = null;
+
+  function createPopper() {
+    popperInstance = Popper.createPopper(reference, popper, {
+      placement: 'right-start',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 20],
+          },
+
+        },
+      ],
+    });
+  }
+
+  function destroyPopper() {
+    if (popperInstance) {
+      popperInstance.destroy();
+      popperInstance = null;
+    }
+  }
+
+  function show() {
+    if (!popperInstance) {
+      createPopper();
+    }
+
+    $(document).on('click', hide);
+    tooltip.setAttribute('data-show', '');
+    popperInstance.update();
+
+    callback(true);
+  }
+
+  function hide(event) {
+    if (!$(event.target).closest(container).length) {
+      $(document).off('click', hide);
+      tooltip.removeAttribute('data-show');
+      callback(false);
+      destroyPopper();
+    }
+  }
+
+  $(container).on('click', hide);
+  $(container).on('mouseenter', show);
 }
 

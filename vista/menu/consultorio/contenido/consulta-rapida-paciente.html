@@ -1,0 +1,139 @@
+<div class="col-12 loader" id="loader">
+    <div class="preloader" id="preloader"> </div>
+</div>
+
+
+<div class="container-fluid" style="z-index:5">
+    <div class="row" id="menu-consultorio">
+        <div class="col-8 row">
+            <div class="col-auto d-flex justify-content-center align-items-center">
+                <a href="" id="btn-regresar-vista" onclick="event.preventDefault()"><i
+                        class="bi bi-chevron-bar-left"></i>
+                    Regresar</a>
+            </div>
+            <div class="col-auto">
+                <h4 class="m-3" id="nombre-paciente-consulta">Nombre del paciente</h4>
+            </div>
+            <div class="col-auto row d-flex align-items-center justify-content-start" style="font-size: 20px;">
+                <!-- <div class="col-auto">
+                    <span class="badge rounded-pill bg-primary" id="motivo-consulta" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Motivo de consulta">MOTIVO
+                        CONSULTA</span>
+                </div>
+                <div class="col-auto">
+                    <span class="badge rounded-pill bg-danger" id="fechaConsulta-consulta" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Fecha de consulta">FECHA CONSULTA</span>
+                </div> -->
+            </div>
+            <div class="col-12 row" style="margin-left:10px">
+                <div class="col-auto">
+                    <p class="info-detalle-p" id="nacimiento-paciente-consulta">fecha nacimiento</p>
+                </div>
+                <div class="col-auto">
+                    <p class="info-detalle-p" id="edad-paciente-consulta"> </p>
+                </div>
+                <div class="col-auto">
+                    <p class="info-detalle-p" id="genero-paciente-consulta"> </p>
+                </div>
+                <div class="col-auto" style="display: none;">
+                    <p class="info-detalle-p" id="correo-paciente-consulta"> </p>
+                </div>
+                <div class="col-auto" style="display: none;">
+                    <p class="info-detalle-p" id="curp-paciente-consulta"> </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-reporte" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="La vista previa del reporte una vez guardado los cambios"
+                style="margin: 20px 17px 20px 17px !important;font-size: 16px;">
+                <i class="bi bi-file-earmark-pdf"></i> Vista previa
+            </button>
+            <button type="button" class="btn btn-hover me-2"
+                style="margin: 20px 17px 20px 17px !important;font-size: 16px;" data-bs="0" id="btn-consulta-guardar">
+                <i class="bi bi-clipboard2-check"></i> Guardar
+            </button><button type="button" class="btn btn-hover me-2"
+                style="margin: 20px 17px 20px 17px !important;font-size: 16px;" data-bs="1" id="btn-consulta-terminar">
+                <i class="bi bi-clipboard2-check"></i> Confirmar
+            </button>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <nav id="navbar-menu-consultorio" class="navbar navbar-light bg-light px-3">
+                <ul class="nav nav-tabs nav-pills">
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-3">
+        <div id="signos-vitales" style="display: none;" class="card mt-3"></div>
+    </div>
+    <div class="col-9">
+        <div class="card mt-3 p-3">
+            <div class="row d-flex justify-content-center">
+                <h5 class="text-center">Puntuación Cuestionario de Riesgo</h5>
+                <div class="col-12 col-lg-6 col-xl-5 mt-3" id="resultado-html-riesgo">
+                    <!-- <div class="alert alert-success" role="alert">
+                        Riesgo <strong>leve</strong> con una puntuación de: <strong>10</strong>
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                        Riesgo <strong>moderado</strong> con una puntuación de: <strong>11 a 21</strong>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        Riesgo <strong>alto</strong> con una puntuación de: <strong>21</strong>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-lg-6 col-xl-6 mt-3">
+                    <div class="card text-center" id="card-resultado-tabla">
+                        <div class="card-header">
+                            Reporte
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Resultado</th>
+                                        <th scope="col">Ponderación</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        <th class="text-start">Porcentaje de HbA1c</th>
+                                        <td id="resultado-hbA1c"></td>
+                                        <td id="puntos-hbA1c"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Tensión arterial</th>
+                                        <td id="resultado-tension"></td>
+                                        <td><select id="puntos-tension" class="form-select input-form">
+                                                <option>Seleccione un rango</option>
+                                                <option value="0">&lt;120 /80</option>
+                                                <option value="2">120-139/80-89</option>
+                                                <option value="4">&gt;140/90</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-start">Indice de masa corporal (Kg/m2)</th>
+                                        <td id="resultado-imc"></td>
+                                        <td id="puntos-imc"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-body-secondary">
+                            Puntuación: <strong id="resultado-ponderacion"></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
