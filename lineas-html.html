@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+<style>
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  position: relative;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+</style>
+
+<body>
+<table>
+    <tr>
+        <td>
+            <div class="dot" id="dot1"></div>
+        </td>
+        <td>
+            <div class="dot" id="dot2"></div>
+        </td>
+        <td>
+            <div class="dot" id="dot3"></div>
+        </td>
+        <!-- Agrega más celdas con puntos según sea necesario -->
+    </tr>
+</table>
+<canvas id="canvas"></canvas>
+
+</body>
+
+</html>
+
+<script>
+    window.addEventListener('load', function () {
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        function connectDots(dot1, dot2) {
+            var rect1 = dot1.getBoundingClientRect();
+            var rect2 = dot2.getBoundingClientRect();
+            var x1 = rect1.left + rect1.width / 2;
+            var y1 = rect1.top + rect1.height / 2;
+            var x2 = rect2.left + rect2.width / 2;
+            var y2 = rect2.top + rect2.height / 2;
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        var dot1 = document.getElementById('dot1');
+        var dot2 = document.getElementById('dot2');
+        var dot3 = document.getElementById('dot3');
+        // Agrega más puntos según sea necesario
+
+        connectDots(dot1, dot2);
+        connectDots(dot2, dot3);
+        // Conecta los puntos adicionales según sea necesario
+    });
+
+</script>
