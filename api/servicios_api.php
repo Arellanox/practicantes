@@ -508,7 +508,7 @@ switch ($api) {
             )
         );
         #Case incompleto
-        // $pdf = new Reporte(json_encode($arrayGlobal), json_encode($responsePac[0]), null, null, 'resultados', 'url');
+        $pdf = new Reporte(json_encode($arrayGlobal), json_encode($responsePac[0]), null, null, 'resultados', 'url');
         $pdf->build();
 
         break;
@@ -573,10 +573,27 @@ switch ($api) {
         // print_r($arrayPacienteEtiqueta);
         // print_r($arrayPacienteEtiqueta);
 
-        // $pdf = new Reporte(json_encode($arrayPacienteEtiqueta[0]), null, null, null, 'etiquetas', 'url');
+        $pdf = new Reporte(json_encode($arrayPacienteEtiqueta[0]), null, null, null, 'etiquetas', 'url');
         $pdf->build();
         break;
     case 15:
+        #getall
+        $response = $master->getByProcedure('sp_servicios_seleccionable', array(null, $tipgrupo, $id_area, $otros_servicios, $abreviatura));
+
+        if (is_array($response)) {
+            $newResponse = array();
+            echo json_encode($response);
+        } else {
+            echo json_encode(array(
+                'response' => array(
+                    'code' => 2,
+                    'msj' => $response
+                )
+            ));
+        }
+        break;
+
+    case 16:
         #Recupera el detalle de un servicio (Grupo o servicio);
         $response = $master->getByProcedure('sp_detalle_grupo_b', [$id_grupo, $id_servicio]);
         echo $master->returnApi($response);
