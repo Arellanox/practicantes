@@ -21,4 +21,4 @@ var fechaFormateada = ano + "-" + mes + "-" + dia;
 // Asignarle la fecha en el formato requerido al input
 $("#fechaFiltroTemperatura").val(fechaFormateada);
 
-$("#FechaTemperatura").html(formatoFecha2(fechaFormateada,[0,1,3,1]))
+$("#FechaTemperatura").html(formatoFecha2(fechaFormateada, [0, 1, 3, 1]))

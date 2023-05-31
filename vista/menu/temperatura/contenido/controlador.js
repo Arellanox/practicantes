@@ -15,14 +15,14 @@ $(window).on("hashchange", function (e) {
 
 function obtenerTemperaturas() {
     obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area
-    $.post("contenido/contenido.html", function (html) {
+    $.post("contenido/temperatura.html", function (html) {
         $("#body-js").html(html);
     }).done(function () {
         // Datatable
         $.getScript("contenido/js/temperatura-tablas.js");
-        // Botones
-        $.getScript("contenido/js/contados-botones.js");
-
+        /*    // Botones
+           $.getScript("contenido/js/contados-botones.js");
+    */
         // Filtros
         $.getScript("contenido/js/filtro-temperatura.js");
     });

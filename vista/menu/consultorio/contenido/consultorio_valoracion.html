@@ -1,0 +1,537 @@
+<div class="col-12 loader" id="loader">
+  <div class="preloader" id="preloader"> </div>
+</div>
+
+
+<div class="container-fluid" style="z-index:5">
+  <div class="row" id="menu-consultorio">
+    <div class="col-8 row">
+      <div class="col-auto d-flex justify-content-center align-items-center">
+        <a href="" id="btn-regresar-vista" onclick="event.preventDefault()"><i class="bi bi-chevron-bar-left"></i>
+          Regresar</a>
+      </div>
+      <div class="col-auto">
+        <h4 class="m-3" id="nombre-paciente-consulta">Nombre del paciente</h4>
+      </div>
+      <div class="col-auto row d-flex align-items-center justify-content-start" style="font-size: 20px;">
+        <div class="col-auto">
+          <span class="badge rounded-pill bg-primary" id="motivo-consulta" data-bs-toggle="tooltip"
+            data-bs-placement="top" title="Motivo de consulta">MOTIVO
+            CONSULTA</span>
+        </div>
+        <div class="col-auto">
+          <span class="badge rounded-pill bg-danger" id="fechaConsulta-consulta" data-bs-toggle="tooltip"
+            data-bs-placement="top" title="Fecha de consulta">FECHA CONSULTA</span>
+        </div>
+      </div>
+      <div class="col-12 row" style="margin-left:10px">
+        <div class="col-auto">
+          <p class="info-detalle-p" id="nacimiento-paciente-consulta">fecha nacimiento</p>
+        </div>
+        <div class="col-auto">
+          <p class="info-detalle-p" id="edad-paciente-consulta"> </p>
+        </div>
+        <div class="col-auto">
+          <p class="info-detalle-p" id="genero-paciente-consulta"> </p>
+        </div>
+        <div class="col-auto" style="display: none;">
+          <p class="info-detalle-p" id="correo-paciente-consulta"> </p>
+        </div>
+        <div class="col-auto" style="display: none;">
+          <p class="info-detalle-p" id="curp-paciente-consulta"> </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 d-flex justify-content-end">
+      <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-reporte" data-bs-toggle="tooltip"
+        data-bs-placement="top" title="La vista previa del reporte una vez guardado los cambios"
+        style="margin: 20px 17px 20px 17px !important;font-size: 16px;">
+        <i class="bi bi-file-earmark-pdf"></i> Vista previa
+      </button>
+      <button type="button" class="btn btn-hover me-2" style="margin: 20px 17px 20px 17px !important; font-size: 16px;"
+        id="btn-consulta-terminar">
+        <i class="bi bi-clipboard2-check"></i> Terminar consulta
+      </button>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+      <nav id="navbar-menu-consultorio" class="navbar navbar-light bg-light px-3">
+        <ul class="nav nav-tabs nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" href="#card-antecedentes">ANTECEDENTES PERSONALES</a> <!-- active -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#card-anamnesis-aparatos">ANAMNESIS POR APARATOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#card-exploracion-clinica">EXPLORACIÓN FÍSICA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#card-odontograma">ODONTOGRAMA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#card-nutricion">NUTRICIÓN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#card-diagnostico">DIAGNÓSTICO</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#card-receta">RECETA</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="#notas-padecimiento">NOTAS DE PADECIMIENTO</a> <!-- active -->
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#card-motivo-consulta">MOTIVO DE CONSULTA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#card-terapeutico">MANEJO TERAPÉUTICO</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#card-solicitud-estudios">SOLICITUD DE ESTUDIOS</a>
+          </li> -->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+    <div id="signos-vitales" style="display: none;" class="card mt-3"></div>
+  </div>
+  <div class="col-9">
+    <div class="overflow-auto" style="margin-bottom: 10px" id="vista-valoracion">
+      <div class="container">
+
+        <section id="card-antecedentes" class="card mt-3">
+          <div id="antecedentes-paciente"> <!-- ANTECEDENTES PACIENTE (POR FUNCION) --> </div>
+        </section>
+
+        <section id="card-anamnesis-aparatos" class="card mt-3">
+          <h4 class="m-3">ANAMNESIS POR APARATOS</h4>
+          <hr class="dropdown-divider m-2">
+          <div id="divANAMNESISAPARATOS" class="p-3"> </div>
+        </section>
+
+        <section id="card-exploracion-clinica" class="card mt-3">
+          <h4 class="m-3">Exploración física</h4>
+          <hr class="dropdown-divider m-2">
+          <div class="row" style="margin:0">
+            <div class="col-5">
+              <label for="metodo" class="form-label"></label>
+              <select name="metodo" id="select-exploracion-clinica" class="form-select input-form" required>
+                <option value="1">Hábito constitucionales</option>
+                <option value="2">Cabeza</option>
+                <option value="3">Cavidad bucal</option>
+                <option value="4">Cuello</option>
+                <option value="5">Tórax</option>
+                <option value="6">Aparato respiratorio</option>
+                <option value="7">Cardiovascular</option>
+                <option value="8">Abdomen y pélvis</option>
+                <option value="9">Ingles</option>
+                <option value="10">Aparato genito-urinario</option>
+                <option value="11">Gineco-obstétrico</option>
+                <option value="12">Piel y faneras</option>
+                <option value="13">Sistema hemolinfopoyético</option>
+                <option value="14">Aparato osteomuscular</option>
+                <option value="15">Sistema nervioso central</option>
+              </select>
+              <textarea name="name" rows="10" cols="90" class="form-textarea-content"
+                placeholder="Escriba aquí sus notas" style="width:95%" id="text-exploracion-clinica"></textarea>
+              <div class=" d-flex justify-content-end">
+                <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
+                  id="btn-agregar-exploracion-clinina">
+                  <i class="bi bi-clipboard-plus"></i> Agregar
+                </button>
+              </div>
+            </div>
+            <div class="col-6 card m-3" id="texto-exp-cli" style="font-size: 18px;letter-spacing: 1px;">
+              Estado de conciencia. Orientación temporo-espacial. Peso. Talla. Indice de masa corporal.
+              Deformidades generales, parciales o regionales. Color de piel y mucosas (palidez. Cianosis, ictericia.
+              Manchas.
+              Estado de nutrición e hidratación. Presion arterial. Pulso y frecuencia de pulso. Temperatura.
+            </div>
+          </div>
+          <div class="row" style="margin:0">
+            <div id="notas-historial-consultorio" class="mt-3">
+
+            </div>
+          </div>
+        </section>
+
+        <section id="card-odontograma" class="card mt-3">
+          <h4 class="m-3">ODONTOGRAMA</h4>
+          <hr class="dropdown-divider m-2">
+          <form id="formAgregarOdontograma">
+            <div class="p-3 row">
+              <div class="col-auto">
+                <label for="id_pieza_dental" class="form-label">Pieza dental</label>
+                <select name="id_pieza_dental" id="select-odontograma-piezaDental" class="form-select input-form"
+                  required>
+                  <option value="11" class="piezaAdulto">Pieza 11 </option>
+                  <option value="12" class="piezaAdulto">Pieza 12 </option>
+                  <option value="13" class="piezaAdulto">Pieza 13 </option>
+                  <option value="14" class="piezaAdulto">Pieza 14 </option>
+                  <option value="15" class="piezaAdulto">Pieza 15 </option>
+                  <option value="16" class="piezaAdulto">Pieza 16 </option>
+                  <option value="17" class="piezaAdulto">Pieza 17 </option>
+                  <option value="21" class="piezaAdulto">Pieza 21 </option>
+                  <option value="22" class="piezaAdulto">Pieza 22 </option>
+                  <option value="23" class="piezaAdulto">Pieza 23 </option>
+                  <option value="24" class="piezaAdulto">Pieza 24 </option>
+                  <option value="25" class="piezaAdulto">Pieza 25 </option>
+                  <option value="26" class="piezaAdulto">Pieza 26 </option>
+                  <option value="27" class="piezaAdulto">Pieza 27 </option>
+                  <option value="28" class="piezaAdulto">Pieza 28 </option>
+                  <option value="31" class="piezaAdulto">Pieza 31 </option>
+                  <option value="32" class="piezaAdulto">Pieza 32 </option>
+                  <option value="33" class="piezaAdulto">Pieza 33 </option>
+                  <option value="34" class="piezaAdulto">Pieza 34 </option>
+                  <option value="35" class="piezaAdulto">Pieza 35 </option>
+                  <option value="36" class="piezaAdulto">Pieza 36 </option>
+                  <option value="37" class="piezaAdulto">Pieza 38 </option>
+                  <option value="38" class="piezaAdulto">Pieza 38 </option>
+                  <option value="41" class="piezaAdulto">Pieza 41 </option>
+                  <option value="42" class="piezaAdulto">Pieza 42 </option>
+                  <option value="43" class="piezaAdulto">Pieza 43 </option>
+                  <option value="44" class="piezaAdulto">Pieza 44 </option>
+                  <option value="45" class="piezaAdulto">Pieza 45 </option>
+                  <option value="46" class="piezaAdulto">Pieza 46 </option>
+                  <option value="47" class="piezaAdulto">Pieza 47 </option>
+                  <option value="48" class="piezaAdulto">Pieza 48 </option>
+                </select>
+              </div>
+              <div class="col-auto">
+                <label for="cara_id" class="form-label">Cara</label>
+                <select name="cara_id" id="select-odontograma-cara" class="form-select input-form" required>
+                  <option value="1">OCLUSAL </option>
+                  <option value="2">PALANTINA </option>
+                  <option value="3">DISTAL </option>
+                  <option value="4">MESIAL </option>
+                </select>
+              </div>
+              <div class="col-3">
+                <label for="tratamiento_id" class="form-label">Tratatamiento</label>
+                <select name="tratamiento_id" id="select-odontograma-tratamiento" class="form-select input-form"
+                  required>
+                  <option value="1">PROFILÁCTICO</option>
+                  <option value="2">RESTAURACIÓN CON RESINA</option>
+                  <option value="3">SELLADOR</option>
+                  <option value="4">CURACIÓN</option>
+                  <option value="5">CURETAJE</option>
+                  <option value="6">ALARGAMIENTO DE CORONA</option>
+                  <option value="7">RECONTORNEO GINGIVAL</option>
+                  <option value="8">EXTRACCIÓN 3ER MOLAR</option>
+                  <option value="9">CIRUGÍA 3ER MOLAR</option>
+                  <option value="10">EXTRACCIÓN INFANTIL</option>
+                  <option value="11">ENDODONCIA</option>
+                  <option value="12">RETRATAMIENTO EDODONTAL</option>
+                  <option value="13">POSTE</option>
+                  <option value="14">CORONA METAL-CERÁMICA</option>
+                  <option value="15">RECONSTRUCCIÓN DE RESINA</option>
+                  <option value="16">BLANQUEAMIENTO EXTERNO</option>
+                  <option value="17">CURACIÓN</option>
+                  <option value="18">TREPANACIÓN</option>
+                  <option value="19">PRÓTESIS PARCIAL REMOVIBLE</option>
+                  <option value="20">CIRUGÍA PERIODONTAL</option>
+                  <option value="21">TRATAMIENTO DE ENCÍAS</option>
+                  <option value="22">IMPLANTE</option>
+                  <option value="23">ENTABLILLADO</option>
+                  <option value="24">CIRUGÍA ORAL / MAXILOFACIAL</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="diagnostico" class="form-label">Diagnóstico</label>
+                <textarea name="diagnostico" rows="3" cols="90" class="input-form" placeholder="..." style="width:95%"
+                  id="text-exploracion-clinica"></textarea>
+              </div>
+              <div class="col-6">
+                <label for="comentario" class="form-label">Comentario</label>
+                <textarea name="comentario" rows="3" cols="90" class="input-form" placeholder="" style="width:95%"
+                  id="text-exploracion-clinica"></textarea>
+              </div>
+              <div class="d-flex justify-content-start m-2">
+                <button type="submit" form="formAgregarOdontograma" class="btn btn-confirmar me-2"
+                  style="margin-bottom:4px">
+                  <i class="bi bi-paperclip"></i> Guardar
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="p-3">
+            <table class="table table-hover display responsive" id="tablaOdontograma" style="width: 100%;">
+              <thead>
+                <tr>
+                  <!-- <th scope="col d-flex justify-content-center" class="all">#</th> -->
+                  <th scope="col d-flex justify-content-center" class="all">Diagnóstico</th>
+                  <th scope="col d-flex justify-content-center" class="all">Tratamiento</th>
+                  <th scope="col d-flex justify-content-center" class="all">Pieza dental</th>
+                  <th scope="col d-flex justify-content-center" class="all">Cara</th>
+                  <th scope="col d-flex justify-content-center" class="none">Comentario</th>
+                  <th scope="col d-flex justify-content-center" class="all"></th> <!-- Boton para eliminar -->
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="card-nutricion" class="card mt-3">
+          <h4 class="m-3">Nutrición</h4>
+          <hr class="dropdown-divider m-2">
+          <div class="row m-4">
+            <div class="col-6">
+              <ul class="list-group info-detalle">
+                <li class="list-group-item">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-6 col-lg-8 ">
+                      <p>
+                        <i class="bi bi-heart-half"></i>
+                        Peso perdido
+                      </p>
+                    </div>
+                    <div class="col-6 col-lg-4">
+                      <input type="number" class="form-control input-form" name="" placeholder="" required
+                        id="input-pesosPerdido">
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-6 col-lg-8 ">
+                      <p>
+                        <i class="bi bi-heart-half"></i>
+                        Grasa
+                      </p>
+                    </div>
+                    <div class="col-6 col-lg-4">
+                      <input type="number" class="form-control input-form" name="" placeholder="" required
+                        id="input-grasa">
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-6 col-lg-8 ">
+                      <p>
+                        <i class="bi bi-heart-half"></i>
+                        Cintura
+                      </p>
+                    </div>
+                    <div class="col-6 col-lg-4">
+                      <input type="number" class="form-control input-form" name="" placeholder="" required
+                        id="input-cintura">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="list-group info-detalle">
+                <li class="list-group-item">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-6 col-lg-8 ">
+                      <p>
+                        <i class="bi bi-heart-half"></i>
+                        Agua
+                      </p>
+                    </div>
+                    <div class="col-6 col-lg-4">
+                      <input type="number" class="form-control input-form" name="" placeholder="" required
+                        id="input-agua">
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-6 col-lg-8">
+                      <p>
+                        <i class="bi bi-heart-half"></i>
+                        Músculo
+                      </p>
+                    </div>
+                    <div class="col-6 col-lg-4">
+                      <input type="number" class="form-control input-form" name="" placeholder="" required
+                        id="input-musculo">
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="row d-flex align-items-center">
+                    <div class="col-6 col-lg-8">
+                      <p>
+                        <i class="bi bi-heart-half"></i>
+                        Abdomen
+                      </p>
+                    </div>
+                    <div class="col-6 col-lg-4">
+                      <input type="number" class="form-control input-form" name="" placeholder="" required
+                        id="input-abdomen">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class=" d-flex justify-content-start m-2">
+            <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px" id="btn-guardar-Nutricion">
+              <i class="bi bi-paperclip"></i> Guardar
+            </button>
+          </div>
+        </section>
+
+        <section id="card-diagnostico" class="card mt-3">
+          <h4 class="m-3">Diagnóstico</h4>
+
+          <hr class="dropdown-divider m-2">
+          <textarea name="name-diagnostico" rows="10" cols="90" class="form-textarea-content"
+            placeholder="Escriba aquí sus notas" id="diagnostico-campo-consulta"></textarea>
+          <div class=" d-flex justify-content-start m-2">
+            <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px" id="btn-guardar-Diagnostico">
+              <i class="bi bi-paperclip"></i> Guardar
+            </button>
+          </div>
+        </section>
+
+        <section id="notas-padecimiento" class="card mt-3">
+          <h4 class="m-3">Notas de padecimiento</h4>
+          <hr class="dropdown-divider m-2">
+          <textarea name="name-notas-padecimiento" rows="10" cols="90" class="form-textarea-content"
+            placeholder="Escriba aquí sus notas" id="nota-notas-padecimiento"></textarea>
+          <div class=" d-flex justify-content-start m-2">
+            <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
+              id="btn-guardar-notaPadecimiento">
+              <i class="bi bi-paperclip"></i> Guardar
+            </button>
+          </div>
+        </section>
+
+
+
+
+
+
+
+
+        <!-- <section id="card-motivo-consulta" class="card mt-3">
+      <h4 class="m-3">Motivo de consulta</h4>
+      <hr class="dropdown-divider m-2">
+      <textarea name="name" rows="10" cols="90" class="form-textarea-content" id="motivo-consultaas" placeholder="Escriba aquí sus notas"></textarea>
+    </section> -->
+
+
+        <!-- <section id="card-terapeutico" class="card mt-3">
+      <h4 class="m-3">Manejo terapéutico</h4>
+      <hr class="dropdown-divider m-2">
+      <textarea name="name" rows="10" cols="90" class="form-textarea-content" id="manejo-terapeuticoos" placeholder="Escriba aquí sus notas"></textarea>
+    </section> -->
+
+
+        <!-- <section id="card-receta" class="card mt-3">
+      <h4 class="m-3">Receta</h4>
+      <hr class="dropdown-divider m-2">
+      <p class="none-p m-3">Receta de médicamento(s)</p>
+      <div id="recetas-medicamentos">
+        <div class="col-12 d-flex justify-content-end">
+          <div class="card m-3">
+            <form id="formNuevaReceta">
+              <div class="row m-2">
+                <div class="col-4">
+                  <label for="estado" class="form-label">Nombre</label>
+                  <input type="text" class="form-control input-form" name="nombre_generico" placeholder="">
+                </div>
+                <div class="col-2">
+                  <label for="estado" class="form-label">Forma farmacéutica</label>
+                  <input type="text" class="form-control input-form" name="forma_farmaceutica" placeholder="">
+                </div>
+                <div class="col-2">
+                  <label for="estado" class="form-label">Dosis</label>
+                  <input type="text" class="form-control input-form" name="dosis" placeholder="">
+                </div>
+                <div class="col-4">
+                  <label for="estado" class="form-label">Presentación</label>
+                  <input type="text" class="form-control input-form" name="presentacion" placeholder="">
+                </div>
+                <div class="col-4">
+                  <label for="estado" class="form-label">Frecuencia</label>
+                  <input type="text" class="form-control input-form" name="frecuencia" placeholder="">
+                </div>
+                <div class="col-2">
+                  <label for="estado" class="form-label">Vía de administración</label>
+                  <input type="text" class="form-control input-form" name="via_de_administracion" placeholder="">
+                </div>
+                <div class="col-2">
+                  <label for="estado" class="form-label">Duración de tratamiento</label>
+                  <input type="text" class="form-control input-form" name="duracion_del_tratamiento" placeholder="">
+                </div>
+                <div class="col-4">
+                  <label for="estado" class="form-label">Indicaciones</label>
+                  <input type="text" class="form-control input-form" name="indicaciones_para_el_uso" placeholder="">
+                </div>
+              </div>
+            </form>
+            <div class=" d-flex justify-content-start m-2">
+              <button type="submit" form="formNuevaReceta" class="btn btn-confirmar me-2" style="margin-bottom:4px"
+                id="btn-guardar-Receta">
+                <i class="bi bi-paperclip"></i> Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-start" style="margin-left: 20px; margin-top:20px; margin-bottom:20px">
+        <button type="button" class="btn btn-confirmar" style="margin-bottom:4px" id="btn-agregar-medicamento-receta">
+          <i class="bi bi-clipboard-plus"></i> Agregar
+        </button>
+      </div> 
+        <div class="col-12">
+          <div class="card m-3 p-3">
+            <h3>Recetas guardadas de consulta</h3>
+            <table class="table table-hover display responsive" id="tablaListaRecetas" style="width: 100%;">
+              <thead>
+                <tr>
+
+                  <th scope="col d-flex justify-content-center" class="all">Nombre</th>
+                  <th scope="col d-flex justify-content-center" class="all">For. Farmaceutica</th>
+                  <th scope="col d-flex justify-content-center" class="all">Dosis</th>
+                  <th scope="col d-flex justify-content-center" class="none">Presentación</th>
+                  <th scope="col d-flex justify-content-center" class="all">Frecuencia</th>
+                  <th scope="col d-flex justify-content-center" class="none">Vía de Administración</th>
+                  <th scope="col d-flex justify-content-center" class="all">Duración</th>
+                  <th scope="col d-flex justify-content-center" class="none">Indicaciones</th>
+                  <th scope="col d-flex justify-content-center" class="all">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        </section> -->
+
+
+        <!-- <section id="card-solicitud-estudios" class="card mt-3">
+      <h4 class="m-3">Solicitud de estudios y valoraciones complementarios</h4>
+      <hr class="dropdown-divider m-2">
+      <textarea name="name" rows="10" cols="90" class="form-textarea-content" id="solicitud-estudios-valoraciones" placeholder="Escriba aquí sus notas"></textarea>
+    </section> -->
+      </div>
+
+
+      <script>
+        autoHeightDiv('#vista-valoracion', 157);
+      </script>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  #menu-consultorio {
+    background-color: rgb(246, 253, 255);
+    z-index: 5
+  }
+</style>

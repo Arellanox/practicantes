@@ -1,5 +1,28 @@
 enfriadorData = {}, termometroData = {}
 
+/* $(document).ready(function () {
+
+    $("#enfriadorMarca").val("")
+    $("#termometroMarca").val("")
+    $("#intervalo").val("")
+    $("#lectura").val("")
+    $("#observaciones").val("")
+
+
+    rellenarSelect("#Enfriador", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 5 }, function (data) {
+        enfriadorData = data
+        $("#enfriadorMarca").val(ifnull(enfriadorData[$("#Enfriador").prop("selectedIndex")]['MARCA']))
+    })
+
+    rellenarSelect("#Termometro", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 }, function (data) {
+        termometroData = data
+        $("#termometroMarca").val(ifnull(termometroData[$("#Termometro").prop("selectedIndex")]['MARCA']))
+    })
+
+    $("#usuarioQueCargar").html(`Capturando por:<strong>${session.nombre} ${session.apellidos}</strong>`)
+})
+ */
+
 $("#capturarTemperatura").on("click", function (e) {
     e.preventDefault();
 
@@ -47,34 +70,29 @@ $("#Termometro").on("change", function () {
 $("#formCapturarTemperatura").on("submit", function (e) {
     e.preventDefault();
 
-    data = new FormData(document.getElementById("formCapturarTemperatura"))
-    console.log(data);
+    data = new FormData(document.getElementById("formCapturarTemperatura"));
+
+    ajaxAwaitFormData({
+        api: 1
+    }, 'temperatura_api', 'formCapturarTemperatura', { callbackAfter: true }, false, function (data) {
+        alertTemperatura("Temperatura capturada");
+        console.log(data)
+    })
 })
 
-/* function cargarInformacionEquipo(id) {
-    console.log(id)
 
-    ajaxAwait({
-        api: 1,
-        id_equipo: id,
-    }, 'equipos_api', { callbackAfter: true, returnData: false }, false, function (data) {
 
-        data = data.response.data //Todos los datos para el detalle
-
-        //Pintar toda la informacion que se requiera del equipo
-
-        data.forEach(element => {
-            if (element['EQUIPOS_T_ID'] == 5) {
-                $("#enfriadorMarca").val(ifnull(element['MARCA']))
-            } else {
-                $("#termometroMarca").val(ifnull(element['MARCA']))
-            }
-        });
-    })
-}
- */
 
 function cargarTemperatura(data) {
     alertToast('Espere un momento', 'info', 4000)
     /*  $("#capturarTemperaturaModal").modal("hide"); */
+}
+
+
+function alertTemperatura(text) {
+    alertMensaje('success', text, 'Se ha guardado el registro correctamente');
+
+    $("#capturarTemperaturaModal").modal("hide");
+
+    tablaTemperatura.ajax.reload()
 }

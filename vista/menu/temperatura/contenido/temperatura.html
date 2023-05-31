@@ -1,0 +1,135 @@
+<!-- <div class="col-12 loader" id="loader" style="">
+    <div class="preloader" id="preloader"> </div>
+</div> -->
+<div class="row">
+    <!-- <div class="col-lg-3" id="formularioDesktopTemperatura">
+        <div class="card mt-3 p-3">
+            <p class=" my-2">Los datos como la <strong>fecha de captura</strong> y el
+                <strong>usuario</strong> que lo hizo que realizo la
+                captura <strong>se
+                    agregan automaticamente.</strong>
+            </p>
+            <form id="formCapturarTemperatura" name="formCapturarTemperatura">
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="mb-3">
+                            <label for="Enfriador" class="form-label">Enfriador:</label>
+                            <select class="form-select input-form" name="Enfriador" id="Enfriador">
+                                <option selected>Eliga un enfriador</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="mb-3">
+                            <label for="Termometro" class="form-label">Termometro:</label>
+                            <select class="form-select input-form" name="Termometro" id="Termometro">
+                                <option selected>Eliga un termometro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="mb-3">
+                            <label for="enfriadorMarca">Marca del enfriador:</label>
+                            <input type="text" name="enfriadorMarca" value="" class="form-control input-form"
+                                id="enfriadorMarca" readonly disabled>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="mb-3">
+                            <label for="termometroMarca">Marca del termometro:</label>
+                            <input type="text" name="termometroMarca" value="" class="form-control input-form"
+                                id="termometroMarca" readonly disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="mb-3">
+                            <label for="intervalo">Intevalo Optimo:</label>
+                            <input type="text" name="intervalo" value="" class="form-control input-form" id="intervalo"
+                                readonly disabled>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="mb-3">
+                            <label for="lectura">Lectura:</label>
+                            <input type="number" name="lectura" value="" class="form-control input-form" required
+                                id="lectura">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12 ">
+                        <div class="mb-3">
+                            <label for="observaciones">Observaciones:</label>
+                            <input type="text" name="observaciones" value="" class="form-control input-form" required
+                                id="observaciones">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12 d-flex align-self-center my-auto mb-3">
+                        <p id="usuarioQueCargar"></p>
+                    </div>
+                </div>
+            </form>
+            <button type="submit" form="formCapturarTemperatura" class="btn btn-confirmar" id="btn-subir-temperatura">
+                <i class="bi bi-person-x"></i> Subir
+            </button>
+        </div>
+    </div> -->
+    <div class="col-12 col-lg-3" style="margin-right: -5px !important;">
+        <div class="card mt-3 p-3" id="lista-pacientes">
+            <h5>Lista de Registro de Temperaturas</h5>
+
+            <!-- Control de turnos -->
+            <div id="turnos_panel"></div>
+            <table class="table display responsive" id="TablaTemperaturasFolio" style="width: 100%">
+                <thead class="">
+                    <tr>
+                        <th scope="col d-flex justify-content-center" class="all">#</th>
+                        <th scope="col d-flex justify-content-center" class="all">Descripcion</th>
+                        <th scope="col d-flex justify-content-center" class="min-tablet">Folio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-12 col-lg-9 informacion-temperatura" style="margin-right: -5px !important; display: none;">
+        <div class="card mt-3 p-3" id="TablaTemperaturaDia">
+            <table class="table table-hover display responsive" id="TablaTemperatura" style="width: 100%;"></table>
+        </div>
+
+
+    </div>
+    <div class="col-12 col-lg-9  d-flex justify-content-center align-items-center" id='loaderDivtemperatura'
+        style="max-height: 75vh; display: none; ">
+        <div class="preloader" id="loader-temperatura"></div>
+    </div>
+
+</div>
+<style media="screen">
+    /*    #TablaTemperaturasFolio_filter {
+        display: none
+    } */
+
+    /* #capturarTemperatura {
+        display: none;
+    }
+ */
+    @media (max-width: 768px) {
+
+        /*  #capturarTemperatura {
+            display: contents;
+        }
+ */
+        #formularioDesktopTemperatura {
+            display: none;
+        }
+    }
+
+    ;
+</style>

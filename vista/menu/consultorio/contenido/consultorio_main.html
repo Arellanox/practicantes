@@ -1,0 +1,79 @@
+<div class="col-12 loader" id="loader">
+  <div class="preloader" id="preloader"> </div>
+</div>
+<div class="row">
+  <div class="col-5 col-lg-5 col-xxl-5" style="margin-bottom:5px;">
+    <div class="card mt-3 p-3">
+      <div class="">
+        <h4>Lista de pacientes</h4>
+        <!-- Control de turnos -->
+        <div id="turnos_panel"></div>
+
+        <div class="text-center mt-2">
+          <div class="input-group flex-nowrap">
+            <input type="text" class="input-form form-control" style="display: unset !important;"
+              name="inputBuscarTableListaNuevos" placeholder="Filtrar tabla" autocomplete="off" id="BuscarTablaLista"
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Filtra la lista por coincidencias">
+            <span class="input-span" id="addon-wrapping" data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Seleccione un paciente para visualizar su información">
+              <i class="bi bi-info-circle"></i>
+            </span>
+            <span class="input-span" id="addon-wrapping" data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Doble click a un paciente para abrir su consulta">
+              <i class="bi bi-info-circle"></i>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <!-- <div class="text-center" style="margin-top:4px;zoom:95%;margin-bottom:5px;">
+              <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-estudio-editar">
+                <i class="bi bi-pencil-square"></i> Editar estudio
+              </button>
+            </div> -->
+      <table class="table table-hover display responsive tableContenido" id="TablaListaConsultorio"
+        style="width: 100%;">
+        <thead class="">
+          <tr>
+            <th scope="col d-flex justify-content-center" class="all">#</th>
+            <th scope="col d-flex justify-content-center" class="all">Nombre</th>
+            <!-- <th scope="col d-flex justify-content-center" class="min-tablet">Clasificacion</th> -->
+            <th scope="col d-flex justify-content-center" class="none">Prefolio</th>
+            <th scope="col d-flex justify-content-center" class="min-tablet">Procedencia</th>
+            <th scope="col d-flex justify-content-center" class="min-tablet">Ingreso</th> <!-- fecha -->
+            <th scope="col d-flex justify-content-center" class="none">Sexo</th> <!-- fecha -->
+            <th scope="col d-flex justify-content-center" class="none">Segmento</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <div class="col-3 col-lg-3 col-xxl-3">
+    <div id="panel-informacion" style="display: none;" class="card mt-3"></div>
+
+
+  </div>
+
+  <div class="col-4 col-lg-4 col-xxl-4">
+    <div id="signos-vitales" style="display: none;" class="card mt-3"></div>
+  </div>
+
+  <style>
+    #TablaListaConsultorio_filter {
+      display: none
+    }
+
+    #myTable tbody td:eq(0) {
+      text-align: left;
+    }
+
+    #myTable tbody td {
+      text-align: center;
+    }
+  </style>
+
+</div>
