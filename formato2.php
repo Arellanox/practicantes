@@ -105,19 +105,19 @@
         $valores = array(
             1 => array(
                 1 => array("valor" => "-30.1"),
-                2 => array("valor" => "-25.1"),
-                3 => array("valor" => "-38.6")
+                /* 2 => array("valor" => "-25.1"),
+                3 => array("valor" => "-38.6") */
             ),
             2 => array(
                 1 => array("valor" => "-30.1"),
-                2 => array("valor" => "-25.1"),
-                3 => array("valor" => "-38.6")
-            ),
+                /* 2 => array("valor" => "-25.1"),
+                3 => array("valor" => "-38.6") */
+            )/* ,
             21 => array(
                 1 => array("valor" => "-33"),
                 2 => array("valor" => "-20"),
                 3 => array("valor" => "-21")
-            )
+            ) */
         );
 
         function metodoCalculo($dia, $turno, $valorAprox)
@@ -136,8 +136,6 @@
         for ($j = -40; $j <= -20; $j++) {
             echo "<tr class='border$j'>";
 
-
-
             echo "<th class='celdasDias text$j'>" . $j . "</th>";
 
 
@@ -155,27 +153,65 @@
     <canvas id="canvas"></canvas>
 </body>
 <script>
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
+    window.addEventListener('load', function() {
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var dots = document.getElementsByClassName('dot');
+        var dot1 = document.getElementById('dot-1-1');
+        var dot2 = document.getElementById('dot-1-2');
 
-    function connectDots(dot1, dot2) {
-        var rect1 = dot1.getBoundingClientRect();
-        var rect2 = dot2.getBoundingClientRect();
-        var x1 = rect1.left + rect1.width / 2;
-        var y1 = rect1.top + rect1.height / 2;
-        var x2 = rect2.left + rect2.width / 2;
-        var y2 = rect2.top + rect2.height / 2;
+        function connectDots(dot1, dot2) {
+            var rect1 = dot1.getBoundingClientRect();
+            var rect2 = dot2.getBoundingClientRect();
+            var x1 = rect1.left + rect1.width / 2 - canvas.getBoundingClientRect().left;
+            var y1 = rect1.top + rect1.height / 2 - canvas.getBoundingClientRect().top;
+            var x2 = rect2.left + rect2.width / 2 - canvas.getBoundingClientRect().left;
+            var y2 = rect2.top + rect2.height / 2 - canvas.getBoundingClientRect().top;
 
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-    }
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
 
-    var dot1 = document.getElementById('dot-1-1');
-    var dot2 = document.getElementById('dot-2-2');
+        function positionDots() {
+            var dotCount = dots.length;
+            var containerWidth = dots[0].parentElement.offsetWidth;
 
-    connectDots(dot1, dot2);
+            // Ajustar el tamaño del canvas al ancho del contenedor
+            canvas.width = containerWidth;
+            canvas.height = dots[0].parentElement.offsetHeight;
+
+            for (var i = 0; i < dotCount; i++) {
+                var dot = dots[i];
+                var x = dot.offsetLeft + dot.offsetWidth / 2;
+                var y = dot.offsetTop + dot.offsetHeight / 2;
+
+                dot.dataset.x = x; // Guardar la posición x en un atributo de datos
+                dot.dataset.y = y; // Guardar la posición y en un atributo de datos
+            }
+        }
+
+        function drawLines() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var i = 0; i < dots.length - 1; i++) {
+                var dot1 = dots[i];
+                var dot2 = dots[i + 1];
+
+                var x1 = dot1.dataset.x;
+                var y1 = dot1.dataset.y;
+                var x2 = dot2.dataset.x;
+                var y2 = dot2.dataset.y;
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+        }
+        positionDots();
+        drawLines();
+    });
 </script>
 
 </html>
