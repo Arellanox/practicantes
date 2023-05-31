@@ -327,6 +327,8 @@ function limpiarFormAceptar() {
   $('#list-estudios-laboratorio').html('')
   $('#file-laboratorio').val('');
   validarEstudiosLab = 0;
+  $('#list-estudios-laboratorio-biomolecular').html('')
+
   $('#list-estudios-rx').html('')
   $('#file-r-x').val('');
   validarEstudiosRX = 0;

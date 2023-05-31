@@ -39,7 +39,7 @@ popperHover(selectUltras, tooltip, function (event) {
     if (event) {
         ListaEstudiosShow('#select-us', estudiosUltra);
 
-        
+
     }
 })
 
@@ -48,54 +48,57 @@ popperHover(selectOtros, tooltip, function (event) {
     if (event) {
         ListaEstudiosShow('#select-otros', estudiosOtros);
 
-        }
+    }
 })
 
 
 function ListaEstudiosShow(select, estudioData) {
     let dataJSON = {
-        api: 15
+        api: 16
     }
 
-  
+
     let id = $(select).prop('selectedIndex');
     parseInt(estudioData[id]['ES_GRUPO']) ? dataJSON['id_grupo'] = estudioData[id]['ID_SERVICIO'] : dataJSON['id_servicio'] = estudioData[id]['ID_SERVICIO'];
-    ajaxAwait(dataJSON, "servicios_api", { callbackAfter: true, callbackBefore: true }, function (){
-       //Antes de llamar 
-         //vaciar la lista de estudios
-         $('#container-label').fadeIn(0);
-$('#container-estudios').fadeOut(0);
-$('#container-grupos').fadeOut(0);
+    ajaxAwait(dataJSON, "servicios_api", { callbackAfter: true, callbackBefore: true }, function () {
+        //Antes de llamar 
+        //vaciar la lista de estudios
+        $('#container-label').fadeIn(0);
+        $('#container-estudios').fadeOut(0);
+        $('#container-grupos').fadeOut(0);
 
-    $('#listaContenidoEstudios').html('')
-    $('#listContenidoGrupos').html('')
-    
+        $('#listaContenidoEstudios').html('')
+        $('#listContenidoGrupos').html('')
+
     }, function (data) {
         //Despues de llamar
+        $('#listaContenidoEstudios').html('')
+        $('#listContenidoGrupos').html('')
         let row = data.response.data
-
+        let grupo = false;
+        let servicio = false;
         for (const key in row) {
             if (Object.hasOwnProperty.call(row, key)) {
                 const element = row[key];
-                if(element['ES_GRUPO'] == 0){
+                if (element['ES_GRUPO'] == 0) {
                     $('#listaContenidoEstudios').append(`<li class="list-group-item">${element['DESCRIPCION']}</li>`)
-                    
-
-               }else{
+                    servicio = true;
+                } else {
                     $('#listContenidoGrupos').append(`<li class="list-group-item">${element['DESCRIPCION']}</li>`)
-               }
-               
-               
+                    grupo = true;
+                }
+
+
             }
-            
-            
+
+
         }
 
         $('#container-label').fadeOut(0);
-        $('#container-estudios').fadeIn(0);
-        $('#container-grupos').fadeIn(0);
-        
+        if (servicio) $('#container-estudios').fadeIn(0);
+        if (grupo) $('#container-grupos').fadeIn(0);
+
     })
-    
+
 }
 
