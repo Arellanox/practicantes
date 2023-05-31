@@ -75,7 +75,8 @@
         }
 
         .dot {
-            font-size: 20px
+            font-size: 30px;
+            color: blue;
         }
 
         canvas {
@@ -120,19 +121,23 @@
                 1 => array("valor" => "-30")
             ),
             6 => array(
-                1 => array("valor" => "-25")
+                1 => array("valor" => "-25"),
+                2 => array("valor" => "-33")
             ),
             7 => array(
                 1 => array("valor" => "-30"),
-                /* 2 => array("valor" => "-32"), */
+                2 => array("valor" => "-32"),
                 3 => array("valor" => "-30")
 
-            ),/* 
+            ),
+            16 => array(
+                2 => array("valor" => "-40")
+            ),
             31 => array(
                 1 => array("valor" => "-30"),
                 2 => array("valor" => "-30"),
                 3 => array("valor" => "-30")
-            ) */
+            )
         );
 
         function metodoCalculo($dia, $turno, $valorAprox)
@@ -205,9 +210,11 @@
                 var x2 = rect2.left + rect2.width / 2 - canvas.getBoundingClientRect().left;
                 var y2 = rect2.top + rect2.height / 2 - canvas.getBoundingClientRect().top;
 
+
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
+                ctx.strokeStyle = "blue";
                 ctx.stroke();
             }
 
@@ -218,6 +225,7 @@
                 // Ajustar el tamaño del canvas al ancho del contenedor
                 canvas.width = containerWidth;
                 canvas.height = dots[0].closest('table').offsetHeight;
+
 
                 for (var i = 0; i < dotCount; i++) {
                     var dot = dots[i];
@@ -233,19 +241,47 @@
             function drawLines() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                var prevDot = document.getElementById('dot-1-1'); // Primer dot a conectar
 
-                for (var i = 1; i <= 32; i++) {
+
+                var prevDot;
+
+                var dotInicial = <?php echo array_key_first($valores); ?>;
+
+                var dotLast = <?php echo array_key_last($valores); ?>;
+
+
+                for (var i = dotInicial; typeof(prevDot) != "object"; i++) {
                     for (var j = 1; j <= 3; j++) {
+                        prevDot = document.getElementById('dot-' + i + '-' + j);
+
+                        if (typeof(prevDot) == "object") {
+                            prevDot = document.getElementById('dot-' + i + '-' + j)
+                            j = 4
+                        }
+
+                    }
+                }
+
+                for (var i = dotInicial; i <= dotLast; i++) {
+                    for (var j = 1; j < 4; j++) {
                         var currentDotId = 'dot-' + i + '-' + j;
                         var currentDot = document.getElementById(currentDotId);
 
-                        if (currentDot) {
-                            connectDots(prevDot, currentDot);
-                            prevDot = currentDot;
+
+                        if (currentDot == null) {
+                            prevDot = prevDot
                         } else {
-                            break;
+                            if (currentDot) {
+                                connectDots(prevDot, currentDot);
+                                prevDot = currentDot;
+                            } else {
+                                break;
+                            }
+
                         }
+
+
+
                     }
                 }
             }
