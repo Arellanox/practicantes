@@ -101,6 +101,12 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         },
         dataSrc: 'response.data'
     },
+
+    createdRow: function (row, data, dataIndex) {
+        if (data.ESTATUS == 0) {
+            $(row).addClass('bg-warning text-black');
+        }
+    },
     columns: [
         { data: 'COUNT' },
         { data: 'EQUIPO' },
@@ -116,7 +122,9 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
                 return data + " " + "°C"
             }
         },
-        { data: 'USUARIO' }
+        { data: 'USUARIO' },
+        { data: 'OBSERVACIONES' },
+        { data: 'OBSERVACIONES_SUPERVISOR' }
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
@@ -125,6 +133,8 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { target: 3, title: 'Fecha', className: 'min-tablet' },
         { target: 4, title: 'Lectura', className: 'all' },
         { target: 5, title: 'Registrado', className: 'desktop' },
+        { target: 6, title: 'Observaciones', className: 'none' },
+        { target: 7, title: 'Observaciones del supervisor', className: 'none' }
 
     ]
 })
@@ -133,9 +143,12 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
 
 selectDatatable("TablaTemperatura", tablaTemperatura, 0, 0, 0, 0, async function (select, data) {
     if (select) {
-        await obtenerPanelInformacion(1, 1, 'PanelTemperaturas', '#InformacionTemperatura')
+
+        /*  if (data.ESTATUS == 1) {
+             alert("Seleccion")
+         } */
+
     } else {
-        await obtenerPanelInformacion(1, 1, 'PanelTemperaturas', '#InformacionTemperatura')
     }
 })
 

@@ -15,19 +15,38 @@ $api = $_POST['api'];
 $equipo =  $_POST['Enfriador'];
 $termometro = $_POST['Termometro'];
 $usuario = $_SESSION['id'];
-$lectura = $_POST['lectura'];
+$lectura = isset($_POST['lectura']) ? $_POST['lectura'] : null;
+$lectura = "-$lectura";
 $observaciones = $_POST['observaciones'];
+$id_registro_temperatura = $_POST['id_registro_temperatura'];
 
 $parametros =  array(
     $equipo,
     $termometro,
     $usuario,
     $lectura,
-    $observaciones
+    $observaciones,
+    $id_registro_temperatura
 );
 
 $anho = $_POST['anho'];
 $folio = $_POST['folio'];
+
+
+#datos que manda el supervisor para liberar un dia
+
+
+$dia = $_POST['diaLiberar'];
+$hora = $_POST['horaLiberar'];
+
+
+$parametros_g = array(
+    $dia,
+    $hora,
+    $observaciones,
+    $usuario
+);
+
 
 switch ($api) {
 
@@ -40,6 +59,14 @@ switch ($api) {
         break;
     case 3:
         $response = $master->getByProcedure("sp_temperatura_detalle_b", [$folio]);
+        break;
+    case 4:
+        #Actualizar temperatura
+        break;
+    case 5:
+        #Supervisor Liberar un  dia
+        $response = $master->insertByProcedure("sp_temperatura_supervisor_g", $parametros_g);
+
         break;
     default:
         $response = "Api no definida.";
