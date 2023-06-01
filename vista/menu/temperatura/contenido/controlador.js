@@ -1,11 +1,11 @@
 
-/* 
-if (validarVista('REGISTRAR_TEMPERATURA')) {
+
+if (validarVista('REGISTRO_TEMPERATURA')) {
     hasLocation();
     $(window).on("hashchange", function (e) {
         hasLocation();
     });
-} */
+}
 
 
 hasLocation();

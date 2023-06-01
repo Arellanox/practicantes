@@ -110,6 +110,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
                 return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1], null);
             }
         },
+
         {
             data: 'LECTURA', render: function (data) {
                 return data + " " + "°C"

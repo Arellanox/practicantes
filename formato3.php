@@ -44,11 +44,11 @@
             border: 2px dashed black !important;
         }
 
-        .turno-2 {
+        /*  .turno-2 {
             border: 2px dashed black !important;
-        }
+        } */
 
-        .turno-3 {
+        .turno-2 {
             border-left: 2px dashed black !important;
             border-top: 2px dashed black !important;
             border-bottom: 2px dashed black !important;
@@ -76,7 +76,14 @@
 
         .dot {
             font-size: 30px;
+        }
+
+        .dot-blue {
             color: blue;
+        }
+
+        .dot-mostaza {
+            color: #ffa209;
         }
 
         canvas {
@@ -93,50 +100,57 @@
             <th class="celdasDias"></th>
             <?php
             for ($i = 1; $i <= 31; $i++) {
-                echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
+                echo "<th class='diaHeader' colspan='2'>" . $i . "</th>";
             }
             ?>
         </tr>
         <?php
         $valores = array(
             1 => array(
-                1 => array("valor" => "-30.1"),
-                2 => array("valor" => "-30.3"),
-                3 => array("valor" => "-38.6")
-            ),
-            2 => array(
-                1 => array("valor" => "-30.1"),
-                2 => array("valor" => "-25.1"),
-                3 => array("valor" => "-38.6")
-            ),
-            3 => array(
-                1 => array("valor" => "-30"),
-                2 => array("valor" => "-20"),
-                3 => array("valor" => "-21")
-            ),
-            4 => array(
-                1 => array("valor" => "-20")
-            ),
-            5 => array(
-                1 => array("valor" => "-30")
-            ),
-            6 => array(
-                1 => array("valor" => "-25"),
-                2 => array("valor" => "-33")
-            ),
-            7 => array(
-                1 => array("valor" => "-30"),
-                2 => array("valor" => "-32"),
-                3 => array("valor" => "-30")
+                1 => array("valor" => "-30.1", "color" => "blue"),
+                2 => array("valor" => "-30.3", "color" => "blue"),
 
             ),
+            2 => array(
+                1 => array("valor" => "-30.1", "color" => "blue"),
+                2 => array("valor" => "-25.1", "color" => "blue"),
+
+            ),
+            3 => array(
+                1 => array("valor" => "-30", "color" => "blue"),
+                2 => array("valor" => "-20", "color" => "blue"),
+
+            ),
+            4 => array(
+                1 => array("valor" => "-20", "color" => "blue")
+            ),
+            5 => array(
+                1 => array("valor" => "-30", "color" => "mostaza")
+            ),
+            6 => array(
+                1 => array("valor" => "-25", "color" => "blue"),
+                2 => array("valor" => "-33", "color" => "blue")
+            ),
+            7 => array(
+                1 => array("valor" => "-30", "color" => "blue"),
+                2 => array("valor" => "-32", "color" => "blue"),
+
+            ),
+            11 => array(
+                3 => array("valor" => "-34", "color" => "blue")
+            ),
             16 => array(
-                2 => array("valor" => "-40")
+                2 => array("valor" => "-36", "color" => "blue")
+            ),
+            20 => array(
+                2 => array("valor" => "-33", "color" => "blue")
+            ),
+            27 => array(
+                1 => array("valor" => "-33", "color" => "blue"),
+                2 => array("valor" => "-31", "color" => "blue"),
             ),
             31 => array(
-                1 => array("valor" => "-30"),
-                2 => array("valor" => "-30"),
-                3 => array("valor" => "-30")
+                2 => array("valor" => "-33", "color" => "blue")
             )
         );
 
@@ -146,9 +160,10 @@
             if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
                 $valor = floatval($valores[$dia][$turno]["valor"]);
                 $valor_redondeado = round($valor);
+                $color = $valores[$dia][$turno]['color'];
                 if ($valor_redondeado == $valorAprox) {
                     $dotId = "dot-$dia-$turno"; // Generar el ID del dot
-                    return "<td class='empty turno-$turno background$valorAprox dot' id='$dotId'>&#8226;</td>";
+                    return "<td class='empty turno-$turno background$valorAprox dot dot-$color' id='$dotId'>&#8226;</td>";
                 }
             }
             return "<td class='empty turno-$turno background$valorAprox'></td>";
@@ -164,24 +179,12 @@
             for ($i = 1; $i <= 31; $i++) {
                 $dot1 = metodoCalculo($i, 1, $j);
                 $dot2 = metodoCalculo($i, 2, $j);
-                $dot3 = metodoCalculo($i, 3, $j);
+                /* $dot3 = metodoCalculo($i, 3, $j); */
 
                 if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
                     echo $dot1;
                     if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
                         echo $dot2;
-                        if ($dot3 != '<td class="empty turno-3 background' . $j . '"></td>') {
-                            echo $dot3;
-
-                            $currentDotId = "dot-$i-3"; // ID del dot actual
-                            if ($prevDot) {
-                                $prevDotId = $prevDot->getAttribute('id');
-                                "<script> connectDots($prevDotId, $currentDotId)</script>"; // Conectar dots
-                            }
-                            $prevDot = $dots[$currentDotId]; // Guardar dot previo
-                        } else {
-                            $prevDot = null; // No hay dot en el turno 3, reiniciar dot previo
-                        }
                     } else {
                         $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
                     }
@@ -251,19 +254,19 @@
 
 
                 for (var i = dotInicial; typeof(prevDot) != "object"; i++) {
-                    for (var j = 1; j <= 3; j++) {
+                    for (var j = 1; j <= 2; j++) {
                         prevDot = document.getElementById('dot-' + i + '-' + j);
 
                         if (typeof(prevDot) == "object") {
                             prevDot = document.getElementById('dot-' + i + '-' + j)
-                            j = 4
+                            j = 3
                         }
 
                     }
                 }
 
                 for (var i = dotInicial; i <= dotLast; i++) {
-                    for (var j = 1; j < 4; j++) {
+                    for (var j = 1; j < 3; j++) {
                         var currentDotId = 'dot-' + i + '-' + j;
                         var currentDot = document.getElementById(currentDotId);
 

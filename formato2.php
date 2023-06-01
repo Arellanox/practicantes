@@ -97,7 +97,7 @@
             <th class="celdasDias"></th>
             <?php
             for ($i = 1; $i <= 31; $i++) {
-                echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
+                echo "<th class='diaHeader' colspan='2'>" . $i . "</th>";
             }
             ?>
         </tr>
@@ -142,7 +142,6 @@
             for ($i = 1; $i <= 31; $i++) {
                 echo metodoCalculo($i, 1, $j);
                 echo metodoCalculo($i, 2, $j);
-                echo metodoCalculo($i, 3, $j);
             }
             echo "</tr>";
         }

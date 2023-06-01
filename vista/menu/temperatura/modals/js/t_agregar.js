@@ -70,14 +70,18 @@ $("#Termometro").on("change", function () {
 $("#formCapturarTemperatura").on("submit", function (e) {
     e.preventDefault();
 
-    data = new FormData(document.getElementById("formCapturarTemperatura"));
-
-    ajaxAwaitFormData({
-        api: 1
-    }, 'temperatura_api', 'formCapturarTemperatura', { callbackAfter: true }, false, function (data) {
-        alertTemperatura("Temperatura capturada");
-        console.log(data)
-    })
+    alertMensajeConfirm({
+        title: "Estas seguro de su captura?",
+        text: "Ya no podras modificar este registro",
+        icon: "info"
+    }, function () {
+        ajaxAwaitFormData({
+            api: 1
+        }, 'temperatura_api', 'formCapturarTemperatura', { callbackAfter: true }, false, function (data) {
+            alertTemperatura("Temperatura capturada");
+            console.log(data)
+        })
+    }, 1)
 })
 
 
@@ -95,4 +99,5 @@ function alertTemperatura(text) {
     $("#capturarTemperaturaModal").modal("hide");
 
     tablaTemperatura.ajax.reload()
+    tablaTemperaturaFolio.ajax.reload()
 }

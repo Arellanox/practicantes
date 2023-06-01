@@ -81,7 +81,8 @@
         $_SESSION['vista']['SERVICIOS (EQUIPOS)'] == 1 ||
         $_SESSION['vista']['FACTURACIÓN'] == 1 ||
         $_SESSION['vista']['LISTA_PRECIOS'] == 1 || $_SESSION['vista']['PAQUETES_ESTUDIOS'] == 1 || $_SESSION['vista']['COTIZACIONES_ESTUDIOS'] == 1 ||
-        $_SESSION['vista']['CURSOS BIMO'] == 1
+        $_SESSION['vista']['CURSOS BIMO'] == 1 ||
+        $_SESSION['vista']['REGISTRO_TEMPERATURA'] == 1
     ) : ?>
      <li class="nav-item Recepción">
          <div class="dropdown ">
@@ -112,10 +113,3 @@
          </div>
      </li>
  <?php endif; ?>
-
- <li class="nav-item">
-     <a href="<?php echo "$https$url/$appname/vista/menu/temperatura";
-                /*echo $https . $url . '/' . /$appname . '/vista/menu/principal/';*/ ?>">
-         <i class="bi bi-thermometer-high"></i> Temperatura
-     </a>
- </li>
