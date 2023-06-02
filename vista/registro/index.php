@@ -1,11 +1,17 @@
 <?php
 //Variables dinamicas;
 $codigo = isset($_GET['codigo']) ? $_GET['codigo'] : null;
+
+if ($codigo === "ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91") {
+  header("Location: https://bimo-lab.com/nuevo_checkup/vista/registro-fast/?codigo=ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91");
+  exit;
+}
+
 $token = isset($_GET['token']) ? $_GET['token'] : null;
 $tip = isset($_GET['tip']) ? $_GET['tip'] : null;
 $ant = isset($_GET['ant']) ? $_GET['ant'] : null;
 include "../variables.php";
-$menu = "Prerregistro";
+$menu = "Pre-registro";
 ?>
 
 <!DOCTYPE html>

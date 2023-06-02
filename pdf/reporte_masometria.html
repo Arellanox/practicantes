@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>reporte_masometría</title>
+
+    <style>
+        .header {
+            position: fixed;
+            top: -165px;
+            left: 25px;
+            right: 25px;
+            height: 220px;
+            margin-top: 0;
+            /* background-color: cadetblue; */
+        }
+
+        .footer .page:after {
+            content: counter(page);
+        }
+
+        /* Saltar a nueva pagina */
+        .break {
+            page-break-after: always;
+        }
+
+        /* Content */
+        .invoice-content {
+            border-radius: 4px;
+            padding-bottom: 10px;
+            padding-right: 30px;
+            padding-left: 30px;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+
+        h1 {
+            font-size: 22px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        h2 {
+            font-size: 15px;
+            margin-top: 18px;
+            /* margin-bottom: 10px; */
+            text-align: center;
+            background-color: rgba(215, 222, 228, 0.748);
+            /* padding-top: 10px; */
+        }
+
+        h3 {
+            font-size: 16px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        h4 {
+            font-size: 14px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        h5 {
+            font-size: 12.5px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+
+        strong {
+            font-size: 12px;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+            white-space: nowrap;
+            /* table-layout:fixed; */
+        }
+
+        th,
+        td {
+            width: 100%;
+            max-width: 100%;
+            word-break: break-all;
+        }
+
+        /* Para divisiones de 3 encabezado*/
+        .col-left {
+            width: 35%;
+            max-width: 35%;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .col-center {
+            width: 35%;
+            max-width: 35%;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .col-right {
+            width: 30%;
+            max-width: 30%;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        /* divisiones de 3 footer */
+        .col-foot-one {
+            width: 30%;
+            max-width: 30%;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .col-foot-two {
+            width: 40%;
+            max-width: 40%;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .col-foot-three {
+            width: 30%;
+            max-width: 30%;
+            text-align: right;
+            font-size: 12px;
+        }
+
+        /* Para divisiones de 4 */
+        .result {
+            font-size: 12px
+        }
+
+        /* diviciones de 2 */
+        .col-izq {
+            width: 30%;
+            max-width: 30%;
+            text-align: left;
+        }
+
+        .col-der {
+            width: 70%;
+            max-width: 70%;
+            text-align: center;
+        }
+
+        /* Fivisiones de cinco */
+        .col-one {
+            width: 30%;
+            max-width: 30%;
+            text-align: left;
+        }
+
+        .col-two {
+            width: 20%;
+            max-width: 20%;
+            text-align: right;
+        }
+
+        .col-three {
+            width: 25%;
+            max-width: 25%;
+            text-align: center;
+
+        }
+
+        .col-four {
+            width: 25%;
+            max-width: 25%;
+            text-align: center;
+        }
+
+        body {
+            font-size: 11px;
+        }
+
+        .cuartos {
+            width: 25%;
+        }
+
+        .venticinco {
+            width: 25%;
+        }
+
+        .setentaycinco {
+            width: 75%;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: -40px;
+            left: 0px;
+            right: 0px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .cursive {
+            font-style: italic;
+        }
+
+        .rojo {
+            color: red;
+        }
+    </style>
+</head>
+
+</html>
+
+<body>
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <table style="width: 100%;">
+                <tr>
+                    <!--  <td style="width: 33.3%"><img src="http://bimo-lab.com/pdf/logo/logo_documento.png" alt="" width=""
+                            height=""></td>-->
+                    <td style="width: 33.3%">
+                        <h4>
+                            DIAGNOSTICO BIOMOLECULAR S.A.de C.V. <br>
+                            Laboratorio de Biología Molecular <br>
+                        </h4>
+                    </td>
+                    <td style="width: 33.3%"></td>
+                </tr>
+            </table>
+            <hr style="height: 3px; background-color: black ;">
+            <p style="text-align: center; margin: -4px;"><strong>Biología Molecular</strong></p>
+            <hr style="height: 3px; background-color: black ;">
+            <br>
+            <table style="width: 100%;">
+                <tr>
+                    <td colspan="2"><strong>No. Identificación:</strong></td>
+                    <td colspan="6">DBVMxxxx</td>
+                    <td><strong>Edad:</strong></td>
+                    <td>xx AÑOS</td>
+                    <td><strong>Sexo:</strong></td>
+                    <td>FEMENINO</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Nombre:</strong></td>
+                    <td colspan="3">Fulanito de Tal</td>
+                    <td colspan="3"><strong>Fecha de nacimiento:</strong></td>
+                    <td colspan="3">xxxx-xx-xx</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Fecha:</strong></td>
+                    <td colspan="3">xxxx-xx-xx</td>
+                    <td colspan="3"><strong>Procedencia:</strong></td>
+                    <td colspan="3">PARTICULAR</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Médico tratante</strong></td>
+                    <td colspan="3">A QUIEN CORRESPONDA</td>
+                    <td colspan="3"><strong>Fecha de resultado:</strong></td>
+                    <td colspan="3">11/06/2022</td>
+                </tr>
+            </table>
+            <!-- <p style="background-color: darkgrey; padding: 5px;text-align: center;"><strong>INFORMACIÓN CLÍNICA</strong></p> -->
+            <br>
+            <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                <tr style="background-color: darkgrey;" class="bold">
+                    <td colspan="12" style="text-justify: left;">SOMATOMETRíA Y SIGNOS VITALES</td>
+                </tr>
+                <td colspan="12">&nbsp;</td>
+                <tr style="background-color: darkgrey;" class="bold">
+                    <td colspan="12" style="text-align: left;">SOMATOMETRíA</td>
+                </tr>
+                <!--Somatometría-->
+                <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                    <tr>
+                        <td colspan="12">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;" class="cursive">Estatura</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">173</td>
+                        <td colspan="3"></td>
+                        <td colspan="3" style="text-align: left;" class="cursive">Metabolismo</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">tmb</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;" class="cursive">Peso</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">80kg</td>
+                        <td colspan="3"></td>
+                        <td colspan="3" style="text-align: left;" class="cursive">Edad del cuerpo</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">28 años</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;" class="cursive">Masa corporal</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">kg/m2</td>
+                        <td colspan="3"></td>
+                        <td colspan="3" style="text-align: left;" class="cursive">Perímetro cefálico</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">cm</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;" class="cursive">Masa muscular</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">ms</td>
+                        <td colspan="3"></td>
+                        <td colspan="3" style="text-align: left;" class="cursive">Porcentaje de proteínas</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">28 %</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;" class="cursive">Porcentaje de grasa viseral</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">30 %</td>
+                        <td colspan="3"></td>
+                        <td colspan="3" style="text-align: left;" class="cursive">Porcentaje de agua</td>
+                        <td colspan=" 2" style="text-align: left; font-weight: bold;">40 %</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;" class="cursive">Huesos</td>
+                        <td colspan="2" style="text-align: left; font-weight: bold;">hs</td>
+                    </tr>
+                    <td colspan="12">&nbsp;</td>
+                    <tr style="background-color: darkgrey;" class="bold">
+                        <td colspan="12" style="text-align: left;">SIGNOS VITALES</td>
+                    </tr>
+                    <td colspan="12">&nbsp;</td>
+                </table>
+                <div style="display: flex; justify-content: space-between;">
+                    <table style="width: 48%; border-collapse: collapse; text-align: center;" border="2">
+                        <thead>
+                            <tr style="text-align: center; background-color: darkgrey;">
+                                <th colspan="12">PRESIÓN ARTERIAL: 120/80</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td colspan="3">Óptima</td>
+                            <td colspan="3">≤120/≤80</td>
+                        </tr>
+                        </tr>
+                        <tr style="background-color: green;">
+                            <td colspan="3">Normal</td>
+                            <td colspan="3">120-129 / 80-84</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipotensión</td>
+                            <td colspan="3">&lt 80 / &lt 60</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Normal alta</td>
+                            <td colspan="3">130-139 / 85-89</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipertensión G1</td>
+                            <td colspan="3">140-159 / 90-99</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipertensión G2</td>
+                            <td colspan="3">160-179 / 100-109</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipertensión G3</td>
+                            <td colspan="3">180 / ≥110</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipertensión sistólica</td>
+                            <td colspan="3">≥140 / ≤90</td>
+                        </tr>
+                        </tr>
+                    </table>
+                    <table style="width: 48%; border-collapse: collapse; text-align: center;" border="2">
+                        <thead>
+                            <tr style="text-align: center; background-color: darkgrey;">
+                                <th colspan="12">TEMPERATURA: 37</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td colspan="3">Hipotermia profunda</td>
+                            <td colspan="3">entre 17 °C - 28 °C</td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipotermia ligera</td>
+                            <td colspan="3">entre 28 °C - 35 °C</td>
+                        </tr>
+                        <tr style="background-color: green;">
+                            <td colspan="3">Temperatura normal</td>
+                            <td colspan="3">entre 36 °C - 37 °C</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Febrícula</td>
+                            <td colspan="3">entre 37.4 °C - 37.9 °C</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Fiebre moderada</td>
+                            <td colspan="3">entre 38 °C - 38.9°C</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Fiebre alta</td>
+                            <td colspan="3">entre 39 °C - 39.9 °C</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Fiebre muy alta</td>
+                            <td colspan="3">entre 40 °C - 41.5 °C</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hiperpirexia </td>
+                            <td colspan="3">&gt; 41.5 °C</td>
+                        </tr>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="display: flex; justify-content: space-between;  margin-top: 13px;">
+                    <table style="width: 48%; border-collapse: collapse; text-align: center;" border="2">
+                        <thead>
+                            <tr style="text-align: center; background-color: darkgrey;">
+                                <th colspan="12">OXIMETRÍA DEL PULSO: 98%</th>
+                            </tr>
+                        </thead>
+                        <tr style="background-color: green;">
+                            <td colspan="3">Normal</td>
+                            <td colspan="3">95-99%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipoxia leve</td>
+                            <td colspan="3">91-94%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipoxia moderada</td>
+                            <td colspan="3">85-90%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipoxia severa</td>
+                            <td colspan="3">&lt; 85%</td>
+                        </tr>
+                    </table>
+                    <table style="width: 48%; border-collapse: collapse; text-align: center;" border="2">
+                        <thead>
+                            <tr style="text-align: center; background-color: darkgrey;">
+                                <th colspan="12">RECUENCIA RESPIRATORIA: 17</th>
+                            </tr>
+                        </thead>
+                        <tr style="background-color: green;">
+                            <td colspan="3">Normal (Eupnea)</td>
+                            <td colspan="3">2-18 rpm</td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Bradipnea</td>
+                            <td colspan="3">&lt; 10 rpm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Taquipnea</td>
+                            <td colspan="3">&lt; 20 rpm</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Apnea</td>
+                            <td colspan="3">ausencia respiratoria</td>
+                        </tr>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="display: flex;  margin-top: 13px; justify-content: center;">
+                    <table style="width: 50%; border-collapse: collapse;" border="2">
+                        <thead>
+                            <tr style="text-align: center; background-color: darkgrey;">
+                                <th colspan="12">OXIMETRÍA DEL PULSO: 98%</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td colspan="3">Normal</td>
+                            <td colspan="3">95-99%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Hipoxia leve</td>
+                            <td colspan="3">91-94%</td>
+                        </tr>
+                    </table>
+                </div>
+            </table>
+            <table style="width: 100%;">
+                <tr>
+                    <td colspan="12" style="text-align: right;"><strong>&nbsp;</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="12" style="text-align: right;"><strong>Atentamente:</strong></td>
+                </tr>
+                <tr>
+                    <td style="height: 60px"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center; width:33.3%">AQUI VA EL QR</td>
+                    <td colspan="4" style="text-align: right; width: 33.3%"><strong>Q.F.B. NERY FABIOLA ORNELAS RESENDIZ
+                            <br>UPCH - Cédula profesional: 09291445</strong></td>
+                </tr>
+            </table>
+            <hr style="height: 2px; background-color: black ;">
+            <p style="text-align: center;"><small><strong>Avenidad Universidad S/N Colonia Casa Blanca, Villahermosa,
+                        Tabasco - Teléfono: 993 131 00 42 Correo electrónico:
+                        biologia.molecular@hguadalupe.com</strong></small></p>
+        </div>
+    </div>
+</body>
+
+</html>
