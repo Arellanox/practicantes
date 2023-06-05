@@ -39,7 +39,7 @@ switch($api){
 
         //buscar datos en la tabla consultorio recetas
     case 2:
-        $response = $master->getByProcedure("sp_consultorio_recetas_b", [$parametros]);
+        $response = $master->getByProcedure("sp_consultorio_recetas_b", [$turno_id]);
         break;    
 
     default:

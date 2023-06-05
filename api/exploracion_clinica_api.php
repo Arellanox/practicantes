@@ -7,11 +7,13 @@ $master = new Master();
 $api = $_POST['api'];
 
 //datos a insertar
+$turno_id = $_POST['turno_id'];
 $exploracion_tipo_id = $_POST['exploracion_tipo_id'];
 $exploracion = $_POST['exploracion'];
 
 
 $parametros = $master->setToNull(array(
+    $turno_id,
     $exploracion_tipo_id,
     $exploracion
 ));
