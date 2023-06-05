@@ -11,7 +11,7 @@
 //   getSegmentoByProcedencia(procedencia, "segmentos_procedencias-menu");
 // });
 
-//Formulario de Preregistro
+//Formulario de Preregistro 
 $("#formRegistrarPaciente").submit(function (event) {
   event.preventDefault();
   /*DATOS Y VALIDACION DEL REGISTRO*/

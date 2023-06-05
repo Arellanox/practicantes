@@ -1157,13 +1157,14 @@ function alertToast(msj = 'No ha seleccionado ningún registro', icon = 'error',
 }
 // 
 
-function alertMensaje(icon = 'success', title = '¡Completado!', text = 'Datos completados', footer = null, html = null) {
+function alertMensaje(icon = 'success', title = '¡Completado!', text = 'Datos completados', footer = null, html = null , timer = null) {
   Swal.fire({
     icon: icon,
     title: title,
     text: text,
     html: html,
     footer: footer,
+    timer: timer
     // width: 'auto',
   })
 }
