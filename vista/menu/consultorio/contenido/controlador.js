@@ -162,6 +162,8 @@ function agregarNotaConsulta(tittle, date = null, text, appendDiv, id, clase, cl
 
 
 
+
+
 //AREA CONSULTA MEDICA
 //Posible solucion en ios
 // $('#entrarConsultaMedica').css('cursor', 'pointer');
@@ -232,3 +234,6 @@ $(document).on('click', '#btn-ir-consulta-rapida', function (e) {
     // select2('#registrar-metodos-estudio', 'card-exploracion-clinica');
   });
 })
+
+//guardar datos consultorio
+$.getScript("contenido/js/guardar-consultorio.js");
