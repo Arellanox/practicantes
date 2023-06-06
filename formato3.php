@@ -1,3 +1,7 @@
+<?php
+/* $folio = $_POST['folio']; */
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,12 +15,14 @@
         td {
             border: 2px solid black;
             padding: 7px;
+
         }
 
         td.empty {
+            margin-left: auto;
+            margin-right: auto;
             padding: 3.4px;
-            min-width: 8px;
-            max-height: 10px;
+            width: 20px;
         }
 
         .border-34 {
@@ -76,6 +82,7 @@
 
         .dot {
             font-size: 30px;
+            text-align: center !important;
         }
 
         .dot-blue {
@@ -88,27 +95,213 @@
 
         canvas {
             position: absolute;
-            top: 0;
+            top: 70px;
             left: 0;
+        }
+
+        #equipo {
+            width: 900px;
+            border: 1px solid black;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .equipo-header {
+            align-self: center;
+            margin-top: auto;
+            margin-bottom: auto;
+            background: #d8dfe1;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid black;
+        }
+
+        .equipo-header h5 {
+            align-self: center;
+        }
+
+        .equipo-body {
+            display: flex;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 30px;
+        }
+
+        .equipo--input {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            width: 170px !important;
+            border-bottom: 2px solid black;
+        }
+
+        .equipo--container {
+            height: 20px !important;
+            display: flex;
+            padding: 5px 20px;
+        }
+
+        label {
+            font-size: 15px;
+        }
+
+        .table--container {
+            display: flex !important;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            display: flex !important;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th class="celdasDias"></th>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="container " style="display: flex;">
+        <div id="equipo">
+            <div class="equipo-header">
+                <h5>EQUIPO</h5>
+            </div>
+            <div class="equipo--container">
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">Equipo:</label>
+                    <small class="equipo--input">
+                        CONGELADOR
+                    </small>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">Modelo:</label>
+                    <div class="equipo--input">
+                        as
+                    </div>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">Localización:</label>
+                    <div class="equipo--input" style="width: 250px !important">
+                        ass
+                    </div>
+                </div>
+            </div>
+            <div class="equipo--container">
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">Marca:</label>
+                    <div class="equipo--input">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">N° Serie:</label>
+                    <div class="equipo--input" style="width: 260px !important">
+                        <small></small>
+                    </div>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">Intervalo Optimo:</label>
+                    <div class="equipo--input" style="width:100px !important;">
+                        <span style="font-weight: bold;">-25 A -35°C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="equipo">
+            <div class="equipo-header">
+                <h5>TERMOMETRO</h5>
+            </div>
+            <div class="equipo--container">
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">Marca:</label>
+                    <small class="equipo--input">
+                        CONGELADOR
+                    </small>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px; width:150px !important;">Factor de correción:</label>
+                    <div class="equipo--input">
+                        °C
+                    </div>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">MES:</label>
+                    <div class="equipo--input">
+                        ass
+                    </div>
+                </div>
+            </div>
+            <div class="equipo--container">
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">ID:</label>
+                    <div class="equipo--input">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px; width:150px !important;">Fecha de verificación:</label>
+                    <div class="equipo--input">
+                        <small>s</small>
+                    </div>
+                </div>
+                <div class="equipo-body">
+                    <label style="margin-right: 5px;">AÑO:</label>
+                    <div class="equipo--input">
+                        <small>s</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="table--container">
+        <table>
+            <tr>
+                <th class="celdasDias"></th>
+                <?php
+                for ($i = 1; $i <= 31; $i++) {
+                    echo "<th class='diaHeader' colspan='2'>" . $i . "</th>";
+                }
+                ?>
+            </tr>
             <?php
-            for ($i = 1; $i <= 31; $i++) {
-                echo "<th class='diaHeader' colspan='2'>" . $i . "</th>";
+            $url = "http://localhost/practicantes/api/temperatura_api.php";
+            // Los datos de formulario
+            $datos = [
+                "api" => 7,
+                "folio" => 2,
+            ];
+            // Crear opciones de la petición HTTP
+            $opciones = array(
+                "http" => array(
+                    "header" => "Content-type: application/x-www-form-urlencoded\r\n",
+                    "method" => "POST",
+                    "content" => http_build_query($datos), # Agregar el contenido definido antes
+                ),
+            );
+            # Preparar petición
+            $contexto = stream_context_create($opciones);
+            # Hacerla
+            $json = file_get_contents($url, false, $contexto);
+
+            $array = json_decode($json, true);
+
+            foreach ($array['response'] as $key1 => $e) {
+                $valores = $e;
             }
-            ?>
-        </tr>
-        <?php
-        $valores = array(
+
+            /* $valores = array(
             1 => array(
-                1 => array("valor" => "-30.1", "color" => "blue"),
-                2 => array("valor" => "-30.3", "color" => "blue"),
+                1 => array("valor" => "-30.1", "color" => "blue"), //Primero del primer tuno 7:30 am 11:59 am,
+                2 => array("valor" => "-30.3", "color" => "blue") //Primero del segundo turno de las 12:00 pm - 7:00 pm,
 
             ),
             2 => array(
@@ -152,52 +345,53 @@
             31 => array(
                 2 => array("valor" => "-33", "color" => "blue")
             )
-        );
+        ); */
 
-        function metodoCalculo($dia, $turno, $valorAprox)
-        {
-            global $valores;
-            if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
-                $valor = floatval($valores[$dia][$turno]["valor"]);
-                $valor_redondeado = round($valor);
-                $color = $valores[$dia][$turno]['color'];
-                if ($valor_redondeado == $valorAprox) {
-                    $dotId = "dot-$dia-$turno"; // Generar el ID del dot
-                    return "<td class='empty turno-$turno background$valorAprox dot dot-$color' id='$dotId'>&#8226;</td>";
-                }
-            }
-            return "<td class='empty turno-$turno background$valorAprox'></td>";
-        }
-
-        // Generar las celdas de la tabla
-        for ($j = -40; $j <= -20; $j++) {
-            echo "<tr class='border$j'>";
-            echo "<th class='celdasDias text$j'>" . $j . "</th>";
-
-            $prevDot = null; // Dot previo para conectar con líneas
-
-            for ($i = 1; $i <= 31; $i++) {
-                $dot1 = metodoCalculo($i, 1, $j);
-                $dot2 = metodoCalculo($i, 2, $j);
-                /* $dot3 = metodoCalculo($i, 3, $j); */
-
-                if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
-                    echo $dot1;
-                    if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
-                        echo $dot2;
-                    } else {
-                        $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
+            function metodoCalculo($dia, $turno, $valorAprox)
+            {
+                global $valores;
+                if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
+                    $valor = floatval($valores[$dia][$turno]["valor"]);
+                    $valor_redondeado = round($valor);
+                    $color = $valores[$dia][$turno]['color'];
+                    if ($valor_redondeado == $valorAprox) {
+                        $dotId = "dot-$dia-$turno"; // Generar el ID del dot
+                        return "<td class='empty turno-$turno background$valorAprox dot dot-$color' id='$dotId'>&#8226;</td>";
                     }
-                } else {
-                    $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
                 }
+                return "<td class='empty turno-$turno background$valorAprox'></td>";
             }
-            echo "</tr>";
-        }
-        ?>
-    </table>
 
-    <canvas id="canvas"></canvas>
+            // Generar las celdas de la tabla
+            for ($j = -40; $j <= -20; $j++) {
+                echo "<tr class='border$j'>";
+                echo "<th class='celdasDias text$j'>" . $j . "</th>";
+
+                $prevDot = null; // Dot previo para conectar con líneas
+
+                for ($i = 1; $i <= 31; $i++) {
+                    $dot1 = metodoCalculo($i, 1, $j);
+                    $dot2 = metodoCalculo($i, 2, $j);
+                    /* $dot3 = metodoCalculo($i, 3, $j); */
+
+                    if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
+                        echo $dot1;
+                        if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
+                            echo $dot2;
+                        } else {
+                            $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
+                        }
+                    } else {
+                        $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
+                    }
+                }
+                echo "</tr>";
+            }
+            ?>
+        </table>
+
+
+    </div>
 
     <script>
         window.addEventListener('load', function() {
@@ -217,9 +411,46 @@
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
+                ctx.lineWidth = 3;
                 ctx.strokeStyle = "blue";
                 ctx.stroke();
             }
+
+            /* function getDotCenter(dot) {
+                var rect = dot.getBoundingClientRect();
+                var x = rect.left + rect.width / 2 - canvas.getBoundingClientRect().left;
+                var y = rect.top + rect.height / 2 - canvas.getBoundingClientRect().top;
+
+                return {
+                    x: x,
+                    y: y
+                };
+            }
+
+            function connectDots(dot1, dot2) {
+                var dot1Center = getDotCenter(dot1);
+                var dot2Center = getDotCenter(dot2);
+
+                var x1 = dot1Center.x;
+                var y1 = dot1Center.y;
+                var x2 = dot2Center.x;
+                var y2 = dot2Center.y;
+
+                var controlX = (x1 + x2) / 2;
+                var controlY = (y1 + y2) / 2 - Math.abs(x1 - x2) / 4;
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.quadraticCurveTo(controlX, controlY, x2, y2);
+                ctx.strokeStyle = "blue "; // Cambiar el color de la línea a rojo
+                ctx.lineWidth = 3; // Ajustar el ancho de línea
+                ctx.stroke();
+            } */
+
+
+
+
+
 
             function positionDots() {
                 var dotCount = dots.length;
@@ -243,8 +474,6 @@
 
             function drawLines() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-
 
                 var prevDot;
 

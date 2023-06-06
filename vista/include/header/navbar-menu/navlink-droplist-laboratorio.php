@@ -53,3 +53,11 @@
         <i class="bi bi-box2-heart"></i> Estudios
     </a>
 <?php endif; ?>
+
+
+
+<?php if ($_SESSION['vista']['REGISTRO_TEMPERATURA'] == 1) : ?>
+    <a class="dropdown-a align-items-center" type="button" href="<?php echo "$https$url/$appname/vista/menu/temperatura"; ?>">
+        <i class="bi bi-thermometer-high"></i> Temperatura
+    </a>
+<?php endif; ?>
