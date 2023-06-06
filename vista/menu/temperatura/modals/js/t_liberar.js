@@ -16,7 +16,7 @@ $("#liberarDiaTemperaturaForm").on("submit", function (e) {
         icon: "info"
     }, function () {
         ajaxAwaitFormData({
-            api: 5
+            api: 5,
         }, 'temperatura_api', 'liberarDiaTemperaturaForm', { callbackAfter: true }, false, function (data) {
             alertTemperatura("Dia liberado");
             console.log(data)
