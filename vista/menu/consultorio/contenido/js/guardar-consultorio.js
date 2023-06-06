@@ -10,7 +10,6 @@
         confirmButtonText: 'Si',
         cancelButtonText: 'No'
     }, function(){
-        //return
        guardarDatosConsultorio(btn)
     } ,1)
  }
@@ -52,7 +51,7 @@ function guardarDatosConsultorio(btn){
                 notas_consulta: $('#nota-consulta-campo-consulta').val(),
             }
             ajaxAwait(dataJson_nota, 'consultorio2_api', {callbackAfter: true}, false, function(data){
-                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 2000)
+                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
             })
             break;
 
@@ -64,7 +63,7 @@ function guardarDatosConsultorio(btn){
                 exploracion: $("#text-exploracion-clinica").val()
             }
             ajaxAwait(dataJson_fisica, 'exploracion_clinica_api', { callbackAfter: true }, false, function (data) {
-                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 2000)
+                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
             })
             break;
 
@@ -76,7 +75,7 @@ function guardarDatosConsultorio(btn){
                 diagnostico2: $("#diagnostico-campo-consulta-2").val()
             }
             ajaxAwait(dataJson_diagnostico, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
-                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 2000)
+                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
             })
             break;
 
@@ -95,7 +94,7 @@ function guardarDatosConsultorio(btn){
                 indicaciones_de_uso : $("#indicaciones_de_uso").val()
             }
             ajaxAwait(dataJson_recetas, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
-                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 2000)
+                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
             })
             break;
         
@@ -106,7 +105,7 @@ function guardarDatosConsultorio(btn){
                 plan_tratamiento: $("#plan-tratamiento-campo-consulta").val()
             }
             ajaxAwait(dataJson_tratatiento, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
-                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 2000)
+                alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
             })
             break;    
             
@@ -115,6 +114,7 @@ function guardarDatosConsultorio(btn){
             break;    
     }
 }
+
 
 function mostrarTablaRecetas(){
 
