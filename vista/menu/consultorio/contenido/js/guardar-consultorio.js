@@ -98,6 +98,18 @@ function guardarDatosConsultorio(btn) {
             ajaxAwait(dataJson_recetas, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
                 alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
             })
+
+            $("#nombre_generico").val(""),
+            $("#nombre_comercial").val(""),
+            $("#forma_farmaceuticaval").val(""),
+            $("#dosis").val(""),
+            $("#presentacion").val(""),
+            $("#frecuencia").val(""),
+            $("#via_de_administracion").val(""),
+            $("#duracion_de_tratamiento").val(""),
+            $("#indicaciones_de_uso").val("")
+
+            tablalistaRecetas.ajax.reload()
             break;
 
         case 'plan_tratamiento':
@@ -117,10 +129,8 @@ function guardarDatosConsultorio(btn) {
     }
 }
 
-
-
 //Tabla de recetas
-tablaListaRecetas = $("#tablaListaRecetas").DataTable({
+tablalistaRecetas = $("#tablaListaRecetas").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
     info: false,
@@ -129,13 +139,13 @@ tablaListaRecetas = $("#tablaListaRecetas").DataTable({
     scrollCollapse: true,
     ajax: {
         dataType: 'json',
-        data: { api: 2, id_turno: pacienteActivo.array['ID_TURNO'] },
+        data: { api: 2, turno_id: pacienteActivo.array['ID_TURNO'] },
         method: 'POST',
         url: `${http}${servidor}/${appname}/api/consultorio_recetas_api.php`,
         beforeSend: function () {
         },
         complete: function () {
-            tablaListaRecetas.columns.adjust().draw()
+            tablalistaRecetas.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
@@ -143,20 +153,15 @@ tablaListaRecetas = $("#tablaListaRecetas").DataTable({
         dataSrc: 'response.data'
     },
     columns: [
-        { data: 'COUNT' },
-        {
-            data: 'FECHA_REGISTRO', render: function (data) {
-                return formatoFecha2(data, [0, 1, 3, 0]).toUpperCase();
-            }
-        },
-        { data: 'FOLIO' }
+        {data: 'COUNT'},
+        {data: 'NOMBRE_GENERICO'}
+        // { data: 'FOLIO' }
     ],
     columnDefs: [
-        { target: 0, title: '#', className: 'all' },
-        { target: 1, title: 'Nombre Comercial', className: 'all' },
-        { target: 2, title: 'Folio', className: 'none' }
+        {target: 0, title: '#', className: 'all'},
+        { target: 1, title: 'Nombre generico', className: 'all' }
+        // { target: 2, title: 'Folio', className: 'none' }
 
     ]
 })
 
-//tablalistaRecetas.ajax.reload()
