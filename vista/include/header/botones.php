@@ -223,7 +223,16 @@ $menu = $_POST['menu']; ?>
   <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
 
     <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="LibererDiaTemperatura">
-      <i class="bi bi-plus-circle-fill"></i> Liberar Dia
+      <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
+    </button>
+
+  <?php endif; ?>
+
+
+  <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
+
+    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="GenerarPDFTemperatura">
+      <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
     </button>
 
   <?php endif; ?>
