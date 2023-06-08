@@ -1876,6 +1876,90 @@ function obtenerVistaAntecenetesPaciente(div, cliente, pagina = 1) {
 }
 //
 
+function obtenerVistaEspiroPacientes(div) {
+  return new Promise(resolve => {
+    $.post(http + servidor + "/" + appname + "/vista/menu/area-master/contenido/forms/form_espiro.html",
+      
+      function (html) {
+      setTimeout(function () {
+        $(div).html(html);
+
+        resolve(1)
+      }, 100);
+    });
+  })
+}
+
+
+function obtenerDatosEspiroPacientes() {
+  return new Promise(resolve => {
+    ajaxAwait({
+      api: 2,
+      id_turno: dataSelect.array['turno']
+    }, 'espirometria_api', { callbackAfter: true, returnData: false }, false, function (data) {
+
+
+      //$('#1pr1').prop('checked', true)
+      let row = data.response.data;
+
+      for (const key in row) {
+        if (Object.hasOwnProperty.call(row, key)) {
+          const element = row[key];
+
+          respuestas = element.ID_R;
+          comentario = element.COMENTARIO
+
+          switch (true) {
+
+            // PARA MOSTRAR AQUELLOS QUE SON INPUTS DE TIPO RADIO
+            case respuestas == 1 || respuestas == '1' || respuestas == 2 || respuestas == '2':
+
+              $(`input[name="respuestas[${element.ID_P}][${element.ID_R}][valor]"]`).prop('checked', true)
+
+              break;
+
+            // PARA TODOS AQUELLOS INPUTS DE TIPO CHECKBOX QUE NO TIENEN UN COMENTARIO ANEXADO
+            case respuestas != 1 && respuestas != '1' && respuestas != 2 && respuestas != '2' && comentario == null:
+
+              $(`input[name="respuestas[${element.ID_P}][${element.ID_R}][valor]"]`).prop('checked', true);
+
+              break;
+
+            // // PARA TODOS AQUELLOS QUE SON INPUTS DE TIPO TEXT  QUE NO TIENEN RESPUESTA Y PARA AQUELLOS INPUTS DE TIPO CHECKBOX QUE CONTIENEN UN COMENTARIO
+            case comentario != null:
+
+              $(`input[name="respuestas[${element.ID_P}][${element.ID_R}][valor]"]`).prop('checked', true);
+              $(`input[id="p${element.ID_P}"]`).val(comentario);
+
+              //INSERTAMOS LA RESPUESTAS DE AQUELLAS PREGUNTAS QUE NO TIENEN UN ID DE RESPUESTA
+              $(`input[name="respuestas[${element.ID_P}][0][comentario]"]`).val(comentario);
+
+              break;
+
+          }
+
+          //MOSTRAMOS LOS COLLAPSE DE TODAS AQUELLAS PREGUNTAS QUE LO CONTIENEN
+          let parent = $('div[class="form-check form-check-inline col-12 mb-2"]');
+          let children = $(parent).children(`div[id="p${element.ID_P}r${element.ID_R}"]`);
+          children.collapse('show');
+
+          $(`textarea[name="respuestas[${element.ID_P}][${element.ID_R}][comentario]"]`).val(comentario)
+
+
+          let childrenCondiciones = $(parent).children(`div[id="pregunta${element.ID_P}"]`);
+          childrenCondiciones.collapse('hide');
+        }
+
+
+      }
+    })
+    resolve(1)
+  })
+
+}
+
+
+
 function select2(select, modal = null, placeholder = 'Selecciona una opción', width = '100%') {
   if (!modal) modal = 'body-controlador';
   $(select).select2({
