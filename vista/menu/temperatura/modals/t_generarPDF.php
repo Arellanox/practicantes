@@ -4,7 +4,7 @@
         }
 
         #grafica th,
-        td {
+        #grafica td {
             border: 2px solid black;
             padding: 7px;
 
@@ -170,11 +170,15 @@
                                 ?>
                             </tr>
                             <?php
+
+                            $FOLIO_ID = $_POST['folio'];
+                            var_dump($FOLIO_ID);
+                            exit();
                             $url = "http://localhost/practicantes/api/temperatura_api.php";
                             // Los datos de formulario
                             $datos = [
                                 "api" => 7,
-                                "folio" => 2,
+                                "folio" => $FOLIO_ID,
                             ];
                             // Crear opciones de la petición HTTP
                             $opciones = array(
@@ -383,4 +387,3 @@
             positionDots();
             drawLines();
         })
-    </script>
