@@ -220,15 +220,20 @@ function mostrarAntecedente(btn, form) {
 }
 
 var tipoPaciente = "0"; //Particular por defecto
-$('#actualizarForm').click(async function () {
+$('#actualizarForm').click(async function (){
   curp = $('#curp-paciente').val();
   if (ant) {
     await obtenerVistaAntecenetesPaciente('#antecedentes-registro', $('#procedencia-registro').text(), 0)
     await obtenerAntecedentesPaciente(null, curp);
+
+
     console.log(ant)
+    
   } else {
+
     $('#cuestionadioRegistro').fadeOut(100);
     // $('input[type="radio"]').prop("checked", true)
+
   }
 
   //Solicitar si la curp existe
