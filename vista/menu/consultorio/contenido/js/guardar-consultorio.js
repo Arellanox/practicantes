@@ -133,7 +133,7 @@ function guardarDatosConsultorio(btn) {
 }
 
 //Tabla de recetas
-tablalistaRecetas = $("#tablaListaRecetas").DataTable({
+tablaListaRecetas = $("#tablaListaRecetas").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
     info: false,
@@ -148,7 +148,7 @@ tablalistaRecetas = $("#tablaListaRecetas").DataTable({
         beforeSend: function () {
         },
         complete: function () {
-            tablalistaRecetas.columns.adjust().draw()
+            tablaListaRecetas.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
