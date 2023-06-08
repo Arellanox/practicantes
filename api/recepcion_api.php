@@ -457,6 +457,7 @@ switch ($api) {
         $response = $master->getByProcedure("sp_cuestionarios_b", []);
 
         break;
+        
     default:
         $response = "Api no definida.";
         break;

@@ -41,38 +41,6 @@ $("#formEnviarCorreoIngreso").submit(function (event) {
 
 
 //FUNCION PARA MOSTRAR TODOS LOS CUESTIONARIOS
-
-// $('#solicitudIngresoParticulares').click(function () {
-//   $.ajax({
-//     data: { api: 12 },
-//     url: `${http}${servidor}/${appname}/api/recepcion_api.php`,
-//     type: "POST",
-//     dataType: 'json',
-//     processData: false,
-//     contentType: false,
-//     beforeSend: function () {
-//       alertToast('¡Espere un momento, se están cargando los datos!', 'info', 4000)
-//     },
-//     success: function (data) {
-//       let htmlContent = '';
-
-//       for (let i = 0; i < data.length; i++) {
-//         const element = data[i];
-
-//         htmlContent += ` 
-//           <div>
-//             <input class="form-check-input" type="checkbox" value="${element['ID_CUESTIONARIO']}"
-//               id="${element['DESCRIPCION']}${element['ID_CUESTIONARIO']}">
-//             <label class="form-check-label" for="${element['DESCRIPCION']}${element['ID_CUESTIONARIO']}">${element['DESCRIPCION']}</label>
-//           </div>
-//         `;
-//       }
-
-//       $('#lista_cuestionarios').html(htmlContent);
-//     },
-//   });
-// });
-
 $('#solicitudIngresoParticulares').click(function () {
   ajaxAwait({
     api: 12,
