@@ -15,6 +15,7 @@ $api = $_POST['api'];
 $turno_id = $_POST['turno_id'];
 $num_factura = $_POST['num_factura'];
 
+
 #variables para el reporte de la ujat
 $ujat_inicial = $_POST['fecha_inicial'];
 $ujat_final = $_POST['fecha_final'];

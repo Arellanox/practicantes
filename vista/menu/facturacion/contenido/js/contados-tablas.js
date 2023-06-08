@@ -163,7 +163,7 @@ selectDatatable("TablaContados", tablaContados, 0, 0, 0, 0, async function (sele
         selectCuenta = new GuardarArreglo({
             select: select,
             data: data,
-            id: data['ID_TURNO']
+            id: data['TURNO_ID']
         })
         await obtenerPanelInformacion(data['TURNO_ID'], 'tickets_api', 'PanelTickets', '#InformacionTickets')
     } else {

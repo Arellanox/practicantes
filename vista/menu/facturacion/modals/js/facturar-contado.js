@@ -8,9 +8,9 @@ $('#formFacturarPaciente').submit(function (event) {
             icon: 'info'
         }, () => {
             ajaxAwaitFormData({
-                api: 1,
-                id_turno: selectCuenta.array['id']
-            }, 'cargos_turnos_api', 'formFacturarPaciente', { callbefore: true, resetForm: true }, false, (data) => {
+                api: 2,
+                turno_id: selectCuenta.array['id']
+            }, 'cargos_turnos_api', 'formFacturarPaciente', { callbackAfter: true, resetForm: true }, false, (data) => {
                 $('#modalFacturarCuenta').modal('hide');
                 tablaContados.ajax.reload()
                 alertToast('Paciente facturado', 'success', 4000)
