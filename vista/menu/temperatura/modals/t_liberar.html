@@ -1,0 +1,51 @@
+<div class="modal fade" id="LiberalDiaTemperaturaModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="liberarDiaTitle">Liberar dia de temperatura</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class=" my-2">Especifique la <strong>fecha y hora que desea liberar</strong> y si desea agregar
+                    alguna observación del
+                    motivo por el cual no se pudo
+                    capturar la lectura en ese día. </p>
+                <form name="liberarDiaTemperaturaForm" id="liberarDiaTemperaturaForm">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="diaLiberar">Dia a liberar:</label>
+                                <input type="date" name="diaLiberar" value="" class="form-control input-form" required
+                                    id="diaLiberar">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="horaLiberar">Hora a liberar:</label>
+                                <input type="time" name="horaLiberar" value="" class="form-control input-form" required
+                                    inputmode="numeric" pattern="(0[1-9]|1[0-2]):[0-5][0-9] (am|pm)" id="horaLiberar">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="observaciones">Observaciones:</label>
+                                <input type="text" name="observaciones" value="" class="form-control input-form"
+                                    required id="observaciones">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i>
+                    Cancelar</button>
+                <button type="submit" form="liberarDiaTemperaturaForm" class="btn btn-confirmar"
+                    id="btn-liberar-temperatura">
+                    <i class="bi bi-person-x"></i> Liberar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

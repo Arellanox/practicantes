@@ -3,5 +3,11 @@ $.post("modals/m_temperatura.php", function (html) {
 }).done(function () {
     // Modal para aceptar
     $.getScript('modals/js/t_agregar.js');
-    // Modal para rechaza
+    // Modal para liberar dia
+
+    $.getScript('modals/js/t_liberar.js');
+
+    $.getScript('modals/js/t_generarPDF.js');
+
+
 });

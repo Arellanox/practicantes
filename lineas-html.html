@@ -2,79 +2,169 @@
 <html>
 
 <head>
+  <style>
+    .dot {
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      border-radius: 50%;
+      margin: 10px 50px;
+    }
+
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      position: relative;
+    }
+
+    td {
+      border: 1px solid black;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
-<style>
-.dot {
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  border-radius: 50%;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-td {
-  position: relative;
-}
-
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-</style>
 
 <body>
-<table>
-    <tr>
-        <td>
+  <div>
+    <table>
+      <tbody>
+        <tr>
+          <td>
             <div class="dot" id="dot1"></div>
-        </td>
-        <td>
+          </td>
+          <td>
             <div class="dot" id="dot2"></div>
-        </td>
-        <td>
-            <div class="dot" id="dot3"></div>
-        </td>
-        <!-- Agrega más celdas con puntos según sea necesario -->
-    </tr>
-</table>
-<canvas id="canvas"></canvas>
+          </td>
+          <td>
 
+          </td>
+          <td>
+            a
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+            a
+          </td>
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+            a
+          </td>
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+            a
+          </td>
+          <td>
+            <div class="dot" id="dot3"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    window.addEventListener('load', function () {
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var dots = document.getElementsByClassName('dot');
+
+      function connectDots(dot1, dot2) {
+        var rect1 = dot1.getBoundingClientRect();
+        var rect2 = dot2.getBoundingClientRect();
+        var x1 = rect1.left + rect1.width / 2 - canvas.getBoundingClientRect().left;
+        var y1 = rect1.top + rect1.height / 2 - canvas.getBoundingClientRect().top;
+        var x2 = rect2.left + rect2.width / 2 - canvas.getBoundingClientRect().left;
+        var y2 = rect2.top + rect2.height / 2 - canvas.getBoundingClientRect().top;
+
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+
+      function positionDots() {
+        var dotCount = 0;
+        var containerWidth = dots[0].closest('table').offsetWidth;
+
+        // Ajustar el tamaño del canvas al ancho del contenedor
+        canvas.width = containerWidth;
+        canvas.height = dots[0].closest('table').offsetHeight;
+
+        for (var i = 1; i <= 31; i++) {
+          for (var j = 1; j <= 3; j++) {
+            var dotId = "dot-" + i + "-" + j;
+            var dot = document.getElementById(dotId);
+            if (dot !== null) {
+              dots[dotCount] = dot;
+              dotCount++;
+            } else {
+              break; // Si no existe el dot, pasar al siguiente día
+            }
+          }
+        }
+      }
+
+      function drawLines() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < dots.length - 1; i++) {
+          var dot1 = dots[i];
+          var dot2 = dots[i + 1];
+
+          connectDots(dot1, dot2);
+        }
+      }
+
+
+      positionDots();
+      drawLines();
+    });
+  </script>
 </body>
 
 </html>
-
-<script>
-    window.addEventListener('load', function () {
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-
-        function connectDots(dot1, dot2) {
-            var rect1 = dot1.getBoundingClientRect();
-            var rect2 = dot2.getBoundingClientRect();
-            var x1 = rect1.left + rect1.width / 2;
-            var y1 = rect1.top + rect1.height / 2;
-            var x2 = rect2.left + rect2.width / 2;
-            var y2 = rect2.top + rect2.height / 2;
-
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
-        }
-
-        var dot1 = document.getElementById('dot1');
-        var dot2 = document.getElementById('dot2');
-        var dot3 = document.getElementById('dot3');
-        // Agrega más puntos según sea necesario
-
-        connectDots(dot1, dot2);
-        connectDots(dot2, dot3);
-        // Conecta los puntos adicionales según sea necesario
-    });
-
-</script>

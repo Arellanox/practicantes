@@ -1157,13 +1157,14 @@ function alertToast(msj = 'No ha seleccionado ningún registro', icon = 'error',
 }
 // 
 
-function alertMensaje(icon = 'success', title = '¡Completado!', text = 'Datos completados', footer = null, html = null) {
+function alertMensaje(icon = 'success', title = '¡Completado!', text = 'Datos completados', footer = null, html = null , timer = null) {
   Swal.fire({
     icon: icon,
     title: title,
     text: text,
     html: html,
     footer: footer,
+    timer: timer
     // width: 'auto',
   })
 }
@@ -3850,6 +3851,7 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
   const popper = $(tooltip)[0];
 
   let popperInstance = null;
+  let timeoutId = null;
 
   function createPopper() {
     popperInstance = Popper.createPopper(reference, popper, {
@@ -3860,7 +3862,6 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
           options: {
             offset: [0, 20],
           },
-
         },
       ],
     });
@@ -3882,19 +3883,35 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
     tooltip.setAttribute('data-show', '');
     popperInstance.update();
 
-    callback(true);
+    // Iniciar temporizador para retrasar el callback
+    timeoutId = setTimeout(() => {
+      callback(true);
+    }, 1000); // Cambia el valor de 500 a la cantidad de milisegundos que desees como retraso antes de ejecutar el callback
   }
 
   function hide(event) {
     if (!$(event.target).closest(container).length) {
       $(document).off('click', hide);
       tooltip.removeAttribute('data-show');
-      callback(false);
       destroyPopper();
+
+      // Cancelar el temporizador si el usuario sale antes de que se ejecute el callback
+      clearTimeout(timeoutId);
+      callback(false);
+    }
+  }
+
+  function leave(event) {
+    if (!$(event.target).closest(container).length) {
+      $(document).off('click', leave);
+
+      // Cancelar el temporizador si el usuario sale antes de que se ejecute el callback
+      clearTimeout(timeoutId);
+      callback(false);
     }
   }
 
   $(container).on('click', hide);
   $(container).on('mouseenter', show);
+  $(container).on('mouseleave', hide);
 }
-

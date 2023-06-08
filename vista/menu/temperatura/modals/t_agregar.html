@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Nuevo registro de temperatura</h5>
+                <h5 class="modal-title" id="temperaturaTitle">Nuevo registro de temperatura</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,12 +11,12 @@
                     <strong>usuario</strong> que lo hizo que realizo la
                     captura <strong>se
                         agregan automaticamente.</strong>
-                <form id="formCapturarTemperatura" name="formCapturarTemperatura">
+                <form id="formCapturarTemperatura" name="formCapturarTemperatura" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-12 col-lg-6">
                             <div class="mb-3">
                                 <label for="Enfriador" class="form-label">Enfriador:</label>
-                                <select class="form-select input-form" name="Enfriador" id="Enfriador">
+                                <select class="form-select input-form" name="Enfriador" id="Enfriador" required>
                                     <option selected>Eliga un enfriador</option>
                                 </select>
                             </div>
@@ -24,7 +24,7 @@
                         <div class="col-12 col-lg-6">
                             <div class="mb-3">
                                 <label for="Termometro" class="form-label">Termometro:</label>
-                                <select class="form-select input-form" name="Termometro" id="Termometro">
+                                <select class="form-select input-form" name="Termometro" id="Termometro" required>
                                     <option selected>Eliga un termometro</option>
                                 </select>
                             </div>
@@ -55,11 +55,14 @@
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
-                            <div class="mb-3">
-                                <label for="lectura">Lectura:</label>
-                                <input type="number" min="0" value="0" step="0.01" name="lectura" value=""
-                                    class="form-control input-form" required id="lectura">
+                            <label for="lectura">Lectura:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-span">-</span>
+                                <input type="number" min="20" max="40" value="0" step="0.01" name="lectura"
+                                    placeholder="20 / 40" class="form-control input-form" required id="lectura">
+                                <span class="input-span">°C</span>
                             </div>
+
                         </div>
 
                     </div>
@@ -70,6 +73,24 @@
                                 <input type="text" name="observaciones" value="" class="form-control input-form"
                                     required id="observaciones">
                             </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 ">
+                            <div class="d-flex justify-content-between">
+                                <h5>Firma: </h5>
+                                <button onclick="resetFirma()" class="btn btn-hover" type="button">Reiniciar
+                                    Firma</button>
+                            </div>
+                            <div class="mt-1 d-flex justify-content-center">
+                                <img src="" id="img-firma" class="border" width="300" height="200">
+                                <canvas id="firmaCanvas" class="border" width="300" height="200"></canvas required>
+                                <input type="hidden" id="firma" name="firma" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+
                         </div>
                         <div class="col-12 col-lg-6 d-flex align-self-center my-auto">
                             <p id="usuarioQueCargar"></p>
@@ -83,9 +104,124 @@
                     Cancelar</button>
                 <button type="submit" form="formCapturarTemperatura" class="btn btn-confirmar"
                     id="btn-subir-temperatura">
-                    <i class="bi bi-person-x"></i> Subir
+                    <i class="bi bi-person-x"></i> Guardar
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<script>
+    // Obtén una referencia al elemento canvas y al contexto de dibujo
+    var canvas = document.getElementById('firmaCanvas');
+    var ctx = canvas.getContext('2d');
+    // Variables para almacenar la posición anterior del puntero/touch y un indicador de si se está dibujando actualmente
+    var drawing = false;
+    var lastX = 0;
+    var lastY = 0;
+
+    // Agrega eventos para registrar los movimientos del puntero/touch
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    canvas.addEventListener('touchstart', startDrawing);
+    canvas.addEventListener('touchmove', draw);
+    canvas.addEventListener('touchend', stopDrawing);
+    canvas.addEventListener('touchcancel', stopDrawing);
+
+    // Función para comenzar el dibujo
+    function startDrawing(e) {
+        drawing = true;
+        var pos = getMousePos(canvas, e);
+        [lastX, lastY] = [pos.x, pos.y];
+        e.preventDefault();
+    }
+
+    // Función para dibujar en el lienzo
+    function draw(e) {
+        if (!drawing) return; // Si no se está dibujando, no hacer nada
+
+        var pos = getMousePos(canvas, e);
+        var currentX = pos.x;
+        var currentY = pos.y;
+
+        // Dibujar una línea suave desde la posición anterior a la posición actual
+        ctx.lineWidth = 3;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = 'blue';
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(currentX, currentY);
+        ctx.stroke();
+
+        [lastX, lastY] = [currentX, currentY];
+        e.preventDefault();
+    }
+
+    // Función para detener el dibujo
+    function stopDrawing() {
+        drawing = false;
+    }
+
+    // Función auxiliar para obtener las coordenadas del puntero/touch en relación con el canvas
+    function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        var clientX, clientY;
+
+        if (evt.touches && evt.touches.length > 0) {
+            clientX = evt.touches[0].clientX;
+            clientY = evt.touches[0].clientY;
+        } else {
+            clientX = evt.clientX;
+            clientY = evt.clientY;
+        }
+
+        return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
+    }
+
+    // Función para reiniciar el campo de la firma
+    function resetFirma() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // ...
+
+    // Referencia al campo oculto
+    var firmaInput = document.getElementById('firma');
+
+    function validarFormulario() {
+        var canvas = document.getElementById('firmaCanvas');
+        var firmaInput = document.getElementById('firma');
+
+        // Obtener el contexto del canvas
+        var ctx = canvas.getContext('2d');
+
+        // Verificar si se ha dibujado algo en el canvas
+        var canvasData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        var isFirmaVacia = Array.from(canvasData).every((pixel) => pixel === 0);
+
+        if (isFirmaVacia) {
+            alertToast('Por favor, ingrese su firma antes de enviar el formulario.', 'info', 3000);
+            return false;
+        }
+
+        // Si se ha dibujado algo en el canvas, guardar la imagen en el campo de firma
+        var imageDataUrl = canvas.toDataURL();
+        firmaInput.value = imageDataUrl;
+
+        return true;
+    }
+
+    // Inicializar SignaturePad en el canvas
+    var canvas = document.getElementById('firmaCanvas');
+    var signaturePad = new SignaturePad(canvas);
+
+</script>

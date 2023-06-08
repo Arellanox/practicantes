@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 date_default_timezone_set('America/Mexico_City');
 
 
@@ -215,9 +215,26 @@ $menu = $_POST['menu']; ?>
   </div>
 <?php endif; ?>
 
-<?php if ($menu == "Registros de Temperatura") : ?>
+<?php if ($menu == "Registros de Temperatura" && $_SESSION['permisos']['RegTemp'] == 1) : ?>
   <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="capturarTemperatura">
     <i class="bi bi-plus-circle-fill"></i> Capturar
   </button>
+
+  <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
+
+    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="LibererDiaTemperatura">
+      <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
+    </button>
+
+  <?php endif; ?>
+
+
+  <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
+
+    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="GenerarPDFTemperatura">
+      <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
+    </button>
+
+  <?php endif; ?>
 
 <?php endif; ?>

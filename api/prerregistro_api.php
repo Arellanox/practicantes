@@ -3,7 +3,7 @@ include_once "../clases/master_class.php";
 
 $master = new Master();
 $api = $_POST['api'];
-
+ 
 #datos de pacientes
 $curp = $_POST['curp'];
 $pasaporte = $_POST['pasaporte'];
