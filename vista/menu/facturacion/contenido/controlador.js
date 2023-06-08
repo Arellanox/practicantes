@@ -9,7 +9,7 @@ if (validarVista('FACTURACIÓN')) {
 }
 
 
-
+var selectCuenta = false;
 function obtenerPacientesContado() {
     obtenerTitulo('Pacientes particulares (Contado)'); //Aqui mandar el nombre de la area
     $.post("contenido/contado.html", function (html) {
