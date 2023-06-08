@@ -4,7 +4,7 @@ include_once "../clases/master_class.php";
 $master = new Master();
 $api = $_POST['api'];
 
-$id_receta = $_POST['ID_RECETAS'];
+$id_receta = $_POST['id_receta'];
 $turno_id = $_POST['turno_id'];
 $nombre_generico = $_POST['nombre_generico'];
 $nombre_comercial = $_POST['nombre_comercial'];
@@ -37,9 +37,17 @@ switch($api){
         $response = $master->insertByProcedure("sp_consultorio_recetas_g", $parametros);
         break;
 
-        //buscar datos en la tabla consultorio recetas
+    //buscar datos en la tabla consultorio recetas
     case 2:
         $response = $master->getByProcedure("sp_consultorio_recetas_b", [$turno_id]);
+        break;
+
+    case 3:
+        break;    
+        
+    //Desactivar registros de recetas
+    case 4:
+        $response = $master->deleteByProcedure("sp_consultorio_recetas_e", [$id_receta]);
         break;    
 
     default:

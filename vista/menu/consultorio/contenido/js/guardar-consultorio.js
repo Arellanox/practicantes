@@ -97,6 +97,8 @@ function guardarDatosConsultorio(btn) {
             }
             ajaxAwait(dataJson_recetas, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
                 alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
+
+                tablalistaRecetas.ajax.reload();
             })
 
             $("#nombre_generico").val(""),
@@ -109,7 +111,8 @@ function guardarDatosConsultorio(btn) {
             $("#duracion_de_tratamiento").val(""),
             $("#indicaciones_de_uso").val("")
 
-            tablalistaRecetas.ajax.reload()
+            
+
             break;
 
         case 'plan_tratamiento':
@@ -135,7 +138,7 @@ tablalistaRecetas = $("#tablaListaRecetas").DataTable({
     lengthChange: false,
     info: false,
     paging: false,
-    scrollY: autoHeightDiv(0, 284),
+    scrollY: '38vh',
     scrollCollapse: true,
     ajax: {
         dataType: 'json',
@@ -154,14 +157,65 @@ tablalistaRecetas = $("#tablaListaRecetas").DataTable({
     },
     columns: [
         {data: 'COUNT'},
-        {data: 'NOMBRE_GENERICO'}
-        // { data: 'FOLIO' }
+        {data: 'NOMBRE_GENERICO'},
+        {data: 'NOMBRE_COMERCIAL'},
+        {data: 'FORMA_FARMACEUTICA'},
+        {data: 'DOSIS'},
+        {data: 'PRESENTACION'},
+        {data: 'FRECUENCIA'},
+        {data: 'VIA_DE_ADMINISTRACION'},
+        {data: 'DURACION_DEL_TRATAMIENTO'},
+        {data: 'INDICACIONES_PARA_EL_USO'},
+        {data: 'ID_RECETA', render: function(data){
+            
+
+            return `<i class="bi bi-trash eliminar-receta" data-id = "${data}" style = "cursor: pointer"
+            onclick="desactivarTablaReceta.call(this)"></i>`;
+            
+        }}
+        
     ],
     columnDefs: [
         {target: 0, title: '#', className: 'all'},
-        { target: 1, title: 'Nombre generico', className: 'all' }
-        // { target: 2, title: 'Folio', className: 'none' }
-
+        {target: 1, title: 'Nombre generico', className: 'all' },
+        {target: 2, title: 'Nombre comercial', className: 'none'},
+        {target: 3, title: 'Forma Farmacéutica', className: 'none'},
+        {target: 4, title: 'Dosis', className: 'none'},
+        {target: 5, title: 'Presentación', className: 'none'},
+        {target: 6, title: 'Frecuencia', className: 'none'},
+        {target: 7, title: 'Vía de Administración', className: 'none'},
+        {target: 8, title: 'Duración de tratamiento', className: 'none'},
+        {target: 9, title: 'Indicaciones para el uso', className: 'none'},
+        {target: 10, title: '<i class="bi bi-trash"></i>', className: 'all'}
     ]
 })
 
+inputBusquedaTable('tablaListaRecetas', tablaListaRecetas, [],[],'col-12')
+
+function desactivarTablaReceta(){
+
+    var id_receta = $(this).data("id");
+
+    alertMensajeConfirm({
+        title: '¿Está seguro que desea desactivar el registro?',
+        text: 'No podrá modificarlo despues',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+    }, function(){
+
+        dataJson_eliminar = {
+            api: 4,
+            id_receta: id_receta
+        }
+
+        ajaxAwait(dataJson_eliminar, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
+            alertMensaje('success', 'Registro desactivado', 'Espere un momento...', null, null, 1500)
+
+            tablalistaRecetas.ajax.reload();
+        })
+    }, 1)
+}
