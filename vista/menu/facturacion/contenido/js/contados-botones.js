@@ -4,7 +4,7 @@ $(document).on('click', '.btn-facturar', function (event) {
     let btn = $(this);
 
     if (selectCuenta) {
-        $('#').modal('show');
+        $('#modalFacturarCuenta').modal('show');
     } else {
         alertToast('Selecciona un registro', 'info', 4000)
     }

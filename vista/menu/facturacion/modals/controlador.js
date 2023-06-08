@@ -6,5 +6,5 @@ $.post("modals/a_modals.php", function (html) {
     // $.getScript('modals/js/subir-perfil.js');
 }).done(function () {
     // Modal para Actualizar Cliente
-    $.getScript('modals/js/cl_editar_cliente.js');
+    $.getScript('modals/js/facturar-contado.js');
 });

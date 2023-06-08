@@ -191,14 +191,15 @@ function returnDataAjaxAwai(config, data) {
 
 //
 function configAjaxAwait(config) {
-  //valores por defecto de la funcion AjaxAwait
+  //valores por defecto de la funcion ajaxAwait y ajaxAwaitFormData
   const defaults = {
-    alertBefore: false,
-    response: true,
-    callbackBefore: false,
-    callbackAfter: false,
-    returnData: true,
-    WithoutResponseData: false,
+    alertBefore: false, //Alerta por defecto, "Estamos cargando la solucitud" <- Solo si la api consume tiempo
+    response: true, //Si la api tiene la estructura correcta (response.code)
+    callbackBefore: false, //Activa la function antes de enviar datos, before
+    callbackAfter: false, //Activa una funcion para tratar datos enviados desde ajax, osea success
+    returnData: true, // regresa los datos o confirmado (1)
+    WithoutResponseData: false, //Manda los datos directos
+    resetForm: false, //Reinicia el formulario en ajaxAwaitFormData
   }
 
   Object.entries(defaults).forEach(([key, value]) => {
@@ -209,14 +210,12 @@ function configAjaxAwait(config) {
 
 
 //Ajax Async FormData
-async function ajaxAwaitFormData(dataJson = {
-  id_turno: 0,
-}, apiURL, form = 'SinForm',
+async function ajaxAwaitFormData(dataJson = { api: 0, }, apiURL, form = 'OnlyForm'  /* <-- Formulario sin # */,
   config = {
     alertBefore: false
   },
   //Callback antes de enviar datos
-  callbackBefore = function () {
+  callbackBefore = () => {
     alertMsj({
       title: 'Espera un momento...',
       text: 'Estamos cargando tu solicitud, esto puede demorar un rato',
@@ -225,7 +224,7 @@ async function ajaxAwaitFormData(dataJson = {
     })
   },
   //Callback, antes de devolver la data
-  callbackSuccess = function () {
+  callbackSuccess = () => {
     console.log('callback ajaxAwait por defecto')
   }
 ) {
@@ -255,7 +254,7 @@ async function ajaxAwaitFormData(dataJson = {
         config.callbackBefore ? callbackBefore() : 1;
       },
       success: function (data) {
-
+        config.resetForm ? formID.reset() : false;
         if (config.response) {
           if (mensajeAjax(data)) {
             config.callbackAfter ? callbackSuccess(config.WithoutResponseData ? data.response.data : data) : 1;
@@ -1880,14 +1879,14 @@ function obtenerVistaAntecenetesPaciente(div, cliente, pagina = 1) {
 function obtenerVistaEspiroPacientes(div) {
   return new Promise(resolve => {
     $.post(http + servidor + "/" + appname + "/vista/menu/area-master/contenido/forms/form_espiro.html",
-      
-      function (html) {
-      setTimeout(function () {
-        $(div).html(html);
 
-        resolve(1)
-      }, 100);
-    });
+      function (html) {
+        setTimeout(function () {
+          $(div).html(html);
+
+          resolve(1)
+        }, 100);
+      });
   })
 }
 

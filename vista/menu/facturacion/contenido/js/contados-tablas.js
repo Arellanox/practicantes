@@ -59,15 +59,7 @@ tablaContados = $('#TablaContados').DataTable({
         },
         {
             data: 'FACTURA', render: function (data) {
-                if (data == 0) {
-                    let html = `<i class="bi bi-receipt-cutoff btn-facturar" style="cursor: pointer; font-size:18px;"> Facturar</i>`;
-
-                    return html;
-                } else {
-                    return '';
-                }
-
-
+                return `<i class="bi bi-receipt-cutoff btn-facturar" style="cursor: pointer; font-size:18px;"> Facturar</i>`;
             }
         }
     ],
