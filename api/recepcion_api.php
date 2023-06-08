@@ -451,13 +451,6 @@ switch ($api) {
         $response[0]['ORDENES_MEDICAS'] = $master->decodeJson([$response[0]['ORDENES_MEDICAS']]);
         $response[0]['IDENTIFICACION'] = $master->decodeJson([$response[0]['IDENTIFICACION']]);
         break;
-
-    case 12:
-        #recuperar todos los tipops de cuestionarios
-        $response = $master->getByProcedure("sp_cuestionarios_b", []);
-
-        break;
-        
     default:
         $response = "Api no definida.";
         break;

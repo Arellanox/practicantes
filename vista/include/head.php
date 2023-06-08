@@ -95,7 +95,3 @@
 <!-- PopersJs -->
 <!-- Development version -->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
-
-
-<!-- pdfmake -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>

@@ -9,14 +9,7 @@ if ($codigo === "ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91") {
 
 $token = isset($_GET['token']) ? $_GET['token'] : null;
 $tip = isset($_GET['tip']) ? $_GET['tip'] : null;
-
-
-
-//Cuestionarios
-$ant = isset($_GET['ant']) ? $_GET['ant'] : 0;
-$espiro = isset($_GET['']) ? $_GET[''] : 0;
-
-
+$ant = isset($_GET['ant']) ? $_GET['ant'] : null;
 include "../variables.php";
 $menu = "Pre-registro";
 ?>
@@ -68,7 +61,7 @@ $menu = "Pre-registro";
   const codigo = '<?php echo $codigo; ?>';
   const token = '<?php echo $token; ?>';
   // console.log(token)
-  let ant = <?php echo $ant; ?>;
+  let ant = '<?php echo $ant; ?>';
   let tip = '<?php echo $tip; ?>';
   let clienteRegistro, nombreCliente, idtoken;
   var registroAgendaRecepcion = 0;
@@ -125,7 +118,7 @@ $menu = "Pre-registro";
         success: function(data) {
           data = jQuery.parseJSON(data);
           if (data.response.data[0]) {
-            completarCliente(1, 'PARTICULAR', false, 0)
+            completarCliente(1, 'PARTICULAR')
           } else {
             redireccionarPrerregistro()
           }
@@ -144,13 +137,13 @@ $menu = "Pre-registro";
     clienteRegistro = id
     idtoken = id_registro
 
-    let antPre
+    //Activa por defecto
+    ant = true;
+    //Desactiva cuestionario para particulares
+    if (id == 1)
+      ant = false;
     //Desactiva cuestionario para la empresa desde la base
-    if (antecedentes == 0) antPre = false;
-    console.log(ant)
-    if (ant) antPre = ant;
-
-    ant = antPre
+    if (antecedentes == 0) ant = false;
 
     //Mostrar Vista
     vista('<?php echo $menu; ?>', '<?php echo $https . $url . '/' . $appname . '/vista/menu/controlador/controlador.php'; ?>', '<?php echo $tip; ?>')

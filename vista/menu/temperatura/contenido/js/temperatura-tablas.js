@@ -65,7 +65,6 @@ selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, fun
         $(".informacion-temperatura").fadeIn(0);
         DataFolio.folio = data['ID_FOLIOS_TEMPERATURA']
         tablaTemperatura.ajax.reload()
-        SelectedFoliosData = data;
     } else {
         selectTableFolio = false;
         fadeRegistro('Out')
@@ -81,7 +80,7 @@ var DataFolio = {
 tablaTemperatura = $('#TablaTemperatura').DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
-    info: true,
+    info: false,
     paging: false,
     scrollY: autoHeightDiv(0, 284),
     scrollCollapse: true,

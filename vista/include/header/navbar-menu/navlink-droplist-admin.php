@@ -11,7 +11,7 @@ date_default_timezone_set('America/Mexico_City');
 <?php
 if ($_SESSION['vista']['SERVICIOS (EQUIPOS)'] == 1) : ?>
     <!-- Administrativos -->
-    <a class="dropdown-a align-items-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-servicios" aria-expanded="false">
+    <a class="dropdown-a align-items-center rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-servicios" aria-expanded="false">
         <i class="bi bi-clipboard-heart"></i> Servicios
     </a>
     <div class="collapse" id="board-servicios">
@@ -29,41 +29,15 @@ if ($_SESSION['vista']['SERVICIOS (EQUIPOS)'] == 1) : ?>
 
 <?php if ($_SESSION['vista']['FACTURACIÓN'] == 1) : ?>
     <!-- Facturacion -->
-    <a class="dropdown-a align-items-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-facturacion" aria-expanded="false">
+    <a class="dropdown-a align-items-center rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-facturacion" aria-expanded="false">
         <i class="bi bi-calculator"></i> Facturación
     </a>
     <div class="collapse" id="board-facturacion">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-
-            <a class="dropdown-a align-items-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-cuentasFacturacion" aria-expanded="false">
-                <i class="bi bi-dot"></i> Cuentas
-            </a>
-            <div class="collapse" id="board-cuentasFacturacion">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li> <a class="dropdown-a" type="button" class="btn btn-primary" href="<?php echo $https . $url . '/' . $appname . '/vista/menu/facturacion/#CONTADO'; ?>">
-                            <i class="bi bi-dot"></i> De Contado
-                        </a> </li>
-                    <li> <a class="dropdown-a" type="button" class="btn btn-primary" href="<?php echo $https . $url . '/' . $appname . '/vista/menu/facturacion/#CREDITO'; ?>">
-                            <i class="bi bi-dot"></i> De Crédito
-                        </a> </li>
-                    <hr class="dropdown-divider">
-                </ul>
-            </div>
-
-            <a class="dropdown-a align-items-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-ExcelFacturacion" aria-expanded="false">
-                <i class="bi bi-dot"></i> Reportes
-            </a>
-            <div class="collapse" id="board-ExcelFacturacion">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li> <a class="dropdown-a" type="button" class="btn btn-primary" href="<?php echo $https . $url . '/' . $appname . '/vista/documentacion/reporte-paciente/'; ?>">
-                            <i class="bi bi-dot"></i> Pacientes
-                        </a> </li>
-                    <hr class="dropdown-divider">
-                </ul>
-            </div>
-
+            <li><a class="dropdown-a" type="button" class="btn btn-primary" href="<?php echo $https . $url . '/' . $appname . '/vista/menu/facturacion/#CONTADO'; ?>"><i class="bi bi-dot"></i> Contado</a></li>
         </ul>
     </div>
+
 <?php endif; ?>
 
 
@@ -73,7 +47,7 @@ if ($_SESSION['vista']['SERVICIOS (EQUIPOS)'] == 1) : ?>
     $_SESSION['vista']['COTIZACIONES_ESTUDIOS'] == 1
 ) : ?>
     <!-- Contaduria -->
-    <a class="dropdown-a align-items-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-listaprecios" aria-expanded="false">
+    <a class="dropdown-a align-items-center rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-listaprecios" aria-expanded="false">
         <i class="bi bi-tag"></i> Lista de Estudios
     </a>
     <div class="collapse" id="board-listaprecios">
@@ -105,7 +79,7 @@ if ($_SESSION['vista']['SERVICIOS (EQUIPOS)'] == 1) : ?>
 <?php endif; ?>
 
 <?php if ($_SESSION['vista']['CURSOS BIMO'] == 1) : ?>
-    <a class="dropdown-a align-items-center  collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-TALENTOHUMANO" aria-expanded="false">
+    <a class="dropdown-a align-items-center rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#board-TALENTOHUMANO" aria-expanded="false">
         <i class="bi bi-people"></i> Talento Humano
     </a>
     <div class="collapse" id="board-TALENTOHUMANO">

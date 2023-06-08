@@ -1,5 +1,4 @@
 <div class="row">
-
     <h4>CUESTIONARIO RESPIRATORIO</h4>
     <hr>
     <p class="mb-3 ">Como parte del estudio a realizar agradecemos consteste las siguientes preguntas marque <b>"SI" o
@@ -7,58 +6,52 @@
 
     <div class="row">
 
-        <div class="col-lg-6 col-12 mb-4">
-            <!--PREGUNTA NUMERO 1-->
+        <div class="col-6 mb-4">
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿En la actualidad fuma tabaco o ha fumado tabaco en el
-                        último mes?</label>
+                    <label class="form-label fw-bold">¿En la actualidad fuma tabaco o ha fumado tabaco en el último
+                        mes?</label>
                 </div>
                 <!--PREGUNTA NUMERO 1-->
                 <div class="col-12">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="respuestas[1][1][valor]" value="1" id="1pr1"
-                            onclick="uncheck()" >
-                        <label class="form-check-label " for="1pr1">Sí</label>
+                            onclick="uncheck()">
+                        <label class="form-check-label" for="1pr1">SI</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="respuestas[1][2][valor]" value="2" id="1pr2"
                             onclick="uncheck()">
-                        <label class="form-check-label" for="1pr2">No</label>
+                        <label class="form-check-label" for="1pr2">NO</label>
                     </div>
                 </div>
             </div>
-
             <!--PREGUNTAS NUMERO 2-->
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿Ha tenido alguna vez alguna de las siguientes
+                    <label class="form-label fw-bold">¿Ha tenido alguna vez alguna de las siguientes
                         condiciones?</label>
                 </div>
                 <div class="col-12 ">
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="3" id="2pr1"
                             name="respuestas[2][3][valor]">
-                        <label class="form-check-label label-span" for="2pr1"> Ataque epilépticos</label>
+                        <label class="form-check-label" for="2pr1">Ataque epilépticos</label>
 
-                        <div class="collapse" id="p2r3">
-                            <textarea name="respuestas[2][3][comentario]" 
-                                class="form-control input-form mt-2"
+                        <div class="collapse">
+                            <textarea name="respuestas[2][3][comentario]" class="form-control input-form mt-2"
                                 placeholder="Especifique el ultimo episodio"></textarea>
                         </div>
 
                     </div>
-
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="4" id="2pr2"
                             name="respuestas[2][4][valor]"> <!--Si esta seleccionado especificar-->
-
-                        <label class="form-check-label label-span" for="2pr2">Condición cardiaca (arritmia, infarto al
-                            miocardio,
+                        <label class="form-check-label" for="2pr2">Condición cardiaca (arritmia, infarto al miocardio,
                             angina de
                             pecho)</label>
 
-                        <div class="collapse" id="p2r4">
+                        <div class="collapse">
                             <textarea name="respuestas[2][4][comentario]" class="form-control input-form mt-2"
                                 placeholder="Especifique el ultimo episodio"></textarea>
                         </div>
@@ -67,25 +60,23 @@
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="5" id="2pr3"
                             name="respuestas[2][5][valor]">
-                        <label class="form-check-label label-span" for="2pr3">Diabetes Mellitus tipo II</label>
+                        <label class="form-check-label" for="2pr3">Diabetes Mellitus tipo II</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" id="2pr4" name="respuestas[2][6][valor]"
                             value="6">
-                        <label for="2pr4" class="form-check-label label-span">Reacciones alérgicas que interfieran con
-                            su
+                        <label for="2pr4" class="form-check-label">Reacciones alérgicas que interfieran con su
                             respiración</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" id="2pr5" name="respuestas[2][7][valor]" type="checkbox"
                             value="7">
-                        <label class="form-check-label label-span" for="2pr5">Claustrofobia (miedo a los lugares
-                            cerrados)</label>
+                        <label class="form-check-label" for="2pr5">Claustrofobia (miedo a los lugares cerrados)</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="8" id="2pr6"
                             name="respuestas[2][8][valor]">
-                        <label class="form-check-label label-span" for="2pr6">Dificultad en detectar olores</label>
+                        <label class="form-check-label" for="2pr6">Dificultad en detectar olores</label>
                     </div>
                 </div>
 
@@ -94,8 +85,7 @@
             <!--PREGUNTA NUMERO 3-->
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿Ha tenido alguna vez alguno de los siguientes
-                        problemas
+                    <label class="form-label fw-bold">¿Ha tenido alguna vez alguno de los siguientes problemas
                         pulmonares?</label>
                 </div>
                 <div class="col-12 ">
@@ -129,7 +119,7 @@
                             name="respuestas[3][14][valor]">
                         <label class="form-check-label" for="3pr6">Tubercolosis</label>
 
-                        <div class="collapse" id="p3r14">
+                        <div class="collapse">
                             <textarea name="respuestas[3][14][comentario]" class="form-control input-form mt-2"
                                 placeholder="Especifique si actualmente cursa con la enfermedad"></textarea>
                         </div>
@@ -158,8 +148,7 @@
             <!--PREGUNTA NUMERO 4-->
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿Tiene en la actualidad algunos de los siguientes
-                        síntomas de
+                    <label class="form-label fw-bold">¿Tiene en la actualidad algunos de los siguientes síntomas de
                         enfermedad
                         pulmonar?</label>
                 </div>
@@ -172,64 +161,55 @@
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="19" id="4pr2"
                             name="respuestas[4][19][valor]">
-                        <label class="form-check-label label-span" for="4pr2">Cortedad de respiración al caminar
-                            rápidamente en
+                        <label class="form-check-label" for="4pr2">Cortedad de respiración al caminar rápidamente en
                             terreno plano o
                             al
-                            subir una colina o inclinación ligera</label>
+                            subir una colina o inclinacion ligera</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="20" id="4pr3"
                             name="respuestas[4][20][valor]">
-                        <label class="form-check-label label-span" for="4pr3">Cortedad de respiración al caminar con
-                            otras personas
+                        <label class="form-check-label" for="4pr3">Cortedad de respiración al caminar con otras personas
                             a paso
                             ordinario en terreno plano</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="21" id="4pr4"
                             name="respuestas[4][21][valor]">
-                        <label class="form-check-label label-span" for="4pr4">Tiene que detenerse para respirar al
-                            caminar a su
+                        <label class="form-check-label" for="4pr4">Tiene que detenerse para respirar al caminar a su
                             propio paso en
                             terreno plano</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="22" id="4pr5"
                             name="respuestas[4][22][valor]">
-                        <label class="form-check-label label-span" for="4pr5">Cortedad de respiración al lavarse o
-                            vestirse</label>
+                        <label class="form-check-label" for="4pr5">Cortedad de respiración al lavarse o vestirse</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="23" id="4pr6"
                             name="respuestas[4][23][valor]">
-                        <label class="form-check-label label-span" for="4pr6">Cortedad de respiración que interfiera con
-                            su
+                        <label class="form-check-label" for="4pr6">Cortedad de respiración que interfiera con su
                             trabajo</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="24" id="4pr7"
                             name="respuestas[4][24][valor]">
-                        <label class="form-check-label label-span" for="4pr7">Tos que produzca flema (esputo
-                            espeso)</label>
+                        <label class="form-check-label" for="4pr7">Tos que produzca flema (esputo espeso)</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="25" id="4pr8"
                             name="respuestas[4][25][valor]">
-                        <label class="form-check-label label-span" for="4pr8">Tos que lo despierte temprano en la
-                            mañana</label>
+                        <label class="form-check-label" for="4pr8">Tos que lo despierte temprano en la mañana</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
-                        <input class="form-check-input" type="checkbox" value="26" id="4pr9"" name="
-                            respuestas[4][26][valor]">
-                        <label class="form-check-label label-span" for="4pr9">Tos que ocurra mayormente mientras está
+                        <input class="form-check-input" type="checkbox" value="26" id="4pr9"" name="respuestas[4][26][valor]">
+                        <label class="form-check-label" for="4pr9">Tos que ocurra mayormente mientras está
                             acostado</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="27" id="4pr10"
                             name="respuestas[4][27][valor]"">
-                        <label class=" form-check-label label-span" for=" 4pr10">Toser con sangre en el último
-                        mes</label>
+                        <label class=" form-check-label " for=" 4pr10">Toser con sangre en el último mes</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="28" id="4pr11"
@@ -239,20 +219,18 @@
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="29" id="4pr12"
                             name="respuestas[4][29][valor]"">
-                        <label class=" form-check-label label-span" for="4pr12">Sibilancia que interfiera con su
-                        trabajo</label>
+                        <label class=" form-check-label" for="4pr12">Sibilancia que interfiera con su trabajo</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="30" id="4pr13"
                             name="respuestas[4][30][valor]"">
-                        <label class=" form-check-label label-span" for="4pr13">Dolor en el pecho cuando inhale
+                        <label class=" form-check-label" for="4pr13">Dolor en el pecho cuando inhale
                         profundamente</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="31" id="4pr14"
                             name="respuestas[4][31][valor]">
-                        <label class="form-check-label label-span" for="4pr14">Cualesquiera otros síntomas que piense
-                            que están
+                        <label class="form-check-label" for="4pr14">Cualesquiera otros sintomas que piense que estan
                             relacionados con otros problemas pulmonares</label>
                     </div>
                 </div>
@@ -260,17 +238,17 @@
         </div>
 
 
-        <div class="col-lg-6 col-12 mb-4">
+        <div class="col-6 mb-4">
 
             <!--PREGUNTA NUMERO 6-->
             <div class="col-12 mt-4">
-
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿En su trabajo actual, está trabajando a grandes
-                        altitudes (sobre
+                    <label class="form-label fw-bold">¿En su trabajo actual, está trabajando a grandes altitudes (sobre
                         5,000 pies),
                         o en un lugar que sea más bajo que la cantidad normal de oxígeno?</label>
+                    <!-- Si contesto "sí", tiene sensación de mareos, cortedad de respiración, golpeteo en el pecho u otros síntomas cuando está trabajando bajo estas condiciones: Sí/No -->
                 </div>
+
                 <div class="col-12 ">
                     <div class="form-check form-check-inline col-12 mb-2">
                         <div class="form-check form-check-inline">
@@ -283,9 +261,8 @@
                                 id="6pr2" onclick="uncheck()">
                             <label class="form-check-label" for="6pr2">NO</label>
                         </div>
-
                         <!--PREGUNTA NUMERO 28-->
-                        <div class="collapse" id="p6r1" >
+                        <div class="collapse">
 
                             <label class="form-label fw-bold mt-3">¿Tiene sensación de mareos, cortedad de respiración,
                                 golpeteo en el pecho u otros síntomas cuando está trabajando bajo estas
@@ -312,8 +289,7 @@
             <!---PREGUNTA NUMERO 7-->
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿En el trabajo o en el hogar, alguna vez ha estado
-                        expuesto a
+                    <label class="form-label fw-bold">¿En el trabajo o en el hogar, alguna vez ha estado expuesto a
                         solventes
                         peligrosos, químicos aerosuspendidos peligrosos (e.g., gases, emanaciones o polvos), o ha
                         entrado en
@@ -333,7 +309,7 @@
                             <label for="7pr2" class="form-check-label">NO</label>
                         </div>
 
-                        <div class="collapse" id="p7r1">
+                        <div class="collapse">
                             <textarea name="respuestas[7][1][comentario]" class="form-control input-form mt-2"
                                 placeholder="Nombra los productos químicos si los conoce"></textarea>
                         </div>
@@ -345,9 +321,9 @@
             <!--PREGUNTA NUMERO 8-->
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">Alguna vez ha trabajado con los materiales o
-                        condiciones listados
-                        a continuación:</label>
+                    <label class="form-label fw-bold">Alguna vez ha trabajado con los materiales o condiciones listados
+                        a
+                        continuación:</label>
                 </div>
                 <div class="col-12 ">
                     <div class="form-check form-check-inline col-12 mb-2">
@@ -358,13 +334,12 @@
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="36" id="8pr2"
                             name="respuestas[8][36][valor]">
-                        <label class="form-check-label label-span" for="8pr2">Sílice (i.e., chorro abrasivo con
-                            arena)</label>
+                        <label class="form-check-label" for="8pr2">Sílice (i.e., chorro abrasivo con arena)</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="37" id="8pr3"
                             name="respuestas[8][37][valor]">
-                        <label class="form-check-label label-span" for="8pr3">Tungteno/cobalto (e.g., moliendo este
+                        <label class="form-check-label" for="8pr3">Tungteno/cobalto (e.g., moliendo este
                             materia)</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
@@ -380,7 +355,7 @@
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="40" id="8pr6"
                             name="respuestas[8][40][valor]">
-                        <label class="form-check-label label-span" for="8pr6">Carbón (por ejemplo, minería)</label>
+                        <label class="form-check-label" for="8pr6">Carbón (por ejemplo, minería)</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="41" id="8pr7"
@@ -400,11 +375,10 @@
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="44" id="8pr10"
                             name="respuestas[8][44][valor]">
-                        <label class="form-check-label label-span" for="8pr10">Cualesquiera otras exposiciones
-                            peligrosas</label>
+                        <label class="form-check-label" for="8pr10">Cualesquiera otras exposiciones peligrosas</label>
 
 
-                        <div class="collapse" id="p8r44">
+                        <div class="collapse">
                             <textarea name="respuestas[8][44][comentario]" class="form-control input-form mt-2"
                                 placeholder="Describa estas exposiciones"></textarea>
                         </div>
@@ -412,54 +386,75 @@
                 </div>
             </div>
 
-
-            <!--PREGUNTA NUMERO 9-->
+            <!--PREGUNTA NUMERO 9
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿Ha usado un respirador?</label>
+                    <label class="form-label fw-bold">¿Ha usado un respirador?</label>
+                    <!--Si la respuesta es si que tipo
+                </div>
+                <div class="form-check form-check-inline col-12 mb-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input respirador" type="radio" name="respuestas[9][1][valor]" value="1" id="9pr1" onclick="uncheck()">
+                        <label class="form-check-label" for="9pr1">SI</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input respirador" type="radio" name="respuestas[9][2][valor]"
+                            value="2" id="9pr2" onclick="uncheck()">
+                        <label class="form-check-label" for="9pr2">NO</label>
+                    </div>
+
+                    <div class="collapse">
+                        <textarea name="respuestas[9][1][comentario]" class="form-control input-form mt-2"
+                            placeholder="¿Que tipo ha usado?"></textarea>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="col-12 mt-4">
+                <div class="col-12">
+                    <label class="form-label fw-bold">¿¿Ha usado un respirador??</label>
                     <!-- Si contesto "sí", nombre los productos químicos si los conoce-->
                 </div>
                 <div class="col-12 ">
                     <div class="form-check form-check-inline col-12 mb-2">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input respirador" type="radio" name="respuestas[9][1][valor]"
-                                value="1" id="9pr1" onclick="uncheck()">
+                            <input class="form-check-input respirador" type="radio" name="respuestas[9][1][valor]" value="1" id="9pr1"
+                                onclick="uncheck()">
                             <label class="form-check-label" for="9pr1">SI</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input respirador" type="radio" name="respuestas[9][2][valor]"
-                                value="2" id="9pr2" onclick="uncheck()">
+                            <input class="form-check-input respirador" type="radio" name="respuestas[9][2][valor]" value="2" id="9pr2"
+                                onclick="uncheck()">
                             <label for="9pr2" class="form-check-label">NO</label>
                         </div>
-
-                        <div class="collapse" id="p9r1">
+            
+                        <div class="collapse">
                             <textarea name="respuestas[9][1][comentario]" class="form-control input-form mt-2"
                                 placeholder="¿Qué tipo ha usado?"></textarea>
-
+                            
                         </div>
                     </div>
                 </div>
-
+            
             </div>
 
 
             <!--PREGUNTA NUMERO 10-->
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿Si ha usado un respiratorio, alguna vez ha tenido
-                        alguno de los
+                    <label class="form-label fw-bold">¿Si ha usado un respiratorio, alguna vez ha tenido alguno de los
                         siguientes problemas?</label>
                 </div>
                 <div class="col-12 ">
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="45" id="10pr1"
                             name="respuestas[10][45][valor]">
-                        <label class="form-check-label label-span" for="10pr1">Irritación de los ojos</label>
+                        <label class="form-check-label" for="10pr1">Irritación de los ojos</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="46" id="10pr2"
                             name="respuestas[10][46][valor]">
-                        <label class="form-check-label label-span" for="10pr2">Alergias o salpullidos de la piel</label>
+                        <label class="form-check-label" for="10pr2">Alergias o salpullidos de la piel</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="47" id="10pr3"
@@ -469,14 +464,14 @@
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="48" id="10pr4"
                             name="respuestas[10][48][valor]">
-                        <label class="form-check-label label-span" for="10pr4"> Debilidad o fatiga general</label>
+                        <label class="form-check-label" for="10pr4"> Debilidad o fatiga general</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="49" id="10pr5"
                             name="respuestas[10][49][valor]">
-                        <label class="form-check-label label-span" for="10pr5">Cualquier otro problema que interfiera
-                            con su uso
-                            del respirador</label>
+                        <label class="form-check-label" for="10pr5">Cualquier otro problema que interfiera con su uso
+                            del
+                            respirador</label>
                     </div>
                 </div>
             </div>
@@ -484,26 +479,24 @@
             <!--PREGUNTA NUMERO 5-->
             <div class="col-12 mt-4">
                 <div class="col-12">
-                    <label class="form-label fw-bold label-span">¿En la actualidad toma medicamentos para alguno de los
-                        siguientes
+                    <label class="form-label fw-bold">¿En la actualidad toma medicamentos para alguno de los siguientes
                         problemas?</label>
                 </div>
                 <div class="col-12 ">
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="32" id="5pr1"
                             name="respuestas[5][32][valor]">
-                        <label class="form-check-label label-span" for="5pr1">Problemas respiratorios o
-                            pulmonares</label>
+                        <label class="form-check-label" for="5pr1">Problemas respiratorios o pulmonares</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="33" id="5pr2"
                             name="respuestas[5][33][valor]">
-                        <label class="form-check-label label-span" for="5pr2">Problemas de corazón</label>
+                        <label class="form-check-label" for="5pr2">Problemas de corazón</label>
                     </div>
                     <div class="form-check form-check-inline col-12 mb-2">
                         <input class="form-check-input" type="checkbox" value="34" id="5pr3"
                             name="respuestas[5][34][valor]">
-                        <label class="form-check-label label-span" for="5pr3">Presión sanguínea</label>
+                        <label class="form-check-label" for="5pr3">Presión sanguínea</label>
                     </div>
                 </div>
 
@@ -517,19 +510,18 @@
         <!--PRIMERA SITUACION-->
         <div class="col-12 mt-4">
 
-            <p class="mb-3" style="text-align: justify;">En caso de que aplique la siguiente situación, conteste las
-                preguntas marcando <b> "Si" o
-                    "No" </b> según sea el caso, sí
+            <p class="mb-3">En caso de que aplique la siguiente situación, conteste las preguntas marcando <b> "Si" o
+                    "No" </b> según sea el caso, si
                 no aplica favor de seleccionar <b> " No aplica"</b></b></p>
 
-            <div class="form-check form-check-inline col-12 mb-2">
-                <input class="form-check-input" type="checkbox" name="respuestas[42][81][valor]"  value="81" id="no_aplica1">
+            <div class="form-check form-check-inline col-12 mb-4">
+                <input class="form-check-input" type="checkbox" name="no_aplica1" id="no_aplica1" value="No aplica">
                 <label class="form-check-label " for="no_aplica1"><b>No aplica</b></label>
 
-                <div class="collapse show" id="pregunta42">
+                <div class="collapse show">
 
-                    <div class="col-12 mb-3 mt-4 " id="acordion">
-                        <div class="accordion " id="accordionFlushExample">
+                    <div class="col-12 mb-3 mt-4" id="acordion">
+                        <div class="accordion" id="accordionFlushExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
                                     <p class="accordion-button collapsed text-center"
@@ -538,35 +530,33 @@
                                         Conteste las siguientes preguntas...
                                     </p>
                                 </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                                <div id="flush-collapseOne" class="accordion-collapse collapse show "
                                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
 
                                         <div class="row">
 
-                                            <div class="col-lg-6 col-12">
+                                            <div class="col-6">
 
                                                 <!--PREGUNTA NUMERO 11-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">Marque el tipo de
-                                                            respirador
-                                                            que vaya a usar (puede marcar más de una categoría)</label>
+                                                        <label class="form-label fw-bold">Marque el tipo de respirador
+                                                            que vaya a usar
+                                                            (puede marcar más de una categoría)</label>
                                                     </div>
                                                     <div class="col-12 ">
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="50"
                                                                 id="11pr1" name="respuestas[11][50][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="11pr1">Respirador
+                                                            <label class="form-check-label" for="11pr1">Respirador
                                                                 desechable N, R o P (máscara de
                                                                 filtro del tipo sin cartuchos solamente).</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="51"
                                                                 id="11pr2" name="respuestas[11][51][valor]">
-                                                            <label class="form-check-label label-span" for="11pr2">Otro
-                                                                tipo (por
+                                                            <label class="form-check-label" for="11pr2">Otro tipo (por
                                                                 ejemplo, tipo de media careta o
                                                                 careta completa, purificador de aire automático, aparato
                                                                 respirador
@@ -578,8 +568,7 @@
                                                 <!--PREGUNTA NUMERO 12-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Usará alguno de
-                                                            los
+                                                        <label class="form-label fw-bold">¿Usará alguno de los
                                                             siguientes artículos en sus
                                                             respiradores?</label>
                                                     </div>
@@ -593,8 +582,7 @@
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="53"
                                                                 id="12pr2" name="respuestas[12][53][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="12pr2">Canastos (por
+                                                            <label class="form-check-label" for="12pr2">Canastos (por
                                                                 ejemplo, máscaras para
                                                                 gases)</label>
                                                         </div>
@@ -610,53 +598,46 @@
                                                 <!--PREGUNTA NUMERO 13-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Con cuánta
-                                                            frecuencia se
-                                                            espera que use los respiradores? (marque todas las
-                                                            contestaciones que le
+                                                        <label class="form-label fw-bold">¿Con cuánta frecuencia se
+                                                            espera que use los
+                                                            respiradores? (marque todas las contestaciones que le
                                                             apliquen)</label>
                                                     </div>
                                                     <div class="col-12 ">
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="55"
                                                                 id="13pr1" name="respuestas[13][55][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="13pr1">Escape solamente
+                                                            <label class="form-check-label" for="13pr1">Escape solamente
                                                                 (no rescate)</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="56"
                                                                 id="13pr2" name="respuestas[13][56][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="13pr2">Rescate de
+                                                            <label class="form-check-label" for="13pr2">Rescate de
                                                                 emergencia solamente</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="57"
                                                                 id="13pr3" name="respuestas[13][57][valor]">
-                                                            <label class="form-check-label label-span" for="13pr3">Menos
-                                                                de cinco
+                                                            <label class="form-check-label" for="13pr3">Menos de cinco
                                                                 horas a la semana</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="58"
                                                                 id="13pr4" name="respuestas[13][58][valor]">
-                                                            <label class="form-check-label label-span" for="13pr4">Menos
-                                                                de dos
+                                                            <label class="form-check-label" for="13pr4">Menos de dos
                                                                 horas por día</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="59"
                                                                 id="13pr5" name="respuestas[13][59][valor]">
-                                                            <label class="form-check-label label-span" for="13pr5">De
-                                                                dos a cuatro
+                                                            <label class="form-check-label" for="13pr5">De dos a cuatro
                                                                 horas por día</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="60"
                                                                 id="13pr6" name="respuestas[13][60][valor]">
-                                                            <label class="form-check-label label-span" for="13pr6">Más
-                                                                de cuatro
+                                                            <label class="form-check-label" for="13pr6">Más de cuatro
                                                                 horas por día</label>
                                                         </div>
                                                     </div>
@@ -665,49 +646,45 @@
                                                 <!--PREGUNTA NUMERO 14-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">Durante el período
-                                                            que está
-                                                            usando el respirador, es su esfuerzo de trabajo:</label>
+                                                        <label class="form-label fw-bold">Durante el período que está
+                                                            usando el respirador,
+                                                            es su esfuerzo de trabajo:</label>
                                                     </div>
                                                     <div class="col-12" id="esfuerzo_trabajo_contenedor">
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input esfuerzo_trabajo"
                                                                 type="checkbox" name="respuestas[14][61][valor]"
                                                                 value="61" id="14pr1" onclick="uncheck()">
-                                                            <label class="form-check-label label-span"
-                                                                for="14pr1">Ligero (menos de
+                                                            <label class="form-check-label" for="14pr1">Ligero (menos de
                                                                 200 kcal por hora)</label>
 
 
 
-                                                            <div class="esfuerzo_trabajo collapse" id="p14r61">
-                                                                <p class="mt-2" style="text-align: justify;"><b>¿Cuánto
-                                                                        dura este período en
+                                                            <div class="esfuerzo_trabajo collapse">
+                                                                <p class="mt-2"><b>¿Cuanto dura este período en
                                                                         promedio?</b></p>
-
                                                                 <div class="input-group mt-2 mb-2">
                                                                     <span class="input-group-text input-span">Por turno:
                                                                     </span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[39][0][comentario]" id="p39">
+                                                                        maxlength="3">
 
                                                                     <span
                                                                         class="input-group-text input-span">horas:</span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[40][0][comentario]" id="p40">
+                                                                        maxlength="3">
 
                                                                     <span
                                                                         class="input-group-text input-span">minutos:</span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[41][0][comentario]" id="p41">
+                                                                        maxlength="3">
                                                                 </div>
                                                             </div>
 
 
                                                         </div>
 
-                                                        <p class="lead mb-3"
-                                                            style="font-size: 15px; text-align: justify;">
+                                                        <p class="lead mb-3" style="font-size: 15px;">
                                                             Ejemplo de trabajo ligero es estar sentado mientras escribe,
                                                             mecanografía,
                                                             bosqueja o realiza trabajo ligero de ensamblaje: O de pie
@@ -719,36 +696,33 @@
                                                             <input class="form-check-input esfuerzo_trabajo"
                                                                 type="checkbox" name="respuestas[14][62][valor]"
                                                                 value="62" id="14pr2" onclick="uncheck()">
-                                                            <label class="form-check-label label-span"
-                                                                for="14pr2">Moderado (200 a
+                                                            <label class="form-check-label" for="14pr2">Moderado (200 a
                                                                 350 kcal por hora)</label>
 
-                                                            
-                                                            <div class="esfuerzo_trabajo collapse" id="p14r62">
-                                                                <p class="mt-2" style="text-align: justify;"><b>¿Cuánto
-                                                                        dura este período en
+                                                            <!--CHECAR COMO MANDAR ESTOS DATOS-->
+                                                            <div class="esfuerzo_trabajo collapse">
+                                                                <p class="mt-2"><b>¿Cuanto dura este período en
                                                                         promedio?</b></p>
                                                                 <div class="input-group mt-2 mb-2">
                                                                     <span class="input-group-text input-span">Por turno:
                                                                     </span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[39][00][comentario]" id="p39">
+                                                                        maxlength="3">
 
                                                                     <span
                                                                         class="input-group-text input-span">horas:</span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[40][00][comentario]" id="p40">
+                                                                        maxlength="3">
 
                                                                     <span
                                                                         class="input-group-text input-span">minutos:</span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[41][00][comentario]" id="p41">
+                                                                        maxlength="3">
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <p class="lead mb-3"
-                                                            style="font-size: 15px; text-align: justify;">
+                                                        <p class="lead mb-3" style="font-size: 15px;">
                                                             Ejemplo de esfuerzo de trabajo moderado es estar sentado
                                                             clavando y limando,
                                                             manejar un camión autobús en tránsito urbano, estar de pie
@@ -768,39 +742,33 @@
                                                             <input class="form-check-input esfuerzo_trabajo"
                                                                 type="checkbox" name="respuestas[14][63][valor]"
                                                                 value="63" id="14pr3" onclick="uncheck()">
-                                                            <label class="form-check-label label-span"
-                                                                for="14pr3">Pesado (sobre
+                                                            <label class="form-check-label" for="14pr3">Pesado (sobre
                                                                 350 kcal por hora)</label>
 
-                                                            
-                                                            <div class="esfuerzo_trabajo collapse" id="p14r63">
-                                                                <p class="mt-2" style="text-align: justify;"><b>¿Cuánto
-                                                                        dura este período en
+                                                            <!--CHECAR COMO MANDAR ESTOS DATOS-->
+                                                            <div class="esfuerzo_trabajo collapse">
+                                                                <p class="mt-2"><b>¿Cuánto dura este período en
                                                                         promedio?</b></p>
                                                                 <div class="input-group mt-2 mb-2">
-
-                                                                    <span class="input-group-text input-span">Por
-                                                                        turno:</span>
+                                                                    <span class="input-group-text input-span">Por turno:
+                                                                    </span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[39][000][comentario]" id="p39">
+                                                                        maxlength="3">
 
                                                                     <span
                                                                         class="input-group-text input-span">horas:</span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[40][000][comentario]" id="p40">
+                                                                        maxlength="3">
 
                                                                     <span
                                                                         class="input-group-text input-span">minutos:</span>
                                                                     <input type="number" class="form-control input-form"
-                                                                        name="respuestas[41][000][comentario]" id="p41">
-
-
+                                                                        maxlength="3">
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <p class="lead mb-3"
-                                                            style="font-size: 15px; text-align: justify;">
+                                                        <p class="lead mb-3" style="font-size: 15px;">
                                                             Ejemplos de trabajo pesado son levantar una carga pesada
                                                             (alrededor de 50 lbs.),
                                                             desde el piso a la cintura o al hombro; trabajar en un
@@ -817,8 +785,7 @@
                                                 <!--PREGUNTA NUMERO 15-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Usará ropa/equipo
-                                                            de
+                                                        <label class="form-label fw-bold">¿Usará ropa/equipo de
                                                             protección (distinto del
                                                             respirador), mientras usa su respirador?</label>
                                                     </div>
@@ -837,8 +804,8 @@
                                                             <label class="form-check-label" for="14pr2r">NO</label>
                                                         </div>
 
-                                                        <div class="collapse" id="p15r1">
-                                                            <textarea name="respuestas[15][1][comentario]"
+                                                        <div class="collapse">
+                                                            <textarea name="respuestas[15][2][comentario]"
                                                                 class="form-control input-form mt-2"
                                                                 placeholder="Describa esta ropa y/o equipo protector: "></textarea>
                                                         </div>
@@ -848,8 +815,7 @@
                                                 <!---PREGUNTA NUMERO 16-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Trabajará bajo
-                                                            condiciones de
+                                                        <label class="form-label fw-bold">¿Trabajará bajo condiciones de
                                                             calor (temperaturas
                                                             que excedan a 771 F/ 410.55 C)?</label>
                                                     </div>
@@ -871,13 +837,12 @@
                                             </div>
 
 
-                                            <div class="col-lg-6 col-12">
+                                            <div class="col-6">
 
                                                 <!--PREGUNTA NUMERO 17-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Trabajará bajo
-                                                            condiciones de
+                                                        <label class="form-label fw-bold">¿Trabajará bajo condiciones de
                                                             humedad?</label>
                                                     </div>
                                                     <div class="col-12">
@@ -899,14 +864,13 @@
                                                 <!--PREGUNTA NUMERO 18-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">Describa el trabajo
-                                                            que vaya a
+                                                        <label class="form-label fw-bold">Describa el trabajo que vaya a
                                                             hacer mientras usa
                                                             el respirador:</label>
                                                     </div>
                                                     <div class="col-12">
                                                         <input class="form-control input-form"
-                                                            name="respuestas[18][0][comentario]" type="text"
+                                                            name="respuestas[18][comentario]" type="text"
                                                             placeholder="Descripción..." id="17pr1">
                                                     </div>
                                                 </div>
@@ -914,8 +878,7 @@
                                                 <!---PREGUNTA NUMERO 19-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">Describa
-                                                            cualesquiera
+                                                        <label class="form-label fw-bold">Describa cualesquiera
                                                             condiciones especiales o
                                                             peligrosas que pudiera encontrar mientras usa su respirador
                                                             (por ejemplo,
@@ -923,15 +886,15 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <input class="form-control input-form"
-                                                            name="respuestas[19][0][comentario]" type="text"
+                                                            name="respuestas[19][comentario]" type="text"
                                                             placeholder="Descripción..." id="18pr1">
                                                     </div>
                                                 </div>
 
-                                                <!--PREGUNTA NUMERO 20 -->
+                                                <!--PREGUNTA NUMERO 20 IDENTIFICAR COMO SE MANDARA Y COMO SE ALMACENARA-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">Provea la siguiente
+                                                        <label class="form-label fw-bold">Provea la siguiente
                                                             información, si la conoce,
                                                             para cada substancia tóxica a la cual vaya a estar expuesto
                                                             mientras usa
@@ -940,7 +903,7 @@
                                                     <!---PREGUNTA NUMERO 29-->
                                                     <div class="col-12">
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[29][0][comentario]"
+                                                            <input type="text" name="respuestas[29][comentario]"
                                                                 class="form-control input-form" id="19pr1"
                                                                 placeholder="hola">
                                                             <label for="19pr1">Nombre de la primera substancia tóxica
@@ -949,7 +912,7 @@
 
                                                         <!---PREGUNTA NUMERO 32-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[32][0][comentario]"
+                                                            <input type="text" name="respuestas[32][comentario]"
                                                                 class="form-control input-form" id="19pr2"
                                                                 placeholder="hola">
                                                             <label for="19pr2">1.Nivel de exposición máxima estimada por
@@ -958,7 +921,7 @@
 
                                                         <!--PREGUNTA NUMEOR 33-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[33][0][comentario]"
+                                                            <input type="text" name="respuestas[33][comentario]"
                                                                 class="form-control input-form" id="19pr3"
                                                                 placeholder="hola">
                                                             <label for="19pr3">1.Duración de la exposición por turno:
@@ -967,7 +930,7 @@
 
                                                         <!--PREGUNTA NUMEOR 30-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[30][0][comentario]"
+                                                            <input type="text" name="respuestas[30][comentario]"
                                                                 class="form-control input-form" id="19pr4"
                                                                 placeholder="hola">
                                                             <label for="19pr4">Nombre de la segunda substancia tóxica:
@@ -976,7 +939,7 @@
 
                                                         <!--PREGUNTA NUMERO 34-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[34][0][comentario]"
+                                                            <input type="text" name="respuestas[34][comentario]"
                                                                 class="form-control input-form" id="19pr5"
                                                                 placeholder="hola">
                                                             <label for="19pr5">2.Nivel de exposición máxima estimada por
@@ -986,7 +949,7 @@
 
                                                         <!--PREGUNTA NUMERO 35-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[35][0][comentario]"
+                                                            <input type="text" name="respuestas[35][comentario]"
                                                                 class="form-control input-form" id="19pr6"
                                                                 placeholder="hola">
                                                             <label for="19pr6">2.Duración de la exposición por turno:
@@ -995,7 +958,7 @@
 
                                                         <!--PREGUNTA NUMERO 31-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[31][0][comentario]"
+                                                            <input type="text" name="respuestas[31][comentario]"
                                                                 class="form-control input-form" id="19pr7"
                                                                 placeholder="hola">
                                                             <label for="19pr7">Nombre de la tercera substancia tóxica:
@@ -1004,7 +967,7 @@
 
                                                         <!--PREGUNTA NUMERO 36-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[36][0][comentario]"
+                                                            <input type="text" name="respuestas[36][comentario]"
                                                                 class="form-control input-form" id="19pr8"
                                                                 placeholder="hola">
                                                             <label for="19pr8">3.Nivel de exposición máxima estimada por
@@ -1013,7 +976,7 @@
 
                                                         <!--PREGUNTA NUMERO 37-->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[37][0][comentario]"
+                                                            <input type="text" name="respuestas[37][comentario]"
                                                                 class="form-control input-form" id="19pr9"
                                                                 placeholder="hola">
                                                             <label for="19pr9">3.Duración de la exposición por
@@ -1022,12 +985,13 @@
 
                                                         <!--PREGUNTA NUMERO 38 -->
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="respuestas[38][0][comentario]"
+                                                            <input type="text" name="respuestas[38][comentario]"
                                                                 class="form-control input-form" id="19pr10"
                                                                 placeholder="hola">
-                                                            <label for="19pr10" class="label-span form-label">El nombre
-                                                                de cualquier otra substancia a la cual vaya a estar
-                                                                expuesto mientras usa el respirador:</label>
+                                                            <label for="19pr10">El nombre de cualquier otra substancia a
+                                                                la cual
+                                                                vaya a estar expuesto mientras usa el
+                                                                respirador:</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1035,15 +999,14 @@
                                                 <!--PREGUNTA NUMERO 21-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">Describa
-                                                            cualesquiera
+                                                        <label class="form-label fw-bold">Describa cualesquiera
                                                             responsabilidades especiales
                                                             que tenga mientras usa su respirador que pudieran afectar la
                                                             seguridad y el bienestar de otros (por ejemplo, rescate,
                                                             seguridad):</label>
                                                     </div>
                                                     <div class="col-12">
-                                                        <input type="text" name="respuestas[21][0][comentario]"
+                                                        <input type="text" name="respuestas[21][comentario]"
                                                             class="form-control input-form" placeholder="Descripción..."
                                                             id="20pr1">
                                                     </div>
@@ -1069,19 +1032,18 @@
 
         <!--SEGUNDA SITUACIÓN-->
 
-        <div class="col-12 mt-4 ">
-            <p class="mb-3" style="text-align: justify;">A continuación, las siguientes preguntas deben ser contestadas
-                por todo empleado que haya
+        <div class="col-12 mt-4">
+            <p class="mb-3">A continuación, las siguientes preguntas deben ser contestadas por todo empleado que haya
                 sido seleccionado para usar un respirador de careta completa o un aparato respirador autocontenido
                 (SCBA). Para empleados que haya sido seleccionado para usar otros tipos de respiradores, contestar estas
                 preguntas es voluntario. Si no es su caso, favor de elegir a continuacón la opción <b> "No aplica" </b>
             </p>
 
-            <div class="form-check form-check-inline col-12 mb-2">
-                <input class="form-check-input" type="checkbox" name="respuestas[43][81][valor]" value="81" id="no_aplica2">
+            <div class="form-check form-check-inline col-12 mb-3">
+                <input class="form-check-input" type="checkbox" name="8" value="No aplica" id="no_aplica2">
                 <label class="form-check-label" for="no_aplica2"><b>No aplica</b></label>
 
-                <div class="collapse show" id="pregunta43">
+                <div class="collapse show">
 
                     <div class="col-12 mb-3 mt-4" id="acordion1">
                         <div class="accordion " id="accordionFlushExample2">
@@ -1099,12 +1061,11 @@
 
                                         <div class="row">
 
-                                            <div class="col-lg-6 col-12">
+                                            <div class="col-6">
                                                 <!---PREGUNTA NUMERO 22-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Alguna vez ha
-                                                            perdido la
+                                                        <label class="form-label fw-bold">¿Alguna vez ha perdido la
                                                             visión en cualquiera de
                                                             los ojos (temporal o
                                                             permanente)?</label>
@@ -1128,8 +1089,7 @@
                                                 <!--PREGUNTA NUMERO 23-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿En la actualidad
-                                                            tiene
+                                                        <label class="form-label fw-bold">¿En la actualidad tiene
                                                             algunos de los siguientes
                                                             problemas de visión?</label>
                                                     </div>
@@ -1137,15 +1097,13 @@
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="64"
                                                                 id="22pr1" name="respuestas[23][64][valor]">
-                                                            <label class="form-check-label label-span" for="22pr1">Uso
-                                                                de lenetes
+                                                            <label class="form-check-label" for="22pr1">Uso de lenetes
                                                                 de contacto</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="65"
                                                                 id="22pr2" name="respuestas[23][65][valor]">
-                                                            <label class="form-check-label label-span" for="22pr2">Uso
-                                                                de
+                                                            <label class="form-check-label" for="22pr2">Uso de
                                                                 espejuelos</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
@@ -1157,8 +1115,7 @@
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="67"
                                                                 id="22pr4" name="respuestas[23][67][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="22pr4">Cualquier otro
+                                                            <label class="form-check-label" for="22pr4">Cualquier otro
                                                                 problema de
                                                                 visión</label>
                                                         </div>
@@ -1168,9 +1125,9 @@
                                                 <!--PREGUNTA  NUMERO 24-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Alguna vez ha
-                                                            tenido una
-                                                            lesión de los oidos, incluyendo el tímpano
+                                                        <label class="form-label fw-bold">¿Alguna vez ha tenido una
+                                                            lesión de los oidos,
+                                                            incluyendo el tímpano
                                                             perforado?</label>
                                                     </div>
                                                     <div class="col-12">
@@ -1192,31 +1149,28 @@
                                                 <!--PREGUNTA NUMERO 25-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿En la actualidad
-                                                            tiene alguno
-                                                            de los siguientes problemas de
+                                                        <label class="form-label fw-bold">¿En la actualidad tiene alguno
+                                                            de los siguientes
+                                                            problemas de
                                                             audición?</label>
                                                     </div>
                                                     <div class="col-12 ">
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="68"
                                                                 id="24pr1" name="respuestas[25][68][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="24pr1">Dificultad para
+                                                            <label class="form-check-label" for="24pr1">Dificultad para
                                                                 oír</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="69"
                                                                 id="24pr2" name="respuestas[25][69][valor]">
-                                                            <label class="form-check-label label-span" for="24pr2">Usa
-                                                                un
+                                                            <label class="form-check-label" for="24pr2">Usa un
                                                                 audífono</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="70"
                                                                 id="24pr3" name="respuestas[25][70][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="24pr3">Cualquier otro
+                                                            <label class="form-check-label" for="24pr3">Cualquier otro
                                                                 problema de
                                                                 audición</label>
                                                         </div>
@@ -1225,13 +1179,12 @@
 
                                             </div>
 
-                                            <div class="col-lg-6 col-12">
+                                            <div class="col-6">
 
                                                 <!--PREGUNTA NUMERO 26-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿Alguna vez ha
-                                                            tenido una
+                                                        <label class="form-label fw-bold">¿Alguna vez ha tenido una
                                                             lesión de la
                                                             espalda?</label>
                                                     </div>
@@ -1255,41 +1208,36 @@
                                                 <!--PREGUNTA NUMERO 27-->
                                                 <div class="col-12 mt-4">
                                                     <div class="col-12">
-                                                        <label class="form-label fw-bold label-span">¿En la actualidad
-                                                            tiene
-                                                            algunos de los siguientes problemas
-                                                            musculoesqueleticos?
-                                                        </label>
+                                                        <label class="form-label fw-bold">¿En la actualidad tiene
+                                                            algunos de los siguientes
+                                                            problemas
+                                                            musculoesqueleticos?</label>
                                                     </div>
                                                     <div class="col-12 ">
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="71"
                                                                 id="26pr1" name="respuestas[27][71][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="26pr1">Debilidad de los
+                                                            <label class="form-check-label" for="26pr1">Debilidad de los
                                                                 brazos, manos,
                                                                 piernas o pies</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="72"
                                                                 id="26pr2" name="respuestas[27][72][valor]">
-                                                            <label class="form-check-label label-span" for="26pr2">Dolor
-                                                                de
+                                                            <label class="form-check-label" for="26pr2">Dolor de
                                                                 espalda</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="73"
                                                                 id="26pr3" name="respuestas[27][73][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="26pr3">Dificultad en
+                                                            <label class="form-check-label" for="26pr3">Dificultad en
                                                                 mover completamente
                                                                 los brazos y piernas</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="74"
                                                                 id="26pr4" name="respuestas[27][74][valor]">
-                                                            <label class="form-check-label label-span" for="26pr4">Dolor
-                                                                o rigidez
+                                                            <label class="form-check-label" for="26pr4">Dolor o rigidez
                                                                 cuando se inclina
                                                                 hacia adelante o detrás de la
                                                                 cintura</label>
@@ -1297,8 +1245,7 @@
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="75"
                                                                 id="26pr5" name="respuestas[27][75][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="26pr5">Dificultad en
+                                                            <label class="form-check-label" for="26pr5">Dificultad en
                                                                 mover la cabeza
                                                                 completamente hacia arriba o
                                                                 abajo</label>
@@ -1306,31 +1253,27 @@
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="76"
                                                                 id="26pr6" name="respuestas[27][76][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="26pr6">Dificultad en
+                                                            <label class="form-check-label" for="26pr6">Dificultad en
                                                                 mover la cabeza de
                                                                 lado a lado</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="77"
                                                                 id="26pr7" name="respuestas[27][77][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="26pr7">Dificultaden
+                                                            <label class="form-check-label" for="26pr7">Dificultaden
                                                                 doblar las
                                                                 rodillas</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="78"
                                                                 id="26pr8" name="respuestas[27][78][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="26pr8">Dificultad en
+                                                            <label class="form-check-label" for="26pr8">Dificultad en
                                                                 acuclillarse</label>
                                                         </div>
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="79"
                                                                 id="26pr9" name="respuestas[27][79][valor]">
-                                                            <label class="form-check-label label-span" for="26pr9">Subir
-                                                                un tramo
+                                                            <label class="form-check-label" for="26pr9">Subir un tramo
                                                                 de escaleras o escala
                                                                 cargando más de 25
                                                                 libras</label>
@@ -1338,8 +1281,7 @@
                                                         <div class="form-check form-check-inline col-12 mb-2">
                                                             <input class="form-check-input" type="checkbox" value="80"
                                                                 id="26pr10" name="respuestas[27][80][valor]">
-                                                            <label class="form-check-label label-span"
-                                                                for="26pr10">Cualquier otro
+                                                            <label class="form-check-label" for="26pr10">Cualquier otro
                                                                 problema
                                                                 músculoesqueletal</label>
                                                         </div>
@@ -1370,9 +1312,6 @@
 
 
 <script>
-
-
-
     //FUNCIONES DE LOS BOTONES DE EL ESFUERZO DE TRABAJO
     $(document).on('change, keyup, click', 'input:checkbox[class="form-check-input esfuerzo_trabajo"]', function () {
 
@@ -1492,7 +1431,7 @@
     //FUNCION PARA EL RADIO CON NAME 7
     $(document).on('change, keyup, click', 'input:radio[class="form-check-input respirador"]', function () {
         let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
-
+        
 
         if ($(this).val() == 1) {
             let children = $(parent).children("div[class='collapse']")
@@ -1508,7 +1447,7 @@
             input.prop('required', false);
             children.collapse('hide')
         }
-
+    
     })
 
 
@@ -1667,13 +1606,10 @@
             }
         }
 
-
-
         checkbox1.onclick = function () {
             if (checkbox1.checked != false) {
                 checkbox2.checked = null;
                 checkbox3.checked = null
-
 
             }
         }
@@ -1681,7 +1617,6 @@
             if (checkbox2.checked != false) {
                 checkbox1.checked = null;
                 checkbox3.checked = null
-
             }
         }
 
@@ -1689,7 +1624,6 @@
             if (checkbox3.checked != false) {
                 checkbox1.checked = null;
                 checkbox2.checked = null
-
             }
         }
     }
@@ -1697,40 +1631,40 @@
 
 
     //FUNCIONES PARA LOS BOTONES DE NO APLICA
-    // $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
+    $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
 
-    //     let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+        let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-4"]')
 
-    //     if ($(this).is(':checked')) {
-    //         let children = $(parent).children("div[class='collapse show']")
-    //         let radios = children.find('input[type="radio"]')
-    //         let checkboxes = children.find('input[type="checkbox"]')
-    //         let textos = children.find('input[type="text"]')
-    //         let numeros = children.find('input[type="number"]')
-    //         let textareas = children.find('textarea')
 
-    //         numeros.val('')
-    //         numeros.prop('required', false)
-    //         textos.val('')
-    //         textareas.val('')
-    //         textareas.prop('required', false)
-    //         checkboxes.prop('checked', false)
-    //         radios.prop('checked', false)
+        if ($(this).is(':checked')) {
+            let children = $(parent).children("div[class='collapse show']")
+            let contenedores = children.find('div[class="col-12 mt-4"]')
+            let radios = children.find('input[type="radio"]')
+            let checkboxes = children.find('input[type="checkbox"]')
+            let textos = children.find('input[type="text"]')
+            let numeros = children.find('input[type="number"]')
+            let textareas = children.find('textarea')
 
-    //         children.collapse('hide')
-    //     } 
-    //     else {
-    //         numeros.prop('required', true)
-    //         textareas.prop('required', true)
-        
-    //         let children = $(parent).children("div[class='collapse']")
-    //         children.collapse('show')
-    //     }
+            numeros.val('')
+            numeros.prop('required', true)
+            textos.val('')
+            textareas.val('')
+            textareas.prop('required', true)
+            checkboxes.prop('checked', false)
+            radios.prop('checked', false)
 
-    // })
+            children.collapse('hide')
+
+        } else {
+            let children = $(parent).children("div[class='collapse']")
+            children.collapse('show')
+        }
+
+    })
+
     $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica2"]', function () {
 
-        let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+        let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-3"]')
 
         if ($(this).is(':checked')) {
             let children = $(parent).children("div[class='collapse show']")
@@ -1749,38 +1683,6 @@
 
         }
     })
-      $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
-
-            let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
-
-            if ($(this).is(':checked')) {
-                let children = $(parent).children("div[class='collapse show']")
-                let radios = children.find('input[type="radio"]')
-                let checkboxes = children.find('input[type="checkbox"]')
-                let textos = children.find('input[type="text"]')
-                let numeros = children.find('input[type="number"]')
-                let textareas = children.find('textarea')
-
-                numeros.val('')
-                numeros.prop('required', false)
-                textos.val('')
-                textareas.val('')
-                textareas.prop('required', false)
-                checkboxes.prop('checked', false)
-                radios.prop('checked', false)
-
-                children.collapse('hide')
-            }
-            else {
-                let children = $(parent).children("div[class='collapse']")
-                children.collapse('show')
-
-                numeros.prop('required', true)
-                 textareas.prop('required', true)
-
-
-            }
-        })
 
 
     //FUNCION PARA DELIMITAR LOS NUMEROS INGRESADOS
@@ -1789,8 +1691,5 @@
             return false;
         }
     });
-
-
-
 
 </script>

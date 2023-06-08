@@ -1,4 +1,4 @@
-enfriadorData = {}, termometroData = {}, firmaExist = false, SelectedFoliosData = {};
+enfriadorData = {}, termometroData = {}, firmaExist = false
 // Obtener datos del paciente seleccionado
 const capturarTemperaturaModal = document.getElementById('capturarTemperaturaModal')
 capturarTemperaturaModal.addEventListener('show.bs.modal', event => {

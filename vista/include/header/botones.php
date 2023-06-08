@@ -25,7 +25,7 @@ $menu = $_POST['menu']; ?>
   </span>
 
 
-  <span data-bs-toggle="modal" data-bs-target="#modalSolicitudIngresoParticulares" data-bs-dismiss="offcanvas" id="solicitudIngresoParticulares">
+  <span data-bs-toggle="modal" data-bs-target="#modalSolicitudIngresoParticulares" data-bs-dismiss="offcanvas">
     <button type="button" class="btn btn-hover me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Envia un correo con un token de registro para particulares">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
         <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z" />
@@ -223,16 +223,7 @@ $menu = $_POST['menu']; ?>
   <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
 
     <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="LibererDiaTemperatura">
-      <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
-    </button>
-
-  <?php endif; ?>
-
-
-  <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
-
-    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="GenerarPDFTemperatura">
-      <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
+      <i class="bi bi-plus-circle-fill"></i> Liberar Dia
     </button>
 
   <?php endif; ?>
