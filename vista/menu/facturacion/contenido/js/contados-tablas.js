@@ -8,6 +8,10 @@ tablaContados = $('#TablaContados').DataTable({
     scrollY: autoHeightDiv(0, 374),
     scrollCollapse: true,
     deferRender: true,
+    lengthMenu: [
+        [20, 25, 30, 35, 40, 45, 50, -1],
+        [20, 25, 30, 35, 40, 45, 50, "All"]
+    ],
     ajax: {
         dataType: 'json',
         data: { api: 2, estado: 1 },
@@ -52,6 +56,19 @@ tablaContados = $('#TablaContados').DataTable({
             data: 'FACTURA', render: function (data) {
                 return data != 0 ? 'Facturado' : 'Sin Facturar'; // <-- Buscable
             }
+        },
+        {
+            data: 'FACTURA', render: function (data) {
+                if (data == 0) {
+                    let html = `<i class="bi bi-receipt-cutoff btn-facturar" style="cursor: pointer; font-size:18px;"> Facturar</i>`;
+
+                    return html;
+                } else {
+                    return '';
+                }
+
+
+            }
         }
     ],
     columnDefs: [
@@ -64,6 +81,7 @@ tablaContados = $('#TablaContados').DataTable({
         { target: 6, title: 'Turno', className: 'none' },
         { target: 7, title: 'Genero', className: 'none' },
         { target: 8, visible: false, searchable: true }, // <-- ocultarlo pero buscable para los facturados
+        { target: 9, title: 'Facturar', className: 'all', width: '' },
 
     ],
 
@@ -148,9 +166,16 @@ tablaContados = $('#TablaContados').DataTable({
 
 
 selectDatatable("TablaContados", tablaContados, 0, 0, 0, 0, async function (select, data) {
+
     if (select) {
+        selectCuenta = new GuardarArreglo({
+            select: select,
+            data: data,
+            id: data['ID_TURNO']
+        })
         await obtenerPanelInformacion(data['TURNO_ID'], 'tickets_api', 'PanelTickets', '#InformacionTickets')
     } else {
+        selectCuenta = false
         await obtenerPanelInformacion(0, 'tickets_api', 'PanelTickets', '#InformacionTickets')
     }
 })

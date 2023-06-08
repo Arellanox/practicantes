@@ -1157,7 +1157,7 @@ function alertToast(msj = 'No ha seleccionado ningún registro', icon = 'error',
 }
 // 
 
-function alertMensaje(icon = 'success', title = '¡Completado!', text = 'Datos completados', footer = null, html = null , timer = null) {
+function alertMensaje(icon = 'success', title = '¡Completado!', text = 'Datos completados', footer = null, html = null, timer = null) {
   Swal.fire({
     icon: icon,
     title: title,
@@ -2717,6 +2717,7 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                   $('#info-ticket-subtotal').html(data['SUBTOTAL'])
                   $('#info-ticket-iva').html(data['IVA'])
                   $('#info-ticket-total').html(data['TOTAL'])
+                  $('#info-ticket-tipopago').html(data['TIPO_PAGO'])
 
                   if (ifnull(data['RAZON_SOCIAL']) ||
                     ifnull(data['DOMICILIO_FISCAL']) ||
