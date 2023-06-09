@@ -98,7 +98,7 @@ function guardarDatosConsultorio(btn) {
             ajaxAwait(dataJson_recetas, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
                 alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
 
-                tablalistaRecetas.ajax.reload();
+                tablaListaRecetas.ajax.reload();
             })
 
             $("#nombre_generico").val(""),
