@@ -87,14 +87,21 @@ $('#btn-analisis-oftalmo').click(function () {
   }
 })
 
+
 $('#abrirModalResultados').click(function () {
   // alert('Si')
   autosize(document.querySelectorAll('textarea'))
   setTimeout(() => {
     autosize.update(document.querySelectorAll('textarea'));
   }, 200);
+  
+  //MANDAMOS A LLAMAR LA FUNCION PARA MOSTRAR LOS DATOS Y LOS INPUTS SELECCIONADOS
+  recuperarDatos()
+
   $('#modalSubirInterpretacion').modal('show')
 })
+
+
 
 $('#btn-ver-reporte').click(function () {
   switch (areaActiva) {

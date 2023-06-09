@@ -8,11 +8,9 @@ if (validarVista('REGISTRO_TEMPERATURA')) {
 }
 
 
-hasLocation();
-$(window).on("hashchange", function (e) {
-    hasLocation();
-});
-
+var selectRegistro, editRegistro = false;
+//
+var selectTableFolio = false
 function obtenerTemperaturas() {
     obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area
     $.post("contenido/temperatura.html", function (html) {
@@ -20,11 +18,11 @@ function obtenerTemperaturas() {
     }).done(function () {
         // Datatable
         $.getScript("contenido/js/temperatura-tablas.js");
-        /*    // Botones
-           $.getScript("contenido/js/contados-botones.js");
-    */
+        // Botones
+        $.getScript("contenido/js/temperatura-botones.js");
+
         // Filtros
-        $.getScript("contenido/js/filtro-temperatura.js");
+        // $.getScript("contenido/js/filtro-temperatura.js");
     });
 }
 

@@ -183,7 +183,9 @@ function obtenerConsultorioConsultaMedica(data, idConsultaMedica) {
   }).done(function () {
     // Obtener metodos para el dom
     $.getScript("contenido/js/funciones_globales.js").done(function () { })
-
+    //guardar datos consultorio
+    $.getScript("contenido/js/guardar-consultorio.js");
+    
     $.getScript("contenido/js/consulta-paciente.js").done(function () {
       // Botones
       $.getScript("contenido/js/consulta-paciente-botones.js");
@@ -235,5 +237,4 @@ $(document).on('click', '#btn-ir-consulta-rapida', function (e) {
   });
 })
 
-//guardar datos consultorio
-$.getScript("contenido/js/guardar-consultorio.js");
+

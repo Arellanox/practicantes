@@ -1,0 +1,29 @@
+<div class="modal fade" id="modalFacturarCuenta" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- <div class="modal-header header-modal">
+                <h5 class="modal-title" id="title-paciente-facturar">Paciente: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div> -->
+            <div class="modal-body">
+                <h5>Facturar Paciente</h5>
+                <hr>
+                <form class="row" id="formFacturarPaciente">
+                    <div class="col-12">
+                        <label for="num_factura" class="form-label">Número de Factura</label>
+                        <input type="text" name="num_factura" class="form-control input-form">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
+                    <i class="bi bi-arrow-left-short"></i> Cancelar
+                </button>
+                <button type="submit" form="formFacturarPaciente" class="btn btn-confirmar">
+                    <i class="bi bi-receipt-cutoff"></i> Facturar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
