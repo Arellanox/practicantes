@@ -215,7 +215,7 @@ function desactivarTablaReceta(){
         ajaxAwait(dataJson_eliminar, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
             alertMensaje('success', 'Registro desactivado', 'Espere un momento...', null, null, 1500)
 
-            tablalistaRecetas.ajax.reload();
+            tablaListaRecetas.ajax.reload();
         })
     }, 1)
 }
