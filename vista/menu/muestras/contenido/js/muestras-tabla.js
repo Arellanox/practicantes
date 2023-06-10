@@ -3,9 +3,9 @@ tablaMuestras = $('#TablaMuestras').DataTable({
     url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
   },
   lengthChange: false,
-  info: false,
+  info: true,
   paging: false,
-  scrollY: autoHeightDiv(0, 284),
+  scrollY: autoHeightDiv(0, 384),
   scrollCollapse: true,
   ajax: {
     dataType: 'json',
@@ -17,8 +17,9 @@ tablaMuestras = $('#TablaMuestras').DataTable({
     beforeSend: function () { loader("In") },
     complete: function () {
       loader("Out", 'bottom')
-      loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras', 0);
-      $('.informacion-muestras').fadeOut()
+
+      //Para ocultar segunda columna
+      reloadSelectTable()
     },
     dataSrc: 'response.data'
   },
@@ -46,64 +47,65 @@ tablaMuestras = $('#TablaMuestras').DataTable({
 })
 
 loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
-selectDatatable('TablaMuestras', tablaMuestras, 0, 0, 0, 0, function (selectTR = null, array = null) {
-  selectListaMuestras = array;
-  // console.log(selectListaMuestras)
-  if (selectTR == 1) {
+// selectDatatable('TablaMuestras', tablaMuestras, 0, 0, 0, 0, function (selectTR = null, array = null) {
+
+// })
+
+
+//new selectDatatable:
+selectTable('#TablaMuestras', tablaMuestras, { unSelect: true, movil: true, reload: ['col-xl-9'] }, async function (select, data, callback) {
+  selectListaMuestras = data;
+
+  if (select == 1) {
+
+    //Activa o desactiva el boton
     if (selectListaMuestras.MUESTRA_TOMADA == 1) {
       $('#muestra-tomado').prop('disabled', true)
-      // $('#omitir-paciente').prop('disabled', true)
     } else {
       $('#muestra-tomado').prop('disabled', false)
-      // $('#omitir-paciente').prop('disabled', false)
     }
-    getPanel('.informacion-muestras', '#loader-muestras', '#loaderDivmuestras', selectListaMuestras, 'In', async function (divClass) {
-      await obtenerPanelInformacion(selectListaMuestras['ID_TURNO'], 'pacientes_api', 'paciente', '#panel-informacion', '_lab')
-      await obtenerListaEstudiosContenedores(selectListaMuestras['ID_TURNO'])
-      // console.log(divClass)
-      $(divClass).fadeIn(100);
-    });
+
+    //Procesos
+    await obtenerPanelInformacion(selectListaMuestras['ID_TURNO'], 'pacientes_api', 'paciente', '#panel-informacion', '_lab')
+    await obtenerListaEstudiosContenedores(selectListaMuestras['ID_TURNO'])
+
+    //Muestra las columnas
+    callback('In')
   } else {
+
+    callback('Out')
     selectListaMuestras = null;
-    getPanel('.informacion-muestras', '#loader-muestras', '#loaderDivmuestras', selectListaMuestras, 'Out')
   }
 })
 
-$("#BuscarTablaListaMuestras").keyup(function () {
-  tablaMuestras.search($(this).val()).draw();
-});
+
+
+inputBusquedaTable('TablaMuestras', tablaMuestras, [{
+  msj: 'Los pacientes con muestras tomadas se visualizarán confirmados de color verde',
+  place: 'top'
+}], [], 'col-12')
+
 
 function obtenerListaEstudiosContenedores(idturno = null) {
   return new Promise(resolve => {
-    $.ajax({
-      url: `${http}${servidor}/${appname}/api/toma_de_muestra_api.php`,
-      type: "POST",
-      dataType: 'json',
-      data: { api: 2, id_turno: idturno },
-      success: function (data) {
-        let row = data.response.data
 
+    ajaxAwait({ api: 2, id_turno: idturno }, 'toma_de_muestra_api', { callbackAfter: true, WithoutResponseData: true }, false, (row) => {
+      let html = '';
+      for (var i = 0; i < row.length; i++) {
+        // console.log(row[i]);
+        html += '<li class="list-group-item">';
+        html += row[i]['GRUPO'];
+        html += '<i class="bi bi-arrow-right-short"></i><strong>' + row[i]['MUESTRA'] + '</strong> - <strong>' + row[i]['CONTENEDOR'] + '</strong></li>';
 
-
-        let html = '';
-        for (var i = 0; i < row.length; i++) {
-          // console.log(row[i]);
-          html += '<li class="list-group-item">';
-          html += row[i]['GRUPO'];
-          html += '<i class="bi bi-arrow-right-short"></i><strong>' + row[i]['MUESTRA'] + '</strong> - <strong>' + row[i]['CONTENEDOR'] + '</strong></li>';
-
-        }
-        $('#lista-estudios-paciente').html(html);
-
-
-
-
-      },
-      complete: function () {
-        loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
-        resolve(1);
       }
+      $('#lista-estudios-paciente').html(html);
+
+      //Complete
+      loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
+      resolve(1);
     });
+
+
   });
 }
 
