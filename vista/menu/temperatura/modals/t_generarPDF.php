@@ -170,15 +170,11 @@
                                 ?>
                             </tr>
                             <?php
-
-                            $FOLIO_ID = $_POST['folio'];
-                            var_dump($FOLIO_ID);
-                            exit();
                             $url = "http://localhost/practicantes/api/temperatura_api.php";
                             // Los datos de formulario
                             $datos = [
                                 "api" => 7,
-                                "folio" => $FOLIO_ID,
+                                "folio" => 2,
                             ];
                             // Crear opciones de la petición HTTP
                             $opciones = array(
