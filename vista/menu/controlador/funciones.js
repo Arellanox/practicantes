@@ -1,6 +1,9 @@
 //Formatear Fecha de sql
 function formatoFecha(texto) {
-  return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+  if (texto)
+    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+
+  return '';
 }
 
 jQuery.fn.exists = function () { return this.length > 0; }
@@ -1790,12 +1793,16 @@ function dinamicTabs(loader) {
     dinamicTabFunction();
   })
 
-  $.fn.dataTable
-    .tables({
-      visible: true,
-      api: true
-    })
-    .columns.adjust();
+  try {
+    $.fn.dataTable
+      .tables({
+        visible: true,
+        api: true
+      })
+      .columns.adjust();
+  } catch (error) {
+
+  }
 
 }
 
