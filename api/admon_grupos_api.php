@@ -28,7 +28,7 @@ switch($api){
         # Agregar un grupo y su detalle.
         # Agregar el numer de factura y mas detalle al grupo.
         $facturado = strlen($factura) > 0 ? 1 : 0 ;
-        
+
         if($facturado ==1){
             # agregar datos de factura.
             $response = $master->insertByProcedure("sp_admon_grupos_g", [$id_grupo, $descripcion, $cliente_id, $usuario_id, $facturado, $usuario_id, $factura, $detalle]);
@@ -36,7 +36,6 @@ switch($api){
             # agregar datos de creacion de grupo.
             $response = $master->insertByProcedure("sp_admon_grupos_g", [$id_grupo, $descripcion, $cliente_id, $usuario_id, $facturado, null, null, $detalle]);
         }
-       
         break;
     case 2:
         # buscar grupos
