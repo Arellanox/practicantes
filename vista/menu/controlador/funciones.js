@@ -1707,6 +1707,7 @@ function configSelectTable(config) {
     "tab-default": 'Reporte',  //Por default, al dar click, abre aqui
     reload: false, //Activa la rueda
     movil: false, //Activa la version movil
+    multipleSelect: false,
   }
 
   Object.entries(defaults).forEach(([key, value]) => {
@@ -1940,29 +1941,46 @@ function selectTable(tablename, datatable,
       }, 400);
 
 
-      //Reinicia la seleccion:
-      datatable.$('tr.selected').removeClass('selected');
-      datatable.$('tr.selected').removeClass(config.anotherClass);
-      //
+
+      if (config.multipleSelect === false) {
+        //Reinicia la seleccion:
+        datatable.$('tr.selected').removeClass('selected');
+        datatable.$('tr.selected').removeClass(config.anotherClass);
+        //
+      }
+
 
       //Agrega la clase para indicar que lo esta seleccionando
       $(this).addClass('selected');
       $(this).addClass(config.anotherClass);
 
-      //Activar otros tab
-      $(`.tab-select`).removeClass('disabled');
 
-      //Reselecciona
-      if (config['tab-default']) {
-        $(`#tab-btn-${config['tab-default']}`).click();
+      if (config.multipleSelect) {
+        //Multiple Seleccion
+        //Hará el callback cada que seleccionan a uno nuevo
+        let row_length = table.rows('.selected').data().length
+        let data = table.rows('.selected').data()
+
+        callbackClick(row_length, data, null, null)
+
+      } else {
+        //Para una sola seleccion
+
+        //Activar otros tab
+        $(`.tab-select`).removeClass('disabled');
+        //Reselecciona
+        if (config['tab-default']) {
+          $(`#tab-btn-${config['tab-default']}`).click();
+        }
+
+
+        //Obtener datos, tr, row e información del row
+        let tr = this;
+        let row = datatable.row(tr);
+        let dataRow = row.data();
+
+        return callbackClick(1, dataRow, callback, tr, row);
       }
-
-      //Obtener datos, tr, row e información del row
-      let tr = this;
-      let row = datatable.row(tr);
-      let dataRow = row.data();
-
-      return callbackClick(1, dataRow, callback, tr, row);
 
     }
 
