@@ -232,11 +232,10 @@ session_start();
 
                                     //<!--Formulario de Espirometria -->
                                 case 'formAreadeEspirometria':
-                                    echo '<form id="formAreadeEspirometria">';
+                                    // echo '<form id="formAreadeEspirometria">';
                                     include 'forms/form_espiro.html';
-                                    echo '</form>';
+                                    // echo '</form>';
                                     break;
-
                             }
 
                             ?>

@@ -1,0 +1,72 @@
+<div class="modal fade" id="modalFiltroPacientesFacturacion" tabindex="-1" aria-labelledby="filtrador"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- <div class="modal-header header-modal">
+                <h5 class="modal-title" id="title-paciente-facturar">Paciente: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div> -->
+            <div class="modal-body">
+                <h5>Filtrar Listado de pacientes</h5>
+                <hr>
+                <form class="row" id="formFiltroListaCredito">
+                    <p>Rellene el siguiente cuestionario</p>
+                    <div class="col-12">
+                        <label for="fecha_inicial" class="form-label">Fecha Inicial</label>
+                        <input type="date" id="fecha_inicial" class="form-input input-form" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="fecha_final" class="form-label">Fecha Inicial</label>
+                        <input type="date" id="fecha_final" class="form-input input-form" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="cliente" class="form-label">Cliente</label>
+                        <select name="" id="cliente" class="form-select input-form"></select>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="0" id="checkFullClientes"
+                                name="full_clientes">
+                            <label class="form-check-label" for="checkFullClientes">
+                                Todos
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
+                    <i class="bi bi-arrow-left-short"></i> Cerrar
+                </button>
+                <button type="submit" form="formFiltroListaCredito" class="btn btn-confirmar">
+                    <i class="bi bi-receipt-cutoff"></i> Filtrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalListaCreditoFiltrado" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- <div class="modal-header header-modal">
+                <h5 class="modal-title" id="title-paciente-facturar">Paciente: </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div> -->
+            <div class="modal-body">
+                <h5>Filtrar Listado de pacientes</h5>
+                <hr>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
+                    <i class="bi bi-arrow-left-short"></i> Cerrar
+                </button>
+                <button type="submit" form="formFiltroListaCredito" class="btn btn-confirmar">
+                    <i class="bi bi-receipt-cutoff"></i> Crear
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

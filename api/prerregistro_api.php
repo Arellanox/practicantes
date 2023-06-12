@@ -3,7 +3,7 @@ include_once "../clases/master_class.php";
 
 $master = new Master();
 $api = $_POST['api'];
- 
+
 #datos de pacientes
 $curp = $_POST['curp'];
 $pasaporte = $_POST['pasaporte'];
@@ -30,6 +30,9 @@ $segmentoId = $_POST['segmento_id'];
 #datos de antecedentes
 $antecedentes = array_slice($_POST, 0, count($_POST) - 4);
 // print_r($antecedentes);
+
+#Datos de espiro
+$espirometria = $_POST['cuestionario_espiro'];
 
 switch ($api) {
     case 1:

@@ -5,7 +5,7 @@
     <p class="mb-3 ">Como parte del estudio a realizar agradecemos consteste las siguientes preguntas marque <b>"SI" o
             "NO"</b> según sea el caso</p>
 
-    <div class="row">
+    <form class="row" id="formAreadeEspirometria">
 
         <div class="col-lg-6 col-12 mb-4">
             <!--PREGUNTA NUMERO 1-->
@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="respuestas[1][1][valor]" value="1" id="1pr1"
-                            onclick="uncheck()" >
+                            onclick="uncheck()">
                         <label class="form-check-label " for="1pr1">Sí</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -42,8 +42,7 @@
                         <label class="form-check-label label-span" for="2pr1"> Ataque epilépticos</label>
 
                         <div class="collapse" id="p2r3">
-                            <textarea name="respuestas[2][3][comentario]" 
-                                class="form-control input-form mt-2"
+                            <textarea name="respuestas[2][3][comentario]" class="form-control input-form mt-2"
                                 placeholder="Especifique el ultimo episodio"></textarea>
                         </div>
 
@@ -285,7 +284,7 @@
                         </div>
 
                         <!--PREGUNTA NUMERO 28-->
-                        <div class="collapse" id="p6r1" >
+                        <div class="collapse" id="p6r1">
 
                             <label class="form-label fw-bold mt-3">¿Tiene sensación de mareos, cortedad de respiración,
                                 golpeteo en el pecho u otros síntomas cuando está trabajando bajo estas
@@ -523,7 +522,8 @@
                 no aplica favor de seleccionar <b> " No aplica"</b></b></p>
 
             <div class="form-check form-check-inline col-12 mb-2">
-                <input class="form-check-input" type="checkbox" name="respuestas[42][81][valor]"  value="81" id="no_aplica1">
+                <input class="form-check-input" type="checkbox" name="respuestas[42][81][valor]" value="81"
+                    id="no_aplica1">
                 <label class="form-check-label " for="no_aplica1"><b>No aplica</b></label>
 
                 <div class="collapse show" id="pregunta42">
@@ -723,7 +723,7 @@
                                                                 for="14pr2">Moderado (200 a
                                                                 350 kcal por hora)</label>
 
-                                                            
+
                                                             <div class="esfuerzo_trabajo collapse" id="p14r62">
                                                                 <p class="mt-2" style="text-align: justify;"><b>¿Cuánto
                                                                         dura este período en
@@ -772,7 +772,7 @@
                                                                 for="14pr3">Pesado (sobre
                                                                 350 kcal por hora)</label>
 
-                                                            
+
                                                             <div class="esfuerzo_trabajo collapse" id="p14r63">
                                                                 <p class="mt-2" style="text-align: justify;"><b>¿Cuánto
                                                                         dura este período en
@@ -1078,7 +1078,8 @@
             </p>
 
             <div class="form-check form-check-inline col-12 mb-2">
-                <input class="form-check-input" type="checkbox" name="respuestas[43][81][valor]" value="81" id="no_aplica2">
+                <input class="form-check-input" type="checkbox" name="respuestas[43][81][valor]" value="81"
+                    id="no_aplica2">
                 <label class="form-check-label" for="no_aplica2"><b>No aplica</b></label>
 
                 <div class="collapse show" id="pregunta43">
@@ -1365,7 +1366,7 @@
 
         </div>
 
-    </div>
+    </form>
 </div>
 
 
@@ -1722,7 +1723,7 @@
     //     else {
     //         numeros.prop('required', true)
     //         textareas.prop('required', true)
-        
+
     //         let children = $(parent).children("div[class='collapse']")
     //         children.collapse('show')
     //     }
@@ -1749,38 +1750,38 @@
 
         }
     })
-      $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
+    $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
 
-            let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+        let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
 
-            if ($(this).is(':checked')) {
-                let children = $(parent).children("div[class='collapse show']")
-                let radios = children.find('input[type="radio"]')
-                let checkboxes = children.find('input[type="checkbox"]')
-                let textos = children.find('input[type="text"]')
-                let numeros = children.find('input[type="number"]')
-                let textareas = children.find('textarea')
+        if ($(this).is(':checked')) {
+            let children = $(parent).children("div[class='collapse show']")
+            let radios = children.find('input[type="radio"]')
+            let checkboxes = children.find('input[type="checkbox"]')
+            let textos = children.find('input[type="text"]')
+            let numeros = children.find('input[type="number"]')
+            let textareas = children.find('textarea')
 
-                numeros.val('')
-                numeros.prop('required', false)
-                textos.val('')
-                textareas.val('')
-                textareas.prop('required', false)
-                checkboxes.prop('checked', false)
-                radios.prop('checked', false)
+            numeros.val('')
+            numeros.prop('required', false)
+            textos.val('')
+            textareas.val('')
+            textareas.prop('required', false)
+            checkboxes.prop('checked', false)
+            radios.prop('checked', false)
 
-                children.collapse('hide')
-            }
-            else {
-                let children = $(parent).children("div[class='collapse']")
-                children.collapse('show')
+            children.collapse('hide')
+        }
+        else {
+            let children = $(parent).children("div[class='collapse']")
+            children.collapse('show')
 
-                numeros.prop('required', true)
-                 textareas.prop('required', true)
+            numeros.prop('required', true)
+            textareas.prop('required', true)
 
 
-            }
-        })
+        }
+    })
 
 
     //FUNCION PARA DELIMITAR LOS NUMEROS INGRESADOS
