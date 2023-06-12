@@ -24,6 +24,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         },
         complete: function () {
             loader("Out")
+
             tablaTemperaturaFolio.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {

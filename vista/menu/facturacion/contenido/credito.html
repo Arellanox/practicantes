@@ -8,23 +8,36 @@
 
             <table class="table display responsive" id="TablaGrupos" style="width: 100%">
                 <thead class="">
-                    <tr>
+                    <!--  <tr>
                         <th scope="col d-flex justify-content-center" class="all">#</th>
                         <th scope="col d-flex justify-content-center" class="all">Folio</th>
                         <th scope="col d-flex justify-content-center" class="desktop">Empresa</th>
                         <th scope="col d-flex justify-content-center" class="none">Fecha</th>
-                    </tr>
+                    </tr> -->
                 </thead>
                 <tbody>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="col-lg-9 informacion-muestras" style="margin-right: -5px !important;display:none">
-
+    <div class="col-12 col-lg-9 informacion-creditos" style="margin-right: -5px !important;display:none">
+        <div class="card mt-3 p-3" id="TablaGrupoDetalleCard">
+            <table class="table table-hover display responsive" id="TablaGrupoDetalle" style="width: 100%;"></table>
+        </div>
     </div>
     <div class="col-9 d-flex justify-content-center align-items-center" id='loaderDivmuestras'
         style="max-height: 75vh; display:none !important">
         <div class="preloader" id="loader-muestras"></div>
     </div>
 </div>
+
+
+<style>
+    #ticketDataButton {
+        cursor: pointer;
+        pointer-events: all;
+        color: blue;
+        text-decoration: underline;
+
+    }
+</style>

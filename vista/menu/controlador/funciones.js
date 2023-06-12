@@ -1,6 +1,9 @@
 //Formatear Fecha de sql
 function formatoFecha(texto) {
-  return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+  if (texto)
+    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+
+  return '';
 }
 
 jQuery.fn.exists = function () { return this.length > 0; }
@@ -1453,11 +1456,12 @@ function alertErrorAJAX(jqXHR, exception, data) {
 
 
 
-var touchtimeFunction
+let touchtimeFunction
 function detectDobleclick() {
   if (touchtimeFunction == 0) {
     // set first click
     touchtimeFunction = new Date().getTime();
+    return false;
   } else {
     // compare first click to this click and see if they occurred within double click threshold
     if (((new Date().getTime()) - touchtimeFunction) < 800) {
@@ -1674,7 +1678,299 @@ function inputBusquedaTable(
 //
 
 
-//Panel
+
+// Configuraciones por defecto para select table
+function configSelectTable(config) {
+  //valores por defecto de la funcion ajaxAwait y ajaxAwaitFormData
+  const defaults = {
+    dblClick: false, // Aceptar doble click
+    unSelect: false, // Deseleccionar un registro
+    anotherClass: 'other-for-table', //Cuando sea seleccionado, se agrega la clase, sino se quita
+    tabs: [
+      {
+        title: 'Pacientes',
+        element: '#tab-paciente',
+        class: 'active',
+      },
+      {
+        title: 'Información',
+        element: '#tab-informacion',
+        class: 'disabled tab-select'
+      },
+      {
+        title: 'Reporte',
+        element: '#tab-reporte',
+        class: 'disabled tab-select'
+      },
+    ],
+    "tab-id": '#tab-button',
+    "tab-default": 'Reporte',  //Por default, al dar click, abre aqui
+    reload: false, //Activa la rueda
+    movil: false, //Activa la version movil
+  }
+
+  Object.entries(defaults).forEach(([key, value]) => {
+    config[key] = config[key] ?? value;
+  });
+  return config;
+}
+//Detecta la dimension del dispositivo para saber si es movil o escritorio
+function isMovil(callback = (response) => { }) {
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+
+  if ((width <= 768 && height <= 1366) || (height <= 1366 && width <= 1366)) {
+    callback(true);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//Visualiza los botones de navegacion
+function selecTableTabs() {
+  isMovil() ? $('.tab-page-table').fadeIn(0) : $('.tab-page-table').fadeOut(0);;
+}
+
+// Para la version movil crea y visualiza columnas
+function getBtnTabs(config) {
+  if (config.tabs) {
+    console.log(config.tabs)
+    let row = config.tabs;
+    let html = `<ul class="nav nav-tabs mt-2 tab-page-table" style="display:none">`;
+    for (const key in row) {
+      if (Object.hasOwnProperty.call(row, key)) {
+        const element = row[key];
+
+        html += `<li class="nav-item">
+                    <a class="nav-link ${element.class ? element.class : ''} tab-table" data-id-column="${element['element']}" id="tab-btn-${element.title}" style="cursor: pointer">${element.title}</a>
+                  </li>`;
+      }
+    }
+    html += `</ul>`
+    $(config['tab-id']).html(html)
+
+    return true;
+  }
+}
+
+//Visualiza la columna solo en movil
+let dinamicTabFunction = false
+function dinamicTabs(loader) {
+  dinamicTabFunction = false;
+  isMovil(() => {
+    dinamicTabFunction = () => {
+      console.log('IS MOVIL')
+      $(document).on('click', '.tab-table', function () {
+        let btn = $(this);
+        if (!btn.hasClass('active')) {
+          $('.tab-first').fadeOut(100);
+          $('.tab-second').fadeOut(0);
+
+          $('.tab-table').removeClass('active');
+          btn.addClass('active');
+
+          setTimeout(() => {
+            let id = btn.attr('data-id-column');
+            console.log(id);
+            let loaderVisible = function () {
+              if ($(loader).is(":hidden")) {
+                $(`${id}`).fadeIn(100);
+                loaderVisible = false;
+              } else {
+                setTimeout(() => {
+                  loaderVisible(id);
+                }, 150);
+              }
+            }
+            loaderVisible()
+          }, 100);
+        }
+
+      })
+    }
+
+    dinamicTabFunction();
+  })
+
+  try {
+    $.fn.dataTable
+      .tables({
+        visible: true,
+        api: true
+      })
+      .columns.adjust();
+  } catch (error) {
+
+  }
+
+}
+
+//Agrega el circulo para cargar el panel
+function setReloadSelecTable(name, param) {
+  let html = `<div class="col-12 col-xl-9 d-flex justify-content-center align-items-center" id='loaderDiv-${name}' style="max-height: 75vh; display:none">
+    <div class="preloader" id="loader-${name}"></div>
+  </div>`;
+
+  $('#reload-selectable').addClass(`col-12 ${param[0]} d-flex justify-content-center align-items-center`)
+  $('#reload-selectable').css('max-height', '75vh')
+  $('#reload-selectable').attr("style", "display: none !important");
+  $('#reload-selectable').html(`<div class="preloader" id="loader-${name}"></div>`)
+  $('#reload-selectable').addClass('loader-tab')
+
+  // $('#reload-selectable').fadeOut('slow');
+  $('#reload-selectable').attr('id', `loaderDiv-${name}`)
+}
+
+function reloadSelectTable() {
+  if (isMovil()) {
+    //Manda al principio
+    try {
+      $(`.tab-table`)[0].click();
+    } catch (error) {
+      console.log('BTN class: tab-table not found')
+    }
+    $('.loader-tab').fadeOut(0)
+  } else {
+    $('.tab-second').fadeOut();
+    $('.tab-first').fadeIn();
+    $('.loader-tab').fadeOut(0)
+  }
+
+}
+
+//selectDataTableMovilEdition
+let dataDobleSelect, selectTableTimeOutClick, selectTableClickCount = 0;
+function selectTable(tablename, datatable,
+  config = {
+    dblClick: false,
+  },
+  callbackClick = (select = 1, dataRow = [], tr = '1', row = []) => { },
+  callbackDblClick = (select = 1, dataRow = [], tr = '1', row = []) => { }
+) {
+  //manda valores por defecto
+  config = configSelectTable(config)
+
+  //Nombramiento para usarlo
+  let nameTable = tablename.replace('#', '')
+
+  //Permite el reload y lo dibuja
+  if (config.reload)
+    setReloadSelecTable(nameTable, config.reload)
+
+  //Activa las funciones moviles
+  if (config.movil) {
+    //Cambia la vista del dispositivo
+    getBtnTabs(config);
+    //Activa los botones si es movil
+    dinamicTabs(`#loaderDiv-${nameTable}`)
+    //Evalua el tipo de dispositivo
+    selecTableTabs()
+  }
+
+  //Callback para procesos, ejemplo: quitar loader y mostrar columnas en escritorio
+  let callback = (type = 'Out' || 'In') => {
+    if (type === 'In') {
+      if (!isMovil() || !config.movil) {
+        $('.tab-second').fadeIn(200)
+      }
+    }
+    $(`#loaderDiv-${nameTable}`).attr("style", "display: none !important");
+  }
+
+
+  //Table Click Registro
+  $(`${tablename}`).on(`click`, `tr`, function () {
+    $('.tab-second').fadeOut()
+    $(`#loaderDiv-${nameTable}`).fadeIn(0);
+
+
+    if ($(this).hasClass('selected')) {
+      selectTableClickCount++;
+      clearTimeout(selectTableTimeOutClick)
+
+      selectTableTimeOutClick = setTimeout(function () {
+
+        if (selectTableClickCount === 1 && config.unSelect === true) {
+          //Si esta deseleccionando:
+          //Resetea los clicks:
+          selectTableClickCount = 0;
+          dataDobleSelect = false;
+
+          //Reinicia la seleccion:
+          datatable.$('tr.selected').removeClass('selected');
+          datatable.$('tr.selected').removeClass(config.anotherClass);
+          //
+
+          //Desactivar otros tab
+          $(`.tab-select`).addClass('disabled')
+          // if (isMovil()) {
+          //   let id = $('.tab-first').attr('id');
+          //   $(`.tab-table`)
+          // }
+
+          // callbackDblClick(0, null, null, null);
+          console.log('deselect')
+          return callbackClick(0, null, callback, null, null);
+          //
+        } else if (selectTableClickCount === 2 && config.dblClick === true) {
+          //Si esta haciendo dobleClick: 
+          selectTableClickCount = 0;
+
+          let tr = this;
+          let row = datatable.row(tr);
+          let dataRow = row.data();
+
+
+          return callbackDblClick(1, dataRow, callback, tr, row)
+
+        } else {
+          //Reinicia el dobleClick
+          selectTableClickCount = 0;
+        }
+
+      }, 300)
+
+    } else {
+      //Si esta seleccionando:
+      dataDobleSelect = this;
+      selectTableClickCount++;
+      setTimeout(() => {
+        selectTableClickCount = 0;
+      }, 400);
+
+
+      //Reinicia la seleccion:
+      datatable.$('tr.selected').removeClass('selected');
+      datatable.$('tr.selected').removeClass(config.anotherClass);
+      //
+
+      //Agrega la clase para indicar que lo esta seleccionando
+      $(this).addClass('selected');
+      $(this).addClass(config.anotherClass);
+
+      //Activar otros tab
+      $(`.tab-select`).removeClass('disabled');
+
+      //Reselecciona
+      if (config['tab-default']) {
+        $(`#tab-btn-${config['tab-default']}`).click();
+      }
+
+      //Obtener datos, tr, row e información del row
+      let tr = this;
+      let row = datatable.row(tr);
+      let dataRow = row.data();
+
+      return callbackClick(1, dataRow, callback, tr, row);
+
+    }
+
+  })
+}
+
+
+//Panel, este panel se usa ahora en la funcion selectTable, resolviendo el bug
 function getPanel(divClass, loader, loaderDiv1, selectLista, fade, callback) { //selectLista es una variable que no se usa 
   switch (fade) {
     case 'Out':
