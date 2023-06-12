@@ -79,6 +79,7 @@ switch ($api) {
                 $response[0]['SEGMENTOS'] = "Sin segmentos";
             }
         }
+        $response[0]['CUESTIONARIOS'] = $master->decodeJson([$response[0]['CUESTIONARIOS']]);
         break;
     case 3:
         # actualizar
