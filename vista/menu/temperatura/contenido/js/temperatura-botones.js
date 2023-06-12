@@ -36,3 +36,17 @@ $(document).on('click', '.btn-liberar', function (event) {
         })
     }, 1)
 })
+
+$("#EquiposTemperaturasForm").on("submit", function (e) {
+    e.preventDefault();
+
+    let data = new FormData(document.getElementById("EquiposTemperaturasForm"));
+
+    console.log(data)
+})
+
+ajaxAwaitFormData({
+    api: 1
+}, "temperaturas_api.php", "EquiposTemperaturasForm", { alertBefore: false }, false, function (response) {
+
+})

@@ -1,3 +1,5 @@
+SelectedPacienteCredito = {};
+
 setTimeout(function () {
     loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
 }, 1000)
@@ -149,7 +151,7 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
 selectDatatable("TablaGrupoDetalle", TablaGrupoDetalle, 0, 0, 0, 0, function (select, data) {
 
     if (select) {
-
+        SelectedPacienteCredito = data
     } else {
 
     }

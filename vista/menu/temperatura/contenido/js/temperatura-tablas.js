@@ -1,10 +1,15 @@
+
+enfriadorData = {};
+
 setTimeout(function () {
     loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
 }, 1000)
 
 
+rellenarSelect("#Equipo", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 5 })
+
 //Tabla de temperaturas por mes
-tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
+/* tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
     info: false,
@@ -48,7 +53,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
 
     ]
 })
-
+ */
 
 inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
     msj: 'Tabla de registro de temperatura mensual',
