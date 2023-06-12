@@ -4,9 +4,8 @@ class TokenPreregistro
 {
 
 
-    public function generarTokenPreregistro($correo, $cuestionarios)
+    public function generarTokenPreregistro($correo)
     {
-        
         if (!(filter_var($correo, FILTER_VALIDATE_EMAIL))) {
             echo 'Invalid email';
         }
@@ -15,7 +14,7 @@ class TokenPreregistro
 
         try {
             $master = new Master();
-            $resSP = $master->getByProcedure("sp_preregistro_token_g", [null, $correo, null, json_encode($cuestionarios)]);
+            $resSP = $master->getByProcedure("sp_preregistro_token_g", [null, $correo, null]);
             $token = $resSP[0]['_token'];
         } catch (Exception $e) {
             // return ('Error: '  . $sentencia->errorCode());
