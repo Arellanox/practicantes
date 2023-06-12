@@ -8,9 +8,4 @@ $(document).on('click', '.btn-facturar', function (event) {
     } else {
         alertToast('Selecciona un registro', 'info', 4000)
     }
-
-
-
-
 })
-

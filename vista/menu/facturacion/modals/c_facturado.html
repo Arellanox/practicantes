@@ -1,0 +1,40 @@
+<div class="modal fade" id="ModalTicketCreditoFacturado" tabindex="-1" data-bs-backdrop="static"
+    data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!--  <div class="modal-header">
+                <h5 class="modal-title" id="liberarDiaTitle">Ticket Credito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> -->
+
+            <div class="modal-body container-fluid">
+                <h5>Facturar Grupos de Crédito</h5>
+                <hr>
+
+                <div class="container-fluid">
+                    <form id="formFacturarGrupoCredito" name="formFacturarGrupoCredito">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="NumeroFactura">Numero de la Factura:</label>
+                                    <input type="text" name="NumeroFactura" value=""
+                                        class="mt-2 form-control input-form" id="NumeroFactura">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i>
+                    Cancelar</button>
+                </button>
+                <button type="submit" form="formFacturarGrupoCredito" class="btn btn-confirmar">
+                    <i class="bi bi-receipt-cutoff"></i> Facturar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
