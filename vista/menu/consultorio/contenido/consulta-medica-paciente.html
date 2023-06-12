@@ -172,14 +172,16 @@
                         <div class="row m-2">
                             <div class="col-4">
                                 <label for="estado" class="form-label">Buscar estudios</label>
-                                <input type="text" class="form-control input-form" name="buscador-estudios"
-                                    placeholder="Cargando estudios disponibles">
+                                <!-- <input type="text" class="form-control input-form" name="buscador-estudios"
+                                    placeholder="Cargando estudios disponibles"> -->
+                                    <select name="buscar-estudios" id="buscar-estudios" class="input-form form-select"></select>
                                 <!-- ¿Se identificará por area, por grupos? -->
                                 <button type="submit" form="formNuevaReceta" class="btn btn-confirmar me-2"
                                     style="margin-bottom:4px" id="btn-agregar-estudio">
                                     <i class="bi bi-paperclip"></i> Agregar
                                 </button>
                             </div>
+                            
                             <div class="col-8">
                                 <p>Lista de estudios solicitados actuales/guardados</p>
                                 <!-- ¿Podria ser dinamico? o ¿Tiempo real? -->

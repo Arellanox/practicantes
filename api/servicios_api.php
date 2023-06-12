@@ -602,6 +602,12 @@ switch ($api) {
     default:
         echo "Api no reconocida.";
         break;
+
+     case 17:
+        $response = $master->getByProcedure('sp_consultorio_servicios_b', [$id_servicio, $descripcion, $abreviatura]);
+        echo $master->returnApi($response);
+        exit;
+        break;   
 }
 
 #$servicios (conjunto de datos clasificados), $clasificacion (nombre de la clasificacion)

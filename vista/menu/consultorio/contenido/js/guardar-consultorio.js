@@ -27,9 +27,10 @@ $(document).on('click', '#btn-guardar-Diagnostico', function (event) {
     event.preventDefault()
     alertaConsultorio('diagostico')
 })
-//aqui va solicitud de estudios
-
-
+$(document).on('click', '#btn-agregar-estudio', function(event){
+    event.preventDefault();
+    alertaConsultorio('estudio')
+})
 $(document).on('click', '#btn-guardar-Receta', function (event) {
     event.preventDefault()
     alertaConsultorio('receta')
@@ -80,6 +81,10 @@ function guardarDatosConsultorio(btn) {
                 alertMensaje('success', 'Datos guardados', 'Espere un momento...', null, null, 1500)
             })
             break;
+
+        case 'estudio':
+            alert(1)
+            break;    
 
         case 'receta':
             let dataJson_recetas = {
@@ -219,3 +224,5 @@ function desactivarTablaReceta(){
         })
     }, 1)
 }
+
+rellenarSelect('#buscar-estudios', 'servicios_api', 17, 'ID_SERVICIO', 'DESCRIPCION', 'ABREVIATURA')
