@@ -12,17 +12,10 @@
           <div class="col-12 col-md-12 col-lg-12 col-xl-12">
             <label for="correo" class="form-label">Ingrese el correo</label>
             <input type="email" name="correo" id="inputURLSolicitudCorreo" class="form-control input-form" required>
-            <div class="form-check" >
-              <input class="form-check-input" type="checkbox" value="" id="checkInfoPers">
-              <label class="form-check-label" for="checkInfoPers">
-                Solo información personal
-              </label>
-            </div>
-            <hr>
             <p class="mb-2">Cuestionarios</p>
             <div class="form-check" id="lista_cuestionarios">
-              <p class="mb-2">Cuestionarios</p>
-              
+             <!--Aqui añadiremos los comentarios por medio de AJAX-->
+
             </div>
           </div>
 
@@ -31,7 +24,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i>
           Cancelar</button>
-        <button type="submit" form="formEnviarCorreoIngreso" class="btn btn-confirmar" id="btn-rechazar-paciente">
+        <button type="submit" form="formEnviarCorreoIngreso" class="btn btn-confirmar" id="btn-correo-enviar">
           <i class="bi bi-person-x"></i> Enviar solicitud
         </button>
       </div>
