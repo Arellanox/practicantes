@@ -1,8 +1,9 @@
-SelectedPacienteCredito = {};
-
+SelectedPacienteCredito = {}, SelectedGruposCredito = {}, factura = null;
 setTimeout(function () {
     loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
 }, 1000)
+
+
 
 TablaGrupos = $('#TablaGrupos').DataTable({
     language: {
@@ -38,17 +39,17 @@ TablaGrupos = $('#TablaGrupos').DataTable({
          }
      } */
     columns: [
-        { data: 'ID_GRUPO' },
+        { data: 'COUNT' },
         { data: 'FOLIO' },
         { data: 'PROCEDENCIA' },
         {
             data: 'FECHA_CREACION', render: function (data) {
-                return formatoFecha2(data, [0, 1, 5, 2, 0, 0, 0]);
+                return formatoFecha2(data, [0, 1, 3, 1]);
             }
         },
         {
             data: 'FECHA_FACTURA', render: function (data) {
-                return formatoFecha2(data, [0, 1, 5, 2, 0, 0, 0]);
+                return formatoFecha2(data, [0, 1, 3, 1]);
             }
         },
         { data: 'FACTURA' }
@@ -78,10 +79,14 @@ selectDatatable("TablaGrupos", TablaGrupos, 0, 0, 0, 0, function (select, data) 
     if (select) {
         $(".informacion-creditos").fadeIn(0)
         DataGrupo.id_grupo = data['ID_GRUPO']
+        SelectedGruposCredito = data
+        SelectedGruposCredito['FACTURADO'] == 1 ? $("#FacturarGruposCredito").fadeOut(0) : $("#FacturarGruposCredito").fadeIn(0);
+
         TablaGrupoDetalle.ajax.reload()
     } else {
         $(".informacion-creditos").fadeOut(0);
         fadeRegistro('Out')
+        $("#FacturarGruposCredito").fadeOut(0);
     }
 })
 
@@ -119,7 +124,7 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
         dataSrc: 'response.data'
     },
     columns: [
-        { data: 'ID_TURNO' },
+        { data: 'COUNT' },
         { data: 'PX' },
         { data: 'PREFOLIO' },
         {
@@ -133,7 +138,7 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
         { data: 'DIAGNOSTICO' },
         {
             data: 'FECHA_RECEPCION', render: function (data) {
-                return formatoFecha2(data, [0, 1, 5, 2, 0, 0, 0]);
+                return formatoFecha2(data, [0, 1, 3, 1]);
             }
         }
     ],
@@ -142,8 +147,8 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
         { target: 1, title: 'PACIENTE', className: 'all' },
         { target: 2, title: 'PREFOLIO', className: 'all' },
         { target: 3, title: 'CUENTA', className: 'all' },
-        { target: 4, title: 'DIAGNOSTICO', className: 'all' },
-        { target: 5, title: 'RECEPCION' /*FECHA*/, className: 'all' }
+        { target: 4, title: 'DIAGNOSTICO', className: 'min-tablet' },
+        { target: 5, title: 'RECEPCION' /*FECHA*/, className: 'min-tablet' }
     ]
 })
 
@@ -153,7 +158,7 @@ selectDatatable("TablaGrupoDetalle", TablaGrupoDetalle, 0, 0, 0, 0, function (se
     if (select) {
         SelectedPacienteCredito = data
     } else {
-
+        SelectedPacienteCredito = {}
     }
 })
 

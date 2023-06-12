@@ -10,4 +10,5 @@ $.post("modals/a_modals.php", function (html) {
 
     $.getScript('modals/js/cl_editar_cliente.js');
     $.getScript('modals/js/c_credito_ticket.js');
+    $.getScript('modals/js/c_facturado.js');
 });
