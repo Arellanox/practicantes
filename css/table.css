@@ -54,3 +54,8 @@ table tbody tr.selected {
   box-shadow: inset 0 0 0 9999px rgb(0 130 148) !important;
   color: white;
 } */
+
+/* Para elementos de una tabla */
+.noClicked{
+  max-width: max-content;
+}

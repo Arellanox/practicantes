@@ -1708,6 +1708,7 @@ function configSelectTable(config) {
     reload: false, //Activa la rueda
     movil: false, //Activa la version movil
     multipleSelect: false,
+    OnlyData: false,
   }
 
   Object.entries(defaults).forEach(([key, value]) => {
@@ -1881,9 +1882,22 @@ function selectTable(tablename, datatable,
 
 
   //Table Click Registro
-  $(`${tablename}`).on(`click`, `tr`, function () {
-    $('.tab-second').fadeOut()
-    $(`#loaderDiv-${nameTable}`).fadeIn(0);
+  $(`${tablename}`).on(`click`, `tr`, function (event) {
+    //Obtener datos, tr, row e información del row
+    let tr = this
+    let row = datatable.row(tr);
+    let dataRow = row.data();
+
+    if (config.OnlyData) {
+      return callbackClick(1, dataRow, callback, tr, row);
+    }
+
+    // let td = $(event.target).is('td')
+
+    var clickedElement = $(event.target);
+    //Cancela la funcion si el elemento que hace click tiene la siguiente clase
+    if (clickedElement.hasClass('noClicked'))
+      return true;
 
 
     if ($(this).hasClass('selected')) {
@@ -1893,6 +1907,9 @@ function selectTable(tablename, datatable,
       selectTableTimeOutClick = setTimeout(function () {
 
         if (selectTableClickCount === 1 && config.unSelect === true) {
+          //Manda a cargar la vista
+          $('.tab-second').fadeOut()
+          $(`#loaderDiv-${nameTable}`).fadeIn(0);
           //Si esta deseleccionando:
           //Resetea los clicks:
           selectTableClickCount = 0;
@@ -1915,24 +1932,27 @@ function selectTable(tablename, datatable,
           return callbackClick(0, null, callback, null, null);
           //
         } else if (selectTableClickCount === 2 && config.dblClick === true) {
+          //Manda a cargar la vista
+          $('.tab-second').fadeOut()
+          $(`#loaderDiv-${nameTable}`).fadeIn(0);
           //Si esta haciendo dobleClick: 
           selectTableClickCount = 0;
-
-          let tr = this;
-          let row = datatable.row(tr);
-          let dataRow = row.data();
-
 
           return callbackDblClick(1, dataRow, callback, tr, row)
 
         } else {
           //Reinicia el dobleClick
           selectTableClickCount = 0;
+          return 'No action';
         }
 
       }, 300)
 
     } else {
+      //Manda a cargar la vista
+      $('.tab-second').fadeOut()
+      $(`#loaderDiv-${nameTable}`).fadeIn(0);
+
       //Si esta seleccionando:
       dataDobleSelect = this;
       selectTableClickCount++;
@@ -1973,11 +1993,6 @@ function selectTable(tablename, datatable,
           $(`#tab-btn-${config['tab-default']}`).click();
         }
 
-
-        //Obtener datos, tr, row e información del row
-        let tr = this;
-        let row = datatable.row(tr);
-        let dataRow = row.data();
 
         return callbackClick(1, dataRow, callback, tr, row);
       }

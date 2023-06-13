@@ -44,7 +44,7 @@ TablaGrupos = $('#TablaGrupos').DataTable({
         { data: 'COUNT' },
         {
             data: 'FOLIO', render: function (data) {
-                let html = `<div class="" id="GrupoInfoCreditoBtn">
+                let html = `<div class="noClicked" id="GrupoInfoCreditoBtn">
                 ${data}
                 </div>`
                 return html
@@ -100,6 +100,7 @@ loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
 
 
 selectTable('#TablaGrupos', TablaGrupos, { unSelect: true, movil: false, reload: ['col-xl-9'] }, async function (select, data, callback) {
+
     if (select) {
         // $(".informacion-creditos").fadeIn(0)
         DataGrupo.id_grupo = data['ID_GRUPO']
@@ -207,12 +208,14 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
 })
 
 
-selectDatatable("TablaGrupoDetalle", TablaGrupoDetalle, 0, 0, 0, 0, function (select, data) {
-
+selectTable('#TablaGrupoDetalle', TablaGrupoDetalle, { OnlyData: true }, async function (select, data, callback) {
+    // selectDatatable("TablaGrupoDetalle", TablaGrupoDetalle, 0, 0, 0, 0, function (select, data) {
     if (select) {
         SelectedPacienteCredito = data
+        callback('In')
     } else {
         SelectedPacienteCredito = {}
+        callback('Out')
     }
 })
 
