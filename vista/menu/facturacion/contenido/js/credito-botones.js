@@ -31,6 +31,8 @@ $(document).on('click', '#ticketDataButton', function (event) {
                 // total = iva + element['COSTO']
                 // total = parseFloat(total).toFixed(2)
 
+                totalServicio = (parseInt(element['CANTIDAD']) * parseFloat(element['COSTO'])).toFixed(2)
+
 
                 let html = `
                  <tr>
@@ -40,8 +42,7 @@ $(document).on('click', '#ticketDataButton', function (event) {
                                         </td>
                                         <td>${element['COSTO']}</td>
                                         <td>${element['CANTIDAD']}</td>
-                                        <td>5.00%</td>
-                                        <td>$0.00</td>
+                                        <td>$${totalServicio}</td>
                  </tr>
                 `;
 
@@ -67,6 +68,12 @@ $(document).on('click', '#ticketDataButton', function (event) {
 
 })
 
+$(document).on('click', '#GrupoInfoCreditoBtn', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    $('#ModalInformacionGruposCredito').modal('show');
+})
 
 $("#FacturarGruposCredito").on('click', function (e) {
     e.preventDefault();
@@ -74,16 +81,11 @@ $("#FacturarGruposCredito").on('click', function (e) {
         title: 'Requiere Factura?',
         text: '',
         icon: 'info',
-        confirmButtonText: "Si, Requiero Factura",
-        showDenyButton: true
+        confirmButtonText: "Si, Requiero Factura"
     }, () => {
         factura = true;
         $("#ModalTicketCreditoFacturado").modal('show');
-    }, 1, function () {
-        factura = false;
-        id_grupo = SelectedGruposCredito['ID_GRUPO']
-        FacturarGruposCredito(null, id_grupo)
-    })
+    }, 1)
 
 })
 
@@ -99,8 +101,6 @@ function FacturarGruposCredito(facturado = null, id_grupo = null) {
     if (facturado) {
         config.num_factura = facturado;
     }
-
-    console.log(config);
 
     ajaxAwait(config, 'admon_grupos_api', { callbackAfter: true }, false, function (response) {
         $("#ModalTicketCreditoFacturado").modal('hide');

@@ -106,7 +106,17 @@
                 </div>
             </div>
         </div>
-        <div class="row" id="lista-meses-temperatura" style="display: none;">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="card mt-3 p-3">
+                    <h5>Agregar Nueva Lectura</h5>
+                    <form id="formCapturarTemperatura" name="formCapturarTemperatura" enctype="multipart/form-data">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="lista-meses-temperatura" style="">
             <div class=" col-12" style="margin-right: -5px !important;">
                 <div class="card mt-3 p-3 ">
                     <h5>Lista de Registro de Temperaturas</h5>
@@ -130,16 +140,7 @@
     </div>
 
     <div class="col-12 col-lg-9 informacion-temperatura" style="margin-right: -5px !important;">
-        <div class="row">
-            <div class="col-12 col-lg-12">
-                <div class="card mt-3 p-3">
-                    <h5>Agregar Nueva Lectura</h5>
-                    <form id="formCapturarTemperatura" name="formCapturarTemperatura" enctype="multipart/form-data">
 
-                    </form>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="card mt-3 p-3">

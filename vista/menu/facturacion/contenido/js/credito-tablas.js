@@ -25,8 +25,10 @@ TablaGrupos = $('#TablaGrupos').DataTable({
             $(".informacion-creditos").fadeOut(0);
         },
         complete: function () {
-            loader("Out")
-            TablaGrupos.columns.adjust().draw()
+            // loader("Out")
+            //Para ocultar segunda columna
+            reloadSelectTable()
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
@@ -40,7 +42,14 @@ TablaGrupos = $('#TablaGrupos').DataTable({
      } */
     columns: [
         { data: 'COUNT' },
-        { data: 'FOLIO' },
+        {
+            data: 'FOLIO', render: function (data) {
+                let html = `<div class="" id="GrupoInfoCreditoBtn">
+                ${data}
+                </div>`
+                return html
+            }
+        },
         { data: 'PROCEDENCIA' },
         {
             data: 'FECHA_CREACION', render: function (data) {
@@ -74,22 +83,37 @@ inputBusquedaTable("TablaGrupos", TablaGrupos, [], {
 
 loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
 
-selectDatatable("TablaGrupos", TablaGrupos, 0, 0, 0, 0, function (select, data) {
+// selectDatatable("TablaGrupos", TablaGrupos, 0, 0, 0, 0, function (select, data) {
 
+//     if (select) {
+//         $(".informacion-creditos").fadeIn(0)
+//         DataGrupo.id_grupo = data['ID_GRUPO']
+//         SelectedGruposCredito = data
+
+//         TablaGrupoDetalle.ajax.reload()
+//     } else {
+//         $(".informacion-creditos").fadeOut(0);
+//         fadeRegistro('Out')
+//         $("#FacturarGruposCredito").fadeOut(0);
+//     }
+// })
+
+
+selectTable('#TablaGrupos', TablaGrupos, { unSelect: true, movil: false, reload: ['col-xl-9'] }, async function (select, data, callback) {
     if (select) {
-        $(".informacion-creditos").fadeIn(0)
+        // $(".informacion-creditos").fadeIn(0)
         DataGrupo.id_grupo = data['ID_GRUPO']
         SelectedGruposCredito = data
-        SelectedGruposCredito['FACTURADO'] == 1 ? $("#FacturarGruposCredito").fadeOut(0) : $("#FacturarGruposCredito").fadeIn(0);
 
         TablaGrupoDetalle.ajax.reload()
+
+
+        //Muestra las columnas
+        callback('In')
     } else {
-        $(".informacion-creditos").fadeOut(0);
-        fadeRegistro('Out')
-        $("#FacturarGruposCredito").fadeOut(0);
+        callback('Out')
     }
 })
-
 
 var DataGrupo = {
     api: 3,
@@ -149,7 +173,37 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
         { target: 3, title: 'CUENTA', className: 'all' },
         { target: 4, title: 'DIAGNOSTICO', className: 'min-tablet' },
         { target: 5, title: 'RECEPCION' /*FECHA*/, className: 'min-tablet' }
-    ]
+    ],
+
+    dom: 'Bfrtip',
+    buttons: [
+        // {
+        //   extend: 'copyHtml5',
+        //   text: '<i class="fa fa-files-o"></i>',
+        //   titleAttr: 'Copy'
+        // },
+        {
+            text: '<i class="bi bi-receipt-cutoff"></i>  Facturar',
+            id: 'FacturarGruposCredito',
+            className: 'btn btn-turquesa',
+            action: function (data) {
+                if (SelectedGruposCredito['FACTURADO'] == 1) {
+                    alertMensaje('info', 'Grupo Facturado', `Este grupo ese ya ha sido facturado previamente (${SelectedGruposCredito['FACTURA']})`)
+
+                    return false
+                }
+                alertMensajeConfirm({
+                    title: 'Requiere Factura?',
+                    text: '',
+                    icon: 'info',
+                    confirmButtonText: "Si, Requiero Factura"
+                }, () => {
+                    factura = true;
+                    $("#ModalTicketCreditoFacturado").modal('show');
+                }, 1)
+            }
+
+        }]
 })
 
 
@@ -166,7 +220,7 @@ selectDatatable("TablaGrupoDetalle", TablaGrupoDetalle, 0, 0, 0, 0, function (se
 inputBusquedaTable('TablaGrupoDetalle', TablaGrupoDetalle, [], {
     msj: "Filtre los resultados por coincidencia",
     place: 'top'
-})
+}, 'col-12')
 
 function fadeRegistro(tipe) {
     if (tipe == 'Out') {

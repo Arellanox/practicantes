@@ -1,8 +1,12 @@
 <!-- <div class="col-12 loader" id="loader">
     <div class="preloader" id="preloader"> </div>
 </div> -->
+
+<!-- tabs para movil -->
+<div id="tab-button"></div>
+
 <div class="row">
-    <div class="col-12 col-lg-3" style="margin-right: -5px !important;">
+    <div class="col-12 col-xl-3 tab-first" id="tab-gruposCredito" style="margin-right: -5px !important;">
         <div class="card mt-3 p-3">
             <h5>Grupos de crédito</h5>
 
@@ -20,19 +24,28 @@
             </table>
         </div>
     </div>
-    <div class="col-12 col-lg-9 informacion-creditos" style="margin-right: -5px !important;display:none">
+    <div class="col-12 col-xl-9 tab-second informacion-creditos" id="tab-detallesCredito"
+        style="margin-right: -5px !important;display:none">
         <div class="card mt-3 p-3" id="TablaGrupoDetalleCard">
+
             <table class="table table-hover display responsive" id="TablaGrupoDetalle" style="width: 100%;"></table>
         </div>
     </div>
-    <div class="col-9 d-flex justify-content-center align-items-center" id='loaderDivmuestras'
+
+    <!-- Tercera Columna visual -->
+    <div id="reload-selectable">
+
+    </div>
+
+    <!-- <div class="col-9 d-flex justify-content-center align-items-center" id='loaderDivmuestras'
         style="max-height: 75vh; display:none !important">
         <div class="preloader" id="loader-muestras"></div>
-    </div>
+    </div> -->
 </div>
 
 
 <style>
+    #GrupoInfoCreditoBtn,
     #ticketDataButton {
         cursor: pointer;
         pointer-events: all;
