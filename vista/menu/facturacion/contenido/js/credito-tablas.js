@@ -1,10 +1,3 @@
-SelectedPacienteCredito = {}, SelectedGruposCredito = {}, factura = null;
-setTimeout(function () {
-    loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
-}, 1000)
-
-
-
 TablaGrupos = $('#TablaGrupos').DataTable({
     language: {
         url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -25,8 +18,10 @@ TablaGrupos = $('#TablaGrupos').DataTable({
             $(".informacion-creditos").fadeOut(0);
         },
         complete: function () {
-            loader("Out")
-            TablaGrupos.columns.adjust().draw()
+            // loader("Out")
+            //Para ocultar segunda columna
+            reloadSelectTable()
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
@@ -40,7 +35,14 @@ TablaGrupos = $('#TablaGrupos').DataTable({
      } */
     columns: [
         { data: 'COUNT' },
-        { data: 'FOLIO' },
+        {
+            data: 'FOLIO', render: function (data) {
+                let html = `<div class="noClicked" id="GrupoInfoCreditoBtn">
+                ${data}
+                </div>`
+                return html
+            }
+        },
         { data: 'PROCEDENCIA' },
         {
             data: 'FECHA_CREACION', render: function (data) {
@@ -58,7 +60,7 @@ TablaGrupos = $('#TablaGrupos').DataTable({
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Folio', className: 'all' },
-        { target: 2, title: 'Empresa', className: 'desktop' },
+        { target: 2, title: 'Procedencia', className: 'desktop' },
         { target: 3, title: 'Creacion', className: 'none' },
         { target: 4, title: 'Fecha de Factura', className: 'none' },
         { target: 5, title: 'Factura', className: 'none' }
@@ -74,22 +76,35 @@ inputBusquedaTable("TablaGrupos", TablaGrupos, [], {
 
 loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
 
-selectDatatable("TablaGrupos", TablaGrupos, 0, 0, 0, 0, function (select, data) {
+// selectDatatable("TablaGrupos", TablaGrupos, 0, 0, 0, 0, function (select, data) {
+
+//     if (select) {
+//         $(".informacion-creditos").fadeIn(0)
+//         DataGrupo.id_grupo = data['ID_GRUPO']
+//         SelectedGruposCredito = data
+
+//         TablaGrupoDetalle.ajax.reload()
+//     } else {
+//         $(".informacion-creditos").fadeOut(0);
+//         fadeRegistro('Out')
+//         $("#FacturarGruposCredito").fadeOut(0);
+//     }
+// })
+
+
+selectTable('#TablaGrupos', TablaGrupos, { unSelect: true, movil: false, reload: ['col-xl-9'] }, async function (select, data, callback) {
 
     if (select) {
-        $(".informacion-creditos").fadeIn(0)
+        // $(".informacion-creditos").fadeIn(0)
         DataGrupo.id_grupo = data['ID_GRUPO']
         SelectedGruposCredito = data
-        SelectedGruposCredito['FACTURADO'] == 1 ? $("#FacturarGruposCredito").fadeOut(0) : $("#FacturarGruposCredito").fadeIn(0);
-
         TablaGrupoDetalle.ajax.reload()
+        //Muestra las columnas
+        callback('In')
     } else {
-        $(".informacion-creditos").fadeOut(0);
-        fadeRegistro('Out')
-        $("#FacturarGruposCredito").fadeOut(0);
+        callback('Out')
     }
 })
-
 
 var DataGrupo = {
     api: 3,
@@ -149,24 +164,49 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
         { target: 3, title: 'CUENTA', className: 'all' },
         { target: 4, title: 'DIAGNOSTICO', className: 'min-tablet' },
         { target: 5, title: 'RECEPCION' /*FECHA*/, className: 'min-tablet' }
-    ]
+    ],
+
+    dom: 'Bfrtip',
+    buttons: [
+        // {
+        //   extend: 'copyHtml5',
+        //   text: '<i class="fa fa-files-o"></i>',
+        //   titleAttr: 'Copy'
+        // },
+        {
+            text: '<i class="bi bi-receipt-cutoff"></i>  Facturar',
+            id: 'FacturarGruposCredito',
+            className: 'btn btn-turquesa',
+            action: function (data) {
+                if (SelectedGruposCredito['FACTURADO'] == 1) {
+                    alertMensaje('info', 'Grupo Facturado', `Este grupo ese ya ha sido facturado previamente (${SelectedGruposCredito['FACTURA']})`)
+
+                    return false
+                }
+                alertMensajeConfirm({
+                    title: 'Requiere Factura?',
+                    text: '',
+                    icon: 'info',
+                    confirmButtonText: "Si, Requiero Factura"
+                }, () => {
+                    factura = true;
+                    $("#ModalTicketCreditoFacturado").modal('show');
+                }, 1)
+            }
+
+        }]
 })
 
 
-selectDatatable("TablaGrupoDetalle", TablaGrupoDetalle, 0, 0, 0, 0, function (select, data) {
-
-    if (select) {
-        SelectedPacienteCredito = data
-    } else {
-        SelectedPacienteCredito = {}
-    }
+selectTable('#TablaGrupoDetalle', TablaGrupoDetalle, { OnlyData: true }, async function (select, data) {
+    SelectedPacienteCredito = data
 })
 
 
 inputBusquedaTable('TablaGrupoDetalle', TablaGrupoDetalle, [], {
     msj: "Filtre los resultados por coincidencia",
     place: 'top'
-})
+}, 'col-12')
 
 function fadeRegistro(tipe) {
     if (tipe == 'Out') {

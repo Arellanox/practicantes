@@ -244,7 +244,4 @@ $menu = $_POST['menu']; ?>
   <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalFiltroPacientesFacturacion">
     <i class="bi bi-archive"></i> Generar Grupo
   </button>
-  <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none;" data-bs-toggle="modal" data-bs-target="" id="FacturarGruposCredito">
-    <i class="bi bi-receipt-cutoff"></i> Facturar
-  </button>
 <?php endif; ?>
