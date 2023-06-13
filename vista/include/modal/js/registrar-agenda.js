@@ -46,7 +46,6 @@ $("#formRegistrarAgenda").submit(function (event) {
       return false;
     }
 
-
     // var formAntPersonalPato = document.getElementById('formAntPersonalPato');
 
     // var formData = new FormData(formAntPersonalPato);
@@ -228,7 +227,9 @@ function mostrarAntecedente(btn, form) {
 
 var tipoPaciente = "0"; //Particular por defecto
 $('#actualizarForm').click(async function () {
+
   curp = $('#curp-paciente').val();
+  
   if (ant) {
     await obtenerVistaAntecenetesPaciente('#antecedentes-registro', $('#procedencia-registro').text(), 0)
     await obtenerAntecedentesPaciente(null, curp);
@@ -237,12 +238,15 @@ $('#actualizarForm').click(async function () {
     // $('input[type="radio"]').prop("checked", true)
   }
 
+ 
   if (espiro) {
-    await obtenerVistaEspiroPacientes('#formulario-espiro');
-
-  } else {
-    $('#cuestionarioEspiro').fadeOut(100);
+     await obtenerVistaEspiroPacientes('#formulario-espiro')
+   } else {
+     $('#cuestionarioEspiro').fadeOut(100);
   }
+  
+  
+
 
   //Solicitar si la curp existe
   // window.location.hash = "formDIV";
