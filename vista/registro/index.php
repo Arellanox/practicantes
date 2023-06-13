@@ -70,7 +70,7 @@ $menu = "Pre-registro";
   // console.log(token)
 
   //Cuestionarios
-  let ant = false;
+  let ant = false
   let espiro = false
 
 

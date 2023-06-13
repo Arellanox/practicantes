@@ -36,7 +36,8 @@ $antecedentes = array_slice($_POST, 0, count($_POST) - 4);
 
 
 #Datos de espiro
-$espirometria = $_POST['cuestionario_espiro'];
+$espirometria = $_POST['respuestas'];
+
 
 
 switch ($api) {
@@ -116,18 +117,19 @@ switch ($api) {
             }
 
             #Insertamos las respuestas de el formulario de espirometria --- verificamos si hay un formulario de espiro
-            if (isset($_POST['cuestionario_espiro'])){
+            
+                
                 $principal = [];
                 $secundario = [];
                 $posicion = 0;
 
-                foreach ($preguntasRespuestas as $key => $value) {
+                foreach ($espirometria as $key => $value) {
 
                     $principal[$posicion] = ['preguntaID' => $key];
                     $valor = null;
                     $comentario = null;
 
-                    if (COUNT($preguntasRespuestas[$key]) > 1) {
+                    if (COUNT($espirometria[$key]) > 1) {
                         foreach ($value as $item) {
                             $secundario[] = ['respuestaID' => $master->setToNull([$item['valor']])[0] ? $item['valor'] : $valor, 'comentario' => $master->setToNull([$item['comentario']])[0] ? $item['comentario'] : $comentario];
                         }
@@ -141,10 +143,11 @@ switch ($api) {
                     $posicion++;
                 }
 
-                                                                                                                #mandar el area
-                $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $idTurno, $area_id, $usuario_id]);
-
-            }
+                                                                                                                    
+            $response = $master->getByNext("sp_espiro_cuestionario_g", [json_encode($principal), $lastId, 5, $usuario_id]);
+            print_r($response);
+            exit;
+            
 
 
         } else {
