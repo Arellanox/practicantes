@@ -208,14 +208,12 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
 })
 
 
-selectTable('#TablaGrupoDetalle', TablaGrupoDetalle, { OnlyData: true }, async function (select, data, callback) {
+selectTable('#TablaGrupoDetalle', TablaGrupoDetalle, { OnlyData: true }, async function (select, data) {
     // selectDatatable("TablaGrupoDetalle", TablaGrupoDetalle, 0, 0, 0, 0, function (select, data) {
     if (select) {
         SelectedPacienteCredito = data
-        callback('In')
     } else {
         SelectedPacienteCredito = {}
-        callback('Out')
     }
 })
 

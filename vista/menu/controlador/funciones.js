@@ -1889,7 +1889,7 @@ function selectTable(tablename, datatable,
     let dataRow = row.data();
 
     if (config.OnlyData) {
-      return callbackClick(1, dataRow, callback, tr, row);
+      return callbackClick(1, dataRow, function (data) { return 'No action' }, tr, row);
     }
 
     // let td = $(event.target).is('td')
