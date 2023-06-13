@@ -68,8 +68,15 @@ $menu = "Pre-registro";
   const codigo = '<?php echo $codigo; ?>';
   const token = '<?php echo $token; ?>';
   // console.log(token)
-  let ant = <?php echo $ant; ?>;
+
+  //Cuestionarios
+  let ant = false;
+  let espiro = false
+
+
+  //
   let tip = '<?php echo $tip; ?>';
+
   let clienteRegistro, nombreCliente, idtoken;
   var registroAgendaRecepcion = 0;
   // console.log(codigo);
@@ -106,7 +113,7 @@ $menu = "Pre-registro";
           row = data.response.data[0];
           // console.log(row);
           if (data.response.data[0]) {
-            completarCliente(row['ID_CLIENTE'], row['NOMBRE_COMERCIAL'], data.response.data[0]['ID_PREREGISTRO'], row['ANTECEDENTES'])
+            completarCliente(row['ID_CLIENTE'], row['NOMBRE_COMERCIAL'], data.response.data[0]['ID_PREREGISTRO'], row['CUESTIONARIOS'])
           } else {
             redireccionarPrerregistro()
           }
@@ -125,7 +132,8 @@ $menu = "Pre-registro";
         success: function(data) {
           data = jQuery.parseJSON(data);
           if (data.response.data[0]) {
-            completarCliente(1, 'PARTICULAR', false, 0)
+            row = data.response.data[0];
+            completarCliente(1, 'PARTICULAR', false, row['CUESTIONARIOS'])
           } else {
             redireccionarPrerregistro()
           }
@@ -138,19 +146,26 @@ $menu = "Pre-registro";
     }
   }
 
-  function completarCliente(id, name, id_registro, antecedentes) {
+  function completarCliente(id, name, id_registro, cuestionarios) {
     // alert(name)
     nombreCliente = name
     clienteRegistro = id
     idtoken = id_registro
 
-    let antPre
-    //Desactiva cuestionario para la empresa desde la base
-    if (antecedentes == 0) antPre = false;
-    console.log(ant)
-    if (ant) antPre = ant;
 
-    ant = antPre
+    //Cuestionario
+    ant = cuestionarios[2] ? true : false;
+    espiro = cuestionarios[1] ? true : false;
+
+    //Antecedentes
+    // let antPre
+    // //Desactiva cuestionario para la empresa desde la base
+    // if (antecedentes == 0) antPre = false;
+    // console.log(ant)
+    // if (ant) antPre = ant;
+
+    // ant = antPre
+    //
 
     //Mostrar Vista
     vista('<?php echo $menu; ?>', '<?php echo $https . $url . '/' . $appname . '/vista/menu/controlador/controlador.php'; ?>', '<?php echo $tip; ?>')
