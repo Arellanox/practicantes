@@ -72,6 +72,23 @@ $(document).on('click', '#GrupoInfoCreditoBtn', function (event) {
     event.preventDefault();
     event.stopPropagation();
 
+    //Reinicia todos los datos a vacios antes de abrir el modal
+    $('#procedencia_grupos_credito').html("");
+    $('#domicilio-fiscal').html("");
+    $('#fecha-factura').html("");
+    $('#factura').html("");
+    $('#telefono').html("");
+    $('#rfc').html("");
+
+
+    $("#ModalInformacionGruposCredito_title").html(`Informacion Grupos de Crédito - (${SelectedGruposCredito['ID_GRUPO']})`)
+    $('#procedencia_grupos_credito').html(SelectedGruposCredito['PROCEDENCIA']);
+    $('#domicilio-fiscal').html(SelectedGruposCredito['DIRECCION']);
+    $('#fecha-factura').html(formatoFecha2(SelectedGruposCredito['FECHA_FACTURA'], [0, 1, 3, 1]));
+    $('#factura').html(SelectedGruposCredito['FACTURA']);
+    $('#rfc').html(SelectedGruposCredito['RFC']);
+
+
     $('#ModalInformacionGruposCredito').modal('show');
 })
 

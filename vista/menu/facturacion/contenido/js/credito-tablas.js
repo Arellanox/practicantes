@@ -1,10 +1,3 @@
-SelectedPacienteCredito = {}, SelectedGruposCredito = {}, factura = null;
-setTimeout(function () {
-    loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
-}, 1000)
-
-
-
 TablaGrupos = $('#TablaGrupos').DataTable({
     language: {
         url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -67,7 +60,7 @@ TablaGrupos = $('#TablaGrupos').DataTable({
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Folio', className: 'all' },
-        { target: 2, title: 'Empresa', className: 'desktop' },
+        { target: 2, title: 'Procedencia', className: 'desktop' },
         { target: 3, title: 'Creacion', className: 'none' },
         { target: 4, title: 'Fecha de Factura', className: 'none' },
         { target: 5, title: 'Factura', className: 'none' }
@@ -105,10 +98,7 @@ selectTable('#TablaGrupos', TablaGrupos, { unSelect: true, movil: false, reload:
         // $(".informacion-creditos").fadeIn(0)
         DataGrupo.id_grupo = data['ID_GRUPO']
         SelectedGruposCredito = data
-
         TablaGrupoDetalle.ajax.reload()
-
-
         //Muestra las columnas
         callback('In')
     } else {
