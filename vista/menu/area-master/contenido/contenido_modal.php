@@ -126,7 +126,12 @@ session_start();
                                 <button type="button" class="btn btn-primary me-2 btnResultados" style="margin-bottom:4px" id="btn-capturas-pdf">
                                     <i class="bi bi-plus-lg"></i> Imágenes
                                 </button>
+
+                                <button type="button" class="btn btn-primary me-2" style="margin-bottom:4px; display:none" id="btn-resultados-espiro-pdf">
+                                    <i class="bi bi-plus-lg"></i> Subir resultados
+                                </button>
                             </div>
+
                             <div class="col-6 text-end" style="margin-top:4px;margin-bottom:5px;">
                                 <!-- Subir por areas -->
                                 <button type="button" id="abrirModalResultados" class="btn btn-confirmar me-2" style="margin-bottom:4px">
@@ -232,11 +237,10 @@ session_start();
 
                                     //<!--Formulario de Espirometria -->
                                 case 'formAreadeEspirometria':
-                                    echo '<form id="formAreadeEspirometria">';
+                                    // echo '<form id="formAreadeEspirometria">';
                                     include 'forms/form_espiro.html';
-                                    echo '</form>';
+                                    // echo '</form>';
                                     break;
-
                             }
 
                             ?>

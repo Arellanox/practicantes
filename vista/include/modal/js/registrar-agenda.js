@@ -46,7 +46,6 @@ $("#formRegistrarAgenda").submit(function (event) {
       return false;
     }
 
-
     // var formAntPersonalPato = document.getElementById('formAntPersonalPato');
 
     // var formData = new FormData(formAntPersonalPato);
@@ -70,6 +69,14 @@ $("#formRegistrarAgenda").submit(function (event) {
       formData.append(formMedioLaboral[i].name, formMedioLaboral[i].value);
     // alert('form');
   }
+
+  if (espiro) {
+    var espiroCuestionario = $(document.forms['formAreadeEspirometria']).serializeArray();
+    console.log(espiroCuestionario);
+    for (var i = 0; i < espiroCuestionario.length; i++)
+      formData.append(espiroCuestionario[i].name, espiroCuestionario[i].value)
+  }
+
   // var formData = new FormData(document.forms['form-ship']); // with the file input
   // var poData = jQuery(document.forms['po-form']).serializeArray();
   // for (var i=0; i<poData.length; i++)
@@ -220,21 +227,27 @@ function mostrarAntecedente(btn, form) {
 }
 
 var tipoPaciente = "0"; //Particular por defecto
-$('#actualizarForm').click(async function (){
+$('#actualizarForm').click(async function () {
+
   curp = $('#curp-paciente').val();
+
   if (ant) {
     await obtenerVistaAntecenetesPaciente('#antecedentes-registro', $('#procedencia-registro').text(), 0)
     await obtenerAntecedentesPaciente(null, curp);
-
-
-    console.log(ant)
-    
   } else {
-
     $('#cuestionadioRegistro').fadeOut(100);
     // $('input[type="radio"]').prop("checked", true)
-
   }
+
+
+  if (espiro) {
+    await obtenerVistaEspiroPacientes('#formulario-espiro')
+  } else {
+    $('#cuestionarioEspiro').fadeOut(100);
+  }
+
+
+
 
   //Solicitar si la curp existe
   // window.location.hash = "formDIV";

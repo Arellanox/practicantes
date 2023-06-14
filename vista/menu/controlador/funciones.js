@@ -1707,6 +1707,8 @@ function configSelectTable(config) {
     "tab-default": 'Reporte',  //Por default, al dar click, abre aqui
     reload: false, //Activa la rueda
     movil: false, //Activa la version movil
+    multipleSelect: false,
+    OnlyData: false,
   }
 
   Object.entries(defaults).forEach(([key, value]) => {
@@ -1880,9 +1882,22 @@ function selectTable(tablename, datatable,
 
 
   //Table Click Registro
-  $(`${tablename}`).on(`click`, `tr`, function () {
-    $('.tab-second').fadeOut()
-    $(`#loaderDiv-${nameTable}`).fadeIn(0);
+  $(`${tablename}`).on(`click`, `tr`, function (event) {
+    //Obtener datos, tr, row e información del row
+    let tr = this
+    let row = datatable.row(tr);
+    let dataRow = row.data();
+
+    if (config.OnlyData) {
+      return callbackClick(1, dataRow, function (data) { return 'No action' }, tr, row);
+    }
+
+    // let td = $(event.target).is('td')
+
+    var clickedElement = $(event.target);
+    //Cancela la funcion si el elemento que hace click tiene la siguiente clase
+    if (clickedElement.hasClass('noClicked'))
+      return true;
 
 
     if ($(this).hasClass('selected')) {
@@ -1892,6 +1907,9 @@ function selectTable(tablename, datatable,
       selectTableTimeOutClick = setTimeout(function () {
 
         if (selectTableClickCount === 1 && config.unSelect === true) {
+          //Manda a cargar la vista
+          $('.tab-second').fadeOut()
+          $(`#loaderDiv-${nameTable}`).fadeIn(0);
           //Si esta deseleccionando:
           //Resetea los clicks:
           selectTableClickCount = 0;
@@ -1914,24 +1932,27 @@ function selectTable(tablename, datatable,
           return callbackClick(0, null, callback, null, null);
           //
         } else if (selectTableClickCount === 2 && config.dblClick === true) {
+          //Manda a cargar la vista
+          $('.tab-second').fadeOut()
+          $(`#loaderDiv-${nameTable}`).fadeIn(0);
           //Si esta haciendo dobleClick: 
           selectTableClickCount = 0;
-
-          let tr = this;
-          let row = datatable.row(tr);
-          let dataRow = row.data();
-
 
           return callbackDblClick(1, dataRow, callback, tr, row)
 
         } else {
           //Reinicia el dobleClick
           selectTableClickCount = 0;
+          return 'No action';
         }
 
       }, 300)
 
     } else {
+      //Manda a cargar la vista
+      $('.tab-second').fadeOut()
+      $(`#loaderDiv-${nameTable}`).fadeIn(0);
+
       //Si esta seleccionando:
       dataDobleSelect = this;
       selectTableClickCount++;
@@ -1940,29 +1961,41 @@ function selectTable(tablename, datatable,
       }, 400);
 
 
-      //Reinicia la seleccion:
-      datatable.$('tr.selected').removeClass('selected');
-      datatable.$('tr.selected').removeClass(config.anotherClass);
-      //
+
+      if (config.multipleSelect === false) {
+        //Reinicia la seleccion:
+        datatable.$('tr.selected').removeClass('selected');
+        datatable.$('tr.selected').removeClass(config.anotherClass);
+        //
+      }
+
 
       //Agrega la clase para indicar que lo esta seleccionando
       $(this).addClass('selected');
       $(this).addClass(config.anotherClass);
 
-      //Activar otros tab
-      $(`.tab-select`).removeClass('disabled');
 
-      //Reselecciona
-      if (config['tab-default']) {
-        $(`#tab-btn-${config['tab-default']}`).click();
+      if (config.multipleSelect) {
+        //Multiple Seleccion
+        //Hará el callback cada que seleccionan a uno nuevo
+        let row_length = table.rows('.selected').data().length
+        let data = table.rows('.selected').data()
+
+        callbackClick(row_length, data, null, null)
+
+      } else {
+        //Para una sola seleccion
+
+        //Activar otros tab
+        $(`.tab-select`).removeClass('disabled');
+        //Reselecciona
+        if (config['tab-default']) {
+          $(`#tab-btn-${config['tab-default']}`).click();
+        }
+
+
+        return callbackClick(1, dataRow, callback, tr, row);
       }
-
-      //Obtener datos, tr, row e información del row
-      let tr = this;
-      let row = datatable.row(tr);
-      let dataRow = row.data();
-
-      return callbackClick(1, dataRow, callback, tr, row);
 
     }
 
@@ -2158,14 +2191,6 @@ function obtenerVistaAntecenetesPaciente(div, cliente, pagina = 1) {
         } else {
           $('.onlyMedico').fadeIn(0);
         }
-        // if (cliente) {
-        //   switch (cliente) {
-        //     case 'Particular':
-        //       break;
-        //     default:
-        //       $('#onlyMedico').fadeOut(0);
-        //   }
-        // }
         resolve(1)
       }, 100);
     });
@@ -4211,4 +4236,127 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
   $(container).on('click', hide);
   $(container).on('mouseenter', show);
   $(container).on('mouseleave', hide);
+}
+
+function validarCuestionarioEspiro() {
+
+  return new Promise(async resolve => {
+
+    var situacion1 = $('#no_aplica1').is(':checked');
+    var situacion2 = $('#no_aplica2').is(':checked');
+
+    if (!await evaluarSituacionEspiro('.independiente')) {
+      resolve(false)
+    }
+
+    //  if (!situacion1) {
+    //    if (!await evaluarSituacionEspiro('.situaciones1')) {
+    //      resolve(false)
+    //   }
+    //  }
+
+    // if (!situacion2) {
+    //   if (!await evaluarSituacionEspiro('.situaciones2')) {
+    //     resolve(false)
+    //   }
+
+    //}
+
+
+
+    resolve(true);
+
+  })
+
+  var situacion1 = $('#no_aplica1').is(':checked');
+  var situacion2 = $('#no_aplica2').is(':checked');
+
+  // VALIDAMOS LA PRIMERA SITUACION
+  if (!situacion1) {
+    $('.situaciones1').each(function () {
+      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+      var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+      if (!checkboxes && !radios) {
+        var pregunta = $(this).find('.titulo').text();
+        AlertMsgEspiro(pregunta)
+        //window.location.hash = '#' + $(this).attr('id');
+        return false;
+
+      }
+
+    });
+  }
+
+  // VALIDAMOS LA SEGUNDA SITUACION
+  if (!situacion2) {
+    $('.situaciones2').each(function () {
+      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+      var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+      if (!checkboxes && !radios) {
+        var pregunta = $(this).find('.titulo').text();
+        //alert('No has respondido la pregunta: ' + pregunta);
+        AlertMsgEspiro(pregunta)
+        //window.location.hash = '#' + $(this).attr('id');
+        return false;
+      }
+
+    });
+  }
+
+  // VALIDAMOS TODOS AQUELLOS QUE NO DEPENDEN DE LAS SITUACIONES ANTERIORES
+
+  var contenedorIndependiente = $('.independiente');
+
+  contenedorIndependiente.each(function () {
+    var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+    var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+    if (!checkboxes && !radios) {
+      var pregunta = $(this).find('.titulo').text();
+      //alert('No has respondido la pregunta: ' + pregunta);
+      AlertMsgEspiro(pregunta)
+      //window.location.hash = '#' + $(this).attr('id');
+      return false;
+    }
+  });
+
+  return true;
+}
+
+function AlertMsgEspiro(pregunta) {
+  alertMsj({
+    icon: 'info',
+    title: 'Te falto responder una pregunta',
+    text: `Pregunta: ${pregunta}`,
+    showCancelButton: false
+  })
+}
+
+
+function evaluarSituacionEspiro(situacion) {
+
+  return new Promise(async resolve => {
+    let result = true;
+
+    $(situacion).each(function () {
+      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+      var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+      if (!checkboxes && !radios) {
+        var pregunta = $(this).find('.titulo').text();
+        AlertMsgEspiro(pregunta)
+        //window.location.hash = '#' + $(this).attr('id');
+
+        result = false;
+
+      }
+
+    });
+
+    resolve(result);
+
+  })
+
 }

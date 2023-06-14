@@ -13,7 +13,7 @@ var selectRegistro, editRegistro = false;
 var selectTableFolio = false
 function obtenerTemperaturas() {
     obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area
-    $.post("contenido/temperatura.html", function (html) {
+    $.post("contenido/temperatura.php", function (html) {
         $("#body-js").html(html);
     }).done(function () {
         // Datatable

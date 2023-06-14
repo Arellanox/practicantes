@@ -12,10 +12,14 @@
                 <hr>
                 <div class="container-fluid mb-4">
                     <div class="row">
-                        <div class="col-lg-8 p-2 border">Paciente</div>
-                        <div class="col-lg-4 p-2 border">Fecha de nacimiento(DD/MM/AA)</div>
+                        <div class="col-lg-8 p-2 border fw-bold">Paciente:</div>
+
+                        <!-- <div class="col-lg-4 p-2 border">Fecha de nacimiento(DD/MM/AA)</div> -->
                     </div>
                     <div class="row">
+                        <div class="col-lg-8 p-2 border" id="paciente"></div>
+                    </div>
+                    <!-- <div class="row">
                         <div class="col-lg-8 p-2 border">Domicilio Fiscal</div>
                         <div class="col-lg-4 p-2 border">Fecha de compra(DD/MM/AA)</div>
                     </div>
@@ -23,12 +27,12 @@
                         <div class="col-lg-6 p-2 border">Telefono</div>
                         <div class="col-lg-6 p-2 border">RFC</div>
 
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="table--producto ">
+                        <div class="table--producto overflow-auto" style="max-height: 400px;">
                             <table class="table display responsive" id="TablaTicketCredito" style="width: 100%">
                                 <thead class="">
                                     <tr>
@@ -37,67 +41,11 @@
                                         <th class="desktop">Precio unitario
                                         </th>
                                         <th class="none colum-5">Cantidad</th>
-                                        <th class="all colum-5">Descuento</th>
-                                        <th class="all colum-5">Impuesto</th>
                                         <th class="all colum-5">Total</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Paquete prueba</td>
-                                        <td>E48 -Unidad de
-                                            servicio
-                                        </td>
-                                        <td>$100</td>
-                                        <td>1.00</td>
-                                        <td>5.00%</td>
-                                        <td>16%</td>
-                                        <td>$105.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>QUÍMICA SANGUÍNEA 4 PARÁMETROS</td>
-                                        <td>E48 -Unidad de
-                                            servicio
-                                        </td>
-                                        <td>$99.99</td>
-                                        <td>1.00</td>
-                                        <td>5.00%</td>
-                                        <td>16%</td>
-                                        <td>$105.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>AC. ANTI CARDIOLIPINA IgG</td>
-                                        <td>E48 -Unidad de
-                                            servicio
-                                        </td>
-                                        <td>$99.99</td>
-                                        <td>1.00</td>
-                                        <td>5.00%</td>
-                                        <td>16%</td>
-                                        <td>$105.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>GLUCOSA SÉRICA</td>
-                                        <td>E48 -Unidad de
-                                            servicio
-                                        </td>
-                                        <td>$99.99</td>
-                                        <td>1.00</td>
-                                        <td>5.00%</td>
-                                        <td>16%</td>
-                                        <td>$105.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>PROGESTERONA</td>
-                                        <td>E48 -Unidad de
-                                            servicio
-                                        </td>
-                                        <td>$99.99</td>
-                                        <td>1.00</td>
-                                        <td>5.00%</td>
-                                        <td>16%</td>
-                                        <td>$105.00</td>
-                                    </tr>
+                                <tbody id="PacienteCreditoColumn">
+
 
                                 </tbody>
                             </table>
@@ -108,19 +56,21 @@
                             <div class="row justify-content-between">
                                 <div class="col-lg-12 align-self-start ">
                                     <div class="row ">
-                                        <div class="col-lg-10 d-flex justify-content-end">Subtotal</div>
-                                        <div class="col-lg-2 d-flex justify-content-end">$1000</div>
+                                        <div class="col-9 col-lg-10 d-flex justify-content-end ">Subtotal</div>
+                                        <div class="col-3 col-lg-2 d-flex justify-content-end" id="subtotal">$1000
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-10 d-flex justify-content-end">IVA (16.00%)</div>
-                                        <div class="col-lg-2 d-flex justify-content-end">$160</div>
+                                        <div class="col-9 col-lg-10 d-flex justify-content-end ">IVA (16.00%)</div>
+                                        <div class="col-3 col-lg-2 d-flex justify-content-end" id="Iva">$160</div>
                                     </div>
                                     <div class="row ">
-                                        <div class="col-lg-10 d-flex justify-content-end fw-bold">Total</div>
-                                        <div class="col-lg-2 d-flex justify-content-end fw-bold">$1160</div>
+                                        <div class="col-9 col-lg-10 d-flex justify-content-end fw-bold ">Total</div>
+                                        <div class="col-3 col-lg-2 d-flex justify-content-end fw-bold" id="total">$1160
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 align-self-end " style="margin-top: 100px;">
+                                <!-- <div class="col-lg-12 align-self-end " style="margin-top: 100px;">
                                     <div class="container-fluid">
                                         <span class="d-flex justify-content-center fw-bold">
                                             Luisa Aurora Gallegos Calzada
@@ -130,7 +80,7 @@
                                             ELABORADO POR:
                                         </span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -141,10 +91,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
                         class="bi bi-arrow-left-short"></i>
-                    Cancelar</button>
-                <button type="submit" class="btn btn-confirmar" id="">
-                    <i class="bi bi-person-x"></i> Guardar
-                </button>
+                    Cerrar</button>
+
             </div>
         </div>
     </div>

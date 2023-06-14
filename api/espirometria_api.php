@@ -13,7 +13,7 @@ $master = new Master();
 
 #OBTENEMOS LA API POR MEDIO DEL POST
 $api = $_POST['api'];
-$turno_id = $_POST['id_turno'];
+$turno_id = $_POST['turno_id'];
 $area_id = $_POST['id_area'];
 $preguntasRespuestas = $_POST['respuestas'];
 
@@ -76,6 +76,43 @@ switch ($api) {
 
         $response = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
 
+        break;
+    case 0:
+        # json para el reporte de espirometria.
+        $respuestas = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
+
+        # declaramos el arreglo que guardara el id de la pregunta
+        $preguntas = array();
+
+        # llenamos el arreglo
+        foreach($respuestas as $current){
+            $preguntas[] = $current['ID_P'];
+        }
+
+        # eliminamos las duplicidades
+        $preguntas = array_unique($preguntas);
+
+        # Declaramos un arreglo que guarde el cuestionario del paciente.
+        $cuestionario = array();
+
+        # llenamos el cuestionario, preparando el arreglo para el json.
+        foreach($preguntas as $pregunta){
+            
+            #filtramos las respuestas de cada pregunta del arreglo origina, el que viene de la base de datos.
+            $res_pregunta = array_filter($respuestas, function($array) use ($pregunta){
+                return $array['ID_P'] == $pregunta;
+            });
+            
+            # formamos el arreglo para el json.
+            $cuestionario[] = array(
+                "pregunta" => $res_pregunta[array_key_first($res_pregunta)]['PREGUNTA'],
+                "respuestas" => $master->getFormValues(array_map(function($item){
+                    return array("respuesta"  => $item['RESPUESTA'], "comentario"=> $item['COMENTARIO']);
+                },$res_pregunta))
+            );
+        }
+
+        echo json_encode($cuestionario);
         break;
 
     default:
