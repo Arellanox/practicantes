@@ -92,6 +92,8 @@ switch ($api) {
     case 2:
         #verifica si el token aún es válido por fecha, verifica si el token no ha sido ya concluido y verifica que siga ACTIVO
         $response = $master->getByProcedure("sp_preregistro_token_valido_b", [$token_correo]);
+        $response[0]['CUESTIONARIOS'] = $master->decodeJson([$response[0]['CUESTIONARIOS']]);
+        $response[0]['CUESTIONARIOS'] = $response[0]['CUESTIONARIOS'][0];
         break;
 
     case 3:

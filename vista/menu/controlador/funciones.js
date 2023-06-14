@@ -2191,14 +2191,6 @@ function obtenerVistaAntecenetesPaciente(div, cliente, pagina = 1) {
         } else {
           $('.onlyMedico').fadeIn(0);
         }
-        // if (cliente) {
-        //   switch (cliente) {
-        //     case 'Particular':
-        //       break;
-        //     default:
-        //       $('#onlyMedico').fadeOut(0);
-        //   }
-        // }
         resolve(1)
       }, 100);
     });
@@ -4244,4 +4236,127 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
   $(container).on('click', hide);
   $(container).on('mouseenter', show);
   $(container).on('mouseleave', hide);
+}
+
+function validarCuestionarioEspiro() {
+
+  return new Promise(async resolve => {
+
+    var situacion1 = $('#no_aplica1').is(':checked');
+    var situacion2 = $('#no_aplica2').is(':checked');
+
+    if (!await evaluarSituacionEspiro('.independiente')) {
+      resolve(false)
+    }
+
+    //  if (!situacion1) {
+    //    if (!await evaluarSituacionEspiro('.situaciones1')) {
+    //      resolve(false)
+    //   }
+    //  }
+
+    // if (!situacion2) {
+    //   if (!await evaluarSituacionEspiro('.situaciones2')) {
+    //     resolve(false)
+    //   }
+
+    //}
+
+
+
+    resolve(true);
+
+  })
+
+  var situacion1 = $('#no_aplica1').is(':checked');
+  var situacion2 = $('#no_aplica2').is(':checked');
+
+  // VALIDAMOS LA PRIMERA SITUACION
+  if (!situacion1) {
+    $('.situaciones1').each(function () {
+      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+      var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+      if (!checkboxes && !radios) {
+        var pregunta = $(this).find('.titulo').text();
+        AlertMsgEspiro(pregunta)
+        //window.location.hash = '#' + $(this).attr('id');
+        return false;
+
+      }
+
+    });
+  }
+
+  // VALIDAMOS LA SEGUNDA SITUACION
+  if (!situacion2) {
+    $('.situaciones2').each(function () {
+      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+      var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+      if (!checkboxes && !radios) {
+        var pregunta = $(this).find('.titulo').text();
+        //alert('No has respondido la pregunta: ' + pregunta);
+        AlertMsgEspiro(pregunta)
+        //window.location.hash = '#' + $(this).attr('id');
+        return false;
+      }
+
+    });
+  }
+
+  // VALIDAMOS TODOS AQUELLOS QUE NO DEPENDEN DE LAS SITUACIONES ANTERIORES
+
+  var contenedorIndependiente = $('.independiente');
+
+  contenedorIndependiente.each(function () {
+    var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+    var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+    if (!checkboxes && !radios) {
+      var pregunta = $(this).find('.titulo').text();
+      //alert('No has respondido la pregunta: ' + pregunta);
+      AlertMsgEspiro(pregunta)
+      //window.location.hash = '#' + $(this).attr('id');
+      return false;
+    }
+  });
+
+  return true;
+}
+
+function AlertMsgEspiro(pregunta) {
+  alertMsj({
+    icon: 'info',
+    title: 'Te falto responder una pregunta',
+    text: `Pregunta: ${pregunta}`,
+    showCancelButton: false
+  })
+}
+
+
+function evaluarSituacionEspiro(situacion) {
+
+  return new Promise(async resolve => {
+    let result = true;
+
+    $(situacion).each(function () {
+      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
+      var radios = $(this).find('input[type="radio"]:checked').length > 0;
+
+      if (!checkboxes && !radios) {
+        var pregunta = $(this).find('.titulo').text();
+        AlertMsgEspiro(pregunta)
+        //window.location.hash = '#' + $(this).attr('id');
+
+        result = false;
+
+      }
+
+    });
+
+    resolve(result);
+
+  })
+
 }

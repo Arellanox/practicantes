@@ -118,6 +118,7 @@ switch ($api) {
 
             #Insertamos las respuestas de el formulario de espirometria --- verificamos si hay un formulario de espiro
             
+            //insertar la forma de guardar el cuestionario de espiro en un metodo
                 
                 $principal = [];
                 $secundario = [];
