@@ -95,8 +95,6 @@ $('#abrirModalResultados').click(function () {
     autosize.update(document.querySelectorAll('textarea'));
   }, 200);
   
-  //MANDAMOS A LLAMAR LA FUNCION PARA MOSTRAR LOS DATOS Y LOS INPUTS SELECCIONADOS
-  recuperarDatos()
 
   $('#modalSubirInterpretacion').modal('show')
 })

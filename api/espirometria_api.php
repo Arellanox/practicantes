@@ -13,7 +13,7 @@ $master = new Master();
 
 #OBTENEMOS LA API POR MEDIO DEL POST
 $api = $_POST['api'];
-$turno_id = $_POST['id_turno'];
+$turno_id = $_POST['turno_id'];
 $area_id = $_POST['id_area'];
 $preguntasRespuestas = $_POST['respuestas'];
 
