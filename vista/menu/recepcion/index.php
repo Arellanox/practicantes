@@ -16,7 +16,11 @@ $menu = "Recepción";
 <script type="text/javascript">
   registroAgendaRecepcion = 1;
   nombreCliente = null;
+
+
   ant = false; // registro
+  espiro = false;
+
   tip = "pie"; // registro-agenda
   vista('<?php echo $menu; ?>', '<?php echo $https . $url . '/' . $appname . '/vista/menu/controlador/controlador.php'; ?>')
 
