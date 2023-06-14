@@ -278,6 +278,39 @@ session_start();
 </div>
 
 
+<!--MODAL PARA SUBIR RESULTADOS DE ESPIROMETRIA-->
+<div>
+    <div class="modal fade" id="ModalSubirResultadosEspiro" tabindex="-1" aria-labelledby="resultados" aria-hidden="true">
+        <div class="modal-dialog modal-xl  modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header header-modal">
+                    <h5 class="modal-title" id="title-paciente_aceptar">Cargue los resultados de espirometría</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Seleccione el estudio de espirometría</h4>
+                            <input type="file" class="form-control input-form mt-3" name="" id="">
+                        </div>
+                    
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i> Regresar</button>
+                    
+                    <!-- BTN GLOBAL -->
+                    <button type="submit" class="btn btn-confirmar" id="btn-subir-espiro" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
+                        <i class="bi bi-clipboard2-plus"></i> Subir resultados
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script>
     function popimg(URL, DAT) {

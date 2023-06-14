@@ -30,14 +30,6 @@ $('#inputFilesInterpreArea').on('change', function () {
 // })
 
 
-
-
-
-
-
-
-
-
 //AQUI VOY A CONFIGURAR EL ENVIO DEL FORMULARIO DE ESPIROMETRIA
 //Formulario Para Subir Interpretacion
 $(`#${formulario}`).submit(function (event) {
@@ -140,4 +132,13 @@ $('#btn-confirmar-reporte').click(function (event) {
         alertMensaje('info', 'EL resultado ya ha sido guardado', 'No puede cargar mas resultados a este paciente');
     }
     event.preventDefault();
+})
+
+
+$('#btn-subir-espiro').click(function (event) { 
+    event.preventDefault();
+
+    alertMensaje('success', 'Los resultados ya han sido guardados', 'Todo se guardo exitosamente' )
+
+
 })
