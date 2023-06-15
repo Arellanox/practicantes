@@ -174,7 +174,7 @@
                                 <label for="estado" class="form-label">Buscar estudios</label>
                                 <!-- <input type="text" class="form-control input-form" name="buscador-estudios"
                                     placeholder="Cargando estudios disponibles"> -->
-                                    <select name="buscar-estudios" id="buscar-estudios" class="input-form form-select"></select>
+                                    <select name="buscar-estudios" id="buscar-estudios"></select>
                                 <!-- ¿Se identificará por area, por grupos? -->
                                 <button type="submit" form="formNuevaReceta" class="btn btn-confirmar me-2"
                                     style="margin-bottom:4px" id="btn-agregar-estudio">
@@ -185,9 +185,8 @@
                             <div class="col-8">
                                 <p>Lista de estudios solicitados actuales/guardados</p>
                                 <!-- ¿Podria ser dinamico? o ¿Tiempo real? -->
-                                <ul class="list-group" style="width: 100%;">
+                                <!-- <ul class="list-group" style="width: 100%;" id="listaEstudios">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        BIOMETRÍA HEMÁTICA
                                         <span class="badge">
                                             <button type="button" class="btn btn-hover eliminarOdontograma"
                                                 style="margin: -15px;" data-bs-id="10">
@@ -195,7 +194,13 @@
                                             </button>
                                         </span>
                                     </li>
-                                </ul>
+                                </ul> -->
+                                <table class="table table-hover display responsive" id="TablaListaEstudios" style="width: 100%;">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </form>

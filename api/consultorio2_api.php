@@ -29,11 +29,7 @@ switch($api) {
     #insertar datos en la tabla consultorio2_consulta
     case 1:
         $response = $master->insertByProcedure("sp_consultorio2_consulta_g", $parametros);
-        break;
-
-    // case 2:
-    //     $response = $master->getByProcedure("sp_consultorio2_consulta_g", $turno_id);
-    //     break;    
+        break; 
 
     default:
     $response = "API no definida";
