@@ -187,11 +187,6 @@ async function ajaxAwait(dataJson, apiURL,
   });
 }
 
-//configruacion para regresar la data...
-function returnDataAjaxAwai(config, data) {
-  return config.WithoutResponseData ? data.response.data : data
-}
-
 //
 function configAjaxAwait(config) {
   //valores por defecto de la funcion ajaxAwait y ajaxAwaitFormData
@@ -275,6 +270,8 @@ async function ajaxAwaitFormData(dataJson = { api: 0, }, apiURL, form = 'OnlyFor
     })
   });
 }
+
+
 
 
 // Verificar si tiene una sesión activa
@@ -2273,8 +2270,9 @@ function obtenerDatosEspiroPacientes() {
 
 
       }
+      resolve(1)
     })
-    resolve(1)
+
   })
 
 }
