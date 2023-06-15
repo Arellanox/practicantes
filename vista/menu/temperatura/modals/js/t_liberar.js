@@ -15,8 +15,10 @@ $("#liberarDiaTemperaturaForm").on("submit", function (e) {
         text: "Ya no podras modificar este registro",
         icon: "info"
     }, function () {
+        
         ajaxAwaitFormData({
             api: 5,
+            Enfriador: id_equipos
         }, 'temperatura_api', 'liberarDiaTemperaturaForm', { callbackAfter: true }, false, function (data) {
             alertTemperatura("Dia liberado");
             console.log(data)
@@ -25,11 +27,14 @@ $("#liberarDiaTemperaturaForm").on("submit", function (e) {
 })
 
 
+
+
+
 function alertTemperatura(text) {
     alertMensaje('success', text, 'Se ha liberado el dia correctamente');
 
     $("#LiberalDiaTemperaturaModal").modal("hide");
 
-    tablaTemperatura.ajax.reload()
+    // tablaTemperatura.ajax.reload()
     tablaTemperaturaFolio.ajax.reload()
 }

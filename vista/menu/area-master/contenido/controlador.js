@@ -189,6 +189,7 @@ function obtenerContenidoVistaMaster(area, titulo, contenidoHTML = 'contenido.ht
         $.getScript("modals/js/master_subir_interpretación.js");
         break;
       
+      //Area de espiro
       case 5:
 
         $('#btn-analisis').fadeIn(0)

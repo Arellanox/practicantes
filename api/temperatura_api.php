@@ -50,18 +50,18 @@ $folio = $_POST['folio'];
 
 
 #datos que manda el supervisor para liberar un dia
-$dia = $_POST['diaLiberar'];
-$hora = $_POST['horaLiberar'];
+$fecha_inicial = $_POST['FechaInicio'];
+$fecha_final = $_POST['FechaFinal'];
 #datos que manda el supervisor para liberar un dia 2.0
 $estatus = $_POST['estatus'];
 
 
-
 $parametros_g = array(
-    $dia,
-    $hora,
+    $fecha_inicial,
+    $fecha_final,
     $observaciones,
-    $usuario
+    $usuario,
+    $equipo
 );
 
 $parametros_a = array(
@@ -81,7 +81,7 @@ switch ($api) {
         $response = $master->insertByProcedure("sp_temperatura_g", $parametros);
         break;
     case 2:
-        $response = $master->getByProcedure("sp_temperaturas_resultados_b", [$anho]);
+        $response = $master->getByProcedure("sp_temperaturas_resultados_b", [$equipo]);
         break;
     case 3:
         $response = $master->getByProcedure("sp_temperatura_detalle_b", [$folio]);
@@ -115,7 +115,7 @@ switch ($api) {
                 $result[$dia] = array();
             }
 
-            if ($i > 2) {
+            if ($i = 3) {
                 $i = 1;
             }
 

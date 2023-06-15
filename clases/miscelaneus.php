@@ -320,6 +320,7 @@ class Miscelaneus
 
     public function reportador($master, $turno_id, $area_id, $reporte, $tipo = 'url', $preview = 0, $lab = 0, $id_consulta = 0, $cliente_id = 1, $id_cotizacion = 8)
     {
+        
         #Recupera la información personal del paciente
         $infoPaciente = $master->getByProcedure('sp_informacion_paciente', [$turno_id]);
         $infoPaciente = [$infoPaciente[count($infoPaciente) - 1]];
@@ -441,7 +442,18 @@ class Miscelaneus
                 $infoCliente = [$infoCliente[count($infoCliente) - 1]];
                 $folio = $infoPaciente[0]['FOLIO_COTIZACIONES'];
                 break;
+            case 5:
+            case "5":
+                $datos_medicos = array();
+                $arregloPaciente = $this->getBodyEspiro($master, $turno_id);
+                $fecha_resultado = $infoPaciente[array_key_last($infoPaciente)]['FECHA_CARPETA_ESPIRO'];
+                $carpeta_guardado = "espirometria";
+                $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_ESPIRO'];
+                $infoPaciente[0]['CLAVE_IMAGEN'] = $infoPaciente[array_key_last($infoPaciente)]['CLAVE_ESPIRO'];
+
+                break;
         }
+        
 
         if ($area_id == 0) {
             $area_id = 6;
@@ -465,18 +477,18 @@ class Miscelaneus
         $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre . "-" . $infoPaciente[0]['ETIQUETA_TURNO'] . '-' . $fecha_resultado);
         $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
 
-        // print_r(json_encode($pie_paginarregloPacientea));
-        // print_r(json_encode($infoPaciente[0]));
-        //exit;
-        // $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
+         print_r(json_encode($arregloPaciente));
+         print_r(json_encode($infoPaciente[0]));
+        exit;
+        $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
         // $pdf = '';
-        // $renderpdf = $pdf->build();
+         $renderpdf = $pdf->build();
 
-        // if ($lab == 1 && $tipo == 'url') {
+        if ($lab == 1 && $tipo == 'url') {
 
-        //     $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
-        // }
-        return 1;
+        $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
+         }
+        return $renderpdf;
     }
 
     private function getBodyInfoSoma($master, $id_turno)
@@ -1287,5 +1299,43 @@ class Miscelaneus
         }
 
         return $formattedParams;
+    }
+
+    public function getBodyEspiro($master, $turno_id){
+        # json para el reporte de espirometria.
+        $respuestas = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
+
+        # declaramos el arreglo que guardara el id de la pregunta
+        $preguntas = array();
+
+        # llenamos el arreglo
+        foreach ($respuestas as $current) {
+            $preguntas[] = $current['ID_P'];
+        }
+
+        # eliminamos las duplicidades
+        $preguntas = array_unique($preguntas);
+
+        # Declaramos un arreglo que guarde el cuestionario del paciente.
+        $cuestionario = array();
+
+        # llenamos el cuestionario, preparando el arreglo para el json.
+        foreach ($preguntas as $pregunta) {
+
+            #filtramos las respuestas de cada pregunta del arreglo origina, el que viene de la base de datos.
+            $res_pregunta = array_filter($respuestas, function ($array) use ($pregunta) {
+                return $array['ID_P'] == $pregunta;
+            });
+
+            # formamos el arreglo para el json.
+            $cuestionario[] = array(
+                "pregunta" => $res_pregunta[array_key_first($res_pregunta)]['PREGUNTA'],
+                "respuestas" => $master->getFormValues(array_map(function ($item) {
+                    return array("respuesta"  => $item['RESPUESTA'], "comentario" => $item['COMENTARIO']);
+                }, $res_pregunta))
+            );
+        }
+
+        return $cuestionario;
     }
 }

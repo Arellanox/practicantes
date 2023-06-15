@@ -99,6 +99,14 @@ $('#abrirModalResultados').click(function () {
   $('#modalSubirInterpretacion').modal('show')
 })
 
+//BTN PARA SUBIR LOS DATOS DE ESPIROMETRIA 
+
+$('#btn-resultados-espiro-pdf').click(function () { 
+
+  $('#ModalSubirResultadosEspiro').modal('show');
+
+})
+
 
 
 $('#btn-ver-reporte').click(function () {
