@@ -1897,7 +1897,7 @@ function selectTable(tablename, datatable,
       return true;
 
 
-    if ($(this).hasClass('selected')) {
+    if ($(tr).hasClass('selected')) {
       selectTableClickCount++;
       clearTimeout(selectTableTimeOutClick)
 
@@ -1913,8 +1913,8 @@ function selectTable(tablename, datatable,
           dataDobleSelect = false;
 
           //Reinicia la seleccion:
-          $(this).removeClass('selected');
-          $(this).removeClass(config.anotherClass);
+          $(tr).removeClass('selected');
+          $(tr).removeClass(config.anotherClass);
           //
 
           //Desactivar otros tab
@@ -1951,7 +1951,7 @@ function selectTable(tablename, datatable,
       $(`#loaderDiv-${nameTable}`).fadeIn(0);
 
       //Si esta seleccionando:
-      dataDobleSelect = this;
+      dataDobleSelect = tr;
       selectTableClickCount++;
       setTimeout(() => {
         selectTableClickCount = 0;
@@ -1967,8 +1967,8 @@ function selectTable(tablename, datatable,
       }
 
       //Agrega la clase para indicar que lo esta seleccionando
-      $(this).addClass('selected');
-      $(this).addClass(config.anotherClass);
+      $(tr).addClass('selected');
+      $(tr).addClass(config.anotherClass);
 
 
       if (config.multipleSelect) {

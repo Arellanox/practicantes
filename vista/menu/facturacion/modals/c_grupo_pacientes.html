@@ -1,6 +1,6 @@
 <div class="modal fade" id="modalFiltroPacientesFacturacion" tabindex="-1" aria-labelledby="filtrador"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog  modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <!-- <div class="modal-header header-modal">
                 <h5 class="modal-title" id="title-paciente-facturar">Paciente: </h5>
@@ -8,64 +8,93 @@
                     aria-label="Close"></button>
             </div> -->
             <div class="modal-body">
-                <h5>Filtrar Listado de pacientes</h5>
+                <h5 class="mt-2">Nuevo Grupo de factura</h5>
                 <hr>
-                <form class="row" id="formFiltroListaCredito">
-                    <p>Rellene el siguiente cuestionario</p>
-                    <div class="col-12">
-                        <label for="fecha_inicial" class="form-label">Fecha Inicial</label>
-                        <input type="date" id="fecha_inicial" class="form-input input-form" required>
+                <div class="d-flex justify-content-center">
+                    <div class="p-3 card col-12">
+                        <form class="row" id="formFiltroListaCredito">
+                            <p>Filtre la lista principal (Tabla Izquierda) para mostrar los pacientes faltantes de
+                                alguna
+                                empresa</p>
+                            <div class="col-12 col-lg-2">
+                                <label for="fecha_inicial" class="form-label">Fecha Inicial</label>
+                                <input type="date" id="fecha_inicial_fill" class="form-input input-form" required>
+                            </div>
+                            <div class="col-12 col-lg-2">
+                                <label for="fecha_final" class="form-label">Fecha Inicial</label>
+                                <input type="date" id="fecha_final_fill" class="form-input input-form" required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="cliente" class="form-label">Cliente</label>
+                                <select name="" id="cliente_fill" class="form-select input-form"></select>
+                            </div>
+                            <div class="col-12 col-lg-2 d-flex justify-content-start align-self-center">
+                                <button type="submit" form="formFiltroListaCredito" class="btn btn-confirmar">
+                                    <i class="bi bi-receipt-cutoff"></i> Filtrar
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-12">
-                        <label for="fecha_final" class="form-label">Fecha Inicial</label>
-                        <input type="date" id="fecha_final" class="form-input input-form" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="cliente" class="form-label">Cliente</label>
-                        <select name="" id="cliente" class="form-select input-form"></select>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="0" id="checkFullClientes"
-                                name="full_clientes">
-                            <label class="form-check-label" for="checkFullClientes">
-                                Todos
-                            </label>
+                </div>
+
+                <hr>
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 col-lg-4 p-4">
+                        <div class="card p-3">
+                            <h5>Pacientes faltantes</h5>
+                            <table class="table display responsive" id="TablaFiltradaCredito" style="width: 100%">
+                            </table>
                         </div>
                     </div>
-                </form>
+                    <div class="col-12 col-lg-3 p-3 mt-5">
+                        <!-- <div class="p-3"> -->
+                        <!-- <label for="fecha_final" class="form-label"></label> -->
+                        <!-- </div> -->
+                        <div class="">
+                            <p>
+                                Seleccione los pacientes del lado izquierdo y "agregue" todos los pacientes al lado
+                                izquierdo, o seleccione los pacientes del lado derecho y "regresalos" a la
+                                lista filtrada
+                            </p>
+                            <div class="row mt-3">
+                                <div class="col-12 mt-3 d-flex justify-content-center">
+                                    <input type="text" class="form-input input-form" placeholder="Descripción">
+                                </div>
+                                <div class="col-12 mt-3 d-flex justify-content-center">
+                                    <button class="btn btn-success" style="padding:12px 26px"
+                                        id="AgregarPacientesGrupo">
+                                        Agregar <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                                <div class="col-12 mt-3 d-flex justify-content-center">
+                                    <button class="btn btn-turquesa" style="padding:12px 26px"
+                                        id="QuitarPacientesGrupo">
+                                        <i class="bi bi-arrow-left"></i> Devolver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 p-4">
+                        <div class="card p-3">
+                            <h5>Pacientes por agregar</h5>
+                            <table class="table display responsive" id="TablaPacientesNewGrupo" style="width: 100%">
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
                     <i class="bi bi-arrow-left-short"></i> Cerrar
                 </button>
-                <button type="submit" form="formFiltroListaCredito" class="btn btn-confirmar">
-                    <i class="bi bi-receipt-cutoff"></i> Filtrar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
-
-<div class="modal fade" id="modalListaCreditoFiltrado" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <!-- <div class="modal-header header-modal">
-                <h5 class="modal-title" id="title-paciente-facturar">Paciente: </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div> -->
-            <div class="modal-body">
-                <h5>Filtrar Listado de pacientes</h5>
-                <hr>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
-                    <i class="bi bi-arrow-left-short"></i> Cerrar
-                </button>
-                <button type="submit" form="formFiltroListaCredito" class="btn btn-confirmar">
-                    <i class="bi bi-receipt-cutoff"></i> Crear
-                </button>
             </div>
         </div>
     </div>

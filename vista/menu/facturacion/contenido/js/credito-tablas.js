@@ -15,7 +15,9 @@ TablaGrupos = $('#TablaGrupos').DataTable({
         beforeSend: function () {
             loader("In")
             fadeRegistro('Out')
-            $(".informacion-creditos").fadeOut(0);
+
+            //Para ocultar segunda columna
+            reloadSelectTable()
         },
         complete: function () {
             // loader("Out")
@@ -74,25 +76,9 @@ inputBusquedaTable("TablaGrupos", TablaGrupos, [], {
     place: 'top'
 }, "col-12")
 
-loaderDiv("Out", null, "#loader-muestras", '#loaderDivmuestras');
-
-// selectDatatable("TablaGrupos", TablaGrupos, 0, 0, 0, 0, function (select, data) {
-
-//     if (select) {
-//         $(".informacion-creditos").fadeIn(0)
-//         DataGrupo.id_grupo = data['ID_GRUPO']
-//         SelectedGruposCredito = data
-
-//         TablaGrupoDetalle.ajax.reload()
-//     } else {
-//         $(".informacion-creditos").fadeOut(0);
-//         fadeRegistro('Out')
-//         $("#FacturarGruposCredito").fadeOut(0);
-//     }
-// })
 
 
-selectTable('#TablaGrupos', TablaGrupos, { unSelect: true, movil: false, reload: ['col-xl-9'] }, async function (select, data, callback) {
+selectTable('#TablaGrupos', TablaGrupos, { unSelect: true, reload: ['col-xl-9'] }, function (select, data, callback) {
 
     if (select) {
         // $(".informacion-creditos").fadeIn(0)
