@@ -1916,8 +1916,8 @@ function selectTable(tablename, datatable,
           dataDobleSelect = false;
 
           //Reinicia la seleccion:
-          datatable.$('tr.selected').removeClass('selected');
-          datatable.$('tr.selected').removeClass(config.anotherClass);
+          $(this).removeClass('selected');
+          $(this).removeClass(config.anotherClass);
           //
 
           //Desactivar otros tab
@@ -1962,13 +1962,12 @@ function selectTable(tablename, datatable,
 
 
 
-      if (config.multipleSelect === false) {
+      if (!config.multipleSelect) {
         //Reinicia la seleccion:
         datatable.$('tr.selected').removeClass('selected');
         datatable.$('tr.selected').removeClass(config.anotherClass);
         //
       }
-
 
       //Agrega la clase para indicar que lo esta seleccionando
       $(this).addClass('selected');
@@ -1978,8 +1977,8 @@ function selectTable(tablename, datatable,
       if (config.multipleSelect) {
         //Multiple Seleccion
         //Hará el callback cada que seleccionan a uno nuevo
-        let row_length = table.rows('.selected').data().length
-        let data = table.rows('.selected').data()
+        let row_length = datatable.rows('.selected').data().length
+        let data = datatable.rows('.selected').data()
 
         callbackClick(row_length, data, null, null)
 
@@ -4238,125 +4237,82 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
   $(container).on('mouseleave', hide);
 }
 
+
+
 function validarCuestionarioEspiro() {
+  return new Promise(resolve => {
 
-  return new Promise(async resolve => {
+    let situacion1 = $('#no_aplica1').is(':checked');
+    let situacion2 = $('#no_aplica2').is(':checked');
 
-    var situacion1 = $('#no_aplica1').is(':checked');
-    var situacion2 = $('#no_aplica2').is(':checked');
 
-    if (!await evaluarSituacionEspiro('.independiente')) {
-      resolve(false)
+    if (!detectPreguntasNivel('.independiente')) {
+      resolve(true);
+      return;
     }
 
-    //  if (!situacion1) {
-    //    if (!await evaluarSituacionEspiro('.situaciones1')) {
-    //      resolve(false)
-    //   }
-    //  }
 
-    // if (!situacion2) {
-    //   if (!await evaluarSituacionEspiro('.situaciones2')) {
-    //     resolve(false)
-    //   }
-
-    //}
+    if (situacion1 || !detectPreguntasNivel('.situacion1')) {
+      situacion1 ? resolve(false) : resolve(true);
+      return;
+    }
 
 
+    if (situacion2 || !detectPreguntasNivel('.situacion2')) {
+      situacion2 ? resolve(false) : resolve(true);
+      return;
+    }
 
-    resolve(true);
 
+    resolve(false);
   })
+}
 
-  var situacion1 = $('#no_aplica1').is(':checked');
-  var situacion2 = $('#no_aplica2').is(':checked');
 
-  // VALIDAMOS LA PRIMERA SITUACION
-  if (!situacion1) {
-    $('.situaciones1').each(function () {
-      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
-      var radios = $(this).find('input[type="radio"]:checked').length > 0;
+function detectPreguntasNivel(situacion) {
+  let hasUnansweredQuestion = false; // Variable auxiliar para indicar si hay una pregunta sin contestar
 
-      if (!checkboxes && !radios) {
-        var pregunta = $(this).find('.titulo').text();
-        AlertMsgEspiro(pregunta)
-        //window.location.hash = '#' + $(this).attr('id');
-        return false;
+  // let label = $('.titulo')[0];
+  // label.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      }
+  $(situacion).each(function () {
+    let hasChecked = $(this).find('input[type="checkbox"], input[type="radio"]').is(':checked');
+    let preguntaElement = $(this).find('.titulo')[0];
 
-    });
-  }
+    if (!hasChecked) {
 
-  // VALIDAMOS LA SEGUNDA SITUACION
-  if (!situacion2) {
-    $('.situaciones2').each(function () {
-      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
-      var radios = $(this).find('input[type="radio"]:checked').length > 0;
-
-      if (!checkboxes && !radios) {
-        var pregunta = $(this).find('.titulo').text();
-        //alert('No has respondido la pregunta: ' + pregunta);
-        AlertMsgEspiro(pregunta)
-        //window.location.hash = '#' + $(this).attr('id');
-        return false;
-      }
-
-    });
-  }
-
-  // VALIDAMOS TODOS AQUELLOS QUE NO DEPENDEN DE LAS SITUACIONES ANTERIORES
-
-  var contenedorIndependiente = $('.independiente');
-
-  contenedorIndependiente.each(function () {
-    var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
-    var radios = $(this).find('input[type="radio"]:checked').length > 0;
-
-    if (!checkboxes && !radios) {
-      var pregunta = $(this).find('.titulo').text();
-      //alert('No has respondido la pregunta: ' + pregunta);
-      AlertMsgEspiro(pregunta)
-      //window.location.hash = '#' + $(this).attr('id');
-      return false;
+      //Scroll
+      scrollContentInView(preguntaElement)
+      hasUnansweredQuestion = true; // Establecer la variable auxiliar en true
+      return false; // Salir del each()
     }
+
+    // Si también necesitas comprobar otras condiciones, puedes hacerlo aquí
+
   });
 
-  return true;
+  return !hasUnansweredQuestion; // Retornar el valor invertido de la variable auxiliar
 }
 
-function AlertMsgEspiro(pregunta) {
-  alertMsj({
-    icon: 'info',
-    title: 'Te falto responder una pregunta',
-    text: `Pregunta: ${pregunta}`,
-    showCancelButton: false
-  })
-}
+//para formulario  de espiro
+function scrollContentInView(pregunta) {
+  pregunta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  $(pregunta).css('border-bottom', '2px solid red');
 
 
-function evaluarSituacionEspiro(situacion) {
-
-  return new Promise(async resolve => {
-    let result = true;
-
-    $(situacion).each(function () {
-      var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
-      var radios = $(this).find('input[type="radio"]:checked').length > 0;
-
-      if (!checkboxes && !radios) {
-        var pregunta = $(this).find('.titulo').text();
-        AlertMsgEspiro(pregunta)
-        //window.location.hash = '#' + $(this).attr('id');
-
-        result = false;
-
-      }
-
+  setTimeout(() => {
+    $(pregunta).animate({
+      marginLeft: '10px'
+    }, 100, function () {
+      $(this).animate({
+        marginLeft: '-10px'
+      }, 100, function () {
+        $(this).animate({
+          marginLeft: '0'
+        }, 100);
+      });
     });
-
-    resolve(result);
-
-  })
+  }, 500);
 
 }
