@@ -4240,32 +4240,40 @@ function popperHover(container = 'ID_CLASS', tooltip = 'ID_CLASS', callback = (s
 
 
 function validarCuestionarioEspiro() {
-  return new Promise(resolve => {
+  // return new Promise(function (resolve) {
 
-    let situacion1 = $('#no_aplica1').is(':checked');
-    let situacion2 = $('#no_aplica2').is(':checked');
+  situacion1 = '#no_aplica1'
+  situacion1 = $(situacion1).is(':checked');
+
+  let situacion2 = '#no_aplica2'
+  situacion2 = $(situacion2).is(':checked');
 
 
-    if (!detectPreguntasNivel('.independiente')) {
-      resolve(true);
-      return;
+  if (!detectPreguntasNivel('.independiente')) {
+    // resolve(true);
+    return true;
+  }
+
+  console.log(situacion2)
+
+  if (!situacion2) {
+    if (!detectPreguntasNivel('.situaciones2')) {
+      // resolve(true);
+      return true;
     }
+  }
 
-
-    if (situacion1 || !detectPreguntasNivel('.situacion1')) {
-      situacion1 ? resolve(false) : resolve(true);
-      return;
+  if (!situacion1) {
+    if (!detectPreguntasNivel('.situaciones1')) {
+      // resolve(true);
+      return true;
     }
+  }
 
 
-    if (situacion2 || !detectPreguntasNivel('.situacion2')) {
-      situacion2 ? resolve(false) : resolve(true);
-      return;
-    }
-
-
-    resolve(false);
-  })
+  // resolve(false);
+  return false;
+  // })
 }
 
 
@@ -4280,7 +4288,7 @@ function detectPreguntasNivel(situacion) {
     let preguntaElement = $(this).find('.titulo')[0];
 
     if (!hasChecked) {
-
+      console.log(preguntaElement)
       //Scroll
       scrollContentInView(preguntaElement)
       hasUnansweredQuestion = true; // Establecer la variable auxiliar en true

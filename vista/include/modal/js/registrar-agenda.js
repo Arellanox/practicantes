@@ -78,6 +78,7 @@ $("#formRegistrarAgenda").submit(function (event) {
   }
 
   if (validarCuestionarioEspiro()) {
+   
     return false;
   }
 

@@ -96,6 +96,13 @@ $('#btn-confirmar-reporte').click(function (event) {
     /*DATOS Y VALIDACION DEL REGISTRO*/
     if (confirmado != 1 || session.permisos['Actualizar reportes'] == 1) {
 
+        if (areaActiva == 5) {
+            if (validarCuestionarioEspiro()) {
+                return false;
+            }
+        }
+
+
         alertMensajeConfirm({
             title: "¿Está seguro de confirmar este reporte?",
             text: "¡No podrá actualizar los datos de reporte!",
