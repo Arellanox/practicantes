@@ -97,7 +97,11 @@ class Reporte
         );
 
         // print_r($view_vars['resultados']->ANAMNESIS);
-        // print_r($response);
+        // foreach($view_vars['resultados'] as $item){
+        //     print_r($item);
+        //     echo "<br>";
+        // }
+        // exit;
 
         $pdf = new Dompdf();
         // Recibe la orden de que tipo de archivo quiere
@@ -122,11 +126,9 @@ class Reporte
                 // return $path;
                 break;
             case 'espirometria':
-                $template = render_view('invoice/espirometria.php', $view_vars);
+                $template = render_view('invoice/espiro.php', $view_vars);
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'portrait');
-                // $path    = 'pdf/public/resultados/E-00001.pdf';
-                // return $path;
                 break;
             case 'oftalmologia':
                 $template = render_view('invoice/oftalmologia.php', $view_vars);

@@ -32,7 +32,7 @@ $usuario_id = $_SESSION['id'];
 // decomentar las siguientes 3 lineas para hacer las pruebas
 
 $api = 'espirometria';
-$turno_id = 413;
+$turno_id = 470;
 $area_id = 5;
 // // $area_id = 12;
 // $turno_id = 742;
@@ -152,7 +152,7 @@ switch ($api) {
             $master,
             $turno_id,
             $area_id,
-            'espirometria.php',
+            'espirometria',
             'mostrar',
             $preview,
             0,

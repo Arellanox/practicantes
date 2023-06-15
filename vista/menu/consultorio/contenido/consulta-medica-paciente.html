@@ -172,20 +172,21 @@
                         <div class="row m-2">
                             <div class="col-4">
                                 <label for="estado" class="form-label">Buscar estudios</label>
-                                <input type="text" class="form-control input-form" name="buscador-estudios"
-                                    placeholder="Cargando estudios disponibles">
+                                <!-- <input type="text" class="form-control input-form" name="buscador-estudios"
+                                    placeholder="Cargando estudios disponibles"> -->
+                                <select name="buscar-estudios" id="buscar-estudios"></select>
                                 <!-- ¿Se identificará por area, por grupos? -->
                                 <button type="submit" form="formNuevaReceta" class="btn btn-confirmar me-2"
                                     style="margin-bottom:4px" id="btn-agregar-estudio">
                                     <i class="bi bi-paperclip"></i> Agregar
                                 </button>
                             </div>
+
                             <div class="col-8">
                                 <p>Lista de estudios solicitados actuales/guardados</p>
                                 <!-- ¿Podria ser dinamico? o ¿Tiempo real? -->
-                                <ul class="list-group" style="width: 100%;">
+                                <!-- <ul class="list-group" style="width: 100%;" id="listaEstudios">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        BIOMETRÍA HEMÁTICA
                                         <span class="badge">
                                             <button type="button" class="btn btn-hover eliminarOdontograma"
                                                 style="margin: -15px;" data-bs-id="10">
@@ -193,7 +194,14 @@
                                             </button>
                                         </span>
                                     </li>
-                                </ul>
+                                </ul> -->
+                                <table class="table table-hover display responsive" id="TablaListaEstudios"
+                                    style="width: 100%;">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </form>
@@ -325,7 +333,7 @@
 
                     <hr class="dropdown-divider m-2">
                     <textarea name="name-plan-tratamiento" rows="10" cols="90" class="form-textarea-content"
-                        placeholder="" id="plan-tratamiento-campo-consulta"></textarea>
+                        placeholder="Escriba su tratamiento" id="plan-tratamiento-campo-consulta"></textarea>
                     <div class=" d-flex justify-content-start m-2">
                         <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
                             id="btn-guardar-plan-tratamiento">

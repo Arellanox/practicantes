@@ -174,7 +174,7 @@ function agregarNotaConsulta(tittle, date = null, text, appendDiv, id, clase, cl
 
 
 
-function obtenerConsultorioConsultaMedica(data, idConsultaMedica) {
+function obtenerConsultorioConsultaMedica(data, dataConsulta) {
   loader("In")
   $("#titulo-js").html(''); //Vaciar la cabeza de titulo
   $.post("contenido/consulta-medica-paciente.html", function (html) {
@@ -184,19 +184,25 @@ function obtenerConsultorioConsultaMedica(data, idConsultaMedica) {
     // Obtener metodos para el dom
     $.getScript("contenido/js/funciones_globales.js").done(function () { })
     //guardar datos consultorio
-    $.getScript("contenido/js/guardar-consultorio.js");
-    
-    $.getScript("contenido/js/consulta-paciente.js").done(function () {
-      // Botones
-      $.getScript("contenido/js/consulta-paciente-botones.js");
-      obtenerConsultaMedica(data, idConsultaMedica);
+    $.getScript("contenido/js/guardar-consultorio.js")
+
+    $.getScript("contenido/js/funciones-get-informacion.js").done(function () {
+      obtenerConsultaMedica(data, dataConsulta);
     });
     // select2('#registrar-metodos-estudio', 'card-exploracion-clinica');
   });
 }
 
-async function obtenerConsultaMedica(data, idConsultaMedica) {
+async function obtenerConsultaMedica(data, dataConsulta) {
   // await obtenerVistaAntecenetesPaciente('#antecedentes-paciente', data['CLIENTE'])
+
+  // Mostrar informacion del paciente en panel  superior (data, dataConsulta)
+  await mostrarInformacionPaciente(dataConsulta);
+  // Recuperar datos de la consulta
+  await recuperarDatosCampos(data['ID_TURNO'], dataConsulta['ID_CONSULTA2'])
+
+
+
   await obtenerPanelInformacion(data['ID_TURNO'], "signos-vitales_api", 'signos-vitales', '#signos-vitales', '_col3');
   await obtenerPanelInformacion(data['ID_TURNO'], 'consulta_api', 'listado_resultados', '#listado-resultados')
   loader("Out", 'bottom')

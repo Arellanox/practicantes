@@ -25,18 +25,26 @@ $parametros = $master->setToNull(array(
 
 
 
-switch($api) {
-    #insertar datos en la tabla consultorio2_consulta
+switch ($api) {
+        #insertar datos en la tabla consultorio2_consulta
     case 1:
         $response = $master->insertByProcedure("sp_consultorio2_consulta_g", $parametros);
         break;
 
-    // case 2:
-    //     $response = $master->getByProcedure("sp_consultorio2_consulta_g", $turno_id);
-    //     break;    
+
+        #Recuperar datos en la tabla consultorio2_consulta
+    case 2:
+        $response = $master->insertByProcedure("sp_", []);
+        break;
+
+
+        #Guarda el motivo de consulta y recupera los mismos datos
+    case 5:
+
+        break;
 
     default:
-    $response = "API no definida";
+        $response = "API no definida";
         break;
 }
 

@@ -19,19 +19,17 @@ $id_preregistro = $_POST['id_preregistro'];
 $correo = $_POST['correo'];
 $token_correo = $_POST['token'];
 $turno_id = $_POST['id_turno'];
-$cuestionarios = $_POST['cuestionarios'];
 $response = "";
 
 $master = new Master();
 switch ($api) {
     case 1:
         #verifico que sea un correo válido, luego intento generar el token en la base de datos y luego intento enviarlo junto a la url por mail
-      
         if (!(filter_var($correo, FILTER_VALIDATE_EMAIL))) {
             $response = "Dirección de correo inválida";
         } else {
             $tokenPregistro = new TokenPreregistro();
-            $token = $tokenPregistro->generarTokenPreregistro($correo, $cuestionarios);
+            $token = $tokenPregistro->generarTokenPreregistro($correo);
             if ($token != '') {
                 $motivo = "Token para registro de cita en linea";
                 // echo $motivo;

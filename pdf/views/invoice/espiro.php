@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuestionario de espirometría</title>
+    <title>Cuestionario de Espirometría</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
@@ -98,14 +98,14 @@
             text-align: center;
         }
 
-        table {
+        .table2 {
             width: 100%;
             max-width: 100%;
             margin: auto;
             white-space: normal;
             word-break: break-all;
             /* table-layout:fixed; */
-        }
+        } 
 
         th,
         td {
@@ -204,12 +204,43 @@
             max-width: 25%;
             text-align: center;
         }
+
+        /*tabla de espiro */
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+            white-space: normal;
+            word-break: break-all;
+        }
+        
+        .table > th, .table > tr > td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            
+        }
+        
+        .table > tr {
+            background-color: #f2f2f2;
+        }
+        
+        .pregunta-row {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .respuesta-row,
+        .comentario-row {
+            background-color: #fff;
+        }
+        /* termina estilo de tabla espiro */
     </style>
 </head>
 
 
 <?php
-
 // para el path del logo 
 $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
 $encode = base64_encode($ruta);
@@ -236,17 +267,17 @@ if (!isset($qr)) {
 ?>
 
 <body>
-    <div class="header">
+    <div class="header" >
         <br><br>
 
-        <table>
+        <table class="table2">
             <tbody>
                 <tr>
                     <td class="col-der" style="border-bottom: none">
                         <h4>
                             DIAGNOSTICO BIOMOLECULAR S.A.de C.V. <br>
                             Checkup Clínica y Prevención<br>
-                            Reporte de espirometría
+                            Reporte de Espirometría
                         </h4>
                     </td>
                     <td class="col-izq" style="border-bottom: none; text-align:center;">
@@ -259,7 +290,7 @@ if (!isset($qr)) {
                 </tr>
             </tbody>
         </table>
-        <table>
+        <table class="table2">
             <tbody>
                 <tr>
                     <td style="text-align: center; border-style: solid none solid none; ">
@@ -270,11 +301,11 @@ if (!isset($qr)) {
                 </tr>
             </tbody>
         </table>
-        <table>
+        <table class="table2">
             <tbody>
                 <tr>
                     <td class="col-left" style="border-bottom: none">
-                        No. Identificación: <strong style="font-size: 12px;"> <?php echo $encabezado->FOLIO_OFTALMO; ?> </strong>
+                        No. Identificación: <strong style="font-size: 12px;"> <?php echo $encabezado->FOLIO_ESPIRO; ?> </strong>
                     </td>
                     <td class="col-center" style="border-bottom: none">
                         Edad: <strong style="font-size: 12px;"> <?php echo $encabezado->EDAD < 1 ? ($encabezado->EDAD * 10) . " meses" : $encabezado->EDAD . " años"; ?></strong>
@@ -296,7 +327,7 @@ if (!isset($qr)) {
                 </tr>
                 <tr>
                     <td class="col-left" style="border-bottom: none">
-                        Fecha de Resultado: <strong style="font-size: 12px;"><?php echo $encabezado->FECHA_RESULTADO_OFTALMO; ?> </strong>
+                        Fecha de Resultado: <strong style="font-size: 12px;"><?php echo $encabezado->FECHA_RESULTADO_ESPIRO; ?> </strong>
                     </td>
                     <td class="col-center" style="border-bottom: none">
                     </td>
@@ -317,15 +348,15 @@ if (!isset($qr)) {
         <p style="font-size: 12px; padding-left: 3.5px; margin: -1px;">
             <?php echo "Procedencia: <strong style='font-size: 12px;'> $encabezado->PROCEDENCIA"; ?> </strong>
         </p>
-        <p style="font-size: 12px; padding-left: 3.5px; margin: -1px; margin-top: 5px">
-            <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'>" . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?> </strong>
+        <p style="font-size: 12px; padding-left: 3.5px; margin: -1px; margin-top: 5px; padding-bottom:1000px;">
+            <?php echo (isset($encabezado->MEDICO_TRATANTE) && !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'>" . $encabezado->MEDICO_TRATANTE . "</strong>" : "Médico Tratante: <strong style='font-size: 10px;'>A QUIEN CORRESPONDA</strong>"; ?> </strong>
         </p>
         <!-- <p>Aqui va el encabezado y es el espacio disponible hasta donde llegue el titulo siguiente.</p> -->
 
     </div>
 
     <div class="footer">
-        <table>
+        <table class="table2">
             <tbody>
                 <tr class="col-foot-one">
                     <td colspan="12" style="text-align: right; padding-right: 0;"><strong style="font-size: 12px;">Atentamente</strong></td>
@@ -390,31 +421,37 @@ if (!isset($qr)) {
     <!-- body -->
     <div class="invoice-content">
         <br>
-        <h4>Cuestionario de espirometría</h4>
         <br>
-        <table>
-            <?php foreach ($resultados as $preguntaIndex => $pregunta) : ?>
-                <?php $respuestas = $pregunta['respuestas']; ?>
-                <?php $numRespuestas = count($respuestas); ?>
-                <tr class="pregunta-row">
-                    <td colspan="3"><?php echo $pregunta['pregunta']; ?></td>
-                </tr>
-                <?php if ($numRespuestas > 0) : ?>
-                    <?php foreach ($respuestas as $respuestaIndex => $respuesta) : ?>
-                        <tr>
-                            <td class="respuesta-row"><?php echo $respuesta['respuesta']; ?></td>
-                            <td class="comentario-row" colspan="2"><?php echo $respuesta['comentario'] !== null ? $respuesta['comentario'] : '-'; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <tr>
-                        <td class="respuesta-row" colspan="3">No hay respuestas disponibles</td>
-                    </tr>
-                <?php endif; ?>
-            <?php endforeach; ?>
+        <table class="table">
+        <?php $tr = 0;foreach ($resultados as $preguntaIndex => $pregunta): ?>
+            <?php $respuestas = $pregunta->respuestas; ?>
+            <?php $numRespuestas = count($respuestas); ?>
+            <?php if ($tr>35): $tr = 0; ?>
         </table>
+        <div class="break"></div>
+        <br>
+        <table class="table">
+            <?php endif; ?>
+            <tr class="pregunta-row">
+                <td colspan="3"><?php echo $pregunta->pregunta;?></td>
+            </tr>
+            <?php $tr++; ?>
+            <?php if ($numRespuestas > 0): ?>
+                <?php foreach ($respuestas as $respuestaIndex => $respuesta): ?>
+                    <tr>
+                        <td class="respuesta-row"><?php echo $respuesta->respuesta; ?></td>
+                        <td class="comentario-row"><?php echo $respuesta->comentario !== null ? $respuesta->comentario : '-'; ?></td>
+                    </tr>
+                    <?php $tr++; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td class="respuesta-row" colspan="3">No hay respuestas disponibles</td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </table>
     </div>
-
 </body>
 
 <?php
