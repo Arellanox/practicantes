@@ -7,31 +7,43 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class=" my-2">Especifique la <strong>fecha y hora que desea liberar</strong> y si desea agregar
-                    alguna observación del
-                    motivo por el cual no se pudo
-                    capturar la lectura en ese día. </p>
+                <p class=" my-2">Especifique el rango de<strong>fechas que desea liberar</strong></p>
                 <form name="liberarDiaTemperaturaForm" id="liberarDiaTemperaturaForm">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="mb-3">
-                                <label for="diaLiberar">Dia a liberar:</label>
-                                <input type="date" name="diaLiberar" value="" class="form-control input-form" required
-                                    id="diaLiberar">
+                                <label for="FechaInicio">Fecha de Inicio:</label>
+                                <input type="date" name="FechaInicio" value="" class="form-control input-form" required
+                                    id="FechaInicio">
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="mb-3">
-                                <label for="horaLiberar">Hora a liberar:</label>
-                                <input type="time" name="horaLiberar" value="" class="form-control input-form" required
-                                    inputmode="numeric" pattern="(0[1-9]|1[0-2]):[0-5][0-9] (am|pm)" id="horaLiberar">
+                                <label for="FechaFinal">Fecha Final:</label>
+                                <input type="date" name="FechaFinal" value="" class="form-control input-form" required
+                                    id="FechaFinal">
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="observaciones">Observaciones:</label>
                                 <input type="text" name="observaciones" value="" class="form-control input-form"
                                     required id="observaciones">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Seleccione el turno:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="turno" id="Matutino">
+                                <label class="form-check-label" for="Matutino">
+                                    Matutino
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="turno" id="Vespertino" checked>
+                                <label class="form-check-label" for="Vespertino">
+                                    Vespertino
+                                </label>
                             </div>
                         </div>
                     </div>

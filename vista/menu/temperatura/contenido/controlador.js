@@ -8,12 +8,27 @@ if (validarVista('REGISTRO_TEMPERATURA')) {
 }
 
 
-var selectRegistro, editRegistro = false;
+var selectRegistro, editRegistro = false, id_equipos = null, btnequipos = false;
 //
 var selectTableFolio = false
 function obtenerTemperaturas() {
     obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area
     $.post("contenido/temperatura.php", function (html) {
+        $("#body-js").html(html);
+    }).done(function () {
+        // Datatable
+        $.getScript("contenido/js/temperatura-tablas.js");
+        // Botones
+        $.getScript("contenido/js/temperatura-botones.js");
+
+        // Filtros
+        // $.getScript("contenido/js/filtro-temperatura.js");
+    });
+}
+
+function obtenerPrueba() {
+    obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area
+    $.post("contenido/temperatura2.php", function (html) {
         $("#body-js").html(html);
     }).done(function () {
         // Datatable
@@ -36,8 +51,11 @@ function hasLocation() {
         case "TEMPERATURA":
             obtenerTemperaturas();
             break;
+        case "PRUEBA":
+            obtenerPrueba();
+            break;
         default:
-            window.location.hash = '#TEMPERATURA';
+            window.location.hash = '#PRUEBA';
             break;
     }
 }

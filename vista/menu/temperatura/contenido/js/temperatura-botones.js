@@ -37,16 +37,28 @@ $(document).on('click', '.btn-liberar', function (event) {
     }, 1)
 })
 
+
+$("#ModalFirmaTemperatura").on('click', function (e) {
+    e.preventDefault();
+    console.log("estas en firma modal")
+
+    $('#TemperaturaModalFirma').modal('show');
+})
+
 $("#EquiposTemperaturasForm").on("submit", function (e) {
     e.preventDefault();
 
-    let data = new FormData(document.getElementById("EquiposTemperaturasForm"));
+    console.log($("#Equipo").val())
+    id_equipos = $("#Equipo").val()
 
-    console.log(data)
-})
+    DataEquipo = {
+        api: 2,
+        Enfriador: id_equipos
+    }
 
-ajaxAwaitFormData({
-    api: 1
-}, "temperaturas_api.php", "EquiposTemperaturasForm", { alertBefore: false }, false, function (response) {
+    tablaTemperaturaFolio.ajax.reload()
 
+
+    $('#lista-meses-temperatura').fadeToggle(0)
+    $('#LibererDiaTemperatura').fadeIn(0);
 })
