@@ -13,9 +13,13 @@ $master = new Master();
 
 #OBTENEMOS LA API POR MEDIO DEL POST
 $api = $_POST['api'];
+
 $turno_id = $_POST['turno_id'];
+
 $area_id = $_POST['id_area'];
+$id_turno = $_POST['id_turno'];
 $preguntasRespuestas = $_POST['respuestas'];
+$confirmado = isset($_POST['confirmado']) ? $_POST['confirmado'] : 0;
 
 $usuario_id = $_SESSION['id'];
 
@@ -66,7 +70,7 @@ switch ($api) {
         }
 
 
-        $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $turno_id, $area_id, $usuario_id]);
+        $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, $confirmado]);
 
         break;
 

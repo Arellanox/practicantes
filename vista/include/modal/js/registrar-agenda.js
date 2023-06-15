@@ -72,7 +72,7 @@ $("#formRegistrarAgenda").submit(function (event) {
 
   if (espiro) {
     var espiroCuestionario = $(document.forms['formAreadeEspirometria']).serializeArray();
-    console.log(espiroCuestionario);
+    //console.log(espiroCuestionario);
     for (var i = 0; i < espiroCuestionario.length; i++)
       formData.append(espiroCuestionario[i].name, espiroCuestionario[i].value)
   }

@@ -2217,7 +2217,7 @@ function obtenerDatosEspiroPacientes() {
   return new Promise(resolve => {
     ajaxAwait({
       api: 2,
-      id_turno: dataSelect.array['turno']
+      turno_id: dataSelect.array['turno']
     }, 'espirometria_api', { callbackAfter: true, returnData: false }, false, function (data) {
 
 

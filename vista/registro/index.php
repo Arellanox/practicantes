@@ -131,12 +131,15 @@ $menu = "Pre-registro";
         type: "POST",
         success: function(data) {
           data = jQuery.parseJSON(data);
-          if (data.response.data[0]) {
+          //console.log(data.response)
+          if (data.response.data) {
             row = data.response.data[0];
             completarCliente(1, 'PARTICULAR', false, row['CUESTIONARIOS'])
           } else {
             redireccionarPrerregistro()
           }
+
+
         },
       });
     } else {

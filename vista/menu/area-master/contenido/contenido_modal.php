@@ -291,7 +291,7 @@ session_start();
                     <div class="row">
                         <div class="col-12">
                             <h4>Seleccione el estudio de espirometría</h4>
-                            <input type="file" class="form-control input-form mt-3" name="" id="">
+                            <input type="file" class="form-control input-form mt-3" name="resultado_espiro" id="resultado_espiro">
                         </div>
                     
                         
@@ -300,7 +300,7 @@ session_start();
                 <div class="modal-footer">
                     <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i> Regresar</button>
                     
-                    <!-- BTN GLOBAL -->
+                    <!-- BTN SUBIR RESULTADOS DE ESPIRO -->
                     <button type="submit" class="btn btn-confirmar" id="btn-subir-espiro" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
                         <i class="bi bi-clipboard2-plus"></i> Subir resultados
                     </button>

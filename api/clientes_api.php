@@ -69,19 +69,18 @@ switch ($api) {
         $response = $master->getByProcedure("sp_clientes_b", [$id, $codigo, $qr]);
 
         // si buscan solo un cliente se le agrega los segmentos disponibles
-        if (count($response) == 1) {
-            $segmentosResponse = $master->getByProcedure('fillSelect_segmentos', array($response[0]['ID_CLIENTE']));
-            if (count($segmentosResponse) > 0) {
-                $response[0][] = $segmentosResponse;
-                $response['SEGMENTOS'] = $segmentosResponse;
-            } else {
-                $response[0][] = "Sin segmentos";
-                $response[0]['SEGMENTOS'] = "Sin segmentos";
+            if (count($response) == 1) {
+                $segmentosResponse = $master->getByProcedure('fillSelect_segmentos', array($response[0]['ID_CLIENTE']));
+                if (count($segmentosResponse) > 0) {
+                    $response[0][] = $segmentosResponse;
+                    $response['SEGMENTOS'] = $segmentosResponse;
+                } else {
+                    $response[0][] = "Sin segmentos";
+                    $response[0]['SEGMENTOS'] = "Sin segmentos";
+                }
             }
-        }
-        $response[0]['CUESTIONARIOS'] = $master->decodeJson([$response[0]['CUESTIONARIOS']]);
-        $response[0]['CUESTIONARIOS'] = $response[0]['CUESTIONARIOS'][0];
-        
+            $response[0]['CUESTIONARIOS'] = $master->decodeJson([$response[0]['CUESTIONARIOS']]);
+            $response[0]['CUESTIONARIOS'] = $response[0]['CUESTIONARIOS'][0];
         break;
     case 3:
         # actualizar
