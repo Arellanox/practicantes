@@ -477,16 +477,17 @@ class Miscelaneus
         $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre . "-" . $infoPaciente[0]['ETIQUETA_TURNO'] . '-' . $fecha_resultado);
         $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
 
-         print_r(json_encode($arregloPaciente));
-         print_r(json_encode($infoPaciente[0]));
-        exit;
+        //  print_r(json_encode($arregloPaciente));
+        //  print_r(json_encode($infoPaciente[0]));
+        // exit;
         $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
         // $pdf = '';
-         $renderpdf = $pdf->build();
-
+        
+        $renderpdf = $pdf->build();
+        
         if ($lab == 1 && $tipo == 'url') {
 
-        $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
+            $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
          }
         return $renderpdf;
     }
