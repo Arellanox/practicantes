@@ -77,6 +77,10 @@ $("#formRegistrarAgenda").submit(function (event) {
       formData.append(espiroCuestionario[i].name, espiroCuestionario[i].value)
   }
 
+  if (validarCuestionarioEspiro()) {
+    return false;
+  }
+
   // var formData = new FormData(document.forms['form-ship']); // with the file input
   // var poData = jQuery(document.forms['po-form']).serializeArray();
   // for (var i=0; i<poData.length; i++)
