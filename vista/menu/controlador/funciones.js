@@ -187,11 +187,6 @@ async function ajaxAwait(dataJson, apiURL,
   });
 }
 
-//configruacion para regresar la data...
-function returnDataAjaxAwai(config, data) {
-  return config.WithoutResponseData ? data.response.data : data
-}
-
 //
 function configAjaxAwait(config) {
   //valores por defecto de la funcion ajaxAwait y ajaxAwaitFormData
@@ -275,6 +270,8 @@ async function ajaxAwaitFormData(dataJson = { api: 0, }, apiURL, form = 'OnlyFor
     })
   });
 }
+
+
 
 
 // Verificar si tiene una sesión activa
@@ -1900,7 +1897,7 @@ function selectTable(tablename, datatable,
       return true;
 
 
-    if ($(this).hasClass('selected')) {
+    if ($(tr).hasClass('selected')) {
       selectTableClickCount++;
       clearTimeout(selectTableTimeOutClick)
 
@@ -1916,8 +1913,8 @@ function selectTable(tablename, datatable,
           dataDobleSelect = false;
 
           //Reinicia la seleccion:
-          $(this).removeClass('selected');
-          $(this).removeClass(config.anotherClass);
+          $(tr).removeClass('selected');
+          $(tr).removeClass(config.anotherClass);
           //
 
           //Desactivar otros tab
@@ -1954,7 +1951,7 @@ function selectTable(tablename, datatable,
       $(`#loaderDiv-${nameTable}`).fadeIn(0);
 
       //Si esta seleccionando:
-      dataDobleSelect = this;
+      dataDobleSelect = tr;
       selectTableClickCount++;
       setTimeout(() => {
         selectTableClickCount = 0;
@@ -1970,8 +1967,8 @@ function selectTable(tablename, datatable,
       }
 
       //Agrega la clase para indicar que lo esta seleccionando
-      $(this).addClass('selected');
-      $(this).addClass(config.anotherClass);
+      $(tr).addClass('selected');
+      $(tr).addClass(config.anotherClass);
 
 
       if (config.multipleSelect) {
@@ -2273,8 +2270,9 @@ function obtenerDatosEspiroPacientes() {
 
 
       }
+      resolve(1)
     })
-    resolve(1)
+
   })
 
 }
