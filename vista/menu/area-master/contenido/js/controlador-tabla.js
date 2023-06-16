@@ -29,7 +29,7 @@ tablaContenido = $('#TablaContenidoResultados').DataTable({
     createdRow: function (row, data, dataIndex) {
         switch (areaActiva) {
             case 3: if (data.CONFIRMADO_OFTAL == 1) $(row).addClass('bg-success text-white'); break;
-            
+
             case 10:
                 if (subtipo == 'ELECTROTOMA' && data.CONFIRMADO_ELECTROCAPTURAS == 1) {
                     $(row).addClass('bg-success text-white');
@@ -119,11 +119,16 @@ selectDatatable('TablaContenidoResultados', tablaContenido, 0, 0, 0, 0, function
                     $('#btn-inter-areas').fadeIn(0);
                     if (datalist.CONFIRMADO == 1) estadoFormulario(1)
                     break;
-                
+
                 case 5: //Espirometria
                     $('#btn-inter-areas').fadeIn(0);
                     document.getElementById(formulario).reset()
-                    $(`#${formulario} .collapse.show`).collapse('hide')
+                    $(`#${formulario}`).html('');
+                    $(`#${formulario}`).html(formEspiroHTML)
+                    // $(`#${formulario} .collapse`).collapse('hide')
+
+                    // $('#pregunta42').collapse('show')
+                    // $('#pregunta43').collapse('show')
                     //$(`#${formulario} .collapse`).collapse('show')
                     if (selectEstudio.array.length) {
                         recuperarDatosEspiro(selectEstudio.array)
@@ -191,7 +196,7 @@ selectDatatable('TablaContenidoResultados', tablaContenido, 0, 0, 0, 0, function
                                 btnNutricionInbody(0)
                     }
                     break;
-                
+
                 default:
                     botonesResultados('activar');
                     break;

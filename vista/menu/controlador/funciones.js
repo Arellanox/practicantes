@@ -2266,6 +2266,7 @@ function obtenerDatosEspiroPacientes() {
 
           let childrenCondiciones = $(parent).children(`div[id="pregunta${element.ID_P}"]`);
           childrenCondiciones.collapse('hide');
+
         }
 
 
@@ -2273,7 +2274,7 @@ function obtenerDatosEspiroPacientes() {
       resolve(1)
     })
 
-  })
+  });
 
 }
 
