@@ -29,12 +29,16 @@ tablaContenido = $('#TablaContenidoResultados').DataTable({
     createdRow: function (row, data, dataIndex) {
         switch (areaActiva) {
             case 3: if (data.CONFIRMADO_OFTAL == 1) $(row).addClass('bg-success text-white'); break;
+            
             case 10:
                 if (subtipo == 'ELECTROTOMA' && data.CONFIRMADO_ELECTROCAPTURAS == 1) {
                     $(row).addClass('bg-success text-white');
                 } else if (subtipo != 'ELECTROTOMA' && data.CONFIRMADO_ELECTRO == 1) {
                     $(row).addClass('bg-success text-white');
                 }
+                break;
+            case 5:
+                if (data.CONFIRMADO_ESPIRO == 1) $(row).addClass('bg-success text-white');
                 break;
             case 8:
                 if (subtipo == 'RXTOMA' && data.CONFIRMADO_RXCAPTURAS == 1) {
@@ -120,10 +124,11 @@ selectDatatable('TablaContenidoResultados', tablaContenido, 0, 0, 0, 0, function
                     $('#btn-inter-areas').fadeIn(0);
                     document.getElementById(formulario).reset()
                     $(`#${formulario} .collapse.show`).collapse('hide')
+                    //$(`#${formulario} .collapse`).collapse('show')
                     if (selectEstudio.array.length) {
                         recuperarDatosEspiro(selectEstudio.array)
                     }
-                    if (datalist.CONFIRMADO == 1) estadoFormulario(1)
+                    if (datalist.CONFIRMADO_ESPIRO == 1) estadoFormulario(1)
                     break;
                 case 8: //Rayos X
                     $('#btn-inter-areas').fadeIn(0);

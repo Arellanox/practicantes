@@ -1402,7 +1402,7 @@
         if ($(this).is(':checked')) {
             let children = $(parent).children("div[class='collapse']")
             let input = children.find('textarea');
-            input.prop('required', true);
+            //input.prop('required', true);
             children.collapse('show')
         }
 
@@ -1428,7 +1428,7 @@
         if ($(this).val() == 1) {
             let children = $(parent).children("div[class='collapse']")
             let input = children.find('textarea');
-            input.prop('required', true);
+            //input.prop('required', true);
             children.collapse('show')
         }
         if ($(this).val() == 2) {
@@ -1465,228 +1465,14 @@
     })
 
 
-    //FUNCION PARA QUE SOLO SE PUEDA SELECCIONAR UN CHECKBOX
-    function uncheck() {
-        var checkbox1 = document.getElementById("14pr1");
-        var checkbox2 = document.getElementById("14pr2");
-        var checkbox3 = document.getElementById("14pr3");
-
-        var radio1 = document.getElementById("6pr1")
-        var radio2 = document.getElementById("6pr2")
-
-        var radio3 = document.getElementById("1pr1")
-        var radio4 = document.getElementById("1pr2")
-
-        var radio5 = document.getElementById("6pr4")
-        var radio6 = document.getElementById("6pr5")
-
-        var radio7 = document.getElementById("7pr1")
-        var radio8 = document.getElementById("7pr2")
-
-        var radio9 = document.getElementById("9pr1")
-        var radio10 = document.getElementById("9pr2")
-
-        var radio11 = document.getElementById("16pr1")
-        var radio12 = document.getElementById("16pr2")
-
-        var radio13 = document.getElementById("14pr1r")
-        var radio14 = document.getElementById("14pr2r")
-
-        var radio15 = document.getElementById("15pr1")
-        var radio16 = document.getElementById("15pr2")
-
-        var radio17 = document.getElementById("21pr1")
-        var radio18 = document.getElementById("21pr2")
-
-        var radio19 = document.getElementById("25pr1")
-        var radio20 = document.getElementById("25pr2")
-
-        var radio21 = document.getElementById("23pr1")
-        var radio22 = document.getElementById("23pr2")
-
-
-        var children = document.getElementsByClassName('texto')
-
-        radio1.onclick = function () {
-            if (radio1.checked != false) {
-                radio2.checked = null
-            }
-        }
-        radio2.onclick = function () {
-            if (radio2.checked != false) {
-                radio1.checked = null
-            }
-        }
-        radio3.onclick = function () {
-            if (radio3.checked != false) {
-                radio4.checked = null
-            }
-        }
-        radio4.onclick = function () {
-            if (radio4.checked != false) {
-                radio3.checked = null
-            }
-        }
-
-        radio5.onclick = function () {
-            if (radio5.checked != false) {
-                radio6.checked = null
-            }
-        }
-        radio6.onclick = function () {
-            if (radio6.checked != false) {
-                radio5.checked = null
-            }
-        }
-
-        radio7.onclick = function () {
-            if (radio7.checked != false) {
-                radio8.checked = null
-            }
-        }
-        radio8.onclick = function () {
-            if (radio8.checked != false) {
-                radio7.checked = null
-            }
-        }
-        radio9.onclick = function () {
-            if (radio9.checked != false) {
-                radio10.checked = null
-            }
-        }
-        radio10.onclick = function () {
-            if (radio10.checked != false) {
-                radio9.checked = null
-            }
-        }
-        radio11.onclick = function () {
-            if (radio11.checked != false) {
-                radio12.checked = null
-            }
-        }
-        radio12.onclick = function () {
-            if (radio12.checked != false) {
-                radio11.checked = null
-            }
-        }
-        radio13.onclick = function () {
-            if (radio13.checked != false) {
-                radio14.checked = null
-            }
-        }
-        radio14.onclick = function () {
-            if (radio14.checked != false) {
-                radio13.checked = null
-            }
-        }
-        radio15.onclick = function () {
-            if (radio15.checked != false) {
-                radio16.checked = null
-            }
-        }
-        radio16.onclick = function () {
-            if (radio16.checked != false) {
-                radio15.checked = null
-            }
-        }
-        radio17.onclick = function () {
-            if (radio17.checked != false) {
-                radio18.checked = null
-            }
-        }
-        radio18.onclick = function () {
-            if (radio18.checked != false) {
-                radio17.checked = null
-            }
-        }
-        radio19.onclick = function () {
-            if (radio19.checked != false) {
-                radio20.checked = null
-            }
-        }
-        radio20.onclick = function () {
-            if (radio20.checked != false) {
-                radio19.checked = null
-            }
-        }
-        radio21.onclick = function () {
-            if (radio21.checked != false) {
-                radio22.checked = null
-            }
-        }
-        radio22.onclick = function () {
-            if (radio22.checked != false) {
-                radio21.checked = null
-            }
-        }
-
-
-
-        checkbox1.onclick = function () {
-            if (checkbox1.checked != false) {
-                checkbox2.checked = null;
-                checkbox3.checked = null
-
-
-            }
-        }
-        checkbox2.onclick = function () {
-            if (checkbox2.checked != false) {
-                checkbox1.checked = null;
-                checkbox3.checked = null
-
-            }
-        }
-
-        checkbox3.onclick = function () {
-            if (checkbox3.checked != false) {
-                checkbox1.checked = null;
-                checkbox2.checked = null
-
-            }
-        }
-    }
-
-
-
-    //FUNCIONES PARA LOS BOTONES DE NO APLICA
-    // $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
-
-    //     let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
-
-    //     if ($(this).is(':checked')) {
-    //         let children = $(parent).children("div[class='collapse show']")
-    //         let radios = children.find('input[type="radio"]')
-    //         let checkboxes = children.find('input[type="checkbox"]')
-    //         let textos = children.find('input[type="text"]')
-    //         let numeros = children.find('input[type="number"]')
-    //         let textareas = children.find('textarea')
-
-    //         numeros.val('')
-    //         numeros.prop('required', false)
-    //         textos.val('')
-    //         textareas.val('')
-    //         textareas.prop('required', false)
-    //         checkboxes.prop('checked', false)
-    //         radios.prop('checked', false)
-
-    //         children.collapse('hide')
-    //     } 
-    //     else {
-    //         numeros.prop('required', true)
-    //         textareas.prop('required', true)
-
-    //         let children = $(parent).children("div[class='collapse']")
-    //         children.collapse('show')
-    //     }
-
-    // })
     $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica2"]', function () {
 
         let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+        let btn_no_aplica2 = $(this).is(':checked')
 
-        if ($(this).is(':checked')) {
-            let children = $(parent).children("div[class='collapse show']")
+        if (btn_no_aplica2) {
+
+            let children = $(parent).children("div[id='pregunta43']")
             let radios = children.find('input[type="radio"]')
             let checkboxes = children.find('input[type="checkbox"]')
 
@@ -1694,8 +1480,7 @@
             checkboxes.prop('checked', false)
 
             children.collapse('hide')
-        }
-        else {
+        } else {
             let children = $(parent).children("div[class='collapse']")
             children.collapse('show')
 
@@ -1705,30 +1490,28 @@
     $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
 
         let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+        let btn_no_aplica1 = $(this).is(':checked')
 
-        if ($(this).is(':checked')) {
-            let children = $(parent).children("div[class='collapse show']")
+        if (btn_no_aplica1) {
+            let children = $(parent).children("div[id='pregunta42']")
             let radios = children.find('input[type="radio"]')
             let checkboxes = children.find('input[type="checkbox"]')
             let textos = children.find('input[type="text"]')
             let numeros = children.find('input[type="number"]')
             //let textareas = children.find('textarea')
 
-            //numeros.val('')
+            numeros.val('')
             textos.val('')
-            //textareas.val('')
-            //textareas.prop('required', false)
+            textareas.val('')
             checkboxes.prop('checked', false)
             radios.prop('checked', false)
 
             children.collapse('hide')
-        }
-        else {
+            
+        } else {
             let children = $(parent).children("div[class='collapse']")
             children.collapse('show')
             //textareas.prop('required', true)
-
-
         }
     })
 
@@ -1740,82 +1523,187 @@
         }
     });
 
+       //FUNCION PARA QUE SOLO SE PUEDA SELECCIONAR UN CHECKBOX
+        function uncheck() {
+            var checkbox1 = document.getElementById("14pr1");
+            var checkbox2 = document.getElementById("14pr2");
+            var checkbox3 = document.getElementById("14pr3");
 
-    //VALIDAR LOS CHECKBOXES Y RADIOS ANTES DE ENVIAR
+            var radio1 = document.getElementById("6pr1")
+            var radio2 = document.getElementById("6pr2")
 
-    // $('form').submit(function (event) {
-    //     event.preventDefault();
+            var radio3 = document.getElementById("1pr1")
+            var radio4 = document.getElementById("1pr2")
 
-    //     var situacion1 = $('#no_aplica1').is(':checked');
-    //     var situacion2 = $('#no_aplica2').is(':checked');
+            var radio5 = document.getElementById("6pr4")
+            var radio6 = document.getElementById("6pr5")
 
-    //     // VALIDAMOS LA PRIMERA SITUACION
-    //     if (!situacion1) {
-    //         $('.situaciones1').each(function () {
-    //             var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
-    //             var radios = $(this).find('input[type="radio"]:checked').length > 0;
+            var radio7 = document.getElementById("7pr1")
+            var radio8 = document.getElementById("7pr2")
 
-    //             if (!checkboxes && !radios) {
-    //                 var pregunta = $(this).find('.titulo').text();
-    //                 //alert('Te a faltado responder la pregunta : ' + pregunta)
-    //                 //alertMensaje('info', '¡Conteste todas las preguntas!', 'Ups se te ha olvidado responder la pregunta: ');
-    //                 alertMsg({
-    //                     icon: 'info',
-    //                     title: 'Te falto responder una pregunta',
-    //                     text: `Pregunta: ${pregunta}`,
-    //                     showCancelButton: false
-    //                 })
-    //                 //window.location.hash = '#' + $(this).attr('id');
-    //                 return false;
-                    
-    //             }
+            var radio9 = document.getElementById("9pr1")
+            var radio10 = document.getElementById("9pr2")
 
-    //         });
-    //     }
+            var radio11 = document.getElementById("16pr1")
+            var radio12 = document.getElementById("16pr2")
 
-    //     // VALIDAMOS LA SEGUNDA SITUACION
-    //     if (!situacion2) {
-    //         $('.situaciones2').each(function () {
-    //             var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
-    //             var radios = $(this).find('input[type="radio"]:checked').length > 0;
+            var radio13 = document.getElementById("14pr1r")
+            var radio14 = document.getElementById("14pr2r")
 
-    //             if (!checkboxes && !radios) {
-    //                 var pregunta = $(this).find('.titulo').text();
-    //                 alert('No has respondido la pregunta: ' + pregunta);
-    //                 //window.location.hash = '#' + $(this).attr('id');
-    //                 return false;
-    //             }
+            var radio15 = document.getElementById("15pr1")
+            var radio16 = document.getElementById("15pr2")
 
-    //         });
-    //     }
+            var radio17 = document.getElementById("21pr1")
+            var radio18 = document.getElementById("21pr2")
 
-    //     // VALIDAMOS TODOS AQUELLOS QUE NO DEPENDEN DE LAS SITUACIONES ANTERIORES
+            var radio19 = document.getElementById("25pr1")
+            var radio20 = document.getElementById("25pr2")
 
-    //     var contenedorIndependiente = $('.independiente');
-
-    //     contenedorIndependiente.each(function () {
-    //         var checkboxes = $(this).find('input[type="checkbox"]:checked').length > 0;
-    //         var radios = $(this).find('input[type="radio"]:checked').length > 0;
-
-    //         if (!checkboxes && !radios) {
-    //             var pregunta = $(this).find('.titulo').text();
-    //             alert('No has respondido la pregunta: ' + pregunta);
-    //             //window.location.hash = '#' + $(this).attr('id');
-    //             return false;
-    //         }
-    //     });
-
-    // });
+            var radio21 = document.getElementById("23pr1")
+            var radio22 = document.getElementById("23pr2")
 
 
+            var children = document.getElementsByClassName('texto')
+
+            radio1.onclick = function () {
+                if (radio1.checked != false) {
+                    radio2.checked = null
+                }
+            }
+            radio2.onclick = function () {
+                if (radio2.checked != false) {
+                    radio1.checked = null
+                }
+            }
+            radio3.onclick = function () {
+                if (radio3.checked != false) {
+                    radio4.checked = null
+                }
+            }
+            radio4.onclick = function () {
+                if (radio4.checked != false) {
+                    radio3.checked = null
+                }
+            }
+
+            radio5.onclick = function () {
+                if (radio5.checked != false) {
+                    radio6.checked = null
+                }
+            }
+            radio6.onclick = function () {
+                if (radio6.checked != false) {
+                    radio5.checked = null
+                }
+            }
+
+            radio7.onclick = function () {
+                if (radio7.checked != false) {
+                    radio8.checked = null
+                }
+            }
+            radio8.onclick = function () {
+                if (radio8.checked != false) {
+                    radio7.checked = null
+                }
+            }
+            radio9.onclick = function () {
+                if (radio9.checked != false) {
+                    radio10.checked = null
+                }
+            }
+            radio10.onclick = function () {
+                if (radio10.checked != false) {
+                    radio9.checked = null
+                }
+            }
+            radio11.onclick = function () {
+                if (radio11.checked != false) {
+                    radio12.checked = null
+                }
+            }
+            radio12.onclick = function () {
+                if (radio12.checked != false) {
+                    radio11.checked = null
+                }
+            }
+            radio13.onclick = function () {
+                if (radio13.checked != false) {
+                    radio14.checked = null
+                }
+            }
+            radio14.onclick = function () {
+                if (radio14.checked != false) {
+                    radio13.checked = null
+                }
+            }
+            radio15.onclick = function () {
+                if (radio15.checked != false) {
+                    radio16.checked = null
+                }
+            }
+            radio16.onclick = function () {
+                if (radio16.checked != false) {
+                    radio15.checked = null
+                }
+            }
+            radio17.onclick = function () {
+                if (radio17.checked != false) {
+                    radio18.checked = null
+                }
+            }
+            radio18.onclick = function () {
+                if (radio18.checked != false) {
+                    radio17.checked = null
+                }
+            }
+            radio19.onclick = function () {
+                if (radio19.checked != false) {
+                    radio20.checked = null
+                }
+            }
+            radio20.onclick = function () {
+                if (radio20.checked != false) {
+                    radio19.checked = null
+                }
+            }
+            radio21.onclick = function () {
+                if (radio21.checked != false) {
+                    radio22.checked = null
+                }
+            }
+            radio22.onclick = function () {
+                if (radio22.checked != false) {
+                    radio21.checked = null
+                }
+            }
 
 
 
+            checkbox1.onclick = function () {
+                if (checkbox1.checked != false) {
+                    checkbox2.checked = null;
+                    checkbox3.checked = null
 
 
+                }
+            }
+            checkbox2.onclick = function () {
+                if (checkbox2.checked != false) {
+                    checkbox1.checked = null;
+                    checkbox3.checked = null
 
+                }
+            }
 
+            checkbox3.onclick = function () {
+                if (checkbox3.checked != false) {
+                    checkbox1.checked = null;
+                    checkbox2.checked = null
 
+                }
+            }
+        }
 
 
 

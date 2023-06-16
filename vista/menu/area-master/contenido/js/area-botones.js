@@ -120,7 +120,9 @@ $('#btn-ver-reporte').click(function () {
     case 10: case '10':
       area_nombre = 'electro'
       break;
-
+    case 5: case '5':
+      area_nombre = 'espiro'
+      break;
 
     default:
       break;

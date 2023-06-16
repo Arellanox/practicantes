@@ -36,6 +36,11 @@ $(`#${formulario}`).submit(function (event) {
     // alert(areaActiva)
     event.preventDefault();
 
+    // if (validarCuestionarioEspiro()) {
+
+    //     return false;
+    // }
+
     /*DATOS Y VALIDACION DEL REGISTRO*/
     if (confirmado != 1 || session.permisos['Actualizar reportes'] == 1) {
 

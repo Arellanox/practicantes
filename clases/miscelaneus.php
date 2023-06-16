@@ -444,6 +444,7 @@ class Miscelaneus
                 break;
             case 5:
             case "5":
+                #ESPIROMETRIA
                 $datos_medicos = array();
                 $arregloPaciente = $this->getBodyEspiro($master, $turno_id);
                 $fecha_resultado = $infoPaciente[array_key_last($infoPaciente)]['FECHA_CARPETA_ESPIRO'];
@@ -1330,6 +1331,7 @@ class Miscelaneus
 
             # formamos el arreglo para el json.
             $cuestionario[] = array(
+                "id_pregunta" => $res_pregunta[array_key_first($res_pregunta)]['ID_P'],
                 "pregunta" => $res_pregunta[array_key_first($res_pregunta)]['PREGUNTA'],
                 "respuestas" => $master->getFormValues(array_map(function ($item) {
                     return array("respuesta"  => $item['RESPUESTA'], "comentario" => $item['COMENTARIO']);
