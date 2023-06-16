@@ -3,22 +3,33 @@
     <div class="modal-content">
       <div class="modal-header header-modal">
         <h5 class="modal-title" id="Area-estudio"> </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form class="" id="formSubirCapturas">
           <p class="text-center">Agregue los archivos de resultados </p>
           <div class="row">
-            <div class="col-6">
+            <div class="col-12">
               <label for="nombre_contacto" class="form-label">Nombre del Cliente</label>
               <input type="text" class="form-control input-form" value="Nombre del paciente" readonly
                 id="nombre-paciente-capturas">
             </div>
-            <div class="col-6">
+            <!-- <div class="col-6">
               <label for="capturas" class="form-label">Suba las capturas</label>
               <input type="file" name="capturas[]" class="form-control input-form" accept=".png, .jpg, .jpeg, .pdf"
                 multiple required id="inputFilesCapturasArea">
+            </div> -->
+
+            <div class="input-file-contenedor col-12">
+              <label for="capturas[]" class="form-label">Cargar Capturas</label>
+              <label for="capturas[]" class="input-file-label">
+                <i class="bi bi-box-arrow-up"></i> Seleccione archivo(s)
+              </label>
+              <input type="file" name="capturas[]" id="capturas[]" accept=".png, .jpg, .jpeg, .pdf" multiple required
+                class="input-file">
             </div>
+
+
             <div class="col-12" style="display:none">
               <label for="comentario" class="form-label">Observaciones</label>
               <textarea name="comentario" class="md-textarea input-form" rows="4" cols="80"></textarea>

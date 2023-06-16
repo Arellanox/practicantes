@@ -67,8 +67,6 @@ function hasLocation() {
         url_api = 'espirometria_api';
         obtenerContenidoVistaMaster(5, 'Resultados de Espirometría', 'contenido_modal.php');
         break;
-
-
       case "ELECTROCARDIOGRAMA":
         control_turnos = null;
         formulario = "formSubirInterpretacionElectro";
@@ -111,7 +109,6 @@ function hasLocation() {
         url_api = 'audiometria_api';
         obtenerContenidoVistaMaster(4, 'Resultados de Audiometría', 'contenido_modal.php');
         break;
-
       case "OFTALMOLOGIA":
         control_turnos = 4;
         // console.log(control_turnos)
@@ -120,7 +117,6 @@ function hasLocation() {
         formulario = "formSubirInterpretacionOftalmo";
         obtenerContenidoVistaMaster(3, 'Resultados de Oftalmología', 'contenido_modal.php');
         break;
-
       case "CITALOGIA":
         control_turnos = null;
         formulario = "formSubirInterpretacionCitologia";
@@ -180,7 +176,6 @@ function obtenerContenidoVistaMaster(area, titulo, contenidoHTML = 'contenido.ht
         // Subir resultado
         $.getScript("modals/js/of_subir_oftalmo.js");
         break;
-
 
       default: //Areas Genericas
         $('#btn-analisis').fadeIn(0)

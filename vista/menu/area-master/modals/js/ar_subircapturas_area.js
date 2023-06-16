@@ -2,7 +2,7 @@
 const ModalSubirCapturas = document.getElementById('ModalSubirCapturas')
 ModalSubirCapturas.addEventListener('show.bs.modal', event => {
   // console.log(selectListaLab)
-  $('#Area-estudio').html('Cargar capturas <strong id="Area-estudio"  style = "color:white !important" >' + servicio_nombre + ' (' + hash + ')</strong >')
+  $('#Area-estudio').html('Cargar capturas <strong>' + servicio_nombre + ' (' + hash + ')</strong >')
   document.getElementById("formSubirCapturas").reset();
   // alert(selectEstudio.selectID)
   //Modals

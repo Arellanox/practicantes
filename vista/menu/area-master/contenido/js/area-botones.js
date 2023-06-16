@@ -87,15 +87,12 @@ $('#btn-analisis-oftalmo').click(function () {
   }
 })
 
-
 $('#abrirModalResultados').click(function () {
   // alert('Si')
   autosize(document.querySelectorAll('textarea'))
   setTimeout(() => {
     autosize.update(document.querySelectorAll('textarea'));
   }, 200);
-  
-
   $('#modalSubirInterpretacion').modal('show')
 })
 
