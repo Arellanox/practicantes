@@ -1,7 +1,7 @@
 @import "navbar.css?v=3";
 @import "imagen-navbar.css?v=2";
 @import "table.css?v=6";
-@import "modal.css?v=8";
+@import "modal.css?v=9";
 @import "botones-registro.css?v=2";
 @import "loader.css?v=2";
 @import "framework/datatables.min.css?v=2";
@@ -10,7 +10,7 @@
 @import "forms.css?v=9";
 @import "perfil-usuario.css?v=2";
 @import "offcanvas.css?v=2";
-@import "buttons.css?v=5";
+@import "buttons.css?v=6";
 @import "fullscreen-click-img.css";
 @import "colors.css?v=2";
 @import "boostrap-new.css?v=2";
