@@ -109,12 +109,12 @@ function consultarConsultaMedica(id) {
 
     if (row['COMPLETADO'] === 0) {
       $('#btn-ir-consulta-medica').html(`
-        <button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ' + row[0]['ID_CONSULTA'] + ')" 
+        <button type="button" onclick="obtenerConsultorioConsultaMedica(pacienteActivo.array, ${row[0]['ID_CONSULTA2']} )" 
         class="btn btn-warning me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"> 
           <i class="bi bi-clipboard-heart"></i> Continuar Consulta Médica
         </button>`);
     } else if (row['COMPLETADO'] === 1) {
-      $('#btn-ir-consulta-medica').html(`<button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ${row[0]['ID_CONSULTA']})" 
+      $('#btn-ir-consulta-medica').html(`<button type="button" onclick="obtenerConsultorioConsultaMedica(pacienteActivo.array, ${row[0]['ID_CONSULTA2']})" 
           class="btn btn-success me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;" data-bs-toggle="tooltip" data-bs-placement="top" title="¿Consultar la historia Clínica?">
           <i class="bi bi-clipboard-heart"></i> Consulta Médica Terminada
             </button>`)
