@@ -1683,6 +1683,7 @@ function configSelectTable(config) {
     dblClick: false, // Aceptar doble click
     unSelect: false, // Deseleccionar un registro
     anotherClass: 'other-for-table', //Cuando sea seleccionado, se agrega la clase, sino se quita
+    ignoreClass: '',
     tabs: [
       {
         title: 'Pacientes',
@@ -1891,13 +1892,21 @@ function selectTable(tablename, datatable,
 
     // let td = $(event.target).is('td')
 
+    //Evalua donde está dando click el usuario
     var clickedElement = event.target;
     var computedStyle = window.getComputedStyle(clickedElement, '::before');
     computedStyle.getPropertyValue('property') === 'value'
     console.log(computedStyle.getPropertyValue('property') === 'value')
     //Cancela la funcion si el elemento que hace click tiene la siguiente clase
-    if ($(clickedElement).hasClass('noClicked') || ($(clickedElement).hasClass('dtr-control')) || $(tr).hasClass('child'))
-      return true;
+    if (
+      $(clickedElement).hasClass('noClicked') //Algun elemento que podamos crear para que no implique selección
+      || ($(clickedElement).hasClass('dtr-control')) //Cuando le da click al primer td con el boton + de visualizar mas columnas
+      || $(tr).hasClass('child') //Cuando muestra las columnas ocultas de un regitro
+      || $(tr).hasClass('dataTables_empty')  //Cuando la  tabla esta vacia, no selecciona
+      || $(tr).hasClass(`${config.ignoreClass}`)
+    )
+
+      return false;
 
 
     if ($(tr).hasClass('selected')) {
@@ -1929,7 +1938,7 @@ function selectTable(tablename, datatable,
 
           // callbackDblClick(0, null, null, null);
           console.log('deselect')
-          return callbackClick(0, null, callback, null, null);
+          callbackClick(0, null, callback, null, null);
           //
         } else if (selectTableClickCount === 2 && config.dblClick === true) {
           //Manda a cargar la vista
@@ -1938,7 +1947,7 @@ function selectTable(tablename, datatable,
           //Si esta haciendo dobleClick: 
           selectTableClickCount = 0;
 
-          return callbackDblClick(1, dataRow, callback, tr, row)
+          callbackDblClick(1, dataRow, callback, tr, row)
 
         } else {
           //Reinicia el dobleClick
@@ -1993,7 +2002,7 @@ function selectTable(tablename, datatable,
         }
 
 
-        return callbackClick(1, dataRow, callback, tr, row);
+        callbackClick(1, dataRow, callback, tr, row);
       }
 
     }

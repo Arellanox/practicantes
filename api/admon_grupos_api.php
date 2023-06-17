@@ -11,7 +11,7 @@ $api = $_POST['api'];
 
 # variables
 $id_grupo = $_POST['id_grupo'];
-$descripcion = $_POST['nombre_grupo'];
+$descripcion = $_POST['descripcion']; #Al grupo no se crea nombre, sino descripcion
 $cliente_id = $_POST['cliente_id'];
 $usuario_id = $_SESSION['id'];
 $facturado = $_POST['facturado']; # bit que marca si el grupo esta siendo facturado o creado;
@@ -19,9 +19,13 @@ $factura = $_POST['num_factura']; # numero de la factura que arroja alegra.
 $detalle = $_POST['detalle_grupo']; # es un arreglo que incluye solo el id del turno. Ejemplo [45,46,46,48]
 $fecha_creacion = $_POST['fecha_creacion']; # fecha de creacion del grupo
 
+// print_r($detalle);
+// exit;
+
 # recuperar pacientes
 $fecha_inicial = $_POST['fecha_inicial'];
 $fecha_final = $_POST['fecha_final'];
+
 
 switch ($api) {
     case 1:

@@ -132,3 +132,6 @@ function FacturarGruposCredito(facturado = null, id_grupo = null) {
 
 }
 
+
+
+
