@@ -126,7 +126,7 @@ class Reporte
                 // return $path;
                 break;
             case 'espirometria':
-                $template = render_view('invoice/espiro.php', $view_vars);
+                $template = render_view('invoice/esp.php', $view_vars);
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'portrait');
                 break;
