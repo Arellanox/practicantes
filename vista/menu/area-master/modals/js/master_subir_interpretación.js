@@ -35,7 +35,13 @@ $(`#${formulario}`).submit(function (event) {
     // alert(areaActiva)
     event.preventDefault();
     /*DATOS Y VALIDACION DEL REGISTRO*/
+
     if (confirmado != 1 || session.permisos['Actualizar reportes'] == 1) {
+
+        if (validarCuestionarioEspiro()) {
+            return false;
+        }
+
         var form = document.getElementById(`${formulario}`);
         var formData = new FormData(form);
         formData.set('id_turno', dataSelect.array['turno'])
@@ -134,11 +140,21 @@ $('#btn-confirmar-reporte').click(function (event) {
     event.preventDefault();
 })
 
-
-$('#btn-subir-espiro').click(function (event) { 
+//Formulario Para Los Resultados de Espirometria
+$("#btn-subir-resultados-espiro").click(async function (event) {
     event.preventDefault();
+    
+    await ajaxAwaitFormData({
+        id_turno: dataSelect.array['turno'],
+        api: 3
+    }, 'espirometria_api', 'subirResultadosEspiro', { callbackAfter: true }, false, function () {
+        alertToast('El reporte ya ha sido guardado', 'success', 4000);
+    })
 
-    alertMensaje('success', 'Los resultados ya han sido guardados', 'Todo se guardo exitosamente' )
+    $('#ModalSubirResultadosEspiro').modal('hide');
+
+    event.preventDefault();
+});
 
 
-})
+

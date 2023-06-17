@@ -4287,7 +4287,6 @@ function detectPreguntasNivel(situacion) {
     let preguntaElement = $(this).find('.titulo')[0];
 
     if (!hasChecked) {
-      console.log(preguntaElement)
       //Scroll
       scrollContentInView(preguntaElement)
       hasUnansweredQuestion = true; // Establecer la variable auxiliar en true

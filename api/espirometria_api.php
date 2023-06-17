@@ -15,7 +15,7 @@ $master = new Master();
 $api = $_POST['api'];
 
 $turno_id = $_POST['turno_id'];
-
+$archivo = $_POST['resultado_espiro'];
 $area_id = $_POST['id_area'];
 $id_turno = $_POST['id_turno'];
 $preguntasRespuestas = $_POST['respuestas'];
@@ -75,10 +75,53 @@ switch ($api) {
         break;
 
 
-        #RECUPERAMOS TODOS LOS DATOS DEL FORMULARIO (PREGUNTAS, RESPUESTAS Y COMENTARIOS)
     case 2:
+        #RECUPERAMOS TODOS LOS DATOS DEL FORMULARIO (PREGUNTAS, RESPUESTAS Y COMENTARIOS)
 
         $response = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
+
+        break;
+    case 3:
+        # GUARDAMOS EL PDF DEL REPORTE DEL SOFTWARE
+
+        // solo guardamos la informacion del reporte. Sin confirmar
+        $response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
+
+        if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
+            $response = "Ya existe un estudio para este paciente.";
+            break;
+        }
+        
+            //mover el archivo con la imagen de electro a la caperta del turno.
+            if (isset($archivo)) {
+                $destination = "../reportes/modulo/espirometria/$id_turno/";
+                $r = $master->createDir($destination);
+                $dir = explode("nuevo_checkup", $archivo);
+
+                $folder = $master->scanDirectory($destination);
+
+                //borrar el archivo anterior, si existe
+                if (!empty($folder)) {
+                    foreach ($folder as $file) {
+                        unlink($file);
+                    }
+                }
+
+                if (copy(".." . $dir[1], $destination . basename($archivo))) {
+                    # si se copia correctamente, borramos el archivo de la carpeta generica.
+                    unlink('..' . $dir[1]);
+
+                    #guardarmos la direccion del electro.
+                    $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($archivo);
+                    $response = $master->insertByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTES_ESPIRO', $espiro, $id_turno, 5]);
+                }
+            }
+        
+        break;
+    case 4:
+        $url = $master->reportador($master, $id_turno, 5, "espirometria", 'url', 0);
+        $response = $master->updateByProcedure('sp_espiro_ruta_reporte_g', [$id_turno, $url]);
+
 
         break;
     case 0:

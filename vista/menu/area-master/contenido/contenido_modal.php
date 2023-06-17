@@ -225,6 +225,12 @@ session_start();
                                     include 'forms/form_citologia.html';
                                     echo '</form>';
                                     break;
+                                //<!--Formulario de Espirometria -->
+                                case 'formAreadeEspirometria':
+                                    // echo '<form id="formAreadeEspirometria">';
+                                    include 'forms/form_espiro.html';
+                                    // echo '</form>';
+                                    break;
                             }
 
                             ?>
@@ -271,18 +277,20 @@ session_start();
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <h4>Seleccione el estudio de espirometría</h4>
-                            <input type="file" class="form-control input-form mt-3" name="resultado_espiro" id="resultado_espiro">
+                            <form id="subirResultadosEspiro">
+                                <h4>Seleccione el estudio de espirometría</h4>
+                                <input type="file" class="form-control input-form mt-3" name="resultado_espiro" id="resultado_espiro">
+                            </form>
                         </div>
-                    
-                        
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i> Regresar</button>
-                    
+                    <button type="button" class="btn btn-borrar" id="btn-limpiar-resultado-espiro">Limpiar</button>
+
                     <!-- BTN SUBIR RESULTADOS DE ESPIRO -->
-                    <button type="submit" class="btn btn-confirmar" id="btn-subir-espiro" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
+                    <button type="submit" class="btn btn-confirmar" id="btn-subir-resultados-espiro" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
                         <i class="bi bi-clipboard2-plus"></i> Subir resultados
                     </button>
                 </div>
@@ -294,6 +302,33 @@ session_start();
 
 
 <script>
+    $('#btn-limpiar-resultado-espiro').on('click', function() {
+        $('#resultado_espiro').val('');
+    })
+
+    $('#resultado_espiro').on('change', function() {
+        var fileList = $(this)[0].files || [] //registra todos los archivos
+        let aviso = 0;
+        for (file of fileList) { //una iteración de toda la vida
+            ext = file.name.split('.').pop()
+            console.log('>ARCHIVO: ', file.name)
+            switch (ext) {
+                case 'pdf':
+                    //console.log('>>TIPO DE ARCHIVO CORRECTO: ')
+                    break;
+                default:
+                    aviso = 1;
+                    //console.log('>>TIPO DE ARCHIVO INCORRECTO', ext)
+                    break;
+            }
+        }
+        if (aviso == 1) {
+            $(this).val('')
+            alertMensaje('error', 'Archivo incorrecto', 'Algunos archivos no son correctos')
+        }
+    });
+
+
     function popimg(URL, DAT) {
         console.log(document.body.clientWidth)
 
