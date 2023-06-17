@@ -86,21 +86,18 @@ switch ($api) {
                 $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5,null, null,null ]);
                 $arreglo = array();
 
-                print_r($reportes);
+                // print_r($reportes);
                 foreach($reportes as $reporte){
 
-                    $reporte_bimo = explode("nuevo_checkup", $reporte['RUTA']);
+                    $reporte_bimo = explode("practicantes", $reporte['RUTA']);
                     $arreglo[] = "..".$reporte_bimo[1];
 
                 }
 
-                print_r($arreglo);
                 //Si existe unimos el reporte con el cuestionario
-                $reporte_final = $master->joinPdf($arreglo);
-                echo $reporte_final;
+                $reporte_final = $master->joinPdf(array_filter($arreglo, function($item){ return $item !== "..";}));
 
-
-                $fh = fopen("../" . $master->getRutaReporte() . basename($url), 'a');
+                $fh = fopen("../" . $master->getRutaReporte() . "ESPIROMETRIA_". basename($url), 'a');
                 fwrite($fh, $reporte_final);
                 fclose($fh);
                 
