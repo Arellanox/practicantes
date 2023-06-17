@@ -1891,9 +1891,12 @@ function selectTable(tablename, datatable,
 
     // let td = $(event.target).is('td')
 
-    var clickedElement = $(event.target);
+    var clickedElement = event.target;
+    var computedStyle = window.getComputedStyle(clickedElement, '::before');
+    computedStyle.getPropertyValue('property') === 'value'
+    console.log(computedStyle.getPropertyValue('property') === 'value')
     //Cancela la funcion si el elemento que hace click tiene la siguiente clase
-    if (clickedElement.hasClass('noClicked'))
+    if ($(clickedElement).hasClass('noClicked') || ($(clickedElement).hasClass('dtr-control')) || $(tr).hasClass('child'))
       return true;
 
 
