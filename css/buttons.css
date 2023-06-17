@@ -1,19 +1,23 @@
 .btn-cancelar {
-  background-color: rgb(194 204 209);
+  background-color: rgb(216, 223, 225);
   border-radius: 4px;
+  color: rgb(0, 0, 0);
 }
 
 .btn-cancelar:hover {
-  background-color: rgb(224 233 237);
+   background-color: rgba(216, 223, 225, 0.637);
+  color: rgb(0, 0, 0) !important;
 }
 
 .btn-confirmar {
-  background-color: rgb(247 190 0);
+  background-color: rgb(247, 190, 000);
   border-radius: 4px;
+  color: rgb(0, 0, 0);
 }
 
 .btn-confirmar:hover {
-  background-color: rgb(247 190 0 / 50%);
+  background-color: rgba(247, 190, 000, 0.637);
+  color: rgb(0, 0, 0) !important;
 }
 
 .btn-option {
@@ -117,4 +121,13 @@
 .btn-pantone-7408:hover {
   background-color: rgba(247, 190, 000, 0.637);
   color: rgb(0, 0, 0) !important;
+}
+
+
+
+.btn:focus{
+  opacity: 80%;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 5px 0.2rem rgb(98 203 201 / 80%);
 }

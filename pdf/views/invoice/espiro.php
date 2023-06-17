@@ -105,7 +105,7 @@
             white-space: normal;
             word-break: break-all;
             /* table-layout:fixed; */
-        } 
+        }
 
         th,
         td {
@@ -214,27 +214,29 @@
             white-space: normal;
             word-break: break-all;
         }
-        
-        .table > th, .table > tr > td {
+
+        .table>th,
+        .table>tr>td {
             text-align: left;
             padding: 8px;
             border-bottom: 1px solid #ddd;
-            
+
         }
-        
-        .table > tr {
+
+        .table>tr {
             background-color: #f2f2f2;
         }
-        
+
         .pregunta-row {
             background-color: #f2f2f2;
             font-weight: bold;
         }
-        
+
         .respuesta-row,
         .comentario-row {
             background-color: #fff;
         }
+
         /* termina estilo de tabla espiro */
     </style>
 </head>
@@ -267,7 +269,7 @@ if (!isset($qr)) {
 ?>
 
 <body>
-    <div class="header" >
+    <div class="header">
         <br><br>
 
         <table class="table2">
@@ -422,35 +424,57 @@ if (!isset($qr)) {
     <div class="invoice-content">
         <br>
         <br>
+        <?php
+        $arreglo = array();
+        $arreglo = array_filter($resultados, function ($item) {
+            return $item->id_pregunta == 39 || 40 || 41;
+        });
+
+        ?>
         <table class="table">
-        <?php $tr = 0;foreach ($resultados as $preguntaIndex => $pregunta): ?>
-            <?php $respuestas = $pregunta->respuestas; ?>
-            <?php $numRespuestas = count($respuestas); ?>
-            <?php if ($tr>35): $tr = 0; ?>
+            <?php $tr = 0;
+            foreach ($resultados as $preguntaIndex => $pregunta) : ?>
+                <?php $respuestas = $pregunta->respuestas; ?>
+                <?php $numRespuestas = count($respuestas); ?>
+                <?php if ($tr > 35) : $tr = 0; ?>
         </table>
         <div class="break"></div>
         <br>
         <table class="table">
-            <?php endif; ?>
-            <tr class="pregunta-row">
-                <td colspan="3"><?php echo $pregunta->pregunta;?></td>
-            </tr>
-            <?php $tr++; ?>
-            <?php if ($numRespuestas > 0): ?>
-                <?php foreach ($respuestas as $respuestaIndex => $respuesta): ?>
-                    <tr>
-                        <td class="respuesta-row"><?php echo $respuesta->respuesta; ?></td>
-                        <td class="comentario-row"><?php echo $respuesta->comentario !== null ? $respuesta->comentario : '-'; ?></td>
-                    </tr>
-                    <?php $tr++; ?>
-                <?php endforeach; ?>
-            <?php else: ?>
+        <?php endif; ?>
+        <tr class="pregunta-row">
+            <td colspan="3"><?php echo $pregunta->pregunta; ?></td>
+        </tr>
+        <?php $tr++; ?>
+        <?php if ($numRespuestas > 0) : ?>
+            <?php foreach ($respuestas as $respuestaIndex => $respuesta) : ?>
                 <tr>
-                    <td class="respuesta-row" colspan="3">No hay respuestas disponibles</td>
+                    <td class="respuesta-row"><?php echo $respuesta->respuesta; ?></td>
+                    <td class="comentario-row">
+                        <?php if ($pregunta->id_pregunta == in_array(39, $arreglo) || in_array(40, $arreglo) ||in_array(41, $arreglo)) : ?>
+
+                            <?php foreach ($arreglo as $arregloIndex) : ?>
+
+                                <?php echo $arregloIndex->pregunta. ' '. $arregloIndex->comentario; ?> <br>
+
+                            <?php endforeach; ?>
+
+                        <?php else : ?>
+
+                            <?php echo $respuesta->comentario !== null ? $respuesta->comentario : '-'; ?>
+
+                        <?php endif; ?>
+                    </td>
                 </tr>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </table>
+                <?php $tr++; ?>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <tr>
+                <td class="respuesta-row" colspan="3">No hay respuestas disponibles</td>
+            </tr>
+        <?php endif; ?>
+    <?php endforeach; ?>
+        </table>
     </div>
 </body>
 

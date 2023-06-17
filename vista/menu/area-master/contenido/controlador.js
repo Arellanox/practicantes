@@ -9,6 +9,8 @@ var selectEstudio = new GuardarArreglo(), dataSelect = new GuardarArreglo();
 var selectrue = 0,
   confirmado;
 
+var formEspiroHTML;
+
 hasLocation();
 $(window).on("hashchange", function (e) {
   hasLocation();
@@ -65,8 +67,6 @@ function hasLocation() {
         url_api = 'espirometria_api';
         obtenerContenidoVistaMaster(5, 'Resultados de Espirometría', 'contenido_modal.php');
         break;
-          
-      
       case "ELECTROCARDIOGRAMA":
         control_turnos = null;
         formulario = "formSubirInterpretacionElectro";
@@ -109,7 +109,6 @@ function hasLocation() {
         url_api = 'audiometria_api';
         obtenerContenidoVistaMaster(4, 'Resultados de Audiometría', 'contenido_modal.php');
         break;
-      
       case "OFTALMOLOGIA":
         control_turnos = 4;
         // console.log(control_turnos)
@@ -118,7 +117,6 @@ function hasLocation() {
         formulario = "formSubirInterpretacionOftalmo";
         obtenerContenidoVistaMaster(3, 'Resultados de Oftalmología', 'contenido_modal.php');
         break;
-      
       case "CITALOGIA":
         control_turnos = null;
         formulario = "formSubirInterpretacionCitologia";
@@ -151,7 +149,7 @@ function obtenerContenidoVistaMaster(area, titulo, contenidoHTML = 'contenido.ht
   $.post("contenido/" + contenidoHTML, {
     form: formulario, tipovista: tipovista, control_turnos: control_turnos
   }, function (html) {
-    $("#body-js").html(html); 
+    $("#body-js").html(html);
   }).done(async function () {
     await obtenerTitulo(titulo);
 
@@ -178,17 +176,16 @@ function obtenerContenidoVistaMaster(area, titulo, contenidoHTML = 'contenido.ht
         // Subir resultado
         $.getScript("modals/js/of_subir_oftalmo.js");
         break;
-      
 
       default: //Areas Genericas
         $('#btn-analisis').fadeIn(0)
         $('#btn-capturas-pdf').fadeIn(0)
         $('#formSubirInterpretacion').fadeIn(0)
-        
+
         // Subir resultado
         $.getScript("modals/js/master_subir_interpretación.js");
         break;
-      
+
       //Area de espiro
       case 5:
 
@@ -198,9 +195,9 @@ function obtenerContenidoVistaMaster(area, titulo, contenidoHTML = 'contenido.ht
         $('#btn-resultados-espiro-pdf').fadeIn(0)
         // Subir resultado
         $.getScript("modals/js/master_subir_interpretación.js");
-        
+
         break;
-      
+
       case 10:
         $('#btn-analisis').fadeIn(0)
         $('#btn-capturas-pdf').fadeIn(0)

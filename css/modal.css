@@ -1,6 +1,6 @@
 .modal-header {
-  background-color: rgb(000, 078, 089);
-  color: white;
+  background-color: rgb(216 223 225);
+  color: rgb(000, 078, 089);
 }
 
 .modal-body {
@@ -26,7 +26,7 @@
 
 
 .modal-footer {
-  background-color: rgb(216 223 225);
+  background-color: rgb(000, 175, 170)
 }
 
 

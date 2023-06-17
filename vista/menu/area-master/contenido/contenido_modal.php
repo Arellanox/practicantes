@@ -50,8 +50,12 @@ session_start();
 <div class="col-12 loader" id="loader">
     <div class="preloader" id="preloader"> </div>
 </div>
+
+<div id="tab-button">
+</div>
+
 <div class="row">
-    <div class="col-3 col-lg-4" style="margin-right: -5px !important;">
+    <div class="col-12 col-xl-4 tab-first" id="tab-paciente" style="margin-right: -5px !important;">
         <div class="card mt-3 p-3" id="lista-pacientes">
             <h4>Lista de pacientes</h4>
 
@@ -59,21 +63,6 @@ session_start();
                 <!-- Control de turnos -->
                 <div id="turnos_panel"></div>
             <?php endif; ?>
-
-
-            <div class="text-center mt-2">
-                <div class="input-group flex-nowrap">
-                    <!-- <span class="input-group-text" id="addon-wrapping" data-bs-toggle="tooltip" data-bs-placement="left" title="Los iconos representan el estado del paciente a las areas">
-                        <i class="bi bi-info-circle"></i>
-                    </span> -->
-                    <input type="search" class="form-control input-color" aria-controls="TablaEstatusTurnos" style="display: unset !important; margin-left: 0px !important" name="inputBuscarTableListaPacientes" placeholder="Filtrar coincidencias" id="inputBuscarTableListaPacientes" data-bs-toggle="tooltip" data-bs-placement="top" title="Filtra la lista por coincidencias">
-                    <span class="input-group-text" id="addon-wrapping" data-bs-toggle="tooltip" data-bs-placement="top" title="Una vez cargado o confirmado el reporte de un registro de esta area, aparecerán en verde">
-                        <i class="bi bi-info-circle"></i>
-                    </span>
-
-                </div>
-            </div>
-
 
 
             <!-- <div class="text-center">
@@ -87,9 +76,9 @@ session_start();
                         <th scope="col d-flex justify-content-center" class="all">#</th>
                         <th scope="col d-flex justify-content-center" class="all">Nombre</th>
                         <th scope="col d-flex justify-content-center" class="min-tablet">Prefolio</th>
-                        <th scope="col d-flex justify-content-center" class="none">Cliente</th>
+                        <th scope="col d-flex justify-content-center" class="tablet">Cliente</th>
                         <th scope="col d-flex justify-content-center" class="none">Segmento</th>
-                        <th scope="col d-flex justify-content-center" class="none">Turno</th>
+                        <th scope="col d-flex justify-content-center" class="tablet">Turno</th>
                         <th scope="col d-flex justify-content-center" class="none">Sexo</th>
                         <th scope="col d-flex justify-content-center" class="none">Expendiente</th>
                     </tr>
@@ -99,7 +88,8 @@ session_start();
             </table>
         </div>
     </div>
-    <div class="col-3 col-lg-4 informacion-paciente" style="margin-right: -5px !important;display:none">
+
+    <div class="col-12 col-xl-4 tab-second" id="tab-informacion" style="margin-right: -5px !important;display:none">
         <div class="card m-3" id="panel-informacion"> </div>
         <!-- <div class="card m-3 p-4">
       <h4>Estudios anteriores</h4>
@@ -107,7 +97,7 @@ session_start();
       </div>
     </div> -->
     </div>
-    <div class="col-lg-4 informacion-paciente" style="margin-right: -5px !important;display:none">
+    <div class="col-12 col-xl-4 tab-second" id="tab-reporte" style="margin-right: -5px !important;display:none">
         <div class="card mt-3 p-3" id="panel">
             <div class="" id="divAreaMasterResultados">
                 <div class="row">
@@ -165,9 +155,10 @@ session_start();
             </div>
         </div>
     </div>
-    <div class="col-8 d-flex justify-content-center align-items-center" id='loaderDivPaciente' style="max-height: 75vh; display:none">
-        <div class="preloader" id="loader-paciente"></div>
-    </div>
+
+    <!-- Tercera Columna visual -->
+    <div id="reload-selectable"> </div>
+
 </div>
 
 <div>
@@ -176,7 +167,7 @@ session_start();
             <div class="modal-content">
                 <div class="modal-header header-modal">
                     <h5 class="modal-title" id="title-paciente_aceptar">Reporte de interpretación</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -234,13 +225,6 @@ session_start();
                                     include 'forms/form_citologia.html';
                                     echo '</form>';
                                     break;
-
-                                    //<!--Formulario de Espirometria -->
-                                case 'formAreadeEspirometria':
-                                    // echo '<form id="formAreadeEspirometria">';
-                                    include 'forms/form_espiro.html';
-                                    // echo '</form>';
-                                    break;
                             }
 
                             ?>
@@ -259,13 +243,10 @@ session_start();
                     <button type="submit" form="formSubirInterpretacionOftalmo" class="btn btn-confirmar btnResultados" id="btn-inter-oftal" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los cambios del reporte si desea ver la vista previa">
                         <i class="bi bi-clipboard2-plus"></i> Guardar Interpretación
                     </button>
-
                     <!-- BTN GLOBAL -->
                     <button type="submit" form="<?php echo $form; ?>" class="btn btn-confirmar btnResultados" id="btn-inter-areas" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los cambios del reporte si desea ver la vista previa">
                         <i class="bi bi-clipboard2-plus"></i> Guardar Interpretación
                     </button>
-
-
 
                     <button type="button" class="btn btn-confirmar btnResultados" id="btn-confirmar-reporte" data-bs-toggle="tooltip" data-bs-placement="top" title="Confirme el reporte una vez guardado los cambios">
                         <i class="bi bi-file-earmark-pdf"></i> Confirmar reporte
@@ -355,8 +336,3 @@ session_start();
 
     // });
 </script>
-<style>
-    #TablaContenidoResultados_filter {
-        display: none
-    }
-</style>

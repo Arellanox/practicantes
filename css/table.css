@@ -5,6 +5,19 @@ table thead {
   border-color: #797D7F;
 }
 
+.paginate_button.active .page-link{
+  background-color:  rgb(000, 175, 170);
+  border-color:  rgb(000, 175, 170) ;
+}
+
+.page-link:focus{
+  color: var(--bs-body-color);
+    background-color: var(--bs-form-control-bg);
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 5px 0.1rem rgb(98 203 201 / 50%);
+}
+
 
 /* .btn-table {
   padding-left: 8px;
@@ -54,8 +67,3 @@ table tbody tr.selected {
   box-shadow: inset 0 0 0 9999px rgb(0 130 148) !important;
   color: white;
 } */
-
-/* Para elementos de una tabla */
-.noClicked{
-  max-width: max-content;
-}

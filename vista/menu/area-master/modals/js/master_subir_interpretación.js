@@ -30,19 +30,12 @@ $('#inputFilesInterpreArea').on('change', function () {
 // })
 
 
-//AQUI VOY A CONFIGURAR EL ENVIO DEL FORMULARIO DE ESPIROMETRIA
 //Formulario Para Subir Interpretacion
 $(`#${formulario}`).submit(function (event) {
     // alert(areaActiva)
     event.preventDefault();
-
     /*DATOS Y VALIDACION DEL REGISTRO*/
     if (confirmado != 1 || session.permisos['Actualizar reportes'] == 1) {
-
-        // if (!validarCuestionarioEspiro()) {
-        //     return false;
-        //  }
-
         var form = document.getElementById(`${formulario}`);
         var formData = new FormData(form);
         formData.set('id_turno', dataSelect.array['turno'])
