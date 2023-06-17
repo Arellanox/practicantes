@@ -86,6 +86,7 @@ switch ($api) {
                 $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5,null, null,null ]);
                 $arreglo = array();
 
+                print_r($reportes);
                 foreach($reportes as $reporte){
 
                     $reporte_bimo = explode("nuevo_checkup", $reporte['RUTA']);

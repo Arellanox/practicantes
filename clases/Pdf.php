@@ -77,7 +77,7 @@ class Reporte
                 break;
         }
 
-        $host = /* isset($_SERVER['SERVER_NAME']) ? "http://localhost/nuevo_checkup/" : */ "https://bimo-lab.com/nuevo_checkup/";
+        $host =  $_SERVER['SERVER_NAME'] = "localhost" ? "http://localhost/practicantes/" : "https://bimo-lab.com/nuevo_checkup/";
         // $host = 'http://localhost/nuevo_checkup/';
         // Path del dominio
         $path = $archivo['ruta'] . $archivo['nombre_archivo'] . ".pdf";
@@ -218,7 +218,8 @@ class Reporte
             case 'url':
                 $pdf->render();
                 file_put_contents('../' . $path, $pdf->output());
-                return 'https://bimo-lab.com/nuevo_checkup/' . $path;
+                //return 'https://bimo-lab.com/nuevo_checkup/' . $path;
+                return $host . $path;
                 // print_r($path);
                 // return $host . $path;
                 break;
