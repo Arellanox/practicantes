@@ -1,6 +1,6 @@
 <?php
 require_once('../php/phpqrcode/qrlib.php');
-// require_once("../lib/libmergpdf/vendor/autoload.php");
+require_once("../lib/libmergpdf/vendor/autoload.php");
 
 use iio\libmergepdf\Merger;
 use iio\libmergepdf\Pages;
@@ -1196,20 +1196,20 @@ class Miscelaneus
         }, $response)];
     }
 
-    // public function joinPdf($files = [])
-    // {
-    //     $merger = new Merger;
-    //     if (!empty($files)) {
-    //         $merger->addIterator($files);
-    //         try {
-    //             $createpdf = $merger->merge();
-    //             return $createpdf;
-    //         } catch (Exception $e) {
-    //             echo $e;
-    //         }
-    //     }
-    //     return null;
-    // }
+    public function joinPdf($files = [])
+    {
+        $merger = new Merger;
+        if (!empty($files)) {
+            $merger->addIterator($files);
+            try {
+                $createpdf = $merger->merge();
+                return $createpdf;
+            } catch (Exception $e) {
+                echo $e;
+            }
+        }
+        return null;
+    }
 
     // public function changeLocationFile($old_directory,$new_directory){
     //     // if (copy(".." . $dir[1], $destination . basename($archivo))) {

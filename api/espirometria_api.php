@@ -93,10 +93,18 @@ switch ($api) {
 
                 }
 
+                print_r($arreglo);
                 //Si existe unimos el reporte con el cuestionario
                 $reporte_final = $master->joinPdf($arreglo);
+                echo $reporte_final;
 
-                break;
+
+                $fh = fopen("../" . $master->getRutaReporte() . basename($url), 'a');
+                fwrite($fh, $reporte_final);
+                fclose($fh);
+                
+
+                $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTE_FINAL', $espiro, $id_turno, null]);
             }
 
         }
