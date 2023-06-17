@@ -1,10 +1,9 @@
 //Recuperar / funciones generales
-
+ 
 
 function mostrarInformacionPaciente(data) {
     return new Promise(resolve => {
 
-        // Mostrar la informacion en panel superior
 
 
         resolve(1);
@@ -12,16 +11,13 @@ function mostrarInformacionPaciente(data) {
 }
 
 
-function recuperarDatosCampos(id_turno, id_consulta2) {
+function recuperarDatosCampos(turno_id, id_consulta2) {
     return new Promise(resolve => {
 
-        ajaxAwait({}, '', { callbackAfter: true }, false, () => {
-
-
-
+                // Mostrar la informacion en panel superior
 
             resolve(1)
-        })
+
 
     })
 }

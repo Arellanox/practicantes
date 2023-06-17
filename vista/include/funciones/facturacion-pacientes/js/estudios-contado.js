@@ -29,7 +29,7 @@ $(document).on('click', '#terminar-proceso-cargo', function (event) {
 
 $(document).on('submit', '#formularioPacienteFactura', function (event) {
     event.preventDefault()
- 
+
     alertMensajeConfirm({
         title: '¿Esta seguro que todos los datos están correctos',
         text: '¡No puedes cambiar estos datos después!',

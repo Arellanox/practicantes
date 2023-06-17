@@ -1,11 +1,12 @@
 <?php
 
+
 include_once "../clases/master_class.php";
 
 $master = new Master();
 $api = $_POST['api'];
 
-#insertar nota consulta
+#insertar en consultorio
 $turno_id = $_POST['turno_id'];
 $notas_consulta = $_POST['notas_consulta'];
 $diagnostico = $_POST['diagnostico'];
@@ -13,17 +14,22 @@ $diagnostico2 = $_POST['diagnostico2'];
 $plan_tratamiento = $_POST['plan_tratamiento'];
 $activo = isset($_POST['ACTIVO']) ? null : 1;
 
+#Insertar en Iniciar consulta medica
+$motivo_consulta = $_POST['motivo_consulta'];
+
 
 $parametros = $master->setToNull(array(
     $turno_id,
     $notas_consulta,
     $diagnostico,
     $diagnostico2,
-    $plan_tratamiento
+    $plan_tratamiento,
 ));
 
-
-
+$parametros_motivo = $master->setTonull(array(
+    $motivo_consulta,
+    $turno_id
+));
 
 switch ($api) {
         #insertar datos en la tabla consultorio2_consulta
@@ -32,15 +38,16 @@ switch ($api) {
         break;
 
 
-        #Recuperar datos en la tabla consultorio2_consulta
+    #Recuperar datos en la tabla consultorio2_consulta 
     case 2:
-        $response = $master->insertByProcedure("sp_", []);
+        $response = $master->getByProcedure("sp_consultorio2_consulta_b", [$turno_id]);
         break;
 
 
-        #Guarda el motivo de consulta y recupera los mismos datos
+        #Guarda el motivo de consulta 
+        #recupera los mismos datos
     case 5:
-
+        $response = $master->insertByProcedure("sp_consultorio2_motivo_g", $parametros_motivo);
         break;
 
     default:
