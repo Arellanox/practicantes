@@ -101,7 +101,7 @@ switch ($api) {
                 fwrite($fh, $reporte_final);
                 fclose($fh);
                 
-
+                $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($fh);
                 $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTE_FINAL', $espiro, $id_turno, null]);
             }
 
@@ -135,7 +135,7 @@ switch ($api) {
 
                 $ruta_archivo = str_replace("../", $host, $interpretacion[0]['url']);
                
-                #guardarmos la direccion del electro.
+                #guardarmos la direccion de espirometria
                 $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($ruta_archivo);
                 $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTES_ESPIRO', $espiro, $id_turno, null]);
                 
