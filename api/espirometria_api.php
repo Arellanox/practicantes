@@ -73,6 +73,34 @@ switch ($api) {
 
         $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, $confirmado]);
 
+        if($confirmado == 1){
+            //Si confirma el cuestionario lo crea en pdf y lo guarda
+            $url = $master->reportador($master, $id_turno, 5, "espirometria", 'url', 0);
+            $response = $master->updateByProcedure('sp_espiro_ruta_reporte_g', [$id_turno, $url]);
+
+            //Mandamnos a llamar el siguinete procedure para ver si existe el reporte de espiro (EASYONE)
+            $response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
+
+            if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
+                //Verificamos la ruta de los reportes para unirlos
+                $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5,null, null,null ]);
+                $arreglo = array();
+
+                foreach($reportes as $reporte){
+
+                    $reporte_bimo = explode("nuevo_checkup", $reporte['RUTA']);
+                    $arreglo[] = "..".$reporte_bimo[1];
+
+                }
+
+                //Si existe unimos el reporte con el cuestionario
+                $reporte_final = $master->joinPdf($arreglo);
+
+                break;
+            }
+
+        }
+        
         break;
 
 
@@ -88,13 +116,11 @@ switch ($api) {
         // solo guardamos la informacion del reporte. Sin confirmar
         $response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
 
-        // if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
-        //     $response = "Ya existe un estudio para este paciente.";
-        //     break;
-        // }
+        if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
+            $response = "Ya existe un estudio para este paciente.";
+            break;
+        }
         
-           
-           
                 $destination = "../reportes/modulo/espirometria/$id_turno/";
                 $r = $master->createDir($destination);
 
@@ -110,13 +136,8 @@ switch ($api) {
             
         
         break;
-    case 4:
-        $url = $master->reportador($master, $id_turno, 5, "espirometria", 'url', 0);
-        $response = $master->updateByProcedure('sp_espiro_ruta_reporte_g', [$id_turno, $url]);
-
-
-        break;
-    case 0:
+ 
+   case 0:
         # json para el reporte de espirometria.
         $respuestas = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
 
