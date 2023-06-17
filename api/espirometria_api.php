@@ -15,13 +15,14 @@ $master = new Master();
 $api = $_POST['api'];
 
 $turno_id = $_POST['turno_id'];
-$archivo = $_POST['resultado_espiro'];
+$archivo = $_POST['resultado_espiro[]'];
 $area_id = $_POST['id_area'];
 $id_turno = $_POST['id_turno'];
 $preguntasRespuestas = $_POST['respuestas'];
 $confirmado = isset($_POST['confirmado']) ? $_POST['confirmado'] : 0;
 
 $usuario_id = $_SESSION['id'];
+$host = $_SERVER['SERVER_NAME'] == "localhost" ? "http://localhost/practicantes/" : "https://bimo-lab.com/nuevo_checkup/";
 
 
 //declaramos nuestras variables de almacenamineto para guardar nuestras preguntas y respuestas
@@ -87,35 +88,26 @@ switch ($api) {
         // solo guardamos la informacion del reporte. Sin confirmar
         $response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
 
-        if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
-            $response = "Ya existe un estudio para este paciente.";
-            break;
-        }
+        // if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
+        //     $response = "Ya existe un estudio para este paciente.";
+        //     break;
+        // }
         
-            //mover el archivo con la imagen de electro a la caperta del turno.
-            if (isset($archivo)) {
+           
+           
                 $destination = "../reportes/modulo/espirometria/$id_turno/";
                 $r = $master->createDir($destination);
-                $dir = explode("nuevo_checkup", $archivo);
 
-                $folder = $master->scanDirectory($destination);
+                $name = $master->getByPatientNameByTurno($master, $id_turno);
+                $interpretacion = $master->guardarFiles($_FILES, "resultado_espiro", $destination, "EASYONE_$id_turno"."_"."$name");
 
-                //borrar el archivo anterior, si existe
-                if (!empty($folder)) {
-                    foreach ($folder as $file) {
-                        unlink($file);
-                    }
-                }
-
-                if (copy(".." . $dir[1], $destination . basename($archivo))) {
-                    # si se copia correctamente, borramos el archivo de la carpeta generica.
-                    unlink('..' . $dir[1]);
-
-                    #guardarmos la direccion del electro.
-                    $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($archivo);
-                    $response = $master->insertByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTES_ESPIRO', $espiro, $id_turno, 5]);
-                }
-            }
+                $ruta_archivo = str_replace("../", $host, $interpretacion[0]['url']);
+               
+                #guardarmos la direccion del electro.
+                $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($ruta_archivo);
+                $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTES_ESPIRO', $espiro, $id_turno, null]);
+                
+            
         
         break;
     case 4:

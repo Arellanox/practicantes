@@ -279,7 +279,7 @@ session_start();
                         <div class="col-12">
                             <form id="subirResultadosEspiro">
                                 <h4>Seleccione el estudio de espirometría</h4>
-                                <input type="file" class="form-control input-form mt-3" name="resultado_espiro" id="resultado_espiro">
+                                <input type="file" class="form-control input-form mt-3" name="resultado_espiro[]" id="resultado_espiro">
                             </form>
                         </div>
 

@@ -250,7 +250,6 @@ class Miscelaneus
 
                 # Nueva ubicacion del archivo.
                 $ubicacion = $dir . $nombre . "_$next." . $extension;
-
                 #cambiamos de lugar el archivo
                 try {
                     move_uploaded_file($tmp_name, $ubicacion);
