@@ -157,7 +157,7 @@ function CargarTemperatura() {
         switch (editRegistro) {
             case true:
                 console.log("esta actualizando nueva temperatura")
-                break;
+                break; $("#formActualizarTemperatura").removeClass('disable-element');
             case false:
                 console.log("esta registrando una nueva temperatura")
                 break;

@@ -135,17 +135,13 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
         }
 
 
-        $('#FormularioActualizarTemperatura_container').fadeIn(500)
-        $("#formularioActualizarTemperatura").fadeIn(500);
         $('#ActualizarTemperatura_title').html("Actualiza su registro")
         $("#Termometro_actualizar").val(data['TERMOMETRO_ID'])
         $("#lectura_actualizar").val(data['LECTURA'])
         $("#observaciones_actualizar").val(data['OBSERVACIONES'])
 
     } else {
-        $("#formularioActualizarTemperatura").fadeOut(500);
-        $('#FormularioActualizarTemperatura_container').fadeOut(500)
-        $("#formularioActualizarTemperatura").fadeIn(500);
+        $("#formActualizarTemperatura").addClass('disable-element');
         $('#ActualizarTemperatura_title').html("")
         $("#Termometro_actualizar").val("")
         $("#lectura_actualizar").val("")

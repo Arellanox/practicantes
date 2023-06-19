@@ -110,7 +110,7 @@ switch ($api) {
             $turno = $e['TURNO'];
             $valor = $e['valor'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
-
+            $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
             if (!isset($result[$dia])) {
                 $result[$dia] = array();
             }
@@ -119,7 +119,7 @@ switch ($api) {
                 $i = 1;
             }
 
-            $result[$dia][$i] = array("valor" => $valor, "color" => $color);
+            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro);
             $i++;
         };
 
