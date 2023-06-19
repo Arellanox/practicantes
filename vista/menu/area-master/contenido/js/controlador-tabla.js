@@ -137,8 +137,10 @@ selectTable('#TablaContenidoResultados', tablaContenido, { movil: true, reload: 
                 // $('#pregunta43').collapse('show')
                 //$(`#${formulario} .collapse`).collapse('show')
                 if (selectEstudio.array.length) {
-                    recuperarDatosEspiro(selectEstudio.array)
+                    //console.log(selectEstudio.array[0]['PREGUNTAS'])
+                    recuperarDatosEspiro(selectEstudio.array[0]['PREGUNTAS'])
                 }
+
                 if (datalist.CONFIRMADO_ESPIRO == 1) estadoFormulario(1)
                 break;
             case 8: //Rayos X
@@ -380,7 +382,7 @@ async function panelResultadoPaciente(row, area) {
     $('#mostrarResultado').fadeOut()
 
     switch (area) {
-        case 3: case 10: case 13:
+        case 3: case 10: case 13: case 5:
             if (row[0].length) {
                 // console.log(row[0])
                 for (const i in row) {
@@ -449,6 +451,22 @@ async function panelResultadoPaciente(row, area) {
                         //Busca si existe interpretación o imagen
                         truehtml = true;
                     }
+
+
+                    if (area === 5) {
+
+                        if (row[i][0]['RUTA_REPORTES_ESPIRO']) {
+                            html += '<div class="col-12 d-flex justify-content-center">' +
+                                '<a type="button" target="_blank" class="btn btn-borrar me-2" href="' + row[i][0]['RUTA_REPORTES_ESPIRO'] + '" style="margin-bottom:4px">' +
+                                '<i class="bi bi-file-earmark-pdf"></i> Espirometría' +
+                                '</a>' +
+                                '</div>';
+                            //Busca si existe interpretación o imagen
+                            truehtml = true;
+                        }
+
+                    }
+
 
                     html += bodyEnd + '</div>';
                     html += itemEnd;

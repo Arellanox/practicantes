@@ -30,22 +30,14 @@ $preguntas = [];
 $respuestas = [];
 
 
-
-
-#EJECUTAMOS LA API 
 switch ($api) {
-
-
 
         #GUARDAMOS LOS DATOS
     case 1:
 
-
         $principal = [];
         $secundario = [];
         $posicion = 0;
-
-
 
         foreach ($preguntasRespuestas as $key => $value) {
 
@@ -73,7 +65,7 @@ switch ($api) {
 
         $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, $confirmado]);
 
-        if($confirmado == 1){
+        if ($confirmado == 1) {
             //Si confirma el cuestionario lo crea en pdf y lo guarda
             $url = $master->reportador($master, $id_turno, 5, "espirometria", 'url', 0);
             $response = $master->updateByProcedure('sp_espiro_ruta_reporte_g', [$id_turno, $url]);
@@ -83,37 +75,42 @@ switch ($api) {
 
             if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
                 //Verificamos la ruta de los reportes para unirlos
-                $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5,null, null,null ]);
+                $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5, null, null, null]);
                 $arreglo = array();
 
                 // print_r($reportes);
-                foreach($reportes as $reporte){
+                foreach ($reportes as $reporte) {
 
                     $reporte_bimo = explode("practicantes", $reporte['RUTA']);
-                    $arreglo[] = "..".$reporte_bimo[1];
-
+                    $arreglo[] = ".." . $reporte_bimo[1];
                 }
 
                 //Si existe unimos el reporte con el cuestionario
-                $reporte_final = $master->joinPdf(array_filter($arreglo, function($item){ return $item !== "..";}));
+                $reporte_final = $master->joinPdf(array_filter($arreglo, function ($item) {
+                    return $item !== "..";
+                }));
 
-                $fh = fopen("../" . $master->getRutaReporte() . "ESPIROMETRIA_". basename($url), 'a');
+                $fh = fopen("../" . $master->getRutaReporte() . "ESPIROMETRIA_" . basename($url), 'a');
                 fwrite($fh, $reporte_final);
                 fclose($fh);
-                
+
                 $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($fh);
+
                 $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTE_FINAL', $espiro, $id_turno, null]);
             }
-
         }
-        
+
         break;
 
 
     case 2:
         #RECUPERAMOS TODOS LOS DATOS DEL FORMULARIO (PREGUNTAS, RESPUESTAS Y COMENTARIOS)
 
-        $response = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
+        $resultados = $master->getByNext("sp_espiro_cuestionario_b", [$turno_id]);
+        $resultados[1][0]['PREGUNTAS'] = $resultados[0];
+        $response = $resultados[1];
+
+
 
         break;
     case 3:
@@ -126,24 +123,23 @@ switch ($api) {
             $response = "Ya existe un estudio para este paciente.";
             break;
         }
-        
-                $destination = "../reportes/modulo/espirometria/$id_turno/";
-                $r = $master->createDir($destination);
 
-                $name = $master->getByPatientNameByTurno($master, $id_turno);
-                $interpretacion = $master->guardarFiles($_FILES, "resultado_espiro", $destination, "EASYONE_$id_turno"."_"."$name");
+        $destination = "../reportes/modulo/espirometria/$id_turno/";
+        $r = $master->createDir($destination);
 
-                $ruta_archivo = str_replace("../", $host, $interpretacion[0]['url']);
-               
-                #guardarmos la direccion de espirometria
-                $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($ruta_archivo);
-                $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTES_ESPIRO', $espiro, $id_turno, null]);
-                
-            
-        
+        $name = $master->getByPatientNameByTurno($master, $id_turno);
+        $interpretacion = $master->guardarFiles($_FILES, "resultado_espiro", $destination, "EASYONE_$id_turno" . "_" . "$name");
+
+        $ruta_archivo = str_replace("../", $host, $interpretacion[0]['url']);
+
+        #guardarmos la direccion de espirometria
+        $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($ruta_archivo);
+        $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTES_ESPIRO', $espiro, $id_turno, null]);
+
+
+
         break;
- 
-   case 0:
+    case 0:
         # json para el reporte de espirometria.
         $respuestas = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
 
@@ -151,7 +147,7 @@ switch ($api) {
         $preguntas = array();
 
         # llenamos el arreglo
-        foreach($respuestas as $current){
+        foreach ($respuestas as $current) {
             $preguntas[] = $current['ID_P'];
         }
 
@@ -162,19 +158,19 @@ switch ($api) {
         $cuestionario = array();
 
         # llenamos el cuestionario, preparando el arreglo para el json.
-        foreach($preguntas as $pregunta){
-            
+        foreach ($preguntas as $pregunta) {
+
             #filtramos las respuestas de cada pregunta del arreglo origina, el que viene de la base de datos.
-            $res_pregunta = array_filter($respuestas, function($array) use ($pregunta){
+            $res_pregunta = array_filter($respuestas, function ($array) use ($pregunta) {
                 return $array['ID_P'] == $pregunta;
             });
-            
+
             # formamos el arreglo para el json.
             $cuestionario[] = array(
                 "pregunta" => $res_pregunta[array_key_first($res_pregunta)]['PREGUNTA'],
-                "respuestas" => $master->getFormValues(array_map(function($item){
-                    return array("respuesta"  => $item['RESPUESTA'], "comentario"=> $item['COMENTARIO']);
-                },$res_pregunta))
+                "respuestas" => $master->getFormValues(array_map(function ($item) {
+                    return array("respuesta"  => $item['RESPUESTA'], "comentario" => $item['COMENTARIO']);
+                }, $res_pregunta))
             );
         }
 

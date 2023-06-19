@@ -89,6 +89,8 @@ $(`#${formulario}`).submit(function (event) {
     event.preventDefault();
 });
 
+
+
 $('#btn-confirmar-reporte').click(function (event) {
     // alert(areaActiva)
     event.preventDefault();
@@ -137,7 +139,7 @@ $('#btn-confirmar-reporte').click(function (event) {
     } else {
         alertMensaje('info', 'EL resultado ya ha sido guardado', 'No puede cargar mas resultados a este paciente');
     }
-    event.preventDefault();
+    event.preventDefault()
 })
 
 //Formulario Para Los Resultados de Espirometria
@@ -149,6 +151,8 @@ $("#btn-subir-resultados-espiro").click(async function (event) {
         api: 3
     }, 'espirometria_api', 'subirResultadosEspiro', { callbackAfter: true }, false, function () {
         alertToast('El reporte ya ha sido guardado', 'success', 4000);
+
+        obtenerServicios(areaActiva, dataSelect.array['turno'])
     })
 
     $('#ModalSubirResultadosEspiro').modal('hide');

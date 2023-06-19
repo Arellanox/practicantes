@@ -2228,9 +2228,9 @@ function obtenerDatosEspiroPacientes() {
       turno_id: dataSelect.array['turno']
     }, 'espirometria_api', { callbackAfter: true, returnData: false }, false, function (data) {
 
-
       //$('#1pr1').prop('checked', true)
       let row = data.response.data;
+      
 
       for (const key in row) {
         if (Object.hasOwnProperty.call(row, key)) {
