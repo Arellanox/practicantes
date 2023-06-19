@@ -43,7 +43,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { data: 'EQUIPO' },
         { data: 'TERMOMETRO' },
         {
-            data: 'FECHA_REGISTRO', render: function (data) {
+            data: 'FECHA_MODIFICADO', render: function (data) {
                 return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1]);
             }
         },
@@ -55,32 +55,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         },
         { data: 'USUARIO' },
         { data: 'OBSERVACIONES' },
-        { data: 'OBSERVACIONES_SUPERVISOR' },
-        {
-            data: 'ESTATUS', render: function (data) {
-
-                let html = `<div class="row">`
-
-                if (data == 0) {
-                    html += ` <div class="col-4" style="max-width: max-content; padding: 0px; padding-left: 3px; padding-right: 3px;">
-                                <i class="bi bi-pencil-square btn-editar" style="cursor: pointer; font-size:18px;"></i>
-                                </div> `;
-
-                    // return html
-                } else {
-                    if (validarPermiso("SupTemp")) {
-                        html += `<div class="col-4" style="max-width: max-content; padding: 0px; padding-left: 3px; padding-right: 3px;">
-                                <i class="bi bi-box-arrow-up btn-liberar" style="cursor: pointer; font-size:18px;"></i>
-                                </div>
-                                `;
-                    }
-                    // return ""
-                }
-
-                html += `</div>`;
-                return html
-            }
-        }
+        { data: 'OBSERVACIONES_SUPERVISOR' }
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
@@ -91,7 +66,6 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { target: 5, title: 'Registrado', className: 'desktop' },
         { target: 6, title: 'Observaciones', className: 'none' },
         { target: 7, title: 'Observaciones del supervisor', className: 'none' },
-        { target: 8, title: '', className: 'all', width: "20px" }
 
     ],
     dom: 'Bfrtip',
