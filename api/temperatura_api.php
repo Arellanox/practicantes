@@ -75,6 +75,7 @@ $parametros_a = array(
 );
 
 $comentarios = array(
+    $id_registro_temperatura,
     $comentario,
     $usuario
 );
