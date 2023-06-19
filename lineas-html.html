@@ -1,169 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-  <style>
-    .dot {
-      width: 10px;
-      height: 10px;
-      background-color: red;
-      border-radius: 50%;
-      margin: 10px 50px;
-    }
-
-    table {
-      border: 1px solid black;
-      border-collapse: collapse;
-      position: relative;
-    }
-
-    td {
-      border: 1px solid black;
-    }
-
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <title>Ejemplo de Modales Anidados</title>
 </head>
 
 <body>
-  <div>
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <div class="dot" id="dot1"></div>
-          </td>
-          <td>
-            <div class="dot" id="dot2"></div>
-          </td>
-          <td>
 
-          </td>
-          <td>
-            a
-          </td>
-          <td>
+  <button onClick="abrirmodal()">ss</button>
 
-          </td>
-        </tr>
-        <tr>
-          <td>
-
-          </td>
-          <td>
-
-          </td>
-          <td>
-
-          </td>
-          <td>
-            a
-          </td>
-          <td>
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-
-          </td>
-          <td>
-
-          </td>
-          <td>
-
-          </td>
-          <td>
-            a
-          </td>
-          <td>
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-
-          </td>
-          <td>
-
-          </td>
-          <td>
-
-          </td>
-          <td>
-            a
-          </td>
-          <td>
-            <div class="dot" id="dot3"></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Modal a pantalla completa -->
+  <div class="modal" id="modalFullscreen" tabindex="-1" aria-labelledby="modalFullscreenLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalFullscreenLabel">Modal a pantalla completa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>Contenido del primer modal...</p>
+          <button class="btn btn-primary" onclick="abrirModalSm()">Abrir segundo modal</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <canvas id="canvas"></canvas>
 
+  <!-- Modal pequeño -->
+  <div class="modal sm" id="modalSm" tabindex="-1" aria-labelledby="modalSmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalSmLabel">Modal pequeño</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>Contenido del segundo modal...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    window.addEventListener('load', function () {
-      var canvas = document.getElementById('canvas');
-      var ctx = canvas.getContext('2d');
-      var dots = document.getElementsByClassName('dot');
+    // Función para abrir el segundo modal
+    function abrirModalSm() {
+      var modalSm = new bootstrap.Modal(document.getElementById('modalSm'));
+      modalSm.show();
+    }
 
-      function connectDots(dot1, dot2) {
-        var rect1 = dot1.getBoundingClientRect();
-        var rect2 = dot2.getBoundingClientRect();
-        var x1 = rect1.left + rect1.width / 2 - canvas.getBoundingClientRect().left;
-        var y1 = rect1.top + rect1.height / 2 - canvas.getBoundingClientRect().top;
-        var x2 = rect2.left + rect2.width / 2 - canvas.getBoundingClientRect().left;
-        var y2 = rect2.top + rect2.height / 2 - canvas.getBoundingClientRect().top;
-
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-      }
-
-      function positionDots() {
-        var dotCount = 0;
-        var containerWidth = dots[0].closest('table').offsetWidth;
-
-        // Ajustar el tamaño del canvas al ancho del contenedor
-        canvas.width = containerWidth;
-        canvas.height = dots[0].closest('table').offsetHeight;
-
-        for (var i = 1; i <= 31; i++) {
-          for (var j = 1; j <= 3; j++) {
-            var dotId = "dot-" + i + "-" + j;
-            var dot = document.getElementById(dotId);
-            if (dot !== null) {
-              dots[dotCount] = dot;
-              dotCount++;
-            } else {
-              break; // Si no existe el dot, pasar al siguiente día
-            }
-          }
-        }
-      }
-
-      function drawLines() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (var i = 0; i < dots.length - 1; i++) {
-          var dot1 = dots[i];
-          var dot2 = dots[i + 1];
-
-          connectDots(dot1, dot2);
-        }
-      }
-
-
-      positionDots();
-      drawLines();
-    });
+    // Función para abrir el primer modal al cargar la página
+    function abrirmodal() {
+      var modalFullscreen = new bootstrap.Modal(document.getElementById('modalFullscreen'));
+      modalFullscreen.show();
+    }
   </script>
 </body>
 

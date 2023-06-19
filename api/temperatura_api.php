@@ -19,7 +19,7 @@ $lectura = isset($_POST['lectura']) ? $_POST['lectura'] : null;
 $lectura = "-$lectura";
 $observaciones = $_POST['observaciones'];
 $id_registro_temperatura = $_POST['id_registro_temperatura'];
-
+$turno = $_POST['turno'];
 
 #Firma del usuario que registra una nueva temperatura
 
@@ -61,7 +61,8 @@ $parametros_g = array(
     $fecha_final,
     $observaciones,
     $usuario,
-    $equipo
+    $equipo,
+    $turno
 );
 
 $parametros_a = array(
@@ -92,7 +93,6 @@ switch ($api) {
     case 5:
         #Supervisor Liberar un  dia
         $response = $master->insertByProcedure("sp_temperatura_supervisor_g", $parametros_g);
-
         break;
 
     case 6:
