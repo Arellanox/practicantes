@@ -78,23 +78,27 @@ switch ($api) {
                 $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5, null, null, null]);
                 $arreglo = array();
 
-                // print_r($reportes);
+                
                 foreach ($reportes as $reporte) {
 
                     $reporte_bimo = explode("practicantes", $reporte['RUTA']);
                     $arreglo[] = ".." . $reporte_bimo[1];
                 }
 
+              
                 //Si existe unimos el reporte con el cuestionario
                 $reporte_final = $master->joinPdf(array_filter($arreglo, function ($item) {
                     return $item !== "..";
                 }));
+            
+                
 
                 $fh = fopen("../" . $master->getRutaReporte() . "ESPIROMETRIA_" . basename($url), 'a');
                 fwrite($fh, $reporte_final);
                 fclose($fh);
 
-                $espiro = $host . "reportes/modulo/espirometria/$id_turno/" . basename($fh);
+                
+                $espiro = $master->getRutaReporte() . "ESPIROMETRIA_" . basename($url);
 
                 $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTE_FINAL', $espiro, $id_turno, null]);
             }
