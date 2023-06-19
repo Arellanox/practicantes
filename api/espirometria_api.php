@@ -101,11 +101,22 @@ switch ($api) {
                 $espiro = $host.$master->getRutaReporte() . "ESPIROMETRIA_" . basename($url);
 
                 $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTE_FINAL', $espiro, $id_turno, null]);
+
+                //Enviamos correo
+                $attachment = $master->cleanAttachFilesImage($master, $id_turno, 5, 1);
+
+                if (!empty($attachment[0])) {
+                    $mail = new Correo();
+                    if ($mail->sendEmail('resultados', '[bimo] Resultados de espirometria', [$attachment[1]], null, $attachment[0], 1)) {
+                        $master->setLog("Correo enviado.", "Espirometria resultados");
+                    }
+                }
+            } else {
+                $response = "No se recibió archivo.";
             }
         }
-
+        
         break;
-
 
     case 2:
         #RECUPERAMOS TODOS LOS DATOS DEL FORMULARIO (PREGUNTAS, RESPUESTAS Y COMENTARIOS)
