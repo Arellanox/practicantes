@@ -19,7 +19,7 @@ $lectura = isset($_POST['lectura']) ? $_POST['lectura'] : null;
 $lectura = "-$lectura";
 $observaciones = $_POST['observaciones'];
 $id_registro_temperatura = $_POST['id_registro_temperatura'];
-
+$turno = $_POST['turno'];
 
 #Firma del usuario que registra una nueva temperatura
 
@@ -61,7 +61,8 @@ $parametros_g = array(
     $fecha_final,
     $observaciones,
     $usuario,
-    $equipo
+    $equipo,
+    $turno
 );
 
 $parametros_a = array(
@@ -92,7 +93,6 @@ switch ($api) {
     case 5:
         #Supervisor Liberar un  dia
         $response = $master->insertByProcedure("sp_temperatura_supervisor_g", $parametros_g);
-
         break;
 
     case 6:
@@ -110,7 +110,7 @@ switch ($api) {
             $turno = $e['TURNO'];
             $valor = $e['valor'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
-
+            $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
             if (!isset($result[$dia])) {
                 $result[$dia] = array();
             }
@@ -119,7 +119,7 @@ switch ($api) {
                 $i = 1;
             }
 
-            $result[$dia][$i] = array("valor" => $valor, "color" => $color);
+            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro);
             $i++;
         };
 

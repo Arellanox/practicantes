@@ -1,8 +1,9 @@
 
-enfriadorData = {};
+enfriadorData = {}
+var DataMes = {};
 
-rellenarSelect("#Equipo", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 5 })
-
+rellenarSelect("#Equipos", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 5 })
+rellenarSelect("#Termometro", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
 
 //Tabla de temperaturas por mes
 tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
@@ -10,7 +11,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     lengthChange: false,
     info: false,
     paging: false,
-    scrollY: autoHeightDiv(0, 284),
+    scrollY: '75vh',
     scrollCollapse: true,
     ajax: {
         dataType: 'json',
@@ -21,7 +22,6 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         method: 'POST',
         url: '../../../api/temperatura_api.php',
         beforeSend: function () {
-            $(".informacion-temperatura").fadeOut(0);
             $("#lista-meses-temperatura").fadeOut(0);
             loader("In")
             selectTableFolio = false
@@ -29,7 +29,10 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
 
         },
         complete: function () {
-            loader("Out")
+            loader("Out", 'bottom')
+            //Para ocultar segunda columna
+            reloadSelectTable()
+            $("#lista-meses-temperatura").fadeIn(0);
             // $("#lista-meses-temperatura").fadeIn(0);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -66,21 +69,60 @@ inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
 loaderDiv("Out", null, "#loader-temperatura", '#loaderDivtemperatura');
 loaderDiv("Out", null, "#loader-temperatura2", '#loaderDivtemperatura2');
 
-selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, function (select, data) {
+// selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, function (select, data) {
 
+//     if (select) {
+//         $("#grafica").html("");
+//         CrearTablaPuntos(data['FOLIO']);
+//         selectTableFolio = true
+//         $(".informacion-temperatura").fadeIn(0);
+//         DataFolio.folio = data['ID_FOLIOS_TEMPERATURA']
+//         tablaTemperatura.ajax.reload()
+//         SelectedFoliosData = data;
+//     } else {
+//         selectTableFolio = false;
+//         fadeRegistro('Out')
+//         $(".informacion-temperatura").fadeOut(0);
+//     }
+// })
+
+
+selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
+    unSelect: true, dblClick: true, reload: ['col-xl-9']
+}, async function (select, data, callback) {
     if (select) {
         $("#grafica").html("");
         CrearTablaPuntos(data['FOLIO']);
         selectTableFolio = true
-        $(".informacion-temperatura").fadeIn(0);
-        DataFolio.folio = data['ID_FOLIOS_TEMPERATURA']
+        DataFolio.folio = data['FOLIO']
+        DataMes = data
         tablaTemperatura.ajax.reload()
         SelectedFoliosData = data;
+        callback('In')
     } else {
         selectTableFolio = false;
-        fadeRegistro('Out')
-        $(".informacion-temperatura").fadeOut(0);
+        callback('Out')
     }
+}, async function (select, data, callback) {
+
+    // $("#formularioActualizarTemperatura").fadeOut(0);
+    // $('#FormularioActualizarTemperatura_container').fadeOut(0)
+    $('.detallesTemperaturatitle').html("");
+    rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
+
+    $('.detallesTemperaturatitle').html(`Detalles de las temperaturas del equipo (${DataEquipo.Descripcion}) - ${formatoFecha2(DataMes['FECHA_REGISTRO'], [0, 1, 3, 0]).toUpperCase()}`)
+
+    // Abre un modal del detalle
+    $('#detallesTemperaturaModal').modal('show');
+    tablaTemperatura.ajax.reload()
+    $.fn.dataTable
+        .tables({
+            visible: true,
+            api: true
+        })
+        .columns.adjust();
+
+
 })
 
 var DataFolio = {
@@ -88,123 +130,21 @@ var DataFolio = {
     folio: 0
 };
 
-tablaTemperatura = $('#TablaTemperatura').DataTable({
-    language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
-    lengthChange: false,
-    info: true,
-    paging: false,
-    scrollY: autoHeightDiv(0, 284),
-    scrollCollapse: true,
-    ajax: {
-        dataType: 'json',
-        data: function (d) {
-            return $.extend(d, DataFolio);
-        },
-        method: 'POST',
-        url: '../../../api/temperatura_api.php',
-        beforeSend: function () {
-            fadeRegistro('Out')
-        },
-        complete: function () {
-            fadeRegistro('In')
-            tablaTemperatura.columns.adjust().draw()
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alertErrorAJAX(jqXHR, textStatus, errorThrown);
-        },
-        dataSrc: 'response.data'
-    },
 
-    createdRow: function (row, data, dataIndex) {
-        if (data.ESTATUS == 0) {
-            $(row).addClass('bg-warning text-black');
-        } else if (data.MODIFICADO == 1) {
+// selectDatatable("TablaTemperatura", tablaTemperatura, 0, 0, 0, 0, async function (select, data) {
+//     selectRegistro = data
+//     if (select) {
+//         $("#formularioActualizarTemperatura").fadeIn(0);
 
-        }
+//         /*  if (data.ESTATUS == 1) {
+//              alert("Seleccion")
+//          } */
 
-    },
-    columns: [
-        { data: 'COUNT' },
-        { data: 'EQUIPO' },
-        { data: 'TERMOMETRO' },
-        {
-            data: 'FECHA_REGISTRO', render: function (data) {
-                return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1]);
-            }
-        },
+//     } else {
 
-        {
-            data: 'LECTURA', render: function (data) {
-                return ifnull(data, 0) + " " + "°C"
-            }
-        },
-        { data: 'USUARIO' },
-        { data: 'OBSERVACIONES' },
-        { data: 'OBSERVACIONES_SUPERVISOR' },
-        {
-            data: 'ESTATUS', render: function (data) {
+//     }
+// })
 
-                let html = `<div class="row">`
-
-                if (data == 0) {
-                    html += ` <div class="col-4" style="max-width: max-content; padding: 0px; padding-left: 3px; padding-right: 3px;">
-                                <i class="bi bi-pencil-square btn-editar" style="cursor: pointer; font-size:18px;"></i>
-                                </div> `;
-                    // return html
-                } else {
-                    if (validarPermiso("SupTemp")) {
-                        html += `<div class="col-4" style="max-width: max-content; padding: 0px; padding-left: 3px; padding-right: 3px;">
-                                <i class="bi bi-pencil-square btn-editar" style="cursor: pointer; font-size:18px;"></i>
-                                </div>
-                                <div class="col-4" style="max-width: max-content; padding: 0px; padding-left: 3px; padding-right: 3px;">
-                                <i class="bi bi-box-arrow-up btn-liberar" style="cursor: pointer; font-size:18px;"></i>
-                                </div>
-                                `;
-                    }
-                    // return ""
-                }
-
-                html += `</div>`;
-                return html
-            }
-        }
-    ],
-    columnDefs: [
-        { target: 0, title: '#', className: 'all' },
-        { target: 1, title: 'Enfriador', className: 'all' },
-        { target: 2, title: 'Termometro', className: 'desktop' },
-        { target: 3, title: 'Fecha', className: 'min-tablet' },
-        { target: 4, title: 'Lectura', className: 'all' },
-        { target: 5, title: 'Registrado', className: 'desktop' },
-        { target: 6, title: 'Observaciones', className: 'none' },
-        { target: 7, title: 'Observaciones del supervisor', className: 'none' },
-        { target: 8, title: '', className: 'all', width: "20px" }
-
-    ]
-})
-
-
-
-selectDatatable("TablaTemperatura", tablaTemperatura, 0, 0, 0, 0, async function (select, data) {
-    selectRegistro = data
-    if (select) {
-
-        /*  if (data.ESTATUS == 1) {
-             alert("Seleccion")
-         } */
-
-    } else {
-
-    }
-})
-
-
-inputBusquedaTable('TablaTemperatura', tablaTemperatura, [
-    {
-        msj: 'Dale click a un registro para ver la información de la captura de Temperatura de un equipo.',
-        place: 'top'
-    }
-])
 
 function fadeRegistro(tipe) {
     if (tipe == 'Out') {

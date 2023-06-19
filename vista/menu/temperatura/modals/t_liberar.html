@@ -7,44 +7,46 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class=" my-2">Especifique el rango de<strong>fechas que desea liberar</strong></p>
+                <p class=" my-2">Especifique el rango de <strong>fechas que desea liberar</strong></p>
                 <form name="liberarDiaTemperaturaForm" id="liberarDiaTemperaturaForm">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12 col-xl-6">
                             <div class="mb-3">
                                 <label for="FechaInicio">Fecha de Inicio:</label>
                                 <input type="date" name="FechaInicio" value="" class="form-control input-form" required
                                     id="FechaInicio">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-xl-6">
                             <div class="mb-3">
                                 <label for="FechaFinal">Fecha Final:</label>
                                 <input type="date" name="FechaFinal" value="" class="form-control input-form" required
                                     id="FechaFinal">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-xl-6">
                             <div class="mb-3">
                                 <label for="observaciones">Observaciones:</label>
                                 <input type="text" name="observaciones" value="" class="form-control input-form"
                                     required id="observaciones">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-xl-6">
                             <label for="">Seleccione el turno:</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="turno" id="Matutino">
+                                <input class="form-check-input" type="radio" name="turno" value="0" id="Matutino"
+                                    checked>
                                 <label class="form-check-label" for="Matutino">
                                     Matutino
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="turno" id="Vespertino" checked>
+                                <input class="form-check-input" type="radio" name="turno" value="1" id="Vespertino">
                                 <label class="form-check-label" for="Vespertino">
                                     Vespertino
                                 </label>
                             </div>
+
                         </div>
                     </div>
                 </form>

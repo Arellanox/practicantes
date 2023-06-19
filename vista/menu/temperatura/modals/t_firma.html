@@ -1,5 +1,4 @@
-<div class="modal fade" id="TemperaturaModalFirma" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+<div class="modal fade" id="TemperaturaModalFirma" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,16 +8,16 @@
             <div class="modal-body">
                 <!-- <p class=" my-2">Por favor Firme <strong>en el cuadrado y derle aceptar</strong> -->
                 <div class="row">
+                    <p>Dibuje su Firma en el recuadro, su firma se guardara automaticamente</p>
                     <div class="col-12 col-lg-12 ">
                         <div class="d-flex justify-content-between">
                             <h5>Firma: </h5>
-                            <button onclick="resetFirma()" class="btn btn-hover" type="button">Reiniciar
+                            <button class="btn btn-hover reset_firma" data_tipo="guardar" type="button">Reiniciar
                                 Firma</button>
                         </div>
                         <div class="mt-1 d-flex justify-content-center">
                             <!-- <img src="" id="img-firma" class="border" width="300" height="200"> -->
-                            <canvas id="firmaCanvas" class="border" width="300" height="200"></canvas required>
-                            <input type="hidden" id="firma" name="firma" required />
+                            <canvas id="canvas_guardar" class="border" width="300" height="200"></canvas required>
                         </div>
                     </div>
                 </div>
@@ -26,16 +25,13 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
                         class="bi bi-arrow-left-short"></i>
-                    Cancelar</button>
-                <button type="submit" form="formCapturarTemperatura" class="btn btn-confirmar"
-                    id="btn-subir-temperatura">
-                    <i class="bi bi-person-x"></i> Guardar
+                    Cerrar
                 </button>
             </div>
         </div>
     </div>
 </div>
-
+<!-- 
 <script>
     // Obtén una referencia al elemento canvas y al contexto de dibujo
     var canvas = document.getElementById('firmaCanvas');
@@ -146,4 +142,4 @@
     // Inicializar SignaturePad en el canvas
     var canvas = document.getElementById('firmaCanvas');
     var signaturePad = new SignaturePad(canvas);
-</script>
+</script> -->
