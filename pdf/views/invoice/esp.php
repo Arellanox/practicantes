@@ -297,33 +297,59 @@ $encode_firma = base64_encode($ruta_firma);
 
     <!-- body -->
     <div class="invoice-content">
-        <?php $tablas = dividirTablaEnPaginas(json_encode($resultados)); 
-            // print_r($tablas);
-            foreach($tablas as $tabla):
-                echo "<br>"; ?>
-                <table class="table">
-        <?php foreach ($tabla as $preguntaIndex => $pregunta): ?>
-            <?php $respuestas = $pregunta['respuestas']; ?>
-            <?php $numRespuestas = count($respuestas); ?>
-            <tr class="pregunta-row">
-                <td colspan="3" class="pregunta-row"><?php echo $pregunta['pregunta']; ?></td>
-            </tr>
-            <?php if ($numRespuestas > 0): ?>
-                <?php foreach ($respuestas as $respuestaIndex => $respuesta): ?>
-                    <tr>
-                        <td class="respuesta-row"><?php echo $respuesta['respuesta']; ?></td>
-                        <td class="comentario-row"><?php echo $respuesta['comentario'] !== null ? $respuesta['comentario'] : '-'; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td class="respuesta-row" colspan="3">No hay respuestas disponibles</td>
-                </tr>
-            <?php endif; ?>
-          
-        <?php endforeach; ?>
-    </table>
-        <?php       echo '<div class="break"></div>';
+        <?php 
+        # filtramos las preguntas que van dentro de comentario en la pregunta 14
+        $arreglo = [];
+        $arreglo = array_filter($resultados, function ($item) {
+            return $item->id_pregunta == 39 || $item->id_pregunta == 40 || $item->id_pregunta == 41;
+        });
+
+        # dividimos el cuestionario de espiro en tablas para dibujar
+        # en una tabla en cada hoja y no se encime con el encabezado.
+        $tablas = dividirTablaEnPaginas(json_encode($resultados)); 
+            $ait = new ArrayIterator($tablas);
+            $cit = new CachingIterator($ait);
+        
+        foreach($cit as $tabla):
+            echo "<br>"; ?>
+            <table class="table">
+                <?php foreach ($tabla as $preguntaIndex => $pregunta): ?>
+                    <?php if (!in_array($pregunta['id_pregunta'],[39,40,41])):  ?>
+                        <?php $respuestas = $pregunta['respuestas']; ?>
+                        <?php $numRespuestas = count($respuestas); ?>
+                        <tr class="pregunta-row">
+                            <td colspan="3" class="pregunta-row"><?php echo $pregunta['pregunta']; ?></td>
+                        </tr>
+                        <?php if ($numRespuestas > 0): ?>
+                            <?php foreach ($respuestas as $respuestaIndex => $respuesta): ?>
+                                <tr>
+                                    <td class="respuesta-row"><?php echo $respuesta['respuesta'] !== null ? $respuesta['respuesta'] : $respuesta['comentario']; ?></td>
+                                    <td class="comentario-row">
+                                        <?php
+                                        if (in_array($pregunta['id_pregunta'],[14])){
+                                            foreach($arreglo as $arregloIndex){
+                                                echo $arregloIndex->pregunta. ' '. $arregloIndex->respuestas[0]->comentario."<br>";
+                                            }
+                                        } else {
+                                            echo $respuesta['comentario'] !== null ? ($respuesta['respuesta'] !== null ? $respuesta['comentario'] : "-") : '-';
+                                        }
+                                        ?>
+                                    </td>
+                                </tr>
+                                <!-- termina segundo foreach -->
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td class="respuesta-row" colspan="3">No hay respuestas disponibles</td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <!-- termina primer foreach -->
+                <?php endforeach; ?> 
+            </table>
+        <?php    
+            if ($cit->hasNext())   
+                echo '<div class="break"></div>';
             endforeach;
         ?>
     </div>
@@ -359,6 +385,7 @@ function dividirTablaEnPaginas($json) {
   
       // Agregar la pregunta a la tabla actual
       $tablaActual[] = [
+        'id_pregunta' => $pregunta['id_pregunta'],
         'pregunta' => $pregunta['pregunta'],
         'respuestas' => $respuestas
       ];
