@@ -169,3 +169,18 @@ function CargarTemperatura() {
 }
 
 
+
+$(document).on('click', '.td-hover', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    let dot = $(this)
+    let id = dot.attr('id')
+
+
+    $('#modalComentariosRegistro').modal('show')
+
+
+
+
+})

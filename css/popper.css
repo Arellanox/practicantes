@@ -48,3 +48,57 @@
 #tooltip[data-popper-placement^='right']>#arrow {
     left: -4px;
 }
+
+
+
+
+.tooltip {
+    display: none;
+}
+
+.tooltip[data-show] {
+    display: block;
+}
+
+.tooltip {
+    /* background-color: rgba(255, 255, 255, 0);  */
+    color: black;
+    padding: 10px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    z-index: 999;
+}
+
+.arrow,
+.arrow::before {
+    position: absolute;
+    width: 8px;
+    height: 100px;
+    background: inherit;
+}
+
+.arrow {
+    visibility: hidden;
+}
+
+.arrow::before {
+    visibility: visible;
+    content: '';
+    transform: rotate(45deg);
+}
+
+.tooltip[data-popper-placement^='top']>.arrow {
+    bottom: -4px;
+}
+
+.tooltip[data-popper-placement^='bottom']>.arrow {
+    top: -4px;
+}
+
+.tooltip[data-popper-placement^='left']>.arrow {
+    right: -4px;
+}
+
+.tooltip[data-popper-placement^='right']>.arrow {
+    left: -4px;
+}
