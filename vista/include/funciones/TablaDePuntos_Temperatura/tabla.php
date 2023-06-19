@@ -33,6 +33,11 @@
                                 $valores = $e;
                             }
 
+                            $dotInicial =  array_key_first($valores);
+                            $dotEnd =  array_key_last($valores);
+
+                            
+
 
                             function metodoCalculo($dia, $turno, $valorAprox)
                             {
@@ -174,7 +179,7 @@
 
                           #grafica canvas {
                               position: absolute;
-                              top: 100px;
+                              top: 80px;
                               left: 0;
                           }
 

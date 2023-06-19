@@ -163,124 +163,126 @@ function CrearTablaPuntos(id_grupo) {
     $.post("http://localhost/practicantes/vista/include/funciones/TablaDePuntos_Temperatura/tabla.php", { folio: id_grupo }, function (html) {
         $("#grafica").html(html);
     }).done(function () {
+        setTimeout(function () {
 
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        var dots = document.getElementsByClassName('dot');
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            var dots = document.getElementsByClassName('dot');
 
-        function connectDots(dot1, dot2) {
-            var rect1 = dot1.getBoundingClientRect();
-            var rect2 = dot2.getBoundingClientRect();
-            var x1 = rect1.left + rect1.width / 2 - canvas.getBoundingClientRect().left;
-            var y1 = rect1.top + rect1.height / 2 - canvas.getBoundingClientRect().top;
-            var x2 = rect2.left + rect2.width / 2 - canvas.getBoundingClientRect().left;
-            var y2 = rect2.top + rect2.height / 2 - canvas.getBoundingClientRect().top;
-
-
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "blue";
-            ctx.stroke();
-        }
-
-        /* function getDotCenter(dot) {
-            var rect = dot.getBoundingClientRect();
-            var x = rect.left + rect.width / 2 - canvas.getBoundingClientRect().left;
-            var y = rect.top + rect.height / 2 - canvas.getBoundingClientRect().top;
-
-            return {
-                x: x,
-                y: y
-            };
-        }
-
-        function connectDots(dot1, dot2) {
-            var dot1Center = getDotCenter(dot1);
-            var dot2Center = getDotCenter(dot2);
-
-            var x1 = dot1Center.x;
-            var y1 = dot1Center.y;
-            var x2 = dot2Center.x;
-            var y2 = dot2Center.y;
-
-            var controlX = (x1 + x2) / 2;
-            var controlY = (y1 + y2) / 2 - Math.abs(x1 - x2) / 4;
-
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.quadraticCurveTo(controlX, controlY, x2, y2);
-            ctx.strokeStyle = "blue "; // Cambiar el color de la línea a rojo
-            ctx.lineWidth = 3; // Ajustar el ancho de línea
-            ctx.stroke();
-        } */
+            function connectDots(dot1, dot2) {
+                var rect1 = dot1.getBoundingClientRect();
+                var rect2 = dot2.getBoundingClientRect();
+                var x1 = rect1.left + rect1.width / 2 - canvas.getBoundingClientRect().left;
+                var y1 = rect1.top + rect1.height / 2 - canvas.getBoundingClientRect().top;
+                var x2 = rect2.left + rect2.width / 2 - canvas.getBoundingClientRect().left;
+                var y2 = rect2.top + rect2.height / 2 - canvas.getBoundingClientRect().top;
 
 
-        function positionDots() {
-            var dotCount = dots.length;
-            var containerWidth = dots[0].closest('table').offsetWidth;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = "blue";
+                ctx.stroke();
+            }
 
-            // Ajustar el tamaño del canvas al ancho del contenedor
-            canvas.width = containerWidth;
-            canvas.height = dots[0].closest('table').offsetHeight;
-
-
-            for (var i = 0; i < dotCount; i++) {
-                var dot = dots[i];
+            /* function getDotCenter(dot) {
                 var rect = dot.getBoundingClientRect();
                 var x = rect.left + rect.width / 2 - canvas.getBoundingClientRect().left;
                 var y = rect.top + rect.height / 2 - canvas.getBoundingClientRect().top;
-
-                dot.dataset.x = x; // Guardar la posición x en un atributo de datos
-                dot.dataset.y = y; // Guardar la posición y en un atributo de datos
+    
+                return {
+                    x: x,
+                    y: y
+                };
             }
-        }
+    
+            function connectDots(dot1, dot2) {
+                var dot1Center = getDotCenter(dot1);
+                var dot2Center = getDotCenter(dot2);
+    
+                var x1 = dot1Center.x;
+                var y1 = dot1Center.y;
+                var x2 = dot2Center.x;
+                var y2 = dot2Center.y;
+    
+                var controlX = (x1 + x2) / 2;
+                var controlY = (y1 + y2) / 2 - Math.abs(x1 - x2) / 4;
+    
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.quadraticCurveTo(controlX, controlY, x2, y2);
+                ctx.strokeStyle = "blue "; // Cambiar el color de la línea a rojo
+                ctx.lineWidth = 3; // Ajustar el ancho de línea
+                ctx.stroke();
+            } */
 
-        function drawLines() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            var prevDot;
+            function positionDots() {
+                var dotCount = dots.length;
+                var containerWidth = dots[0].closest('table').offsetWidth;
+
+                // Ajustar el tamaño del canvas al ancho del contenedor
+                canvas.width = containerWidth;
+                canvas.height = dots[0].closest('table').offsetHeight;
 
 
+                for (var i = 0; i < dotCount; i++) {
+                    var dot = dots[i];
+                    var rect = dot.getBoundingClientRect();
+                    var x = rect.left + rect.width / 2 - canvas.getBoundingClientRect().left;
+                    var y = rect.top + rect.height / 2 - canvas.getBoundingClientRect().top;
 
-            for (var i = dotInicial; typeof (prevDot) != "object"; i++) {
-                for (var j = 1; j <= 2; j++) {
-                    prevDot = document.getElementById('dot-' + i + '-' + j);
-
-                    if (typeof (prevDot) == "object") {
-                        prevDot = document.getElementById('dot-' + i + '-' + j)
-                        j = 3
-                    }
-
+                    dot.dataset.x = x; // Guardar la posición x en un atributo de datos
+                    dot.dataset.y = y; // Guardar la posición y en un atributo de datos
                 }
             }
 
-            for (var i = dotInicial; i <= dotLast; i++) {
-                for (var j = 1; j < 3; j++) {
-                    var currentDotId = 'dot-' + i + '-' + j;
-                    var currentDot = document.getElementById(currentDotId);
+            function drawLines() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                var prevDot;
 
 
-                    if (currentDot == null) {
-                        prevDot = prevDot
-                    } else {
-                        if (currentDot) {
-                            connectDots(prevDot, currentDot);
-                            prevDot = currentDot;
-                        } else {
-                            break;
+
+                for (var i = dotInicial; typeof (prevDot) != "object"; i++) {
+                    for (var j = 1; j <= 2; j++) {
+                        prevDot = document.getElementById('dot-' + i + '-' + j);
+
+                        if (typeof (prevDot) == "object") {
+                            prevDot = document.getElementById('dot-' + i + '-' + j)
+                            j = 3
                         }
 
                     }
+                }
+
+                for (var i = dotInicial; i <= dotLast; i++) {
+                    for (var j = 1; j < 3; j++) {
+                        var currentDotId = 'dot-' + i + '-' + j;
+                        var currentDot = document.getElementById(currentDotId);
+
+
+                        if (currentDot == null) {
+                            prevDot = prevDot
+                        } else {
+                            if (currentDot) {
+                                connectDots(prevDot, currentDot);
+                                prevDot = currentDot;
+                            } else {
+                                break;
+                            }
+
+                        }
 
 
 
+                    }
                 }
             }
-        }
 
-        positionDots();
-        drawLines();
+            positionDots();
+            drawLines();
+        }, 500)
     })
 }

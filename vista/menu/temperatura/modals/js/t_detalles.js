@@ -20,7 +20,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         },
         complete: function () {
             // fadeRegistro('In')
-
+            $('.btn-liberar').fadeOut(0)
             console.log(DataFolio)
             tablaTemperatura.columns.adjust().draw()
         },
@@ -93,6 +93,40 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { target: 7, title: 'Observaciones del supervisor', className: 'none' },
         { target: 8, title: '', className: 'all', width: "20px" }
 
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            text: ' <i class="bi bi-box-arrow-up " style="cursor: pointer; font-size:18px;"></i>',
+            className: 'btn btn-warning btn-liberar',
+            action: function () {
+
+                alertMensajeConfirm({
+                    title: '¿Desea liberar este registro?',
+                    text: 'Cualquier usuario que pueda registrar temperatura podrá actualizar el registro',
+                    icon: 'warning',
+                    confirmButtonText: 'Si, estoy seguro',
+                    cancelButtonText: 'No'
+                }, () => {
+                    ajaxAwait({
+                        api: 6,
+                        id_registro_temperatura: selectRegistro['ID_REGISTRO_TEMPERATURA'],
+                        estatus: 0
+                    }, 'temperatura_api', { callbackAfter: true }, false, () => {
+                        // alertMensaje('success', '')
+                        alertToast('Registro liberado', 'success', 4000)
+                        tablaTemperatura.ajax.reload()
+                        // if (selectTableFolio) {
+                        //     console.log('si entro')
+
+                        // } else {
+                        //     console.log('No')
+                        //     tablaTemperaturaFolio.ajax.reload()
+                        // }
+                    })
+                }, 1)
+            }
+        },
     ]
 })
 
@@ -102,42 +136,44 @@ inputBusquedaTable('TablaTemperatura', tablaTemperatura, [
         msj: 'Dale click a un registro para ver la información de la captura de Temperatura de un equipo.',
         place: 'top'
     }
-])
+], [], 'col-12')
 
 
 
-
+rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
 selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: true }, async function (select, data, callback) {
+
     selectRegistro = data
     if (select) {
-
+        resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
         if (data['ESTATUS'] == 0) {
             editRegistro = true
-
+            $('.btn-liberar').fadeOut(0)
             console.log("el estatus esta en 0")
             $("#formActualizarTemperatura").removeClass('disable-element');
+            $("#img-firma").hide()
+            $("#canvas_actualizar").show()
+            firmaExist = true
         } else {
-
             editRegistro = false
-
             console.log("el estatus esta en 1")
+
+            validarPermiso("SupTemp") ? $('.btn-liberar').fadeIn(0) : $('.btn-liberar').fadeOut(0)
+
+            $("#canvas_actualizar").hide()
+            $("#img-firma").attr("src", data['FIRMA_TEMPERATURA'])
+            $("#img-firma").show()
             $("#formActualizarTemperatura").addClass('disable-element');
         }
 
         if (data['FIRMA_TEMPERATURA'] == null) {
-            $("#img-firma_actualizar").hide()
-            $("#firmaCanvas_actualizar").show()
-        } else {
-            $("#firmaCanvas_actualizar").hide()
-            $("#img-firma_actualizar").attr("src", data['FIRMA_TEMPERATURA'])
-            $("#img-firma_actualizar").show()
-            firmaExist = true
+
         }
 
 
         $('#ActualizarTemperatura_title').html("Actualiza su registro")
         $("#Termometro_actualizar").val(data['TERMOMETRO_ID'])
-        $("#lectura_actualizar").val(data['LECTURA'])
+        $("#lectura_actualizar").val(data['LECTURA'].replace('-', ''))
         $("#observaciones_actualizar").val(data['OBSERVACIONES'])
 
     } else {
@@ -146,6 +182,8 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
         $("#Termometro_actualizar").val("")
         $("#lectura_actualizar").val("")
         $("#observaciones_actualizar").val("")
+        $('.btn-liberar').fadeOut(0)
+        resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
     }
 })
 
@@ -153,7 +191,7 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
 $("#formActualizarTemperatura").on("submit", function (e) {
     e.preventDefault();
 
-    if (validarFormulario2() == false) {
+    if (validarFormulario(firma_actualizar.canvas, firma_actualizar.ctx, firma_actualizar.firma) == false) {
         return false;
     }
 

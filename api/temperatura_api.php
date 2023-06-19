@@ -115,7 +115,7 @@ switch ($api) {
                 $result[$dia] = array();
             }
 
-            if ($i = 3) {
+            if ($i === 3) {
                 $i = 1;
             }
 
