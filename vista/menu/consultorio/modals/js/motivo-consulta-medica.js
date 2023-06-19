@@ -8,14 +8,16 @@ $('#formMotivoConsultaMedica').submit(function (e) {
     }, function () {
         ajaxAwaitFormData({
             api: 5,
-            motivo_consulta: $('#motivo_consulta').val(),
-            turno_id: pacienteActivo.array['ID_TURNO']
+            turno_id: pacienteActivo.array['ID_TURNO'],
+            motivo_consulta: $('#motivo_consulta').val()
         },
             'consultorio2_api', 'formMotivoConsultaMedica', { callbackAfter: true }, false, (data) => {
+                data = data.response.data;
+                
+                obtenerConsultorioConsultaMedica(pacienteActivo.array, data);
+
                 $('#modalMotivoConsultaMedica').modal('hide')
 
-                data = data.response.data;
-                obtenerConsultorioConsultaMedica(pacienteActivo.array, data);
             })
     }, 1)
     // Crear un ajax el  cual pueda crear  una consulta medica, y recuperar los datos del  mismo,  motivo de consulta,  fecha ...etc, y mandarlo como segundo parametro a la funcion
@@ -26,3 +28,5 @@ $('#formMotivoConsultaMedica').submit(function (e) {
 
     //Meter ajax para guardar el motivo de motivo de consulta
 })
+
+
