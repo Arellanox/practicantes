@@ -98,7 +98,7 @@ switch ($api) {
                 fclose($fh);
 
                 
-                $espiro = $master->getRutaReporte() . "ESPIROMETRIA_" . basename($url);
+                $espiro = $host.$master->getRutaReporte() . "ESPIROMETRIA_" . basename($url);
 
                 $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTE_FINAL', $espiro, $id_turno, null]);
             }
