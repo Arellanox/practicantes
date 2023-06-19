@@ -9,9 +9,11 @@ $id_consultorio2 = $_POST['id_consultorio2'];
 $turno_id = $_POST['turno_id'];
 $notas_consulta = $_POST['notas_consulta'];
 $diagnostico = $_POST['diagnostico'];
-$diagnostico2 = $_POST['diagnostico2'];
 $plan_tratamiento = $_POST['plan_tratamiento'];
 $activo = isset($_POST['ACTIVO']) ? null : 1;
+
+#Insertar en tabla consultorio2_diagnostico
+$diagnostico2 = $_POST['diagnostico2'];
 
 #Insertar en Iniciar consulta medica
 $motivo_consulta = $_POST['motivo_consulta'];
@@ -23,7 +25,9 @@ $parametros_motivo = $master->setTonull(array(
     $creado_por
 ));
 
+//guarda todos los datos de consultorio incluyendo la tabla de consultorio2_diagnosticos
 $parametros = $master->setToNull(array(
+    $id_consultorio2,
     $turno_id,
     $notas_consulta,
     $diagnostico,
