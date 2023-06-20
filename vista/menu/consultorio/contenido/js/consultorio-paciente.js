@@ -71,17 +71,17 @@ function consultarConsulta(id) {
           console.log(row)
           if (row.length) {
             // for (let i = 0; i < row.length; i++) {
-            try{
+            try {
               if (row[0]['COMPLETADO'] == 0) {
-              $('#btn-ir-consulta').html(`<button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ${row[0]['ID_CONSULTA']})" 
+                $('#btn-ir-consulta').html(`<button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ${row[0]['ID_CONSULTA']})" 
                 class="btn btn-warning me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;">
                  <i class="bi bi-clipboard-heart"></i> Continuar Historia Clínica
                 </button>`)
-            } else if (row[0]['COMPLETADO'] == 1) {
-              $('#btn-ir-consulta').html(`<button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ${row[0]['ID_CONSULTA']})" 
+              } else if (row[0]['COMPLETADO'] == 1) {
+                $('#btn-ir-consulta').html(`<button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ${row[0]['ID_CONSULTA']})" 
               class="btn btn-success me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;" data-bs-toggle="tooltip" data-bs-placement="top" title="¿Consultar la historia Clínica?">
               <i class="bi bi-clipboard-heart"></i> Historia Clínica Terminada </button>`)
-            }
+              }
             } catch {
               $('#btn-ir-consulta').html(`
                 <button type="button" class="btn btn-hover me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"
@@ -107,35 +107,35 @@ function consultarConsulta(id) {
 //Consultar si existe o no la consulta medica
 function consultarConsultaMedica(id) {
   return new Promise(resolve => {
-  ajaxAwait({ api: 2, turno_id: id }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
-    let row = data.response.data[0];
+    ajaxAwait({ api: 2, turno_id: id }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
+      let row = data.response.data[0];
 
-   try{ 
-    if (row['CONSULTA_TERMINADA'] == 0) {
-      $('#btn-ir-consulta-medica').html(`
+      try {
+        if (row['CONSULTA_TERMINADA'] == 0) {
+          $('#btn-ir-consulta-medica').html(`
         <button type="button" onclick="obtenerConsultorioConsultaMedica(pacienteActivo.array, ${row['ID_CONSULTA2']} )" 
         class="btn btn-warning me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"> 
           <i class="bi bi-clipboard-heart"></i> Continuar Consulta Médica
         </button>`);
-    } else if (row['CONSULTA_TERMINADA'] == 1) {
-      $('#btn-ir-consulta-medica').html(`<button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ${row['ID_CONSULTA2']})" 
+        } else if (row['CONSULTA_TERMINADA'] == 1) {
+          $('#btn-ir-consulta-medica').html(`<button type="button" onclick="obtenerContenidoConsulta(pacienteActivo.array, ${row['ID_CONSULTA2']})" 
           class="btn btn-success me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;" data-bs-toggle="tooltip" data-bs-placement="top" title="¿Consultar la historia Clínica?">
           <i class="bi bi-clipboard-heart"></i> Consulta Médica Terminada
             </button>`)
-    }
-  }catch(error){
-    $('#btn-ir-consulta-medica').html(`
+        }
+      } catch (error) {
+        $('#btn-ir-consulta-medica').html(`
     <button type="button" class="btn btn-hover me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"
-    data-bs-toggle="modal" data-bs-target="#modalMotivoConsulta">
+    data-bs-toggle="modal" data-bs-target="#modalMotivoConsultaMedica">
       <i class="bi bi-person-plus-fill"></i> Iniciar Consulta Médica
     </button>`)
-  }
+      }
 
 
-    
-    resolve(1);
-  })
-});
+
+      resolve(1);
+    })
+  });
 }
 
 function obtenerHistorialConsultas(id) {

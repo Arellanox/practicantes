@@ -2,8 +2,8 @@ $('#formMotivoConsultaMedica').submit(function (e) {
     e.preventDefault();
 
     alertMensajeConfirm({
-        title: '¿Deseas crear la consulta?',
-        text: 'No podrás actualizar el motivo de consulta.',
+        title: '¿Desea iniciar el motivo de consulta?',
+        text: '¡No podrás actualizarlo!',
         icon: 'warning'
     }, function () {
         ajaxAwaitFormData({
@@ -13,7 +13,7 @@ $('#formMotivoConsultaMedica').submit(function (e) {
         },
             'consultorio2_api', 'formMotivoConsultaMedica', { callbackAfter: true }, false, (data) => {
                 data = data.response.data;
-                
+
                 obtenerConsultorioConsultaMedica(pacienteActivo.array, data);
 
                 $('#modalMotivoConsultaMedica').modal('hide')
@@ -29,4 +29,34 @@ $('#formMotivoConsultaMedica').submit(function (e) {
     //Meter ajax para guardar el motivo de motivo de consulta
 })
 
+select2('#select-cita-subsecuente-consulta', 'modalMotivoConsulta')
 
+
+
+$('#checkCitaSubsecuente-consulta').change(function () {
+    if ($(this).is(":checked")) {
+        $('#select-cita-subsecuente-consulta').removeAttr('required');
+        $('#select-cita-subsecuente-consulta').prop('disabled', true);
+    } else {
+        $('#select-cita-subsecuente-consulta').prop('required', true);
+        $('#select-cita-subsecuente-consulta').prop('disabled', false);
+        $('#select-cita-subsecuente-consulta').focus();
+    }
+})
+
+
+
+
+const modalMotivoConsulta = document.getElementById("modalMotivoConsulta");
+modalMotivoConsulta.addEventListener("show.bs.modal", (event) => {
+
+    rellenarSelect('#select-cita-subsecuente', 'consulta2_api', 2, 'ID_CONSULTA', 'MOTIVO_CONSULTA', {
+        id_paciente: pacienteActivo.array['ID_PACIENTE']
+    }, function (array) {
+        if (array.length == 0) {
+            $('#select-cita-subsecuente-consulta').removeAttr('required');
+            $('#select-cita-subsecuente-consulta').prop('disabled', true);
+            $('#checkCitaSubsecuente-consulta').prop('checked', true);
+        }
+    })
+});
