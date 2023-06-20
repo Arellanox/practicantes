@@ -16,7 +16,6 @@ $equipo =  $_POST['Enfriador'];
 $termometro = $_POST['Termometro'];
 $usuario = $_SESSION['id'];
 $lectura = isset($_POST['lectura']) ? $_POST['lectura'] : null;
-$lectura = "-$lectura";
 $observaciones = $_POST['observaciones'];
 $id_registro_temperatura = $_POST['id_registro_temperatura'];
 $turno = $_POST['turno'];
@@ -122,6 +121,8 @@ switch ($api) {
             $dia = $e['DIA'];
             $turno = $e['TURNO'];
             $valor = $e['valor'];
+            $intervalo_min = $e['INTERVALO_MIN'];
+            $intervalo_max = $e['INTERVALO_MAX'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
             if (!isset($result[$dia])) {
@@ -136,7 +137,11 @@ switch ($api) {
             $i++;
         };
 
-        $response = $result;
+        $response = [];
+        $response['EQUIPO']['INTERVALO_MIN'] = $intervalo_min;
+        $response['EQUIPO']['INTERVALO_MAX'] = $intervalo_max;
+
+        $response['DIAS'] = $result;
         break;
     case 8:
         #Agregar Comentarios Superivisor 

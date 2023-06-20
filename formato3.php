@@ -366,7 +366,7 @@
                     }
 
                     // Generar las celdas de la tabla
-                    for ($j = 13; $j >= -3; $j--) {
+                    for ($j = -20; $j  >= -40; $j--) {
                         echo "<tr class='border$j'>";
                         echo "<th class='celdasDias text$j'>" . $j . "</th>";
 

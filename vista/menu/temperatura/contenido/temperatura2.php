@@ -50,8 +50,8 @@
                                 <div class="mb-3">
                                     <label for="lectura">Lectura:</label>
                                     <div class="input-group mb-3">
-                                        <span class="input-span">-</span>
-                                        <input type="number" min="20" max="40" value="0" step="0.01" name="lectura" placeholder="20 / 40" class="form-control input-form" required id="lectura">
+
+                                        <input type="number" value="0" step="0.01" name="lectura" placeholder="20 / 40" class="form-control input-form" required id="lectura">
                                         <span class="input-span">°C</span>
                                     </div>
                                 </div>

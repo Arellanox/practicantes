@@ -31,36 +31,62 @@
 
                             $array = json_decode($json, true);
 
-                            foreach ($array['response'] as $key1 => $e) {
-                                $valores = $e;
-                            }
+
+                            $max = $array['response']['data']['EQUIPO']['INTERVALO_MAX'];
+                            $min = $array['response']['data']['EQUIPO']['INTERVALO_MIN'];
+
+                            $valores = $array['response']['data']['DIAS'];
 
                             $dotInicial =  array_key_first($valores);
                             $dotEnd =  array_key_last($valores);
 
 
 
-
                             function metodoCalculo($dia, $turno, $valorAprox)
                             {
                                 global $valores;
+                                global $max;
+                                global $min;
                                 if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
                                     $valor = floatval($valores[$dia][$turno]["valor"]);
                                     $valor_redondeado = round($valor);
                                     $color = $valores[$dia][$turno]['color'];
-                                    $id = $valores[$dia][$turno]['id'];
                                     if ($valor_redondeado == $valorAprox) {
                                         $dotId = "dot-$dia-$turno"; // Generar el ID del dot
-                                        return "<td class='td-hover empty turno-$turno background$valorAprox dot dot-$color' data_id='$id' id='$dotId'>&#8226;</td>";
+
+                                        if ($valorAprox <= $max && $valorAprox >= $min) {
+                                            return "<td class='bg-grey empty turno-$turno dot dot-$color' id='$dotId'>&#8226;</td>";
+                                        } else {
+                                            return "<td class='empty turno-$turno dot dot-$color' id='$dotId'>&#8226;</td>";
+                                        }
                                     }
                                 }
-                                return "<td class='empty turno-$turno background$valorAprox'></td>";
+
+                                if ($valorAprox <= $max && $valorAprox >= $min) {
+                                    return "<td class='bg-grey empty turno-$turno'></td>";
+                                } else {
+                                    return "<td class='empty turno-$turno background$valorAprox'></td>";
+                                }
                             }
 
                             // Generar las celdas de la tabla
-                            for ($j = -40; $j <= -20; $j++) {
-                                echo "<tr class='border$j'>";
-                                echo "<th class='celdasDias text$j'>" . $j . "</th>";
+                            for ($j = $max + 5; $j >= $min - 5; $j--) {
+                                if ($j == $max) {
+                                    echo "<tr class='border-top'>";
+                                } else if ($j == $min) {
+                                    echo "<tr class='border-bottomm'>";
+                                } else {
+                                    echo "<tr class='border$j'>";
+                                }
+
+
+                                if ($j == $max) {
+                                    echo "<th class='celdasDias text-rango'>" . $j . "</th>";
+                                } else if ($j == $min) {
+                                    echo "<th class='celdasDias text-rango'>" . $j . "</th>";
+                                } else {
+                                    echo "<th class='celdasDias text$j'>" . $j . "</th>";
+                                }
 
                                 $prevDot = null; // Dot previo para conectar con líneas
 
@@ -122,26 +148,14 @@
 
 
 
-                          .border-34 {
+                          .border-top {
                               border-top: 3px solid !important;
                           }
 
-                          .border-25 {
-                              border-bottom: 3px solid;
+                          .border-bottomm {
+                              border-bottom: 3px solid !important;
                           }
 
-                          .background-25,
-                          .background-26,
-                          .background-27,
-                          .background-28,
-                          .background-29,
-                          .background-30,
-                          .background-31,
-                          .background-32,
-                          .background-33,
-                          .background-34 {
-                              background-color: #d8dfe1;
-                          }
 
                           .turno-1 {
                               border: 2px dashed black !important;
@@ -169,9 +183,7 @@
                               background-color: #d8dfe1 !important;
                           }
 
-                          .text-25,
-                          .text-35 {
-
+                          .text-rango {
                               font-weight: bold !important;
                               padding-top: 5px;
                               padding-bottom: 5px;
@@ -259,8 +271,8 @@
                               margin-right: auto;
                           }
 
+                          .bg-grey {
+                              background-color: #d8dfe1;
 
-
-
-                          ;
+                          }
                       </style>
