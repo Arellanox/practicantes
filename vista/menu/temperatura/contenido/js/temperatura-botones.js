@@ -168,7 +168,7 @@ function CargarTemperatura() {
             if (selectTableFolio) {
                 console.log('si entro')
                 tablaTemperatura.ajax.reload()
-            } else {
+            } else if (data['NUEVO']) {
                 console.log('No')
                 tablaTemperaturaFolio.ajax.reload()
             }
