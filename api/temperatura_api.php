@@ -59,6 +59,9 @@ $estatus = $_POST['estatus'];
 #comentario que mandara el supervisor a los registros
 $comentario = $_POST['comentario'];
 
+#ID de comentario para elimanr un comentario
+$id_comentario = $_POST['id_comentario'];
+
 $parametros_g = array(
     $fecha_inicial,
     $fecha_final,
@@ -80,7 +83,10 @@ $comentarios = array(
     $id_registro_temperatura
 );
 
-
+$comentarios_delete = array(
+    $id_comentario,
+    $usuario
+);
 
 switch ($api) {
 
@@ -135,6 +141,9 @@ switch ($api) {
     case 8:
         #Agregar Comentarios Superivisor 
         $response = $master->insertByProcedure('sp_temperaturas_comentarios_g', $comentarios);
+        break;
+    case 9:
+        $response = $master->insertByProcedure('sp_temperaturas_comentarios_e', $comentarios_delete);
         break;
     default:
         $response = "Api no definida.";
