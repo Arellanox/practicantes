@@ -181,7 +181,7 @@ function CrearTablaPuntos(id_grupo) {
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 5;
                 ctx.strokeStyle = "blue";
                 ctx.stroke();
             }
