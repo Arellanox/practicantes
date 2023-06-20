@@ -133,7 +133,7 @@
 
 <div class="modal-comentarios">
     <div class="modal fade" id="modalComentariosRegistro" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Registro: <strong>FECHA[]</strong> </h5>
@@ -142,11 +142,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 col-lg-8">
-                            <div id="">
-                                <div class="card m-3 p-3">
-                                    <h5>Comentario creado por</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo libero obcaecati necessitatibus doloremque. Incidunt ad, alias corrupti nihil est cupiditate rerum itaque illo consequuntur quis aliquid laboriosam possimus magnam ipsa.</p>
-                                </div>
+                            <div id="content-comentarios-registros">
+
                                 <div class="card m-3 p-3">
                                     <h5>Comentario creado por</h5>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo libero obcaecati necessitatibus doloremque. Incidunt ad, alias corrupti nihil est cupiditate rerum itaque illo consequuntur quis aliquid laboriosam possimus magnam ipsa.</p>
@@ -155,17 +152,25 @@
                         </div>
                         <div class="col-12 col-lg-4">
                             <h5>Agregar comentario del día</h5>
-                            <div class="mb-3">
-                                <label for="comentario">Comentario:</label>
-                                <input type="text" name="comentario" value="" class="form-control input-form" readonly disabled>
-                            </div>
+                            <form class="row" id="formAgregarComentario">
+                                <div class="mb-3">
+                                    <label for="comentario">Comentario:</label>
+                                    <!-- <input type="text" name="comentario" value="" class="form-control input-form" readonly disabled> -->
+                                    <textarea name="comentario" class="form-control input-form" cols="30" rows="4"></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end my-auto">
+                                    <button type="submit" class="btn btn-confirmar" form="formAgregarComentario">
+                                        <i class="bi bi-plus"></i> Agregar
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i>
-                        Cerrar
+                    <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">
+                        <i class="bi bi-arrow-left-short"></i> Cerrar
                     </button>
                 </div>
             </div>

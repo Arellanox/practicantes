@@ -228,63 +228,22 @@ $(document).on('click', '#btn-facturar-grupo', function (event) {
         alertToast('No ha seleccionado ningún registro', 'info', 4000)
         return false
     }
-    Swal.fire({
+
+    alertPassConfirm({
         title: '¿Desea crear el grupo con los pacientes seleccionados?',
-        // text: 'Se creará el grupo con los pacientes seleccionados, ¡No podrás revertir los cambios',
         icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Confirmar',
-        cancelButtonText: 'Cancelar',
-        showLoaderOnConfirm: true,
-        // inputAttributes: {
-        //   autocomplete: false
-        // },
-        // input: 'password',
-        html: '<form autocomplete="off" onsubmit="formpassword(); return false;"><input type="password" id="password-confirmar" class="form-control input-color" autocomplete="off" placeholder="Ingrese su contraseña para confirmar"></form>',
-        // confirmButtonText: 'Sign in',
-        focusConfirm: false,
-        didOpen: () => {
-            const passwordField = document.getElementById('password-confirmar');
-            passwordField.setAttribute('autocomplete', 'new-password');
-        },
-        preConfirm: () => {
-            const password = Swal.getPopup().querySelector('#password-confirmar').value;
-            return fetch(`${http}${servidor}/${appname}/api/usuarios_api.php?api=9&password=${password}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText)
-                    }
-                    return response.json()
-                })
-                .catch(error => {
-                    Swal.showValidationMessage(
-                        `Request failed: ${error}`
-                    )
-                });
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-    }).then((result) => {
-        if (result.isConfirmed) {
-            if (result.value.status == 1) {
+    }, () => {
 
-                console.log(grupo)
-
-                ajaxAwait({
-                    api: 1,
-                    detalle_grupo: grupo,
-                    descripcion: $('#descripcion-grupo-factura').val(),
-                    cliente_id: cliente.val(),
-                }, 'admon_grupos_api', { callbackAfter: true }, false, (data) => {
-                    alertToast('¡Grupo Creado!', 'success', 4000);
+        ajaxAwait({
+            api: 1,
+            detalle_grupo: grupo,
+            descripcion: $('#descripcion-grupo-factura').val(),
+            cliente_id: cliente.val(),
+        }, 'admon_grupos_api', { callbackAfter: true }, false, (data) => {
+            alertToast('¡Grupo Creado!', 'success', 4000);
 
 
-                })
-
-            } else {
-                alertSelectTable('¡Contraseña incorrecta!', 'error')
-            }
-        }
-
+        })
 
     })
 

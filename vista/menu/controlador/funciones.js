@@ -1885,6 +1885,7 @@ function selectTable(tablename, datatable,
       || $(tr).hasClass('child') //Cuando muestra las columnas ocultas de un regitro
       || $(tr).hasClass('dataTables_empty')  //Cuando la  tabla esta vacia, no selecciona
       || $(tr).hasClass(`${config.ignoreClass}`)
+      || $(tr).find('td').hasClass('dataTables_empty')
     )
 
       return false;

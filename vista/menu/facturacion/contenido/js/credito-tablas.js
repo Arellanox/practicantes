@@ -180,7 +180,22 @@ TablaGrupoDetalle = $('#TablaGrupoDetalle').DataTable({
                 }, 1)
             }
 
-        }]
+        },
+        {
+            text: 'Actualizar',
+            id: '',
+            className: 'btn btn-success',
+            action: () => {
+                if (SelectedGruposCredito['FACTURADO'] == 1) {
+                    alertMensaje('info', 'Oops!', 'Este grupo ha sido facturado, no puedes actualizar su detalle.');
+                    return false;
+                }
+
+
+
+            }
+        }
+    ]
 })
 
 
@@ -205,3 +220,10 @@ function fadeRegistro(tipe) {
         $("#loader-muestras").fadeOut(0);
     }
 }
+
+
+
+
+
+
+

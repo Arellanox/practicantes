@@ -169,18 +169,76 @@ function CargarTemperatura() {
 }
 
 
-
-$(document).on('click', '.td-hover', function (event) {
+id_registro_dor = false
+$(document).on('click', '.td-hover', async function (event) {
     event.preventDefault();
     event.stopPropagation();
 
     let dot = $(this)
-    let id = dot.attr('id')
+    id_registro_dor = dot.attr('data_id')
 
 
+    // await mostrarComentariosDiaTemperatura()
+    //Abre el modal
     $('#modalComentariosRegistro').modal('show')
 
-
-
-
 })
+
+$(document).on('submit', '#formAgregarComentario', (event) => {
+    event.preventDefault();
+    alertMensajeConfirm({
+        title: '¿Está seguro de agregar este comentario?',
+        text: 'No podrás actualizarlo',
+        icon: 'info'
+    }, function () {
+        ajaxAwaitFormData({
+            api: 8,
+            id_registro_temperatura: id_registro_dor
+        }, 'temperatura_api', 'formAgregarComentario', { callbackAfter: true }, false, (data) => {
+            alertToast('Comentario Agregado', 'success', 4000)
+            mostrarComentariosDiaTemperatura();
+        })
+    }, 1)
+})
+
+$(document).on()
+
+//Muestra los comentarios
+function mostrarComentariosDiaTemperatura() {
+    return new Promise(function (resolve, reject) {
+        //Recupera los comentarios
+        ajaxAwait({
+            api: 9
+        }, 'temperatura_api', { callbackAfter: true, WithoutResponseData: true }, false, (row) => {
+            let div = $('#content-comentarios-registros')
+            div.html('');
+            for (const key in row) {
+                if (Object.hasOwnProperty.call(row, key)) {
+                    const element = row[key];
+                    let html = `
+                        <div class="card m-3 p-3">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h5>${element['CREADO_POR']}</h5>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-hover comentario-eliminar" data-bs-id="${element['ID_REGISTRO_TEMPERATURA']}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p>${element['COMENTARIO']}</p>
+                        </div>
+                    `;
+
+                    html.append(html);
+                }
+            }
+
+            resolve(1);
+        })
+
+    })
+
+
+}
