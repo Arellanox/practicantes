@@ -43,21 +43,22 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { data: 'EQUIPO' },
         { data: 'TERMOMETRO' },
         {
-            data: 'FECHA_REGISTRO', render: function (data) {
+            data: 'FECHA_MODIFICADO', render: function (data) {
                 return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1]);
             }
         },
 
         {
             data: 'LECTURA', render: function (data) {
-                return ifnull(data, 0) + " " + "°C"
+                return ifnull(data) ? ifnull(data) + " " + "°C" : '';
             }
         },
         { data: 'USUARIO' },
         { data: 'OBSERVACIONES' },
         { data: 'OBSERVACIONES_SUPERVISOR' },
         {
-            data: 'FECHA_MODIFICADO', render: function (data) {
+
+            data: 'FECHA_REGISTRO', render: function (data) {
                 return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1]);
             }
         }
@@ -67,7 +68,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Enfriador', className: 'all' },
         { target: 2, title: 'Termometro', className: 'desktop' },
-        { target: 3, title: 'Fecha', className: 'min-tablet' },
+        { target: 3, title: 'Fecha Captura', className: 'min-tablet' },
         { target: 4, title: 'Lectura', className: 'all' },
         { target: 5, title: 'Registrado', className: 'desktop' },
         { target: 6, title: 'Observaciones', className: 'none' },

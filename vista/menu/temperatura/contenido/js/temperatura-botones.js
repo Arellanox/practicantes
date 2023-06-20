@@ -124,8 +124,8 @@ $("#formCapturarTemperatura").on("submit", function (e) {
 function CargarTemperatura() {
 
     alertMensajeConfirm({
-        title: "¿Estás seguro de su captura?",
-        text: "Ya no podrás modificar este registro",
+        title: "¿Está seguro de su captura?",
+        text: "Recuerde usar el simbolo - si es necesario",
         icon: "info"
     }, function () {
 
@@ -137,13 +137,11 @@ function CargarTemperatura() {
             Enfriador: DataEquipo['Enfriador']
         }
 
-        if (editRegistro)
-            dataJson["id_registro_temperatura"] = selectRegistro['ID_REGISTRO_TEMPERATURA']
-
         form = ""
         switch (editRegistro) {
             case true:
                 console.log("esta actualizando nueva temperatura")
+                dataJson["id_registro_temperatura"] = selectRegistro['ID_REGISTRO_TEMPERATURA']
                 form = "formActualizarTemperatura"
                 break;
             case false:
@@ -152,7 +150,7 @@ function CargarTemperatura() {
                 break;
             default:
                 console.log("no esta ni registrando ni actualizando")
-
+                return false;
                 break;
         }
 
@@ -166,6 +164,7 @@ function CargarTemperatura() {
             $('#formActualizarTemperatura').trigger("reset");
             resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
             resetFirma(firma_guardar.ctx, firma_guardar.canvas);
+
             if (selectTableFolio) {
                 console.log('si entro')
                 tablaTemperatura.ajax.reload()
