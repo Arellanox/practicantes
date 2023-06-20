@@ -204,7 +204,8 @@ async function obtenerConsultaMedica(data, idconsulta) {
 
   await recuperarExploracionFisicaConsulta2(data['ID_TURNO'])
 
-  await recuperarDiagnosticosConsulta2(data['ID_TURNO'])
+  //recupera los datos de diagnostico2 de consulta
+  // await recuperarDiagnosticosConsulta2(data['ID_TURNO'])
 
 
   await obtenerPanelInformacion(data['ID_TURNO'], "signos-vitales_api", 'signos-vitales', '#signos-vitales', '_col3');

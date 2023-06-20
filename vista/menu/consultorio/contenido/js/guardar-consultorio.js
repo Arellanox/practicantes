@@ -3,6 +3,17 @@ var text
 var id
 var texto = ''
 
+//Regresar a perfil de paciente
+$('#btn-regresar-vista').click(function () {
+    alertMensajeConfirm({
+        title: "¿Está seguro de regresar?",
+        text: "¡Asegurese de guardar los cambios!",
+        icon: "warning",
+    }, function () {
+        obtenerContenidoAntecedentes(pacienteActivo.array)
+    }, 1)
+})
+
 //alerta en general, sirve para todos los botons y btn se llama al switch y guardar consultorio
 function alertaConsultorio(btn) {
     alertMensajeConfirm({
@@ -98,6 +109,8 @@ function guardarDatosConsultorio(btn) {
                 alertToast('Diagnostico guardado!', 'success', 4000)
             })
             break;
+        
+        //Agrega diagnosticos secundarios    
         case 'diagostico_agregar':
             dataJson_diagnostico_agregar = {
                 api: 1,
@@ -105,8 +118,11 @@ function guardarDatosConsultorio(btn) {
                 diagnostico2: $('#diagnostico-campo-consulta-2').val()
             }
             ajaxAwait(dataJson_diagnostico_agregar, 'consultorio2_api', {callbackAfter: true}, false, function(data){
+
                 alertToast('Diagnostico agregado!', 'success',4000)
                 $('#diagnostico-campo-consulta-2').val('')
+
+                TablaListaDiagnosticos.ajax.reload();
 
             })
             break;    
@@ -261,7 +277,6 @@ function desactivarTablaReceta() {
 }
 
 
-
 //Rellenador de estudios
 select2('#buscar-estudios', null, 'Seleccione un estudio')
 rellenarSelect('#buscar-estudios', 'servicios_api', 17, 'ID_SERVICIO', 'DESCRIPCION.ABREVIATURA')
@@ -271,6 +286,8 @@ $('#btn-agregar-estudio').on('click', function () {
     text = $("#buscar-estudios option:selected").text();
     id = $("#buscar-estudios").val();
 })
+
+
 //Tabla de solicitud de estudios
 TablaListaEstudios = $("#TablaListaEstudios").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
@@ -341,14 +358,71 @@ function desactivarTablaEstudio() {
     }, 1)
 }
 
+//Tabla de Diagnosticos secundarios
+TablaListaDiagnosticos = $("#TablaListaDiagnosticos").DataTable({
+    language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
+    lengthChange: false,
+    info: false,
+    paging: false,
+    scrollY: '38vh',
+    scrollCollapse: true, 
+    ajax: {
+        dataType: 'json',
+        data: { api: 6, turno_id: pacienteActivo.array['ID_TURNO'] },
+        method: 'POST',
+        url: `${http}${servidor}/${appname}/api/consultorio2_api.php`,
+        beforeSend: function () {
+        },
+        complete: function () {
+            TablaListaDiagnosticos.columns.adjust().draw()
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alertErrorAJAX(jqXHR, textStatus, errorThrown);
+        },
+        dataSrc: 'response.data'
+    },
+    columns: [
+        { data: 'COUNT' },
+        { data: 'DESCRIPCION' },
+        {
+            data: 'FECHA_CREACION', render: function (data) {
 
-//Regresar a perfil de paciente
-$('#btn-regresar-vista').click(function () {
-    alertMensajeConfirm({
-        title: "¿Está seguro de regresar?",
-        text: "¡Asegurese de guardar los cambios!",
-        icon: "warning",
-    }, function () {
-        obtenerContenidoAntecedentes(pacienteActivo.array)
-    }, 1)
+
+                return `<i class="bi bi-trash eliminar-receta" data-id = "${data}" style = "cursor: pointer"
+                onclick="desactivarTablaDiagnosticos.call(this)"></i>`;
+
+            }
+        }
+
+    ],
+    columnDefs: [
+        { target: 0, title: '#', className: 'all', width: '5px' },
+        { target: 1, title: 'Diagnostico', className: 'all' },
+        { target: 2, title: '<i class="bi bi-trash"></i>', className: 'all' , width: '5px'}
+    ]
 })
+
+inputBusquedaTable('TablaListaDiagnosticos', TablaListaDiagnosticos, [], [], 'col-12')
+
+//Desactiva el campo seleccionado en la tabla de diagnosticos
+function desactivarTablaDiagnosticos(){
+    var fecha_diagnostico = $(this).data("id");
+
+    alertMensajeConfirm({
+        title: '¿Está seguro que desea desactivar el registro?',
+        text: 'No podrá modificarlo despues',
+        icon: 'warning',
+    }, function () {
+
+        dataJson_eliminarDiagnosticos = {
+            api: 7,
+            fecha_creacion: fecha_diagnostico
+        }
+
+        ajaxAwait(dataJson_eliminarDiagnosticos, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
+            alertToast('Diagnostico eliminado!', 'success', 4000)
+
+            TablaListaDiagnosticos.ajax.reload();
+        })
+    }, 1)
+}

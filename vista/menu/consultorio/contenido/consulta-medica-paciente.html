@@ -153,18 +153,21 @@
                     <h4 class="m-3">Diagnóstico</h4>
 
                     <hr class="dropdown-divider m-2">
-                    <textarea name="name-diagnostico" rows="10" cols="90" class="form-textarea-content"
-                        placeholder="Diagnostico...." id="diagnostico-campo-consulta-1"></textarea>
-                        <div class=" d-flex justify-content-start m-2">
-                            <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
-                            id="btn-guardar-Diagnostico">
-                            <i class="bi bi-paperclip"></i> Guardar
-                            </button>
-                        </div>
                         
                     <div class="row">
                         <div class="col-6 p-4">
-                            <textarea name="name-diagnostico" rows="3" cols="90" class="form-control input-form" placeholder="Diagnostico"
+                            <p>Diagnóstico principal</p>
+                            <textarea name="name-diagnostico" rows="3" cols="90" class="form-control input-form"
+                            placeholder="Diagnostico...." id="diagnostico-campo-consulta-1"></textarea>
+                            <div class=" d-flex justify-content-start m-2">
+                                <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
+                                id="btn-guardar-Diagnostico">
+                                <i class="bi bi-paperclip"></i> Guardar
+                                </button>
+                            </div>
+
+                            <p>Añada otros diagnósticos</p>
+                            <textarea name="name-diagnostico" rows="1" cols="90" class="form-control input-form" placeholder="Diagnostico"
                                 id="diagnostico-campo-consulta-2"></textarea>
                             <div class=" d-flex justify-content-start m-2">
                                 <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px" id="btn-agregar-Diagnostico">
@@ -172,10 +175,16 @@
                                 </button>
                             </div>
                         </div>
-
-                        <!-- list para ver los diagnosticos secundarios -->
-                        <div class="col-6" id="lista-diagnosticos-consultorio">
+                    
+                        <!-- Tabla para ver los diagnosticos secundarios -->
+                        <div class="col-6">
                             <p>Lista de Diagnosticos actuales/agregados</p>
+                            <table class="table table-hover display responsive" id="TablaListaDiagnosticos" style="width: 100%;">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
