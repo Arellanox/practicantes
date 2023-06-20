@@ -76,7 +76,7 @@ switch ($api) {
         #insertar antecedentes
         $lastId = $master->insertByProcedure('sp_turnos_g', $preTurno);
 
-        if  (is_numeric($lastId)) {
+        if (is_numeric($lastId)) {
             #si el turno se inserto correctamente, se procede a insertar los antecedentes a ese turno
             $prefolio = $master->getByProcedure('sp_turnos_b', array($lastId, null, null));
             foreach ($antecedentes as $ante) {
@@ -117,46 +117,41 @@ switch ($api) {
             }
 
             #Insertamos las respuestas de el formulario de espirometria --- verificamos si hay un formulario de espiro
-            
+
             //insertar la forma de guardar el cuestionario de espiro en un metodo
-                
-                $principal = [];
-                $secundario = [];
-                $posicion = 0;
 
-                foreach ($espirometria as $key => $value) {
+            $principal = [];
+            $secundario = [];
+            $posicion = 0;
 
-                    $principal[$posicion] = ['preguntaID' => $key];
-                    $valor = null;
-                    $comentario = null;
+            foreach ($espirometria as $key => $value) {
 
-                    if (COUNT($espirometria[$key]) > 1) {
-                        foreach ($value as $item) {
-                            $secundario[] = ['respuestaID' => $master->setToNull([$item['valor']])[0] ? $item['valor'] : $valor, 'comentario' => $master->setToNull([$item['comentario']])[0] ? $item['comentario'] : $comentario];
-                        }
-                    } else {
+                $principal[$posicion] = ['preguntaID' => $key];
+                $valor = null;
+                $comentario = null;
 
-                        $secundario = ['respuestaID' => isset($value[array_key_first($value)]['valor']) ? $value[array_key_first($value)]['valor'] : $valor, 'comentario' => isset($value[array_key_first($value)]['comentario']) ? $value[array_key_first($value)]['comentario'] : $comentario];
+                if (COUNT($espirometria[$key]) > 1) {
+                    foreach ($value as $item) {
+                        $secundario[] = ['respuestaID' => $master->setToNull([$item['valor']])[0] ? $item['valor'] : $valor, 'comentario' => $master->setToNull([$item['comentario']])[0] ? $item['comentario'] : $comentario];
                     }
-                    $principal[$posicion]['respuestaID'] = $secundario;
-                    $secundario = [];
+                } else {
 
-                    $posicion++;
+                    $secundario = ['respuestaID' => isset($value[array_key_first($value)]['valor']) ? $value[array_key_first($value)]['valor'] : $valor, 'comentario' => isset($value[array_key_first($value)]['comentario']) ? $value[array_key_first($value)]['comentario'] : $comentario];
                 }
+                $principal[$posicion]['respuestaID'] = $secundario;
+                $secundario = [];
 
-                                                                                                                    
+                $posicion++;
+            }
+
+
             $response = $master->getByNext("sp_espiro_cuestionario_g", [json_encode($principal), $lastId, 5, $usuario_id]);
-            print_r($response);
-            exit;
             
-
-
         } else {
             # si no se puede insertar el turno, termina el ejecucion
             echo json_encode(array('response' => array('code' => 2, 'data' => "No hemos podido agendar su visita.")));
             exit;
-
-        } 
+        }
 
         echo json_encode(array('response' => array('code' => 1, 'data' => $prefolio[0]['PREFOLIO'])));
         exit;
@@ -189,7 +184,7 @@ switch ($api) {
         $idTipo = 1; # se inicializa en 1 para poder guardar el primer tipo
         $count = 0;
         $tipoArray = array();
-        
+
 
         foreach ($ultimosAntecedentes as $ultimo) {
 

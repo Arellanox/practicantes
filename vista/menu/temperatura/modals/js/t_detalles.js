@@ -119,6 +119,9 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
 
     selectRegistro = data
     if (select) {
+        $("#Termometro_actualizar").val("")
+        $("#lectura_actualizar").val("")
+        $("#observaciones_actualizar").val("")
         resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
         if (data['ESTATUS'] == 0) {
             editRegistro = true

@@ -51,7 +51,7 @@
                                     <label for="lectura">Lectura:</label>
                                     <div class="input-group mb-3">
 
-                                        <input type="number" value="0" step="0.01" name="lectura" placeholder="20 / 40" class="form-control input-form" required id="lectura">
+                                        <input type="number" value="0" step="0.01" name="lectura" class="form-control input-form" required id="lectura">
                                         <span class="input-span">°C</span>
                                     </div>
                                 </div>
