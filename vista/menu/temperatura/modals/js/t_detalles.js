@@ -43,7 +43,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { data: 'EQUIPO' },
         { data: 'TERMOMETRO' },
         {
-            data: 'FECHA_MODIFICADO', render: function (data) {
+            data: 'FECHA_REGISTRO', render: function (data) {
                 return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1]);
             }
         },
@@ -55,7 +55,13 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         },
         { data: 'USUARIO' },
         { data: 'OBSERVACIONES' },
-        { data: 'OBSERVACIONES_SUPERVISOR' }
+        { data: 'OBSERVACIONES_SUPERVISOR' },
+        {
+            data: 'FECHA_MODIFICADO', render: function (data) {
+                return formatoFecha2(data, [0, 1, 5, 2, 1, 1, 1]);
+            }
+        }
+
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
@@ -66,6 +72,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         { target: 5, title: 'Registrado', className: 'desktop' },
         { target: 6, title: 'Observaciones', className: 'none' },
         { target: 7, title: 'Observaciones del supervisor', className: 'none' },
+        { target: 8, title: 'Fecha de registro', className: 'none' }
 
     ],
     dom: 'Bfrtip',

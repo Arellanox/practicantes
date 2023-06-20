@@ -129,8 +129,14 @@ switch ($api) {
                 $result[$dia] = array();
             }
 
-            if ($i === 3) {
+            // if ($i === 3) {
+            //     $i = 1;
+            // }
+
+            if ($turno === "MATUTINO") {
                 $i = 1;
+            } else {
+                $i = 2;
             }
 
             $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro);

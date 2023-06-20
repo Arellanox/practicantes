@@ -146,9 +146,6 @@
                               cursor: pointer
                           }
 
-
-
-
                           .border-top {
                               border-top: 3px solid !important;
                           }
@@ -191,7 +188,7 @@
                           }
 
                           .dot {
-                              font-size: 30px;
+                              font-size: 20px;
                               text-align: center !important;
                           }
 
