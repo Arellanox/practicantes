@@ -155,15 +155,30 @@
                     <hr class="dropdown-divider m-2">
                     <textarea name="name-diagnostico" rows="10" cols="90" class="form-textarea-content"
                         placeholder="Diagnostico...." id="diagnostico-campo-consulta-1"></textarea>
-
-                    <textarea name="name-diagnostico" rows="10" cols="90" class="form-textarea-content"
-                        placeholder="Diagnostico" id="diagnostico-campo-consulta-2"></textarea>
-                    <div class=" d-flex justify-content-start m-2">
-                        <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
+                        <div class=" d-flex justify-content-start m-2">
+                            <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
                             id="btn-guardar-Diagnostico">
                             <i class="bi bi-paperclip"></i> Guardar
-                        </button>
+                            </button>
+                        </div>
+                        
+                    <div class="row">
+                        <div class="col-6 p-4">
+                            <textarea name="name-diagnostico" rows="3" cols="90" class="form-control input-form" placeholder="Diagnostico"
+                                id="diagnostico-campo-consulta-2"></textarea>
+                            <div class=" d-flex justify-content-start m-2">
+                                <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px" id="btn-agregar-Diagnostico">
+                                    <i class="bi bi-paperclip"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- list para ver los diagnosticos secundarios -->
+                        <div class="col-6" id="lista-diagnosticos-consultorio">
+                            <p>Lista de Diagnosticos actuales/agregados</p>
+                        </div>
                     </div>
+
                 </section>
 
                 <section id="card-solicitud-estudios" class="card mt-3">

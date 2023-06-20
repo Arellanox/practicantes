@@ -31,6 +31,11 @@ $(document).on('click', '#btn-guardar-Diagnostico', function (event) {
     texto = 'Se reemplazará por el valor anterior';
     alertaConsultorio('diagostico', texto)
 })
+$(document).on('click', '#btn-agregar-Diagnostico', function(event){
+    event.preventDefault()
+    texto = 'No podra actualizar el diagnostico'
+    alertaConsultorio('diagostico_agregar', texto)
+})
 $(document).on('click', '#btn-agregar-estudio', function (event) {
     event.preventDefault();
     texto = 'No podrá actualizarlo'
@@ -87,13 +92,24 @@ function guardarDatosConsultorio(btn) {
             dataJson_diagnostico = {
                 api: 1,
                 turno_id: pacienteActivo.array['ID_TURNO'],
-                diagnostico: $("#diagnostico-campo-consulta-1").val(),
-                diagnostico2: $("#diagnostico-campo-consulta-2").val()
+                diagnostico: $("#diagnostico-campo-consulta-1").val()
             }
             ajaxAwait(dataJson_diagnostico, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
                 alertToast('Diagnostico guardado!', 'success', 4000)
             })
             break;
+        case 'diagostico_agregar':
+            dataJson_diagnostico_agregar = {
+                api: 1,
+                turno_id: pacienteActivo.array['ID_TURNO'],
+                diagnostico2: $('#diagnostico-campo-consulta-2').val()
+            }
+            ajaxAwait(dataJson_diagnostico_agregar, 'consultorio2_api', {callbackAfter: true}, false, function(data){
+                alertToast('Diagnostico agregado!', 'success',4000)
+                $('#diagnostico-campo-consulta-2').val('')
+
+            })
+            break;    
 
         //agregar valor en el select en solicitud de estudios    
         case 'estudio':
