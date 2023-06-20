@@ -78,7 +78,7 @@ $("#formRegistrarAgenda").submit(function (event) {
   }
 
   if (validarCuestionarioEspiro()) {
-   
+
     return false;
   }
 
@@ -232,7 +232,7 @@ function mostrarAntecedente(btn, form) {
 }
 
 var tipoPaciente = "0"; //Particular por defecto
-$('#actualizarForm').click(async function () {
+$(document).on('click', '#actualizarForm', async function () {
 
   curp = $('#curp-paciente').val();
 
@@ -247,6 +247,8 @@ $('#actualizarForm').click(async function () {
 
   if (espiro) {
     await obtenerVistaEspiroPacientes('#formulario-espiro')
+    await obtenerDatosEspiroPacientes(curp)
+
   } else {
     $('#cuestionarioEspiro').fadeOut(100);
   }

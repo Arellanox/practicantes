@@ -1,6 +1,9 @@
 <?php
+
 require_once "../clases/master_class.php";
 require_once "../clases/token_auth.php";
+include_once "../clases/Pdf.php";
+include_once "../clases/correo_class.php";
 
 $tokenVerification = new TokenVerificacion();
 $tokenValido = $tokenVerification->verificar();
@@ -14,6 +17,7 @@ $master = new Master();
 #OBTENEMOS LA API POR MEDIO DEL POST
 $api = $_POST['api'];
 
+$curp = $_POST['curp'];
 $turno_id = $_POST['turno_id'];
 $archivo = $_POST['resultado_espiro[]'];
 $area_id = $_POST['id_area'];
@@ -63,6 +67,7 @@ switch ($api) {
         }
 
 
+        
         $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, $confirmado]);
 
         if ($confirmado == 1) {
@@ -78,52 +83,60 @@ switch ($api) {
                 $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5, null, null, null]);
                 $arreglo = array();
 
-                
+
                 foreach ($reportes as $reporte) {
 
                     $reporte_bimo = explode("practicantes", $reporte['RUTA']);
                     $arreglo[] = ".." . $reporte_bimo[1];
                 }
 
-              
+
                 //Si existe unimos el reporte con el cuestionario
                 $reporte_final = $master->joinPdf(array_filter($arreglo, function ($item) {
                     return $item !== "..";
                 }));
-            
-                
+
+
 
                 $fh = fopen("../" . $master->getRutaReporte() . "ESPIROMETRIA_" . basename($url), 'a');
                 fwrite($fh, $reporte_final);
                 fclose($fh);
 
-                
-                $espiro = $host.$master->getRutaReporte() . "ESPIROMETRIA_" . basename($url);
 
+                $espiro = $host . $master->getRutaReporte() . "ESPIROMETRIA_" . basename($url);
                 $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['espiro_resultados', 'RUTA_REPORTE_FINAL', $espiro, $id_turno, null]);
 
                 //Enviamos correo
                 $attachment = $master->cleanAttachFilesImage($master, $id_turno, 5, 1);
 
+
                 if (!empty($attachment[0])) {
                     $mail = new Correo();
-                    if ($mail->sendEmail('resultados', '[bimo] Resultados de espirometria', [$attachment[1]], null, $attachment[0], 1)) {
+                    if ($mail->sendEmail('resultados', '[bimo] Resultados de espirometria', [$attachment[1]], null, [$espiro], 1)) {
                         $master->setLog("Correo enviado.", "Espirometria resultados");
                     }
                 }
             } else {
-                $response = "No se recibió archivo.";
+                $response = "No ha cargado el reporte del EASYONE.";
             }
         }
-        
+
         break;
 
     case 2:
         #RECUPERAMOS TODOS LOS DATOS DEL FORMULARIO (PREGUNTAS, RESPUESTAS Y COMENTARIOS)
+        if(isset($curp)){
 
-        $resultados = $master->getByNext("sp_espiro_cuestionario_b", [$turno_id]);
-        $resultados[1][0]['PREGUNTAS'] = $resultados[0];
-        $response = $resultados[1];
+            $response = $master->getByProcedure("sp_recuperar_ultimo_cuestionario_espiro_b", [$curp]);
+
+        }else{
+
+            $resultados = $master->getByNext("sp_espiro_cuestionario_b", [$turno_id]);
+            $resultados[1][0]['PREGUNTAS'] = $resultados[0];
+            $response = $resultados[1];
+
+        }
+       
 
 
 

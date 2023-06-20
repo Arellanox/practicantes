@@ -2221,11 +2221,11 @@ function obtenerVistaEspiroPacientes(div) {
 }
 
 
-function obtenerDatosEspiroPacientes() {
+function obtenerDatosEspiroPacientes(curp) {
   return new Promise(resolve => {
     ajaxAwait({
       api: 2,
-      turno_id: dataSelect.array['turno']
+      curp: curp
     }, 'espirometria_api', { callbackAfter: true, returnData: false }, false, function (data) {
 
       //$('#1pr1').prop('checked', true)
