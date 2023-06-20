@@ -115,7 +115,7 @@ inputBusquedaTable('TablaTemperatura', tablaTemperatura, [
 
 
 rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
-selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: true }, async function (select, data, callback) {
+selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: true, noColumns: true }, async function (select, data, callback) {
 
     selectRegistro = data
     if (select) {
@@ -151,12 +151,12 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
         $("#observaciones_actualizar").val(data['OBSERVACIONES'])
 
     } else {
-        $("#formActualizarTemperatura").addClass('disable-element');
         $('#ActualizarTemperatura_title').html("")
         $("#Termometro_actualizar").val("")
         $("#lectura_actualizar").val("")
         $("#observaciones_actualizar").val("")
         $('.btn-liberar').fadeOut(0)
+        $("#formActualizarTemperatura").addClass('disable-element');
         resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
     }
 })
@@ -173,3 +173,17 @@ $("#formActualizarTemperatura").on("submit", function (e) {
 
 })
 
+
+
+const detallesTemperaturaModal = document.getElementById('detallesTemperaturaModal')
+detallesTemperaturaModal.addEventListener('show.bs.modal', event => {
+    setTimeout(() => {
+        $.fn.dataTable
+            .tables({
+                visible: true,
+                api: true
+            })
+            .columns.adjust();
+    }, 200);
+
+})

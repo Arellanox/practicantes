@@ -51,13 +51,14 @@
                                     $valor = floatval($valores[$dia][$turno]["valor"]);
                                     $valor_redondeado = round($valor);
                                     $color = $valores[$dia][$turno]['color'];
+                                    $id = $valores[$dia][$turno]['id'];
                                     if ($valor_redondeado == $valorAprox) {
                                         $dotId = "dot-$dia-$turno"; // Generar el ID del dot
 
                                         if ($valorAprox <= $max && $valorAprox >= $min) {
-                                            return "<td class='bg-grey empty turno-$turno dot dot-$color' id='$dotId'>&#8226;</td>";
+                                            return "<td class='td-hover bg-grey empty turno-$turno dot dot-$color' data_id='$id' id='$dotId'>&#8226;</td>";
                                         } else {
-                                            return "<td class='empty turno-$turno dot dot-$color' id='$dotId'>&#8226;</td>";
+                                            return "<td class='td-hover empty turno-$turno dot dot-$color' data_id='$id' id='$dotId'>&#8226;</td>";
                                         }
                                     }
                                 }

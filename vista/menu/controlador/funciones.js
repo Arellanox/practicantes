@@ -1688,6 +1688,7 @@ function configSelectTable(config) {
     movil: false, //Activa la version movil
     multipleSelect: false,
     OnlyData: false,
+    noColumns: false
   }
 
   Object.entries(defaults).forEach(([key, value]) => {
@@ -1941,8 +1942,10 @@ function selectTable(tablename, datatable,
 
     } else {
       //Manda a cargar la vista
-      $('.tab-second').fadeOut()
-      $(`#loaderDiv-${nameTable}`).fadeIn(0);
+      if (!config.noColumns) {
+        $('.tab-second').fadeOut()
+        $(`#loaderDiv-${nameTable}`).fadeIn(0);
+      }
 
       //Si esta seleccionando:
       dataDobleSelect = tr;

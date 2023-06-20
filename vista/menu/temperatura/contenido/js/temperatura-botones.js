@@ -55,6 +55,15 @@ $("#EquiposTemperaturasForm").on("submit", function (e) {
 
     $("#formCapturarTemperatura").trigger("reset")
 
+    setTimeout(() => {
+        $.fn.dataTable
+            .tables({
+                visible: true,
+                api: true
+            })
+            .columns.adjust();
+    }, 100);
+
 })
 
 $('#btn-desbloquear-equipos').on('click', function (e) {
@@ -199,7 +208,7 @@ $(document).on('submit', '#formAgregarComentario', (event) => {
                 CREADO_POR: '',
                 ID_REGISTRO_TEMPERATURA: 1,
                 COMENTARIO: '',
-
+                FECHA: '',
             }, '#content-comentarios-registros')
             alertToast('Comentario Agregado', 'success', 4000)
             mostrarComentariosDiaTemperatura();

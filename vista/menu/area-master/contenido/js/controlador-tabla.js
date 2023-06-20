@@ -141,7 +141,8 @@ selectTable('#TablaContenidoResultados', tablaContenido, { movil: true, reload: 
                     recuperarDatosEspiro(selectEstudio.array[0]['PREGUNTAS'])
                 }
 
-                if (datalist.CONFIRMADO_ESPIRO == 1) estadoFormulario(1)
+                if (datalist.CONFIRMADO_ESPIRO == 1 || selectEstudio.getguardado() == 2) estadoFormulario(1)
+
                 break;
             case 8: //Rayos X
                 $('#btn-inter-areas').fadeIn(0);
@@ -208,6 +209,8 @@ selectTable('#TablaContenidoResultados', tablaContenido, { movil: true, reload: 
                 botonesResultados('activar');
                 break;
         }
+
+
         if (selectEstudio.getguardado() == 1)
             estadoFormulario(2)
         // if (selectEstudio.getguardado() == 1 || selectEstudio.getguardado() == 2)
@@ -343,6 +346,7 @@ async function obtenerServicios(area, turno) {
 
                         }
                     }
+
 
                     if (trueResultados)
                         selectEstudio.setguardado(trueResultados)
