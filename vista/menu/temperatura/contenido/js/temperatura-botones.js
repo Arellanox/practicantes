@@ -195,6 +195,12 @@ $(document).on('submit', '#formAgregarComentario', (event) => {
             api: 8,
             id_registro_temperatura: id_registro_dor
         }, 'temperatura_api', 'formAgregarComentario', { callbackAfter: true }, false, (data) => {
+            agregarNota({
+                CREADO_POR: '',
+                ID_REGISTRO_TEMPERATURA: 1,
+                COMENTARIO: '',
+
+            }, '#content-comentarios-registros')
             alertToast('Comentario Agregado', 'success', 4000)
             mostrarComentariosDiaTemperatura();
         })
@@ -215,23 +221,7 @@ function mostrarComentariosDiaTemperatura() {
             for (const key in row) {
                 if (Object.hasOwnProperty.call(row, key)) {
                     const element = row[key];
-                    let html = `
-                        <div class="card m-3 p-3">
-                            <div class="row">
-                                <div class="col-10">
-                                    <h5>${element['CREADO_POR']}</h5>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-hover comentario-eliminar" data-bs-id="${element['ID_REGISTRO_TEMPERATURA']}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <p>${element['COMENTARIO']}</p>
-                        </div>
-                    `;
-
-                    html.append(html);
+                    agregarNota(element, '#content-comentarios-registros')
                 }
             }
 
@@ -241,4 +231,24 @@ function mostrarComentariosDiaTemperatura() {
     })
 
 
+}
+
+
+function agregarNota(element = [], div) {
+    let html = `<div class="card m-3 p-3">
+                    <div class="row">
+                        <div class="col-10">
+                            <h5>${element['CREADO_POR']}</h5>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-hover comentario-eliminar" data-bs-id="${element['ID_REGISTRO_TEMPERATURA']}">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p>${element['COMENTARIO']}</p>
+                </div>
+                    `;
+
+    $(div).append(html);
 }

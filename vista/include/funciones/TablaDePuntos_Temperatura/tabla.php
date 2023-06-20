@@ -111,6 +111,17 @@
                               width: 20px;
                           }
 
+                          .td-hover:hover {
+                              background-color: rgb(0 175 170 / 60%)
+                          }
+
+                          .td-hover {
+                              cursor: pointer
+                          }
+
+
+
+
                           .border-34 {
                               border-top: 3px solid !important;
                           }

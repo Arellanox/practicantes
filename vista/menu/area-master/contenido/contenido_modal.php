@@ -225,7 +225,7 @@ session_start();
                                     include 'forms/form_citologia.html';
                                     echo '</form>';
                                     break;
-                                //<!--Formulario de Espirometria -->
+                                    //<!--Formulario de Espirometria -->
                                 case 'formAreadeEspirometria':
                                     // echo '<form id="formAreadeEspirometria">';
                                     include 'forms/form_espiro.html';
@@ -272,14 +272,14 @@ session_start();
             <div class="modal-content">
                 <div class="modal-header header-modal">
                     <h5 class="modal-title" id="title-paciente_aceptar">Cargue los resultados de espirometría</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
                             <form id="subirResultadosEspiro">
                                 <h4>Seleccione el estudio de espirometría</h4>
-                                <input type="file" class="form-control input-form mt-3" name="resultado_espiro[]" id="resultado_espiro">
+                                <input type="file" class="form-control input-form mt-3" name="resultado_espiro[]" accept=".pdf" id="resultado_espiro">
                             </form>
                         </div>
 
