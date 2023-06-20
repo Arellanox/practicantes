@@ -31,24 +31,21 @@
                     width: 20px;
                 }
 
-                .border-34 {
+                .border8 {
                     border-top: 3px solid !important;
                 }
 
-                .border-25 {
+                .border2 {
                     border-bottom: 3px solid;
                 }
 
-                .background-25,
-                .background-26,
-                .background-27,
-                .background-28,
-                .background-29,
-                .background-30,
-                .background-31,
-                .background-32,
-                .background-33,
-                .background-34 {
+                .background2,
+                .background3,
+                .background4,
+                .background5,
+                .background6,
+                .background7,
+                .background8 {
                     background-color: #d8dfe1;
                 }
 
@@ -283,7 +280,7 @@
                     // Los datos de formulario
                     $datos = [
                         "api" => 7,
-                        "folio" => 3,
+                        "folio" => 1,
                     ];
                     // Crear opciones de la petición HTTP
                     $opciones = array(
@@ -369,7 +366,7 @@
                     }
 
                     // Generar las celdas de la tabla
-                    for ($j = -40; $j <= -20; $j++) {
+                    for ($j = 13; $j >= -3; $j--) {
                         echo "<tr class='border$j'>";
                         echo "<th class='celdasDias text$j'>" . $j . "</th>";
 

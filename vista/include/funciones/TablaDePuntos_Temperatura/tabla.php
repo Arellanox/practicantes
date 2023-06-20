@@ -7,6 +7,8 @@
                                 }
                                 ?>
                           </tr>
+
+
                           <?php
                             $url = "http://localhost/practicantes/api/temperatura_api.php";
                             // Los datos de formulario
@@ -32,6 +34,11 @@
                             foreach ($array['response'] as $key1 => $e) {
                                 $valores = $e;
                             }
+
+                            $dotInicial =  array_key_first($valores);
+                            $dotEnd =  array_key_last($valores);
+
+
 
 
                             function metodoCalculo($dia, $turno, $valorAprox)
@@ -174,8 +181,11 @@
 
                           #grafica canvas {
                               position: absolute;
-                              top: 100px;
-                              left: 0;
+
+                              top: 27px;
+                              left: 24px;
+                              pointer-events: none;
+
                           }
 
                           #equipo {
@@ -225,10 +235,11 @@
                               font-size: 15px;
                           }
 
-                          .table--container {
+                          /* .table--container {
+
                               display: flex !important;
                               justify-content: center;
-                          }
+                          } */
 
                           .container {
                               display: flex !important;
@@ -236,6 +247,9 @@
                               margin-left: auto;
                               margin-right: auto;
                           }
+
+
+
 
                           ;
                       </style>

@@ -12,29 +12,6 @@ $(document).on("click", ".btn-editar", function (e) {
 $(document).on('click', '.btn-liberar', function (event) {
     event.stopPropagation();
 
-    alertMensajeConfirm({
-        title: '¿Desea liberar este registro?',
-        text: 'Cualquier usuario que pueda registrar temperatura podrá actualizar el registro',
-        icon: 'warning',
-        confirmButtonText: 'Si, estoy seguro',
-        cancelButtonText: 'No'
-    }, () => {
-        ajaxAwait({
-            api: 6,
-            id_registro_temperatura: selectRegistro['ID_REGISTRO_TEMPERATURA'],
-            estatus: 0
-        }, 'temperatura_api', { callbackAfter: true }, false, () => {
-            // alertMensaje('success', '')
-            alertToast('Registro liberado', 'success', 4000)
-            if (selectTableFolio) {
-                console.log('si entro')
-                tablaTemperatura.ajax.reload()
-            } else {
-                console.log('No')
-                tablaTemperaturaFolio.ajax.reload()
-            }
-        })
-    }, 1)
 })
 
 
@@ -147,43 +124,121 @@ function CargarTemperatura() {
         // console.log(data);
 
         let dataJson = {
-            api: 1
+            api: 1,
+            Enfriador: DataEquipo['Enfriador']
         }
 
         if (editRegistro)
             dataJson["id_registro_temperatura"] = selectRegistro['ID_REGISTRO_TEMPERATURA']
 
-
+        form = ""
         switch (editRegistro) {
             case true:
                 console.log("esta actualizando nueva temperatura")
-                break; $("#formActualizarTemperatura").removeClass('disable-element');
+                form = "formActualizarTemperatura"
+                break;
             case false:
                 console.log("esta registrando una nueva temperatura")
+                form = "formCapturarTemperatura"
                 break;
             default:
                 console.log("no esta ni registrando ni actualizando")
+
                 break;
         }
 
-        // ajaxAwaitFormData(dataJson, 'temperatura_api', 'formCapturarTemperatura', { callbackAfter: true }, false, function (data) {
-        //     alertToast('Registro realizado correctamente', 'success', 4000)
-        //     $("#grafica").html("");
-        //     CrearTablaPuntos(DataMes['FOLIO']);
+        ajaxAwaitFormData(dataJson, 'temperatura_api', form, { callbackAfter: true }, false, function (data) {
+            alertToast('Registro realizado correctamente', 'success', 4000)
+            $("#grafica").html("");
+            CrearTablaPuntos(DataMes['FOLIO']);
 
 
-        //     $('#formCapturarTemperatura').trigger("reset");
-        //     resetFirma()
-
-        //     if (selectTableFolio) {
-        //         console.log('si entro')
-        //         tablaTemperatura.ajax.reload()
-        //     } else {
-        //         console.log('No')
-        //         tablaTemperaturaFolio.ajax.reload()
-        //     }
-        // })
+            $('#formCapturarTemperatura').trigger("reset");
+            $('#formActualizarTemperatura').trigger("reset");
+            resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
+            resetFirma(firma_guardar.ctx, firma_guardar.canvas);
+            if (selectTableFolio) {
+                console.log('si entro')
+                tablaTemperatura.ajax.reload()
+            } else {
+                console.log('No')
+                tablaTemperaturaFolio.ajax.reload()
+            }
+        })
     }, 1)
 }
 
 
+id_registro_dor = false
+$(document).on('click', '.td-hover', async function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    let dot = $(this)
+    id_registro_dor = dot.attr('data_id')
+
+
+    // await mostrarComentariosDiaTemperatura()
+    //Abre el modal
+    $('#modalComentariosRegistro').modal('show')
+
+})
+
+$(document).on('submit', '#formAgregarComentario', (event) => {
+    event.preventDefault();
+    alertMensajeConfirm({
+        title: '¿Está seguro de agregar este comentario?',
+        text: 'No podrás actualizarlo',
+        icon: 'info'
+    }, function () {
+        ajaxAwaitFormData({
+            api: 8,
+            id_registro_temperatura: id_registro_dor
+        }, 'temperatura_api', 'formAgregarComentario', { callbackAfter: true }, false, (data) => {
+            alertToast('Comentario Agregado', 'success', 4000)
+            mostrarComentariosDiaTemperatura();
+        })
+    }, 1)
+})
+
+$(document).on()
+
+//Muestra los comentarios
+function mostrarComentariosDiaTemperatura() {
+    return new Promise(function (resolve, reject) {
+        //Recupera los comentarios
+        ajaxAwait({
+            api: 9
+        }, 'temperatura_api', { callbackAfter: true, WithoutResponseData: true }, false, (row) => {
+            let div = $('#content-comentarios-registros')
+            div.html('');
+            for (const key in row) {
+                if (Object.hasOwnProperty.call(row, key)) {
+                    const element = row[key];
+                    let html = `
+                        <div class="card m-3 p-3">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h5>${element['CREADO_POR']}</h5>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-hover comentario-eliminar" data-bs-id="${element['ID_REGISTRO_TEMPERATURA']}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p>${element['COMENTARIO']}</p>
+                        </div>
+                    `;
+
+                    html.append(html);
+                }
+            }
+
+            resolve(1);
+        })
+
+    })
+
+
+}

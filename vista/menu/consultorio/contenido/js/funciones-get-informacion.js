@@ -1,3 +1,4 @@
+//Recupera todos los datos requeridos y los muestra del paciente
 function mostrarInformacionPaciente(idconsulta) {
     return new Promise(resolve => {
         
@@ -21,7 +22,7 @@ function mostrarInformacionPaciente(idconsulta) {
     })
 }
 
-//id_consulta en realidad esta enviandolo indefinido
+//Recupera y muestra todos los campos de consulta
 function recuperarDatosCampos(idconsulta) {
     return new Promise(resolve => {
 
@@ -30,23 +31,20 @@ function recuperarDatosCampos(idconsulta) {
             console.log(row)
             $('#nota-consulta-campo-consulta').val(row['NOTAS_CONSULTA'])
             $('#diagnostico-campo-consulta-1').val(row['DIAGNOSTICO'])
-            $('#diagnostico-campo-consulta-2').val(row['DIAGNOSTICO2'])
+            $('#plan-tratamiento-campo-consulta').val(row['PLAN_TRATAMIENTO'])
         })
         
-
             resolve(1)
 
 
     })
 }
 
-//de varios
+//recupera los registros de exploracion fisica en consultorio
 function recuperarExploracionFisicaConsulta2(id_turno) {
     return new Promise(resolve => {
 
         ajaxAwait({api: 2, turno_id: id_turno}, 'exploracion_clinica_api', { callbackAfter: true }, false, (data) => {
-
-
             let row = data.response.data;
             for (let i = 0; i < row.length; i++) {
                 agregarNotaConsulta(row[i]['DESCRIPCION'], null, row[i]['EXPLORACION'], '#notas-historial-consultorio', row[i]['ID_EXPLORACION_2_CLINICA'], 'eliminarExploracion')
@@ -59,7 +57,7 @@ function recuperarExploracionFisicaConsulta2(id_turno) {
     })
 }
 
-
+//Desactiva los elementos seleccionados en exploracion fisica en consultorio
 $(document).on('click', '.eliminarExploracion', function () {
     let id = $(this).attr('data-bs-id');
     let comentario = $(this);
@@ -74,24 +72,6 @@ $(document).on('click', '.eliminarExploracion', function () {
       confirmButtonText: "Aceptar",
       cancelButtonText: "Cancelar",
     }, function () {
-      // $.ajax({
-      //   data: {
-      //     api: 5,
-      //     id_exploracion_2_clinica: id
-      //   },
-      //   url: "../../../api/consulta_api.php",
-      //   type: "POST",
-      //   success: function (data) {
-      //     // alert("antes de la nota")
-      //     // if (mensajeAjax(data)) {
-      //     var parent_element = $(comentario).closest("div[class='card mt-3']");
-      //     console.log(parent_element)
-      //     $(parent_element).remove()
-      //     // }
-  
-      //     // alert("despues de la nota")
-      //   },
-      // });
       ajaxAwait({api: 5, id_exploracion_2_clinica: id}, 'exploracion_clinica_api',{ callbackAfter: true }, false, function (data){
         
         var parent_element = $(comentario).closest("div[class = 'card mt-3']");
@@ -102,4 +82,16 @@ $(document).on('click', '.eliminarExploracion', function () {
       })
     })
   });
+
+
+  //Recupera los datos de diagnostico en consultorio
+  function recuperarDiagnosticosConsulta2(id_turno){
+    return new Promise (resolve =>{
+
+
+
+      resolve(1)
+    })
+  
+  }
   
