@@ -978,7 +978,7 @@ function recuperarDatosEspiro(row) {
                 // PARA MOSTRAR AQUELLOS QUE SON INPUTS DE TIPO RADIO
                 case respuestas == 1 || respuestas == '1' || respuestas == 2 || respuestas == '2':
 
-                    $(`input[name="respuestas[${element.ID_P}][${element.ID_R}][valor]"]`).prop('checked', true)
+                    $(`input[id="p${element.ID_P}r${element.ID_R}"]`).prop('checked', true)
 
                     break;
 
@@ -986,6 +986,9 @@ function recuperarDatosEspiro(row) {
                 // PARA TODOS AQUELLOS INPUTS DE TIPO CHECKBOX QUE NO TIENEN UN COMENTARIO ANEXADO
                 case respuestas != 1 && respuestas != '1' && respuestas != 2 && respuestas != '2' && comentario == null:
 
+                    $(`input[id="p${element.ID_P}r${element.ID_R}"]`).prop('checked', true);
+
+                    //para el caso de los botones de no_aplica1 y no_aplica2
                     $(`input[name="respuestas[${element.ID_P}][${element.ID_R}][valor]"]`).prop('checked', true);
 
                     break;
@@ -994,11 +997,11 @@ function recuperarDatosEspiro(row) {
                 // // PARA TODOS AQUELLOS QUE SON INPUTS DE TIPO TEXT  QUE NO TIENEN RESPUESTA Y PARA AQUELLOS INPUTS DE TIPO CHECKBOX QUE CONTIENEN UN COMENTARIO
                 case comentario != null:
 
-                    $(`input[name="respuestas[${element.ID_P}][${element.ID_R}][valor]"]`).prop('checked', true);
+                    $(`input[id="p${element.ID_P}r${element.ID_R}"]`).prop('checked', true);
                     $(`input[id="p${element.ID_P}"]`).val(comentario);
 
                     //INSERTAMOS LA RESPUESTAS DE AQUELLAS PREGUNTAS QUE NO TIENEN UN ID DE RESPUESTA
-                    $(`input[name="respuestas[${element.ID_P}][0][comentario]"]`).val(comentario);
+                    $(`input[id="p${element.ID_P}"]`).val(comentario);
 
                     break;
 
