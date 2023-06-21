@@ -169,7 +169,7 @@ function CargarTemperatura() {
             if (selectTableFolio) {
                 console.log('si entro')
                 tablaTemperatura.ajax.reload()
-            } else if (data['NUEVO']) {
+            } else {
                 console.log('No')
                 tablaTemperaturaFolio.ajax.reload()
             }
@@ -182,6 +182,9 @@ id_registro_dor = false
 $(document).on('click', '.td-hover', async function (event) {
     event.preventDefault();
     event.stopPropagation();
+
+    session.permisos.SupTemp === 0 ? $("#formAgregarComentario").addClass("disable-element") : $("#formAgregarComentario").removeClass("disable-element")
+
 
     let dot = $(this)
     id_registro_dor = dot.attr('data_id')
