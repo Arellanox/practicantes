@@ -165,7 +165,7 @@ function CargarTemperatura() {
             $("#formActualizarTemperatura").addClass('disable-element');
             resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
             resetFirma(firma_guardar.ctx, firma_guardar.canvas);
-
+            firmaExist = false
             if (selectTableFolio) {
                 console.log('si entro')
                 tablaTemperatura.ajax.reload()
