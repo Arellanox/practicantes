@@ -79,8 +79,10 @@ switch ($api) {
             $response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
 
             if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
+
                 //Verificamos la ruta de los reportes para unirlos
                 $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5, null, null, null]);
+
                 $arreglo = array();
 
 
@@ -117,7 +119,7 @@ switch ($api) {
                     }
                 }
             } else {
-                $response = "No ha cargado el reporte del EASYONE.";
+                $response = "Es necesario cargar el estudio del EASYONE para poder confirmar";
             }
         }
 
@@ -145,17 +147,27 @@ switch ($api) {
         # GUARDAMOS EL PDF DEL REPORTE DEL SOFTWARE
 
         // solo guardamos la informacion del reporte. Sin confirmar
-        $response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
+        //$response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
 
-        if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
-            $response = "Ya existe un estudio para este paciente.";
-            break;
-        }
+        // if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
+        //     $response = "Ya existe un estudio para este paciente.";
+        //     break;
+        // }
 
         $destination = "../reportes/modulo/espirometria/$id_turno/";
         $r = $master->createDir($destination);
-
+        
+        #LE AÑADIMOS UN NOMBRE A NUESTRO ARCHIVO
         $name = $master->getByPatientNameByTurno($master, $id_turno);
+
+        // Verificar si el archivo existe
+        if (file_exists($destination. "EASYONE_$id_turno" . "_" . "$name")) {
+            
+            // Eliminar el archivo existente
+            unlink($destination . "EASYONE_$id_turno" . "_" . "$name");
+        }
+        
+
         $interpretacion = $master->guardarFiles($_FILES, "resultado_espiro", $destination, "EASYONE_$id_turno" . "_" . "$name");
 
         $ruta_archivo = str_replace("../", $host, $interpretacion[0]['url']);
