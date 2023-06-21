@@ -2,6 +2,9 @@
 var text
 var id
 var texto = ''
+var title = ''
+
+
 
 //Regresar a perfil de paciente
 $('#btn-regresar-vista').click(function () {
@@ -17,7 +20,7 @@ $('#btn-regresar-vista').click(function () {
 //alerta en general, sirve para todos los botons y btn se llama al switch y guardar consultorio
 function alertaConsultorio(btn) {
     alertMensajeConfirm({
-        title: '¿Deseas guardarlo?',
+        title: title,
         text: texto,
         icon: 'warning',
         showCancelButton: true,
@@ -29,40 +32,54 @@ function alertaConsultorio(btn) {
 //llamada de cada boton independientemente, se agrega un var globla para tener mensajes personalisados
 $(document).on('click', '#btn-guardar-nota-consulta', function (event) {
     event.preventDefault()
+    title = '¿Deseas guardarlo?';
     texto = 'Se reemplazará por el valor anterior';
-    alertaConsultorio('nota_consulta', texto)
+    alertaConsultorio('nota_consulta', title, texto)
 })
 $(document).on('click', '#btn-agregar-exploracion-clinina', function (event) {
     event.preventDefault()
+    title = '¿Deseas guardarlo?';
     texto = 'No podrá actualizarlo'
-    alertaConsultorio('exploracion_fisica', texto)
+    alertaConsultorio('exploracion_fisica', title, texto)
 })
 $(document).on('click', '#btn-guardar-Diagnostico', function (event) {
     event.preventDefault()
+    title = '¿Deseas guardarlo?';
     texto = 'Se reemplazará por el valor anterior';
-    alertaConsultorio('diagostico', texto)
+    alertaConsultorio('diagostico', title, texto)
 })
 $(document).on('click', '#btn-agregar-Diagnostico', function (event) {
     event.preventDefault()
+    title = '¿Deseas guardarlo?';
     texto = 'No podra actualizar el diagnostico'
-    alertaConsultorio('diagostico_agregar', texto)
+    alertaConsultorio('diagostico_agregar', title, texto)
 })
 $(document).on('click', '#btn-agregar-estudio', function (event) {
     event.preventDefault();
+    title = '¿Deseas guardarlo?';
     texto = 'No podrá actualizarlo'
-    alertaConsultorio('estudio', texto)
+    alertaConsultorio('estudio', title, texto)
 })
 $(document).on('click', '#btn-guardar-Receta', function (event) {
     event.preventDefault()
+    title = '¿Deseas guardarlo?';
     texto = 'No podrá actualizarlo'
-    alertaConsultorio('receta', texto)
+    alertaConsultorio('receta', title, texto)
 })
 $(document).on('click', '#btn-guardar-plan-tratamiento', function (event) {
     event.preventDefault()
+    title = '¿Deseas guardarlo?';
     texto = 'Se reemplazará por el valor anterior'
-    alertaConsultorio('plan_tratamiento', texto)
+    alertaConsultorio('plan_tratamiento', title, texto)
 })
 
+//Boton para terminar consulta
+$(document).on('click', '#btn-consulta-terminar', function(event){
+    event.preventDefault()
+    title = '¿Deseas concluir la consulta médica?';
+    texto = 'Confirmarás y enviarás el resultado y no podrás volver a modificarlo.'
+    alertaConsultorio('terminar_consulta',title, texto)
+})
 
 //Insertar datos en consultorio
 function guardarDatosConsultorio(btn) {
@@ -91,10 +108,9 @@ function guardarDatosConsultorio(btn) {
             }
             ajaxAwait(dataJson_fisica, 'exploracion_clinica_api', { callbackAfter: true }, false, function (data) {
                 let titulo = $('#select-exploracion-clinica option:selected').text();
-
                 alertToast('Exploración cargada!', 'success', 4000)
-
                 agregarNotaConsulta(titulo, null, $("#text-exploracion-clinica").val(), '#notas-historial-consultorio', data.response.data, 'eliminarExploracion')
+                $("#text-exploracion-clinica").val('')
             })
             break;
 
@@ -183,6 +199,15 @@ function guardarDatosConsultorio(btn) {
                 alertToast('Dato guardado!', 'success', 4000)
             })
             break;
+
+        //terminar consulta, pasar del valor 0 al 1    
+        case 'terminar_consulta':
+            ajaxAwait({api:1, turno_id: pacienteActivo.array['ID_TURNO'], consulta_terminada: 1}, 'consultorio2_api', {callbackAfter: true}, false, function(data){
+                alertToast('Consulta Finalizada!', 'success', 4000)
+
+                obtenerContenidoAntecedentes(pacienteActivo.array)
+            })
+            break;    
 
         default:
             alertToast('No selecciono ninguno de los campos', 'info', 1500)
@@ -397,7 +422,7 @@ TablaListaDiagnosticos = $("#TablaListaDiagnosticos").DataTable({
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all', width: '5px' },
-        { target: 1, title: 'Diagnostico', className: 'all' },
+        { target: 1, title: 'Diagnóstico', className: 'all' },
         { target: 2, title: '<i class="bi bi-trash"></i>', className: 'all', width: '5px' }
     ]
 })

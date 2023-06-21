@@ -1,3 +1,5 @@
+
+//Para iniciar el motivo consulta una vez iniciado...
 $(document).on('submit', '#formMotivoConsultaMedica', function (e) {
     e.preventDefault();
 
@@ -12,16 +14,12 @@ $(document).on('submit', '#formMotivoConsultaMedica', function (e) {
         }, 'consultorio2_api', 'formMotivoConsultaMedica', { callbackAfter: true }, false, (data) => {
             data = data.response.data;
 
+            //Se mandan a la funcion obtenerConsultorioConsultaMedica 
             obtenerConsultorioConsultaMedica(pacienteActivo.array, data);
 
+            //Lo oculta una vez realizada la insercion
             $('#modalMotivoConsultaMedica').modal('hide')
-
 
         })
     }, 1)
-    // Crear un ajax el  cual pueda crear  una consulta medica, y recuperar los datos del  mismo,  motivo de consulta,  fecha ...etc, y mandarlo como segundo parametro a la funcion
-    // obtenerConsultorioConsultaMedica
-    // Despues cerrar modal ($('#modalMotivoConsultaMedica').modal('hide'))<--Listo
-
-    //Meter ajax para guardar el motivo de motivo de consulta
 })

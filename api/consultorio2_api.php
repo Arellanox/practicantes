@@ -11,6 +11,7 @@ $notas_consulta = $_POST['notas_consulta'];
 $diagnostico = $_POST['diagnostico'];
 $plan_tratamiento = $_POST['plan_tratamiento'];
 $activo = isset($_POST['ACTIVO']) ? null : 1;
+$consulta_terminada = $_POST['consulta_terminada'];
 
 #Insertar en Iniciar consulta medica
 $motivo_consulta = $_POST['motivo_consulta'];
@@ -36,6 +37,7 @@ $parametros = $master->setToNull(array(
     $diagnostico,
     $diagnostico2,
     $plan_tratamiento,
+    $consulta_terminada
 ));
 
 
