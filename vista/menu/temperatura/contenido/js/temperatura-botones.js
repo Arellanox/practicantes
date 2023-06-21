@@ -1,13 +1,13 @@
-$(document).on("click", ".btn-editar", function (e) {
-    e.stopPropagation()
+// $(document).on("click", ".btn-editar", function (e) {
+//     e.stopPropagation()
 
-    editRegistro = true
-    if (selectRegistro && !(validarPermiso('SupTemp') ? false : parseInt(selectRegistro['ESTATUS']))) {
-        firstSelect(true)
-    } else {
-        alertToast("No ha seleccionado ningun registro", "info", 4000)
-    }
-})
+//     editRegistro = true
+//     if (selectRegistro && !(validarPermiso('SupTemp') ? false : parseInt(selectRegistro['ESTATUS']))) {
+//         firstSelect(true)
+//     } else {
+//         alertToast("No ha seleccionado ningun registro", "info", 4000)
+//     }
+// })
 
 $(document).on('click', '.btn-liberar', function (event) {
     event.stopPropagation();
@@ -109,7 +109,7 @@ $(document).on("click", ".reset_firma", function (e) {
 $("#formCapturarTemperatura").on("submit", function (e) {
     e.preventDefault();
 
-
+    editRegistro = false;
     if (firmaExist == false) {
         if (validarFormulario(firma_guardar.canvas, firma_guardar.ctx, firma_guardar.firma) == false) {
             return false;

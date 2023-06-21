@@ -175,7 +175,7 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
 
 $("#formActualizarTemperatura").on("submit", function (e) {
     e.preventDefault();
-
+    editRegistro = true;
     if (validarFormulario(firma_actualizar.canvas, firma_actualizar.ctx, firma_actualizar.firma) == false) {
         return false;
     }
