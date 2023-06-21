@@ -14,26 +14,38 @@ $("#formEnviarCorreoIngreso").submit(function (event) {
   }).then((result) => {
     if (result.isConfirmed) {
       // Esto va dentro del AJAX
-      $.ajax({
-        data: {
-          api: 1, //Prueba
-          correo: $('#inputURLSolicitudCorreo').val()
-        },
-        url: "../../../api/preregistro_correo_token_api.php", //URL prueba
-        type: "POST",
-        beforeSend: function () {
-          document.getElementById("btn-rechazar-paciente").disabled = true;
-        },
-        success: function (data) {
-          data = jQuery.parseJSON(data);
-          if (mensajeAjax(data)) {
-            alertMensaje('info', '¡Solicitud enviada!', 'Se ha enviado el token de acceso para registrarse.');
-            document.getElementById("btn-rechazar-paciente").disabled = false;
-            $("#modalSolicitudIngresoParticulares").modal("hide");
-            tablaRecepcionPacientesIngrersados.ajax.reload();
-          }
-        }
-      });
+      ajaxAwaitFormData({
+        api: 1
+      }, 'preregistro_correo_token_api', 'formEnviarCorreoIngreso', { callbackAfter: true, resetForm: true }, false, (data) => {
+
+        alertMensaje('info', '¡Solicitud enviada!', 'Se ha enviado el token de acceso para registrarse.');
+        $("#modalSolicitudIngresoParticulares").modal("hide");
+
+        $('#btn-correo-enviar').prop('disabled', false);
+
+
+      })
+      // $.ajax({
+      //   data: {
+      //     api: 1, //Prueba
+      //     correo: $('#inputURLSolicitudCorreo').val(),
+      //     cuestionario : hola
+      //   },
+      //   url: "../../../api/preregistro_correo_token_api.php", //URL prueba
+      //   type: "POST",
+      //   beforeSend: function () {
+      //     document.getElementById("btn-rechazar-paciente").disabled = true;
+      //   },
+      //   success: function (data) {
+      //     data = jQuery.parseJSON(data);
+      //     if (mensajeAjax(data)) {
+      //       alertMensaje('info', '¡Solicitud enviada!', 'Se ha enviado el token de acceso para registrarse.');
+      //       document.getElementById("btn-rechazar-paciente").disabled = false;
+      //       $("#modalSolicitudIngresoParticulares").modal("hide");
+      //       tablaRecepcionPacientesIngrersados.ajax.reload();
+      //     }
+      //   }
+      // });
     }
   })
   event.preventDefault();

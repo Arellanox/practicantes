@@ -145,7 +145,7 @@ switch ($api) {
             }
 
 
-            $response = $master->getByNext("sp_espiro_cuestionario_g", [json_encode($principal), $lastId, 5, $usuario_id]);
+            $response = $master->getByNext("sp_espiro_cuestionario_g", [json_encode($principal), $lastId, 5, $usuario_id, 0]);
             
         } else {
             # si no se puede insertar el turno, termina el ejecucion
