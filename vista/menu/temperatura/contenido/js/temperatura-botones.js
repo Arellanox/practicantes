@@ -187,6 +187,7 @@ $(document).on('click', '.td-hover', async function (event) {
     id_registro_dor = dot.attr('data_id')
 
     $("#formAgregarComentario").trigger("reset")
+
     await mostrarComentariosDiaTemperatura()
     //Abre el modal
     $('#modalComentariosRegistro').modal('show')
@@ -254,6 +255,7 @@ function mostrarComentariosDiaTemperatura() {
             for (const key in row) {
                 if (Object.hasOwnProperty.call(row, key)) {
                     const element = row[key];
+                    $("#fecha_comentario").html(formatoFecha2(element['FECHA'], [0, 1, 5, 2, 1, 1, 1]))
                     agregarNota(element, '#content-comentarios-registros')
                 }
             }
@@ -268,12 +270,10 @@ function mostrarComentariosDiaTemperatura() {
 
 
 function agregarNota(element = [], div) {
-    $("#fecha_comentario").html("")
-
-    $("#fecha_comentario").html(formatoFecha2(element['FECHA'], [0, 1, 5, 2, 1, 1, 1]))
-
-
-    let html = `<div class="card m-3 p-3">
+    if (element['COMENTARIO'] == null) {
+        html = ""
+    } else {
+        html = `<div class="card m-3 p-3">
                     <div class="row">
                         <div class="col-10">
                             <h5>${element['CREADO_POR']}</h5>
@@ -287,6 +287,9 @@ function agregarNota(element = [], div) {
                     <p>${element['COMENTARIO']}</p>
                 </div>
                     `;
+
+    }
+
 
     $(div).append(html);
 }
