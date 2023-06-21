@@ -28,11 +28,24 @@ function recuperarDatosCampos(idconsulta) {
 
     ajaxAwait({ api: 2, id_consultorio2: idconsulta }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
       let row = data.response.data[0]
-      console.log(row)
-      $('#nota-consulta-campo-consulta').val(row['NOTAS_CONSULTA'])
-      $('#diagnostico-campo-consulta-1').val(row['DIAGNOSTICO'])
-      $('#plan-tratamiento-campo-consulta').val(row['PLAN_TRATAMIENTO'])
+      // console.log(row['CONSULTA_TERMINADA'])
+
+      if(row['CONSULTA_TERMINADA'] == 1){
+        $('#body-js').find('button, textarea, input, select').prop('disabled', true);      
+        
+        // console.log("Los campos han sido desactivados")
+        $('#nota-consulta-campo-consulta').val(row['NOTAS_CONSULTA'])
+        $('#diagnostico-campo-consulta-1').val(row['DIAGNOSTICO'])
+        $('#plan-tratamiento-campo-consulta').val(row['PLAN_TRATAMIENTO'])
+
+      }else{
+        $('#nota-consulta-campo-consulta').val(row['NOTAS_CONSULTA'])
+        $('#diagnostico-campo-consulta-1').val(row['DIAGNOSTICO'])
+        $('#plan-tratamiento-campo-consulta').val(row['PLAN_TRATAMIENTO'])
+      }
+
     })
+
 
     resolve(1)
 
@@ -49,7 +62,7 @@ function recuperarExploracionFisicaConsulta2(id_turno) {
       for (let i = 0; i < row.length; i++) {
         agregarNotaConsulta(row[i]['DESCRIPCION'], null, row[i]['EXPLORACION'], '#notas-historial-consultorio', row[i]['ID_EXPLORACION_2_CLINICA'], 'eliminarExploracion')
       }
-      console.log(row)
+      // console.log(row)
 
     })
 

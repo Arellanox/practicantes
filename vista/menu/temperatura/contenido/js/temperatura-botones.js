@@ -183,7 +183,7 @@ $(document).on('click', '.td-hover', async function (event) {
     event.preventDefault();
     event.stopPropagation();
 
-    session.permisos.SupTemp === 0 ? $("#formAgregarComentario").addClass("disable-element") : $("#formAgregarComentario").removeClass("disable-element")
+    session.permisos.SupTemp == 0 ? $("#formAgregarComentario").addClass("disable-element") : $("#formAgregarComentario").removeClass("disable-element")
 
 
     let dot = $(this)

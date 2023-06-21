@@ -185,7 +185,7 @@ function obtenerConsultorioConsultaMedica(data, idconsulta) {
     // Obtener metodos para el dom
     $.getScript("contenido/js/funciones_globales.js").done(function () { })
     //guardar datos consultorio
-    $.getScript("contenido/js/guardar-consultorio.js")
+    $.getScript("contenido/js/guardar-consultorio.js").done(function(){ })
 
     $.getScript("contenido/js/funciones-get-informacion.js").done(function () {
       obtenerConsultaMedica(data, idconsulta);
@@ -201,11 +201,8 @@ async function obtenerConsultaMedica(data, idconsulta) {
   await mostrarInformacionPaciente(idconsulta);
   // Recuperar datos de la consulta
   await recuperarDatosCampos(idconsulta)
-
+  //Recupera los datos de exploracion fisica en consultorio
   await recuperarExploracionFisicaConsulta2(data['ID_TURNO'])
-
-  //recupera los datos de diagnostico2 de consulta
-  // await recuperarDiagnosticosConsulta2(data['ID_TURNO'])
 
 
   await obtenerPanelInformacion(data['ID_TURNO'], "signos-vitales_api", 'signos-vitales', '#signos-vitales', '_col3');
