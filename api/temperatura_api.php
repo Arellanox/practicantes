@@ -154,6 +154,10 @@ switch ($api) {
         $response = $master->insertByProcedure('sp_temperaturas_comentarios_g', $comentarios);
         break;
     case 9:
+        #Buscar comentarios por el ID de registro de la temperatura
+        $response = $master->getByProcedure("sp_temperaturas_comentarios_b", [$id_registro_temperatura]);
+        break;
+    case 10:
         $response = $master->insertByProcedure('sp_temperaturas_comentarios_e', $comentarios_delete);
         break;
     default:

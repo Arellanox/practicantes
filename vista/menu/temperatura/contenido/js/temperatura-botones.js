@@ -162,6 +162,7 @@ function CargarTemperatura() {
 
             $('#formCapturarTemperatura').trigger("reset");
             $('#formActualizarTemperatura').trigger("reset");
+            $("#formActualizarTemperatura").addClass('disable-element');
             resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
             resetFirma(firma_guardar.ctx, firma_guardar.canvas);
 
@@ -185,8 +186,8 @@ $(document).on('click', '.td-hover', async function (event) {
     let dot = $(this)
     id_registro_dor = dot.attr('data_id')
 
-
-    // await mostrarComentariosDiaTemperatura()
+    $("#formAgregarComentario").trigger("reset")
+    await mostrarComentariosDiaTemperatura()
     //Abre el modal
     $('#modalComentariosRegistro').modal('show')
 
@@ -211,18 +212,42 @@ $(document).on('submit', '#formAgregarComentario', (event) => {
             }, '#content-comentarios-registros')
             alertToast('Comentario Agregado', 'success', 4000)
             mostrarComentariosDiaTemperatura();
+            $("#formAgregarComentario").trigger("reset")
         })
     }, 1)
 })
 
-$(document).on()
+$(document).on("click", ".comentario-eliminar", function (event) {
+    event.preventDefault();
+
+    let dot = $(this)
+    id_comentario = dot.attr('data-cm-id')
+
+
+    alertMensajeConfirm({
+        title: '¿Está seguro de eliminar este comentario?',
+        text: 'No podrás revertirlo',
+        icon: 'info'
+    }, function () {
+        ajaxAwait({
+            api: 10,
+            id_comentario: id_comentario
+        }, 'temperatura_api', { callbackAfter: true }, false, (response) => {
+            alertToast('Comentario Eliminado', 'success', 4000)
+            mostrarComentariosDiaTemperatura();
+        })
+
+    }, 1)
+
+})
 
 //Muestra los comentarios
 function mostrarComentariosDiaTemperatura() {
     return new Promise(function (resolve, reject) {
         //Recupera los comentarios
         ajaxAwait({
-            api: 9
+            api: 9,
+            id_registro_temperatura: id_registro_dor
         }, 'temperatura_api', { callbackAfter: true, WithoutResponseData: true }, false, (row) => {
             let div = $('#content-comentarios-registros')
             div.html('');
@@ -243,13 +268,18 @@ function mostrarComentariosDiaTemperatura() {
 
 
 function agregarNota(element = [], div) {
+    $("#fecha_comentario").html("")
+
+    $("#fecha_comentario").html(formatoFecha2(element['FECHA'], [0, 1, 5, 2, 1, 1, 1]))
+
+
     let html = `<div class="card m-3 p-3">
                     <div class="row">
                         <div class="col-10">
                             <h5>${element['CREADO_POR']}</h5>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-hover comentario-eliminar" data-bs-id="${element['ID_REGISTRO_TEMPERATURA']}">
+                            <button type="button" class="btn btn-hover comentario-eliminar" data-cm-id="${element['ID_TEMPERATURA_COMENTARIOS']}" data-bs-id="${element['ID_REGISTRO_TEMPERATURA']}">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
