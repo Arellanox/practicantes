@@ -42,7 +42,7 @@ $(document).on('click', '#btn-guardar-Diagnostico', function (event) {
     texto = 'Se reemplazará por el valor anterior';
     alertaConsultorio('diagostico', texto)
 })
-$(document).on('click', '#btn-agregar-Diagnostico', function(event){
+$(document).on('click', '#btn-agregar-Diagnostico', function (event) {
     event.preventDefault()
     texto = 'No podra actualizar el diagnostico'
     alertaConsultorio('diagostico_agregar', texto)
@@ -94,7 +94,7 @@ function guardarDatosConsultorio(btn) {
 
                 alertToast('Exploración cargada!', 'success', 4000)
 
-                agregarNotaConsulta(titulo ,null, $("#text-exploracion-clinica").val(), '#notas-historial-consultorio', data.response.data, 'eliminarExploracion')
+                agregarNotaConsulta(titulo, null, $("#text-exploracion-clinica").val(), '#notas-historial-consultorio', data.response.data, 'eliminarExploracion')
             })
             break;
 
@@ -109,7 +109,7 @@ function guardarDatosConsultorio(btn) {
                 alertToast('Diagnostico guardado!', 'success', 4000)
             })
             break;
-        
+
         //Agrega diagnosticos secundarios    
         case 'diagostico_agregar':
             dataJson_diagnostico_agregar = {
@@ -117,15 +117,15 @@ function guardarDatosConsultorio(btn) {
                 turno_id: pacienteActivo.array['ID_TURNO'],
                 diagnostico2: $('#diagnostico-campo-consulta-2').val()
             }
-            ajaxAwait(dataJson_diagnostico_agregar, 'consultorio2_api', {callbackAfter: true}, false, function(data){
+            ajaxAwait(dataJson_diagnostico_agregar, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
 
-                alertToast('Diagnostico agregado!', 'success',4000)
+                alertToast('Diagnostico agregado!', 'success', 4000)
                 $('#diagnostico-campo-consulta-2').val('')
 
                 TablaListaDiagnosticos.ajax.reload();
 
             })
-            break;    
+            break;
 
         //agregar valor en el select en solicitud de estudios    
         case 'estudio':
@@ -365,7 +365,7 @@ TablaListaDiagnosticos = $("#TablaListaDiagnosticos").DataTable({
     info: false,
     paging: false,
     scrollY: '38vh',
-    scrollCollapse: true, 
+    scrollCollapse: true,
     ajax: {
         dataType: 'json',
         data: { api: 6, turno_id: pacienteActivo.array['ID_TURNO'] },
@@ -398,14 +398,14 @@ TablaListaDiagnosticos = $("#TablaListaDiagnosticos").DataTable({
     columnDefs: [
         { target: 0, title: '#', className: 'all', width: '5px' },
         { target: 1, title: 'Diagnostico', className: 'all' },
-        { target: 2, title: '<i class="bi bi-trash"></i>', className: 'all' , width: '5px'}
+        { target: 2, title: '<i class="bi bi-trash"></i>', className: 'all', width: '5px' }
     ]
 })
 
 inputBusquedaTable('TablaListaDiagnosticos', TablaListaDiagnosticos, [], [], 'col-12')
 
 //Desactiva el campo seleccionado en la tabla de diagnosticos
-function desactivarTablaDiagnosticos(){
+function desactivarTablaDiagnosticos() {
     var fecha_diagnostico = $(this).data("id");
 
     alertMensajeConfirm({
