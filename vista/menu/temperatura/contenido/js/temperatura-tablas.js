@@ -111,7 +111,7 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
 
     $('.detallesTemperaturatitle').html(`Detalles de las temperaturas del equipo (${DataEquipo.Descripcion}) - ${formatoFecha2(DataMes['FECHA_REGISTRO'], [0, 1, 3, 0]).toUpperCase()}`)
-
+    $("#formActualizarTemperatura").addClass('disable-element');
     // Abre un modal del detalle
     $('#detallesTemperaturaModal').modal('show');
     tablaTemperatura.ajax.reload()
@@ -181,7 +181,7 @@ function CrearTablaPuntos(id_grupo) {
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
-                ctx.lineWidth = 5;
+                ctx.lineWidth = 3;
                 ctx.strokeStyle = "blue";
                 ctx.stroke();
             }
