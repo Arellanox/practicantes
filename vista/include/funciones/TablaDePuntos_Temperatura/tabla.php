@@ -56,9 +56,9 @@
                                         $dotId = "dot-$dia-$turno"; // Generar el ID del dot
 
                                         if ($valorAprox <= $max && $valorAprox >= $min) {
-                                            return "<td class='td-hover bg-grey empty turno-$turno dot dot-$color' data_id='$id' id='$dotId'>&#8226;</td>";
+                                            return "<td class='td-hover bg-grey empty turno-$turno'  data_id='$id' id='$dotId'><div class='dot dot-$color'></div></td>";
                                         } else {
-                                            return "<td class='td-hover empty turno-$turno dot dot-$color' data_id='$id' id='$dotId'>&#8226;</td>";
+                                            return "<td class='td-hover empty turno-$turno'  data_id='$id' id='$dotId'><div class='dot dot-$color'></div></td>";
                                         }
                                     }
                                 }
@@ -134,7 +134,7 @@
                           #grafica td.empty {
                               margin-left: auto;
                               margin-right: auto;
-                              padding: 3.4px;
+                              padding: 0px;
                               width: 20px;
                           }
 
@@ -144,6 +144,11 @@
 
                           .td-hover {
                               cursor: pointer
+                          }
+
+                          .td-hover::after {
+                              background-color: #ffa209;
+                              border-radius: 50%;
                           }
 
                           .border-top {
@@ -188,16 +193,41 @@
                           }
 
                           .dot {
-                              font-size: 20px;
+                              /* max-height: 20px;
+                              max-width: 10px; */
+                              /* font-size: 20px;
+                              text-align: center !important; */
+                              /* font-size: 38px;
                               text-align: center !important;
+                              /* padding: 0px; */
+                              /* margin: 0px; 
+                              height: 0px;
+                              */
+
+                              padding-left: 3px;
+                              padding-bottom: 11px;
+
                           }
 
-                          .dot-blue {
-                              color: blue;
+                          .dot::before {
+                              content: '';
+                              display: inline-block;
+                              width: 12px;
+                              height: 12px;
+                              -moz-border-radius: 7.5px;
+                              -webkit-border-radius: 7.5px;
+                              border-radius: 7.5px;
+                              z-index: 100;
+                              position: absolute;
+                              /* background-color: #69b6d5; */
                           }
 
-                          .dot-mostaza {
-                              color: #ffa209;
+                          .dot-blue::before {
+                              background-color: blue;
+                          }
+
+                          .dot-mostaza::before {
+                              background-color: #ffa209;
                           }
 
                           #grafica canvas {

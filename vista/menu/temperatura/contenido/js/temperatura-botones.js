@@ -194,6 +194,8 @@ $(document).on('click', '.td-hover', async function (event) {
 
     $("#formAgregarComentario").trigger("reset")
 
+    alertToast('Cargando comentarios, espere un momento', 'success', 4000)
+
     await mostrarComentariosDiaTemperatura()
     //Abre el modal
     $('#modalComentariosRegistro').modal('show')

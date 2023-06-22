@@ -39,7 +39,7 @@ TablaGrupos = $('#TablaGrupos').DataTable({
         { data: 'COUNT' },
         {
             data: 'FOLIO', render: function (data) {
-                let html = `<div class="noClicked" id="GrupoInfoCreditoBtn">
+                let html = `<div class="noClicked d-flex justify-content-center" id="GrupoInfoCreditoBtn" style="width: 40px">
                 ${data}
                 </div>`
                 return html
@@ -60,8 +60,8 @@ TablaGrupos = $('#TablaGrupos').DataTable({
         // {defaultContent: 'En progreso...'}
     ],
     columnDefs: [
-        { target: 0, title: '#', className: 'all' },
-        { target: 1, title: 'Folio', className: 'all' },
+        { target: 0, title: '#', className: 'all', width: '1%' },
+        { target: 1, title: 'Folio', className: 'all', width: '20px' },
         { target: 2, title: 'Procedencia', className: 'desktop' },
         { target: 3, title: 'Creacion', className: 'none' },
         { target: 4, title: 'Fecha de Factura', className: 'none' },
