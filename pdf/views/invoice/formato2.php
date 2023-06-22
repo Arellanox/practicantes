@@ -20,8 +20,16 @@
 
                 }
 
-                body {
+
+
+                #body {
                     background-color: aqua;
+                    position: fixed;
+                    top: -40px;
+                    left: -40px;
+                    right: -40px;
+                    /* bottom: 40px; */
+                    height: 111%;
                 }
 
                 #grafica th,
@@ -214,9 +222,14 @@
 
         </head>
 
-        <div>
+        <div id="body">
 
-            <div class="container " style="display: flex;">
+            <div id="container-equipo">
+
+
+            </div>
+
+            <!-- <div class="container " style="display: flex;">
                 <div id="equipo">
                     <div class="equipo-header">
                         <h5>EQUIPO</h5>
@@ -311,7 +324,7 @@
 
 
             </div>
-
+ -->
 
             <!-- Tabla de puntos -->
             <!-- <div>
