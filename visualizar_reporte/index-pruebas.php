@@ -33,7 +33,7 @@ $usuario_id = $_SESSION['id'];
 
 $api = 'temperatura';
 $turno_id = null;
-$area_id = "temperatura";
+$area_id = -1;
 // // $area_id = 12;
 // $turno_id = 742;
 
@@ -144,9 +144,9 @@ switch ($api) {
         $r = $master->reportador($master, $turno_id,  $area_id, 'fast_checkup', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
 
-    case 'temperaturas':
-        $r = $master->reportador($master, $turno_id,  $area_id, 'temperaturas', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
-        break;
+        // case 'temperaturas':
+        //     $r = $master->reportador($master, $turno_id,  $area_id, 'temperaturas', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        //     break;
 
     case 'consulta_medica':
         $r = $master->reportador($master, $turno_id,  $area_id, 'consulta_medica', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);

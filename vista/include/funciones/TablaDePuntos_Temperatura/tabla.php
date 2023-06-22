@@ -165,8 +165,8 @@
                           }
 
                           /* .turno-2 {
-                border: 2px dashed black !important;
-                } */
+                            border: 2px dashed black !important;
+                            } */
 
                           .turno-2 {
                               border-left: 2px dashed black !important;
@@ -187,6 +187,7 @@
                           }
 
                           .text-rango {
+                              /* font-size: 20px !important; */
                               font-weight: bold !important;
                               padding-top: 5px;
                               padding-bottom: 5px;
@@ -236,7 +237,6 @@
                               top: 27px;
                               left: 24px;
                               pointer-events: none;
-
                           }
 
                           #equipo {

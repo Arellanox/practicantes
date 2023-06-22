@@ -148,12 +148,7 @@
                     font-size: 15px;
                 }
 
-                .table--container {
-                    display: flex !important;
-                    justify-content: center;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
+
 
                 .container {
                     display: flex !important;

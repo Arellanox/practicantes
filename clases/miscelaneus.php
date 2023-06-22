@@ -335,6 +335,7 @@ class Miscelaneus
         #Recuperamos el cuerpo y asignamos titulo si es necesario
         switch ($area_id) {
             case 0:
+            case '0':
                 # para las etiquetas
                 $arregloPaciente = $this->getBodyInfoLabels2($master, $turno_id);
                 $fecha_resultado = $infoPaciente[0]['FECHA_CARPETA'];
@@ -452,12 +453,12 @@ class Miscelaneus
                 $infoPaciente[0]['CLAVE_IMAGEN'] = $infoPaciente[array_key_last($infoPaciente)]['CLAVE_ESPIRO'];
 
                 break;
-            case "temperatura":
-                echo "si entro";
-                exit;
+            case -1: #Formato de temperatura de equipos
+                // echo "si entro";
+                // exit;
+                $arregloPaciente = $this->getBodyTemperatura($master);
                 break;
         }
-
 
 
         if ($area_id == 0) {
