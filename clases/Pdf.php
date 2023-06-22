@@ -69,6 +69,7 @@ class Reporte
             case 'fast_checkup':
             case 'reporte_masometria':
             case 'espirometria': //nuevo case de espirometria
+            case 'temperatura':
             case 'corte':
                 $prueba = generarQRURL($pie['clave'], $pie['folio'], $pie['modulo']);
                 break;
@@ -194,6 +195,11 @@ class Reporte
                 $template = render_view('invoice/corte.php', $view_vars);
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'portrait');
+                break;
+            case 'temperatura':
+                $template = render_view('invoice/formato2.php', $view_vars);
+                $pdf->loadHtml($template);
+                $pdf->setPaper('letter', 'landscape');
                 break;
 
             default:

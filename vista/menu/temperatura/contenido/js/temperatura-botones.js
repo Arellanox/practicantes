@@ -138,15 +138,18 @@ function CargarTemperatura() {
         }
 
         form = ""
+        text = ""
         switch (editRegistro) {
             case true:
                 console.log("esta actualizando nueva temperatura")
                 dataJson["id_registro_temperatura"] = selectRegistro['ID_REGISTRO_TEMPERATURA']
                 form = "formActualizarTemperatura"
+                text = "Registro actualizado correctamente"
                 break;
             case false:
                 console.log("esta registrando una nueva temperatura")
                 form = "formCapturarTemperatura"
+                text = "Registro realizado correctamente"
                 break;
             default:
                 console.log("no esta ni registrando ni actualizando")
@@ -155,7 +158,7 @@ function CargarTemperatura() {
         }
 
         ajaxAwaitFormData(dataJson, 'temperatura_api', form, { callbackAfter: true }, false, function (data) {
-            alertToast('Registro realizado correctamente', 'success', 4000)
+            alertToast(text, 'success', 4000)
             $("#grafica").html("");
             CrearTablaPuntos(DataMes['FOLIO']);
 
@@ -258,7 +261,9 @@ function mostrarComentariosDiaTemperatura() {
             for (const key in row) {
                 if (Object.hasOwnProperty.call(row, key)) {
                     const element = row[key];
-                    $("#fecha_comentario").html(formatoFecha2(element['FECHA'], [0, 1, 5, 2, 1, 1, 1]))
+                    // formatoFecha2(element['FECHA'], [0, 1, 3, 0]).toUpperCase();
+                    // formatoFecha2(element['FECHA'], [0, 1, 5, 2, 1, 1, 1])
+                    $("#fecha_comentario").html(formatoFecha2(element['FECHA'], [3, 1, 3, 1, 1, 1, 1]).toUpperCase())
                     agregarNota(element, '#content-comentarios-registros')
                 }
             }
@@ -278,6 +283,7 @@ function agregarNota(element = [], div) {
     } else {
         html = `<div class="card m-3 p-3">
                     <div class="row">
+                     <p>${formatoFecha2(element['FECHA_COMENTARIO'], [0, 1, 5, 2, 1, 1, 1])}</p>
                         <div class="col-10">
                             <h5>${element['CREADO_POR']}</h5>
                         </div>

@@ -319,7 +319,7 @@ class Miscelaneus
 
     public function reportador($master, $turno_id, $area_id, $reporte, $tipo = 'url', $preview = 0, $lab = 0, $id_consulta = 0, $cliente_id = 1, $id_cotizacion = 8)
     {
-        
+
         #Recupera la información personal del paciente
         $infoPaciente = $master->getByProcedure('sp_informacion_paciente', [$turno_id]);
         $infoPaciente = [$infoPaciente[count($infoPaciente) - 1]];
@@ -452,8 +452,13 @@ class Miscelaneus
                 $infoPaciente[0]['CLAVE_IMAGEN'] = $infoPaciente[array_key_last($infoPaciente)]['CLAVE_ESPIRO'];
 
                 break;
+            case "temperatura":
+                echo "si entro";
+                exit;
+                break;
         }
-        
+
+
 
         if ($area_id == 0) {
             $area_id = 6;
@@ -477,18 +482,19 @@ class Miscelaneus
         $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre . "-" . $infoPaciente[0]['ETIQUETA_TURNO'] . '-' . $fecha_resultado);
         $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
 
-        //  print_r(json_encode($arregloPaciente));
-        //  print_r(json_encode($infoPaciente[0]));
+        // print_r(json_encode($arregloPaciente));
+        // print_r(json_encode($infoPaciente[0]));
         // exit;
         $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
+
         // $pdf = '';
-        
+
         $renderpdf = $pdf->build();
-        
+
         if ($lab == 1 && $tipo == 'url') {
 
             $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
-         }
+        }
         return $renderpdf;
     }
 
@@ -1302,7 +1308,8 @@ class Miscelaneus
         return $formattedParams;
     }
 
-    public function getBodyEspiro($master, $turno_id){
+    public function getBodyEspiro($master, $turno_id)
+    {
         # json para el reporte de espirometria.
         $respuestas = $master->getByProcedure("sp_espiro_cuestionario_b", [$turno_id]);
 
@@ -1339,5 +1346,47 @@ class Miscelaneus
         }
 
         return $cuestionario;
+    }
+
+    public function getBodyTemperatura($master)
+    {
+        $folio = 1;
+        $response = $master->getByProcedure('sp_temperatura_formato_b', [$folio]);
+
+        $result = array();
+        $i = 1;
+        foreach ($response as $key => $e) {
+            $dia = $e['DIA'];
+            $turno = $e['TURNO'];
+            $valor = $e['valor'];
+            $intervalo_min = $e['INTERVALO_MIN'];
+            $intervalo_max = $e['INTERVALO_MAX'];
+            $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
+            $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
+            if (!isset($result[$dia])) {
+                $result[$dia] = array();
+            }
+
+            // if ($i === 3) {
+            //     $i = 1;
+            // }
+
+            if ($turno === "MATUTINO") {
+                $i = 1;
+            } else {
+                $i = 2;
+            }
+
+            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro);
+            $i++;
+        };
+
+        $response = [];
+        $response['EQUIPO']['INTERVALO_MIN'] = $intervalo_min;
+        $response['EQUIPO']['INTERVALO_MAX'] = $intervalo_max;
+
+        $response['DIAS'] = $result;
+
+        return $response;
     }
 }

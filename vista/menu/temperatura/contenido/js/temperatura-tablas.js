@@ -98,9 +98,11 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
         DataMes = data
         tablaTemperatura.ajax.reload()
         SelectedFoliosData = data;
+        $("#GenerarPDFTemperatura").fadeIn(0)
         callback('In')
     } else {
         selectTableFolio = false;
+        $("#GenerarPDFTemperatura").fadeOut(0)
         callback('Out')
     }
 }, async function (select, data, callback) {
