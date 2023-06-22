@@ -74,11 +74,11 @@ $(document).on('click', '#btn-guardar-plan-tratamiento', function (event) {
 })
 
 //Boton para terminar consulta
-$(document).on('click', '#btn-consulta-terminar', function(event){
+$(document).on('click', '#btn-consulta-terminar', function (event) {
     event.preventDefault()
     title = '¿Deseas concluir la consulta médica?';
     texto = 'Confirmarás y enviarás el resultado y no podrás volver a modificarlo.'
-    alertaConsultorio('terminar_consulta',title, texto)
+    alertaConsultorio('terminar_consulta', title, texto)
 })
 
 //Insertar datos en consultorio
@@ -202,12 +202,12 @@ function guardarDatosConsultorio(btn) {
 
         //terminar consulta, pasar del valor 0 al 1    
         case 'terminar_consulta':
-            ajaxAwait({api:1, turno_id: pacienteActivo.array['ID_TURNO'], consulta_terminada: 1}, 'consultorio2_api', {callbackAfter: true}, false, function(data){
+            ajaxAwait({ api: 1, turno_id: pacienteActivo.array['ID_TURNO'], consulta_terminada: 1 }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
                 alertToast('Consulta Finalizada!', 'success', 4000)
 
                 obtenerContenidoAntecedentes(pacienteActivo.array)
             })
-            break;    
+            break;
 
         default:
             alertToast('No selecciono ninguno de los campos', 'info', 1500)
