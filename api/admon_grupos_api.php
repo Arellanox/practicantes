@@ -35,10 +35,10 @@ switch ($api) {
 
         if ($facturado == 1) {
             # agregar datos de factura.
-            $response = $master->insertByProcedure("sp_admon_grupos_g", [$id_grupo, $descripcion, $cliente_id, $usuario_id, $facturado, $usuario_id, $factura, $detalle]);
+            $response = $master->insertByProcedure("sp_admon_grupos_g", [$id_grupo, $descripcion, $cliente_id, $usuario_id, $facturado, $usuario_id, $factura, json_encode($detalle)]);
         } else {
             # agregar datos de creacion de grupo.
-            $response = $master->insertByProcedure("sp_admon_grupos_g", [$id_grupo, $descripcion, $cliente_id, $usuario_id, $facturado, null, null, $detalle]);
+            $response = $master->insertByProcedure("sp_admon_grupos_g", [$id_grupo, $descripcion, $cliente_id, $usuario_id, $facturado, null, null, json_encode($detalle)]);
         }
 
         break;
