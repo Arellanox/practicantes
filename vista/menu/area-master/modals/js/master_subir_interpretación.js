@@ -145,20 +145,35 @@ $('#btn-confirmar-reporte').click(function (event) {
 //Formulario Para Los Resultados de Espirometria
 $("#btn-subir-resultados-espiro").click(async function (event) {
     event.preventDefault();
+
+    Swal.fire({
+        title: '¿¡Está seguro de subir este reporte de EASYONE!?',
+        text: "¡Asegurece que sea el reporte correcto! : )",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',  
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, subir reporte',
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
     
-    await ajaxAwaitFormData({
-        id_turno: dataSelect.array['turno'],
-        api: 3
-    }, 'espirometria_api', 'subirResultadosEspiro', { callbackAfter: true }, false, function () {
-        alertToast('El reporte ya ha sido guardado', 'success', 4000);
+            ajaxAwaitFormData({
+                id_turno: dataSelect.array['turno'],
+                api: 3
+            }, 'espirometria_api', 'subirResultadosEspiro', { callbackAfter: true }, false, function () {
+                alertToast('El reporte ya ha sido guardado', 'success', 4000);
 
-        obtenerServicios(areaActiva, dataSelect.array['turno'])
+                obtenerServicios(areaActiva, dataSelect.array['turno'])
+            })
+
+            $('#ModalSubirResultadosEspiro').modal('hide');
+
+            event.preventDefault();
+        }
     })
+})
 
-    $('#ModalSubirResultadosEspiro').modal('hide');
-
-    event.preventDefault();
-});
 
 
 
