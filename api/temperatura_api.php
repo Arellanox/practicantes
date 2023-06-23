@@ -148,6 +148,7 @@ switch ($api) {
         $response['EQUIPO']['INTERVALO_MAX'] = $intervalo_max;
 
         $response['DIAS'] = $result;
+
         break;
     case 8:
         #Agregar Comentarios Superivisor 

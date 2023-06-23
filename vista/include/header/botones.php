@@ -231,7 +231,7 @@ $menu = $_POST['menu']; ?>
 
   <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
 
-    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="GenerarPDFTemperatura">
+    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none ;" id="GenerarPDFTemperatura">
       <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
     </button>
 
