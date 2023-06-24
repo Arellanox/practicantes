@@ -131,11 +131,9 @@ selectTable('#TablaContenidoResultados', tablaContenido, { movil: true, reload: 
                 document.getElementById(formulario).reset()
                 $(`#${formulario}`).html('');
                 $(`#${formulario}`).html(formEspiroHTML)
-                // $(`#${formulario} .collapse`).collapse('hide')
-
-                // $('#pregunta42').collapse('show')
-                // $('#pregunta43').collapse('show')
-                //$(`#${formulario} .collapse`).collapse('show')
+                $('#sintomasPaciente').html('');
+                $('#sintomasPaciente').fadeOut();
+              
                 if (selectEstudio.array.length) {
                     //console.log(selectEstudio.array[0]['PREGUNTAS'])
                     recuperarDatosEspiro(selectEstudio.array[0]['PREGUNTAS'])
@@ -966,10 +964,14 @@ function btnNutricionInbody(e) {
 
 function recuperarDatosEspiro(row) {
 
+    let html = '';
+    const respuestasIDR = [];
+
     for (const key in row) {
         if (Object.hasOwnProperty.call(row, key)) {
             const element = row[key];
-
+            
+         
             respuestas = element.ID_R;
             comentario = element.COMENTARIO
 
@@ -977,50 +979,49 @@ function recuperarDatosEspiro(row) {
 
                 // PARA MOSTRAR AQUELLOS QUE SON INPUTS DE TIPO RADIO
                 case respuestas == 1 || respuestas == '1' || respuestas == 2 || respuestas == '2':
-
                     $(`input[id="p${element.ID_P}r${element.ID_R}"]`).prop('checked', true)
-
                     break;
-
-
                 // PARA TODOS AQUELLOS INPUTS DE TIPO CHECKBOX QUE NO TIENEN UN COMENTARIO ANEXADO
                 case respuestas != 1 && respuestas != '1' && respuestas != 2 && respuestas != '2' && comentario == null:
-
                     $(`input[id="p${element.ID_P}r${element.ID_R}"]`).prop('checked', true);
-
                     //para el caso de los botones de no_aplica1 y no_aplica2
                     $(`input[name="respuestas[${element.ID_P}][${element.ID_R}][valor]"]`).prop('checked', true);
-
                     break;
 
-
-                // // PARA TODOS AQUELLOS QUE SON INPUTS DE TIPO TEXT  QUE NO TIENEN RESPUESTA Y PARA AQUELLOS INPUTS DE TIPO CHECKBOX QUE CONTIENEN UN COMENTARIO
+                // // PARA TDOS AQUELLOS QUE SON INPUTS DE TIPO TEXT  QUE NO TIENEN RESPUESTA Y PARA AQUELLOS INPUTS DE TIPO CHECKBOX QUE CONTIENEN UN COMENTARIO
                 case comentario != null:
-
                     $(`input[id="p${element.ID_P}r${element.ID_R}"]`).prop('checked', true);
                     $(`input[id="p${element.ID_P}"]`).val(comentario);
-
                     //INSERTAMOS LA RESPUESTAS DE AQUELLAS PREGUNTAS QUE NO TIENEN UN ID DE RESPUESTA
                     $(`input[id="p${element.ID_P}"]`).val(comentario);
-
                     break;
-
             }
 
             //MOSTRAMOS LOS COLLAPSE DE TODAS AQUELLAS PREGUNTAS QUE LO CONTIENEN
             let parent = $('div[class="form-check form-check-inline col-12 mb-2"]');
             let children = $(parent).children(`div[id="p${element.ID_P}r${element.ID_R}"]`);
             children.collapse('show');
-
             $(`textarea[name="respuestas[${element.ID_P}][${element.ID_R}][comentario]"]`).val(comentario)
-
-
             let childrenCondiciones = $(parent).children(`div[id="pregunta${element.ID_P}"]`);
             childrenCondiciones.collapse('hide');
+
+
+            //MOSTRAR RESPUESTAS ESPECIFICAS
+            if (element.ID_R == 3 || element.ID_R == 4 || element.ID_R == 14) {
+                respuestasIDR.push(element.RESPUESTA)
+                $('#sintomasPaciente').fadeIn();
+                
+            }
+
         }
-
-
     }
+ 
+    html += '<p>El paciente cuenta con las siguientes condiciones: </p><br>'
+    respuestasIDR.forEach(respuesta => {
+        html += `<li>${respuesta}</li>`;
+    });
+    $('#sintomasPaciente').html(html);
+
 
 
 }

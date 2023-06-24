@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado de interpretación de Historia Clinica</title>
+    <title>Resultado de interpretación de Espirometría</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
@@ -280,7 +280,7 @@ $encode_firma = base64_encode($ruta_firma);
         <?php
         $titulo = 'Checkup Clínica y Prevención';
         $tituloPersonales = 'Informacón del paciente';
-        $subtitulo = 'Historia Clínica';
+        $subtitulo = 'Espirometría';
         $encabezado->FECHA_RESULTADO = $encabezado->FECHA_RESULTADO_ESPIRO;
         include 'includes/header.php';
         ?>

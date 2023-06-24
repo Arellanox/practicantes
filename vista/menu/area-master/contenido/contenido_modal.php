@@ -99,7 +99,8 @@ session_start();
     </div>
     <div class="col-12 col-xl-4 tab-second" id="tab-reporte" style="margin-right: -5px !important;display:none">
         <div class="card mt-3 p-3" id="panel">
-            <div class="" id="divAreaMasterResultados">
+            <div class="" id="
+            ">
                 <div class="row">
                     <div class="col-12">
                         <h4>Resultados</h4>
@@ -149,9 +150,15 @@ session_start();
                         <div class="accordion" id="resultadosServicios-areas">
 
                         </div>
+                    </div>
+
+                    
+                    <div class="mt-4" id="sintomasPaciente">
 
                     </div>
                 <?php } ?>
+
+
             </div>
         </div>
     </div>
