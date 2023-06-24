@@ -111,7 +111,15 @@
     <div class="row">
         <div class="col-12 col-lg-12">
             <div class="card mt-3 p-3">
-                <h5></h5>
+                <!-- <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="observaciones">Agregar Factor de correción:</label>
+                            <input type="text" name="observaciones" value="" class="form-control input-form" required id="observaciones">
+                            <input type="hidden" id="firma_guardar" name="firma" required />
+                        </div>
+                    </div>
+                </div> -->
 
                 <div class="table--container" id="grafica">
 

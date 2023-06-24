@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuestionario de Espirometría</title>
+    <title>Consultorio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
@@ -421,10 +421,71 @@ if (!isset($qr)) {
     </div>
 
     <!-- body -->
-    <div class="invoice-content">
-        <h1>Cuerpo</h1>
+    <div class="invoice-content row">
+        <section id="card-nota-consulta" class="card mt-3">
+            <h4 class="m-3">Nota de consulta</h4>
+            <hr class="dropdown-divider m-2">
+        </section>
+        <section id="card-exploracion-clinica" class="card mt-3">
+            <h4 class="m-3">Exploración física</h4>
+            <hr class="dropdown-divider m-2">
+
+            <div class="row" style="margin:0">
+                <div id="notas-historial-consultorio" class="mt-3">
+                    <h8>Listado de las exploraciones fisicas</h8>
+                    <hr class="dropdown-divider m-2">
+                </div>
+            </div>
+        </section>
+
+        <section id="card-diagnostico" class="card mt-3">
+            <h4 class="m-3">Diagnóstico</h4>
+            <hr class="dropdown-divider m-2">
+
+            <div class="row">
+                <div class="col-6 p-4">
+                    <p>Diagnóstico principal</p>
+                    <hr class="dropdown-divider m-2">
+                </div>
+                <div class="col-6">
+                    <p>Lista de Diagnosticos secundarios</p>
+                </div>
+                <hr class="dropdown-divider m-2">
+            </div>
+        </section>
+
+        <section id="card-solicitud-estudios" class="card mt-3">
+            <h4 class="m-3">Solicitud de estudios</h4>
+            <hr class="dropdown-divider m-2">
+            <div class="row m-2">
+                <div class="col-8">
+                    <p>Lista de estudios solicitados</p>
+                </div>
+                <hr class="dropdown-divider m-2">
+            </div>
+        </section>
+
+
+        <section id="card-receta" class="card mt-3">
+            <h4 class="m-3">Receta</h4>
+            <hr class="dropdown-divider m-2">
+            <div id="recetas-medicamentos">
+                <div class="row">
+                    <div class="col-4">
+                        <p>Lista de medicamentos Guardados</p>
+                    </div>
+                </div>
+                <hr class="dropdown-divider m-2">
+            </div>
+        </section>
+
+        <section id="card-plan-tratamiento" class="card mt-3">
+            <h4 class="m-3">Plan de Tratamiento</h4>
+            <hr class="dropdown-divider m-2">
+        </section>
+
+
     </div>
 </body>
-
 
 </html>

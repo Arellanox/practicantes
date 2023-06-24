@@ -71,6 +71,7 @@ class Reporte
             case 'espirometria': //nuevo case de espirometria
             case 'temperatura':
             case 'corte':
+            case 'consultorio2': #<--Consultorio2 (Creado Angel)    
                 $prueba = generarQRURL($pie['clave'], $pie['folio'], $pie['modulo']);
                 break;
             default:
@@ -201,6 +202,12 @@ class Reporte
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'landscape');
                 break;
+            
+            case 'consultorio2':
+                $template = render_view('invoice/consultor2.php', $view_vars);
+                $pdf->loadHtml($template);
+                $pdf->setPaper('letter', 'landscape');
+                break;    
 
             default:
                 $template = render_view('invoice/reportes.php', $view_vars);
