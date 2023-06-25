@@ -408,24 +408,15 @@ if (!isset($qr)) {
                 </tr>
             </tbody>
         </table>
-        <hr style="height: 0.5px; background-color: black ;">
-        <p style="text-align: center;"><small>
-                <strong style="font-size: 11px;">Avenida José Pagés Llergo No. 150 Interior 1, Colonia Arboledas, Villahermosa Tabasco, C.P. 86079</strong> <br>
-                <strong style="font-size: 11px;">Teléfonos: </strong>
-                <strong style="font-size: 11px;">993 634 0250, 993 634 6245</strong>
-                <strong style="font-size: 11px;">Correo electrónico:</strong>
-                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">resultados@</strong>
-                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">bimo-lab</strong>
-                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">.com</strong>
-            </small></p>
-    </div>
 
     <!-- body -->
     <div class="invoice-content row">
         <section id="card-nota-consulta" class="card mt-3">
             <h4 class="m-3">Nota de consulta</h4>
             <hr class="dropdown-divider m-2">
+            <p><?php  ?></p>
         </section>
+
         <section id="card-exploracion-clinica" class="card mt-3">
             <h4 class="m-3">Exploración física</h4>
             <hr class="dropdown-divider m-2">
@@ -484,8 +475,24 @@ if (!isset($qr)) {
             <hr class="dropdown-divider m-2">
         </section>
 
-
     </div>
+
+        <hr style="height: 0.5px; background-color: black ;">
+        <p style="text-align: center;"><small>
+                <strong style="font-size: 11px;">Avenida José Pagés Llergo No. 150 Interior 1, Colonia Arboledas, Villahermosa Tabasco, C.P. 86079</strong> <br>
+                <strong style="font-size: 11px;">Teléfonos: </strong>
+                <strong style="font-size: 11px;">993 634 0250, 993 634 6245</strong>
+                <strong style="font-size: 11px;">Correo electrónico:</strong>
+                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">resultados@</strong>
+                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">bimo-lab</strong>
+                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">.com</strong>
+            </small></p>
+    </div>
+
+
+
+
+
 </body>
 
 </html>

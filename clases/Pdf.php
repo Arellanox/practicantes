@@ -204,7 +204,7 @@ class Reporte
                 break;
             
             case 'consultorio2':
-                $template = render_view('invoice/consultor2.php', $view_vars);
+                $template = render_view('invoice/consultorio2.php', $view_vars);
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'landscape');
                 break;    
