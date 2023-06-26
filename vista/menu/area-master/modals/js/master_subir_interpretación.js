@@ -157,7 +157,7 @@ $("#btn-subir-resultados-espiro").click(async function (event) {
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-    
+
             ajaxAwaitFormData({
                 id_turno: dataSelect.array['turno'],
                 api: 3
@@ -174,6 +174,38 @@ $("#btn-subir-resultados-espiro").click(async function (event) {
     })
 })
 
+
+//Subir resultados de audiometria
+$("#btn-subir-resultados-audio").click(async function (event) {
+    event.preventDefault();
+
+    Swal.fire({
+        title: '¿¡Está seguro de subir este estudio!?',
+        text: "¡Asegurece que sea el estudio correcto! : )",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, subir estudio',
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            ajaxAwaitFormData({
+                id_turno: dataSelect.array['turno'],
+                api: 1
+            }, 'audiometria_api', 'subirResultadosAudio', { callbackAfter: true }, false, function () {
+                alertToast('El estuido ya ha sido guardado', 'success', 4000);
+
+                obtenerServicios(areaActiva, dataSelect.array['turno'])
+            })
+
+            $('#ModalSubirResultadosAudio').modal('hide');
+
+            event.preventDefault();
+        }
+    })
+})
 
 
 
