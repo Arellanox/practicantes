@@ -162,7 +162,7 @@ function fadeRegistro(tipe) {
 
 
 function CrearTablaPuntos(id_grupo) {
-    $.post(`${http}${servidor}/${appname}/vista/include/funciones/TablaDePuntos_Temperatura/tabla.php`, { folio: id_grupo }, function (html) {
+    $.post("http://localhost/practicantes/vista/include/funciones/TablaDePuntos_Temperatura/tabla.php", { folio: id_grupo }, function (html) {
         $("#grafica").html(html);
     }).done(
 
