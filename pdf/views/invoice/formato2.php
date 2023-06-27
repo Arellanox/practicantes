@@ -327,7 +327,7 @@
  -->
 
             <!-- Tabla de puntos -->
-            <!-- <div>
+            <div>
                 <table id="grafica">
                     <tr>
                         <th class="celdasDias"></th>
@@ -435,7 +435,7 @@
                             }
                         }
 
-                        if (raangoTD($valorAprox, $min, $max)) {
+                        if ($valorAprox <= ($max - 1) && $valorAprox >= $min) {
                             return "<td class='bg-grey empty turno-$turno'></td>";
                         } else {
                             return "<td class='empty turno-$turno background$valorAprox'></td>";
@@ -487,7 +487,7 @@
 
                 </table>
 
-            </div> -->
+            </div>
 
         </div>
 

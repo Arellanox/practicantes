@@ -40,7 +40,7 @@
                             $dotInicial =  array_key_first($valores);
                             $dotEnd =  array_key_last($valores);
 
-                            function redondear($valor, $valorAprox)
+                            function redondear($valor, $valorAprox, $min,  $max)
                             {
 
                                 $explode = explode('.', $valor);
@@ -59,6 +59,16 @@
 
                                 $pixeles = (($explode[1] / 100) * 30) + 10;
 
+                                if ($valor >= $max) {
+                                    $pixeles = 10;
+                                    $explode[0] = $max;
+                                }
+
+                                if ($valor <= $min) {
+                                    $pixeles = 10;
+                                    $explode[0] = $min;
+                                }
+
 
                                 return [$explode[0], $pixeles . "px"];
 
@@ -66,19 +76,17 @@
                                 // return $explode[0];
                             }
 
-                            function metodoCalculo($dia, $turno, $valorAprox)
+                            function metodoCalculo($dia, $turno, $valorAprox, $valores, $min, $max)
                             {
-                                global $valores;
-                                global $max;
-                                global $min;
-                                if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
-
-
+                                // global $valores;
+                                // global $max;
+                                // global $min;
+                                if ($valores[$dia][$turno]) {
 
                                     // $valor = floatval($valores[$dia][$turno]["valor"]);
                                     // $valor_redondeado = round($valor);
                                     $valor = $valores[$dia][$turno]["valor"];
-                                    $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox);
+                                    $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, ($min - 5), ($max + 5));
                                     $valor_redondeado = $valor_turno[0];
                                     $valor_decimal_px = $valor_turno[1];
 
@@ -109,7 +117,7 @@
                                 } else if ($j == $min) {
                                     echo "<tr class='border-bottomm'>";
                                 } else {
-                                    echo "<tr class='border$j'>";
+                                    echo "<tr>";
                                 }
 
 
@@ -124,9 +132,9 @@
                                 $prevDot = null; // Dot previo para conectar con líneas
 
                                 for ($i = 1; $i <= 31; $i++) {
-                                    echo metodoCalculo($i, 1, $j);
-                                    echo metodoCalculo($i, 2, $j);
-                                    echo metodoCalculo($i, 3, $j);
+                                    echo metodoCalculo($i, 1, $j, $valores, $min, $max);
+                                    echo metodoCalculo($i, 2, $j, $valores, $min, $max);
+                                    echo metodoCalculo($i, 3, $j, $valores, $min, $max);
                                     /* $dot3 = metodoCalculo($i, 3, $j); */
 
                                     // if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
@@ -147,6 +155,16 @@
                                 }
                                 echo "</tr>";
                             }
+
+
+                            // echo "<tr class='border'>";
+                            // echo "<th class='celdasDias' style='min-heigth: 20px'></th>";
+                            // for ($i = 1; $i <= 31; $i++) {
+                            //     echo "<td class='bg-grey empty '></td>";
+                            //     echo "<td class='bg-grey empty '></td>";
+                            //     echo "<td class='bg-grey empty '></td>";
+                            // }
+                            // echo "</tr>";
                             ?>
                       </table>
 
