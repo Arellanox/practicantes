@@ -384,7 +384,7 @@ async function panelResultadoPaciente(row, area) {
     $('#mostrarResultado').fadeOut()
 
     switch (area) {
-        case 3: case 10: case 13: case 5:
+        case 3: case 10: case 13: case 5: case 4:
             if (row[0].length) {
                 // console.log(row[0])
                 for (const i in row) {

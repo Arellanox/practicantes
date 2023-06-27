@@ -3,7 +3,7 @@
 require_once "../clases/master_class.php";
 require_once "../clases/token_auth.php";
 include_once "../clases/Pdf.php";
-include_once "../clases/correo_class.php";
+//include_once "../clases/correo_class.php";
 
 $tokenVerification = new TokenVerificacion();
 $tokenValido = $tokenVerification->verificar();
@@ -19,6 +19,7 @@ $api = $_POST['api'];
 
 $archivo = $_POST['resultado_audio[]'];
 $id_turno = $_POST['id_turno'];
+$turno_id = $_POST['turno_id'];
 
 $usuario_id = $_SESSION['id'];
 $host = $_SERVER['SERVER_NAME'] == "localhost" ? "http://localhost/practicantes/" : "https://bimo-lab.com/nuevo_checkup/";
@@ -52,6 +53,12 @@ switch($api){
         #guardarmos la direccion de espirometria
         $audio = $host . "reportes/modulo/audiometria/$id_turno/" . basename($ruta_archivo);
         $response = $master->insertByProcedure("sp_audio_ruta_reporte_g", [$audio, $id_turno, $usuario_id]);
+
+        break;
+
+    case 2:
+
+        $response = $master->getByProcedure('sp_audio_ruta_b', [$turno_id]);
 
         break;
 
