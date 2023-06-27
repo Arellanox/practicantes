@@ -70,8 +70,8 @@ class Reporte
             case 'reporte_masometria':
             case 'espirometria': //nuevo case de espirometria
             case 'temperatura':
-            case 'corte':
-            case 'consultorio2': #<--Consultorio2 (Creado Angel)    
+            case 'corte':  
+            case 'consultorio2': //<--Consultorio2 (Creado Angel)  
                 $prueba = generarQRURL($pie['clave'], $pie['folio'], $pie['modulo']);
                 break;
             default:

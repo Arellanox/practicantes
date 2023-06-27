@@ -273,6 +273,7 @@ if (!isset($qr)) {
 
 <body>
     <div class="container-fluid">
+        <br><br>
         <table>
             <tbody>
                 <tr>

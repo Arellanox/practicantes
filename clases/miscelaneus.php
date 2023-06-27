@@ -458,14 +458,6 @@ class Miscelaneus
             case "19":
                 #CONSULTORIO2
                 $arregloPaciente = $this->getBodyInfoConsultorio2($master, $turno_id);
-                // $info = $master->getByProcedure("sp_info_medicos", [$turno_id, $area_id]);
-                //$datos_medicos = $this->getMedicalCarrier($info);
-                // $fecha_resultado = $infoPaciente[0]['FECHA_CARPETA_CONSULTA'];
-                // $infoPaciente[0]['FECHA_RESULTADO'] =
-                //     $infoPaciente[0]['FECHA_CONSULTA_HISTORIA'];
-                $carpeta_guardado = 'consultorio2';
-                $folio = $infoPaciente[0]['FOLIO_CONSULTA'];
-                // $infoPaciente[0]['CLAVE_IMAGEN'] = $infoPaciente[0]['CLAVE_CONSULTA'];
                 break;        
 
             case -1: #Formato de temperatura de equipos
@@ -556,20 +548,11 @@ class Miscelaneus
 
     private function getBodyInfoConsultorio2($master, $turno_id)
     {
-        $response = $master->getByNext('sp_consultorio2',[$turno_id]);
-        
-        $productoFinal = [];
-        if (is_array($response)){
-            for($i = 0; $i < count($response); $i++){
-                switch($i){
-                    case 0:
-                        #CONSULTORIO CONSULTA
-                        
-                }
-            }
-        }
-        
+        $response = $master->getByNext('sp_consultorio2', [$turno_id]);
+
+        return $response;
     }
+    
 
     private function getBodyInfoConsultorio($master, $id_turno, $id_consulta)
     {
