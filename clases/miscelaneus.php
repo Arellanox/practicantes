@@ -453,6 +453,13 @@ class Miscelaneus
                 $infoPaciente[0]['CLAVE_IMAGEN'] = $infoPaciente[array_key_last($infoPaciente)]['CLAVE_ESPIRO'];
 
                 break;
+            
+            case 19:
+            case "19":
+                #CONSULTORIO2
+                $arregloPaciente = $this->getBodyInfoConsultorio2($master, $turno_id);
+                break;        
+
             case -1: #Formato de temperatura de equipos
                 // echo "si entro";
                 // exit;
@@ -538,6 +545,14 @@ class Miscelaneus
 
         return $arregloServicio;
     }
+
+    private function getBodyInfoConsultorio2($master, $turno_id)
+    {
+        $response = $master->getByNext('sp_consultorio2', [$turno_id]);
+
+        return $response;
+    }
+    
 
     private function getBodyInfoConsultorio($master, $id_turno, $id_consulta)
     {

@@ -104,6 +104,12 @@ $('#btn-resultados-espiro-pdf').click(function () {
 
 })
 
+$('#btn-resultados-audi-pdf').click(function () {
+
+  $('#ModalSubirResultadosAudio').modal('show');
+
+})
+
 
 
 $('#btn-ver-reporte').click(function () {
@@ -119,6 +125,9 @@ $('#btn-ver-reporte').click(function () {
       break;
     case 5: case '5':
       area_nombre = 'espiro'
+      break;
+    case 4: case '4':
+      area_nombre = 'audio'
       break;
 
     default:

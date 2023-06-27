@@ -99,7 +99,8 @@ session_start();
     </div>
     <div class="col-12 col-xl-4 tab-second" id="tab-reporte" style="margin-right: -5px !important;display:none">
         <div class="card mt-3 p-3" id="panel">
-            <div class="" id="divAreaMasterResultados">
+            <div class="" id="
+            ">
                 <div class="row">
                     <div class="col-12">
                         <h4>Resultados</h4>
@@ -119,6 +120,10 @@ session_start();
 
                                 <button type="button" class="btn btn-primary me-2" style="margin-bottom:4px; display:none" id="btn-resultados-espiro-pdf">
                                     <i class="bi bi-plus-lg"></i> EASYONE
+                                </button>
+
+                                <button type="button" class="btn btn-primary me-2" style="margin-bottom:4px; display:none" id="btn-resultados-audi-pdf">
+                                    <i class="bi bi-plus-lg"></i> Subir reporte
                                 </button>
                             </div>
 
@@ -149,9 +154,15 @@ session_start();
                         <div class="accordion" id="resultadosServicios-areas">
 
                         </div>
+                    </div>
+
+
+                    <div class="mt-4" id="sintomasPaciente">
 
                     </div>
                 <?php } ?>
+
+
             </div>
         </div>
     </div>
@@ -291,6 +302,39 @@ session_start();
 
                     <!-- BTN SUBIR RESULTADOS DE ESPIRO -->
                     <button type="submit" class="btn btn-confirmar" id="btn-subir-resultados-espiro" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
+                        <i class="bi bi-clipboard2-plus"></i> Subir resultados
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL PARA SUBIR RESULTADOS DE ESPIROMETRIA-->
+<div>
+    <div class="modal fade" id="ModalSubirResultadosAudio" tabindex="-1" aria-labelledby="resultados" aria-hidden="true">
+        <div class="modal-dialog modal-xl  modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header header-modal">
+                    <h5 class="modal-title" id="title-paciente_aceptar">Cargue un nuevo reporte de Audiometría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form id="subirResultadosAudio">
+                                <h4>Seleccione el estudio que decea subir: </h4>
+                                <input type="file" class="form-control input-form mt-3" name="resultado_audio[]" accept=".pdf" id="resultado_audio">
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <!-- BTN SUBIR RESULTADOS DE ESPIRO -->
+                    <button type="submit" class="btn btn-confirmar" id="btn-subir-resultados-audio" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
                         <i class="bi bi-clipboard2-plus"></i> Subir resultados
                     </button>
                 </div>
