@@ -1,7 +1,7 @@
 <?php
 require_once('../php/phpqrcode/qrlib.php');
 require_once("../lib/libmergpdf/vendor/autoload.php");
-
+ 
 use iio\libmergepdf\Merger;
 use iio\libmergepdf\Pages;
 use iio\libmergepdf\Driver\TcpdiDriver;
@@ -458,14 +458,20 @@ class Miscelaneus
             case "19":
                 #CONSULTORIO2
                 $arregloPaciente = $this->getBodyInfoConsultorio2($master, $turno_id);
-                break;        
-
+                break;  
+            
+                
             case -1: #Formato de temperatura de equipos
                 // echo "si entro";
                 // exit;
                 $arregloPaciente = $this->getBodyTemperatura($master);
                 break;
-        }
+                
+            case -2:
+                #RECETA
+                
+                break;        
+            }
 
 
         if ($area_id == 0) {

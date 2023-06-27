@@ -48,3 +48,6 @@
 29/05/23 16:48:32 sp_informacion_paciente Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'fck.FECHA_REGISTRO' in 'field list'
 21/06/23 16:16:25 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [1226] User 'u808450138_practica' has exceeded the 'max_connections_per_hour' resource (current value: 500)
 21/06/23 16:17:23 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [1226] User 'u808450138_practica' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+27/06/23 11:58:36 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Se ha anulado una conexión establecida por el software en su equipo host..
+
+27/06/23 12:30:18 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2006] MySQL server has gone away
