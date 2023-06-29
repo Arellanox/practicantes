@@ -280,7 +280,7 @@ $encode_firma = base64_encode($ruta_firma);
         <?php
         $titulo = 'Checkup Clínica y Prevención';
         $tituloPersonales = 'Informacón del paciente';
-        $subtitulo = 'Espirometría';
+        $subtitulo = 'Interrogatorio Espirometría';
         $encabezado->FECHA_RESULTADO = $encabezado->FECHA_RESULTADO_ESPIRO;
         include 'includes/header.php';
         ?>
