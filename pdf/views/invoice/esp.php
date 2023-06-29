@@ -217,8 +217,9 @@
             max-width: 25%;
             text-align: center;
         }
-          /*tabla de espiro */
-          .table {
+
+        /*tabla de espiro */
+        .table {
             border-collapse: collapse;
             width: 100%;
             max-width: 100%;
@@ -297,7 +298,8 @@ $encode_firma = base64_encode($ruta_firma);
 
     <!-- body -->
     <div class="invoice-content">
-        <?php 
+        
+        <?php
         # filtramos las preguntas que van dentro de comentario en la pregunta 14
         $arreglo = [];
         $arreglo = array_filter($resultados, function ($item) {
@@ -306,29 +308,29 @@ $encode_firma = base64_encode($ruta_firma);
 
         # dividimos el cuestionario de espiro en tablas para dibujar
         # en una tabla en cada hoja y no se encime con el encabezado.
-        $tablas = dividirTablaEnPaginas(json_encode($resultados)); 
-            $ait = new ArrayIterator($tablas);
-            $cit = new CachingIterator($ait);
-        
-        foreach($cit as $tabla):
-            echo "<br>"; ?>
+        $tablas = dividirTablaEnPaginas(json_encode($resultados));
+        $ait = new ArrayIterator($tablas);
+        $cit = new CachingIterator($ait);
+
+        foreach ($cit as $tabla) :
+            echo "<br> <h3>Datos generales de espirometría</h3> <br> "; ?>
             <table class="table">
-                <?php foreach ($tabla as $preguntaIndex => $pregunta): ?>
-                    <?php if (!in_array($pregunta['id_pregunta'],[39,40,41])):  ?>
+                <?php foreach ($tabla as $preguntaIndex => $pregunta) : ?>
+                    <?php if (!in_array($pregunta['id_pregunta'], [39, 40, 41])) :  ?>
                         <?php $respuestas = $pregunta['respuestas']; ?>
                         <?php $numRespuestas = count($respuestas); ?>
                         <tr class="pregunta-row">
                             <td colspan="3" class="pregunta-row"><?php echo $pregunta['pregunta']; ?></td>
                         </tr>
-                        <?php if ($numRespuestas > 0): ?>
-                            <?php foreach ($respuestas as $respuestaIndex => $respuesta): ?>
+                        <?php if ($numRespuestas > 0) : ?>
+                            <?php foreach ($respuestas as $respuestaIndex => $respuesta) : ?>
                                 <tr>
                                     <td class="respuesta-row"><?php echo $respuesta['respuesta'] !== null ? $respuesta['respuesta'] : $respuesta['comentario']; ?></td>
                                     <td class="comentario-row">
                                         <?php
-                                        if (in_array($pregunta['id_pregunta'],[14])){
-                                            foreach($arreglo as $arregloIndex){
-                                                echo $arregloIndex->pregunta. ' '. $arregloIndex->respuestas[0]->comentario."<br>";
+                                        if (in_array($pregunta['id_pregunta'], [14])) {
+                                            foreach ($arreglo as $arregloIndex) {
+                                                echo $arregloIndex->pregunta . ' ' . $arregloIndex->respuestas[0]->comentario . "<br>";
                                             }
                                         } else {
                                             echo $respuesta['comentario'] !== null ? ($respuesta['respuesta'] !== null ? $respuesta['comentario'] : "-") : '-';
@@ -338,19 +340,19 @@ $encode_firma = base64_encode($ruta_firma);
                                 </tr>
                                 <!-- termina segundo foreach -->
                             <?php endforeach; ?>
-                        <?php else: ?>
+                        <?php else : ?>
                             <tr>
                                 <td class="respuesta-row" colspan="3">No hay respuestas disponibles</td>
                             </tr>
                         <?php endif; ?>
                     <?php endif; ?>
-                <!-- termina primer foreach -->
-                <?php endforeach; ?> 
+                    <!-- termina primer foreach -->
+                <?php endforeach; ?>
             </table>
-        <?php    
-            if ($cit->hasNext())   
+        <?php
+            if ($cit->hasNext())
                 echo '<div class="break"></div>';
-            endforeach;
+        endforeach;
         ?>
     </div>
 </body>
@@ -363,56 +365,57 @@ for ($i = 2; $i < $indice; $i++) {
     $altura = $altura + 50;
 }
 
-function dividirTablaEnPaginas($json) {
+function dividirTablaEnPaginas($json)
+{
     $preguntas = json_decode($json, true);
-  
+
     $altoTabla = 0;
     $altoPagina = 500; // Tamaño carta: 8.5 x 11 pulgadas (en puntos) 792
     $tablas = [];
     $tablaActual = [];
-  
+
     foreach ($preguntas as $pregunta) {
-      $respuestas = $pregunta['respuestas'];
-      $altoFila = 20; // Altura de cada fila (valor de ejemplo)
-  
-      // Verificar si la fila actual excede el espacio disponible en la página actual
-      if (($altoTabla + $altoFila) > $altoPagina) {
-        // Si excede, agregar la tabla actual a la lista de tablas y reiniciar el alto de la tabla
-        $tablas[] = $tablaActual;
-        $tablaActual = [];
-        $altoTabla = 0;
-      }
-  
-      // Agregar la pregunta a la tabla actual
-      $tablaActual[] = [
-        'id_pregunta' => $pregunta['id_pregunta'],
-        'pregunta' => $pregunta['pregunta'],
-        'respuestas' => $respuestas
-      ];
-      $altoTabla += $altoFila;
-  
-      // Agregar las respuestas como filas individuales a la tabla actual
-    //   foreach ($respuestas as $respuesta) {
-    //     $tablaActual[] = [
-    //       'pregunta' => $respuesta['respuesta'],
-    //       'respuestas' => $respuesta['comentario']
-    //     ];
-    //     $altoTabla += $altoFila;
-    //   }
-  
-    //   // Verificar si la tabla actual excede el espacio disponible en la página actual
-    //   if (($altoTabla + $altoFila) > $altoPagina) {
-    //     // Si excede, agregar un salto de página
-    //     $tablaActual[] = ['salto_pagina' => true];
-    //     $altoTabla += $altoFila;
-    //   }
+        $respuestas = $pregunta['respuestas'];
+        $altoFila = 20; // Altura de cada fila (valor de ejemplo)
+
+        // Verificar si la fila actual excede el espacio disponible en la página actual
+        if (($altoTabla + $altoFila) > $altoPagina) {
+            // Si excede, agregar la tabla actual a la lista de tablas y reiniciar el alto de la tabla
+            $tablas[] = $tablaActual;
+            $tablaActual = [];
+            $altoTabla = 0;
+        }
+
+        // Agregar la pregunta a la tabla actual
+        $tablaActual[] = [
+            'id_pregunta' => $pregunta['id_pregunta'],
+            'pregunta' => $pregunta['pregunta'],
+            'respuestas' => $respuestas
+        ];
+        $altoTabla += $altoFila;
+
+        // Agregar las respuestas como filas individuales a la tabla actual
+        //   foreach ($respuestas as $respuesta) {
+        //     $tablaActual[] = [
+        //       'pregunta' => $respuesta['respuesta'],
+        //       'respuestas' => $respuesta['comentario']
+        //     ];
+        //     $altoTabla += $altoFila;
+        //   }
+
+        //   // Verificar si la tabla actual excede el espacio disponible en la página actual
+        //   if (($altoTabla + $altoFila) > $altoPagina) {
+        //     // Si excede, agregar un salto de página
+        //     $tablaActual[] = ['salto_pagina' => true];
+        //     $altoTabla += $altoFila;
+        //   }
     }
-  
+
     // Agregar la última tabla actual a la lista de tablas
     $tablas[] = $tablaActual;
-  
+
     return $tablas;
-  }
+}
 ?>
 
 </html>
