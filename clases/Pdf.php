@@ -1,5 +1,5 @@
 <?php
-
+ 
 require_once '../php/dompdf/vendor/autoload.php';
 require 'View.php';
 require 'Qrcode.php';
@@ -71,7 +71,8 @@ class Reporte
             case 'espirometria': //nuevo case de espirometria
             case 'temperatura':
             case 'corte':  
-            case 'consultorio2': //<--Consultorio2 (Creado Angel)  
+            case 'consultorio2': //<--Consultorio2 (Creado Angel) 
+            case 'receta': //<--Receta (Creado Angel)      
                 $prueba = generarQRURL($pie['clave'], $pie['folio'], $pie['modulo']);
                 break;
             default:
@@ -206,7 +207,13 @@ class Reporte
             case 'consultorio2':
                 $template = render_view('invoice/consultorio2.php', $view_vars);
                 $pdf->loadHtml($template);
-                $pdf->setPaper('letter', 'landscape');
+                $pdf->setPaper('letter', 'portrait');
+                break;
+            
+            case 'receta':
+                $template = render_view('invoice/receta.php', $view_vars);
+                $pdf->loadHtml($template);
+                $pdf->setPaper('executive', 'landscape');
                 break;    
 
             default:

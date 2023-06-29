@@ -257,91 +257,15 @@ $encode_firma = base64_encode($ruta_firma);
         ?>
     </div>
 
-
-
-    <!-- body -->
+    <!-- Body -->
     <div class="invoice-content row">
-        <br>
 
-        <!-- Nota consulta -->
-        <section id="card-nota-consulta">
-            <h3>Nota de consulta</h3>
-            <hr>
-            <p style="font-size: 13px;"><?php echo $resultados[0][0]->NOTAS_CONSULTA; ?></p>
-        </section>
-        <br>
-        <!-- Diagnosticos -->
-        <section id="card-diagnostico">
-            <h3>Diagnóstico</h3>
-            <hr>
-            <div id="notas-historial-consultorio">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="text-align: left; font-size: 14px;">Diagnóstico principal:</th>
-                            <th style="text-align: left; font-size: 14px;">Diagnóstico secundario:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $diagnosticoPrincipal = $resultados[0][0]->DIAGNOSTICO; ?>
-                        <tr>
-                            <td style="font-size: 13px;"><?php echo $diagnosticoPrincipal; ?></td>
-                            <td style="text-align: left; font-size: 13px;"><?php echo $resultados[0][0]->DIAGNOSTICO2; ?></td>
-                        </tr>
-                        <?php for ($i = 1; $i < count($resultados[0]); $i++) : ?>
-                            <?php if ($resultados[0][$i]->DIAGNOSTICO != $diagnosticoPrincipal) : ?>
-                                <?php $diagnosticoPrincipal = $resultados[0][$i]->DIAGNOSTICO; ?>
-                                <tr>
-                                    <td style="font-size: 13px;"><?php echo $diagnosticoPrincipal; ?></td>
-                                    <td style="text-align: left; font-size: 13px;"><?php echo $resultados[0][$i]->DIAGNOSTICO2; ?></td>
-                                </tr>
-                            <?php else : ?>
-                                <tr>
-                                    <td></td>
-                                    <td style="text-align: left; font-size: 13px;"><?php echo $resultados[0][$i]->DIAGNOSTICO2; ?></td>
-                                </tr>
-                            <?php endif; ?>
-                        <?php endfor; ?>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+  <h1 style="text-align: right;">Receta Médica</h1>
+  
+  <h2>Nombre completo del paciente:</h2>
+  <p>[Nombre del paciente]</p>
+  
 
-        <!-- Plan de tratamiento-->
-        <section id="card-plan-tratamiento">
-            <h3>Plan de Tratamiento</h3>
-            <hr>
-            <p style="font-size: 13px;"><?php echo $resultados[0][0]->PLAN_TRATAMIENTO; ?></p>
-        </section>
-
-        <!-- Siguiente pagina -->
-        <div class="break"></div>
-        <br>
-
-        <!-- Exploracion fisica -->
-        <section id="card-exploracion-clinica">
-            <h3>Exploración física</h3>
-            <hr>
-
-            <div id="notas-historial-consultorio">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="text-align: left; font-size: 14px;">Tipo de exploración:</th>
-                            <th style="text-align: left; font-size: 14px;">Exploración:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php for ($i = 0; $i < count($resultados[1]); $i++) : ?>
-                            <tr>
-                                <td style="font-size: 13px;"><?php echo $resultados[1][$i]->TIPO_EXPLORACION; ?></td>
-                                <td style="text-align: left; font-size: 13px;"><?php echo $resultados[1][$i]->EXPLORACION; ?></td>
-                            </tr>
-                        <?php endfor; ?>
-                    </tbody>
-                </table>
-            </div>
-        </section>
 
     </div>
 
