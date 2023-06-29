@@ -133,7 +133,7 @@ selectTable('#TablaContenidoResultados', tablaContenido, { movil: true, reload: 
                 $(`#${formulario}`).html(formEspiroHTML)
                 $('#sintomasPaciente').html('');
                 $('#sintomasPaciente').fadeOut();
-              
+
                 if (selectEstudio.array.length) {
                     //console.log(selectEstudio.array[0]['PREGUNTAS'])
                     recuperarDatosEspiro(selectEstudio.array[0]['PREGUNTAS'])
@@ -970,8 +970,8 @@ function recuperarDatosEspiro(row) {
     for (const key in row) {
         if (Object.hasOwnProperty.call(row, key)) {
             const element = row[key];
-            
-         
+
+
             respuestas = element.ID_R;
             comentario = element.COMENTARIO
 
@@ -1010,12 +1010,12 @@ function recuperarDatosEspiro(row) {
             if (element.ID_R == 3 || element.ID_R == 4 || element.ID_R == 14) {
                 respuestasIDR.push(element.RESPUESTA)
                 $('#sintomasPaciente').fadeIn();
-                
+
             }
 
         }
     }
- 
+
     html += '<p>El paciente cuenta con las siguientes condiciones: </p><br>'
     respuestasIDR.forEach(respuesta => {
         html += `<li>${respuesta}</li>`;
