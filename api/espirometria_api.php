@@ -68,17 +68,20 @@ switch ($api) {
 
 
         
-        $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, $confirmado]);
+        $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, 0]);
 
         if ($confirmado == 1) {
-            //Si confirma el cuestionario lo crea en pdf y lo guarda
-            $url = $master->reportador($master, $id_turno, 5, "espirometria", 'url', 0);
-            $response = $master->updateByProcedure('sp_espiro_ruta_reporte_g', [$id_turno, $url]);
 
             //Mandamnos a llamar el siguinete procedure para ver si existe el reporte de espiro (EASYONE)
             $response = $master->getByProcedure("sp_espiro_ruta_reporte_b", [$id_turno]);
 
             if (isset($response[0]['RUTA_REPORTES_ESPIRO'])) {
+
+                $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, $confirmado]);
+
+                //Si confirma el cuestionario lo crea en pdf y lo guarda
+                $url = $master->reportador($master, $id_turno, 5, "espirometria", 'url', 0);
+                $response = $master->updateByProcedure('sp_espiro_ruta_reporte_g', [$id_turno, $url]);
 
                 //Verificamos la ruta de los reportes para unirlos
                 $reportes = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 5, null, null, null]);
