@@ -12,14 +12,15 @@
     <style>
         @page {
             margin: 165px 10px;
+            size: 21.59cm 13.97cm;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
-            margin-top: 70px;
-            margin-bottom: 40px;
+            margin-top: 50px;
+            margin-bottom: 30px;
             font-size: 10px;
-            /* background-color: gray; */
+            background-color: gray;
         }
 
         .header {
@@ -29,6 +30,7 @@
             right: 25px;
             height: 220px;
             margin-top: 0;
+            background-color: purple;
         }
 
         .footer {
@@ -37,7 +39,7 @@
             left: 25px;
             right: 25px;
             height: 220px;
-            /* background-color: pink; */
+            background-color: pink;
         }
 
         .footer .page:after {
@@ -277,7 +279,20 @@
             border-top: 1px solid #ddd;
             font-size: 13px;
         }
+
+        .marca-agua {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            font-size: 48px;
+            color: #cccccc;
+        }
+
     </style>
+    </style>
+
 </head>
 
 <?php
@@ -298,6 +313,7 @@ $encode_firma = base64_encode($ruta_firma);
 ?>
 
 <body>
+
     <!-- header -->
     <div class="header">
         <?php
@@ -318,18 +334,9 @@ $encode_firma = base64_encode($ruta_firma);
     </div>
     <br>
     <!-- Body -->
-    <div class="invoice-content row">
+    <div class="marca-agua">Marca de agua</div>
 
-        <!-- <h1 style="text-align: right;">Receta Médica</h1>
-  
-  <div style="text-align: right !important;">
-    <h2 style="text-align: right !important;">Nombre completo del paciente:</h2>
-    <h2 style="text-align: right !important;">
-      <span style="display: inline-block;">[Nombre del paciente]</span>
-    </h2>
-    <h2 style="text-align: right !important;">Fecha:</h2>
-    <p>[Fecha]</p>
-  </div> -->
+    <div class="invoice-content row">
         <div>
             <table class="table">
                 <thead>
@@ -346,20 +353,17 @@ $encode_firma = base64_encode($ruta_firma);
         </div>
 
         <div>
-
             <h4 class="tratamiento-titulo">Tratamiento:</h4>
-            <?php for ($i = 0; $i< count($resultados[1]); $i++): ?>
-                <?php if($resultados[0][$i] != $resultados[1][$i]->ID_RECETA): ?>
-                   <?php $recetas = $resultados[1][$i]; ?>
-                <div class="tratamiento-cuerpo">
-                    <p><?php echo $recetas->NOMBRE_GENERICO;?></p>
-                    <p><?php echo $recetas->FORMA_FARMACEUTICA.', '.$recetas->DOSIS.', '.$recetas->PRESENTACION;?></p>
-                    <p><?php echo $recetas->FRECUENCIA.', '.$recetas->VIA_DE_ADMINISTRACION;?></p>
-                    <p><?php echo $recetas->DURACION_DEL_TRATAMIENTO.', '.$recetas->INDICACIONES_PARA_EL_USO;?></p>
-                </div>
-                <?php endif; ?>    
-            <?php endfor; ?>    
+            <?php for ($i = 0; $i < count($resultados[1]); $i++) : ?>
+                <?php if ($resultados[0][$i] != $resultados[1][$i]->ID_RECETA) : ?>
+                    <?php $recetas = $resultados[1][$i]; ?>
+                    <div class="tratamiento-cuerpo">
+                        <p><?php echo $recetas->NOMBRE_GENERICO.', '.$recetas->FORMA_FARMACEUTICA . ', ' . $recetas->DOSIS . ', ' . $recetas->PRESENTACION.' '.$recetas->FRECUENCIA . ', ' . $recetas->VIA_DE_ADMINISTRACION.' '.$recetas->DURACION_DEL_TRATAMIENTO . ', ' . $recetas->INDICACIONES_PARA_EL_USO; ?></p>
+                    </div>
+                <?php endif; ?>
+            <?php endfor; ?>
+        </div>
+    </div>
 </body>
 
 </html>
-
