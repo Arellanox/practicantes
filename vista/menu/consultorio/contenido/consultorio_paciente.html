@@ -1,3 +1,16 @@
+<style>
+  .btn-container {
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  .btn-container button {
+    margin: -3px 15px 6px -11px !important;
+    font-size: 13px !important;
+  }
+</style>
+
 <div class="col-12 loader" id="loader">
   <div class="preloader" id="preloader"> </div>
 </div>
@@ -35,6 +48,19 @@
           data-bs-toggle="modal" data-bs-target="#modalMotivoConsultaMedica">
           <i class="bi bi-person-plus-fill"></i> Iniciar Consulta Médica
         </button>
+      </div>
+      <div id="btn-pdf" class="btn-container">
+        <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-receta-consultorio2"
+          data-bs-toggle="tooltip" data-bs-placement="top"
+          title="La vista previa de la recetauna vez guardada">
+          <i class="bi bi-file-earmark-pdf"></i> Receta
+        </button>
+        <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-solicitud-estudios-consultorio2"
+          data-bs-toggle="tooltip" data-bs-placement="top"
+          title="La vista previa de las solicitud de estudios una vez guardada">
+          <i class="bi bi-file-earmark-pdf"></i> Solicitud de estudios
+        </button>
+
       </div>
       <div>
         <button type="button" class="btn btn-hover me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"

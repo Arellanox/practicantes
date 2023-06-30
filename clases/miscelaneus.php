@@ -469,7 +469,7 @@ class Miscelaneus
                 
             case -2:
                 #RECETA
-                
+                $arregloPaciente = $this->getBodyRecetas($master, $turno_id);
                 break;        
             }
 
@@ -556,6 +556,13 @@ class Miscelaneus
     {
         $response = $master->getByNext('sp_consultorio2', [$turno_id]);
 
+        return $response;
+    }
+
+    
+    private function getBodyRecetas($master, $turno_id)
+    {
+        $response = $master->getByNext('sp_recetas', [$turno_id]);
         return $response;
     }
     
