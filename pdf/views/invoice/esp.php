@@ -129,24 +129,24 @@
 
         /* Para divisiones de 3 encabezado*/
         .col-left {
-            width: 42%;
-            max-width: 42%;
+            width: 44%;
+            max-width: 44%;
             text-align: left;
             font-size: 11px;
             margin-left: 2px;
         }
 
         .col-center {
-            width: 41%;
-            max-width: 41%;
+            width: 32%;
+            max-width: 32%;
             text-align: left;
             font-size: 11px;
             margin-left: 2px;
         }
 
         .col-right {
-            width: 17%;
-            max-width: 17%;
+            width: 24%;
+            max-width: 24%;
             text-align: left;
             font-size: 11px;
             margin-left: 2px;
@@ -280,7 +280,7 @@ $encode_firma = base64_encode($ruta_firma);
     <div class="header">
         <?php
         $titulo = 'Checkup Clínica y Prevención';
-        $tituloPersonales = 'Informacón del paciente';
+        $tituloPersonales = 'Información del paciente';
         $subtitulo = 'Interrogatorio Espirometría';
         $encabezado->FECHA_RESULTADO = $encabezado->FECHA_RESULTADO_ESPIRO;
         include 'includes/header.php';
@@ -298,7 +298,6 @@ $encode_firma = base64_encode($ruta_firma);
 
     <!-- body -->
     <div class="invoice-content">
-        
         <?php
         # filtramos las preguntas que van dentro de comentario en la pregunta 14
         $arreglo = [];
@@ -313,7 +312,7 @@ $encode_firma = base64_encode($ruta_firma);
         $cit = new CachingIterator($ait);
 
         foreach ($cit as $tabla) :
-            echo "<br> <h3>Datos generales de espirometría</h3> <br> "; ?>
+            echo "<br>"; ?>
             <table class="table">
                 <?php foreach ($tabla as $preguntaIndex => $pregunta) : ?>
                     <?php if (!in_array($pregunta['id_pregunta'], [39, 40, 41])) :  ?>

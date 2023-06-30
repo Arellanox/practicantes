@@ -1721,9 +1721,10 @@ function isMovil(callback = (response) => { }) {
   console.log(navigator.userAgent)
   var esTabletaVertical = /iPad/i.test(navigator.userAgent) && window.innerHeight > window.innerWidth;
   var esDispositivoMovil = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || esTabletaVertical;
+  console.log(esDispositivoMovil)
+  console.log(callback)
   if (esDispositivoMovil)
     callback(esDispositivoMovil);
-  console.log(esDispositivoMovil)
   return esDispositivoMovil;
 
   let width = window.innerWidth;
@@ -1884,6 +1885,17 @@ function eventClassClick(event, tr, config, data) {
   return false;
 }
 
+function resizeConfigMovil(config, nameTable) {
+  if (config.movil) {
+    //Cambia la vista del dispositivo
+    getBtnTabs(config);
+    //Activa los botones si es movil
+    dinamicTabs(`#loaderDiv-${nameTable}`)
+    //Evalua el tipo de dispositivo
+    selecTableTabs()
+  }
+}
+
 //selectDataTableMovilEdition
 let dataDobleSelect, selectTableTimeOutClick, selectTableClickCount = 0;
 function selectTable(tablename, datatable,
@@ -1903,16 +1915,16 @@ function selectTable(tablename, datatable,
   if (config.reload)
     setReloadSelecTable(nameTable, config.reload)
 
-  //Activa las funciones moviles
+  //Activa las funciones moviles,
+  resizeConfigMovil(config, nameTable);
+  resize = false;
   $(window).resize(function () {
-    if (config.movil) {
-      //Cambia la vista del dispositivo
-      getBtnTabs(config);
-      //Activa los botones si es movil
-      dinamicTabs(`#loaderDiv-${nameTable}`)
-      //Evalua el tipo de dispositivo
-      selecTableTabs()
-    }
+    //Toma un tiempo para poder refrescar cambios y no 
+    //hacerlo cada vez que hay un pequeño pixel de cambio
+    clearTimeout(resize);
+    resize = setTimeout(() => {
+      resizeConfigMovil(config, nameTable);
+    }, 500);
   })
 
   //Callback para procesos, ejemplo: quitar loader y mostrar columnas en escritorio
@@ -4311,7 +4323,7 @@ function validarCuestionarioEspiro() {
     return true;
   }
 
-  console.log(situacion2)
+  // console.log(situacion2)
 
   if (!situacion2) {
     if (!detectPreguntasNivel('.situaciones2')) {
@@ -4320,12 +4332,12 @@ function validarCuestionarioEspiro() {
     }
   }
 
-  if (!situacion1) {
-    if (!detectPreguntasNivel('.situaciones1')) {
-      // resolve(true);
-      return true;
-    }
-  }
+  // if (!situacion1) {
+  //   if (!detectPreguntasNivel('.situaciones1')) {
+  //     // resolve(true);
+  //     return true;
+  //   }
+  // }
 
 
   // resolve(false);

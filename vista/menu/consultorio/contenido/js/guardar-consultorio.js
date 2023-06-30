@@ -17,6 +17,19 @@ $('#btn-regresar-vista').click(function () {
     }, 1)
 })
 
+//vista previa del pdf
+$('#btn-ver-reporte-consultorio2').click(function () {
+    area_nombre = 'consultorio2'
+  
+    api = encodeURIComponent(window.btoa(area_nombre));
+    turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+    area = encodeURIComponent(window.btoa(19));
+  
+  
+    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+  })
+
+
 //alerta en general, sirve para todos los botons y btn se llama al switch y guardar consultorio
 function alertaConsultorio(btn) {
     alertMensajeConfirm({
@@ -413,7 +426,7 @@ TablaListaDiagnosticos = $("#TablaListaDiagnosticos").DataTable({
             data: 'FECHA_CREACION', render: function (data) {
 
 
-                return `<i class="bi bi-trash eliminar-receta" data-id = "${data}" style = "cursor: pointer"
+                return `<i class="bi bi-trash eliminar-diagnostico" data-id = "${data}" style = "cursor: pointer"
                 onclick="desactivarTablaDiagnosticos.call(this)"></i>`;
 
             }

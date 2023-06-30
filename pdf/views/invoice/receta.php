@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado de interpretación de Historia Clinica</title>
+    <title>Receta</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
@@ -33,7 +33,7 @@
 
         .footer {
             position: fixed;
-            bottom: -165px;
+            bottom: -200px;
             left: 25px;
             right: 25px;
             height: 220px;
@@ -217,6 +217,66 @@
             max-width: 25%;
             text-align: center;
         }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .table>tr,
+        .table>tr>td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+
+        }
+
+        .table>tr {
+            background-color: #f2f2f2;
+        }
+
+        .pregunta-row,
+        .tratamiento-titulo {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .respuesta-row,
+        .comentario-row {
+            background-color: #fff;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            font-size: 13px;
+        }
+
+        .respuesta2-row {
+            background-color: #fff;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+        }
+
+        .tratamiento {
+            background-color: #fff;
+            font-size: 13px;
+        }
+
+        .tratamiento-cuerpo {
+            background-color: #fff;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            font-size: 13px;
+        }
     </style>
 </head>
 
@@ -242,8 +302,8 @@ $encode_firma = base64_encode($ruta_firma);
     <div class="header">
         <?php
         $titulo = 'Checkup Clínica y Prevención';
-        $tituloPersonales = 'Informacón del paciente';
-        $subtitulo = 'Historia Clínica';
+        $tituloPersonales = 'Información del paciente';
+        $subtitulo = 'Receta de Medicamentos';
         $encabezado->FECHA_RESULTADO = $encabezado->FECHA_RESULTADO_CONSULTA;
         include 'includes/header.php';
         ?>
@@ -256,19 +316,50 @@ $encode_firma = base64_encode($ruta_firma);
         include 'includes/footer.php';
         ?>
     </div>
-
+    <br>
     <!-- Body -->
     <div class="invoice-content row">
 
-  <h1 style="text-align: right;">Receta Médica</h1>
+        <!-- <h1 style="text-align: right;">Receta Médica</h1>
   
-  <h2>Nombre completo del paciente:</h2>
-  <p>[Nombre del paciente]</p>
-  
+  <div style="text-align: right !important;">
+    <h2 style="text-align: right !important;">Nombre completo del paciente:</h2>
+    <h2 style="text-align: right !important;">
+      <span style="display: inline-block;">[Nombre del paciente]</span>
+    </h2>
+    <h2 style="text-align: right !important;">Fecha:</h2>
+    <p>[Fecha]</p>
+  </div> -->
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="pregunta-row">Diagnóstico:</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="respuesta-row"><?php echo $resultados[2][0]->DIAGNOSTICO; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <div>
 
-    </div>
-
+            <h4 class="tratamiento-titulo">Tratamiento:</h4>
+            <?php for ($i = 0; $i< count($resultados[1]); $i++): ?>
+                <?php if($resultados[0][$i] != $resultados[1][$i]->ID_RECETA): ?>
+                   <?php $recetas = $resultados[1][$i]; ?>
+                <div class="tratamiento-cuerpo">
+                    <p><?php echo $recetas->NOMBRE_GENERICO;?></p>
+                    <p><?php echo $recetas->FORMA_FARMACEUTICA.', '.$recetas->DOSIS.', '.$recetas->PRESENTACION;?></p>
+                    <p><?php echo $recetas->FRECUENCIA.', '.$recetas->VIA_DE_ADMINISTRACION;?></p>
+                    <p><?php echo $recetas->DURACION_DEL_TRATAMIENTO.', '.$recetas->INDICACIONES_PARA_EL_USO;?></p>
+                </div>
+                <?php endif; ?>    
+            <?php endfor; ?>    
 </body>
 
 </html>
+

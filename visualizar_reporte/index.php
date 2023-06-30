@@ -52,6 +52,9 @@ switch ($api) {
     case 'consultorio':
         $r = $master->reportador($master, $turno_id, 1, 'consultorio', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
+    case 'consultorio2':
+        $r = $master->reportador($master,$turno_id,$area_id,'consultorio2','mostrar',$preview,0,0,$id_cliente,$id_cotizacion);
+        break;   
     case 'electro':
         $r = $master->reportador($master, $turno_id, $area_id, 'electro', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
