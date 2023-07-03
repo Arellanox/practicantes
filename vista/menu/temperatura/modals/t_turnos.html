@@ -1,0 +1,68 @@
+<div class="modal fade" id="TurnosTemperaturasModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Configuracion de las turnos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="mb-3">
+                            Turnos asignados por hora
+                        </p>
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-span">Matutino Inicio</span>
+                                    <input type="time" name="turno" class="form-control input-form" required
+                                        id="MATUTINO">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-span">Matutino Final</span>
+                                    <input type="time" name="turno" class="form-control input-form" required
+                                        id="MATUTINO">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-span">Vespertinon Inicio</span>
+                                    <input type="time" name="turno" class="form-control input-form" required
+                                        id="VESPERTINO">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-span">Vespertino Final</span>
+                                    <input type="time" name="turno" class="form-control input-form" required
+                                        id="VESPERTINO">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i>
+                    Cancelar</button>
+                <button type="submit" form="liberarDiaTemperaturaForm" class="btn btn-confirmar"
+                    id="btn-liberar-temperatura">
+                    <i class="bi bi-person-x"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

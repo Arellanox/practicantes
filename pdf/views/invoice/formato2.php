@@ -4,7 +4,10 @@
 
 <!DOCTYPE html>
 <html>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
 <body>
 
@@ -12,18 +15,202 @@
 
         <head>
             <style>
-                #grafica {
-                    border-collapse: collapse;
-                    /* transform: scale(0.5); */
-                    /* zoom: 50%;
-                    transform-origin: top left; */
+                body {
+                    font-family: 'Roboto', sans-serif;
 
                 }
 
+                /* Content */
+                .invoice-content {
+                    border-radius: 4px;
+                    padding-bottom: 10px;
+                    padding-right: 30px;
+                    padding-left: 30px;
+                    text-align: justify;
+                    text-justify: inter-word;
+                }
 
+
+                h1 {
+                    font-size: 22px;
+                    margin-top: 2px;
+                    margin-bottom: 2px;
+                }
+
+                h2 {
+                    font-size: 15px;
+                    margin-top: 18px;
+                    /* margin-bottom: 10px; */
+                    text-align: center;
+                    background-color: rgba(215, 222, 228, 0.748);
+                    /* padding-top: 10px; */
+                }
+
+                h3 {
+                    font-size: 16px;
+                    margin-top: 2px;
+                    margin-bottom: 2px;
+                }
+
+                h4 {
+                    font-size: 14px;
+                    margin-top: 2px;
+                    margin-bottom: 2px;
+                }
+
+                h5 {
+                    color: rgb(000, 078, 089);
+                    font-size: 12.5px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                h6 {
+                    color: rgb(000, 078, 089);
+                    font-size: 10.5px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .h6 {
+                    color: rgb(000, 078, 089);
+                    font-size: 10.5px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .h7 {
+                    color: rgb(000, 078, 089);
+                    font-size: 8.5px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .h8 {
+                    color: rgb(000, 078, 089);
+                    font-size: 6.5px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                p {
+                    font-size: 12px;
+                }
+
+                strong {
+                    font-size: 12px;
+                }
+
+                .align-center {
+                    text-align: center;
+                }
+
+                table {
+                    width: 100%;
+                    max-width: 100%;
+                    margin: auto;
+                    white-space: nowrap;
+                    /* table-layout:fixed; */
+                }
+
+                th,
+                td {
+                    width: 100%;
+                    max-width: 100%;
+                    word-break: break-all;
+                }
+
+
+                /* Para divisiones de 3 encabezado*/
+                .col-left {
+                    width: 35%;
+                    max-width: 35%;
+                    text-align: left;
+                    font-size: 12px;
+                }
+
+                .col-center {
+                    width: 35%;
+                    max-width: 35%;
+                    text-align: left;
+                    font-size: 12px;
+                }
+
+                .col-right {
+                    width: 30%;
+                    max-width: 30%;
+                    text-align: left;
+                    font-size: 12px;
+                }
+
+                /* divisiones de 3 footer */
+                .col-foot-one {
+                    width: 30%;
+                    max-width: 30%;
+                    text-align: left;
+                    font-size: 12px;
+                }
+
+                .col-foot-two {
+                    width: 40%;
+                    max-width: 40%;
+                    text-align: center;
+                    font-size: 12px;
+                }
+
+                .col-foot-three {
+                    width: 30%;
+                    max-width: 30%;
+                    text-align: right;
+                    font-size: 12px;
+                }
+
+                /* Para divisiones de 4 */
+                .result {
+                    font-size: 12px
+                }
+
+                /* diviciones de 2 */
+                .col-izq {
+                    width: 30%;
+                    max-width: 30%;
+                    text-align: left;
+                }
+
+                .col-der {
+                    width: 70%;
+                    max-width: 70%;
+                    text-align: center;
+                }
+
+                /* Fivisiones de cinco */
+                .col-one {
+                    width: 30%;
+                    max-width: 30%;
+                    text-align: left;
+                }
+
+                .col-two {
+                    width: 20%;
+                    max-width: 20%;
+                    text-align: right;
+                }
+
+                .col-three {
+                    width: 25%;
+                    max-width: 25%;
+                    text-align: center;
+
+                }
+
+                .col-four {
+                    width: 25%;
+                    max-width: 25%;
+                    text-align: center;
+                }
 
                 #body {
-                    background-color: aqua;
+                    /*    background-color: aqua; */
                     position: fixed;
                     top: -40px;
                     left: -40px;
@@ -32,462 +219,426 @@
                     height: 111%;
                 }
 
-                #grafica th,
-                #grafica td {
-                    border: 2px solid black;
-                    padding: 7px;
-
+                .col-6 {
+                    flex: 1 0 0%;
+                    width: 50%;
+                    max-width: 50%;
+                    text-align: center;
+                    position: relative;
+                    min-height: 1px;
+                    padding-right: 15px;
+                    padding-left: 15px;
                 }
 
-                #grafica td.empty {
-                    margin-left: auto;
-                    margin-right: auto;
-                    /* padding: 3.4px; */
-                    padding: 0px;
-                    width: 20px;
-                }
-
-                .border-top {
-                    border-top: 3px solid !important;
-                }
-
-                .border-bottomm {
-                    border-bottom: 3px solid !important;
-                }
-
-                /*
-                .background2,
-                .background3,
-                .background4,
-                .background5,
-                .background6,
-                .background7,
-                .background8 {
-                    background-color: #d8dfe1;
-                }
-
-                */
-                .turno-1 {
-                    border: 2px dashed black !important;
-                }
-
-                /*  .turno-2 {
-            border: 2px dashed black !important;
-        } */
-
-                .turno-2 {
-                    border-left: 2px dashed black !important;
-                    border-top: 2px dashed black !important;
-                    border-bottom: 2px dashed black !important;
-                }
-
-
-                .td-hover:hover {
-                    background-color: rgb(0 175 170 / 60%)
-                }
-
-                .td-hover {
-                    cursor: pointer
-                }
-
-                .td-hover::after {
-                    background-color: #ffa209;
-                    border-radius: 50%;
-                }
-
-
-                .celdasDias {
-                    font-weight: normal !important;
-                    border-left: none !important;
-                    border-top: 5px solid #0000 !important;
-                    border-bottom: none !important;
-                }
-
-                .diaHeader {
-                    padding: 2px !important;
-                    background-color: #d8dfe1 !important;
-                }
-
-                .text-rango {
-                    font-size: 20px !important;
-                    font-weight: bold !important;
-                    padding-top: 5px;
-                    padding-bottom: 5px;
-                    width: 35px;
-                }
-
-                .dot {
-                    /* max-height: 20px;
-                              max-width: 10px; */
-                    /* font-size: 20px;
-                              text-align: center !important; */
-                    /* font-size: 38px;
-                              text-align: center !important;
-                              /* padding: 0px; */
-                    /* margin: 0px; 
-                              height: 0px;
-                              */
-
-                    padding-left: 3px;
-                    padding-bottom: 11px;
-
-                }
-
-                .dot::before {
-                    content: '';
-                    display: inline-block;
-                    width: 12px;
-                    height: 12px;
-                    -moz-border-radius: 7.5px;
-                    -webkit-border-radius: 7.5px;
-                    border-radius: 7.5px;
-                    z-index: 100;
-                    position: absolute;
-                    /* background-color: #69b6d5; */
-                }
-
-                .dot-blue::before {
-                    background-color: blue;
-                }
-
-                .dot-mostaza::before {
-                    background-color: #ffa209;
-                }
-
-
-
-                #equipo {
-                    width: 900px;
-                    border: 1px solid black;
-                    margin-left: 10px;
-                    margin-right: 10px;
-                }
-
-                .equipo-header {
-                    align-self: center;
-                    margin-top: auto;
-                    margin-bottom: auto;
-                    background: #d8dfe1;
-                    height: 20px;
-                    display: flex;
+                .row {
+                    display: flex !important;
                     justify-content: center;
+                    flex-wrap: wrap;
+                }
+
+                .row>col {
+                    width: 100%;
+                    max-width: 100%;
+                    padding-right: calc(var(--bs-gutter-x) * .5);
+                    padding-left: calc(var(--bs-gutter-x) * .5);
+                    margin-top: var(--bs-gutter-y);
+                }
+
+                .border {
+                    border: 1px solid black;
+                }
+
+                .border-bottom {
                     border-bottom: 1px solid black;
                 }
 
-                .equipo-header h5 {
-                    align-self: center;
+                .border-top {
+                    border-top: 1px solid black;
                 }
 
-                .equipo-body {
-                    display: flex;
-                    margin-top: 5px;
-                    margin-bottom: 5px;
-                    margin-right: 30px;
+                .border-left {
+                    border-left: 1px solid black;
                 }
 
-                .equipo--input {
-                    display: flex;
-                    justify-content: center;
-                    align-self: center;
-                    width: 170px !important;
-                    border-bottom: 2px solid black;
+                .border-right {
+                    border-right: 1px solid black;
                 }
 
-                .equipo--container {
-                    height: 20px !important;
-                    display: flex;
-                    padding: 5px 20px;
+                .bg-title {
+                    background-color: #d8dfe1 !important;
                 }
 
-                label {
-                    font-size: 15px;
+                .p-0 {
+                    padding: 0px !important;
                 }
 
+                .m-0 {
+                    margin: 0px !important;
+                }
+
+                /* Margin    */
+                .mx-1 {
+                    margin-left: 0.25rem;
+                    margin-right: 0.25rem;
+                }
+
+                .mx-2 {
+                    margin-left: 0.5rem;
+                    margin-right: 0.5rem;
+                }
+
+                .mx-3 {
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
+
+                .mx-4 {
+                    margin-left: 1.5rem;
+                    margin-right: 1.5rem;
+                }
+
+                .mx-5 {
+                    margin-left: 3rem;
+                    margin-right: 3rem;
+                }
+
+                .mx-6 {
+                    margin-left: 4rem;
+                    margin-right: 4rem;
+                }
+
+                .mx-7 {
+                    margin-left: 5rem;
+                    margin-right: 5rem;
+                }
+
+                .mb-1 {
+                    margin-bottom: 0.25rem;
+                }
+
+                .mb-2 {
+                    margin-bottom: 0.5rem;
+                }
+
+                .mb-3 {
+                    margin-bottom: 1rem;
+                }
+
+                .mb-4 {
+                    margin-bottom: 1.5rem;
+                }
+
+                .mb-5 {
+                    margin-bottom: 3rem;
+                }
+
+                .mb-6 {
+                    margin-bottom: 4rem;
+                }
+
+                .mb-7 {
+                    margin-bottom: 5rem;
+                }
+
+                .mt-1 {
+                    margin-top: 0.25rem;
+                }
+
+                .mt-2 {
+                    margin-top: 0.5rem;
+                }
+
+                .mt-3 {
+                    margin-top: 1rem;
+                }
+
+                .mt-4 {
+                    margin-top: 1.5rem;
+                }
+
+                .mt-5 {
+                    margin-top: 3rem;
+                }
+
+                .mt-6 {
+                    margin-top: 4rem;
+                }
+
+                .mb-7 {
+                    margin-bottom: 5rem;
+                }
+
+                /* Padding */
 
 
-                .container {
+                .px-1 {
+                    padding-left: 0.25rem;
+                    padding-right: 0.25rem;
+                }
+
+                .px-2 {
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                }
+
+                .px-3 {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+
+                .px-4 {
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+
+                .px-5 {
+                    padding-left: 3rem;
+                    padding-right: 3rem;
+                }
+
+                .px-6 {
+                    padding-left: 4rem;
+                    padding-right: 4rem;
+                }
+
+                .px-7 {
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+
+                .pb-1 {
+                    padding-bottom: 0.25rem;
+                }
+
+                .pb-2 {
+                    padding-bottom: 0.5rem;
+                }
+
+                .pb-3 {
+                    padding-bottom: 1rem;
+                }
+
+                .pb-4 {
+                    padding-bottom: 1.5rem;
+                }
+
+                .pb-5 {
+                    padding-bottom: 3rem;
+                }
+
+                .pb-6 {
+                    padding-bottom: 4rem;
+                }
+
+                .pb-7 {
+                    padding-bottom: 5rem;
+                }
+
+                .pt-1 {
+                    padding-top: 0.25rem;
+                }
+
+                .pt-2 {
+                    padding-top: 0.5rem;
+                }
+
+                .pt-3 {
+                    padding-top: 1rem;
+                }
+
+                .pt-4 {
+                    padding-top: 1.5rem;
+                }
+
+                .pt-5 {
+                    padding-top: 3rem;
+                }
+
+                .pt-6 {
+                    padding-top: 4rem;
+                }
+
+                .pb-7 {
+                    padding-bottom: 5rem;
+                }
+
+                /* Displays */
+
+                .d-flex {
                     display: flex !important;
-                    justify-content: center;
-                    margin-left: auto;
-                    margin-right: auto;
                 }
 
-
-                .bg-grey {
-                    background-color: #d8dfe1;
-
+                .fw-bold {
+                    font-weight: bold !important;
                 }
             </style>
 
 
         </head>
+        <?php
+
+        // para el path del logo 
+        $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
+        $encode = base64_encode($ruta);
+
+        // Para la firma se requiere mandar la "firma" tambien en base 64 e incrustarlo como en el ejemplo de arriba,
+        //los datos de abajo son meramente informativos y solo sirven para rellenar la informacion del documento
+        // echo '<img src="data:image/png;base64, '. $img_valido .'" alt="" height="75" >';
+
+        // path firma
+        $ruta_firma = file_get_contents('../pdf/public/assets/firma_quiroz.png'); //FIRMA_URL
+        $encode_firma = base64_encode($ruta_firma);
+
+        ?>
 
         <div id="body">
+            <!-- header -->
+            <div class="header mt-3">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="col-foot-one"></td>
+                            <td class="col-foot-two" style="border-bottom: none">
+                                <h5>
+                                    DIAGNOSTICO BIOMOLECULAR S.A.de C.V. <br>
+                                    (ÁREA)
+                                </h5>
 
-            <div id="container-equipo">
-
-
-            </div>
-
-            <!-- <div class="container " style="display: flex;">
-                <div id="equipo">
-                    <div class="equipo-header">
-                        <h5>EQUIPO</h5>
-                    </div>
-                    <div class="equipo--container">
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">Equipo:</label>
-                            <small class="equipo--input">
-                                CONGELADOR
-                            </small>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">Modelo:</label>
-                            <div class="equipo--input">
-                                as
-                            </div>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">Localización:</label>
-                            <div class="equipo--input" style="width: 250px !important">
-                                ass
-                            </div>
-                        </div>
-                    </div>
-                    <div class="equipo--container">
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">Marca:</label>
-                            <div class="equipo--input">
-                                <span></span>
-                            </div>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">N° Serie:</label>
-                            <div class="equipo--input" style="width: 260px !important">
-                                <small></small>
-                            </div>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">Intervalo Optimo:</label>
-                            <div class="equipo--input" style="width:100px !important;">
-                                <span style="font-weight: bold;">-25 A -35°C</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="equipo">
-                    <div class="equipo-header">
-                        <h5>TERMOMETRO</h5>
-                    </div>
-                    <div class="equipo--container">
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">Marca:</label>
-                            <small class="equipo--input">
-                                CONGELADOR
-                            </small>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px; width:150px !important;">Factor de correción:</label>
-                            <div class="equipo--input">
-                                °C
-                            </div>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">MES:</label>
-                            <div class="equipo--input">
-                                ass
-                            </div>
-                        </div>
-                    </div>
-                    <div class="equipo--container">
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">ID:</label>
-                            <div class="equipo--input">
-                                <span></span>
-                            </div>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px; width:150px !important;">Fecha de verificación:</label>
-                            <div class="equipo--input">
-                                <small>s</small>
-                            </div>
-                        </div>
-                        <div class="equipo-body">
-                            <label style="margin-right: 5px;">AÑO:</label>
-                            <div class="equipo--input">
-                                <small>s</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
- -->
-
-            <!-- Tabla de puntos -->
-            <!-- <div>
-                <table id="grafica">
-                    <tr>
-                        <th class="celdasDias"></th>
-                        <?php
-                        for ($i = 1; $i <= 31; $i++) {
-                            echo "<th class='diaHeader' colspan='2'>" . $i . "</th>";
-                        }
-                        ?>
-                    </tr>
-
-
-                    <?php
-
-
-                    // Arreglo contruido
-
-                    // echo '<pre>', var_dump($resultados), '</pre>';
-
-                    // $array = json_decode($resultados, true);
-
-                    $max = $resultados->EQUIPO->INTERVALO_MAX;
-                    // echo '<pre>', var_dump($max), '</pre>';
-                    // echo $max;
-                    $min = $resultados->EQUIPO->INTERVALO_MIN;
-
-                    // $max = $array['EQUIPO']['INTERVALO_MAX'];
-                    // $min = $array['EQUIPO']['INTERVALO_MIN'];
-
-                    // echo $max;
-
-                    $valores_obj = $resultados->DIAS;
-                    // echo '<pre>', var_dump($valores_obj), '</pre>';
-                    $valores = [];
-                    foreach ($valores_obj as $key => $value) {
-                        # code...
-
-                        foreach ($value as $key_2 => $value_2) {
-
-                            foreach ($value_2 as $key_3 => $value_3) {
-                                $valores[$key][$key_2][$key_3] = $value_3;
-                            }
-                        }
-                    }
-
-                    // echo '<pre>', var_dump($valores), '</pre>';
-
-                    // $valores = json_decode($valores, true);
-
-                    function redondear($valor, $valorAprox)
-                    {
-
-                        $explode = explode('.', $valor);
-                        $signo = $explode[0] > 0 ? '' : '-';
-                        $unidad = $explode[0] > 0 ? $explode[0]  : ($explode[0] * -1);
-                        $decimal = $explode[1] > 50 ? 1 : 0;
-
-                        $valor_final = ($unidad + ($decimal));
-                        return "$signo$valor_final";
-
-
-                        // return $explode[0];
-                    }
-
-                    function raangoTD($valorAprox, $min, $max)
-                    {
-                        $valores = [];
-                        foreach (range($min, $max) as $number) {
-                            // echo $number;
-                            $valores[] = $number;
-                            // return in_array($valorAprox, [$number]);
-                        }
-
-                        return in_array($valorAprox, $valores);
-                    }
-
-                    function metodoCalculo($dia, $turno, $valorAprox, $valores, $min, $max)
-                    {
-
-                        // global $valores;
-                        // global $max;
-                        // global $min;
-
-
-
-                        if (in_array($valores[$dia][$turno], [$valores[$dia][$turno]])) {
-                            $turno_dia = $valores[$dia][$turno];
-
-                            // if ($turno_dia) {
-                            //     return "<td>si</td>";
-                            // } else {
-                            //     return "<td>no</td>";
-                            // }
-                            $valor = redondear($valores[$dia][$turno]["valor"], $valorAprox);
-                            // $valor_redondeado = round($valor);
-                            $color = $valores[$dia][$turno]['color'];
-                            $id = $valores[$dia][$turno]['id'];
-                            // return "<td>$valor</td>";
-                            if (in_array($valor, [$valorAprox])) {
-                                $dotId = "dot-$dia-$turno"; // Generar el ID del dot
-                                if (raangoTD($valorAprox, $min, $max)) {
-                                    return "<td class='td-hover bg-grey empty turno-$turno'  data_id='$id' id='$dotId'><div class='dot dot-$color'></div></td>";
-                                } else {
-                                    return "<td class='td-hover empty turno-$turno'  data_id='$id' id='$dotId'><div class='dot dot-$color'></div></td>";
-                                }
-                            }
-                        }
-
-                        if (raangoTD($valorAprox, $min, $max)) {
-                            return "<td class='bg-grey empty turno-$turno'></td>";
-                        } else {
-                            return "<td class='empty turno-$turno background$valorAprox'></td>";
-                        }
-                    }
-
-
-
-                    // Generar las celdas de la tabla
-                    for ($j = $max + 5; $j >= $min - 5; $j--) {
-                        if ($j == $max) {
-                            echo "<tr class='border-top'>";
-                        } else if ($j == $min) {
-                            echo "<tr class='border-bottomm'>";
-                        } else {
-                            echo "<tr class='border$j'>";
-                        }
-
-
-                        if ($j == $max) {
-                            echo "<th class='celdasDias text-rango'>" . $j . "</th>";
-                        } else if ($j == $min) {
-                            echo "<th class='celdasDias text-rango'>" . $j . "</th>";
-                        } else {
-                            echo "<th class='celdasDias text$j'>" . $j . "</th>";
-                        }
-
-                        $prevDot = null; // Dot previo para conectar con líneas
-
-                        for ($i = 1; $i <= 31; $i++) {
-                            $dot1 = metodoCalculo($i, 1, $j, $valores, $min, $max);
-                            $dot2 = metodoCalculo($i, 2, $j, $valores, $min, $max);
-                            /* $dot3 = metodoCalculo($i, 3, $j); */
-
-                            if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
-                                echo $dot1;
-                                if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
-                                    echo $dot2;
-                                } else {
-                                    $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
-                                }
-                            } else {
-                                $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
-                            }
-                        }
-                        echo "</tr>";
-                    }
-                    ?>
-
+                                <h6>
+                                    FORMATO PARA EL REGISTRO DE TEMPERATURAS DE EQUÍPOS <br>
+                                    FUG-08-DB
+                                </h6>
+                            </td>
+                            <td class="col-foot-three" style="border-bottom: none; text-align:center;">
+                                <?php
+                                echo "<img src='data:image/png;base64, " . $encode . "' height='55' >";
+                                // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
+                                ?>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
+            </div>
 
-            </div> -->
+            <!-- Tabla de equipos y Termometro -->
+            <div class="body mt-2  mx-7">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="col-foot-der" style="border-bottom: none">
+                                <!-- Tabla Equipos -->
+                                <div class="tabla-equipos">
+                                    <table class="">
+                                        <thead class="border-top border-left border-right ">
+                                            <tr class="p-0 m-0">
+                                                <th colspan="3" class="bg-title">
+                                                    <h6 class=" m-0 p-0">EQUIPO</h6>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="border">
+                                            <tr class="">
+                                                <td class="">
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Equipos:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                    </div>
+                                                </td>
+                                                <td class="">
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Modelo:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                    </div>
+                                                </td>
+                                                <td class="">
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Localización:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="">
+                                                <td class="">
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Marca:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                    </div>
+                                                </td>
+                                                <td class="">
+                                                    <div class="d-flex">
+                                                        <label class="h7">N° Serie:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                    </div>
+                                                </td>
+                                                <td class="">
+                                                    <div class="d-flex">
+                                                        <label class="h7">Intervalo Optimo:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> -25 A -35°C </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </td>
+                            <div class="mx-2"></div>
+                            <td class="col-foot-izq" style="border-bottom: none; text-align:center;">
+                                <!-- Tabla termometros -->
+                                <div class="tabla-termometros">
+                                    <table class="">
+                                        <thead class="border-top border-left border-right ">
+                                            <tr class="p-0 m-0">
+                                                <th colspan="3" class="bg-title">
+                                                    <h6>Termometros</h6>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="border">
+                                            <tr class="">
+                                                <td class="">
+                                                    <h6>
+                                                        R1C1
+                                                    </h6>
+                                                </td>
+                                                <td class="">
+                                                    <h6>
+                                                        R1C2
+                                                    </h6>
+                                                </td>
+                                                <td class="">
+                                                    <h6>
+                                                        R1C3
+                                                    </h6>
+                                                </td>
+                                            </tr>
+                                            <tr class="">
+                                                <td class="">
+                                                    <h6>
+                                                        Item
+                                                    </h6>
+                                                </td>
+                                                <td class="">
+                                                    <h6>
+                                                        Item
+                                                    </h6>
+                                                </td>
+                                                <td class="">
+                                                    <h6>
+                                                        Item
+                                                    </h6>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
 
         </div>
 

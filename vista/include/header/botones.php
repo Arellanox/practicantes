@@ -221,19 +221,44 @@ $menu = $_POST['menu']; ?>
   </button> -->
 
   <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
+    <div class="d-flex">
+      <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
+        <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
+      </button>
 
-    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
-      <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
-    </button>
-
-  <?php endif; ?>
+    <?php endif; ?>
 
 
-  <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
+    <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
 
-    <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none ;" id="GenerarPDFTemperatura">
-      <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
-    </button>
+      <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none ;" id="GenerarPDFTemperatura">
+        <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
+      </button>
+
+    <?php endif; ?>
+
+    <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
+      <!-- DROPDOWN CONFIGURACIÓN -->
+      <!-- <button class="btn btn-hover me-2" type="button" style="margin-bottom:4px;" id="">
+        <i class="bi bi-gear-fill"></i> Configuracion
+      </button> -->
+      <!-- <button class="btn" id="TermometrosbtnTemperaturas">Termometros</button> -->
+
+      <div class="dropdown">
+        <button class="btn btn-hover me-2 dropdown-toggle" type="button" style="margin-bottom:4px;" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-gear-fill"></i> Configuracion
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <button class="btn dropdown-item" id="TermometrosbtnTemperaturas">Termometros</button>
+          </li>
+          <li>
+            <button class="btn dropdown-item" id="ConfiguracionTemperaturasbtn">Mas configuracion</button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
 
   <?php endif; ?>
 

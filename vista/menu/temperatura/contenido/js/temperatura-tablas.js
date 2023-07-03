@@ -167,8 +167,6 @@ function CrearTablaPuntos(id_grupo) {
     }).done(
 
         function () {
-
-
             setTimeout(function () {
 
                 var canvas = document.getElementById('canvas');
@@ -247,21 +245,18 @@ function CrearTablaPuntos(id_grupo) {
                 function drawLines() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                    var prevDot;
+                    // var prevDot;
+                    // for (var i = dotInicial; typeof (prevDot) != "object"; i++) {
+                    //     for (var j = 1; j <= 2; j++) {
+                    //         prevDot = document.getElementById('dot-' + i + '-' + j);
 
+                    //         if (typeof (prevDot) == "object") {
+                    //             // prevDot = document.getElementById('dot-' + i + '-' + j)
+                    //             j = 3
+                    //         }
 
-
-                    for (var i = dotInicial; typeof (prevDot) != "object"; i++) {
-                        for (var j = 1; j <= 2; j++) {
-                            prevDot = document.getElementById('dot-' + i + '-' + j);
-
-                            if (typeof (prevDot) == "object") {
-                                prevDot = document.getElementById('dot-' + i + '-' + j)
-                                j = 3
-                            }
-
-                        }
-                    }
+                    //     }
+                    // }
 
                     for (var i = dotInicial; i <= dotLast; i++) {
                         for (var j = 1; j < 3; j++) {

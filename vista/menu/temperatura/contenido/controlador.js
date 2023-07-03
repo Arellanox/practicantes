@@ -7,9 +7,10 @@ if (validarVista('REGISTRO_TEMPERATURA')) {
     });
 }
 
-
+// Variables globales
 var selectRegistro, editRegistro = false, id_equipos = null, btnequipos = false;
-//
+var Domingos, dataConfig = {}, selectedEquiposTemperaturas = {};
+
 var selectTableFolio = false
 function obtenerTemperaturas() {
     obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area

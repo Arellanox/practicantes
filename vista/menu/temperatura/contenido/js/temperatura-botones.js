@@ -9,6 +9,8 @@
 //     }
 // })
 
+
+
 $(document).on('click', '.btn-liberar', function (event) {
     event.stopPropagation();
 
@@ -47,6 +49,7 @@ $("#EquiposTemperaturasForm").on("submit", function (e) {
     $('#Equipos').addClass('disable-element')
     $('#btn-equipo-temperatura').addClass('disable-element')
     $('#btn-desbloquear-equipos').fadeIn(0)
+    // $("#SupervisorConfiguracion").fadeIn(0)
 
 
     $('#btn-lock').removeClass('bi bi-lock-fill')
@@ -80,7 +83,7 @@ $('#btn-desbloquear-equipos').on('click', function (e) {
     $("#lista-meses-temperatura").fadeOut(0);
     $(".grafica-temperatura").fadeOut(0);
     $('#btn-desbloquear-equipos').addClass('disable-element')
-
+    // $("#SupervisorConfiguracion").fadeOut(0)
 
     $("#formCapturarTemperatura").trigger("reset")
 
@@ -145,6 +148,7 @@ function CargarTemperatura() {
                 dataJson["id_registro_temperatura"] = selectRegistro['ID_REGISTRO_TEMPERATURA']
                 form = "formActualizarTemperatura"
                 text = "Registro actualizado correctamente"
+
                 break;
             case false:
                 console.log("esta registrando una nueva temperatura")
@@ -176,6 +180,8 @@ function CargarTemperatura() {
                 console.log('No')
                 tablaTemperaturaFolio.ajax.reload()
             }
+
+            editRegistro == true ? $('#detallesTemperaturaModal').modal('hide') : null
         })
     }, 1)
 }
@@ -304,3 +310,201 @@ function agregarNota(element = [], div) {
 
     $(div).append(html);
 }
+
+
+$("#ConfiguracionTemperaturasbtn").on("click", async function () {
+    alertToast('Cargando Configuracion...', 'info', 2000)
+    await CargarConfiguracionTemperaturas()
+
+
+
+    $('#offcanvasConfiguracionTemperaturas').offcanvas('show');
+})
+
+$("#btn-configuracion-temperatura").on("click", function (e) {
+    e.preventDefault();
+
+    switchState = $('#Domingos').is(':checked');
+
+    console.log(domingos)
+    data = new FormData(document.getElementById('ConfiguracionTemperaturaForm'));
+
+
+
+    ajaxAwaitFormData({
+        api: 12,
+        domingos: domingos
+    }, 'temperatura_api', 'ConfiguracionTemperaturaForm', { callbackAfter: true }, false, (data) => {
+        alertToast('Configuracion Actualizada', 'success', 1000)
+
+        $('#offcanvasConfiguracionTemperaturas').offcanvas('hide');
+    })
+
+})
+
+
+var domingos;
+// Escuchar los cambios en el switch
+$('#Domingos').on('change', function () {
+    var switchState = $(this).is(':checked');
+    if (switchState) {
+        domingos = 1
+        // $('#factor_coreccion').collapse('show');
+    } else {
+        domingos = 0
+        // $('#factor_coreccion').collapse('hide');
+    }
+});
+
+
+// $("#SupervisorConfiguracion").on("click", function (e) {
+//     e.preventDefault();
+//     $('#Si').prop('checked', false)
+//     $('#No').prop('checked', false)
+//     $('#flexSwitchCheckChecked').prop('checked', false)
+//     $('#factor_coreccion').collapse('hide');
+//     $('#factor_coreccion').val('');
+//     rellenarSelect("#Termometro_configuracion", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
+
+//     ajaxAwait({
+//         api: 11,
+//     }, 'temperatura_api', { callbackAfter: true, WithoutResponseData: true }, false, (row) => {
+//         for (const key in row) {
+//             if (Object.hasOwnProperty.call(row, key)) {
+//                 const element = row[key];
+//                 $("#MATUTINO").val(element['MATUTINO_INICIO'])
+//                 $("#VESPERTINO").val(element['VESPERTINO_INICIO'])
+
+//                 if (element['DOMINGOS'] == 0) {
+//                     $('#No').prop('checked', true)
+//                 } else {
+//                     $('#Si').prop('checked', true)
+//                 }
+//             }
+//         }
+
+//     })
+
+
+
+//     $("#ConfiguracionModal").modal('show');
+// })
+
+
+$("#DomingosbtnTemperaturas").on('click', function (e) {
+    e.preventDefault();
+
+    CargarConfiguracionTemperaturas()
+
+    Domingos = parseInt(dataConfig['DOMINGOS']) == 0 ? true : false;
+
+
+
+
+    var config = {
+        title: null,
+        text: null,
+        text2: null,
+        action: null
+    }
+    switch (Domingos) {
+        case true:
+            config = {
+                title: '¿Desea deshabilitar los dias domingos?',
+                text: 'Se deshabilitaran los dias domingos ',
+                text2: 'Domingos deshabilitado',
+                action: 0
+            }
+            break;
+        case false:
+            config = {
+                title: '¿Desea activar los dias domingos?',
+                text: 'Se activaran los dias domingos ',
+                text2: 'Domingos habilitado',
+                action: 1
+            }
+            break;
+        default:
+            title = title
+            text = text
+            break;
+    }
+
+    alertMensajeConfirm({
+        title: config.title,
+        text: config.text,
+        icon: 'info',
+        confirmButtonText: "Si"
+        // denyButtonText: "No",
+        // showDenyButton: true
+    }, () => {
+        ajaxAwait({
+            api: 12,
+            domingos: config.action
+        }, 'temperatura_api', { callbackAfter: true }, false, () => {
+            alertToast(config.text2, 'success', 4000)
+        })
+
+        // alertToast('Domingo deshabilitado', 'success ', 1000)
+        console.log("le dio que si el we")
+    }, 1)
+
+
+})
+
+$("#TurnosbtnTemperaturas").on("click", function (e) {
+
+    $("#TurnosTemperaturasModal").modal("show");
+})
+
+
+$("#TermometrosbtnTemperaturas").on("click", function (e) {
+
+    $("#TermometrosTemperaturasModal").modal("show");
+
+
+})
+
+async function CargarConfiguracionTemperaturas() {
+    return await ajaxAwait({
+        api: 11,
+    }, 'temperatura_api', { callbackAfter: true, WithoutResponseData: true }, false, (row) => {
+        for (const key in row) {
+            if (Object.hasOwnProperty.call(row, key)) {
+                const element = row[key];
+                dataConfig = element
+
+                Domingos_bit = parseInt(dataConfig['DOMINGOS'])
+                domingos = Domingos_bit;
+
+                if (Domingos_bit == 1) {
+                    // true
+                    $('#Domingos').prop('checked', true)
+                } else {
+                    // False    
+                    $('#Domingos').prop('checked', false)
+                }
+
+
+                $("#matutino_inicio").val(dataConfig['MATUTINO_INICIO'].split(':')[0] + ':' + dataConfig['MATUTINO_INICIO'].split(':')[1])
+                $("#matutino_final").val(dataConfig['MATUTINO_FINAL'].split(':')[0] + ':' + dataConfig['MATUTINO_FINAL'].split(':')[1])
+                $("#vespertino_inicio").val(dataConfig['VESPERTINO_INICIO'].split(':')[0] + ':' + dataConfig['VESPERTINO_INICIO'].split(':')[1])
+                $("#vespertino_final").val(dataConfig['VESPERTINO_FINAL'].split(':')[0] + ':' + dataConfig['VESPERTINO_FINAL'].split(':')[1])
+            }
+        }
+    })
+}
+
+$("#TermometrosTemperaturasForm").on('submit', function (e) {
+    e.preventDefault();
+
+    alertMensajeConfirm({
+        title: "¿Está seguro de su captura?",
+        text: "Se asignara el termometro al equipo",
+        icon: "info"
+    }, function () {
+        // ajaxAwaitFormData(dataJson, 'temperatura_api', form, { callbackAfter: true }, false, function (data) {
+
+        // })
+    }, 1)
+})

@@ -97,6 +97,8 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
                     }, 'temperatura_api', { callbackAfter: true }, false, () => {
                         // alertMensaje('success', '')
                         alertToast('Registro liberado', 'success', 4000)
+                        $("#grafica").html("");
+                        CrearTablaPuntos(DataMes['FOLIO']);
                         tablaTemperatura.ajax.reload()
                         // if (selectTableFolio) {
                         //     console.log('si entro')
@@ -122,7 +124,7 @@ inputBusquedaTable('TablaTemperatura', tablaTemperatura, [
 
 
 
-rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
+rellenarSelect("#TermSometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
 selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: true, noColumns: true }, async function (select, data, callback) {
 
     selectRegistro = data
@@ -158,7 +160,7 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
 
         $('#ActualizarTemperatura_title').html("Actualiza su registro")
         $("#Termometro_actualizar").val(data['TERMOMETRO_ID'])
-        $("#lectura_actualizar").val(data['LECTURA'].replace('-', ''))
+        $("#lectura_actualizar").val(data['LECTURA'])
         $("#observaciones_actualizar").val(data['OBSERVACIONES'])
 
     } else {

@@ -40,10 +40,11 @@
                             $dotInicial =  array_key_first($valores);
                             $dotEnd =  array_key_last($valores);
 
-                            function redondear($valor, $valorAprox)
+                            function redondear($valor, $valorAprox, $max, $min)
                             {
 
                                 $explode = explode('.', $valor);
+
                                 // $signo = $explode[0] > 0 ? '' : '-';
                                 // $unidad = $explode[0] > 0 ? $explode[0]  : ($explode[0] * -1);
                                 // $decimal = $explode[1] > 50 ? 1 : 0;
@@ -57,7 +58,35 @@
                                 //30*0.34 = ?
                                 //
 
-                                $pixeles = (($explode[1] / 100) * 30) + 10;
+                                if ($valor >= $max) {
+                                    $pixeles = 10;
+                                    $explode[0] = $max;
+                                }
+
+                                if ($valor <= $min) {
+                                    $pixeles = 10;
+                                    $explode[0] = $min;
+                                }
+
+
+                                if ($valor > 0 && $explode[1] > 0) {
+                                    $pixeles = (($explode[1] / 100) * 30) + 10;
+
+                                    $pixeles = (($pixeles) - ($pixeles * 0.8)) * -1;
+                                } else {
+                                    $pixeles = (($explode[1] / 100) * 30) + 10;
+                                }
+
+
+
+
+                                # 3 / 100 =0.03
+                                # 0.03 * 30 = 0.9
+                                # 0.9 + 1- = 10.9
+
+
+                                // $pixeles = $valor > 0 ? ($pixeles * -1) + ($pixeles * 0.8) : $pixeles;
+
 
 
                                 return [$explode[0], $pixeles . "px"];
@@ -72,13 +101,10 @@
                                 global $max;
                                 global $min;
                                 if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
-
-
-
                                     // $valor = floatval($valores[$dia][$turno]["valor"]);
                                     // $valor_redondeado = round($valor);
                                     $valor = $valores[$dia][$turno]["valor"];
-                                    $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox);
+                                    $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, $max + 5, $min - 5);
                                     $valor_redondeado = $valor_turno[0];
                                     $valor_decimal_px = $valor_turno[1];
 
@@ -147,18 +173,31 @@
                                 }
                                 echo "</tr>";
                             }
+
+                            echo "<tr class='border$j'>";
+                            echo "<th class='celdasDias text$j'>" . $j . "</th>";
+                            for ($i = 1; $i <= 31; $i++) {
+                                echo "<td class='empty turno-1 background'></td>";
+                                echo "<td class='empty turno-2 background'></td>";
+                                echo "<td class='empty turno-3 background'></td>";
+                            }
+                            echo "</tr>";
                             ?>
                       </table>
 
                       <canvas id="canvas"></canvas>
 
                       <script>
-                          var dotInicial = <?php echo array_key_first($valores); ?>;
+                          dotInicial = <?php echo array_key_first($valores); ?>;
+                          prevDot = `dot-<?php echo array_key_first($valores) ?>-<?php echo array_key_first($valores[array_key_first($valores)]) ?>`;
 
-                          var dotLast = <?php echo array_key_last($valores); ?>;
+                          dotLast = <?php echo array_key_last($valores); ?>;
+
+                          prevDot = document.getElementById(prevDot);
                       </script>
                       <style>
                           #grafica table {
+
                               border-collapse: collapse;
                           }
 
@@ -335,11 +374,13 @@
                               font-size: 15px;
                           }
 
-                          /* .table--container {
-
-                              display: flex !important;
-                              justify-content: center;
-                          } */
+                          .table--container {
+                              /* overflow: auto;
+                              min-height: 64px;
+                              max-height: 100%; */
+                              /* display: flex;
+                              justify-content: center; */
+                          }
 
                           .container {
                               display: flex !important;
