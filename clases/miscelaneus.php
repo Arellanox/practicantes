@@ -1,7 +1,7 @@
 <?php
 require_once('../php/phpqrcode/qrlib.php');
 require_once("../lib/libmergpdf/vendor/autoload.php");
- 
+
 use iio\libmergepdf\Merger;
 use iio\libmergepdf\Pages;
 use iio\libmergepdf\Driver\TcpdiDriver;
@@ -453,25 +453,25 @@ class Miscelaneus
                 $infoPaciente[0]['CLAVE_IMAGEN'] = $infoPaciente[array_key_last($infoPaciente)]['CLAVE_ESPIRO'];
 
                 break;
-            
+
             case 19:
             case "19":
                 #CONSULTORIO2
                 $arregloPaciente = $this->getBodyInfoConsultorio2($master, $turno_id);
-                break;  
-            
-                
+                break;
+
+
             case -1: #Formato de temperatura de equipos
                 // echo "si entro";
                 // exit;
                 $arregloPaciente = $this->getBodyTemperatura($master);
                 break;
-                
+
             case -2:
                 #RECETA
                 $arregloPaciente = $this->getBodyRecetas($master, $turno_id);
-                break;        
-            }
+                break;
+        }
 
 
         if ($area_id == 0) {
@@ -496,7 +496,9 @@ class Miscelaneus
         $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre . "-" . $infoPaciente[0]['ETIQUETA_TURNO'] . '-' . $fecha_resultado);
         $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
 
-        // print_r(json_encode($arregloPaciente));
+        // print_r($arregloPaciente);
+        // $pacientes = json_encode($arregloPaciente);
+        // print_r(json_decode($pacientes));
         // print_r(json_encode($infoPaciente[0]));
         // exit;
         $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
@@ -559,13 +561,13 @@ class Miscelaneus
         return $response;
     }
 
-    
+
     private function getBodyRecetas($master, $turno_id)
     {
         $response = $master->getByNext('sp_recetas', [$turno_id]);
         return $response;
     }
-    
+
 
     private function getBodyInfoConsultorio($master, $id_turno, $id_consulta)
     {
@@ -709,14 +711,17 @@ class Miscelaneus
 
 
         $arrayEtiqueta = array_merge($locales, $subroga);
+
         $arregloPaciente = array(
             'NOMBRE' => $infoPaciente[0]['NOMBRE'],
             'FECHA_TOMA' => $infoPaciente[0]['FECHA_TOMA'],
             "FOLIO" => $infoPaciente[0]['FOLIO'],
             "EDAD" => $infoPaciente[0]['EDAD'],
             'SEXO' => $infoPaciente[0]['SEXO'],
+            'PREFOLIO' => $infoPaciente[0]['PREFOLIO'],
             'BARRAS' => $infoPaciente[0]['CODIGO_BARRAS'],
             'CONTENEDORES' => $arrayEtiqueta,
+            
 
         );
 

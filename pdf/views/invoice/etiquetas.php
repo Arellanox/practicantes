@@ -1,6 +1,6 @@
 <?php
 $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-// echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode('081231723897', $generator::TYPE_CODE_128)) . '">';
+//  echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($encabezado->PREFOLIO, $generator::TYPE_CODE_128)) . '">';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,28 +99,41 @@ $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
 
             $recipientes = $resultados;
             foreach ($recipientes->CONTENEDORES as $a => $recipiente) {
-                echo "  <tr>
-                                <td>
-                                    <p style='font-size: 8px;'> <span style='font-weight:bold;'>" .   $recipiente->CONTENEDOR . " (" . $recipiente->MUESTRA . " ) </span> | " .   $recipientes->FECHA_TOMA . " </p>
-                                    <p>" .   $recipientes->NOMBRE . "</p>
-                                    <p>" .   $recipientes->EDAD . " AÑOS | " . $recipientes->SEXO .  "</p> 
-                                    <p>" .   $recipiente->MAQUILA_ABR  . "</p>";
+                echo "<tr>
+                        <td>
+                            <p style='font-size: 7px;'><span style='font-weight:bold;'>" . $recipiente->CONTENEDOR . " (" . $recipiente->MUESTRA . ")</span> | " . $recipientes->FECHA_TOMA . "</p>
+                            <p style='font-size: 7px;'>" . $recipientes->NOMBRE . "</p>
+                            <p style='font-size: 7px;'>" . $recipientes->EDAD . " AÑOS | " . $recipientes->SEXO . "</p>
+                            <p style='padding-bottom:1px'>" . $recipiente->MAQUILA_ABR . "</p>";
+
+                            echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($encabezado->PREFOLIO, $generator::TYPE_CODE_128)) . '">';
+
+                            echo "<p style='text-align:center'>$recipientes->PREFOLIO</p>
+                        </td>
+                    </tr>";
+
                 $etiqueta = '';
-                foreach ($recipiente->ESTUDIOS as $b => $estudio) {
-                    $etiqueta = $etiqueta . $estudio->ABREVIATURA . ", ";
-                }
-                echo    "   
-                                    <p style='text-align:center; padding-top: 4px; padding-bottom: 4px;'> 
+                    foreach ($recipiente->ESTUDIOS as $b => $estudio) {
+                        $etiqueta = $etiqueta . $estudio->ABREVIATURA . ", ";
+                    }
+                        echo "   
+                                    <p style='text-align:center; padding-top: 0px; padding-bottom: 0px;'> 
                                       
                                     </p> 
-                                    <p style='font-size: 9px; padding-right:2px;'>" . $etiqueta . "</p>
-                                </td>
-                            </tr>";
-
-                // <img src='data:image/png;base64," .  $generator->getBarcode($barcode, $generator::TYPE_CODE_128)  .  " width='65px' height='30px'>
+                                    <p style='font-size: 7px; padding-right:2px;'>" . $etiqueta . "</p>
+                             
+                            
+                           
+                            
+                            ";
+                
                 $i++;
+
+               
             }
+
             ?>
+            
         </table>
     </div>
 </body>
