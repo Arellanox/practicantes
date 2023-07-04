@@ -14,9 +14,9 @@ $(window).on("hashchange", function (e) {
 
 // Variables globales
 
-
+// obtenerContenido()
 function obtenerContenido() {
-    obtenerTitulo('Menú ujat'); //Aqui mandar el nombre de la area
+    obtenerTitulo('Menú principal'); //Aqui mandar el nombre de la area
     $.post("contenido/contenido.html", function (html) {
         $("#body-js").html(html);
     }).done(function () {
@@ -39,7 +39,7 @@ function hasLocation() {
             obtenerContenido();
             break;
         default:
-            window.location.hash = '#UJAT';
+            // window.location.hash = '#UJAT';
             break;
     }
 }
