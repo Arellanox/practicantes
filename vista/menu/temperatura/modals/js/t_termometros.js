@@ -63,7 +63,7 @@ selectTable('#TablaTermometros', TablaTermometrosDataTable, { unSelect: true, db
 
     if (select) {
         $('#activarFactorCorrecion').prop('checked', false)
-        $('#factor_coreccion').val('');
+        $('#factor_correcion').val('');
         selectedEquiposTemperaturas = data;
         session.permisos.SupTemp == 1 ? $("#TermometrosTemperaturasForm").removeClass('disable-element') : $("#TermometrosTemperaturasForm").addClass('disable-element');
         $("#TermometrosTemperaturasForm").removeClass('disable-element');
@@ -73,26 +73,26 @@ selectTable('#TablaTermometros', TablaTermometrosDataTable, { unSelect: true, db
         // Escuchar los cambios en el switch
 
         if (switchState) {
-            $('#factor_coreccion').collapse('show');
+            $('#factor_correcion').collapse('show');
         } else {
-            $('#factor_coreccion').collapse('hide');
+            $('#factor_correcion').collapse('hide');
         }
 
     } else {
         $('#activarFactorCorrecion').prop('checked', false)
-        $('#factor_coreccion').val('');
+        $('#factor_correcion').val('');
         $("#TermometrosTemperaturasForm").addClass('disable-element');
         $("#Termometros_Equipos").val("");
     }
 })
 
-$('#activarFactorCorrecion').change(function () {
+$('#activarFactorCorrecion').on('change', function () {
     var switchState = $(this).is(':checked');
-    $('#factor_coreccion').val('');
+    $('#factor_correcion').val('');
     if (switchState) {
-        $('#factor_coreccion').collapse('show');
+        $('#factor_correcion').collapse('show');
     } else {
-        $('#factor_coreccion').collapse('hide');
+        $('#factor_correcion').collapse('hide');
     }
 });
 

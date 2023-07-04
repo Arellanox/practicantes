@@ -495,16 +495,27 @@ async function CargarConfiguracionTemperaturas() {
     })
 }
 
-$("#TermometrosTemperaturasForm").on('submit', function (e) {
+$("#TermometrosTemperaturasForm").on("submit", function (e) {
     e.preventDefault();
+
+
+    dataJsonTermometrosTemperaturas = {
+        api: 14,
+        Enfriador: selectedEquiposTemperaturas['ID_EQUIPO'],
+        id_temperaturas_equipos: selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'],
+    };
+
 
     alertMensajeConfirm({
         title: "¿Está seguro de su captura?",
         text: "Se asignara el termometro al equipo",
         icon: "info"
     }, function () {
-        // ajaxAwaitFormData(dataJson, 'temperatura_api', form, { callbackAfter: true }, false, function (data) {
-
-        // })
+        ajaxAwaitFormData(dataJsonTermometrosTemperaturas, 'temperatura_api', 'TermometrosTemperaturasForm', { callbackAfter: true }, false, function (data) {
+            alertToast('Termometro asigando con exito', 'success', 2000);
+            $('#activarFactorCorrecion').prop('checked', false)
+            $('#factor_correcion').val('');
+            TablaTermometrosDataTable.ajax.reload();
+        })
     }, 1)
 })

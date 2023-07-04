@@ -66,6 +66,10 @@ $comentario = $_POST['comentario'];
 #ID de comentario para elimanr un comentario
 $id_comentario = $_POST['id_comentario'];
 
+#Variables para insertar o actualizar los termometros de los equipos 
+$id_temperaturas_equipos  = $_POST['id_temperaturas_equipos'];
+$factor_correcion = $_POST['factor_correcion'];
+
 $parametros_g = array(
     $fecha_inicial,
     $fecha_final,
@@ -99,6 +103,14 @@ $configuracion = array(
     $vespertino_final,
     $domingos,
     $usuario
+);
+
+$equipos_termometros = array(
+    $equipo,
+    $termometro,
+    $usuario,
+    $id_temperaturas_equipos,
+    $factor_correcion
 );
 
 switch ($api) {
@@ -190,6 +202,12 @@ switch ($api) {
         break;
     case 13:
         $response = $master->getByProcedure('sp_temperaturas_equipos_termometros_b', [$equipo]);
+        break;
+    case 14:
+
+        print_r($equipos_termometros);
+        exit;
+        $response = $master->insertByProcedure('sp_temperaturas_equipos_termometros_g', $equipos_termometros);
         break;
     default:
         $response = "Api no definida.";
