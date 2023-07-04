@@ -22,7 +22,13 @@ $fecha_final = $_POST['fecha_final'];
 switch ($api) {
     case 1:
         # lista de estudios para la vista externa de ujat.
-        $response = $master->getByProcedure("sp_lista_de_trabajo_ujat", [$fecha_inicial]);
+        $resultset = $master->getByProcedure("sp_lista_de_trabajo_ujat", [$fecha_inicial]);
+
+        foreach($resultset as $set){
+            $set['ESTUDIOS'] = $master->decodeJson([$set['ESTUDIOS']]);
+            $response[] = $set;
+        }
+
         break;
     default:
         $response = "API no definida.";
