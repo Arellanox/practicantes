@@ -2,8 +2,6 @@
 <div id="tab-button"></div>
 
 <div class="row">
-
-
     <div class="col-12 tab-first" id="tab-principal">
         <!-- Vista de equipo y formulario -->
         <div class="row">

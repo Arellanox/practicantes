@@ -251,3 +251,23 @@ if ($menu != 'Recepción' && $_SESSION['vista']['RECEPCIÓN'] == 1) : ?>
     </a>
   </li>
 <?php endif; ?>
+
+
+
+
+
+<!-- Menu nuevo de la ujat -->
+
+<!-- <?php if ($menu == 'Ujat') : ?>
+ 
+<?php endif; ?> -->
+
+
+<li class="nav-item">
+  <a href="<?php echo "$https$url/$appname/vista/menu/Ujat"; ?>">
+    <i class=" bi bi-thunderbolt"></i> UJAT
+  </a>
+</li>
+
+
+<!-- Aqui termine el menu nuevo de la ujat -->
