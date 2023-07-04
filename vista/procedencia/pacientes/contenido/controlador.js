@@ -21,7 +21,7 @@ function obtenerContenido() {
         $("#body-js").html(html);
     }).done(function () {
         // Datatable
-        $.getScript("contenido/js/ujat-tablas.js");
+        $.getScript("contenido/js/contenido-tablas.js");
         // Botones
 
         // Filtros

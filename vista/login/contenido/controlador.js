@@ -32,7 +32,26 @@ function obtenerContenido(tabla) {
             const urlParams = new URLSearchParams(queryString);
             const page = urlParams.get('page')
 
-            $(location).attr('href', `${http}${servidor}/${appname}/vista/menu/principal/`);
+            if (page) {
+              $(location).attr('href', page);
+            } else {
+              // console.log(data.response.data)
+
+              switch (session['cargo']) {
+                case '10': case 10:
+                  $(location).attr('href', `${http}${servidor}/${appname}/vista/menu/recepcion/`);
+                  return true;
+
+                case '17': case 17:
+                  $(location).attr('href', `${http}${servidor}/${appname}/vista/procedencia/pacientes/#UJAT`);
+                  return true;
+
+                default:
+                  $(location).attr('href', `${http}${servidor}/${appname}/vista/menu/principal/`);
+                  return false;
+                // break;
+              }
+            }
 
           } else {
             $(this).find('button :submit').prop('disabled', false)
