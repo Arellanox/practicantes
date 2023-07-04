@@ -2,8 +2,6 @@
 <div id="tab-button"></div>
 
 <div class="row">
-
-
     <div class="col-12 tab-first" id="tab-principal">
         <!-- Vista de equipo y formulario -->
         <div class="row">
@@ -110,8 +108,16 @@
     <!-- Grafica -->
     <div class="row">
         <div class="col-12 col-lg-12">
-            <div class="card mt-3 p-3">
-                <h5></h5>
+            <div class="card mt-3 p-3 ">
+                <!-- <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="observaciones">Agregar Factor de correción:</label>
+                            <input type="text" name="observaciones" value="" class="form-control input-form" required id="observaciones">
+                            <input type="hidden" id="firma_guardar" name="firma" required />
+                        </div>
+                    </div>
+                </div> -->
 
                 <div class="table--container" id="grafica">
 
@@ -178,6 +184,100 @@
     </div>
 </div>
 
+
+<!-- OffCanvas Configuracion Temperaturas -->
+<!-- OffCanvas -->
+<div class="offcanvas offcanvas-end bg-navbar" tabindex="-1" id="offcanvasConfiguracionTemperaturas" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <div class="d-flex align-items-center mb-md-0 me-md-auto text-white text-decoration-none">
+            <!-- <img src="https://www.bimo-lab.com/archivos/sistema/LogoConFondoAppAndroid.png" style="height: 36px;margin-right: 20px;" /> -->
+            <span class="fs-4">
+                <i class="bi bi-gear-fill"></i>
+                Configuracion</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <hr class="bg-white" style="background-color: #fff !important;">
+    <div class="offcanvas-body">
+        <div class="row">
+            <form name="ConfiguracionTemperaturaForm" id="ConfiguracionTemperaturaForm">
+                <div class="col-12 mb-4">
+                    <div class="mb-3 text-center">
+                        Habilitar o Deshabilitar los Domingos
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="Domingos" checked>
+                        <label class="form-check-label" for="Domingos">
+                            <div class="text-light">Domingos Activos</div>
+                        </label>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="col-12">
+                    <div class="mb-3 text-center">
+                        Horarios de Turno
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="text-light" for="">M-Inicio</label>
+                                <input type="time" name="matutino_inicio" class="form-control " id="matutino_inicio">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="text-light" for="">M-Final</label>
+                                <input type="time" name="matutino_final" class="form-control " id="matutino_final">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="text-light" for="">V-Inicio</label>
+                                <input type="time" name="vespertino_inicio" class="form-control " id="vespertino_inicio">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="text-light" for="">V-Final</label>
+                                <input type="time" name="vespertino_final" class="form-control " id="vespertino_final">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- <div class="d-flex justify-content-end">
+                <button type="submit" form="TermometrosTemperaturasForm" class=" btn btn-confirmar" id="btn-equipo-temperatura">
+                    <i class="bi bi-person-x"></i> Guardar
+                </button>
+            </div> -->
+
+
+            </form>
+            <button type="submit" form="ConfiguracionTemperaturaForm" class=" btn btn-confirmar" id="btn-configuracion-temperatura">
+                <i class="bi bi-person-x"></i> Guardar
+            </button>
+
+        </div>
+        <!-- <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div> -->
+    </div>
+</div>
 
 <style media="screen">
     /*    #TablaTemperaturasFolio_filter {

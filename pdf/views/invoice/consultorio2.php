@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuestionario de Espirometría</title>
+    <title>Resultado de interpretación de Historia Clinica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-
 
     <style>
         @page {
@@ -17,7 +16,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            margin-top: 60px;
+            margin-top: 70px;
             margin-bottom: 40px;
             font-size: 10px;
             /* background-color: gray; */
@@ -30,7 +29,15 @@
             right: 25px;
             height: 220px;
             margin-top: 0;
-            /* background-color: cadetblue; */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: -165px;
+            left: 25px;
+            right: 25px;
+            height: 220px;
+            /* background-color: pink; */
         }
 
         .footer .page:after {
@@ -78,6 +85,7 @@
             font-size: 14px;
             margin-top: 2px;
             margin-bottom: 2px;
+            line-height: 1;
         }
 
         h5 {
@@ -88,17 +96,22 @@
 
         p {
             font-size: 12px;
+            line-height: 1;
         }
 
         strong {
             font-size: 12px;
+            /* line-height: 1.3; */
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+
         }
 
         .align-center {
             text-align: center;
         }
 
-        .table2 {
+        table {
             width: 100%;
             max-width: 100%;
             margin: auto;
@@ -170,13 +183,13 @@
         .col-izq {
             width: 30%;
             max-width: 30%;
-            text-align: left;
+            text-align: center;
         }
 
         .col-der {
             width: 70%;
             max-width: 70%;
-            text-align: center;
+            text-align: left;
         }
 
         /* Fivisiones de cinco */
@@ -215,7 +228,7 @@
             word-break: break-all;
         }
 
-        .table>th,
+        .table>tr,
         .table>tr>td {
             text-align: left;
             padding: 8px;
@@ -230,19 +243,31 @@
         .pregunta-row {
             background-color: #f2f2f2;
             font-weight: bold;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
         }
 
         .respuesta-row,
-        .comentario-row {
+        .comentario-row{
             background-color: #fff;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            font-size: 13px;
         }
-
-        /* termina estilo de tabla espiro */
+        .respuesta2-row{
+            background-color: #fff;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+        }
     </style>
 </head>
 
-
 <?php
+
 // para el path del logo 
 $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
 $encode = base64_encode($ruta);
@@ -252,179 +277,122 @@ $encode = base64_encode($ruta);
 // echo '<img src="data:image/png;base64, '. $img_valido .'" alt="" height="75" >';
 
 // path firma
-// Verifica si mandan firma o si existe en el arreglo
-if (isset($pie['datos_medicos'][0]['FIRMA_URL'])) {
-    $ruta_firma = file_get_contents($pie['datos_medicos'][0]['FIRMA_URL']); //AQUI DEBO RECIBIR LA RUTA DE LA FIRMA
-    $encode_firma = base64_encode($ruta_firma);
-} else {
-    $ruta_firma = file_get_contents('../pdf/public/assets/firma_adrian.png'); //AQUI DEBO RECIBIR LA RUTA DE LA FIRMA
-    $encode_firma = base64_encode($ruta_firma); #IMPORTANTE RECIBIRLO 
-}
-// $ruta_firma = file_get_contents('http://bimo-lab.com/pdf/logo/firma.png'); //AQUI DEBO RECIBIR LA RUTA DE LA FIRMA
+$ruta_firma = file_get_contents('../pdf/public/assets/firma_beatriz.png');
+$encode_firma = base64_encode($ruta_firma);
 
-if (!isset($qr)) {
-    $qr = null;
-}
 
 ?>
 
 <body>
+    <!-- header -->
     <div class="header">
-        <br><br>
-
-        <table class="table2">
-            <tbody>
-                <tr>
-                    <td class="col-der" style="border-bottom: none">
-                        <h4>
-                            DIAGNOSTICO BIOMOLECULAR S.A.de C.V. <br>
-                            Checkup Clínica y Prevención<br>
-                            Reporte de Espirometría
-                        </h4>
-                    </td>
-                    <td class="col-izq" style="border-bottom: none; text-align:center;">
-                        <?php
-                        echo "<img src='data:image/png;base64, " . $encode . "' height='75' >";
-                        // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
-                        ?>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table2">
-            <tbody>
-                <tr>
-                    <td style="text-align: center; border-style: solid none solid none; ">
-                        <h3>
-                            Datos del paciente
-                        </h3>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table2">
-            <tbody>
-                <tr>
-                    <td class="col-left" style="border-bottom: none">
-                        No. Identificación: <strong style="font-size: 12px;"> <?php echo $encabezado->FOLIO_ESPIRO; ?> </strong>
-                    </td>
-                    <td class="col-center" style="border-bottom: none">
-                        Edad: <strong style="font-size: 12px;"> <?php echo $encabezado->EDAD < 1 ? ($encabezado->EDAD * 10) . " meses" : $encabezado->EDAD . " años"; ?></strong>
-                    </td>
-                    <td class="col-right" style="border-bottom: none">
-                        Sexo: <strong style="font-size: 12px;"><?php echo $encabezado->SEXO; ?> </strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-left" style="border-bottom: none">
-                        Nombre: <strong style="font-size: 12px;"> <?php echo $encabezado->NOMBRE; ?> </strong>
-                    </td>
-                    <td class="col-center" style="border-bottom: none">
-                        Fecha de Nacimiento: <strong style="font-size: 12px;"> <?php echo $encabezado->NACIMIENTO; ?> </strong>
-                    </td>
-                    <td class="col-right" style="border-bottom: none">
-                        Pasaporte: <strong style='font-size:12px'> <?php echo (isset($encabezado->PASAPORTE) && !empty($encabezado->PASAPORTE)) ? $encabezado->PASAPORTE : "SD"; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-left" style="border-bottom: none">
-                        Fecha de Resultado: <strong style="font-size: 12px;"><?php echo $encabezado->FECHA_RESULTADO_ESPIRO; ?> </strong>
-                    </td>
-                    <td class="col-center" style="border-bottom: none">
-                    </td>
-                    <td class="col-right" style="border-bottom: none">
-                        <!-- Tipo de Muestra: <strong>Sangre</strong> -->
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-left" style="border-bottom: none">
-                    </td>
-                    <td class="col-center" style="border-bottom: none">
-                    </td>
-                    <td class="col-right" style="border-bottom: none">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p style="font-size: 12px; padding-left: 3.5px; margin: -1px;">
-            <?php echo "Procedencia: <strong style='font-size: 12px;'> $encabezado->PROCEDENCIA"; ?> </strong>
-        </p>
-        <p style="font-size: 12px; padding-left: 3.5px; margin: -1px; margin-top: 5px; padding-bottom:1000px;">
-            <?php echo (isset($encabezado->MEDICO_TRATANTE) && !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'>" . $encabezado->MEDICO_TRATANTE . "</strong>" : "Médico Tratante: <strong style='font-size: 10px;'>A QUIEN CORRESPONDA</strong>"; ?> </strong>
-        </p>
-        <!-- <p>Aqui va el encabezado y es el espacio disponible hasta donde llegue el titulo siguiente.</p> -->
-
+        <?php
+        $titulo = 'Checkup Clínica y Prevención';
+        $tituloPersonales = 'Informacón del paciente';
+        $subtitulo = 'Historia Clínica';
+        $encabezado->FECHA_RESULTADO = $encabezado->FECHA_RESULTADO_CONSULTA;
+        include 'includes/header.php';
+        ?>
     </div>
 
     <div class="footer">
-        <table class="table2">
-            <tbody>
-                <tr class="col-foot-one">
-                    <td colspan="12" style="text-align: right; padding-right: 0;"><strong style="font-size: 12px;">Atentamente</strong></td>
-                </tr>
-                <tr class="col-foot-two">
-                    <td colspan="10">
-                    </td>
-                    <td colspan="2" style="text-align: left;">
-                        <?php
-                        if ($preview == 0) {
-                            echo "<img style='position:absolute; right:5px; margin-top: -48px ' src='data:image/png;base64, " . $encode_firma . "' height='137px'> ";
-                        }
-                        ?>
-                    </td>
-                </tr>
-                <tr class="col-foot-three" style="font-size: 13px;">
-                    <td colspan="6" style="text-align: center; width: 50%">
-                        <?php
-                        if ($preview == 0) {
-                            echo "<a target='_blank' href='#'> <img src='" . $qr[1] . "' alt='QR Code' width='110' height='110'> </a>";
-                        }
-                        ?>
-                    </td>
-                    <td colspan="6" style="text-align: right; width: 50%; padding-top: 30px; margin-bottom: -25px">
-                        <strong style="font-size: 10px;">
-                            <?php
-                            echo $pie['datos_medicos'][0]['NOMBRE_COMPLETO'] . '<br>' . $pie['datos_medicos'][0]['CARRERA'] . ' - ' . $pie['datos_medicos'][0]['UNIVERSIDAD'] . ' - ' . $pie['datos_medicos'][0]['CEDULA'];
-                            $indice = 1;
-                            foreach ($pie['datos_medicos'][0]['ESPECIALIDADES'] as $key => $value) {
-                                $indice++;
-                                echo '<br>' . $value['CARRERA'] . ' / ' . $value['UNIVERSIDAD'] . ' / '  . $value['CEDULA'] . '<br>';
-                                echo 'Certificado por: ' . $value['CERTIFICADO_POR'];
-                            }
-                            ?>
+        <?php
+        $footerDoctor = 'Dra. BEATRIZ ALEJANDRA RAMOS GONZÁLEZ <br>UJAT - Cédula profesional: 7796595';
 
-                            <?php
-                            // echo $pie['datos_medicos'];
-                            ?>
-                            <!-- Dra. Zoila Aideé Quiroz Colorado <br> 
-                            Universidad - Cedula <br>
-                            Radiologia / Universidad / Cedula <br>
-                            Certificado por: Quien certifica <br>
-                            Subespecialista en radiología pediátrica / Universidad / Cedula<br>
-                            Certificado por: escuela de doctores <br> -->
-                        </strong>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <hr style="height: 0.5px; background-color: black ;">
-        <p style="text-align: center;"><small>
-                <strong style="font-size: 11px;">Avenida José Pagés Llergo No. 150 Interior 1, Colonia Arboledas, Villahermosa Tabasco, C.P. 86079</strong> <br>
-                <strong style="font-size: 11px;">Teléfonos: </strong>
-                <strong style="font-size: 11px;">993 634 0250, 993 634 6245</strong>
-                <strong style="font-size: 11px;">Correo electrónico:</strong>
-                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">resultados@</strong>
-                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">bimo-lab</strong>
-                <strong style="font-size: 11px;color: rgb(000, 078, 089); margin-left: -1.5px; margin-right: -1.5px">.com</strong>
-            </small></p>
+        include 'includes/footer.php';
+        ?>
     </div>
 
+
+    <br>
     <!-- body -->
     <div class="invoice-content">
-        <h1>Cuerpo</h1>
-    </div>
-</body>
 
+        <!-- Nota consulta -->
+        <section id="card-nota-consulta">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="pregunta-row">Nota consulta</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="respuesta-row"><?php echo $resultados[0][0]->NOTAS_CONSULTA; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Diagnosticos -->
+        <section id="card-diagnostico">
+            <div id="notas-historial-consultorio">
+                <table class="table">
+                    <thead>
+                        <td class="pregunta-row">Diagnóstico</td>
+                    </thead>
+                    <tbody>
+                        <?php $diagnosticoPrincipal = $resultados[0][0]->DIAGNOSTICO; ?>
+                        <tr>
+                            <td class="respuesta-row"><?php echo $diagnosticoPrincipal; ?></td>
+                        </tr>
+                        <?php for ($i = 0; $i < count($resultados[0]); $i++) : ?>
+                            <?php if ($resultados[0][$i]->DIAGNOSTICO != $diagnosticoPrincipal) : ?>
+                                <?php $diagnosticoPrincipal = $resultados[0][$i]->DIAGNOSTICO; ?>
+                                <tr>
+                                    <td class="respuesta2-row"><?php echo $resultados[0][$i]->DIAGNOSTICO2; ?></td>
+                                </tr>
+                            <?php else : ?>
+                                <tr>
+                                    <td class="respuesta2-row"><?php echo $resultados[0][$i]->DIAGNOSTICO2; ?></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Plan de tratamiento-->
+        <section id="card-plan-tratamiento">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="pregunta-row">Plan de Tratamiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="respuesta-row"> <?php echo $resultados[0][0]->PLAN_TRATAMIENTO; ?> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Exploracion fisica -->
+        <section id="card-exploracion-clinica">
+            <div id="notas-historial-consultorio">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="pregunta-row">Exploracion física</th>
+                            <th class="pregunta-row"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php for ($i = 0; $i < count($resultados[1]); $i++) : ?>
+                            <tr>
+                                <td class="respuesta-row"><?php echo $resultados[1][$i]->TIPO_EXPLORACION; ?></td>
+                                <td class="comentario-row"><?php echo $resultados[1][$i]->EXPLORACION; ?></td>
+                            </tr>
+                        <?php endfor; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+</body>
 
 </html>

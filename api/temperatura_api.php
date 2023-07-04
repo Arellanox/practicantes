@@ -32,7 +32,12 @@ $firma = str_replace(' ', '+', $firma);
 $firma = base64_decode($firma); */
 
 
-
+#Datos para actualizar la configuracion del area de temperatura
+$matutino_inicio = $_POST['matutino_inicio'];
+$matutino_final = $_POST['matutino_final'];
+$vespertino_inicio = $_POST['vespertino_inicio'];
+$vespertino_final = $_POST['vespertino_final'];
+$domingos = $_POST['domingos'];
 
 $parametros =  array(
     $equipo,
@@ -61,6 +66,10 @@ $comentario = $_POST['comentario'];
 #ID de comentario para elimanr un comentario
 $id_comentario = $_POST['id_comentario'];
 
+#Variables para insertar o actualizar los termometros de los equipos 
+$id_temperaturas_equipos  = $_POST['id_temperaturas_equipos'];
+$factor_correcion = $_POST['factor_correcion'];
+
 $parametros_g = array(
     $fecha_inicial,
     $fecha_final,
@@ -85,6 +94,23 @@ $comentarios = array(
 $comentarios_delete = array(
     $id_comentario,
     $usuario
+);
+
+$configuracion = array(
+    $matutino_inicio,
+    $matutino_final,
+    $vespertino_inicio,
+    $vespertino_final,
+    $domingos,
+    $usuario
+);
+
+$equipos_termometros = array(
+    $equipo,
+    $termometro,
+    $usuario,
+    $id_temperaturas_equipos,
+    $factor_correcion
 );
 
 switch ($api) {
@@ -113,16 +139,14 @@ switch ($api) {
         break;
     case 7:
         #Llenar tabla del formato PDF, pasar ID del FOLIO
-        $response = $master->getByProcedure('sp_temperatura_formato_b', [$folio]);
+        $response = $master->getByNext('sp_temperatura_formato_b', [$folio]);
 
         $result = array();
         $i = 1;
-        foreach ($response as $key => $e) {
+        foreach ($response[0] as $key => $e) {
             $dia = $e['DIA'];
             $turno = $e['TURNO'];
             $valor = $e['valor'];
-            $intervalo_min = $e['INTERVALO_MIN'];
-            $intervalo_max = $e['INTERVALO_MAX'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
             if (!isset($result[$dia])) {
@@ -143,6 +167,12 @@ switch ($api) {
             $i++;
         };
 
+        foreach ($response[1] as $key => $e) {
+            # code...
+            $intervalo_min = $e['INTERVALO_MIN'];
+            $intervalo_max = $e['INTERVALO_MAX'];
+        }
+
         $response = [];
         $response['EQUIPO']['INTERVALO_MIN'] = $intervalo_min;
         $response['EQUIPO']['INTERVALO_MAX'] = $intervalo_max;
@@ -159,7 +189,25 @@ switch ($api) {
         $response = $master->getByProcedure("sp_temperaturas_comentarios_b", [$id_registro_temperatura]);
         break;
     case 10:
+        #Eliminar un comentario hecho por el supervisor
         $response = $master->insertByProcedure('sp_temperaturas_comentarios_e', $comentarios_delete);
+        break;
+    case 11:
+        #Obtener toda la configuracion del area de temperaturas
+        $response = $master->getByProcedure('sp_temperaturas_configuracion_b', []);
+        break;
+    case 12:
+        #Actualizar la configuracion del area de temperaturas
+        $response = $master->insertByProcedure('sp_temperaturas_configuracion_a', $configuracion);
+        break;
+    case 13:
+        $response = $master->getByProcedure('sp_temperaturas_equipos_termometros_b', [$equipo]);
+        break;
+    case 14:
+
+        print_r($equipos_termometros);
+        exit;
+        $response = $master->insertByProcedure('sp_temperaturas_equipos_termometros_g', $equipos_termometros);
         break;
     default:
         $response = "Api no definida.";

@@ -361,6 +361,7 @@ function checkNumber(x, transform = 0) {
 
 
 function ifnull(data, siNull = '') {
+  if (data === 'NaN') return siNull;
   if (typeof data === 'undefined') return siNull;
   if (data) {
     data = `${data}`.replace(/["]+/g, '&quot');
@@ -1326,6 +1327,11 @@ function alertPassConfirm(alert = {
   })
 }
 
+function formpassword() {
+  //No submit form with enter
+
+}
+
 
 function mensajeAjax(data, modulo = null) {
   if (modulo != null) {
@@ -1688,7 +1694,21 @@ function configSelectTable(config) {
     movil: false, //Activa la version movil
     multipleSelect: false,
     OnlyData: false,
-    noColumns: false
+    noColumns: false,
+    ClickClass: {
+      0: {
+        class: 'GrupoInfoCreditoBtn',
+        callback: function (data) {
+
+        }
+      },
+      1: {
+        class: 'GrupoInfoCreditoBtn',
+        callback: function (data) {
+
+        }
+      }
+    }
   }
 
   Object.entries(defaults).forEach(([key, value]) => {
@@ -1698,6 +1718,15 @@ function configSelectTable(config) {
 }
 //Detecta la dimension del dispositivo para saber si es movil o escritorio
 function isMovil(callback = (response) => { }) {
+  console.log(navigator.userAgent)
+  var esTabletaVertical = /iPad/i.test(navigator.userAgent) && window.innerHeight > window.innerWidth;
+  var esDispositivoMovil = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || esTabletaVertical;
+  console.log(esDispositivoMovil)
+  console.log(callback)
+  if (esDispositivoMovil)
+    callback(esDispositivoMovil);
+  return esDispositivoMovil;
+
   let width = window.innerWidth;
   let height = window.innerHeight;
 
@@ -1711,7 +1740,7 @@ function isMovil(callback = (response) => { }) {
 
 //Visualiza los botones de navegacion
 function selecTableTabs() {
-  isMovil() ? $('.tab-page-table').fadeIn(0) : $('.tab-page-table').fadeOut(0);;
+  isMovil() ? $('.tab-page-table').fadeIn(0) : $('.tab-page-table').fadeOut(0);
 }
 
 // Para la version movil crea y visualiza columnas
@@ -1821,6 +1850,52 @@ function reloadSelectTable() {
 
 }
 
+//Evalua el estado de click de selectTable
+function eventClassClick(event, tr, config, data) {
+  //Evalua donde está dando click el usuario
+  var clickedElement = event.target;
+  // var computedStyle = window.getComputedStyle(clickedElement, '::before');
+  // computedStyle.getPropertyValue('property') === 'value'
+  // console.log(computedStyle.getPropertyValue('property') === 'value')
+  //Cancela la funcion si el elemento que hace click tiene la siguiente clase
+  if (
+    $(clickedElement).hasClass('noClicked') //Algun elemento que podamos crear para que no implique selección
+    || ($(clickedElement).hasClass('dtr-control')) //Cuando le da click al primer td con el boton + de visualizar mas columnas
+    || $(tr).hasClass('child') //Cuando muestra las columnas ocultas de un regitro
+    || $(tr).hasClass('dataTables_empty')  //Cuando la  tabla esta vacia, no selecciona
+    || $(tr).hasClass(`${config.ignoreClass}`)
+    || $(tr).find('td').hasClass('dataTables_empty')
+  )
+    return true;
+
+  let rowClick = config.ClickClass;
+  for (const key in rowClick) {
+    if (Object.hasOwnProperty.call(rowClick, key)) {
+      const element = rowClick[key];
+
+      if ($(clickedElement).hasClass(`${element.class}`)) {
+        element.callback(data)
+        return true;
+      }
+
+    }
+
+  }
+
+  return false;
+}
+
+function resizeConfigMovil(config, nameTable) {
+  if (config.movil) {
+    //Cambia la vista del dispositivo
+    getBtnTabs(config);
+    //Activa los botones si es movil
+    dinamicTabs(`#loaderDiv-${nameTable}`)
+    //Evalua el tipo de dispositivo
+    selecTableTabs()
+  }
+}
+
 //selectDataTableMovilEdition
 let dataDobleSelect, selectTableTimeOutClick, selectTableClickCount = 0;
 function selectTable(tablename, datatable,
@@ -1833,22 +1908,24 @@ function selectTable(tablename, datatable,
   //manda valores por defecto
   config = configSelectTable(config)
 
-  //Nombramiento para usarlo
+  //Nombrando para usarlo
   let nameTable = tablename.replace('#', '')
 
   //Permite el reload y lo dibuja
   if (config.reload)
     setReloadSelecTable(nameTable, config.reload)
 
-  //Activa las funciones moviles
-  if (config.movil) {
-    //Cambia la vista del dispositivo
-    getBtnTabs(config);
-    //Activa los botones si es movil
-    dinamicTabs(`#loaderDiv-${nameTable}`)
-    //Evalua el tipo de dispositivo
-    selecTableTabs()
-  }
+  //Activa las funciones moviles,
+  resizeConfigMovil(config, nameTable);
+  resize = false;
+  $(window).resize(function () {
+    //Toma un tiempo para poder refrescar cambios y no 
+    //hacerlo cada vez que hay un pequeño pixel de cambio
+    clearTimeout(resize);
+    resize = setTimeout(() => {
+      resizeConfigMovil(config, nameTable);
+    }, 500);
+  })
 
   //Callback para procesos, ejemplo: quitar loader y mostrar columnas en escritorio
   let callback = (type = 'Out' || 'In') => {
@@ -1868,29 +1945,18 @@ function selectTable(tablename, datatable,
     let row = datatable.row(tr);
     let dataRow = row.data();
 
+    // let td = $(event.target).is('td')
+
+
+    //Evalua si el objeto es correcto a su click
+    let dataClick = eventClassClick(event, tr, config, dataRow);
+    if (dataClick) {
+      return false;
+    }
+
     if (config.OnlyData) {
       return callbackClick(1, dataRow, function (data) { return 'No action' }, tr, row);
     }
-
-    // let td = $(event.target).is('td')
-
-    //Evalua donde está dando click el usuario
-    var clickedElement = event.target;
-    var computedStyle = window.getComputedStyle(clickedElement, '::before');
-    computedStyle.getPropertyValue('property') === 'value'
-    console.log(computedStyle.getPropertyValue('property') === 'value')
-    //Cancela la funcion si el elemento que hace click tiene la siguiente clase
-    if (
-      $(clickedElement).hasClass('noClicked') //Algun elemento que podamos crear para que no implique selección
-      || ($(clickedElement).hasClass('dtr-control')) //Cuando le da click al primer td con el boton + de visualizar mas columnas
-      || $(tr).hasClass('child') //Cuando muestra las columnas ocultas de un regitro
-      || $(tr).hasClass('dataTables_empty')  //Cuando la  tabla esta vacia, no selecciona
-      || $(tr).hasClass(`${config.ignoreClass}`)
-      || $(tr).find('td').hasClass('dataTables_empty')
-    )
-
-      return false;
-
 
     if ($(tr).hasClass('selected')) {
       selectTableClickCount++;
@@ -2256,7 +2322,7 @@ function obtenerDatosEspiroPacientes(curp) {
 
               break;
 
-        }
+          }
 
           //MOSTRAMOS LOS COLLAPSE DE TODAS AQUELLAS PREGUNTAS QUE LO CONTIENEN
           let parent = $('div[class="form-check form-check-inline col-12 mb-2"]');
@@ -3049,10 +3115,11 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
 
                     $('#info-factura-razon_social').html(data['RAZON_SOCIAL']);
                     $('#info-factura-domicilio_fiscal').html(data['DOMICILIO_FISCAL']);
-                    $('#info-factura-regimen_fiscal').html(data['REGIMEN_FISCAL']);
+                    $('#info-factura-regimen_fiscal').html(data['REGIMEN_DESCRIPCION']);
                     $('#info-factura-uso').html(data['USO_DESCRIPCION']);
                     $('#info-factura-rfc').html(data['RFC']);
                     $('#info-factura-metodo_pago').html(data['METODO_PAGO']);
+                    $('#info-factura-forma_pago').html(data['TIPO_PAGO'])
 
                     $('.panel-contenedor-factura').fadeIn(0);
                   }
@@ -4256,7 +4323,7 @@ function validarCuestionarioEspiro() {
     return true;
   }
 
-  console.log(situacion2)
+  // console.log(situacion2)
 
   if (!situacion2) {
     if (!detectPreguntasNivel('.situaciones2')) {
@@ -4265,12 +4332,12 @@ function validarCuestionarioEspiro() {
     }
   }
 
-  if (!situacion1) {
-    if (!detectPreguntasNivel('.situaciones1')) {
-      // resolve(true);
-      return true;
-    }
-  }
+  // if (!situacion1) {
+  //   if (!detectPreguntasNivel('.situaciones1')) {
+  //     // resolve(true);
+  //     return true;
+  //   }
+  // }
 
 
   // resolve(false);

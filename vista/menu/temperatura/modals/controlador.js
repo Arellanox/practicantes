@@ -11,6 +11,8 @@ $.post("modals/m_temperatura.php", function (html) {
     $.getScript('modals/js/firma.js');
     $.getScript('modals/js/t_detalles.js');
     $.getScript("modals/js/t_firma.js");
+    $.getScript("modals/js/t_configuracion.js");
+    $.getScript("modals/js/t_termometros.js");
 
 
 });

@@ -20,16 +20,22 @@
                 th,
                 td {
                     border: 2px solid black;
-                    padding: 7px;
+                    padding: 1px;
 
                 }
 
                 td.empty {
                     margin-left: auto;
                     margin-right: auto;
-                    padding: 3.4px;
-                    width: 20px;
+                    padding: 0px;
+                    /* width: 20px; */
+                    min-width: 14px;
+                    max-width: 14px;
+                    max-height: 14px;
+                    min-height: 14px;
                 }
+
+
 
                 .border-top {
                     border-top: 3px solid !important;
@@ -39,28 +45,19 @@
                     border-bottom: 3px solid !important;
                 }
 
-                .background2,
-                .background3,
-                .background4,
-                .background5,
-                .background6,
-                .background7,
-                .background8 {
-                    background-color: #d8dfe1;
-                }
 
                 .turno-1 {
-                    border: 2px dashed black !important;
+                    border: 0.02px dashed black !important;
                 }
 
-                /*  .turno-2 {
-            border: 2px dashed black !important;
-        } */
-
                 .turno-2 {
-                    border-left: 2px dashed black !important;
-                    border-top: 2px dashed black !important;
-                    border-bottom: 2px dashed black !important;
+                    border: 0.02px dashed black !important;
+                }
+
+                .turno-3 {
+                    border-left: 0.02px dashed black !important;
+                    border-top: 0.02px dashed black !important;
+                    border-bottom: 0.02px dashed black !important;
                 }
 
                 .celdasDias {
@@ -76,29 +73,74 @@
                 }
 
                 .text-rango {
-                    font-size: 20px !important;
+                    /* font-size: 20px !important; */
                     font-weight: bold !important;
                     padding-top: 5px;
                     padding-bottom: 5px;
                 }
 
                 .dot {
-                    font-size: 30px;
-                    text-align: center !important;
+                    /* max-height: 20px;
+                              max-width: 10px; */
+                    /* font-size: 20px;
+                              text-align: center !important; */
+                    /* font-size: 38px;
+                              text-align: center !important;
+                              /* padding: 0px; */
+                    /* margin: 0px; 
+                              height: 0px;
+                              */
+
+                    /* padding-left: 9px;
+                              padding-bottom: 11px; */
+
                 }
 
-                .dot-blue {
-                    color: blue;
+                .dot-div::before {
+                    content: '';
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    -moz-border-radius: 7.5px;
+                    -webkit-border-radius: 7.5px;
+                    border-radius: 7.5px;
+                    z-index: 100;
+                    position: absolute;
+                    /* background-color: #69b6d5; */
                 }
 
-                .dot-mostaza {
-                    color: #ffa209;
+                .dot-div {
+                    position: relative;
+                    /* top: 10px; */
+                    left: 8.7px;
+                    min-height: 0px;
+                    max-height: 0px;
+                    cursor: pointer;
+                }
+
+                .dot-div:hover {
+                    background-color: rgb(0 175 170 / 60%)
+                }
+
+
+                /* .dot-div::after {
+                              background-color: #ffa209;
+                              border-radius: 50%;
+                          } */
+
+                .dot-blue::before {
+                    background-color: blue;
+                }
+
+                .dot-mostaza::before {
+                    background-color: #ffa209;
                 }
 
                 canvas {
                     position: absolute;
-                    top: 70px;
-                    left: 0;
+                    top: 42.4px;
+                    left: 31px;
+                    pointer-events: none;
                 }
 
                 #equipo {
@@ -148,7 +190,11 @@
                     font-size: 15px;
                 }
 
+                /* .table--container {
 
+                              display: flex !important;
+                              justify-content: center;
+                          } */
 
                 .container {
                     display: flex !important;
@@ -166,7 +212,6 @@
 
         <div>
 
-            <canvas id="canvas"></canvas>
 
             <div class="container " style="display: flex;">
                 <div id="equipo">
@@ -270,10 +315,12 @@
                         <th class="celdasDias"></th>
                         <?php
                         for ($i = 1; $i <= 31; $i++) {
-                            echo "<th class='diaHeader' colspan='2'>" . $i . "</th>";
+                            echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
                         }
                         ?>
                     </tr>
+
+
                     <?php
                     $url = "http://localhost/practicantes/api/temperatura_api.php";
                     // Los datos de formulario
@@ -296,70 +343,69 @@
 
                     $array = json_decode($json, true);
 
+
                     $max = $array['response']['data']['EQUIPO']['INTERVALO_MAX'];
                     $min = $array['response']['data']['EQUIPO']['INTERVALO_MIN'];
 
                     $valores = $array['response']['data']['DIAS'];
 
-                    // foreach ($array['response']['data']['DIAS'] as $key1 => $e) {
-                    //     $valores = $e;
-                    // }
+                    $dotInicial =  array_key_first($valores);
+                    $dotEnd =  array_key_last($valores);
+
+                    function redondear($valor, $valorAprox, $max, $min)
+                    {
+
+                        $explode = explode('.', $valor);
+
+                        // $signo = $explode[0] > 0 ? '' : '-';
+                        // $unidad = $explode[0] > 0 ? $explode[0]  : ($explode[0] * -1);
+                        // $decimal = $explode[1] > 50 ? 1 : 0;
+
+                        // $valor_final = ($unidad + ($decimal));
+
+
+                        //10px - 40px
+                        //100% = 30px
+                        //0.34
+                        //30*0.34 = ?
+                        //
+
+                        if ($valor >= $max) {
+                            $pixeles = 10;
+                            $explode[0] = $max;
+                        }
+
+                        if ($valor <= $min) {
+                            $pixeles = 10;
+                            $explode[0] = $min;
+                        }
+
+
+                        if ($valor > 0 && $explode[1] > 0) {
+                            $pixeles = (($explode[1] / 100) * 30) + 10;
+
+                            $pixeles = (($pixeles) - ($pixeles * 0.8)) * -1;
+                        } else {
+                            $pixeles = (($explode[1] / 100) * 30) + 10;
+                        }
 
 
 
 
+                        # 3 / 100 =0.03
+                        # 0.03 * 30 = 0.9
+                        # 0.9 + 1- = 10.9
 
 
-                    // echo array_key_first($valores);
-                    // echo array_key_last($valores);
-                    /* $valores = array(
-            1 => array(
-                1 => array("valor" => "-30.1", "color" => "blue"), //Primero del primer tuno 7:30 am 11:59 am,
-                2 => array("valor" => "-30.3", "color" => "blue") //Primero del segundo turno de las 12:00 pm - 7:00 pm,
+                        // $pixeles = $valor > 0 ? ($pixeles * -1) + ($pixeles * 0.8) : $pixeles;
 
-            ),
-            2 => array(
-                1 => array("valor" => "-30.1", "color" => "blue"),
-                2 => array("valor" => "-25.1", "color" => "blue"),
 
-            ),
-            3 => array(
-                1 => array("valor" => "-30", "color" => "blue"),
-                2 => array("valor" => "-20", "color" => "blue"),
 
-            ),
-            4 => array(
-                1 => array("valor" => "-20", "color" => "blue")
-            ),
-            5 => array(
-                1 => array("valor" => "-30", "color" => "mostaza")
-            ),
-            6 => array(
-                1 => array("valor" => "-25", "color" => "blue"),
-                2 => array("valor" => "-33", "color" => "blue")
-            ),
-            7 => array(
-                1 => array("valor" => "-30", "color" => "blue"),
-                2 => array("valor" => "-32", "color" => "blue"),
+                        return [$explode[0], $pixeles . "px"];
 
-            ),
-            11 => array(
-                3 => array("valor" => "-34", "color" => "blue")
-            ),
-            16 => array(
-                2 => array("valor" => "-36", "color" => "blue")
-            ),
-            20 => array(
-                2 => array("valor" => "-33", "color" => "blue")
-            ),
-            27 => array(
-                1 => array("valor" => "-33", "color" => "blue"),
-                2 => array("valor" => "-31", "color" => "blue"),
-            ),
-            31 => array(
-                2 => array("valor" => "-33", "color" => "blue")
-            )
-        ); */
+
+                        // return $explode[0];
+                    }
 
                     function metodoCalculo($dia, $turno, $valorAprox)
                     {
@@ -367,21 +413,27 @@
                         global $max;
                         global $min;
                         if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
-                            $valor = floatval($valores[$dia][$turno]["valor"]);
-                            $valor_redondeado = round($valor);
+                            // $valor = floatval($valores[$dia][$turno]["valor"]);
+                            // $valor_redondeado = round($valor);
+                            $valor = $valores[$dia][$turno]["valor"];
+                            $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, $max + 5, $min - 5);
+                            $valor_redondeado = $valor_turno[0];
+                            $valor_decimal_px = $valor_turno[1];
+
                             $color = $valores[$dia][$turno]['color'];
+                            $id = $valores[$dia][$turno]['id'];
                             if ($valor_redondeado == $valorAprox) {
                                 $dotId = "dot-$dia-$turno"; // Generar el ID del dot
 
-                                if ($valorAprox <= $max && $valorAprox >= $min) {
-                                    return "<td class='bg-grey empty turno-$turno dot dot-$color' id='$dotId'>&#8226;</td>";
+                                if ($valorAprox <= ($max - 1) && $valorAprox >= $min) {
+                                    return "<td class='td-hover bg-grey empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'></div></td>";
                                 } else {
-                                    return "<td class='empty turno-$turno dot dot-$color' id='$dotId'>&#8226;</td>";
+                                    return "<td class='td-hover empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'></div></td>";
                                 }
                             }
                         }
 
-                        if ($valorAprox <= $max && $valorAprox >= $min) {
+                        if ($valorAprox <= ($max - 1) && $valorAprox >= $min) {
                             return "<td class='bg-grey empty turno-$turno'></td>";
                         } else {
                             return "<td class='empty turno-$turno background$valorAprox'></td>";
@@ -391,8 +443,8 @@
                     // Generar las celdas de la tabla
                     for ($j = $max + 5; $j >= $min - 5; $j--) {
                         if ($j == $max) {
-                            echo "<tr class='border-top'>";
-                        } else if ($j   == $min) {
+                            echo "<tr class='border-bottomm'>";
+                        } else if ($j == $min) {
                             echo "<tr class='border-bottomm'>";
                         } else {
                             echo "<tr class='border$j'>";
@@ -410,33 +462,33 @@
                         $prevDot = null; // Dot previo para conectar con líneas
 
                         for ($i = 1; $i <= 31; $i++) {
-                            $dot1 = metodoCalculo($i, 1, $j);
-                            $dot2 = metodoCalculo($i, 2, $j);
+                            echo metodoCalculo($i, 1, $j);
+                            echo metodoCalculo($i, 2, $j);
+                            echo metodoCalculo($i, 3, $j);
                             /* $dot3 = metodoCalculo($i, 3, $j); */
-
-                            if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
-                                echo $dot1;
-                                if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
-                                    echo $dot2;
-                                } else {
-                                    $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
-                                }
-                            } else {
-                                $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
-                            }
                         }
                         echo "</tr>";
                     }
+
+                    echo "<tr class='border$j'>";
+                    echo "<th class='celdasDias text$j'>" . $j . "</th>";
+                    for ($i = 1; $i <= 31; $i++) {
+                        echo "<td class='empty turno-1 background'></td>";
+                        echo "<td class='empty turno-2 background'></td>";
+                        echo "<td class='empty turno-3 background'></td>";
+                    }
+                    echo "</tr>";
                     ?>
                 </table>
 
 
+                <canvas id="canvas"></canvas>
             </div>
 
 
         </div>
 
-    </div>z
+    </div>
 
     <div id="copia_body">
 
@@ -448,6 +500,11 @@
 
 <script>
     $('#click-btn').click(function() {
+
+    })
+
+    window.addEventListener("load", function() {
+        console.log("asdklsadljsas")
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
         var dots = document.getElementsByClassName('dot');
@@ -501,10 +558,6 @@
         } */
 
 
-
-
-
-
         function positionDots() {
             var dotCount = dots.length;
             var containerWidth = dots[0].closest('table').offsetWidth;
@@ -527,25 +580,31 @@
 
         function drawLines() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             var prevDot;
+            dotInicial = <?php echo array_key_first($valores); ?>;
 
-            var dotInicial = <?php echo array_key_first($valores); ?>;
+            prevDot = `dot-<?php echo array_key_first($valores) ?>-<?php echo array_key_first($valores[array_key_first($valores)]) ?>`;
+            dotLast = <?php echo array_key_last($valores); ?>;
+            prevDot = document.getElementById(prevDot);
 
-            var dotLast = <?php echo array_key_last($valores); ?>;
+            // for (var i = dotInicial; typeof(prevDot) != "object"; i++) {
+            //     console.log(i)
+            //     // console.log("si entro")
+            //     for (var j = 1; j <= 2; j++) {
+            //         console.log(document.getElementById('dot-' + i + '-' + j))
+            //         prevDot = document.getElementById('dot-' + i + '-' + j);
 
+            //         if (typeof(prevDot) == "object") {
+            //             // prevDot = document.getElementById('dot-' + i + '-' + j)
+            //             console.log(prevDot)
+            //             j = 3
+            //         }
 
-            for (var i = dotInicial; typeof(prevDot) != "object"; i++) {
-                for (var j = 1; j <= 2; j++) {
-                    prevDot = document.getElementById('dot-' + i + '-' + j);
+            //     }
 
-                    if (typeof(prevDot) == "object") {
-                        prevDot = document.getElementById('dot-' + i + '-' + j)
-                        j = 3
-                    }
+            // }
 
-                }
-            }
+            // console.log(prevDot)
 
             for (var i = dotInicial; i <= dotLast; i++) {
                 for (var j = 1; j < 3; j++) {

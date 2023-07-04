@@ -3,7 +3,7 @@
                               <th class="celdasDias"></th>
                               <?php
                                 for ($i = 1; $i <= 31; $i++) {
-                                    echo "<th class='diaHeader' colspan='2'>" . $i . "</th>";
+                                    echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
                                 }
                                 ?>
                           </tr>
@@ -40,7 +40,60 @@
                             $dotInicial =  array_key_first($valores);
                             $dotEnd =  array_key_last($valores);
 
+                            function redondear($valor, $valorAprox, $max, $min)
+                            {
 
+                                $explode = explode('.', $valor);
+
+                                // $signo = $explode[0] > 0 ? '' : '-';
+                                // $unidad = $explode[0] > 0 ? $explode[0]  : ($explode[0] * -1);
+                                // $decimal = $explode[1] > 50 ? 1 : 0;
+
+                                // $valor_final = ($unidad + ($decimal));
+
+
+                                //10px - 40px
+                                //100% = 30px
+                                //0.34
+                                //30*0.34 = ?
+                                //
+
+                                if ($valor >= $max) {
+                                    $pixeles = 10;
+                                    $explode[0] = $max;
+                                }
+
+                                if ($valor <= $min) {
+                                    $pixeles = 10;
+                                    $explode[0] = $min;
+                                }
+
+
+                                if ($valor > 0 && $explode[1] > 0) {
+                                    $pixeles = (($explode[1] / 100) * 30) + 10;
+
+                                    $pixeles = (($pixeles) - ($pixeles * 0.8)) * -1;
+                                } else {
+                                    $pixeles = (($explode[1] / 100) * 30) + 10;
+                                }
+
+
+
+
+                                # 3 / 100 =0.03
+                                # 0.03 * 30 = 0.9
+                                # 0.9 + 1- = 10.9
+
+
+                                // $pixeles = $valor > 0 ? ($pixeles * -1) + ($pixeles * 0.8) : $pixeles;
+
+
+
+                                return [$explode[0], $pixeles . "px"];
+
+
+                                // return $explode[0];
+                            }
 
                             function metodoCalculo($dia, $turno, $valorAprox)
                             {
@@ -48,22 +101,27 @@
                                 global $max;
                                 global $min;
                                 if (isset($valores[$dia]) && isset($valores[$dia][$turno])) {
-                                    $valor = floatval($valores[$dia][$turno]["valor"]);
-                                    $valor_redondeado = round($valor);
+                                    // $valor = floatval($valores[$dia][$turno]["valor"]);
+                                    // $valor_redondeado = round($valor);
+                                    $valor = $valores[$dia][$turno]["valor"];
+                                    $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, $max + 5, $min - 5);
+                                    $valor_redondeado = $valor_turno[0];
+                                    $valor_decimal_px = $valor_turno[1];
+
                                     $color = $valores[$dia][$turno]['color'];
                                     $id = $valores[$dia][$turno]['id'];
                                     if ($valor_redondeado == $valorAprox) {
                                         $dotId = "dot-$dia-$turno"; // Generar el ID del dot
 
-                                        if ($valorAprox <= $max && $valorAprox >= $min) {
-                                            return "<td class='td-hover bg-grey empty turno-$turno'  data_id='$id' id='$dotId'><div class='dot dot-$color'></div></td>";
+                                        if ($valorAprox <= ($max - 1) && $valorAprox >= $min) {
+                                            return "<td class='td-hover bg-grey empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'></div></td>";
                                         } else {
-                                            return "<td class='td-hover empty turno-$turno'  data_id='$id' id='$dotId'><div class='dot dot-$color'></div></td>";
+                                            return "<td class='td-hover empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'></div></td>";
                                         }
                                     }
                                 }
 
-                                if ($valorAprox <= $max && $valorAprox >= $min) {
+                                if ($valorAprox <= ($max - 1) && $valorAprox >= $min) {
                                     return "<td class='bg-grey empty turno-$turno'></td>";
                                 } else {
                                     return "<td class='empty turno-$turno background$valorAprox'></td>";
@@ -73,7 +131,7 @@
                             // Generar las celdas de la tabla
                             for ($j = $max + 5; $j >= $min - 5; $j--) {
                                 if ($j == $max) {
-                                    echo "<tr class='border-top'>";
+                                    echo "<tr class='border-bottomm'>";
                                 } else if ($j == $min) {
                                     echo "<tr class='border-bottomm'>";
                                 } else {
@@ -92,35 +150,54 @@
                                 $prevDot = null; // Dot previo para conectar con líneas
 
                                 for ($i = 1; $i <= 31; $i++) {
-                                    $dot1 = metodoCalculo($i, 1, $j);
-                                    $dot2 = metodoCalculo($i, 2, $j);
+                                    echo metodoCalculo($i, 1, $j);
+                                    echo metodoCalculo($i, 2, $j);
+                                    echo metodoCalculo($i, 3, $j);
                                     /* $dot3 = metodoCalculo($i, 3, $j); */
 
-                                    if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
-                                        echo $dot1;
-                                        if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
-                                            echo $dot2;
-                                        } else {
-                                            $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
-                                        }
-                                    } else {
-                                        $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
-                                    }
+                                    // if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
+                                    //     echo $dot1;
+                                    //     if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
+                                    //         echo $dot2;
+                                    //         if ($dot3 != '<td class="empty turno-3 background' . $j . '"></td>') {
+                                    //             echo $dot3;
+                                    //         } else {
+                                    //             $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
+                                    //         }
+                                    //     } else {
+                                    //         $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
+                                    //     }
+                                    // } else {
+                                    //     $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
+                                    // }
                                 }
                                 echo "</tr>";
                             }
+
+                            echo "<tr class='border$j'>";
+                            echo "<th class='celdasDias text$j'>" . $j . "</th>";
+                            for ($i = 1; $i <= 31; $i++) {
+                                echo "<td class='empty turno-1 background'></td>";
+                                echo "<td class='empty turno-2 background'></td>";
+                                echo "<td class='empty turno-3 background'></td>";
+                            }
+                            echo "</tr>";
                             ?>
                       </table>
 
                       <canvas id="canvas"></canvas>
 
                       <script>
-                          var dotInicial = <?php echo array_key_first($valores); ?>;
+                          dotInicial = <?php echo array_key_first($valores); ?>;
+                          prevDot = `dot-<?php echo array_key_first($valores) ?>-<?php echo array_key_first($valores[array_key_first($valores)]) ?>`;
 
-                          var dotLast = <?php echo array_key_last($valores); ?>;
+                          dotLast = <?php echo array_key_last($valores); ?>;
+
+                          prevDot = document.getElementById(prevDot);
                       </script>
                       <style>
                           #grafica table {
+
                               border-collapse: collapse;
                           }
 
@@ -135,21 +212,14 @@
                               margin-left: auto;
                               margin-right: auto;
                               padding: 0px;
-                              width: 20px;
+                              /* width: 20px; */
+                              min-width: 14px;
+                              max-width: 14px;
+                              max-height: 14px;
+                              min-height: 14px;
                           }
 
-                          .td-hover:hover {
-                              background-color: rgb(0 175 170 / 60%)
-                          }
 
-                          .td-hover {
-                              cursor: pointer
-                          }
-
-                          .td-hover::after {
-                              background-color: #ffa209;
-                              border-radius: 50%;
-                          }
 
                           .border-top {
                               border-top: 3px solid !important;
@@ -161,17 +231,17 @@
 
 
                           .turno-1 {
-                              border: 2px dashed black !important;
+                              border: 0.02px dashed black !important;
                           }
 
-                          /* .turno-2 {
-                            border: 2px dashed black !important;
-                            } */
-
                           .turno-2 {
-                              border-left: 2px dashed black !important;
-                              border-top: 2px dashed black !important;
-                              border-bottom: 2px dashed black !important;
+                              border: 0.02px dashed black !important;
+                          }
+
+                          .turno-3 {
+                              border-left: 0.02px dashed black !important;
+                              border-top: 0.02px dashed black !important;
+                              border-bottom: 0.02px dashed black !important;
                           }
 
                           .celdasDias {
@@ -205,16 +275,16 @@
                               height: 0px;
                               */
 
-                              padding-left: 3px;
-                              padding-bottom: 11px;
+                              /* padding-left: 9px;
+                              padding-bottom: 11px; */
 
                           }
 
-                          .dot::before {
+                          .dot-div::before {
                               content: '';
                               display: inline-block;
-                              width: 12px;
-                              height: 12px;
+                              width: 10px;
+                              height: 10px;
                               -moz-border-radius: 7.5px;
                               -webkit-border-radius: 7.5px;
                               border-radius: 7.5px;
@@ -222,6 +292,25 @@
                               position: absolute;
                               /* background-color: #69b6d5; */
                           }
+
+                          .dot-div {
+                              position: relative;
+                              /* top: 10px; */
+                              left: 8.7px;
+                              min-height: 0px;
+                              max-height: 0px;
+                              cursor: pointer;
+                          }
+
+                          .dot-div:hover {
+                              background-color: rgb(0 175 170 / 60%)
+                          }
+
+
+                          /* .dot-div::after {
+                              background-color: #ffa209;
+                              border-radius: 50%;
+                          } */
 
                           .dot-blue::before {
                               background-color: blue;
@@ -233,9 +322,8 @@
 
                           #grafica canvas {
                               position: absolute;
-
-                              top: 27px;
-                              left: 24px;
+                              top: 42.4px;
+                              left: 31px;
                               pointer-events: none;
                           }
 
@@ -286,11 +374,13 @@
                               font-size: 15px;
                           }
 
-                          /* .table--container {
-
-                              display: flex !important;
-                              justify-content: center;
-                          } */
+                          .table--container {
+                              /* overflow: auto;
+                              min-height: 64px;
+                              max-height: 100%; */
+                              /* display: flex;
+                              justify-content: center; */
+                          }
 
                           .container {
                               display: flex !important;

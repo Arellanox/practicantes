@@ -52,6 +52,9 @@ switch ($api) {
     case 'consultorio':
         $r = $master->reportador($master, $turno_id, 1, 'consultorio', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
+    case 'consultorio2':
+        $r = $master->reportador($master,$turno_id,$area_id,'consultorio2','mostrar',$preview,0,0,$id_cliente,$id_cotizacion);
+        break;   
     case 'electro':
         $r = $master->reportador($master, $turno_id, $area_id, 'electro', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
@@ -73,6 +76,9 @@ switch ($api) {
     case 'espiro':
         $r = $master->reportador($master, $turno_id, 5, 'espirometria', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
+    case 'receta':
+            $r = $master->reportador($master, $turno_id, $area_id, 'receta', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+            break;     
     default:
         echo '<script language="javascript">alert("¡URL invalida!"); window.close()</script>';
         break;

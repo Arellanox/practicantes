@@ -1,0 +1,87 @@
+<div class="modal fade" id="ConfiguracionModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Configuracion de las temperaturas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="mb-3">
+                            Turnos asignados por hora
+                        </p>
+                        <div class="input-group mb-3">
+                            <span class="input-span">Matutino</span>
+                            <input type="time" name="turno" class="form-control input-form" required id="MATUTINO">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-span">Vespertino</span>
+                            <input type="time" name="turno" class="form-control input-form" required id="VESPERTINO">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p>Agrega factor de correcion a un termometro</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Termometro_configuracion" class="form-label m-0 p-0">Termometro:</label>
+                            <select class="form-select input-form" name="Termometro" id="Termometro_configuracion"
+                                required>
+                                <option selected>Eliga un termometro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-check form-switch ps-0">
+
+                            <input class="form-check-input float-end" type="checkbox" role="switch"
+                                id="flexSwitchCheckChecked">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Activar Factor de
+                                correcion</label>
+                            <div class="mb-3">
+                                <input type="number" name="factor_coreccion" value="0"
+                                    class="form-control input-form collapse" required id="factor_coreccion">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Activar registros de los dias Domingo</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" value="0" id="Si">
+                            <label class="form-check-label" for="Si">
+                                Si
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turno" value="1" id="No">
+                            <label class="form-check-label" for="No">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i>
+                    Cancelar</button>
+                <button type="submit" form="liberarDiaTemperaturaForm" class="btn btn-confirmar"
+                    id="btn-liberar-temperatura">
+                    <i class="bi bi-person-x"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

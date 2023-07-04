@@ -1,5 +1,5 @@
 <?php
-
+ 
 require_once '../php/dompdf/vendor/autoload.php';
 require 'View.php';
 require 'Qrcode.php';
@@ -48,11 +48,12 @@ class Reporte
         $orden      = $this->orden;
         $preview    = $this->preview;
         $area       = $this->area;
-
+       
         switch ($tipo) {
             case 'etiquetas':
-                $generator = null;
-                $barcode = null;
+                
+                // $generator = null;
+                // $barcode = null;
                 // $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
                 // $barcode  = base64_encode($generator->getBarcode($response->BARRAS, $generator::TYPE_CODE_128));
                 // $barcode  = base64_encode($generator->getBarcode('750169978916', $generator::TYPE_CODE_128));
@@ -70,7 +71,9 @@ class Reporte
             case 'reporte_masometria':
             case 'espirometria': //nuevo case de espirometria
             case 'temperatura':
-            case 'corte':
+            case 'corte':  
+            case 'consultorio2': //<--Consultorio2 (Creado Angel) 
+            case 'receta': //<--Receta (Creado Angel)      
                 $prueba = generarQRURL($pie['clave'], $pie['folio'], $pie['modulo']);
                 break;
             default:
@@ -109,10 +112,11 @@ class Reporte
         switch ($tipo) {
             case 'etiquetas':
                 $template = render_view('invoice/etiquetas.php', $view_vars);
+               
                 $pdf->loadHtml($template);
 
-                $ancho = (5 / 2.54) * 72;
-                $alto  = (2.5 / 2.54) * 72;
+                $ancho = (5 / 2.54) * 72; #72
+                $alto  = (2.5 / 2.54) * 72; #72
 
                 $pdf->setPaper(array(0, 0, $ancho, $alto), 'portrait');
                 // $pdf->setPaper('letter', 'portrait');
@@ -201,6 +205,21 @@ class Reporte
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'landscape');
                 break;
+            
+            case 'consultorio2':
+                $template = render_view('invoice/consultorio2.php', $view_vars);
+                $pdf->loadHtml($template);
+                $pdf->setPaper('letter', 'portrait');
+                break;
+            
+            case 'receta':
+                $template = render_view('invoice/receta.php', $view_vars);
+                $pdf->loadHtml($template);
+                $pdf->setPaper([15, 21.59], 'portrait');
+                //Marca de agua
+                $pdf->getOptions()->setIsHtml5ParserEnabled(true); // Habilita el soporte para CSS3
+                $pdf->getOptions()->setIsFontSubsettingEnabled(true); // Habilita la subconjunción de fuentes
+                break;    
 
             default:
                 $template = render_view('invoice/reportes.php', $view_vars);

@@ -11,7 +11,7 @@
 
     <style>
         @page {
-            margin: 165px 10px;
+            margzin: 165px 10px;
         }
 
         body {
