@@ -2,9 +2,36 @@
 <div class="row">
     <div class="col-12 col-xl-12 col-lg-12">
         <div class="card mt-2">
-            <p class="mt-2 mx-2">
-                Seguimiento de pacientes de Universidad Juárez Autónoma de Tabasco
-            </p>
+            <div class="row">
+                <div class="col-6">
+                    <p class="mt-2 mx-2">
+                        Seguimiento de pacientes de Universidad Juárez Autónoma de Tabasco
+                    </p>
+                </div>
+                <div class="col-4 ">
+                    <!-- Filtro de fecha -->
+                    <form action="">
+                        <div class="row p-3">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Fecha Inicio:</label>
+                                    <input type="date" name="fechaInicio" id="fechaInicio"
+                                        class="form-control input-form " placeholder="" aria-describedby="helpId">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Fecha Final:</label>
+                                    <input type="date" name="fechaFinal" id="fechaFinal"
+                                        class="form-control input-form " placeholder="" aria-describedby="helpId">
+                                </div>
+                            </div>
+                            <button class=" btn btn-confirmar" id="">Filtrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <!-- Tabla -->
             <div class="p-3" id="TablaUjatContainer">
                 <table class="table table-hover display responsive" id="TablaUjat" style="width: 100%;">
