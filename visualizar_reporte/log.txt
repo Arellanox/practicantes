@@ -51,3 +51,10 @@
 27/06/23 11:58:36 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Se ha anulado una conexión establecida por el software en su equipo host..
 
 27/06/23 12:30:18 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2006] MySQL server has gone away
+04/07/23 10:52:41  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
+04/07/23 10:53:48  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
+04/07/23 10:55:37  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
+04/07/23 11:04:39  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
+04/07/23 11:05:06  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
+04/07/23 11:06:28  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
+04/07/23 11:08:29  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1

@@ -113,6 +113,18 @@ $('#btn-ver-receta-consultorio2').click(function () {
   window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
 })
 
+//Vista previa de solicitud de estudios
+$('#btn-ver-solicitud-estudios-consultorio2').click(function () {
+  area_nombre = 'solicitud_estudios'
+
+  api = encodeURIComponent(window.btoa(area_nombre));
+  turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+  area = encodeURIComponent(window.btoa(-3));
+
+
+  window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+})
+
 
 
 //

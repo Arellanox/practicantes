@@ -12,7 +12,7 @@
                     }; ?>
                 </h4>
             </td>
-        <td class="col-izq" style="border-bottom: none; text-align:center;">
+            <td class="col-izq" style="border-bottom: none; text-align:center;">
                 <?php
                 echo "<img src='data:image/png;base64, " . $encode . "' height='65' >";
                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
@@ -56,14 +56,14 @@
                 Fecha de Nacimiento: <strong style="font-size: 12px;"> <?php echo $encabezado->NACIMIENTO; ?> </strong>
             </td>
         </tr>
-        <!-- <tr>
+        <tr>
             <td class="col-center" style="border-bottom: none">
-
+                <?php
+                $fechaActual = date("d/m/Y");
+                ?>
+                Fecha de Resultado: <strong style="font-size: 12px;"><?php echo $fechaActual; ?>
             </td>
-            <td class="col-right" style="border-bottom: none">
-                ¿espacio?
-            </td>
-        </tr> -->
+        </tr>
         <tr>
         </tr>
     </tbody>
