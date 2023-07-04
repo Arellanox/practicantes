@@ -1,4 +1,4 @@
-@import "navbar.css?v=3";
+@import "navbar.css?v=4";
 @import "imagen-navbar.css?v=2";
 @import "table.css?v=6";
 @import "modal.css?v=9";
@@ -8,7 +8,7 @@
 @import "list-group.css?v=2";
 @import "imagen-equipo.css?v=2";
 @import "forms.css?v=9";
-@import "perfil-usuario.css?v=2";
+@import "perfil-usuario.css?v=3";
 @import "offcanvas.css?v=2";
 @import "buttons.css?v=6";
 @import "fullscreen-click-img.css";

@@ -72,3 +72,13 @@ a:hover {
   transition: box-shadow .15s ease-in-out;
   zoom: 150%
 }
+
+.navbar-menu{
+  padding-top: 0px; 
+  padding-bottom: 0px;
+  font-size: 14px;
+}
+
+.navbar-menu a{
+  font-size: 14px
+}

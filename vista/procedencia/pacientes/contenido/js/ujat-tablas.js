@@ -13,9 +13,9 @@ TablaUjat = $('#TablaUjat').DataTable({
     scrollCollapse: true,
     ajax: {
         dataType: 'json',
-        data: { api: 2 },
+        data: { api: 1 },
         method: 'POST',
-        url: '../../../api/temperatura_api.php',
+        url: '../../../api/externo_api.php',
         beforeSend: function () {
             // loader("In", 'bottom'), array_selected = null
         },
@@ -34,69 +34,69 @@ TablaUjat = $('#TablaUjat').DataTable({
         { data: 'NOMBRE_COMPLETO' },
         { data: 'PROCEDENCIA' },
         { data: 'PREFOLIO' },
-        //Laboratorio
-        {
-            data: 'LABORATORIO_CLINICO', render: function (data) {
-                html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
-                return html;
-            }
-        },
-        //Laboratorio
-        {
-            data: 'BIOMOLECULAR', render: function (data) {
-                html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
-                return html;
-            }
-        },
-        //Ultrasonido
-        {
-            data: 'ULTRASONIDO', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-            }
-        },
-        //Rayos X
-        {
-            data: 'RAYOS_X', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-            }
-        },
-        //Oftalmo
-        {
-            data: 'OFTALMOLOGIA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
-            }
-        },
-        //HistoriaClinica
-        {
-            data: 'CONSULTORIO', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
-            }
-        },
-        //Electrocardiograma
-        {
-            data: 'ELECTROCARDIOGRAMA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-            }
-        },
-        //Nutricion InBody
-        {
-            data: 'INBODY', render: function (data) {
-                html = drawStatusMenuTable(data, { 0: 'capturas', 1: 'correo' });
-                return html;
-            }
-        },
-        //Espirometría
-        {
-            data: 'ESPIROMETRIA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-            }
-        },
-        //Audiometria
-        {
-            data: 'AUDIOMETRIA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-            }
-        },
+        // //Laboratorio
+        // {
+        //     data: 'LABORATORIO_CLINICO', render: function (data) {
+        //         html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
+        //         return html;
+        //     }
+        // },
+        // //Laboratorio
+        // {
+        //     data: 'BIOMOLECULAR', render: function (data) {
+        //         html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
+        //         return html;
+        //     }
+        // },
+        // //Ultrasonido
+        // {
+        //     data: 'ULTRASONIDO', render: function (data) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+        //     }
+        // },
+        // //Rayos X
+        // {
+        //     data: 'RAYOS_X', render: function (data) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+        //     }
+        // },
+        // //Oftalmo
+        // {
+        //     data: 'OFTALMOLOGIA', render: function (data) {
+        //         return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
+        //     }
+        // },
+        // //HistoriaClinica
+        // {
+        //     data: 'CONSULTORIO', render: function (data) {
+        //         return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
+        //     }
+        // },
+        // //Electrocardiograma
+        // {
+        //     data: 'ELECTROCARDIOGRAMA', render: function (data) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+        //     }
+        // },
+        // //Nutricion InBody
+        // {
+        //     data: 'INBODY', render: function (data) {
+        //         html = drawStatusMenuTable(data, { 0: 'capturas', 1: 'correo' });
+        //         return html;
+        //     }
+        // },
+        // //Espirometría
+        // {
+        //     data: 'ESPIROMETRIA', render: function (data) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+        //     }
+        // },
+        // //Audiometria
+        // {
+        //     data: 'AUDIOMETRIA', render: function (data) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+        //     }
+        // },
         //Menu
         {
             data: 'FECHA_RECEPCION',

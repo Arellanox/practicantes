@@ -3,14 +3,14 @@
 //Variables dinamicas;
 session_start();
 include "../../variables.php";
-$menu = "Ujat";
+$menu = "procedencia";
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
 <head>
     <?php include "../../include/head.php"; ?>
-    <title>Ujat | Bimo</title>
+    <title>Bienvenido | Bimo</title>
 </head>
 
 <body class="" id="body-controlador"> </body>
