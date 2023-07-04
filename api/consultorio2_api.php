@@ -12,6 +12,7 @@ $diagnostico = $_POST['diagnostico'];
 $plan_tratamiento = $_POST['plan_tratamiento'];
 $activo = isset($_POST['ACTIVO']) ? null : 1;
 $consulta_terminada = $_POST['consulta_terminada'];
+$folio = $_POST['folio'];
 
 #Insertar en Iniciar consulta medica
 $motivo_consulta = $_POST['motivo_consulta'];

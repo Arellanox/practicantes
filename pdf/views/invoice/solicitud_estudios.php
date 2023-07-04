@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receta</title>
+    <title>Solicitud de estudios</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
@@ -348,12 +348,16 @@ $encode_firma = base64_encode($ruta_firma);
             <tbody>
                 <?php for ($i = 0; $i < count($resultados[2]); $i++) : ?>
                     <tr>
-                        <td class="respuesta-row"><?php echo $resultados[2][$i]->DESCRIPCION.'-'.$resultados[2][$i]->ABREVIATURA; ?></td>
+                        <td class="respuesta-row"><?php echo $resultados[2][$i]->DESCRIPCION.' - '.$resultados[2][$i]->ABREVIATURA; ?></td>
                     </tr>
                 <?php endfor; ?>
             </tbody>
         </table>
+        <?php
+    print_r($resultados);
+        ?>
     </div>
+
 </body>
 
 </html>
