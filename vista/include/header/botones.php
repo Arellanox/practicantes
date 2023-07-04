@@ -4,6 +4,13 @@ date_default_timezone_set('America/Mexico_City');
 
 
 $menu = $_POST['menu']; ?>
+
+<button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btnfiltrofechaujat">
+  <i class="bi bi-archive"></i> Filtro
+</button>
+
+
+
 <?php if ($menu == "Recepción | Espera" || $menu == "Recepción | Aceptados" || $menu == "Recepción | Rechazados") : ?>
   <!-- <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-editar">
     <i class="bi bi-pencil-square"></i> Actualizar información del paciente
