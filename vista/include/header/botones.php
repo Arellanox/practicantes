@@ -5,10 +5,12 @@ date_default_timezone_set('America/Mexico_City');
 
 $menu = $_POST['menu']; ?>
 
-<button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btnfiltrofechaujat">
-  <i class="bi bi-archive"></i> Filtro
-</button>
 
+<?php if ($menu == "Menú principal") : ?>
+  <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalFiltrarTabla">
+    <i class="bi bi-archive"></i> Filtro
+  </button>
+<?php endif; ?>
 
 
 <?php if ($menu == "Recepción | Espera" || $menu == "Recepción | Aceptados" || $menu == "Recepción | Rechazados") : ?>

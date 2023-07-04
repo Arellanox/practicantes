@@ -1944,6 +1944,7 @@ function selectTable(tablename, datatable,
     let tr = this
     let row = datatable.row(tr);
     let dataRow = row.data();
+    array_selected = row.data();
 
     // let td = $(event.target).is('td')
 

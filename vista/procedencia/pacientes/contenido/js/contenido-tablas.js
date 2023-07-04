@@ -1,19 +1,22 @@
 tablaPacientes = $('#tablaPacientes').DataTable({
     language: {
-        url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
     },
-    lengthChange: true,
+    scrollY: function () {
+        return autoHeightDiv(0, 263)
+    },
+    scrollCollapse: true,
+    // paging: false,
+    deferRender: true,
     lengthMenu: [
         [15, 20, 25, 30, 35, 40, 45, 50, -1],
         [15, 20, 25, 30, 35, 40, 45, 50, "All"]
     ],
-    info: true,
-    paging: true,
-    scrollY: autoHeightDiv(0, 284),
-    scrollCollapse: true,
     ajax: {
         dataType: 'json',
-        data: { api: 1 },
+        data: function (d) {
+            return $.extend(d, datapacientes);
+        },
         method: 'POST',
         url: '../../../api/externo_api.php',
         beforeSend: function () {
@@ -32,7 +35,7 @@ tablaPacientes = $('#tablaPacientes').DataTable({
     columns: [
         { data: 'COUNT' },
         { data: 'NOMBRE_COMPLETO' },
-        { data: 'PROCEDENCIA' },
+        // { data: 'PROCEDENCIA' },
         { data: 'PREFOLIO' },
         // //Laboratorio
         // {
@@ -98,13 +101,8 @@ tablaPacientes = $('#tablaPacientes').DataTable({
         //     }
         // },
         //Menu
-        {
-            data: 'FECHA_RECEPCION',
-            render: function (data) {
-                return formatoFecha2(data, [0, 1, 5, 2, 0, 0, 0], null);
-            }
-        },
-        { data: 'TURNO' },
+
+        { data: 'ETIQUETA_TURNO' },
         {
             data: 'FECHA_AGENDA',
             render: function (data) {
@@ -118,18 +116,24 @@ tablaPacientes = $('#tablaPacientes').DataTable({
             }
         },
         {
-            data: 'ACTIVO',
+            data: 'turno',
             render: function (data) {
                 return 'PENDIENTE';
             }
         },
-        { data: 'GENERO' }
+        { data: 'GENERO' },
+        {
+            data: null, render: function () {
+                return '<i class="bi bi-info-circle-fill btn_offcanva pantone-7408-color" style="zoom:170%; cursor:pointer"></i>'
+            }
+        }
     ],
     columnDefs: [
         { width: "1%", targets: "col-number" },
         { width: "20%", targets: "col-20%" },
         { width: "5%", targets: "col-5%" },
         { width: "7%", targets: "col-icons" },
+        { width: "1%", targets: 'tools' },
         { targets: "col-invisble-first", visible: false }
         // { visible: false, title: "AreaActual", targets: 20, searchable: false }
     ],
@@ -151,8 +155,8 @@ inputBusquedaTable("tablaPacientes", tablaPacientes,
 
 
 selectTable('#tablaPacientes', tablaPacientes, {
-    ClickClass: {
-        0: {
+    ClickClass: [
+        {
             class: 'GrupoInfoCreditoBtn',
             callback: function (data) {
                 // $('#capturasIMG').html('')
@@ -235,13 +239,25 @@ selectTable('#tablaPacientes', tablaPacientes, {
 
             }
         },
-        1: {
+        {
             class: 'GrupoInfoCreditoBtn',
             callback: function (data) {
 
             }
+        },
+        {
+            class: 'btn_offcanva',
+            callback: async (data) => {
+                alertToast('Cargando datos', 'info', 2500)
+                await obtenerPanelInformacion(1, 'toma_de_muestra_api', 'estudios_muestras', '#panel-muestras-estudios')
+                var myOffcanvas = document.getElementById('offcanvasInfoPrincipal')
+                var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas)
+                bsOffcanvas.show()
+                // swal.close();
+            }
         }
-    }
+    ],
+    OnlyData: true,
 }, async function (select, data, callback) {
     if (select) {
 

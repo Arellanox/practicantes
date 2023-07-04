@@ -1,16 +1,16 @@
-$("#btnfiltrofechaujat").on("click", function (e) {
-    e.preventDefault();
-
-
-    $("#modalFiltrarTabla").modal("show");
-})
 
 
 
 $("#filtroTablaForm").on("submit", function (e) {
     e.preventDefault();
-    
-    data = new FormData(document.getElementById("filtroTablaForm"));
+    alertToast('Aplicando filtro, espere un momento', 'info', 4000)
 
-    console.log(data)
+    formData = new FormData(document.getElementById("filtroTablaForm"));
+
+    datapacientes['fecha_inicial'] = formData.get('fecha_inicial');
+    datapacientes['fecha_final'] = formData.get('fecha_final');
+
+    tablaPacientes.ajax.reload();
+
+    $('#modalFiltrarTabla').modal('hide')
 })
