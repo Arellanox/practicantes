@@ -25,7 +25,7 @@ if (isset($datos['dispositivo']) && $datos['datos']) {
             break;
 
         case 'ElectraProS':
-            $data = getValuesExelEquipos($datos, 2, 3, 4);
+            // $data = getValuesExelEquipos($datos, 2, 3, 4);
 
             // $fh = fopen("algo.txt", 'a');
             // fwrite($fh, json_encode($data));
@@ -41,6 +41,9 @@ if (isset($datos['dispositivo']) && $datos['datos']) {
             // fclose($fh);
 
     }
+
+
+    echo $master->returnApi($response);
 
 }
 
