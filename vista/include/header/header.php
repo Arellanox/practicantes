@@ -96,25 +96,25 @@ switch ($menu) {
               <div class="modal-dialog modal-md modal-dialog-centered ">
                 <div class="modal-content">
                   <!-- <div class="modal-header header-modal">
-                <h5 class="modal-title" id="filtrador"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div> -->
+                  <h5 class="modal-title" id="filtrador"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div> -->
                   <div class="modal-body">
                     <div id="tsparticles"></div>
                     <div style="position: relative; width: 100%; height: 0; padding-top: 140.9524%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
+  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+  border-radius: 8px; will-change: transform;">
                       <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFhaaU2rcM&#x2F;watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
                       </iframe>
                     </div>
                     <!-- <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFhaaU2rcM&#x2F;watch?utm_content=DAFhaaU2rcM&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Tarjeta vertical felicitación cumpleaños empleado empresa elegante dorado</a> de Bimo Talento Humano -->
                   </div>
                   <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"> Cancelar</button>
-                <button type="submit" form="formNuevaBase" class="btn btn-confirmar" id="submit-registrarGrupo">
-                  Crear
-                </button>
-              </div> -->
+                  <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"> Cancelar</button>
+                  <button type="submit" form="formNuevaBase" class="btn btn-confirmar" id="submit-registrarGrupo">
+                    Crear
+                  </button>
+                </div> -->
                 </div>
               </div>
             </div>

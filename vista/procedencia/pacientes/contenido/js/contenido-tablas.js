@@ -17,7 +17,9 @@ tablaPacientes = $('#tablaPacientes').DataTable({
     ],
     ajax: {
         dataType: 'json',
-        data: { api: 1 },
+        data: function (d) {
+            return $.extend(d, datapacientes);
+        },
         method: 'POST',
         url: '../../../api/externo_api.php',
         beforeSend: function () {
