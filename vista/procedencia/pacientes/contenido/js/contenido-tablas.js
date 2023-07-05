@@ -80,24 +80,24 @@ tablaPacientes = $('#tablaPacientes').DataTable({
             }
         },
         //Rayos x
-        {
-            data: 'ESTUDIOS', render: function (data, type) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 8, type);
-            }
-        },
+        // {
+        //     data: 'ESTUDIOS', render: function (data, type) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 8, type);
+        //     }
+        // },
         //Oftalmo
-        {
-            data: 'ESTUDIOS', render: function (data, type) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 3, type);
-            }
-        },
+        // {
+        //     data: 'ESTUDIOS', render: function (data, type) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 3, type);
+        //     }
+        // },
 
         //HistoriaClinica
-        {
-            data: 'ESTUDIOS', render: function (data, type) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 1, type);
-            }
-        },
+        // {
+        //     data: 'ESTUDIOS', render: function (data, type) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 1, type);
+        //     }
+        // },
         //Electrocardiograma
         {
             data: 'ESTUDIOS', render: function (data, type) {
@@ -105,23 +105,23 @@ tablaPacientes = $('#tablaPacientes').DataTable({
             }
         },
         //Nutricion InBody
-        {
-            data: 'ESTUDIOS', render: function (data, type) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 14, type);
-            }
-        },
+        // {
+        //     data: 'ESTUDIOS', render: function (data, type) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 14, type);
+        //     }
+        // },
         //Espirometría
-        {
-            data: 'ESTUDIOS', render: function (data, type) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 5, type);
-            }
-        },
+        // {
+        //     data: 'ESTUDIOS', render: function (data, type) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 5, type);
+        //     }
+        // },
         // //Audiometria
-        {
-            data: 'ESTUDIOS', render: function (data, type) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 4, type);
-            }
-        },
+        // {
+        //     data: 'ESTUDIOS', render: function (data, type) {
+        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 4, type);
+        //     }
+        // },
 
         //Menu
         { data: 'ETIQUETA_TURNO' },

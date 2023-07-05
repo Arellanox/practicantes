@@ -6,6 +6,14 @@ var tablaRecepcionPacientes, dataRecepcion = { api: 1 };
 
 var estudiosLab = [], estudiosLabBio = [], estudiosRX = [], estudiosUltra = [], estudiosOtros = []
 
+//Validacion de usuario
+switch (session['cargo']) {
+  case '13': case 13:
+    $(location).attr('href', `${http}${servidor}/${appname}/vista/procedencia/pacientes/#UJAT`);
+    destroySession();
+    break;
+}
+
 if (validarVista('RECEPCIÓN')) {
   hasLocation()
   $(window).on("hashchange", function (e) {
@@ -13,12 +21,7 @@ if (validarVista('RECEPCIÓN')) {
   });
 }
 
-//Validacion de usuario
-// switch (session['cargo']) {
-//   case '13': case 13:
-//     $(location).attr('href', `${http}${servidor}/${appname}/vista/procedencia/pacientes/#UJAT`);
-//     return true;
-// }
+
 
 // Botones
 $.getScript("contenido/js/recepcion-botones.js");
