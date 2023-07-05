@@ -260,7 +260,7 @@ if ($menu != 'Recepción' && $_SESSION['vista']['RECEPCIÓN'] == 1) : ?>
 
 <?php if ($_SESSION['vista']['MENU_MAQUILA'] == 1 || 1) : ?>
   <li class="nav-item">
-    <a href="<?php echo "$https$url/$appname/procedencia/menu/pacientes/#UJAT"; ?>">
+    <a href="<?php echo "$https$url/$appname/vista/procedencia/pacientes/#UJAT"; ?>">
       <i class=" bi bi-thunderbolt"></i> UJAT
     </a>
   </li>

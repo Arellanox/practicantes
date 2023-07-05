@@ -73,7 +73,8 @@ class Reporte
             case 'temperatura':
             case 'corte':  
             case 'consultorio2': //<--Consultorio2 (Creado Angel) 
-            case 'receta': //<--Receta (Creado Angel)      
+            case 'receta': //<--Receta (Creado Angel) 
+            case 'solicitud_estudios': //<-- (Creado Angel)         
                 $prueba = generarQRURL($pie['clave'], $pie['folio'], $pie['modulo']);
                 break;
             default:
@@ -219,7 +220,13 @@ class Reporte
                 //Marca de agua
                 $pdf->getOptions()->setIsHtml5ParserEnabled(true); // Habilita el soporte para CSS3
                 $pdf->getOptions()->setIsFontSubsettingEnabled(true); // Habilita la subconjunción de fuentes
-                break;    
+                break;   
+
+            case 'solicitud_estudios':
+                $template = render_view('invoice/solicitud_estudios.php', $view_vars);
+                $pdf->loadHtml($template);
+                $pdf->setPaper([15, 21.59], 'portrait');
+                break;
 
             default:
                 $template = render_view('invoice/reportes.php', $view_vars);

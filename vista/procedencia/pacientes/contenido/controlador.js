@@ -15,13 +15,14 @@ $(window).on("hashchange", function (e) {
 // Variables globales
 
 // obtenerContenido()
+var datapacientes = { api: 1 }
 function obtenerContenido() {
     obtenerTitulo('Menú principal'); //Aqui mandar el nombre de la area
     $.post("contenido/contenido.html", function (html) {
         $("#body-js").html(html);
     }).done(function () {
         // Datatable
-        $.getScript("contenido/js/ujat-tablas.js");
+        $.getScript("contenido/js/contenido-tablas.js");
         // Botones
 
         // Filtros

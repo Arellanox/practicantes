@@ -793,6 +793,8 @@ function isJson(str) {
 }
 
 
+
+
 // Obtener segmentos por procedencia en select
 function getSegmentoByProcedencia(id, select) {
   return new Promise(resolve => {
@@ -1874,7 +1876,7 @@ function eventClassClick(event, tr, config, data) {
       const element = rowClick[key];
 
       if ($(clickedElement).hasClass(`${element.class}`)) {
-        element.callback(data)
+        element.callback(data, clickedElement)
         return true;
       }
 
@@ -1944,6 +1946,7 @@ function selectTable(tablename, datatable,
     let tr = this
     let row = datatable.row(tr);
     let dataRow = row.data();
+    array_selected = row.data();
 
     // let td = $(event.target).is('td')
 

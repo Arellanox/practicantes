@@ -51,65 +51,95 @@ tablaMenuPrincipal = $('#TablaEstatusTurnos').DataTable({
         { data: 'PREFOLIO' },
         //Laboratorio
         {
-            data: 'LABORATORIO_CLINICO', render: function (data) {
-                html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
-                return html;
+            data: 'LABORATORIO_CLINICO', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
+
             }
         },
         //Laboratorio
         {
-            data: 'BIOMOLECULAR', render: function (data) {
-                html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
-                return html;
+            data: 'BIOMOLECULAR', render: function (data, type) {
+                switch (type) {
+                    case 'display': html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
+                        return html;
+                    default: return data;
+                }
             }
         },
         //Ultrasonido
         {
-            data: 'ULTRASONIDO', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+            data: 'ULTRASONIDO', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
             }
         },
         //Rayos X
         {
-            data: 'RAYOS_X', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+            data: 'RAYOS_X', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
             }
         },
         //Oftalmo
         {
-            data: 'OFTALMOLOGIA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
+            data: 'OFTALMOLOGIA', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
             }
         },
         //HistoriaClinica
         {
-            data: 'CONSULTORIO', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
+            data: 'CONSULTORIO', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
             }
         },
         //Electrocardiograma
         {
-            data: 'ELECTROCARDIOGRAMA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+            data: 'ELECTROCARDIOGRAMA', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
             }
         },
         //Nutricion InBody
         {
-            data: 'INBODY', render: function (data) {
-                html = drawStatusMenuTable(data, { 0: 'capturas', 1: 'correo' });
-                return html;
+            data: 'INBODY', render: function (data, type) {
+                switch (type) {
+                    case 'display': html = drawStatusMenuTable(data, { 0: 'capturas', 1: 'correo' });
+                        return html;
+                    default: return data;
+                }
             }
         },
         //Espirometría
         {
-            data: 'ESPIROMETRIA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+            data: 'ESPIROMETRIA', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
             }
         },
         //Audiometria
         {
-            data: 'AUDIOMETRIA', render: function (data) {
-                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+            data: 'AUDIOMETRIA', render: function (data, type) {
+                switch (type) {
+                    case 'display': return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
+                    default: return data;
+                }
             }
         },
         //Menu

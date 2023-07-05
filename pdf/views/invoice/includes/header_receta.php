@@ -12,7 +12,7 @@
                     }; ?>
                 </h4>
             </td>
-        <td class="col-izq" style="border-bottom: none; text-align:center;">
+            <td class="col-izq" style="border-bottom: none; text-align:center;">
                 <?php
                 echo "<img src='data:image/png;base64, " . $encode . "' height='65' >";
                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
@@ -39,7 +39,7 @@
     <tbody>
         <tr>
             <td class="col-left" style="border-bottom: none">
-                No. Identificación: <strong style="font-size: 12px;"> <?php echo $pie['folio']; ?> </strong>
+                No. Folio: <strong style="font-size: 12px;"> <?php echo $encabezado->FOLIO; ?> </strong>
             </td>
             <td class="col-center" style="border-bottom: none">
                 Edad: <strong style="font-size: 12px;"> <?php echo $encabezado->EDAD < 1 ? ($encabezado->EDAD * 10) . " meses" : $encabezado->EDAD . " años"; ?></strong>
@@ -56,14 +56,14 @@
                 Fecha de Nacimiento: <strong style="font-size: 12px;"> <?php echo $encabezado->NACIMIENTO; ?> </strong>
             </td>
         </tr>
-        <!-- <tr>
+        <tr>
             <td class="col-center" style="border-bottom: none">
-
+                <?php
+                $fechaActual = date("d/m/Y");
+                ?>
+                Fecha de Resultado: <strong style="font-size: 12px;"><?php echo $fechaActual; ?>
             </td>
-            <td class="col-right" style="border-bottom: none">
-                ¿espacio?
-            </td>
-        </tr> -->
+        </tr>
         <tr>
         </tr>
     </tbody>

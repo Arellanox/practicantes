@@ -471,6 +471,12 @@ class Miscelaneus
                 #RECETA
                 $arregloPaciente = $this->getBodyRecetas($master, $turno_id);
                 break;
+            case -3:
+                #SOLICITUD DE ESTUDIOS
+                $arregloPaciente = $this->getBodySoliEstudios($master, $turno_id);
+                $folio = $arregloPaciente[2][0]->FOLIO;
+
+                break;    
         }
 
 
@@ -566,6 +572,13 @@ class Miscelaneus
     {
         $response = $master->getByNext('sp_recetas', [$turno_id]);
         return $response;
+    }
+
+    private function getBodySoliEstudios($master, $turno_id)
+    {
+        $response = $master->getByNext('sp_consultorio2', [$turno_id]);
+        return $response;
+
     }
 
 

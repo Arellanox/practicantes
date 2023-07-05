@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receta</title>
+    <title>Solicitud de estudios</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">  -->
@@ -285,7 +285,7 @@
         }
 
         /* para la marca de agua */
-        .marca-agua {
+        /* .marca-agua {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -294,7 +294,7 @@
             font-size: 48px;
             color: #cccccc;
             z-index: 9999;
-        }
+        } */
     </style>
 
 </head>
@@ -323,7 +323,7 @@ $encode_firma = base64_encode($ruta_firma);
         <?php
         $titulo = 'Checkup Clínica y Prevención';
         $tituloPersonales = 'Información del paciente';
-        $subtitulo = 'Receta de Medicamentos';
+        $subtitulo = 'Solicitud de estuidos';
         $encabezado->FECHA_RESULTADO = $encabezado->FECHA_RESULTADO_CONSULTA;
         include 'includes/header_receta.php';
         ?>
@@ -333,87 +333,31 @@ $encode_firma = base64_encode($ruta_firma);
         <?php
         $footerDoctor = 'Dra. BEATRIZ ALEJANDRA RAMOS GONZÁLEZ <br>UJAT - Cédula profesional: 7796595';
 
-        include 'includes/footer.php';
+        include 'includes/footer_soli_estudios.php';
         ?>
     </div>
     <br>
     <!-- Body -->
-    <?php
-    $recetaPrincipal = '
-            <div class="invoice-content row">
-                <div>
-                  <table class="table">
-                    <thead>
+    <div class="invoice-content row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="pregunta-row">Solicitudes de estudios:</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php for ($i = 0; $i < count($resultados[2]); $i++) : ?>
                     <tr>
-                          <td class="pregunta-row">Diagnóstico:</td>
+                        <td class="respuesta-row"><?php echo $resultados[2][$i]->DESCRIPCION.' - '.$resultados[2][$i]->ABREVIATURA; ?></td>
                     </tr>
-                     </thead>
-                     <tbody>
-                     <tr>
-                          <td class="respuesta-row">' . $resultados[2][0]->DIAGNOSTICO . '</td>
-                     </tr>
+                <?php endfor; ?>
             </tbody>
         </table>
+        <?php
+    print_r($resultados);
+        ?>
     </div>
 
-    <div>
-        <h4 class="tratamiento-titulo">Tratamiento:</h4>';
-
-    for ($i = 0; $i < count($resultados[1]); $i++) {
-        $recetas = $resultados[1][$i];
-
-        if ($resultados[0][$i] != $recetas->ID_RECETA) {
-            $recetaPrincipal .= '
-            <div class="tratamiento-cuerpo">
-                <p>' . $recetas->NOMBRE_GENERICO . ', ' . $recetas->FORMA_FARMACEUTICA . ', ' . $recetas->DOSIS . ', ' . $recetas->PRESENTACION . ' ' . $recetas->FRECUENCIA . ', ' . $recetas->VIA_DE_ADMINISTRACION . ' ' . $recetas->DURACION_DEL_TRATAMIENTO . ', ' . $recetas->INDICACIONES_PARA_EL_USO . '</p>
-            </div>';
-        }
-    }
-    $recetaPrincipal .= '
-    </div>
-</div>';
-
-    echo $recetaPrincipal;
-    ?>
-
-    <!-- copia -->
-    <div class="break"></div>
-    <?php
-    $recetaCopia = '
-            <div class="invoice-content row">
-                <div>
-                  <table class="table">
-                    <thead>
-                    <tr>
-                          <td class="pregunta-row">Diagnóstico:</td>
-                    </tr>
-                     </thead>
-                     <tbody>
-                     <tr>
-                          <td class="respuesta-row">' . $resultados[2][0]->DIAGNOSTICO . '</td>
-                     </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div>
-        <h4 class="tratamiento-titulo">Tratamiento:</h4>';
-
-    foreach ($resultados[1] as $recetas) {
-        if ($resultados[0][$i] != $recetas->ID_RECETA) {
-            $recetaCopia .= '
-        <div class="tratamiento-cuerpo" <div class="marca-agua">COPIA</div>
-            <p>' . $recetas->NOMBRE_GENERICO . ', ' . $recetas->FORMA_FARMACEUTICA . ', ' . $recetas->DOSIS . ', ' . $recetas->PRESENTACION . ' ' . $recetas->FRECUENCIA . ', ' . $recetas->VIA_DE_ADMINISTRACION . ' ' . $recetas->DURACION_DEL_TRATAMIENTO . ', ' . $recetas->INDICACIONES_PARA_EL_USO . '</p>
-        </div>';
-        }
-    }
-
-    $recetaCopia .= '
-    </div>
-</div>';
-
-    echo $recetaCopia;
-    ?>
 </body>
 
 </html>
