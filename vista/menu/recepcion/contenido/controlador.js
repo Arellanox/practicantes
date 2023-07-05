@@ -14,11 +14,11 @@ if (validarVista('RECEPCIÓN')) {
 }
 
 //Validacion de usuario
-switch (session['cargo']) {
-  case '13': case 13:
-    $(location).attr('href', `${http}${servidor}/${appname}/vista/procedencia/pacientes/#UJAT`);
-    return true;
-}
+// switch (session['cargo']) {
+//   case '13': case 13:
+//     $(location).attr('href', `${http}${servidor}/${appname}/vista/procedencia/pacientes/#UJAT`);
+//     return true;
+// }
 
 // Botones
 $.getScript("contenido/js/recepcion-botones.js");
