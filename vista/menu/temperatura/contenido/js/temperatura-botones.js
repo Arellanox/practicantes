@@ -486,11 +486,10 @@ $("#TurnosbtnTemperaturas").on("click", function (e) {
 })
 
 
-$("#TermometrosbtnTemperaturas").on("click", function (e) {
+$("#TermometrosbtnTemperaturas").on("click", async function (e) {
+
     TablaTermometrosDataTable.ajax.reload();
     $("#TermometrosTemperaturasModal").modal("show");
-
-
 })
 
 async function CargarConfiguracionTemperaturas() {
@@ -525,10 +524,6 @@ async function CargarConfiguracionTemperaturas() {
 
 $("#TermometrosTemperaturasForm").on("submit", function (e) {
     e.preventDefault();
-
-
-
-
     dataJsonTermometrosTemperaturas = {
         api: 14,
         Enfriador: selectedEquiposTemperaturas['ID_EQUIPO']

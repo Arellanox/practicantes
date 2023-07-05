@@ -22,6 +22,8 @@ TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
         },
         complete: function () {
             // fadeRegistro('In')
+
+            $("#btn-equipos-termometros-temperatura").fadeIn(0)
             tablaTemperatura.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
