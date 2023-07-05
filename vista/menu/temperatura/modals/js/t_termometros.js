@@ -1,3 +1,8 @@
+
+
+
+
+
 DataEquiposTermometros = {
     api: 13
 }
@@ -23,7 +28,6 @@ TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
         complete: function () {
             // fadeRegistro('In')
 
-            $("#btn-equipos-termometros-temperatura").fadeIn(0)
             tablaTemperatura.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -80,11 +84,18 @@ selectTable('#TablaTermometros', TablaTermometrosDataTable, { unSelect: true, db
             $('#factor_correcion').collapse('hide');
         }
 
+
+        $("#btn-equipos-termometros-temperatura").fadeIn(0);
+
+
     } else {
         $('#activarFactorCorrecion').prop('checked', false)
         $('#factor_correcion').val('');
         $("#TermometrosTemperaturasForm").addClass('disable-element');
         $("#Termometros_Equipos").val("");
+
+        $("#btn-equipos-termometros-temperatura").fadeOut(0);
+
     }
 })
 
@@ -108,7 +119,5 @@ TurnosTemperaturasModal.addEventListener('show.bs.modal', event => {
         })
         .columns.adjust();
 })
-
-
 
 

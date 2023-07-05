@@ -10,6 +10,42 @@
 // })
 
 
+$("#TermometrosTemperaturasForm").on("submit", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $("#btn-equipos-termometros-temperatura").fadeOut(0);
+
+
+    dataJsonTermometrosTemperaturas = {
+        api: 14,
+        Enfriador: selectedEquiposTemperaturas['ID_EQUIPO']
+    };
+
+    if (selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'] != null) {
+        dataJsonTermometrosTemperaturas.id_temperaturas_equipos = selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'];
+    }
+
+
+    alertMensajeConfirm({
+        title: "¿Está seguro de su captura?",
+        text: "Se asignara el termometro al equipo",
+        icon: "info"
+    }, function () {
+        ajaxAwaitFormData(dataJsonTermometrosTemperaturas, 'temperatura_api', 'TermometrosTemperaturasForm', { callbackAfter: true }, false, function (data) {
+            alertToast('Termometro asigando con exito', 'success', 2000);
+            $('#activarFactorCorrecion').prop('checked', false)
+            $('#factor_correcion').val('');
+            $("#Termometros_Equipos").val("");
+            $("#TermometrosTemperaturasForm").addClass('disable-element');
+            TablaTermometrosDataTable.ajax.reload();
+
+            if (ListaEnfriadoresActiva) {
+                LoadTermometros(DataEquipo.Enfriador, 'Termometro');
+            }
+        })
+    }, 1)
+})
 
 $(document).on('click', '.btn-liberar', function (event) {
     event.stopPropagation();
@@ -41,7 +77,7 @@ $("#EquiposTemperaturasForm").on("submit", function (e) {
     }
 
 
-    LoadTermometros(id_equipos);
+    LoadTermometros(id_equipos, 'Termometro');
 
 
     tablaTemperaturaFolio.ajax.reload()
@@ -75,8 +111,8 @@ $("#EquiposTemperaturasForm").on("submit", function (e) {
     ListaEnfriadoresActiva = true;
 })
 
-function LoadTermometros(id_equipos) {
-    $("#Termometro").html("")
+function LoadTermometros(id_equipos, input) {
+    $(`#${input}`).html("")
 
     ajaxAwait({
         api: 1,
@@ -86,7 +122,7 @@ function LoadTermometros(id_equipos) {
         selectedEquipos = data.response.data;
 
         selectedEquipos.forEach(e => {
-            $("#Termometro").html(`
+            $(`#${input}`).html(`
         <option value='${e['TERMOMETRO_ID']}' selected>${e['TERMOMETRO']}</option>
         `)
 
@@ -207,6 +243,10 @@ function CargarTemperatura() {
             } else {
                 console.log('No')
                 tablaTemperaturaFolio.ajax.reload()
+            }
+
+            if (ListaEnfriadoresActiva) {
+                LoadTermometros(DataEquipo.Enfriador);
             }
 
             editRegistro == true ? $('#detallesTemperaturaModal').modal('hide') : null
@@ -522,34 +562,5 @@ async function CargarConfiguracionTemperaturas() {
     })
 }
 
-$("#TermometrosTemperaturasForm").on("submit", function (e) {
-    e.preventDefault();
-    dataJsonTermometrosTemperaturas = {
-        api: 14,
-        Enfriador: selectedEquiposTemperaturas['ID_EQUIPO']
-    };
-
-    if (selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'] != null) {
-        dataJsonTermometrosTemperaturas.id_temperaturas_equipos = selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'];
-    }
 
 
-    alertMensajeConfirm({
-        title: "¿Está seguro de su captura?",
-        text: "Se asignara el termometro al equipo",
-        icon: "info"
-    }, function () {
-        ajaxAwaitFormData(dataJsonTermometrosTemperaturas, 'temperatura_api', 'TermometrosTemperaturasForm', { callbackAfter: true }, false, function (data) {
-            alertToast('Termometro asigando con exito', 'success', 2000);
-            $('#activarFactorCorrecion').prop('checked', false)
-            $('#factor_correcion').val('');
-            $("#Termometros_Equipos").val("");
-            $("#TermometrosTemperaturasForm").addClass('disable-element');
-            TablaTermometrosDataTable.ajax.reload();
-
-            if (ListaEnfriadoresActiva) {
-                LoadTermometros(DataEquipo.Enfriador);
-            }
-        })
-    }, 1)
-})

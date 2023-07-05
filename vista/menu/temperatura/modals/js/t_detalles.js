@@ -124,11 +124,13 @@ inputBusquedaTable('TablaTemperatura', tablaTemperatura, [
 
 
 
-rellenarSelect("#TermSometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
+// rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
 selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: true, noColumns: true }, async function (select, data, callback) {
 
     selectRegistro = data
     if (select) {
+        LoadTermometros(DataEquipo.Enfriador, 'Termometro_actualizar')
+        $("#Termometro_actualizar").addClass('disable-element');
         $("#Termometro_actualizar").val("")
         $("#lectura_actualizar").val("")
         $("#observaciones_actualizar").val("")
@@ -160,6 +162,7 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
         $("#observaciones_actualizar").val(data['OBSERVACIONES'])
 
     } else {
+        $("#Termometro_actualizar").val("")
         $('#ActualizarTemperatura_title').html("")
         $("#Termometro_actualizar").val("")
         $("#lectura_actualizar").val("")
