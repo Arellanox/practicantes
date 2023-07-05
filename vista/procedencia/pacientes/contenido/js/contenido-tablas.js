@@ -1,6 +1,7 @@
 tablaPacientes = $('#tablaPacientes').DataTable({
     language: {
         url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+        emptyTable: 'No hay pacientes disponibles en este día.'
     },
     scrollY: function () {
         return autoHeightDiv(0, 263)
@@ -23,7 +24,18 @@ tablaPacientes = $('#tablaPacientes').DataTable({
         method: 'POST',
         url: '../../../api/externo_api.php',
         beforeSend: function () {
-            loader("In", 'bottom'), array_selected = null
+            loader("In", 'bottom'), array_selected = null;
+            try {
+                $.fn.dataTable
+                    .tables({
+                        visible: true,
+                        api: true
+                    })
+                    .columns.adjust();
+            } catch (error) {
+
+            }
+
         },
         complete: function () {
             loader("Out", 'bottom')

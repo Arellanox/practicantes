@@ -3,6 +3,14 @@
 var tablaEstatusTurnos;
 
 
+//Validacion de usuario
+switch (session['cargo']) {
+    case '13': case 13:
+        $(location).attr('href', `${http}${servidor}/${appname}/vista/procedencia/pacientes/#UJAT`);
+        return true;
+}
+
+
 obtenerContenidoPrincipal()
 
 function obtenerContenidoPrincipal() {
