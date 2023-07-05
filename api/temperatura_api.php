@@ -20,10 +20,6 @@ $observaciones = $_POST['observaciones'];
 $id_registro_temperatura = $_POST['id_registro_temperatura'];
 $turno = $_POST['turno'];
 
-#Firma del usuario que registra una nueva temperatura
-
-$firma = $_POST['firma'];
-
 /* 
 
 die();
@@ -45,8 +41,7 @@ $parametros =  array(
     $usuario,
     $lectura,
     $observaciones,
-    $id_registro_temperatura,
-    $firma
+    $id_registro_temperatura
 );
 
 $anho = $_POST['anho'];
@@ -67,8 +62,8 @@ $comentario = $_POST['comentario'];
 $id_comentario = $_POST['id_comentario'];
 
 #Variables para insertar o actualizar los termometros de los equipos 
-$id_temperaturas_equipos  = $_POST['id_temperaturas_equipos'];
-$factor_correcion = $_POST['factor_correcion'];
+$id_temperaturas_equipos  = isset($_POST['id_temperaturas_equipos']) ? $_POST['id_temperaturas_equipos'] : null;
+$factor_correcion = isset($_POST['factor_correcion']) ? $_POST['factor_correcion'] : null;
 
 $parametros_g = array(
     $fecha_inicial,
@@ -204,9 +199,6 @@ switch ($api) {
         $response = $master->getByProcedure('sp_temperaturas_equipos_termometros_b', [$equipo]);
         break;
     case 14:
-
-        print_r($equipos_termometros);
-        exit;
         $response = $master->insertByProcedure('sp_temperaturas_equipos_termometros_g', $equipos_termometros);
         break;
     default:

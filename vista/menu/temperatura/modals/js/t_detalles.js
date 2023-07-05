@@ -132,14 +132,14 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
         $("#Termometro_actualizar").val("")
         $("#lectura_actualizar").val("")
         $("#observaciones_actualizar").val("")
-        resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
+        // resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
         if (data['ESTATUS'] == 0) {
             editRegistro = true
             $('.btn-liberar').fadeOut(0)
             console.log("el estatus esta en 0")
             $("#formActualizarTemperatura").removeClass('disable-element');
-            $("#img-firma").hide()
-            $("#canvas_actualizar").show()
+            // $("#img-firma").hide()
+            // $("#canvas_actualizar").show()
             firmaExist = true
         } else {
             editRegistro = false
@@ -147,14 +147,10 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
 
             validarPermiso("SupTemp") ? $('.btn-liberar').fadeIn(0) : $('.btn-liberar').fadeOut(0)
 
-            $("#canvas_actualizar").hide()
-            $("#img-firma").attr("src", data['FIRMA_TEMPERATURA'])
-            $("#img-firma").show()
+            // $("#canvas_actualizar").hide()
+            // $("#img-firma").attr("src", data['FIRMA_TEMPERATURA'])
+            // $("#img-firma").show()
             $("#formActualizarTemperatura").addClass('disable-element');
-        }
-
-        if (data['FIRMA_TEMPERATURA'] == null) {
-
         }
 
 
@@ -170,7 +166,7 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
         $("#observaciones_actualizar").val("")
         $('.btn-liberar').fadeOut(0)
         $("#formActualizarTemperatura").addClass('disable-element');
-        resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
+        // resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
     }
 })
 
@@ -178,9 +174,9 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
 $("#formActualizarTemperatura").on("submit", function (e) {
     e.preventDefault();
     editRegistro = true;
-    if (validarFormulario(firma_actualizar.canvas, firma_actualizar.ctx, firma_actualizar.firma) == false) {
-        return false;
-    }
+    // if (validarFormulario(firma_actualizar.canvas, firma_actualizar.ctx, firma_actualizar.firma) == false) {
+    //     return false;
+    // }
 
     CargarTemperatura()
 

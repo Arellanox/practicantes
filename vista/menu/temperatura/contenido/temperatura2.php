@@ -39,8 +39,8 @@
                                 <input type="hidden" name="Enfriador" id="Enfriador">
                                 <div class="mb-3">
                                     <label for="termometro" class="form-label p-0 m-0">Termometro:</label>
-                                    <select class="form-select input-form" name="Termometro" id="Termometro" required>
-                                        <option selected>Eliga un Termometro_capturar</option>
+                                    <select class="form-select input-form disable-element" name="Termometro" id="Termometro" required>
+
                                     </select>
                                 </div>
                             </div>
@@ -58,11 +58,11 @@
                                 <div class="mb-3">
                                     <label for="observaciones">Observaciones:</label>
                                     <input type="text" name="observaciones" value="" class="form-control input-form" required id="observaciones">
-                                    <input type="hidden" id="firma_guardar" name="firma" required />
+                                    <!-- <input type="hidden" id="firma_guardar" name="firma" required /> -->
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-end my-auto">
-                                <button id="ModalFirmaTemperatura" class="btn btn-confirmar me-2"><i class="bi bi-pencil-square"></i></button>
+                                <!-- <button id="ModalFirmaTemperatura" class="btn btn-confirmar me-2"><i class="bi bi-pencil-square"></i></button> -->
                                 <button type="submit" class=" btn btn-confirmar" id="btn-equipo-temperatura">
                                     <i class="bi bi-person-x"></i> Guardar
                                 </button>

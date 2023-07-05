@@ -3,7 +3,10 @@ enfriadorData = {}
 var DataMes = {};
 
 rellenarSelect("#Equipos", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 5 })
-rellenarSelect("#Termometro", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
+
+
+
+// rellenarSelect("#Termometro", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
 
 //Tabla de temperaturas por mes
 tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
