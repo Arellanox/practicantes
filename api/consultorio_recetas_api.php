@@ -15,7 +15,6 @@ $frecuencia = $_POST['frecuencia'];
 $via_de_administracion = $_POST['via_de_administracion'];
 $duracion_de_tratamiento = $_POST['duracion_de_tratamiento'];
 $indicaciones_de_uso = $_POST['indicaciones_de_uso'];
-$folio = $_POST['folio'];
 $activo = isset($_POST['ACTIVO']) ? null : 1;
 
 $parametros = $master->setToNull(array(
