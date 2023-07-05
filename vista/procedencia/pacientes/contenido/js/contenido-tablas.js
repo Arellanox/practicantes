@@ -4,6 +4,9 @@ tablaPacientes = $('#tablaPacientes').DataTable({
     },
     scrollY: function () {
         return autoHeightDiv(0, 263)
+        $(window).resize(function () {
+            return autoHeightDiv(0, 263)
+        })
     },
     scrollCollapse: true,
     // paging: false,
@@ -14,130 +17,162 @@ tablaPacientes = $('#tablaPacientes').DataTable({
     ],
     ajax: {
         dataType: 'json',
-        data: function (d) {
-            return $.extend(d, datapacientes);
-        },
+        data: { api: 1 },
         method: 'POST',
         url: '../../../api/externo_api.php',
         beforeSend: function () {
-            // loader("In", 'bottom'), array_selected = null
+            loader("In", 'bottom'), array_selected = null
         },
         complete: function () {
-            // loader("Out", 'bottom')
+            loader("Out", 'bottom')
         },
         dataSrc: 'response.data'
     },
-    /*  createdRow: function (row, data, dataIndex) {
-         if (data.FACTURADO == 1) {
-             $(row).addClass('bg-success text-white');
-         }
-     } */
+    createdRow: function (row, data, dataIndex) {
+        if (data.REAGENDADO == 1) {
+            $(row).addClass('bg-info');
+        }
+
+        // $('td', row).addClass('bg-info');
+    },
     columns: [
         { data: 'COUNT' },
         { data: 'NOMBRE_COMPLETO' },
         // { data: 'PROCEDENCIA' },
-        { data: 'PREFOLIO' },
-        // //Laboratorio
-        // {
-        //     data: 'LABORATORIO_CLINICO', render: function (data) {
-        //         html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
-        //         return html;
-        //     }
-        // },
-        // //Laboratorio
-        // {
-        //     data: 'BIOMOLECULAR', render: function (data) {
-        //         html = drawStatusMenuTable(data, { 0: 'muestra', 1: 'reporte', 2: 'correo' });
-        //         return html;
-        //     }
-        // },
-        // //Ultrasonido
-        // {
-        //     data: 'ULTRASONIDO', render: function (data) {
-        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-        //     }
-        // },
-        // //Rayos X
-        // {
-        //     data: 'RAYOS_X', render: function (data) {
-        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-        //     }
-        // },
-        // //Oftalmo
-        // {
-        //     data: 'OFTALMOLOGIA', render: function (data) {
-        //         return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
-        //     }
-        // },
-        // //HistoriaClinica
-        // {
-        //     data: 'CONSULTORIO', render: function (data) {
-        //         return drawStatusMenuTable(data, { 0: 'reporte', 2: 'correo' });
-        //     }
-        // },
-        // //Electrocardiograma
-        // {
-        //     data: 'ELECTROCARDIOGRAMA', render: function (data) {
-        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-        //     }
-        // },
-        // //Nutricion InBody
-        // {
-        //     data: 'INBODY', render: function (data) {
-        //         html = drawStatusMenuTable(data, { 0: 'capturas', 1: 'correo' });
-        //         return html;
-        //     }
-        // },
-        // //Espirometría
-        // {
-        //     data: 'ESPIROMETRIA', render: function (data) {
-        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-        //     }
-        // },
-        // //Audiometria
-        // {
-        //     data: 'AUDIOMETRIA', render: function (data) {
-        //         return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte', 2: 'correo' });
-        //     }
-        // },
-        //Menu
-
-        { data: 'ETIQUETA_TURNO' },
         {
             data: 'FECHA_AGENDA',
             render: function (data) {
-                return formatoFecha2(data, [0, 1, 5, 2, 0, 0, 0], null);
+                return formatoFecha2(data, [3, 1, 5, 2, 0, 0, 0], null);
             }
         },
+        { data: 'PREFOLIO' },
+
+        //Laboratorio
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 6, type);
+            }
+        },
+        //Laboratorio bio
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 12, type);
+            }
+        },
+        //Ultrasonido
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 11, type);
+            }
+        },
+        //Rayos x
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 8, type);
+            }
+        },
+        //Oftalmo
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 3, type);
+            }
+        },
+
+        //HistoriaClinica
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 1, type);
+            }
+        },
+        //Electrocardiograma
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 10, type);
+            }
+        },
+        //Nutricion InBody
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 14, type);
+            }
+        },
+        //Espirometría
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 5, type);
+            }
+        },
+        // //Audiometria
+        {
+            data: 'ESTUDIOS', render: function (data, type) {
+                return drawStatusMenuTable(data, { 0: 'capturas', 1: 'reporte' }, 4, type);
+            }
+        },
+
+        //Menu
+        { data: 'ETIQUETA_TURNO' },
         {
             data: 'FECHA_REAGENDA',
             render: function (data) {
                 return formatoFecha2(data, [0, 1, 5, 2, 0, 0, 0], null);
             }
         },
+
+        // { data: 'DESCRIPCION_SEGMENTO' },
         {
-            data: 'turno',
+            data: 'COUNT',
             render: function (data) {
                 return 'PENDIENTE';
             }
         },
         { data: 'GENERO' },
         {
-            data: null, render: function () {
-                return '<i class="bi bi-info-circle-fill btn_offcanva pantone-7408-color" style="zoom:170%; cursor:pointer"></i>'
+            data: null, render: function (data, type) {
+                switch (type) {
+                    case 'display': return '<i class="bi bi-info-circle-fill btn_offcanva pantone-7408-color" style="zoom:170%; cursor:pointer"></i>';
+                    default: return data;
+                }
             }
         }
+        // {defaultContent: 'En progreso...'}
     ],
     columnDefs: [
         { width: "1%", targets: "col-number" },
         { width: "20%", targets: "col-20%" },
-        { width: "5%", targets: "col-5%" },
+        { width: "8%", targets: "col-8%" },
         { width: "7%", targets: "col-icons" },
         { width: "1%", targets: 'tools' },
         { targets: "col-invisble-first", visible: false }
         // { visible: false, title: "AreaActual", targets: 20, searchable: false }
     ],
 
+})
+
+
+//Activa o desactiva una columna
+$('a.toggle-vis').on('click', function (e) {
+    e.preventDefault();
+    // Get the column API object
+    var column = tablaPacientes.column($(this).attr('data-column'));
+
+    // Toggle the visibility
+    column.visible(!column.visible());
+    // tablaPacientes.ajax.reload();
+    $.fn.dataTable
+        .tables({
+            visible: true,
+            api: true
+        })
+        .columns.adjust();
+
+    $(this).removeClass('span-info');
+    if (column.visible())
+        $(this).addClass('span-info');
+});
+$('a.toggle-vis').each(function () {
+    var column = tablaPacientes.column($(this).attr('data-column'));
+    if (column.visible())
+        $(this).addClass('span-info');
 })
 
 
@@ -157,86 +192,60 @@ inputBusquedaTable("tablaPacientes", tablaPacientes,
 selectTable('#tablaPacientes', tablaPacientes, {
     ClickClass: [
         {
-            class: 'GrupoInfoCreditoBtn',
-            callback: function (data) {
-                // $('#capturasIMG').html('')
-                $('#NombrePacienteCapturas').html(dataSelect.array['nombre_paciente']);
+            class: 'btn-get-capturas',
+            callback: function (row, clicked) {
+                let btn = $(clicked);
+
+                $('#NombrePacienteCapturas').html(row['NOMBRE_COMPLETO']);
                 // let rowImg = selectEstudio.array[0]['IMAGENES'], htmlImg = '', htmlPdf = '';
-                console.log(selectEstudio.array);
-                let html = '';
-                for (const i in selectEstudio.array) {
-                    let row = selectEstudio.array[i]
-                    if (row.CAPTURAS.length) {
-                        html += '<h4>' + row.SERVICIO + '</h4>';
-                        console.log(row);
-                        let rowInf = row.CAPTURAS[0]
-                        let rowImg = row.CAPTURAS[0].CAPTURAS[0]
-                        let htmlPDF = '';
-                        let htmlimg = '';
-                        console.log(rowImg)
-                        let pdf = 0;
-                        let img = 0;
+                let html = '', htmlPDF = '', htmlimg = '', pdf, img;
 
-                        html += '<div class="row">' +
-                            //Nombre quien cargó
-                            '<div class="row col-12 col-lg-6">' +
-                            '<div class="col-6 text-end info-detalle">' +
-                            '<p>Captura cargada por:</p>' +
-                            '</div>' +
-                            '<div class="col-6" id="info-paci-procedencia"> ' + rowInf['CARGADO_POR_CAP'] + '</div>' +
-                            '</div>' +
+                let capturas = row['ESTUDIOS'][0];
+                capturas = capturas.filter(capturas => capturas['area'] == btn.attr('data-id'))
+                capturas = capturas[0]['capturas']
 
-                            //fecha de cargado
-                            '<div class="row col-12 col-lg-6">' +
-                            '<div class="col-6 text-end info-detalle">' +
-                            '<p>Fecha de subida:</p>' +
-                            '</div>' +
-                            '<div class="col-6" id="info-paci-procedencia"> ' + formatoFecha2(rowInf['FECHA_RESULTADO_CAP'], [0, 1, 2, 2, 1, 1, 1]) + '</div>' +
-                            '</div>' +
 
-                            //Profesion del usuario
-                            '<div class="row col-12 col-lg-6">' +
-                            '<div class="col-6 text-end info-detalle">' +
-                            '<p>Profesión:</p>' +
-                            '</div>' +
-                            '<div class="col-6" id="info-paci-procedencia"> ' + rowInf['PROFESION'] + '</div>' +
-                            '</div>' +
+                for (const key in capturas) {
+                    if (Object.hasOwnProperty.call(capturas, key)) {
+                        const element = capturas[key];
+                        switch (element['tipo']) {
+                            case 'pdf':
+                                pdf = 1;
+                                console.log(pdf);
+                                htmlPDF += `<div class="col-auto">
+                                    <a type="button"a target="_blank" class="btn btn-borrar me-2" href="${element['url']}" style="margin-bottom:4px">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                    </a>
+                                </div>`;
+                                break;
 
-                            '</div>';
-
-                        for (const im in rowImg) {
-                            switch (rowImg[im]['tipo']) {
-                                case 'pdf':
-                                    pdf = 1;
-                                    htmlPDF += '<div class="col-auto">' +
-                                        '<a type="button"a target="_blank" class="btn btn-borrar me-2" href="' + rowImg[im]['url'] + '" style="margin-bottom:4px">' +
-                                        '<i class="bi bi-file-earmark-pdf"></i>' +
-                                        '</a>' +
-                                        '</div>';
-                                    break;
-
-                                // case 'png': case 'jpg': case 'jpeg':
-                                default:
-                                    img = 1;
-                                    htmlimg += '<div class="col-12 d-flex justify-content-center"><img src="' + rowImg[im]['url'] + '" class="img-thumbnail" alt=""></div>';
-                                    break;
-                            }
-                        }
-
-                        if (pdf == 1) {
-                            html += '<div class="col-12 d-flex justify-content-left row"> <div class="col-3 align-items-center"><p>Capturas por documento pdf: </p></div> <div class="col-9 d-flex justify-content-start">' +
-                                htmlPDF +
-                                '</div > </div >';
-                        }
-                        if (img == 1) {
-                            html += htmlimg;
-                            html += '<hr class="dropdown-divider">';
+                            // case 'png': case 'jpg': case 'jpeg':
+                            default:
+                                img = 1;
+                                htmlimg += `<div class="col-12 d-flex justify-content-center">
+                                    <img src="${element['url']}" class="img-thumbnail" alt="">
+                                </div>`;
+                                break;
                         }
                     }
-
                 }
+
+                if (pdf == 1) {
+                    html += `<div class="col-12 d-flex justify-content-left row">
+                        <div class="col-3 align-items-center">
+                            <p>Capturas por documento pdf: </p>
+                        </div>
+                        <div class="col-9 d-flex justify-content-start">${htmlPDF}</div> 
+                    </div>`;
+                }
+                if (img == 1) {
+                    html += htmlimg;
+                    html += '<hr class="dropdown-divider">';
+                }
+
                 $('#capturasIMG').html(html)
 
+                $('#CapturasdeArea').modal('show');
             }
         },
         {
@@ -268,6 +277,68 @@ selectTable('#tablaPacientes', tablaPacientes, {
 
 
 
-function drawStatusMenuTable(array) {
+function drawStatusMenuTable(data, iconObject = { 0: 'muestra', 1: 'reporte', 2: 'correo', 3: 'captura' }, area, type) {
+    switch (type) {
+        case 'display':
+            data = data[0].filter(data => data['area'] == area);
+            //Icons
+            html = '';
+            // console.log(data)
+            data = data[0]
+            if (data) {
+                for (const key in iconObject) {
+                    if (iconObject.hasOwnProperty.call(iconObject, key)) {
+                        const val = iconObject[key];
+                        // if (data[val])
+                        html += analizarIconStatus(data[val], val, area);
+                    }
+                }
+            }
+            return html;
+            break;
+        default: return data;
+    }
 
+
+
+};
+
+function analizarIconStatus(data, tipo, area) {
+
+    icons = {
+        reporte: {
+            'PENDIENTE': 'reporte_sin',
+            'N/A': 'N/A',
+        },
+        capturas: {
+            0: 'captura_sin_tomar',
+            'null': 'captura_tomada',
+            'N/A': 'N/A',
+        },
+        result: { reporte: 'reportado', capturas: 'captura_tomada' }
+    }
+
+    let type = icons[tipo];
+    type = type.hasOwnProperty(data) ? type[data] : icons['result'][tipo];
+
+    return elegirIconStatus(type, area, data)
+}
+
+function elegirIconStatus(type, area, url = '') {
+    if (type) {
+        // console.log(key, tipo[key])
+        switch (type) {
+            // case 'muestra_sin_tomar': return '<i class="bi bi-droplet text-secondary" style="zoom:170%;"></i>';
+            // case 'muestra_tomada': return '<i class="bi bi-droplet-fill" style="zoom:170%; color: rgb(162 0 0)"></i>'; // zoom: 170%; color: rgb(255 255 255); border - radius: 50 %; padding: 0px 2px 0px 2px; background - color: rgb(162, 0, 0); background: linear-gradient(to bottom right, rgb(161 0 0), rgb(162 0 0));
+            case 'captura_sin_tomar': return `<i class="bi bi-card-image text-secondary" style="zoom:170%;"></i>`;
+            case 'captura_tomada': return `<i class="btn-get-capturas bi bi-image-fill" style="zoom:170%; color: rgb(162 0 0); cursor:pointer" data-id="${area}"></i>`;
+            case 'reporte_sin': return `<i class="bi bi-clipboard-x text-secondary" style="zoom:170%;"></i>`;
+            case 'reportado': return `<a href="${url}" target="_blank"><i class="btn-get-pdf bi bi-clipboard2-check-fill" style="zoom:170%; color: rgb(247, 190, 0)" data-id="${area}"></i></a>`;
+            // case 'correo_sin': return '<i class="bi bi-send-x text-secondary" style="zoom:170%;"></i>';
+            // case 'correo_enviado': return '<i class="bi bi-send-check-fill" style="zoom:170%; color: rgb(000, 175, 170)"></i>';
+            case 'N/A': return '';
+        }
+        // console.log('vacio')
+        return '';
+    }
 }
