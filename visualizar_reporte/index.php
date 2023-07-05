@@ -78,7 +78,10 @@ switch ($api) {
         break;
     case 'receta':
             $r = $master->reportador($master, $turno_id, $area_id, 'receta', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
-            break;     
+            break;
+    case 'solicitud_estudios':
+            $r = $master->reportador($master,$turno_id,$area_id,'solicitud_estudios','mostrar',$preview,0, 0, $id_cliente,$id_cotizacion);
+                break;                 
     default:
         echo '<script language="javascript">alert("¡URL invalida!"); window.close()</script>';
         break;

@@ -353,9 +353,6 @@ $encode_firma = base64_encode($ruta_firma);
                 <?php endfor; ?>
             </tbody>
         </table>
-        <?php
-    print_r($resultados);
-        ?>
     </div>
 
 </body>
