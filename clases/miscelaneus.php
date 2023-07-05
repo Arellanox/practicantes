@@ -458,6 +458,7 @@ class Miscelaneus
             case "19":
                 #CONSULTORIO2
                 $arregloPaciente = $this->getBodyInfoConsultorio2($master, $turno_id);
+                $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_CONSULTA2'];
                 break;
 
 
@@ -470,11 +471,12 @@ class Miscelaneus
             case -2:
                 #RECETA
                 $arregloPaciente = $this->getBodyRecetas($master, $turno_id);
+                $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_CONSULTA2'];
                 break;
             case -3:
                 #SOLICITUD DE ESTUDIOS
                 $arregloPaciente = $this->getBodySoliEstudios($master, $turno_id);
-                $folio = $arregloPaciente[2][0]->FOLIO;
+                $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_SOLICITUD_ESTUDIOS'];
 
                 break;    
         }
