@@ -35,7 +35,7 @@
 
         .footer {
             position: fixed;
-            bottom: -206px;
+            bottom: -192px;
             left: 25px;
             right: 25px;
             height: 200px;

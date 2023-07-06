@@ -17,13 +17,39 @@ $('#btn-regresar-vista').click(function () {
     }, 1)
 })
 
+//botones de pdf de vista previa
 //vista previa del pdf
 $('#btn-ver-reporte-consultorio2').click(function () {
+    alert(1);
     area_nombre = 'consultorio2'
   
     api = encodeURIComponent(window.btoa(area_nombre));
     turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
     area = encodeURIComponent(window.btoa(19));
+  
+  
+    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+  })
+
+//vista previa de recetas
+$('#btn-ver-receta-consultorio2').click(function () {
+    area_nombre = 'receta'
+  
+    api = encodeURIComponent(window.btoa(area_nombre));
+    turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+    area = encodeURIComponent(window.btoa(-2));
+  
+  
+    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+  })
+  
+  //Vista previa de solicitud de estudios
+  $('#btn-ver-solicitud-estudios-consultorio2').click(function () {
+    area_nombre = 'solicitud_estudios'
+  
+    api = encodeURIComponent(window.btoa(area_nombre));
+    turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+    area = encodeURIComponent(window.btoa(-3));
   
   
     window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");

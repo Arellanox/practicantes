@@ -216,7 +216,7 @@ class Reporte
             case 'receta':
                 $template = render_view('invoice/receta.php', $view_vars);
                 $pdf->loadHtml($template);
-                $pdf->setPaper([15, 21.59], 'portrait');
+                $pdf->setPaper('letter', 'portrait');
                 //Marca de agua
                 $pdf->getOptions()->setIsHtml5ParserEnabled(true); // Habilita el soporte para CSS3
                 $pdf->getOptions()->setIsFontSubsettingEnabled(true); // Habilita la subconjunción de fuentes
@@ -225,7 +225,7 @@ class Reporte
             case 'solicitud_estudios':
                 $template = render_view('invoice/solicitud_estudios.php', $view_vars);
                 $pdf->loadHtml($template);
-                $pdf->setPaper([15, 21.59], 'portrait');
+                $pdf->setPaper('letter', 'portrait');
                 break;
 
             default:

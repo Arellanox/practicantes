@@ -12,7 +12,8 @@
     <style>
         @page {
             margin: 165px 10px;
-            size: 21.59cm 13.97cm;
+            size: 21.59cm 18cm;
+
         }
 
         body {
@@ -20,6 +21,7 @@
             margin-top: -2px;
             margin-bottom: 1px;
             font-size: 10px;
+            z-index: -1;
             /* background-color: gray; */
         }
 
@@ -35,7 +37,7 @@
 
         .footer {
             position: fixed;
-            bottom: -206px;
+            bottom: -192px;
             left: 25px;
             right: 25px;
             height: 200px;
@@ -251,15 +253,17 @@
             padding: 10px;
             text-align: left;
             font-size: 14px;
+            z-index: -1;
         }
 
         .respuesta-row,
         .comentario-row {
             background-color: #fff;
-            padding: 5px;
+            padding: 0.5em;
             border-bottom: 1px solid #ddd;
             border-top: 1px solid #ddd;
             font-size: 13px;
+            z-index: -1;
         }
 
         .respuesta2-row {
@@ -268,6 +272,7 @@
             border-bottom: 1px solid #ddd;
             border-top: 1px solid #ddd;
             font-size: 11px;
+            z-index: -1;
         }
 
         /* cuerpo del tratamiento */
@@ -277,23 +282,27 @@
         }
 
         .tratamiento-cuerpo {
-            background-color: #fff;
-            padding: 5px;
+
+            padding: 0.2em;
             border-bottom: 1px solid #ddd;
             border-top: 1px solid #ddd;
             font-size: 13px;
+            z-index: -1;
+
         }
 
         /* para la marca de agua */
-        .marca-agua {
+        .marca-agua::after {
+            content: "COPIA";
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0.5;
-            font-size: 48px;
+            font-size: 100px;
             color: #cccccc;
-            z-index: 9999;
+            z-index: 0 !important;
+            /* background-color: purple; */
         }
     </style>
 
@@ -317,7 +326,6 @@ $encode_firma = base64_encode($ruta_firma);
 ?>
 
 <body>
-
     <!-- header -->
     <div class="header">
         <?php
@@ -365,13 +373,14 @@ $encode_firma = base64_encode($ruta_firma);
         if ($resultados[0][$i] != $recetas->ID_RECETA) {
             $recetaPrincipal .= '
             <div class="tratamiento-cuerpo">
-                <p>' . $recetas->NOMBRE_GENERICO . ', ' . $recetas->FORMA_FARMACEUTICA . ', ' . $recetas->DOSIS . ', ' . $recetas->PRESENTACION . ' ' . $recetas->FRECUENCIA . ', ' . $recetas->VIA_DE_ADMINISTRACION . ' ' . $recetas->DURACION_DEL_TRATAMIENTO . ', ' . $recetas->INDICACIONES_PARA_EL_USO . '</p>
+                <p>' . $recetas->NOMBRE_GENERICO . ', ' . $recetas->FORMA_FARMACEUTICA . ', ' . $recetas->DOSIS . ', ' . $recetas->PRESENTACION . '</p>
+                <p>' . $recetas->FRECUENCIA . ', ' . $recetas->VIA_DE_ADMINISTRACION . ' ' . $recetas->DURACION_DEL_TRATAMIENTO . ', ' . $recetas->INDICACIONES_PARA_EL_USO . '</p>
             </div>';
         }
     }
     $recetaPrincipal .= '
     </div>
-</div>';
+    </div>';
 
     echo $recetaPrincipal;
     ?>
@@ -379,9 +388,11 @@ $encode_firma = base64_encode($ruta_firma);
     <!-- copia -->
     <div class="break"></div>
     <?php
-    $recetaCopia = '
-            <div class="invoice-content row">
+    $recetaCopia = ' 
+    
+                <div class="invoice-content row">
                 <div>
+                <div class="marca-agua">
                   <table class="table">
                     <thead>
                     <tr>
@@ -390,30 +401,36 @@ $encode_firma = base64_encode($ruta_firma);
                      </thead>
                      <tbody>
                      <tr>
-                          <td class="respuesta-row">' . $resultados[2][0]->DIAGNOSTICO . '</td>
+                          <td class="respuesta-row" style = "z-index: 1;">' . $resultados[2][0]->DIAGNOSTICO . '</td>
                      </tr>
             </tbody>
         </table>
+        </div>
     </div>
 
     <div>
+    <div class="marca-agua">
         <h4 class="tratamiento-titulo">Tratamiento:</h4>';
 
     foreach ($resultados[1] as $recetas) {
         if ($resultados[0][$i] != $recetas->ID_RECETA) {
             $recetaCopia .= '
-        <div class="tratamiento-cuerpo" <div class="marca-agua">COPIA</div>
-            <p>' . $recetas->NOMBRE_GENERICO . ', ' . $recetas->FORMA_FARMACEUTICA . ', ' . $recetas->DOSIS . ', ' . $recetas->PRESENTACION . ' ' . $recetas->FRECUENCIA . ', ' . $recetas->VIA_DE_ADMINISTRACION . ' ' . $recetas->DURACION_DEL_TRATAMIENTO . ', ' . $recetas->INDICACIONES_PARA_EL_USO . '</p>
-        </div>';
+            <div class="tratamiento-cuerpo">
+                <p style = "z-index: 1;">' . $recetas->NOMBRE_GENERICO . ', ' . $recetas->FORMA_FARMACEUTICA . ', ' . $recetas->DOSIS . '</p>
+                <p style = "z-index: 1;">' . $recetas->FRECUENCIA . ', ' . $recetas->VIA_DE_ADMINISTRACION . ' ' . $recetas->DURACION_DEL_TRATAMIENTO . ', ' . $recetas->INDICACIONES_PARA_EL_USO . '</p>
+            </div>';
         }
     }
 
     $recetaCopia .= '
     </div>
-</div>';
+    </div>
+    </div>';
 
     echo $recetaCopia;
     ?>
+
+
 </body>
 
 </html>
