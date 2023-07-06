@@ -133,6 +133,9 @@ async function obtenerValoracion(data, idconsulta) {
   await obtenerExploracion(data['ID_TURNO'])
   await obtenerAnamnesisApartados(data['ID_TURNO']);
   await obtenerInformacionConsulta(idconsulta)
+
+  autosize(document.querySelectorAll('textarea'))
+
   loader("Out", 'bottom')
 
 
@@ -153,8 +156,6 @@ function agregarNotaConsulta(tittle, date = null, text, appendDiv, id, clase, cl
     '<p class="none-p">' + text + '<p> </div> </div>';
   $(appendDiv).append(html);
 }
-
-
 
 
 

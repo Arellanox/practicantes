@@ -1,8 +1,14 @@
 <div class="col-12 loader" id="loader">
   <div class="preloader" id="preloader"> </div>
 </div>
+
+
+
+<div id="tab-button">
+</div>
+
 <div class="row">
-  <div class="col-5 col-lg-5 col-xxl-5" style="margin-bottom:5px;">
+  <div class="col-12 col-md-12 col-lg-5  tab-first" id="tab-paciente" style="margin-bottom:5px;">
     <div class="card mt-3 p-3">
       <div class="">
         <h4>Lista de pacientes</h4>
@@ -52,15 +58,18 @@
     </div>
 
   </div>
-  <div class="col-3 col-lg-3 col-xxl-3">
+
+  <div class="col-12 col-md-6 col-lg-3 col-xxl-3  tab-second">
     <div id="panel-informacion" style="display: none;" class="card mt-3"></div>
-
-
   </div>
 
-  <div class="col-4 col-lg-4 col-xxl-4">
+  <div class="col-12 col-md-6 col-lg-4 col-xxl-4 tab-second">
     <div id="signos-vitales" style="display: none;" class="card mt-3"></div>
   </div>
+
+
+  <!-- Tercera Columna visual -->
+  <div id="reload-selectable"> </div>
 
   <style>
     #TablaListaConsultorio_filter {

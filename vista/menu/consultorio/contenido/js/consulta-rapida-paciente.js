@@ -222,7 +222,7 @@ $(document).on('click', '#btn-consulta-guardar, #btn-consulta-terminar', functio
         return false;
     }
 
-    arregloResultado.resultadoFinal = arregloResultado.resultadoFinal + parseInt($('#puntos-tension').val())
+    let valorPonderacion = arregloResultado.resultadoFinal + parseInt($('#puntos-tension').val())
 
     let confirmado = parseInt($(this).attr('data-bs'))
     accion = 'guardar'
@@ -242,7 +242,7 @@ $(document).on('click', '#btn-consulta-guardar, #btn-consulta-terminar', functio
         cancelButtonText: `No`
     }, () => {
         ajaxAwait({
-            api: 3, tipo_riesgo: arregloResultado.nivel, score_final: arregloResultado.resultadoFinal, confirmado: confirmado, turno_id: pacienteActivo.array['ID_TURNO']
+            api: 3, tipo_riesgo: arregloResultado.nivel, score_final: valorPonderacion, confirmado: confirmado, turno_id: pacienteActivo.array['ID_TURNO']
         }, 'fast_checkup_api', { callbackAfter: true }, false, () => {
             if (confirmado) {
                 alertMsj({

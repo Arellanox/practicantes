@@ -14,7 +14,10 @@ tablaMain = $('#TablaListaConsultorio').DataTable({
     },
     method: 'POST',
     url: '../../../api/turnos_api.php',
-    beforeSend: function () { loader("In") },
+    beforeSend: function () {
+      //Para ocultar las columnas
+      reloadSelectTable()
+    },
     complete: function () { loader("Out") },
     dataSrc: 'response.data'
   },
@@ -55,13 +58,29 @@ $("#BuscarTablaLista").keyup(function () {
 
 //Seleccion del paciente
 // selectDatatable('TablaListaConsultorio', tablaMain, 1, "pacientes_api", 'paciente',)
-selectDatatable('TablaListaConsultorio', tablaMain, 0, 0, 0, 0, function (selectTR = null, data = null) {
+selectTable('#TablaListaConsultorio', tablaMain, {
+  movil: true, reload: ['col-xl-7'], unSelect: true, dblClick: true,
+  tabs: [
+    {
+      title: 'Pacientes',
+      element: '.tab-first',
+      class: 'active',
+    },
+    {
+      title: 'Información',
+      element: '.tab-second',
+      class: 'disabled tab-select'
+    },
+  ],
+}, async function (selectTR, data, callback) {
+  // selectDatatable('TablaListaConsultorio', tablaMain, 0, 0, 0, 0, function (selectTR = null, data = null) {
   selectPaciente = data;
   if (selectTR == 1) {
     obtenerPanelInformacion(data['ID_TURNO'], 'pacientes_api', 'paciente')
     obtenerPanelInformacion(data['ID_TURNO'], "signos-vitales_api", 'signos-vitales', '#signos-vitales');
-
+    callback('In')
   } else {
+    callback('Out')
     obtenerPanelInformacion(0, 'pacientes_api', 'paciente')
     obtenerPanelInformacion(0, "signos-vitales_api", 'signos-vitales', '#signos-vitales');
     // console.log('rechazado')
@@ -71,7 +90,7 @@ selectDatatable('TablaListaConsultorio', tablaMain, 0, 0, 0, 0, function (select
   }
 
   //DobleClik para funcionalidad
-}, function (data) {
+}, function (select, data) {
   obtenerContenidoAntecedentes(data);
 })
 
