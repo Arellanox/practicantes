@@ -181,7 +181,7 @@ function obtenerHistorialConsultas(id) {
                                                                   <i class="bi bi-file-earmark-pdf"></i>
                                                                 </button>
                                                                 <ul class="dropdown-menu">
-                                                                  <li><a class="dropdown-item" href="${resultado}"><i class="bi bi-file-earmark-pdf"></i> Resultado</a></li>
+                                                                  <li><a class="dropdown-item" href="${resultado}" target="_blank"><i class="bi bi-file-earmark-pdf"></i> Resultado</a></li>
                                                                 </ul>
                                                               </div>
                                                             </div>
