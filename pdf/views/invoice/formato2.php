@@ -246,6 +246,15 @@
 
                 .border {
                     border: 1px solid black;
+                    padding: 0px !important;
+                }
+
+                tr {
+                    padding: 0.1em !important;
+                }
+
+                td {
+                    padding: 0px;
                 }
 
                 .border-bottom {
@@ -590,43 +599,49 @@
                                         <thead class="border-top border-left border-right ">
                                             <tr class="p-0 m-0">
                                                 <th colspan="3" class="bg-title">
-                                                    <h6>Termometros</h6>
+                                                    <h6 class=" m-0 p-0">TERMOMETRO</h6>
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody class="border">
                                             <tr class="">
                                                 <td class="">
-                                                    <h6>
-                                                        R1C1
-                                                    </h6>
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Equipos:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                    </div>
                                                 </td>
                                                 <td class="">
-                                                    <h6>
-                                                        R1C2
-                                                    </h6>
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Modelo:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                    </div>
                                                 </td>
                                                 <td class="">
-                                                    <h6>
-                                                        R1C3
-                                                    </h6>
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Localización:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr class="">
                                                 <td class="">
-                                                    <h6>
-                                                        Item
-                                                    </h6>
+                                                    <div class="d-flex">
+                                                        <label class="h7"> Marca:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                    </div>
                                                 </td>
                                                 <td class="">
-                                                    <h6>
-                                                        Item
-                                                    </h6>
+                                                    <div class="d-flex">
+                                                        <label class="h7">N° Serie:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                    </div>
                                                 </td>
                                                 <td class="">
-                                                    <h6>
-                                                        Item
-                                                    </h6>
+                                                    <div class="d-flex">
+                                                        <label class="h7">Intervalo Optimo:</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> -25 A -35°C </label>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>

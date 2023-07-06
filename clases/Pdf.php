@@ -1,5 +1,5 @@
 <?php
- 
+
 require_once '../php/dompdf/vendor/autoload.php';
 require 'View.php';
 require 'Qrcode.php';
@@ -48,10 +48,10 @@ class Reporte
         $orden      = $this->orden;
         $preview    = $this->preview;
         $area       = $this->area;
-       
+
         switch ($tipo) {
             case 'etiquetas':
-                
+
                 // $generator = null;
                 // $barcode = null;
                 // $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
@@ -71,7 +71,7 @@ class Reporte
             case 'reporte_masometria':
             case 'espirometria': //nuevo case de espirometria
             case 'temperatura':
-            case 'corte':  
+            case 'corte':
             case 'consultorio2': //<--Consultorio2 (Creado Angel) 
             case 'receta': //<--Receta (Creado Angel) 
             case 'solicitud_estudios': //<-- (Creado Angel)         
@@ -113,7 +113,7 @@ class Reporte
         switch ($tipo) {
             case 'etiquetas':
                 $template = render_view('invoice/etiquetas.php', $view_vars);
-               
+
                 $pdf->loadHtml($template);
 
                 $ancho = (5 / 2.54) * 72; #72
@@ -206,13 +206,13 @@ class Reporte
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'landscape');
                 break;
-            
+
             case 'consultorio2':
                 $template = render_view('invoice/consultorio2.php', $view_vars);
                 $pdf->loadHtml($template);
                 $pdf->setPaper('letter', 'portrait');
                 break;
-            
+
             case 'receta':
                 $template = render_view('invoice/receta.php', $view_vars);
                 $pdf->loadHtml($template);
@@ -220,7 +220,7 @@ class Reporte
                 //Marca de agua
                 $pdf->getOptions()->setIsHtml5ParserEnabled(true); // Habilita el soporte para CSS3
                 $pdf->getOptions()->setIsFontSubsettingEnabled(true); // Habilita la subconjunción de fuentes
-                break;   
+                break;
 
             case 'solicitud_estudios':
                 $template = render_view('invoice/solicitud_estudios.php', $view_vars);

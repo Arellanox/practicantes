@@ -121,3 +121,39 @@ TurnosTemperaturasModal.addEventListener('show.bs.modal', event => {
 })
 
 
+$("#TermometrosTemperaturasForm").on("submit", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $("#btn-equipos-termometros-temperatura").fadeOut(0);
+
+
+    dataJsonTermometrosTemperaturas = {
+        api: 14,
+        Enfriador: selectedEquiposTemperaturas['ID_EQUIPO']
+    };
+
+    if (selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'] != null) {
+        dataJsonTermometrosTemperaturas.id_temperaturas_equipos = selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'];
+    }
+
+
+    alertMensajeConfirm({
+        title: "¿Está seguro de su captura?",
+        text: "Se asignara el termometro al equipo",
+        icon: "info"
+    }, function () {
+        ajaxAwaitFormData(dataJsonTermometrosTemperaturas, 'temperatura_api', 'TermometrosTemperaturasForm', { callbackAfter: true }, false, function (data) {
+            alertToast('Termometro asigando con exito', 'success', 2000);
+            $('#activarFactorCorrecion').prop('checked', false)
+            $('#factor_correcion').val('');
+            $("#Termometros_Equipos").val("");
+            $("#TermometrosTemperaturasForm").addClass('disable-element');
+            TablaTermometrosDataTable.ajax.reload();
+
+            if (ListaEnfriadoresActiva) {
+                LoadTermometros(DataEquipo.Enfriador, 'Termometro');
+            }
+        })
+    }, 1)
+})

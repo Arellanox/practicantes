@@ -478,7 +478,7 @@ class Miscelaneus
                 $arregloPaciente = $this->getBodySoliEstudios($master, $turno_id);
                 $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_SOLICITUD_ESTUDIOS'];
 
-                break;    
+                break;
         }
 
 
@@ -580,7 +580,6 @@ class Miscelaneus
     {
         $response = $master->getByNext('sp_consultorio2', [$turno_id]);
         return $response;
-
     }
 
 
@@ -736,7 +735,7 @@ class Miscelaneus
             'PREFOLIO' => $infoPaciente[0]['PREFOLIO'],
             'BARRAS' => $infoPaciente[0]['CODIGO_BARRAS'],
             'CONTENEDORES' => $arrayEtiqueta,
-            
+
 
         );
 

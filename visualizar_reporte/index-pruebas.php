@@ -31,14 +31,14 @@ $usuario_id = $_SESSION['id'];
 
 // decomentar las siguientes 3 lineas para hacer las pruebas
 
-$api = 'solicitud_estudios';
+$api = 'temperatura';
 $turno_id = 471;
 $area_id = -3;
 // // $area_id = 12;
 // $turno_id = 742;
 
 
- 
+
 //$cliente_id = 19;
 // $id_cotizacion = 7;
 
@@ -182,18 +182,18 @@ switch ($api) {
         );
         break;
     case 'consultorio2':
-            $r = $master->reportador(
-                $master,
-                $turno_id,
-                $area_id,
-                'consultorio2',
-                'mostrar',
-                $preview,
-                0,
-                0,
-                $id_cliente,
-                $id_cotizacion
-            );
+        $r = $master->reportador(
+            $master,
+            $turno_id,
+            $area_id,
+            'consultorio2',
+            'mostrar',
+            $preview,
+            0,
+            0,
+            $id_cliente,
+            $id_cotizacion
+        );
         break;
     case 'receta':
         $r = $master->reportador(
@@ -208,21 +208,21 @@ switch ($api) {
             $id_cliente,
             $id_cotizacion
         );
-        break;  
-        case 'solicitud_estudios':
-            $r = $master->reportador(
-                $master,
-                $turno_id,
-                $area_id,
-                'solicitud_estudios',
-                'mostrar',
-                $preview,
-                0,
-                0,
-                $id_cliente,
-                $id_cotizacion
-            );
-            break;    
+        break;
+    case 'solicitud_estudios':
+        $r = $master->reportador(
+            $master,
+            $turno_id,
+            $area_id,
+            'solicitud_estudios',
+            'mostrar',
+            $preview,
+            0,
+            0,
+            $id_cliente,
+            $id_cotizacion
+        );
+        break;
     default:
         echo '<script language="javascript">alert("¡URL invalida!"); window.close()</script>';
         break;

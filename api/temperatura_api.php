@@ -35,14 +35,6 @@ $vespertino_inicio = $_POST['vespertino_inicio'];
 $vespertino_final = $_POST['vespertino_final'];
 $domingos = $_POST['domingos'];
 
-$parametros =  array(
-    $equipo,
-    $termometro,
-    $usuario,
-    $lectura,
-    $observaciones,
-    $id_registro_temperatura
-);
 
 $anho = $_POST['anho'];
 $folio = $_POST['folio'];
@@ -64,6 +56,24 @@ $id_comentario = $_POST['id_comentario'];
 #Variables para insertar o actualizar los termometros de los equipos 
 $id_temperaturas_equipos  = isset($_POST['id_temperaturas_equipos']) ? $_POST['id_temperaturas_equipos'] : null;
 $factor_correcion = isset($_POST['factor_correcion']) ? $_POST['factor_correcion'] : null;
+
+
+#checkFactorCorrecion para checar si necesita aplicar el factor de correccion que tiene el termometro
+$checkFactorCorrecion = $_POST['checkFactorCorrecion'];
+
+
+
+$parametros =  array(
+    $equipo,
+    $termometro,
+    $usuario,
+    $lectura,
+    $observaciones,
+    $id_registro_temperatura,
+    $checkFactorCorrecion
+);
+
+
 
 $parametros_g = array(
     $fecha_inicial,
@@ -111,10 +121,11 @@ $equipos_termometros = array(
 switch ($api) {
 
     case 1:
-        # buscar equipos
+        # Insertar un nuevo registro de temperatura
         $response = $master->insertByProcedure("sp_temperatura_g", $parametros);
         break;
     case 2:
+        #buscar resultados de los registros de temperatura
         $response = $master->getByProcedure("sp_temperaturas_resultados_b", [$equipo]);
         break;
     case 3:

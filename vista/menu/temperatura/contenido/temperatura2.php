@@ -61,7 +61,15 @@
                                     <!-- <input type="hidden" id="firma_guardar" name="firma" required /> -->
                                 </div>
                             </div>
-                            <div class="col-12 d-flex justify-content-end my-auto">
+                            <div class="col-12 col-xl-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkFactorCorrecion">
+                                    <label class="form-check-label" for="checkFactorCorrecion">
+                                        Activar factor de correcion
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-6 d-flex justify-content-end my-auto">
                                 <!-- <button id="ModalFirmaTemperatura" class="btn btn-confirmar me-2"><i class="bi bi-pencil-square"></i></button> -->
                                 <button type="submit" class=" btn btn-confirmar" id="btn-equipo-temperatura">
                                     <i class="bi bi-person-x"></i> Guardar

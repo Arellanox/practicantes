@@ -1,3 +1,6 @@
+var checkFactorCorrecion;
+
+
 // $(document).on("click", ".btn-editar", function (e) {
 //     e.stopPropagation()
 
@@ -10,42 +13,7 @@
 // })
 
 
-$("#TermometrosTemperaturasForm").on("submit", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
 
-    $("#btn-equipos-termometros-temperatura").fadeOut(0);
-
-
-    dataJsonTermometrosTemperaturas = {
-        api: 14,
-        Enfriador: selectedEquiposTemperaturas['ID_EQUIPO']
-    };
-
-    if (selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'] != null) {
-        dataJsonTermometrosTemperaturas.id_temperaturas_equipos = selectedEquiposTemperaturas['ID_TEMPERATURAS_EQUIPOS'];
-    }
-
-
-    alertMensajeConfirm({
-        title: "¿Está seguro de su captura?",
-        text: "Se asignara el termometro al equipo",
-        icon: "info"
-    }, function () {
-        ajaxAwaitFormData(dataJsonTermometrosTemperaturas, 'temperatura_api', 'TermometrosTemperaturasForm', { callbackAfter: true }, false, function (data) {
-            alertToast('Termometro asigando con exito', 'success', 2000);
-            $('#activarFactorCorrecion').prop('checked', false)
-            $('#factor_correcion').val('');
-            $("#Termometros_Equipos").val("");
-            $("#TermometrosTemperaturasForm").addClass('disable-element');
-            TablaTermometrosDataTable.ajax.reload();
-
-            if (ListaEnfriadoresActiva) {
-                LoadTermometros(DataEquipo.Enfriador, 'Termometro');
-            }
-        })
-    }, 1)
-})
 
 $(document).on('click', '.btn-liberar', function (event) {
     event.stopPropagation();
@@ -177,6 +145,8 @@ $("#formCapturarTemperatura").on("submit", function (e) {
     e.preventDefault();
 
     editRegistro = false;
+
+
     // if (firmaExist == false) {
     //     if (validarFormulario(firma_guardar.canvas, firma_guardar.ctx, firma_guardar.firma) == false) {
     //         return false;
@@ -188,6 +158,18 @@ $("#formCapturarTemperatura").on("submit", function (e) {
 })
 
 
+// Checa si requiere o no aplicar el factor de correcion
+$('#checkFactorCorrecion').change(function () {
+    var switchState = $(this).is(':checked');
+    if (switchState) {
+        checkFactorCorrecion = 1;
+    } else {
+        checkFactorCorrecion = 0;
+    }
+
+});
+
+
 function CargarTemperatura() {
 
     alertMensajeConfirm({
@@ -195,13 +177,13 @@ function CargarTemperatura() {
         text: "Recuerde usar el simbolo - si es necesario",
         icon: "info"
     }, function () {
-
         // data = new FormData(document.getElementById('formCapturarTemperatura'));
         // console.log(data);
 
         let dataJson = {
             api: 1,
-            Enfriador: DataEquipo['Enfriador']
+            Enfriador: DataEquipo['Enfriador'],
+            checkFactorCorrecion: checkFactorCorrecion
         }
 
         form = ""
