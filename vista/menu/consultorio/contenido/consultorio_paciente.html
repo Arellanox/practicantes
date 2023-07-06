@@ -1,36 +1,41 @@
+<style>
+  .btn-container {
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  .btn-container button {
+    margin: -3px 15px 6px -11px !important;
+    font-size: 13px !important;
+  }
+</style>
+
 <div class="col-12 loader" id="loader">
   <div class="preloader" id="preloader"> </div>
 </div>
-
 <div class="row mt-2">
-
-  <div class="col-12 col-md-6 col-lg-8" id="contentContainer">
-
-    <div class="row">
-      <div class="col-12 col-md-12 col-lg-6">
-        <div class="info-detalle card" id="panel-informacion"> <!-- Informacion del paciente --> </div>
-        <div id="crear-notas" class="card mt-3">
-          <h4 class="m-3">Notas de historial clinica</h4>
-          <hr class="dropdown-divider m-2">
-          <textarea name="name" rows="10" cols="90" class="form-textarea-content" placeholder="Escriba aqui sus notas"
-            id="nota-historial-paciente"></textarea>
-          <div class="d-flex justify-content-end p-2">
-            <button type="button" class="btn btn-confirmar m-1" id="agregar-nota-historial">
-              <i class="bi bi-plus"></i> Agregar
-            </button>
-          </div>
-        </div>
-        <div id="notas-historial"> <!-- Notas --> </div>
-
-      </div>
-      <div class="col-12 col-md-12 col-lg-6" style="margin-bottom:10px;">
-        <div class="card mt-2" id="signos-vitales"> <!-- Signos vitales --> </div>
-        <div class="card mt-2" id="listado-resultados"></div>
+  <div class="col-12 col-lg-4">
+    <div class="info-detalle card" id="panel-informacion"> <!-- Informacion del paciente --> </div>
+    <div id="crear-notas" class="card mt-3">
+      <h4 class="m-3">Notas de historial clinica</h4>
+      <hr class="dropdown-divider m-2">
+      <textarea name="name" rows="10" cols="90" class="form-textarea-content" placeholder="Escriba aqui sus notas"
+        id="nota-historial-paciente"></textarea>
+      <div class="d-flex justify-content-end p-2">
+        <button type="button" class="btn btn-confirmar m-1" id="agregar-nota-historial">
+          <i class="bi bi-plus"></i> Agregar
+        </button>
       </div>
     </div>
+    <div id="notas-historial"> <!-- Notas --> </div>
   </div>
+  <div class="col-12 col-lg-4" style="margin-bottom:10px;">
+    <div class="card mt-2" id="signos-vitales"> <!-- Signos vitales --> </div>
+    <div class="card mt-2" id="listado-resultados"></div>
 
-  <div class="col-12 col-md-6 col-lg-4">
+  </div>
+  <div class="col-12  col-lg-4">
     <div class="card">
       <div id="btn-ir-consulta">
         <button type="button" class="btn btn-hover me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"
@@ -43,6 +48,18 @@
           data-bs-toggle="modal" data-bs-target="#modalMotivoConsultaMedica">
           <i class="bi bi-person-plus-fill"></i> Iniciar Consulta Médica
         </button>
+      </div>
+      <div id="btn-pdf" class="btn-container">
+        <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-receta-consultorio2"
+          data-bs-toggle="tooltip" data-bs-placement="top" title="La vista previa de la recetauna vez guardada">
+          <i class="bi bi-file-earmark-pdf"></i> Receta
+        </button>
+        <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-solicitud-estudios-consultorio2"
+          data-bs-toggle="tooltip" data-bs-placement="top"
+          title="La vista previa de las solicitud de estudios una vez guardada">
+          <i class="bi bi-file-earmark-pdf"></i> Solicitud de estudios
+        </button>
+
       </div>
       <div>
         <button type="button" class="btn btn-hover me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"
@@ -62,5 +79,6 @@
         <div id="historial-consultas-medicas"> <!-- Consulta medica --> </div>
       </div>
     </div>
+      
   </div>
 </div>
