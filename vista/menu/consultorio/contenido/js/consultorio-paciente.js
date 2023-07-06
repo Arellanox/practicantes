@@ -160,10 +160,36 @@ function obtenerHistorialConsultas(id) {
               let fecha = formatoFecha2(row[i]['FECHA_CONSULTA'], [0, 1, 2, 2, 0, 0, 0]);
               let nombre = row[i]['MEDICO'];
               let motivo = row[i]['MOTIVO_CONSULTA'];
-              $('#historial-consultas-paciente').append('<div class="row line-top" style="margin:0px">' +
-                '<div class="col-3 line-right">' + fecha + '</div>' +
-                '<div class="col-9"><p>' + nombre + '</p> <p class="none-p">' + motivo + '</p>' +
-                '</div> </div>')
+
+
+              api = encodeURIComponent(window.btoa('consultorio'));
+              turno = encodeURIComponent(window.btoa(row[i]['TURNO_ID']));
+              area = encodeURIComponent(window.btoa(1));
+
+              let resultado = `${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`
+
+
+              // window.open(``, "_blank");
+
+
+              $('#historial-consultas-paciente').append(`<div class="row line-top" style="margin:0px">
+                                                            <div class="col-3 line-right text-center">
+                                                              ${fecha} <br>
+                                                              <!-- Example split danger button -->
+                                                              <div class="btn-group mb-2">
+                                                                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                  <i class="bi bi-file-earmark-pdf"></i>
+                                                                </button>
+                                                                <ul class="dropdown-menu">
+                                                                  <li><a class="dropdown-item" href="${resultado}"><i class="bi bi-file-earmark-pdf"></i> Resultado</a></li>
+                                                                </ul>
+                                                              </div>
+                                                            </div>
+                                                            <div class="col-9">
+                                                              <p>${nombre}</p> 
+                                                              <p class="none-p">${motivo}</p>
+                                                            </div>
+                                                          </div>`)
             }
           }
 
