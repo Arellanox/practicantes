@@ -1,4 +1,4 @@
-                      <table>
+                      <table id="tabla_grafica">
                           <tr>
                               <th class="celdasDias"></th>
                               <?php
