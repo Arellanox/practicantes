@@ -33,7 +33,7 @@ $usuario_id = $_SESSION['id'];
 
 $api = 'temperatura';
 $turno_id = 471;
-$area_id = -3;
+$area_id = -1;
 // // $area_id = 12;
 // $turno_id = 742;
 

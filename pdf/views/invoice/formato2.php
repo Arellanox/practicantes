@@ -249,14 +249,6 @@
                     padding: 0px !important;
                 }
 
-                tr {
-                    padding: 0.1em !important;
-                }
-
-                td {
-                    padding: 0px;
-                }
-
                 .border-bottom {
                     border-bottom: 1px solid black;
                 }
@@ -480,6 +472,170 @@
                 .fw-bold {
                     font-weight: bold !important;
                 }
+
+                /* Tabla de equipos y termometros edit */
+
+                #equipos td,
+                #equipos tr {
+                    line-height: 0.8 !important;
+                    /* Establece el valor adecuado para reducir el espacio vertical */
+                }
+
+                .line-height {
+                    line-height: 0.8 !important;
+                }
+
+                #equipos tbody {
+                    line-height: 0.8 !important;
+                    margin: 0px;
+                    padding: 0px;
+                }
+
+                #equipos {
+                    line-height: 0.8 !important;
+                    margin: 0px;
+                    padding: 0px;
+                }
+
+                .folio {
+                    color: rgb(000, 078, 089);
+                    font-size: 10.5px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+
+                /* Estilos de la tabla de puntos */
+
+                #grafica {}
+
+                #grafica table {
+                    width: 10px !important;
+                    border-collapse: collapse;
+                }
+
+                #grafica th,
+                #grafica td {
+                    border: 1px solid black;
+                }
+
+                #grafica td.empty {
+                    /* margin-left: auto; */
+                    /* margin-right: auto; */
+                    padding: 0px;
+                    width: 8px;
+                    /* min-width: 14px; */
+                    /* max-width: 14px; */
+                    /* max-height: 14px; */
+                    /* min-height: 14px; */
+                }
+
+                .turno-1 {
+                    border: 0.8px dashed black !important;
+                }
+
+                .turno-2 {
+                    border: 0.8px dashed black !important;
+                }
+
+                .turno-3 {
+                    border-left: 0.8px dashed black !important;
+                    border-top: 0.8px dashed black !important;
+                    border-bottom: 0.8px dashed black !important;
+                }
+
+                .celdasDias {
+                    color: rgb(000, 078, 089);
+                    font-size: 8.5px;
+                    width: 8px !important;
+                    font-weight: normal !important;
+                    border-left: none !important;
+                    border-top: 5px solid #0000 !important;
+                    border-bottom: none !important;
+                }
+
+                .diaHeader {
+                    color: rgb(000, 078, 089);
+                    font-size: 8.5px;
+                    padding: 2px !important;
+                    background-color: #d8dfe1 !important;
+                }
+
+                .text-rango {
+                    /* font-size: 5px !important; */
+                    font-weight: bold !important;
+                    /* padding-top: 5px; */
+                    /* padding-bottom: 5px; */
+                }
+
+                .bg-grey {
+                    background-color: #d8dfe1;
+
+                }
+
+                .dot {
+                    /* max-height: 20px;
+                              max-width: 10px; */
+                    /* font-size: 20px;
+                              text-align: center !important; */
+                    /* font-size: 38px;
+                              text-align: center !important;
+                              /* padding: 0px; */
+                    /* margin: 0px; 
+                              height: 0px;
+                              */
+
+                    /* padding-left: 9px;
+                              padding-bottom: 11px; */
+
+                }
+
+                .dot-div::before {
+                    content: '';
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 7.5px;
+                    z-index: 100;
+                    position: absolute;
+                    /* background-color: #69b6d5; */
+                }
+
+                .dot-div {
+                    /* background-color: blue; */
+                    position: relative;
+                    /* top: 10px; */
+                    left: 8.7px;
+                    min-height: 0px;
+                    max-height: 0px;
+                    cursor: pointer;
+                }
+
+                .dot-blue::before {
+                    background-color: blue;
+                }
+
+                .dot-mostaza::before {
+                    background-color: #ffa209;
+                }
+
+                .dot-div:hover {
+                    background-color: rgb(0 175 170 / 60%)
+                }
+
+
+                /* .dot-div::after {
+                              background-color: #ffa209;
+                              border-radius: 50%;
+                          } */
+
+
+
+
+
+                .border-bottomm {
+                    border-bottom: 1.5px solid !important;
+                }
             </style>
 
 
@@ -520,7 +676,7 @@
                             </td>
                             <td class="col-foot-three" style="border-bottom: none; text-align:center;">
                                 <?php
-                                echo "<img src='data:image/png;base64, " . $encode . "' height='55' >";
+                                echo "<img src='data:image/png;base64, " . $encode . "' height='45' >";
                                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
                                 ?>
                             </td>
@@ -530,9 +686,32 @@
             </div>
 
             <!-- Tabla de equipos y Termometro -->
-            <div class="body mt-2  mx-7">
-                <table>
-                    <tbody>
+            <div class="body  mx-7">
+                <table id="equipos" class="p-0 m-0">
+                    <tbody class="m-0 p-0">
+                        <tr class="line-height p-0 m-0">
+                            <td class="line-height col-foot-der"></td>
+                            <td class="line-height col-foot-izq d-flex p-0 m-0">
+                                <table class="p-0 m-0">
+                                    <tbody class="p-0  m-0">
+                                        <tr class="line-height p-0 m-0">
+                                            <td class="line-height p-0 m-0 col-foot-der">
+                                                <div class="p-0 m-0 bg-title" style="background-color:#fff !important;">
+                                                    <h6 class=" m-0 p-0">Folio:</h6>
+                                                </div>
+                                            </td>
+                                            <td class="p-0 m-0 line-height col-foot-izq d-flex">
+                                                <input class="border p-0 m-0 folio" type="text" value="N/A" style="max-width:100px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="equipos" class="p-0 m-0">
+                    <tbody class="p-0 m-0">
                         <tr>
                             <td class="col-foot-der" style="border-bottom: none">
                                 <!-- Tabla Equipos -->
@@ -549,7 +728,7 @@
                                             <tr class="">
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7"> Equipos:</label>
+                                                        <label class="h7"> Equipo:</label>
                                                         <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
                                                     </div>
                                                 </td>
@@ -654,11 +833,231 @@
                 </table>
             </div>
 
+            <!-- Tabla de puntos -->
+            <div id="grafica">
+                <table>
+                    <tr>
+                        <th class="celdasDias"></th>
+                        <?php
+                        for ($i = 1; $i <= 31; $i++) {
+                            echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
+                        }
+                        ?>
+                    </tr>
+
+
+                    <?php
+                    function objectToArray($obj)
+                    {
+                        if (is_object($obj)) {
+                            $obj = (array) $obj;
+                        }
+
+                        if (is_array($obj)) {
+                            $new = array();
+                            foreach ($obj as $key => $val) {
+                                $new[$key] = objectToArray($val);
+                            }
+                        } else {
+                            $new = $obj;
+                        }
+
+                        return $new;
+                    }
+
+                    $arrayRespuesta = objectToArray($resultados);
+
+                    $max = $arrayRespuesta['EQUIPO']['INTERVALO_MAX'];
+                    $min = $arrayRespuesta['EQUIPO']['INTERVALO_MIN'];
+                    $data = arrayDia(-20, $max + 5, $min - 5);
+
+
+                    $valores = $arrayRespuesta['DIAS'];
+
+                    $dotInicial =  array_key_first($valores);
+                    $dotEnd =  array_key_last($valores);
+
+                    function redondear($valor, $valorAprox, $max, $min)
+                    {
+
+                        $explode = explode('.', $valor);
+
+                        // $signo = $explode[0] > 0 ? '' : '-';
+                        // $unidad = $explode[0] > 0 ? $explode[0]  : ($explode[0] * -1);
+                        // $decimal = $explode[1] > 50 ? 1 : 0;
+
+                        // $valor_final = ($unidad + ($decimal));
+
+
+                        //10px - 40px
+                        //100% = 30px
+                        //0.34
+                        //30*0.34 = ?
+                        //
+
+                        if ($valor >= $max) {
+                            $pixeles = 10;
+                            $explode[0] = $max;
+                        }
+
+                        if ($valor <= $min) {
+                            $pixeles = 10;
+                            $explode[0] = $min;
+                        }
+
+
+                        if ($valor > 0) {
+                            if ($explode[1] > 0) {
+
+                                $pixeles = (($explode[1] / 100) * 30) + 10;
+
+                                $pixeles = (($pixeles) - ($pixeles * 0.8)) * -1;
+                            }
+                        } else {
+                            $pixeles = (($explode[1] / 100) * 30) + 10;
+                        }
+
+
+
+
+                        # 3 / 100 =0.03
+                        # 0.03 * 30 = 0.9
+                        # 0.9 + 1- = 10.9
+
+
+                        // $pixeles = $valor > 0 ? ($pixeles * -1) + ($pixeles * 0.8) : $pixeles;
+
+
+
+                        return [$explode[0], $pixeles . "px"];
+
+
+                        // return $explode[0];
+                    }
+
+
+                    function arrayDia($num, $max, $min)
+                    {
+
+                        // for ($j = $max + 5; $j >= $min - 5; $j--) {
+                        //     $data += $j;
+                        // }
+                        if (in_array($num, range($max, $min))) {
+                            return true;
+                        }
+                        return false;
+                    }
+
+
+
+
+                    function metodoCalculo($dia, $turno, $valorAprox, $valor, $max, $min, $valores)
+                    {
+
+                        if ($valores) {
+                            echo ("asdsadsadsadsadsa");
+                            // $valor = floatval($valores[$dia][$turno]["valor"]);
+                            // $valor_redondeado = round($valor);
+                            $valor = $valores[$dia][$turno]["valor"];
+                            $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, $max + 5, $min - 5);
+                            $valor_redondeado = $valor_turno[0];
+                            $valor_decimal_px = $valor_turno[1];
+
+                            $color = $valores[$dia][$turno]['color'];
+                            $id = $valores[$dia][$turno]['id'];
+                            if ($valor_redondeado == $valorAprox) {
+                                $dotId = "dot-$dia-$turno"; // Generar el ID del dot
+
+                                if (arrayDia($valorAprox, $max - 1, $min)) {
+                                    return "<td class='td-hover bg-grey empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'>
+                                    
+                                    
+                                    </div></td>";
+                                } else {
+                                    return "<td class='td-hover empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'></div></td>";
+                                }
+                            }
+                        }
+
+                        if (arrayDia($valorAprox, $max - 1, $min)) {
+                            return "<td class='bg-grey empty turno-$turno'></td>";
+                        } else {
+                            return "<td class='empty turno-$turno background$valorAprox'></td>";
+                        }
+                    }
+
+                    // Generar las celdas de la tabla
+                    for ($j = $max + 5; $j >= $min - 5; $j--) {
+                        if ($j == $max) {
+                            echo "<tr class='border-bottomm'>";
+                        } else if ($j == $min) {
+                            echo "<tr class='border-bottomm'>";
+                        } else {
+                            echo "<tr class='border$j'>";
+                        }
+
+
+                        if ($j == $max) {
+                            echo "<th class='celdasDias text-rango'>" . $j . "</th>";
+                        } else if ($j == $min) {
+                            echo "<th class='celdasDias text-rango'>" . $j . "</th>";
+                        } else {
+                            echo "<th class='celdasDias text$j'>" . $j . "</th>";
+                        }
+
+                        $prevDot = null; // Dot previo para conectar con líneas
+
+                        for ($i = 1; $i <= 31; $i++) {
+                            echo metodoCalculo($i, 1, $j, $valor, $max, $min, $valores);
+                            echo metodoCalculo($i, 2, $j, $valor, $max, $min, $valores);
+                            echo metodoCalculo($i, 3, $j, $valor, $max, $min, $valores);
+                            /* $dot3 = metodoCalculo($i, 3, $j); */
+
+                            // if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
+                            //     echo $dot1;
+                            //     if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
+                            //         echo $dot2;
+                            //         if ($dot3 != '<td class="empty turno-3 background' . $j . '"></td>') {
+                            //             echo $dot3;
+                            //         } else {
+                            //             $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
+                            //         }
+                            //     } else {
+                            //         $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
+                            //     }
+                            // } else {
+                            //     $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
+                            // }
+                        }
+                        echo "</tr>";
+                    }
+
+                    echo "<tr class='border$j'>";
+                    echo "<th class='celdasDias text$j'>" . $j . "</th>";
+                    for ($i = 1; $i <= 31; $i++) {
+                        echo "<td class='empty turno-1 background'></td>";
+                        echo "<td class='empty turno-2 background'></td>";
+                        echo "<td class='empty turno-3 background'></td>";
+                    }
+                    echo "</tr>";
+
+                    ?>
+                </table>
+            </div>
+
 
         </div>
 
     </div>
 
+
+    <?php
+
+    echo "<pre>";
+
+    var_dump($data);
+    echo "</pre>";
+    ?>
 </body>
 
 

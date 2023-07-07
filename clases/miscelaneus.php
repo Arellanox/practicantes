@@ -1399,16 +1399,15 @@ class Miscelaneus
     public function getBodyTemperatura($master)
     {
         $folio = 1;
-        $response = $master->getByProcedure('sp_temperatura_formato_b', [$folio]);
+        #Llenar tabla del formato PDF, pasar ID del FOLIO
+        $response = $master->getByNext('sp_temperatura_formato_b', [$folio]);
 
         $result = array();
         $i = 1;
-        foreach ($response as $key => $e) {
+        foreach ($response[0] as $key => $e) {
             $dia = $e['DIA'];
             $turno = $e['TURNO'];
             $valor = $e['valor'];
-            $intervalo_min = $e['INTERVALO_MIN'];
-            $intervalo_max = $e['INTERVALO_MAX'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
             if (!isset($result[$dia])) {
@@ -1427,7 +1426,14 @@ class Miscelaneus
 
             $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro);
             $i++;
-        };
+        }
+
+
+        foreach ($response[1] as $key => $e) {
+            # code...
+            $intervalo_min = $e['INTERVALO_MIN'];
+            $intervalo_max = $e['INTERVALO_MAX'];
+        }
 
         $response = [];
         $response['EQUIPO']['INTERVALO_MIN'] = $intervalo_min;

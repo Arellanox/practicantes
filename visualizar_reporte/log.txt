@@ -58,3 +58,7 @@
 04/07/23 11:05:06  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
 04/07/23 11:06:28  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
 04/07/23 11:08:29  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '('471')' at line 1
+07/07/23 10:44:09 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Intento de acceso a un socket no permitido por sus permisos de acceso.
+
+07/07/23 10:44:17 fn_connect_db Could not connect to the database u808450138_practicantes :SQLSTATE[HY000] [2002] Intento de acceso a un socket no permitido por sus permisos de acceso.
+
