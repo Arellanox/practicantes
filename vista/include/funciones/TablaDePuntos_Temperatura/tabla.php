@@ -1,14 +1,3 @@
-<<<<<<< Updated upstream
-                      <table>
-                          <tr>
-                              <th class="celdasDias"></th>
-                              <?php
-                                for ($i = 1; $i <= 31; $i++) {
-                                    echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
-                                }
-                                ?>
-                          </tr>
-=======
 <table style="" id="tabla_sin_dot">
     <tr>
         <th class="celdasDias"></th>
@@ -18,7 +7,6 @@
         }
         ?>
     </tr>
->>>>>>> Stashed changes
 
 
     <?php
@@ -48,8 +36,6 @@
     $min = $array['response']['data']['EQUIPO']['INTERVALO_MIN'];
 
     $valores = $array['response']['data']['DIAS'];
-
-    // var_dump($valores);
 
     $dotInicial =  array_key_first($valores);
     $dotEnd =  array_key_last($valores);

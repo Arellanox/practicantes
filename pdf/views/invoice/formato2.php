@@ -655,17 +655,16 @@
         // echo '<img src="data:image/png;base64, '. $img_valido .'" alt="" height="75" >';
 
         // path firma
-        $ruta_firma = file_get_contents('../pdf/public/assets/firma_quiroz.png'); //FIRMA_URL
-        $encode_firma = base64_encode($ruta_firma);
 
+        // print_r($_SERVER);
 
-        $captura_tabla = file_get_contents('../pdf/public/assets/captura.png'); //FIRMA_URL
+        $captura_tabla = file_get_contents('../pdf/public/assets/temperaturas/544/tabla.png'); //FIRMA_URL
         $encode_tabla = base64_encode($captura_tabla);
 
-        $captura_canva = file_get_contents('../pdf/public/assets/captura_linea.png'); //FIRMA_URL
+        $captura_canva = file_get_contents('../pdf/public/assets/temperaturas/544/canva.png'); //FIRMA_URL
         $encode_canva = base64_encode($captura_canva);
 
-        $captura_dot = file_get_contents('../pdf/public/assets/captura_dot.png'); //FIRMA_URL
+        $captura_dot = file_get_contents('../pdf/public/assets/temperaturas/544/dot.png'); //FIRMA_URL
         $encode_dot = base64_encode($captura_dot);
 
         ?>
@@ -852,8 +851,8 @@
 
                 <?php
                 echo "<img src='data:image/png;base64, " . $encode_canva . "' class='grafica-canva'>";
-                echo "<img src='data:image/png;base64, " . $encode_tabla . "' class='grafica-tabla'>";
                 echo "<img src='data:image/png;base64, " . $encode_dot . "' class='grafica-dot'>";
+                echo "<img src='data:image/png;base64, " . $encode_tabla . "' class='grafica-tabla'>";
                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
                 ?>
 
@@ -865,7 +864,7 @@
                     position: absolute;
                     /* top: 10px; */
                     margin-top: 16px;
-                    margin-left: 115px;
+                    margin-left: 116px;
                     z-index: 1;
 
                     /* border: 2px solid black */
@@ -883,10 +882,11 @@
                 .grafica-dot {
                     height: 440px;
                     position: absolute;
-                    margin-left: 105px;
+                    margin-left: 95.3px;
+                    margin-top: -10.7px;
                     z-index: 2;
-                    border-right: 2px solid black;
-                    border-bottom: 1px dashed black;
+                    /* border-right: 2px solid black;
+                    border-bottom: 1px dashed black; */
                 }
             </style>
 
