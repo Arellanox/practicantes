@@ -1049,6 +1049,10 @@
         </div>
 
     </div>
+<br><br><br><br>
+    <?php
+    print_r($resultados);
+    ?>
 
 
     <?php

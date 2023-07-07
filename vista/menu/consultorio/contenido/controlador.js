@@ -112,7 +112,7 @@ async function obtenerConsultorio(id, idTurno, cliente, curp) {
 
   await obtenerHistorialConsultas(id);
   // alert("Funcion terminada")
-  // await obtenerConsultaMedica(idTurno);
+  await obtenerHistorialConsultaMedica(idTurno);
   loader("Out")
 }
 

@@ -101,33 +101,53 @@ $(document).on('click', '.guardarAnt ', function (event) {
 });
 
 //botones de pdf de vista previa
-//vista previa de recetas
-$('#btn-ver-receta-consultorio2').click(function () {
-  area_nombre = 'receta'
+//busca y muestra lso botones solo si tiene ya una receta y solicitud mientrtas que las url esten vacias no las mostrara
+// ajaxAwait({ api: 2, turno_id: pacienteActivo.array['ID_TURNO'] }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
+//   let row = data.response.data[0]
 
-  api = encodeURIComponent(window.btoa(area_nombre));
-  turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
-  area = encodeURIComponent(window.btoa(-2));
+  
+//   if (row['RUTA_RECETAS'] == null) {
+//     //oculta el boton
+//     $('#btn-ver-receta-consultorio2').hide()
+//   } else {
+//     //lo muestra
+//     $('#btn-ver-receta-consultorio2').show()
+
+//     //vista previa de recetas
+//     $('#btn-ver-receta-consultorio2').click(function () {
+//       area_nombre = 'receta'
+
+//       api = encodeURIComponent(window.btoa(area_nombre));
+//       turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+//       area = encodeURIComponent(window.btoa(-2));
+
+//       window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+//     })
+//   }
+
+//   if (row['RUTA_SOLICITUDES'] == null) {
+//     //lo oculta
+//     $('#btn-ver-solicitud-estudios-consultorio2').hide()
+//   } else {
+//     //lo muestra
+//     $('#btn-ver-solicitud-estudios-consultorio2').show()
+
+//     //Vista previa de solicitud de estudios
+//     $('#btn-ver-solicitud-estudios-consultorio2').click(function () {
+//       area_nombre = 'solicitud_estudios'
+
+//       api = encodeURIComponent(window.btoa(area_nombre));
+//       turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+//       area = encodeURIComponent(window.btoa(-3));
 
 
-  window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-})
-
-//Vista previa de solicitud de estudios
-$('#btn-ver-solicitud-estudios-consultorio2').click(function () {
-  area_nombre = 'solicitud_estudios'
-
-  api = encodeURIComponent(window.btoa(area_nombre));
-  turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
-  area = encodeURIComponent(window.btoa(-3));
-
-
-  window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-})
+//       window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+//     })
+//   }
+// })
 
 
 
-//
 // <div id="notas-historial" class="mt-3">
 //   <h4 class="m-3">INGLES: </h4>
 //   <div style="margin: -1px 30px 20px 30px;">
