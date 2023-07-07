@@ -55,10 +55,10 @@ function recuperarDatosCampos(idconsulta) {
         $('#plan-tratamiento-campo-consulta').val(row['PLAN_TRATAMIENTO'])
       }
 
+      resolve(1)
     })
 
 
-    resolve(1)
 
 
   })
@@ -75,9 +75,9 @@ function recuperarExploracionFisicaConsulta2(id_turno) {
       }
       // console.log(row)
 
+      resolve(1)
     })
 
-    resolve(1)
   })
 }
 
@@ -123,4 +123,4 @@ $(document).on('click', '.eliminarExploracion', function () {
 //     resolve(1)
 //   })
 
-// }
+// } 

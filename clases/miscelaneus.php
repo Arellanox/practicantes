@@ -459,6 +459,8 @@ class Miscelaneus
                 #CONSULTORIO2
                 $arregloPaciente = $this->getBodyInfoConsultorio2($master, $turno_id);
                 $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_CONSULTA2'];
+                $fecha_resultado = $infoPaciente[array_key_last($infoPaciente)]['FECHA_CARPETA_CONSULTA2'];
+                $carpeta_guardado = "consulta_medica";
                 break;
 
 
@@ -472,11 +474,15 @@ class Miscelaneus
                 #RECETA
                 $arregloPaciente = $this->getBodyRecetas($master, $turno_id);
                 $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_CONSULTA2'];
+                $fecha_resultado = $infoPaciente[array_key_last($infoPaciente)]['FECHA_CARPETA_CONSULTA2'];
+                $carpeta_guardado = "recetas";
                 break;
             case -3:
                 #SOLICITUD DE ESTUDIOS
                 $arregloPaciente = $this->getBodySoliEstudios($master, $turno_id);
                 $folio = $infoPaciente[array_key_last($infoPaciente)]['FOLIO_SOLICITUD_ESTUDIOS'];
+                $fecha_resultado = $infoPaciente[array_key_last($infoPaciente)]['FECHA_CARPETA_CONSULTA2'];
+                $carpeta_guardado = "solicitud_estudios";
 
                 break;
         }

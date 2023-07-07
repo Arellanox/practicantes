@@ -4,8 +4,6 @@ var id
 var texto = ''
 var title = ''
 
-
-
 //Regresar a perfil de paciente
 $('#btn-regresar-vista').click(function () {
     alertMensajeConfirm({
@@ -20,40 +18,61 @@ $('#btn-regresar-vista').click(function () {
 //botones de pdf de vista previa
 //vista previa del pdf
 $('#btn-ver-reporte-consultorio2').click(function () {
-    alert(1);
     area_nombre = 'consultorio2'
-  
+
     api = encodeURIComponent(window.btoa(area_nombre));
     turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
     area = encodeURIComponent(window.btoa(19));
-  
-  
-    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-  })
 
-//vista previa de recetas
-$('#btn-ver-receta-consultorio2').click(function () {
-    area_nombre = 'receta'
-  
-    api = encodeURIComponent(window.btoa(area_nombre));
-    turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
-    area = encodeURIComponent(window.btoa(-2));
-  
-  
+
     window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-  })
-  
-  //Vista previa de solicitud de estudios
-  $('#btn-ver-solicitud-estudios-consultorio2').click(function () {
-    area_nombre = 'solicitud_estudios'
-  
-    api = encodeURIComponent(window.btoa(area_nombre));
-    turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
-    area = encodeURIComponent(window.btoa(-3));
-  
-  
-    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-  })
+})
+
+//botones de pdf de vista previa
+//busca y muestra lso botones solo si tiene ya una receta y solicitud mientrtas que las url esten vacias no las mostrara
+ajaxAwait({ api: 2, turno_id: pacienteActivo.array['ID_TURNO'] }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
+    let row = data.response.data[0]
+
+
+    if (row['RUTA_RECETAS'] == null) {
+        //oculta el boton
+        $('#btn-ver-receta-consultorio2').hide()
+    } else {
+        //lo muestra
+        $('#btn-ver-receta-consultorio2').show()
+
+        //vista previa de recetas
+        $('#btn-ver-receta-consultorio2').click(function () {
+            area_nombre = 'receta'
+
+            api = encodeURIComponent(window.btoa(area_nombre));
+            turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+            area = encodeURIComponent(window.btoa(-2));
+
+            window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+        })
+    }
+
+    if (row['RUTA_SOLICITUDES'] == null) {
+        //lo oculta
+        $('#btn-ver-solicitud-estudios-consultorio2').hide()
+    } else {
+        //lo muestra
+        $('#btn-ver-solicitud-estudios-consultorio2').show()
+
+        //Vista previa de solicitud de estudios
+        $('#btn-ver-solicitud-estudios-consultorio2').click(function () {
+            area_nombre = 'solicitud_estudios'
+
+            api = encodeURIComponent(window.btoa(area_nombre));
+            turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+            area = encodeURIComponent(window.btoa(-3));
+
+
+            window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+        })
+    }
+})
 
 
 //alerta en general, sirve para todos los botons y btn se llama al switch y guardar consultorio

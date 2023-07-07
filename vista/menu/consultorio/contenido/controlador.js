@@ -112,6 +112,7 @@ async function obtenerConsultorio(id, idTurno, cliente, curp) {
 
   await obtenerHistorialConsultas(id);
   // alert("Funcion terminada")
+  await obtenerHistorialConsultaMedica(idTurno);
   loader("Out")
 }
 
@@ -198,10 +199,10 @@ function obtenerConsultorioConsultaMedica(data, idconsulta) {
 async function obtenerConsultaMedica(data, idconsulta) {
   // await obtenerVistaAntecenetesPaciente('#antecedentes-paciente', data['CLIENTE'])
 
-  // Mostrar informacion del paciente en panel  superior (data, dataConsulta)
-  await mostrarInformacionPaciente(idconsulta);
   // Recuperar datos de la consulta
   await recuperarDatosCampos(idconsulta)
+  // Mostrar informacion del paciente en panel  superior (data, dataConsulta)
+  await mostrarInformacionPaciente(idconsulta);
   //Recupera los datos de exploracion fisica en consultorio
   await recuperarExploracionFisicaConsulta2(data['ID_TURNO'])
 

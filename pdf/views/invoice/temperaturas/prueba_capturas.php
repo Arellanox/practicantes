@@ -593,19 +593,23 @@
                 .dot-div::before {
                     content: '';
                     display: inline-block;
-                    width: 10px;
-                    height: 10px;
+                    width: 7px;
+                    height: 7px;
                     border-radius: 7.5px;
                     z-index: 100;
                     position: absolute;
                     /* background-color: #69b6d5; */
                 }
 
+                .dot-prueba {
+                    z-index: 99 !important;
+                }
+
                 .dot-div {
                     /* background-color: blue; */
                     position: relative;
                     /* top: 10px; */
-                    left: 8.7px;
+                    left: 4.8px;
                     min-height: 0px;
                     max-height: 0px;
                     cursor: pointer;
@@ -653,6 +657,16 @@
         // path firma
         $ruta_firma = file_get_contents('../pdf/public/assets/firma_quiroz.png'); //FIRMA_URL
         $encode_firma = base64_encode($ruta_firma);
+
+
+        $captura_tabla = file_get_contents('../pdf/public/assets/captura.png'); //FIRMA_URL
+        $encode_tabla = base64_encode($captura_tabla);
+
+        $captura_canva = file_get_contents('../pdf/public/assets/captura_linea.png'); //FIRMA_URL
+        $encode_canva = base64_encode($captura_canva);
+
+        $captura_dot = file_get_contents('../pdf/public/assets/captura_dot.png'); //FIRMA_URL
+        $encode_dot = base64_encode($captura_dot);
 
         ?>
 
@@ -834,233 +848,59 @@
             </div>
 
             <!-- Tabla de puntos -->
-            <div id="grafica">
-                <table>
-                    <tr>
-                        <th class="celdasDias"></th>
-                        <?php
-                        for ($i = 1; $i <= 31; $i++) {
-                            echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
-                        }
-                        ?>
-                    </tr>
+            <div style="width:100%;  text-align: center;">
 
+                <?php
+                echo "<img src='data:image/png;base64, " . $encode_canva . "' class='grafica-canva'>";
+                echo "<img src='data:image/png;base64, " . $encode_tabla . "' class='grafica-tabla'>";
+                echo "<img src='data:image/png;base64, " . $encode_dot . "' class='grafica-dot'>";
+                // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
+                ?>
 
-                    <?php
-                    function objectToArray($obj)
-                    {
-                        if (is_object($obj)) {
-                            $obj = (array) $obj;
-                        }
-
-                        if (is_array($obj)) {
-                            $new = array();
-                            foreach ($obj as $key => $val) {
-                                $new[$key] = objectToArray($val);
-                            }
-                        } else {
-                            $new = $obj;
-                        }
-
-                        return $new;
-                    }
-
-                    $arrayRespuesta = objectToArray($resultados);
-
-                    $max = $arrayRespuesta['EQUIPO']['INTERVALO_MAX'];
-                    $min = $arrayRespuesta['EQUIPO']['INTERVALO_MIN'];
-                    $data = arrayDia(-20, $max + 5, $min - 5);
-
-
-                    $valores = $arrayRespuesta['DIAS'];
-
-                    $dotInicial =  array_key_first($valores);
-                    $dotEnd =  array_key_last($valores);
-
-                    function redondear($valor, $valorAprox, $max, $min)
-                    {
-
-                        $explode = explode('.', $valor);
-
-                        // $signo = $explode[0] > 0 ? '' : '-';
-                        // $unidad = $explode[0] > 0 ? $explode[0]  : ($explode[0] * -1);
-                        // $decimal = $explode[1] > 50 ? 1 : 0;
-
-                        // $valor_final = ($unidad + ($decimal));
-
-
-                        //10px - 40px
-                        //100% = 30px
-                        //0.34
-                        //30*0.34 = ?
-                        //
-
-                        if ($valor >= $max) {
-                            $pixeles = 10;
-                            $explode[0] = $max;
-                        }
-
-                        if ($valor <= $min) {
-                            $pixeles = 10;
-                            $explode[0] = $min;
-                        }
-
-
-                        if ($valor > 0) {
-                            if ($explode[1] > 0) {
-
-                                $pixeles = (($explode[1] / 100) * 30) + 10;
-
-                                $pixeles = (($pixeles) - ($pixeles * 0.8)) * -1;
-                            }
-                        } else {
-                            $pixeles = (($explode[1] / 100) * 30) + 10;
-                        }
-
-
-
-
-                        # 3 / 100 =0.03
-                        # 0.03 * 30 = 0.9
-                        # 0.9 + 1- = 10.9
-
-
-                        // $pixeles = $valor > 0 ? ($pixeles * -1) + ($pixeles * 0.8) : $pixeles;
-
-
-
-                        return [$explode[0], $pixeles . "px"];
-
-
-                        // return $explode[0];
-                    }
-
-
-                    function arrayDia($num, $max, $min)
-                    {
-
-                        // for ($j = $max + 5; $j >= $min - 5; $j--) {
-                        //     $data += $j;
-                        // }
-                        if (in_array($num, range($max, $min))) {
-                            return true;
-                        }
-                        return false;
-                    }
-
-
-
-
-                    function metodoCalculo($dia, $turno, $valorAprox, $valor, $max, $min, $valores)
-                    {
-
-                        if ($valores) {
-                            echo ("asdsadsadsadsadsa");
-                            // $valor = floatval($valores[$dia][$turno]["valor"]);
-                            // $valor_redondeado = round($valor);
-                            $valor = $valores[$dia][$turno]["valor"];
-                            $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, $max + 5, $min - 5);
-                            $valor_redondeado = $valor_turno[0];
-                            $valor_decimal_px = $valor_turno[1];
-
-                            $color = $valores[$dia][$turno]['color'];
-                            $id = $valores[$dia][$turno]['id'];
-                            if ($valor_redondeado == $valorAprox) {
-                                $dotId = "dot-$dia-$turno"; // Generar el ID del dot
-
-                                if (arrayDia($valorAprox, $max - 1, $min)) {
-                                    return "<td class='td-hover bg-grey empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'>
-                                    
-                                    
-                                    </div></td>";
-                                } else {
-                                    return "<td class='td-hover empty turno-$turno'  data_id='$id'><div id='$dotId' class='dot dot-div dot-$color' style='top:$valor_decimal_px' data-bs-toggle='tooltip' data-bs-placement='top' title='$valor °C'></div></td>";
-                                }
-                            }
-                        }
-
-                        if (arrayDia($valorAprox, $max - 1, $min)) {
-                            return "<td class='bg-grey empty turno-$turno'></td>";
-                        } else {
-                            return "<td class='empty turno-$turno background$valorAprox'></td>";
-                        }
-                    }
-
-                    // Generar las celdas de la tabla
-                    for ($j = $max + 5; $j >= $min - 5; $j--) {
-                        if ($j == $max) {
-                            echo "<tr class='border-bottomm'>";
-                        } else if ($j == $min) {
-                            echo "<tr class='border-bottomm'>";
-                        } else {
-                            echo "<tr class='border$j'>";
-                        }
-
-
-                        if ($j == $max) {
-                            echo "<th class='celdasDias text-rango'>" . $j . "</th>";
-                        } else if ($j == $min) {
-                            echo "<th class='celdasDias text-rango'>" . $j . "</th>";
-                        } else {
-                            echo "<th class='celdasDias text$j'>" . $j . "</th>";
-                        }
-
-                        $prevDot = null; // Dot previo para conectar con líneas
-
-                        for ($i = 1; $i <= 31; $i++) {
-                            echo metodoCalculo($i, 1, $j, $valor, $max, $min, $valores);
-                            echo metodoCalculo($i, 2, $j, $valor, $max, $min, $valores);
-                            echo metodoCalculo($i, 3, $j, $valor, $max, $min, $valores);
-                            /* $dot3 = metodoCalculo($i, 3, $j); */
-
-                            // if ($dot1 != '<td class="empty turno-1 background' . $j . '"></td>') {
-                            //     echo $dot1;
-                            //     if ($dot2 != '<td class="empty turno-2 background' . $j . '"></td>') {
-                            //         echo $dot2;
-                            //         if ($dot3 != '<td class="empty turno-3 background' . $j . '"></td>') {
-                            //             echo $dot3;
-                            //         } else {
-                            //             $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
-                            //         }
-                            //     } else {
-                            //         $prevDot = null; // No hay dot en el turno 2, reiniciar dot previo
-                            //     }
-                            // } else {
-                            //     $prevDot = null; // No hay dot en el turno 1, reiniciar dot previo
-                            // }
-                        }
-                        echo "</tr>";
-                    }
-
-                    echo "<tr class='border$j'>";
-                    echo "<th class='celdasDias text$j'>" . $j . "</th>";
-                    for ($i = 1; $i <= 31; $i++) {
-                        echo "<td class='empty turno-1 background'></td>";
-                        echo "<td class='empty turno-2 background'></td>";
-                        echo "<td class='empty turno-3 background'></td>";
-                    }
-                    echo "</tr>";
-
-                    ?>
-                </table>
             </div>
 
+            <style>
+                .grafica-canva {
+                    height: 440px;
+                    position: absolute;
+                    /* top: 10px; */
+                    margin-top: 16px;
+                    margin-left: 115px;
+                    z-index: 1;
+
+                    /* border: 2px solid black */
+                }
+
+                .grafica-tabla {
+                    height: 440px;
+                    position: absolute;
+                    margin-left: 105px;
+                    z-index: 0;
+                    border-right: 2px solid black;
+                    border-bottom: 1px dashed black;
+                }
+
+                .grafica-dot {
+                    height: 440px;
+                    position: absolute;
+                    margin-left: 105px;
+                    z-index: 2;
+                    border-right: 2px solid black;
+                    border-bottom: 1px dashed black;
+                }
+            </style>
 
         </div>
 
     </div>
-<br><br><br><br>
-    <?php
-    print_r($resultados);
-    ?>
 
 
     <?php
 
-    echo "<pre>";
+    // echo "<pre>";
 
-    var_dump($data);
-    echo "</pre>";
+    // var_dump($data);
+    // echo "</pre>";
     ?>
 </body>
 
