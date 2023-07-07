@@ -24,7 +24,7 @@ switch ($api) {
         # lista de estudios para la vista externa de ujat.
         $resultset = $master->getByProcedure("sp_lista_de_trabajo_ujat", [$fecha_inicial, $fecha_final]);
         $response = [];
-        foreach($resultset as $set){
+        foreach ($resultset as $set) {
             $set['ESTUDIOS'] = $master->decodeJson([$set['ESTUDIOS']]);
             $response[] = $set;
         }

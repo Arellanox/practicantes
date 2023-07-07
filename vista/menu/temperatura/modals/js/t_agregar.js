@@ -1,10 +1,10 @@
 enfriadorData = {}, termometroData = {}, firmaExist = false, SelectedFoliosData = {};
 // Obtener datos del paciente seleccionado
-const capturarTemperaturaModal = document.getElementById('capturarTemperaturaModal')
-capturarTemperaturaModal.addEventListener('show.bs.modal', event => {
-    $("#usuarioQueCargar").html(`Capturando por:<strong>${session.nombre} ${session.apellidos}</strong>`)
+// const capturarTemperaturaModal = document.getElementById('capturarTemperaturaModal')
+// capturarTemperaturaModal.addEventListener('show.bs.modal', event => {
+//     $("#usuarioQueCargar").html(`Capturando por:<strong>${session.nombre} ${session.apellidos}</strong>`)
 
-})
+// })
 
 $("#capturarTemperatura").on("click", function (e) {
     e.preventDefault();
