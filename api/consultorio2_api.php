@@ -47,6 +47,18 @@ switch ($api) {
         #insertar datos en la tabla consultorio2_consulta
     case 1:
         $response = $master->insertByProcedure("sp_consultorio2_consulta_g", $parametros);
+
+        //crear la ruta para los pdf
+        if($consulta_terminada == 1){
+            $url_reporte = $master->reportador($master, $turno_id, 19, "consultorio2", "url", 0, 0, 0);
+            $url_recetas = $master->reportador($master, $turno_id, -2, "receta", "url", 0, 0, 0);
+            $url_solicitud_estudios = $master->reportador($master, $turno_id, -3, "solicitud_estudios", "url", 0, 0, 0);
+
+            $rutas = ["RUTA_REPORTE"=> $url_reporte, "RUTA_RECETAS"=> $url_recetas, "RUTA_SOLICITUDES" => $url_solicitud_estudios];
+            foreach ($rutas as $key => $valor){
+                $a = $master->updateByProcedure("sp_reportes_actualizar_ruta", array("consultorio2_consulta", $key, $valor, $turno_id, null));
+            }
+        }
         break;
 
 

@@ -20,7 +20,6 @@ $('#btn-regresar-vista').click(function () {
 //botones de pdf de vista previa
 //vista previa del pdf
 $('#btn-ver-reporte-consultorio2').click(function () {
-    alert(1);
     area_nombre = 'consultorio2'
   
     api = encodeURIComponent(window.btoa(area_nombre));
