@@ -128,7 +128,7 @@ p {
 
 @media (min-height: 500px) and (max-height: 800px) {
   #navbar_principal {
-    zoom: 80%;
+    /* zoom: 80%; */
     font-size: 17px;
   }
 

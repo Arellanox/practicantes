@@ -167,7 +167,7 @@ function obtenerHistorialConsultas(id) {
                                                                   <i class="bi bi-file-earmark-pdf"></i>
                                                                 </button>
                                                                 <ul class="dropdown-menu">
-                                                                  <li><a class="dropdown-item" href="${resultado}" target="_blank"><i class="bi bi-file-earmark-pdf"></i> Resultado</a></li>
+                                                                  <li><a class="dropdown-item" href="${row[i]['RUTA_REPORTE'] ? this : resultado}" target="_blank"><i class="bi bi-file-earmark-pdf"></i> Resultado</a></li>
                                                                 </ul>
                                                               </div>
                                                             </div>
@@ -196,7 +196,7 @@ function obtenerHistorialConsultas(id) {
 function obtenerHistorialConsultaMedica(idTurno) {
   console.log("aqui empieza obtener consulta medica")
   console.log(idTurno);
-  
+
   return new Promise(resolve => {
     $.ajax({
       url: `${http}${servidor}/${appname}/api/consultorio2_api.php`,
