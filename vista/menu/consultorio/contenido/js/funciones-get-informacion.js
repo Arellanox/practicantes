@@ -30,17 +30,17 @@ function recuperarDatosCampos(idconsulta) {
       let row = data.response.data[0]
       // console.log(row['CONSULTA_TERMINADA'])
 
-      if(row['CONSULTA_TERMINADA'] == 1){
+      if (row['CONSULTA_TERMINADA'] == 1) {
         //Desactivar los botones, texarea y los inputs
         $('#body-js').find('button, textarea, input').prop('disabled', true);
         $('#body-js').find('#btn-ver-reporte-consultorio2').prop('disabled', false);
 
         //Desactiva los botones de las tablas
-        $(document).on('click', '.eliminar-receta, .eliminar-estudio, .eliminar-diagnostico, .eliminarExploracion', function(){
+        $(document).on('click', '.eliminar-receta, .eliminar-estudio, .eliminar-diagnostico, .eliminarExploracion', function () {
           alertToast('No puede modificarlo!', 'info', 4000)
         })
         //Desactiva los botones de eliminar de exploracion
-        $(document).on('click', '.eliminarExploracion', function(){
+        $(document).on('click', '.eliminarExploracion', function () {
           alertToast('No puede eliminarlo!', 'info', 4000)
         })
 
@@ -49,7 +49,7 @@ function recuperarDatosCampos(idconsulta) {
         $('#diagnostico-campo-consulta-1').val(row['DIAGNOSTICO'])
         $('#plan-tratamiento-campo-consulta').val(row['PLAN_TRATAMIENTO'])
 
-      }else{
+      } else {
         $('#nota-consulta-campo-consulta').val(row['NOTAS_CONSULTA'])
         $('#diagnostico-campo-consulta-1').val(row['DIAGNOSTICO'])
         $('#plan-tratamiento-campo-consulta').val(row['PLAN_TRATAMIENTO'])
@@ -57,7 +57,6 @@ function recuperarDatosCampos(idconsulta) {
 
       resolve(1)
     })
-
 
 
 

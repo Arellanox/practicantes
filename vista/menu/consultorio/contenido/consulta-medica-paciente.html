@@ -43,13 +43,14 @@
             </div>
         </div>
         <div class="col-4 d-flex justify-content-end">
-            <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-reporte-consultorio2" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="La vista previa del reporte una vez guardado los cambios"
+            <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-reporte-consultorio2"
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                title="La vista previa del reporte una vez guardado los cambios"
                 style="margin: 20px 17px 20px 17px !important;font-size: 16px;">
                 <i class="bi bi-file-earmark-pdf"></i> Vista previa
             </button>
-            <button type="button" class="btn btn-hover me-2" style="margin: 15px 60px 10px 60px !important;font-size: 21px;"
-                id="btn-consulta-terminar">
+            <button type="button" class="btn btn-hover me-2"
+                style="margin: 15px 60px 10px 60px !important;font-size: 21px;" id="btn-consulta-terminar">
                 <i class="bi bi-clipboard2-check"></i> Terminar consulta
             </button>
         </div>
@@ -94,7 +95,8 @@
 
                     <hr class="dropdown-divider m-2">
                     <textarea name="name-nota-consulta" rows="10" cols="90" class="form-textarea-content"
-                        placeholder="Escriba aquí sus notas" id="nota-consulta-campo-consulta" style="font-size: 21px;"></textarea>
+                        placeholder="Escriba aquí sus notas" id="nota-consulta-campo-consulta"
+                        style="font-size: 21px;"></textarea>
                     <div class=" d-flex justify-content-start m-2">
                         <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
                             id="btn-guardar-nota-consulta">
@@ -107,43 +109,66 @@
                     <h4 class="m-3">Exploración física</h4>
                     <hr class="dropdown-divider m-2">
                     <div class="row" style="margin:0">
-                        <div class="col-5">
+                        <div class="col-12">
                             <label for="metodo" class="form-label"></label>
-                            <select name="metodo" id="select-exploracion-clinica" class="form-select input-form"
-                                required>
-                                <option value="1">Hábito constitucionales</option>
-                                <option value="2">Cabeza</option>
-                                <option value="3">Cavidad bucal</option>
-                                <option value="4">Cuello</option>
-                                <option value="5">Tórax</option>
-                                <option value="6">Aparato respiratorio</option>
-                                <option value="7">Cardiovascular</option>
-                                <option value="8">Abdomen y pélvis</option>
-                                <option value="9">Ingles</option>
-                                <option value="10">Aparato genito-urinario</option>
-                                <option value="11">Gineco-obstétrico</option>
-                                <option value="12">Piel y faneras</option>
-                                <option value="13">Sistema hemolinfopoyético</option>
-                                <option value="14">Aparato osteomuscular</option>
-                                <option value="15">Sistema nervioso central</option>
-                            </select>
+                            <div class="input-group">
+                                <select name="metodo" id="select-exploracion-clinica2" class="form-select input-form"
+                                    required>
+                                    <option value="1">Hábito constitucionales</option>
+                                    <option value="2">Cabeza</option>
+                                    <option value="3">Cavidad bucal</option>
+                                    <option value="4">Cuello</option>
+                                    <option value="5">Tórax</option>
+                                    <option value="6">Aparato respiratorio</option>
+                                    <option value="7">Cardiovascular</option>
+                                    <option value="8">Abdomen y pélvis</option>
+                                    <option value="9">Ingles</option>
+                                    <option value="10">Aparato genito-urinario</option>
+                                    <option value="11">Gineco-obstétrico</option>
+                                    <option value="12">Piel y faneras</option>
+                                    <option value="13">Sistema hemolinfopoyético</option>
+                                    <option value="14">Aparato osteomuscular</option>
+                                    <option value="15">Sistema nervioso central</option>
+                                </select>
+                                <span class="input-span" id="span-container"><i class="bi bi-info-circle"></i></span>
+                            </div>
+
                             <textarea name="name" rows="10" cols="90" class="form-textarea-content"
                                 placeholder="Escriba aquí sus notas" style="width:95%"
-                                id="text-exploracion-clinica" style="font-size: 21px;"></textarea>
+                                id="text-exploracion-clinica"></textarea>
                             <div class=" d-flex justify-content-end">
                                 <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
                                     id="btn-agregar-exploracion-clinina">
                                     <i class="bi bi-clipboard-plus"></i> Agregar
                                 </button>
                             </div>
-                        </div>
+                            <!-- </div>
                         <div class="col-6 card m-3" id="texto-exp-cli" style="font-size: 18px;letter-spacing: 1px;">
-                            Estado de conciencia. Orientación temporo-espacial. Peso. Talla. Indice de masa corporal.
-                            Deformidades generales, parciales o regionales. Color de piel y mucosas (palidez. Cianosis,
-                            ictericia.
-                            Manchas.
-                            Estado de nutrición e hidratación. Presion arterial. Pulso y frecuencia de pulso.
-                            Temperatura.
+                          Estado de conciencia. Orientación temporo-espacial. Peso. Talla. Indice de masa corporal.
+                          Deformidades generales, parciales o regionales. Color de piel y mucosas (palidez. Cianosis, ictericia.
+                          Manchas.
+                          Estado de nutrición e hidratación. Presion arterial. Pulso y frecuencia de pulso. Temperatura.
+                        </div> -->
+
+                            <div id="tooltip" style="max-width: 50%;">
+                                <div class="modal-body" style="border: 2px solid rgb(000, 078, 89);border-radius: 7px;">
+
+                                    <div id="texto-exp-cli" style="font-size: 18px;letter-spacing: 1px;">
+                                        ...
+                                    </div>
+
+                                    <!-- <div id="container-estudios" style="display: none;">
+                                <h5>Estudio(s): </h5>
+                                <ul class="list-group" id="listaContenidoEstudios"></ul>
+                                <hr>
+                              </div>
+                              <div id="container-grupos" style="display: none;">
+                                <h5>Grupo(s): </h5>
+                                <ul class="list-group" id="listContenidoGrupos"></ul>
+                              </div> -->
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row" style="margin:0">
@@ -158,33 +183,36 @@
                     <h4 class="m-3">Diagnóstico</h4>
 
                     <hr class="dropdown-divider m-2">
-                        
+
                     <div class="row">
                         <div class="col-6 p-4">
                             <p>Diagnóstico principal</p>
-                            <textarea name="name-diagnostico" rows="3" cols="90" class="form-control input-form" style="font-size: 21px;"
-                            placeholder="Diagnóstico...." id="diagnostico-campo-consulta-1"></textarea>
+                            <textarea name="name-diagnostico" rows="3" cols="90" class="form-control input-form"
+                                style="font-size: 21px;" placeholder="Diagnóstico...."
+                                id="diagnostico-campo-consulta-1"></textarea>
                             <div class=" d-flex justify-content-start m-2">
                                 <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
-                                id="btn-guardar-Diagnostico">
-                                <i class="bi bi-paperclip"></i> Guardar
+                                    id="btn-guardar-Diagnostico">
+                                    <i class="bi bi-paperclip"></i> Guardar
                                 </button>
                             </div>
 
                             <p>Añada otros diagnósticos</p>
-                            <textarea name="name-diagnostico" rows="1" cols="90" class="form-control input-form" placeholder="Diagnóstico"
-                                id="diagnostico-campo-consulta-2"></textarea>
+                            <textarea name="name-diagnostico" rows="1" cols="90" class="form-control input-form"
+                                placeholder="Diagnóstico" id="diagnostico-campo-consulta-2"></textarea>
                             <div class=" d-flex justify-content-start m-2">
-                                <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px" id="btn-agregar-Diagnostico">
+                                <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
+                                    id="btn-agregar-Diagnostico">
                                     <i class="bi bi-paperclip"></i> Agregar
                                 </button>
                             </div>
                         </div>
-                    
+
                         <!-- Tabla para ver los diagnosticos secundarios -->
                         <div class="col-6">
                             <p>Lista de Diagnosticos actuales/agregados</p>
-                            <table class="table table-hover display responsive" id="TablaListaDiagnosticos" style="width: 100%;">
+                            <table class="table table-hover display responsive" id="TablaListaDiagnosticos"
+                                style="width: 100%;">
                                 <thead>
                                 </thead>
                                 <tbody>
@@ -197,12 +225,13 @@
 
                 <section id="card-solicitud-estudios" class="card mt-3">
                     <h4 class="m-3">Solicitud de estudios</h4>
-                    <div class= "justify-content-end">
-                        <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-solicitud-estudios-consultorio2" data-bs-toggle="tooltip"
+                    <div class="justify-content-end">
+                        <a type="button" class="btn btn-borrar btnResultados" target="_blank"
+                            id="btn-ver-solicitud-estudios-consultorio2" data-bs-toggle="tooltip"
                             data-bs-placement="top" title="La vista previa del reporte una vez guardado los cambios"
                             style="margin: -58px 15px 10px 807px !important; font-size: 16px;">
                             <i class="bi bi-file-earmark-pdf"></i> Solicitud de estudios
-                        </button>
+                        </a>
                     </div>
                     <form id="formNuevaReceta">
                         <div class="row m-2">
@@ -245,13 +274,14 @@
 
                 <section id="card-receta" class="card mt-3">
                     <h4 class="m-3">Receta</h4>
-                    
-                    <div class= "justify-content-end">
-                        <button type="button" class="btn btn-borrar btnResultados" id="btn-ver-receta-consultorio2" data-bs-toggle="tooltip"
-                            data-bs-placement="top" title="La vista previa del reporte una vez guardado los cambios"
+
+                    <div class="justify-content-end">
+                        <a type="button" class="btn btn-borrar btnResultados" id="btn-ver-receta-consultorio2"
+                            data-bs-toggle="tooltip" data-bs-placement="top" target="_blank"
+                            title="La vista previa del reporte una vez guardado los cambios"
                             style="margin: -82px 15px 10px 807px !important; font-size: 16px;">
                             <i class="bi bi-file-earmark-pdf"></i> Receta
-                        </button>
+                        </a>
                     </div>
                     <p class="none-p" style="margin-left: 17px;">Receta de médicamento(s)</p>
                     <div id="recetas-medicamentos">
@@ -375,7 +405,8 @@
 
                     <hr class="dropdown-divider m-2">
                     <textarea name="name-plan-tratamiento" rows="10" cols="90" class="form-textarea-content"
-                        placeholder="Escriba su tratamiento" id="plan-tratamiento-campo-consulta" style="font-size: 21px;"></textarea>
+                        placeholder="Escriba su tratamiento" id="plan-tratamiento-campo-consulta"
+                        style="font-size: 21px;"></textarea>
                     <div class=" d-flex justify-content-start m-2">
                         <button type="button" class="btn btn-confirmar me-2" style="margin-bottom:4px"
                             id="btn-guardar-plan-tratamiento">
