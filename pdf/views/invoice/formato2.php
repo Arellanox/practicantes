@@ -473,10 +473,40 @@
                     font-weight: bold !important;
                 }
 
+                /* Widt */
+
+                .w-50 {
+                    width: 50% !important;
+                }
+
+                .w-100 {
+                    width: 100% !important;
+                }
+
+                .w-25 {
+                    width: 25% !important;
+                }
+
+                /* Height */
+
+                .h-50 {
+                    height: 50% !important;
+                }
+
+                .h-100 {
+                    height: 100% !important;
+                }
+
+                .h-25 {
+                    height: 25% !important;
+                }
+
+
                 /* Tabla de equipos y termometros edit */
 
                 #equipos td,
                 #equipos tr {
+                    height: 0px;
                     line-height: 0.8 !important;
                     /* Establece el valor adecuado para reducir el espacio vertical */
                 }
@@ -502,6 +532,11 @@
                     font-size: 10.5px;
                     margin-top: 0px;
                     margin-bottom: 0px;
+                    border-top: 1px solid black;
+                    border-left: 1px solid black;
+                    border-right: 1px solid black;
+                    border-bottom: 1px solid black !important;
+                    /* padding: 1px !important; */
                 }
 
 
@@ -593,23 +628,19 @@
                 .dot-div::before {
                     content: '';
                     display: inline-block;
-                    width: 7px;
-                    height: 7px;
+                    width: 10px;
+                    height: 10px;
                     border-radius: 7.5px;
                     z-index: 100;
                     position: absolute;
                     /* background-color: #69b6d5; */
                 }
 
-                .dot-prueba {
-                    z-index: 99 !important;
-                }
-
                 .dot-div {
                     /* background-color: blue; */
                     position: relative;
                     /* top: 10px; */
-                    left: 4.8px;
+                    left: 8.7px;
                     min-height: 0px;
                     max-height: 0px;
                     cursor: pointer;
@@ -655,32 +686,33 @@
         // echo '<img src="data:image/png;base64, '. $img_valido .'" alt="" height="75" >';
 
         // path firma
+        $ruta_firma = file_get_contents('../pdf/public/assets/firma_quiroz.png'); //FIRMA_URL
+        $encode_firma = base64_encode($ruta_firma);
 
-        // print_r($_SERVER);
-
-        $captura_tabla = file_get_contents('../pdf/public/assets/temperaturas/544/tabla.png'); //FIRMA_URL
+        $captura_tabla = file_get_contents('../pdf/public/assets/temperaturas/544/tabla.png'); //TABLA_URL
         $encode_tabla = base64_encode($captura_tabla);
 
-        $captura_canva = file_get_contents('../pdf/public/assets/temperaturas/544/canva.png'); //FIRMA_URL
+        $captura_canva = file_get_contents('../pdf/public/assets/temperaturas/544/canva.png'); //CANVA_URL
         $encode_canva = base64_encode($captura_canva);
 
-        $captura_dot = file_get_contents('../pdf/public/assets/temperaturas/544/dot.png'); //FIRMA_URL
+        $captura_dot = file_get_contents('../pdf/public/assets/temperaturas/544/dot.png'); //DOT    _URL
         $encode_dot = base64_encode($captura_dot);
-
         ?>
 
         <div id="body">
+            <!-- ================================================================================================ -->
+
             <!-- header -->
-            <div class="header mt-3">
+            <div class="header  ">
                 <table>
                     <tbody>
                         <tr>
                             <td class="col-foot-one"></td>
                             <td class="col-foot-two" style="border-bottom: none">
-                                <h5>
+                                <h6>
                                     DIAGNOSTICO BIOMOLECULAR S.A.de C.V. <br>
                                     (ÁREA)
-                                </h5>
+                                </h6>
 
                                 <h6>
                                     FORMATO PARA EL REGISTRO DE TEMPERATURAS DE EQUÍPOS <br>
@@ -689,7 +721,7 @@
                             </td>
                             <td class="col-foot-three" style="border-bottom: none; text-align:center;">
                                 <?php
-                                echo "<img src='data:image/png;base64, " . $encode . "' height='45' >";
+                                echo "<img src='data:image/png;base64, " . $encode . "' height='35' >";
                                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
                                 ?>
                             </td>
@@ -698,9 +730,11 @@
                 </table>
             </div>
 
+            <!-- ================================================================================================ -->
+
             <!-- Tabla de equipos y Termometro -->
             <div class="body  mx-7">
-                <table id="equipos" class="p-0 m-0">
+                <table id="equipos" style="position: relative; bottom:10px;" class="p-0">
                     <tbody class="m-0 p-0">
                         <tr class="line-height p-0 m-0">
                             <td class="line-height col-foot-der"></td>
@@ -714,7 +748,7 @@
                                                 </div>
                                             </td>
                                             <td class="p-0 m-0 line-height col-foot-izq d-flex">
-                                                <input class="border p-0 m-0 folio" type="text" value="N/A" style="max-width:100px;">
+                                                <input class=" p-0 m-0 folio" type="text" value="123" style="max-width:100px;">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -845,6 +879,9 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Fin de tabla de equipos y termoemtro -->
+
+            <!-- ================================================================================================ -->
 
             <!-- Tabla de puntos -->
             <div style="width:100%;  text-align: center;">
@@ -857,12 +894,12 @@
                 ?>
 
             </div>
-
             <style>
                 .grafica-canva {
-                    height: 440px;
+                    height: 350px;
+                    width: 850px;
                     position: absolute;
-                    /* top: 10px; */
+                    bottom: 326px;
                     margin-top: 16px;
                     margin-left: 116px;
                     z-index: 1;
@@ -871,16 +908,18 @@
                 }
 
                 .grafica-tabla {
-                    height: 440px;
+                    height: 350px;
+                    width: 850px;
                     position: absolute;
-                    margin-left: 105px;
+                    margin-left: 90px;
                     z-index: 0;
                     border-right: 2px solid black;
                     border-bottom: 1px dashed black;
                 }
 
                 .grafica-dot {
-                    height: 440px;
+                    height: 350px;
+                    width: 850px;
                     position: absolute;
                     margin-left: 95.3px;
                     margin-top: -10.7px;
@@ -889,20 +928,228 @@
                     border-bottom: 1px dashed black; */
                 }
             </style>
+            <!-- Fin de la tabla de puntos -->
+
+            <!-- ================================================================================================ -->
+
+            <!-- Tabla de Rubrica -->
+            <style>
+                #rubrica {
+                    position: relative;
+                    top: 355px;
+                    margin-left: 10px;
+                }
+
+                #rubrica table {
+                    width: 100px;
+                    border-collapse: collapse;
+
+                }
+
+
+                #rubrica td {
+                    border: 1px solid black;
+                    padding: 0px;
+                    width: 26px;
+                    height: 25px;
+                }
+
+                #rubrica .celdasDias {
+                    color: rgb(000, 078, 089);
+                    font-size: 10px;
+                    width: 8px !important;
+                    font-weight: normal;
+                    border-left: none !important;
+                    /* border-top: 5px solid #0000 !important; */
+                    border-bottom: none !important;
+                }
+
+                #rubrica .diaHeader {
+
+                    border: 1px solid black;
+                }
+            </style>
+            <div id="rubrica">
+                <table id="Matutino">
+                    <thead>
+                        <tr>
+                            <th class=""></th>
+                            <?php
+                            for ($p = 1; $p <= 31; $p++) {
+                                echo "<th class='diaHeader'>" . $p . "</th>";
+                            }
+                            ?>
+                            <th class=""></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        for ($m = 1; $m < 4; $m++) {
+                            echo "<tr class=''>";
+
+                            echo "<th class='celdasDias'>$m</th>";
+                            for ($i = 1; $i <= 31; $i++) {
+                                echo "<td class=''></td>";
+                            }
+
+                            if ($m == 1) {
+                                echo "<th class='celdasDias' style=' font-weight: bold !important;  '>° C</th>";
+                            } else {
+                                echo "<th class='celdasDias'></th>";
+                            }
+
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+
+                </table>
+
+                <table class="mt-1" id="Vespertino">
+                    <tbody>
+                        <?php
+                        for ($t = 1; $t < 4; $t++) {
+                            echo "<tr class=' ' style='margin-top:10px !important;'>";
+
+                            echo "<th class='celdasDias'>$t</th>";
+                            for ($l = 1; $l <= 31; $l++) {
+                                echo "<td class=''></td>";
+                            }
+
+                            if ($t == 1) {
+                                echo "<th class='celdasDias' style=' font-weight: bold !important;  '>° C</th>";
+                            } else {
+                                echo "<th class='celdasDias'></th>";
+                            }
+
+                            echo "</tr>";
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Fin de tabla de rubrica -->
+
+            <!-- ================================================================================================ -->
+
+            <!-- Campos del supervisor -->
+            <style>
+                #supervisor {
+                    position: relative;
+                    top: 365px;
+                    margin-left: 100px;
+                    /* margin-right: 200px !important; */
+                }
+
+                #supervisor h6 {
+                    text-align: justify !important;
+                    font-size: 10px !important;
+                }
+
+                #supervisor input {
+                    border-top: none !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    border-bottom: 1px solid black !important;
+                }
+            </style>
+            <div id="supervisor">
+                <!--  Recomendaciones y advertencias -->
+                <table class="mb-2  ">
+                    <tbody>
+                        <tr>
+                            <td class=" d-flex pb-2 px-3 ">
+                                <label class=" h7 d-flex">
+                                    NOTA 1:
+                                    <strong class="h7">
+                                        USAR UNICAMENTE TINTA AZUL PARA EL REGISTRO DE TEMPERATURA
+                                    </strong>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex  px-3 ">
+                                <div class="d-flex h7">
+                                    NOTA 2:
+                                    <strong class="h7">
+                                        SI DETECTA UNA TEMPERATURA INADECUADA, ÉSTA DEBERÁ AJUSTARSE Y DE NO CONTROLARSE SE INFORMARÁ AL JEFE INMEDIATO PARA TOMAR LAS MEDIDAS PERTINENTES.
+                                    </strong>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Fin recomendaciones y advertencias -->
+
+                <!-- ================================================================================================ -->
+
+                <!-- Campos del supervisor -->
+                <div class="d-flex " style="width: max-content !important;">
+                    <label class="h7 w-50"> OBSERVACIONES:</label>
+                    <input class="h7 p-0 m-0" type="text" value="" style="  width: 750px !important;">
+                </div>
+
+                <div class="d-flex " style="width: max-content !important;">
+                    <div>
+                        <label class="h7 w-50"> SUPERVISO:</label>
+                        <input class="h7 p-0 m-0" type="text" value="" style="  width:250px  !important; margin-right:10px;">
+                        <input class="h7 p-0 m-0" type="text" value="" style="  width:200px  !important; margin-right:10px;">
+                        <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important; margin-right:10px;">
+                        <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important;">
+                    </div>
+                </div>
+                <!-- Fin campos del supervisor -->
+            </div>
+
+            <!-- Fin campos del supervisor -->
+
+
+
+
+            <!-- <style>
+                table {
+                    border-collapse: collapse;
+                }
+
+                table,
+                th,
+                td {
+                    border: 1px solid black;
+                }
+
+                th,
+                td {
+                    padding: 8px;
+                }
+
+                th {
+                    text-align: center;
+                }
+
+                tr:first-child th {
+                    border-top: none;
+                }
+
+                td:first-child {
+                    border-left: none;
+                }
+            </style> -->
 
         </div>
-
     </div>
 
 
+
+    <!-- Imprimir variables de PHP -->
     <?php
 
     // echo "<pre>";
 
-    // var_dump($data);
+    // var_d    ump($data);
     // echo "</pre>";
     ?>
 </body>
-
 
 </html>

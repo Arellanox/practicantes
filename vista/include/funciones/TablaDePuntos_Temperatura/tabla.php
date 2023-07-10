@@ -3,7 +3,7 @@
         <th class="celdasDias"></th>
         <?php
         for ($i = 1; $i <= 31; $i++) {
-            echo "<th class='diaHeader' colspan='3'>" . $i . "</th>";
+            echo "<th class='diaHeader text-center' colspan='3'>" . $i . "</th>";
         }
         ?>
     </tr>
