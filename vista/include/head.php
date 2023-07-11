@@ -108,34 +108,3 @@
 <!-- dom-to-image -->
 <script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/dom-to-image.js' ?>"></script>
 <script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/FileSaver.js' ?>"></script>
-
-
-
-<script>
-    let traduccion = (text, idioma) => {
-
-        idioma = "en";
-
-        $.post({
-            url: '../../archivos/sistema/json/idioma/en.json',
-            dataType: 'json',
-            success: function(data) {
-                // Accede a los datos recibidos del archivo JSON
-                var nombre = data.nombre;
-                var edad = data.edad;
-                var ciudad = data.ciudad;
-
-                // Hacer algo con los datos
-                console.log("Nombre:", nombre);
-                console.log("Edad:", edad);
-                console.log("Ciudad:", ciudad);
-            },
-            error: function() {
-                console.log("Error al recuperar el archivo JSON.");
-            }
-        });
-
-
-
-    }
-</script>
