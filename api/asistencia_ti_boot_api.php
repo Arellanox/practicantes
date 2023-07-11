@@ -9,27 +9,29 @@ $api = $datos['api'];
 
 #insertar datos
 $msj = $datos['msj'];
-//Nombre y numero del contacto
-//Hora creacion del ticket
+$nombre_usuario = $datos['nombre_usuario'];
+$numero_usuario = $datos['numero_usuario'];
 
-
-$fh = fopen("log.txt", 'a');
-fwrite($fh, json_encode($datos));
-fclose($fh);
+// $fh = fopen("log.txt", 'a');
+// fwrite($fh, json_encode($datos));
+// fclose($fh);
 
 $parametros = $master->setToNull(array(
-    $msj
+    $msj,
+    $nombre_usuario,
+    $numero_usuario
 ));
 
-echo json_encode(['result' => '99999']);
+// echo json_encode(['result' => '99999']);
 
-// switch ($api) {
-//     case 1:
-//         $response = $master->insertByProcedure("sp_asistencia_ti_boot_g", $parametros);
-//         break;
+switch ($api) {
+    case 1:
+        $response = $master->insertByProcedure("sp_asistencia_ti_boot_g", $parametros);
+        break;
 
-//     default:
-//         break;
-// }
+    default:
+        $response = "API no definida";
+        break;
+}
 
-// echo $master->returnApi($response);
+echo $master->returnApi($response);
