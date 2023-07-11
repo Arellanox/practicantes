@@ -34,4 +34,4 @@ switch ($api) {
         break;
 }
 
-echo $master->returnApi($response);
+echo $master->returnApi (["TICKET" => $response]);
