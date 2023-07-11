@@ -899,9 +899,9 @@
                     height: 350px;
                     width: 850px;
                     position: absolute;
-                    bottom: 326px;
-                    margin-top: 16px;
-                    margin-left: 116px;
+                    bottom: 324px;
+                    margin-top: 6px;
+                    margin-left: 101px;
                     z-index: 1;
 
                     /* border: 2px solid black */
@@ -921,8 +921,8 @@
                     height: 350px;
                     width: 850px;
                     position: absolute;
-                    margin-left: 95.3px;
-                    margin-top: -10.7px;
+                    margin-left: 80px;
+                    margin-top: -9px;
                     z-index: 2;
                     /* border-right: 2px solid black;
                     border-bottom: 1px dashed black; */
@@ -1054,6 +1054,12 @@
                     border-right: none !important;
                     border-bottom: 1px solid black !important;
                 }
+
+                #infoInput {
+                    position: relative !important;
+                    bottom: 10px !important;
+                    left: 130px !important;
+                }
             </style>
             <div id="supervisor">
                 <!--  Recomendaciones y advertencias -->
@@ -1086,7 +1092,7 @@
                 <!-- ================================================================================================ -->
 
                 <!-- Campos del supervisor -->
-                <div class="d-flex " style="width: max-content !important;">
+                <div class="d-flex mb-3 " style="width: max-content !important;">
                     <label class="h7 w-50"> OBSERVACIONES:</label>
                     <input class="h7 p-0 m-0" type="text" value="" style="  width: 750px !important;">
                 </div>
@@ -1094,10 +1100,19 @@
                 <div class="d-flex " style="width: max-content !important;">
                     <div>
                         <label class="h7 w-50"> SUPERVISO:</label>
-                        <input class="h7 p-0 m-0" type="text" value="" style="  width:250px  !important; margin-right:10px;">
-                        <input class="h7 p-0 m-0" type="text" value="" style="  width:200px  !important; margin-right:10px;">
-                        <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important; margin-right:10px;">
+                        <input class="h7 p-0 m-0" type="text" value="" style="  width:200px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="" style="  width:170px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important; margin-right:30px !important;">
                         <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important;">
+                    </div>
+                    <div class="d-flex" id="infoInput">
+                        <span class="h7 p-0 m-0 subtitle" style="margin-right:190px !important;">NOMBRE</span>
+
+                        <span class="h7 p-0 m-0 subtitle" style="margin-right:160px !important;">CARGO</span>
+
+                        <span class="h7 p-0 m-0 subtitle" style="margin-right:150px !important;">FECHA</span>
+
+                        <span class="h7 p-0 m-0 subtitle">FIRMA</span>
                     </div>
                 </div>
                 <!-- Fin campos del supervisor -->
