@@ -2,22 +2,34 @@
 include_once "../clases/master_class.php";
 
 $master = new Master();
-$api = $_POST['api'];
+
+$datos = json_decode(file_get_contents('php://input'), true);
+
+$api = $datos['api'];
 
 #insertar datos
-$msj = $_POST['msj'];
+$msj = $datos['msj'];
+//Nombre y numero del contacto
+//Hora creacion del ticket
+
+
+$fh = fopen("log.txt", 'a');
+fwrite($fh, json_encode($datos));
+fclose($fh);
 
 $parametros = $master->setToNull(array(
     $msj
 ));
 
-switch($api){
-    case 1:
-        $response = $master->insertByProcedure("sp_asistencia_ti_boot_g", $parametros);
-        break;
+echo json_encode(['result' => '99999']);
 
-    default:
-        break;   
-}
+// switch ($api) {
+//     case 1:
+//         $response = $master->insertByProcedure("sp_asistencia_ti_boot_g", $parametros);
+//         break;
 
-echo $master->returnApi($response);
+//     default:
+//         break;
+// }
+
+// echo $master->returnApi($response);
