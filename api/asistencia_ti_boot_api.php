@@ -12,9 +12,9 @@ $msj = $datos['msj'];
 $nombre_usuario = $datos['nombre_usuario'];
 $numero_usuario = $datos['numero_usuario'];
 
-// $fh = fopen("log.txt", 'a');
-// fwrite($fh, json_encode($datos));
-// fclose($fh);
+$fh = fopen("log.txt", 'a');
+fwrite($fh, json_encode($datos));
+fclose($fh);
 
 $parametros = $master->setToNull(array(
     $msj,
