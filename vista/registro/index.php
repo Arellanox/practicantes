@@ -10,12 +10,10 @@ if ($codigo === "ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91") {
 $token = isset($_GET['token']) ? $_GET['token'] : null;
 $tip = isset($_GET['tip']) ? $_GET['tip'] : null;
 
-<<<<<<< Updated upstream
-=======
+
 $language = isset($_GET['language']) && !empty($_GET['language']) ? '-' . $_GET['language'] : '';
 // echo empty($_GET['language']) ? 0 : 1;
 // exit;
->>>>>>> Stashed changes
 
 
 //Cuestionarios
