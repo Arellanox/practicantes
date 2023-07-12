@@ -38,7 +38,7 @@ class Master extends Miscelaneus
     {
         $server = $_SERVER['SERVER_NAME'];
 
-        switch($server){
+        switch ($server) {
             case "localhost":
             case "helicebiologicos.com":
                 # nube. conexion de pruebas
@@ -54,10 +54,10 @@ class Master extends Miscelaneus
                 $password = '+Eb5Rc~TpeV';
                 break;
             default:
-                $host = 'localhost'; //Servidor
-                $dbname = "NONE";
-                $username = "NONE";
-                $password = "NONE";
+                $host = "212.1.208.201";
+                $dbname = "u808450138_capacitaciones";
+                $username = "u808450138_capacitador";
+                $password = '4[v[D7Vm+';
                 break;
         }
 
