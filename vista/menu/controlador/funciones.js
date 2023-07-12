@@ -2284,7 +2284,7 @@ function setValuesAntAnnameMetodo(DIV, array, key) {
 
 function obtenerVistaAntecenetesPaciente(div, cliente, pagina = 1) {
   return new Promise(resolve => {
-    $.post(`${http}${servidor}/${appname}/vista/include/acordion/antecedentes-paciente${language}.html`, function (html) {
+    $.post(http + servidor + "/" + appname + "/vista/include/acordion/antecedentes-paciente.html", function (html) {
       setTimeout(function () {
         $(div).html(html);
         // //console.log(cliente)
@@ -2302,13 +2302,13 @@ function obtenerVistaAntecenetesPaciente(div, cliente, pagina = 1) {
         resolve(1)
       }, 100);
     });
-  });
+  })
 }
 //
 
 function obtenerVistaEspiroPacientes(div) {
   return new Promise(resolve => {
-    $.post(`${http}${servidor}/${appname}/vista/menu/area-master/contenido/forms/form_espiro${language}.html`,
+    $.post(http + servidor + "/" + appname + "/vista/menu/area-master/contenido/forms/form_espiro.html",
 
       function (html) {
         setTimeout(function () {
@@ -2317,7 +2317,7 @@ function obtenerVistaEspiroPacientes(div) {
           resolve(1)
         }, 100);
       });
-  });
+  })
 }
 
 

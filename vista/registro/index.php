@@ -2,15 +2,15 @@
 //Variables dinamicas;
 $codigo = isset($_GET['codigo']) ? $_GET['codigo'] : null;
 
-// if ($codigo === "ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91") {
-//   header("Location: https://bimo-lab.com/nuevo_checkup/vista/registro-fast/?codigo=ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91");
-//   exit;
-// }
+if ($codigo === "ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91") {
+  header("Location: https://bimo-lab.com/nuevo_checkup/vista/registro-fast/?codigo=ajhsvd7asjdhgva79s6dt78aytvsd6ats7dv214fb91");
+  exit;
+}
 
 $token = isset($_GET['token']) ? $_GET['token'] : null;
 $tip = isset($_GET['tip']) ? $_GET['tip'] : null;
 
-$language = isset($_GET['language']) ? '-' . $_GET['language'] : '';
+
 
 //Cuestionarios
 $ant = isset($_GET['ant']) ? $_GET['ant'] : 0;
@@ -22,7 +22,7 @@ $menu = "Pre-registro";
 ?>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
 
 <head>
   <?php include "../include/head.php"; ?>
@@ -67,7 +67,6 @@ $menu = "Pre-registro";
     registroAgendaProcedencia = 0;
   const codigo = '<?php echo $codigo; ?>';
   const token = '<?php echo $token; ?>';
-  const language = '<?php echo $language; ?>';
   // console.log(token)
 
   //Cuestionarios
@@ -156,7 +155,7 @@ $menu = "Pre-registro";
     clienteRegistro = id
     idtoken = id_registro
 
-    // cuestionarios = jQuery.parseJSON(cuestionarios)
+    cuestionarios = jQuery.parseJSON(cuestionarios)
 
     //Cuestionario
     ant = cuestionarios[2] ? true : false;
