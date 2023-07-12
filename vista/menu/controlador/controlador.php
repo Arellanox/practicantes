@@ -156,6 +156,4 @@ include "../../variables.php";
       }, <?php echo $tipoUrl; ?>)
     });
   });
-
-  
 </script>
