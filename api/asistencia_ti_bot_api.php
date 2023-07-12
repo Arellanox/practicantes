@@ -23,7 +23,6 @@ $parametros = $master->setToNull(array(
 ));
 
 // echo json_encode(['result' => '99999']);
-
 switch ($api) {
     case 1:
         $response = $master->insertByProcedure("sp_asistencia_ti_bot_g", $parametros);
