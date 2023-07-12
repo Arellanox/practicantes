@@ -11,6 +11,7 @@ $api = $datos['api'];
 $msj = $datos['msj'];
 $nombre_usuario = $datos['nombre_usuario'];
 $numero_usuario = $datos['numero_usuario'];
+$token = $datos['token'];
 
 $fh = fopen("log.txt", 'a');
 fwrite($fh, json_encode($datos));
@@ -19,7 +20,8 @@ fclose($fh);
 $parametros = $master->setToNull(array(
     $msj,
     $nombre_usuario,
-    $numero_usuario
+    $numero_usuario,
+    $token
 ));
 
 // echo json_encode(['result' => '99999']);
