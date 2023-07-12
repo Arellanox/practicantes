@@ -1,0 +1,2328 @@
+<div class="mt-3" id="formulario-espiro">
+    <div class="row">
+
+        <h4>
+            <div style="vertical-align: inherit;">
+                <div style="vertical-align: inherit;">RESPIRATORY QUESTIONNAIRE
+                </div>
+            </div>
+        </h4>
+        <hr>
+        <h5>
+            <div style="vertical-align: inherit;">
+                <div style="vertical-align: inherit;">General spirometry data</div>
+            </div>
+        </h5>
+        <p class="mb-3 ">
+        <div style="vertical-align: inherit;">
+            <div style="vertical-align: inherit;">As part of the study to be carried out, please answer the
+                following questions, mark </div>
+        </div><b>
+            <div style="vertical-align: inherit;">
+                <div style="vertical-align: inherit;">"YES" or "NO"</div>
+            </div>
+        </b>
+        <div style="vertical-align: inherit;">
+            <div style="vertical-align: inherit;"> as the case may be.</div>
+        </div>
+        </p>
+
+        <form class="row" id="formAreadeEspirometria">
+
+            <div class="col-lg-6 col-12 mb-4">
+                <!--PREGUNTA NUMERO 1-->
+                <div class="col-12 mt-4 independiente" id="pregunta1">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Do you currently smoke tobacco or have you smoked
+                                    tobacco in the past month?
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="respuestas[1][1][valor]" value="1"
+                                id="p1r1">
+                            <label class="form-check-label " for="p1r1">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Yes
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="respuestas[1][1][valor]" value="2"
+                                id="p1r2">
+                            <label class="form-check-label" for="p1r2">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">No
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--PREGUNTAS NUMERO 2-->
+                <div class="col-12 mt-4 independiente" id="pregunta2">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Have you ever had any of the following
+                                    conditions?
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="3" id="p2r3"
+                                name="respuestas[2][3][valor]">
+                            <label class="form-check-label label-span" for="p2r3">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">epileptic seizure
+                                    </div>
+                                </div>
+                            </label>
+
+                            <div class="collapse" id="p2r3">
+                                <textarea name="respuestas[2][3][comentario]" class="form-control input-form mt-2"
+                                    placeholder="Specify the last episode"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="4" id="p2r4"
+                                name="respuestas[2][4][valor]">
+                            <!--Si esta seleccionado especificar-->
+
+                            <label class="form-check-label label-span" for="p2r4">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Cardiac condition (arrhythmia, myocardial
+                                        infarction, angina pectoris)
+                                    </div>
+                                </div>
+                            </label>
+
+                            <div class="collapse" id="p2r4">
+                                <textarea name="respuestas[2][4][comentario]" class="form-control input-form mt-2"
+                                    placeholder="Specify the last episode"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="5" id="p2r5"
+                                name="respuestas[2][5][valor]">
+                            <label class="form-check-label label-span" for="p2r5">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Diabetes Mellitus type II
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" id="p2r6" name="respuestas[2][6][valor]"
+                                value="6">
+                            <label for="p2r6" class="form-check-label label-span">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Allergic reactions that interfere with your
+                                        breathing
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" id="p2r7" name="respuestas[2][7][valor]" type="checkbox"
+                                value="7">
+                            <label class="form-check-label label-span" for="p2r7">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Claustrophobia (fear of closed places)
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="8" id="p2r8"
+                                name="respuestas[2][8][valor]">
+                            <label class="form-check-label label-span" for="p2r8">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Difficulty detecting odors
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="81" id="p2r81"
+                                name="respuestas[2][81][valor]">
+                            <label class="form-check-label label-span" for="p2r81">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Does not apply
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--PREGUNTA NUMERO 3-->
+                <div class="col-12 mt-4 independiente" id="pregunta3">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Have you ever had any of the following lung
+                                    problems?
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="9" id="p3r9"
+                                name="respuestas[3][9][valor]">
+                            <label class="form-check-label" for="p3r9">Asbestosis</label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="10" id="p3r10"
+                                name="respuestas[3][10][valor]">
+                            <label class="form-check-label" for="p3r10">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Asthma
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="11" id="p3r11"
+                                name="respuestas[3][11][valor]">
+                            <label class="form-check-label" for="p3r11">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">chronic bronchitis
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="12" id="p3r12"
+                                name="respuestas[3][12][valor]">
+                            <label class="form-check-label" for="p3r12">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Emphysema
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="13" id="p3r13"
+                                name="respuestas[3][13][valor]">
+                            <label class="form-check-label" for="p3r13">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Pneumonia
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="14" id="p3r14"
+                                name="respuestas[3][14][valor]">
+                            <label class="form-check-label" for="p3r14">Tuberculosis</label>
+
+                            <div class="collapse" id="p3r14">
+                                <textarea name="respuestas[3][14][comentario]" class="form-control input-form mt-2"
+                                    placeholder="Specify if you currently have the disease"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="15" id="p3r15"
+                                name="respuestas[3][15][valor]">
+                            <label class="form-check-label" for="p3r15">Silicosis</label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="16" id="p3r16"
+                                name="respuestas[3][16][valor]">
+                            <label class="form-check-label" for="p3r16">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Pneumothorax
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="17" id="p3r17"
+                                name="respuestas[3][17][valor]">
+                            <label class="form-check-label" for="p3r17">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Lung cancer
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="81" id="p3r81"
+                                name="respuestas[3][81][valor]">
+                            <label class="form-check-label label-span" for="p3r81">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Does not apply
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--PREGUNTA NUMERO 4-->
+                <div class="col-12 mt-4 independiente" id="pregunta4">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Do you currently have any of the following
+                                    symptoms of lung disease?
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="18" id="p4r18"
+                                name="respuestas[4][18][valor]">
+                            <label class="form-check-label" for="p4r18">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">shortness of breath
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="19" id="p4r19"
+                                name="respuestas[4][19][valor]">
+                            <label class="form-check-label label-span" for="p4r19">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">shortness of breath when walking briskly on
+                                        level ground or going up a hill or slight incline
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="20" id="p4r20"
+                                name="respuestas[4][20][valor]">
+                            <label class="form-check-label label-span" for="p4r20">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Shortness of breath when walking with other
+                                        people at an ordinary pace on level ground
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="21" id="p4r21"
+                                name="respuestas[4][21][valor]">
+                            <label class="form-check-label label-span" for="p4r21">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Has to stop for breath when walking at own
+                                        pace on level ground
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="22" id="p4r22"
+                                name="respuestas[4][22][valor]">
+                            <label class="form-check-label label-span" for="p4r22">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">shortness of breath when washing or dressing
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="23" id="p4r23"
+                                name="respuestas[4][23][valor]">
+                            <label class="form-check-label label-span" for="p4r23">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Shortness of breath that interferes with your
+                                        work
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="24" id="p4r24"
+                                name="respuestas[4][24][valor]">
+                            <label class="form-check-label label-span" for="p4r24">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Coughing up phlegm (thick sputum)
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="25" id="p4r25"
+                                name="respuestas[4][25][valor]">
+                            <label class="form-check-label label-span" for="p4r25">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Cough that wakes you up early in the morning
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="26" id="p4r26" name="
+                            respuestas[4][26][valor]">
+                            <label class="form-check-label label-span" for="p4r26">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Coughing that occurs mostly while lying down
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="27" id="p4r27"
+                                name="respuestas[4][27][valor]" "="">
+                        <label class=" form-check-label label-span" for=" p4r27">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">coughing up blood in the last month
+                                </div>
+                            </div></label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="28" id="p4r28"
+                                name="respuestas[4][28][valor]" "="">
+                        <label class=" form-check-label" for="p4r28">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">wheezing
+                                </div>
+                            </div></label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="29" id="p4r29"
+                                name="respuestas[4][29][valor]" "="">
+                        <label class=" form-check-label label-span" for="p4r29">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Wheezing that interferes with your work
+                                </div>
+                            </div></label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="30" id="p4r30"
+                                name="respuestas[4][30][valor]" "="">
+                        <label class=" form-check-label label-span" for="p4r30">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Chest pain when taking a deep breath
+                                </div>
+                            </div></label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="31" id="p4r31"
+                                name="respuestas[4][31][valor]">
+                            <label class="form-check-label label-span" for="p4r31">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Any other symptoms that you think are related
+                                        to other lung problems
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="81" id="p4r81"
+                                name="respuestas[4][81][valor]">
+                            <label class="form-check-label label-span" for="p4r81">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Does not apply
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-12 mb-4">
+
+                <!--PREGUNTA NUMERO 6-->
+                <div class="col-12 mt-4 independiente" id="pregunta6">
+
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">In your current job, are you working at high
+                                    altitudes (above 5,000 feet), or in a location that is lower than the normal amount
+                                    of oxygen?
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="respuestas[6][1][valor]" value="1"
+                                    id="p6r1">
+                                <label class="form-check-label" for="p6r1">
+                                    <div style="vertical-align: inherit;">
+                                        <div style="vertical-align: inherit;">Yes
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="respuestas[6][1][valor]" value="2"
+                                    id="p6r2">
+                                <label class="form-check-label" for="p6r2">
+                                    <div style="vertical-align: inherit;">
+                                        <div style="vertical-align: inherit;">No
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!--PREGUNTA NUMERO 28-->
+                            <div class="collapse" id="p6r1">
+
+                                <label class="form-label fw-bold mt-3">
+                                    <div style="vertical-align: inherit;">
+                                        <div style="vertical-align: inherit;">Do you have a feeling of dizziness,
+                                            shortness of breath, chest pounding or other symptoms when you are working
+                                            under these conditions?
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input mareos" type="radio" name="respuestas[28][1][valor]"
+                                        value="1" id="p28r1">
+                                    <label class="form-check-label" for="p28r1">
+                                        <div style="vertical-align: inherit;">
+                                            <div style="vertical-align: inherit;">Yes
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input mareos" type="radio" name="respuestas[28][1][valor]"
+                                        value="2" id="p28r2">
+                                    <label class="form-check-label" for="p28r2">
+                                        <div style="vertical-align: inherit;">
+                                            <div style="vertical-align: inherit;">No
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!---PREGUNTA NUMERO 7-->
+                <div class="col-12 mt-4 independiente" id="pregunta7">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">At work or at home, have you ever been exposed to
+                                    hazardous solvents, hazardous airborne chemicals (eg, gases, fumes, or dusts), or
+                                    come into contact with hazardous chemicals?
+                                </div>
+                            </div>
+                        </label>
+                        <!-- Si contesto "sí", nombre los productos químicos si los conoce-->
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="respuestas[7][1][valor]" value="1"
+                                    id="p7r1">
+                                <label class="form-check-label" for="p7r1">
+                                    <div style="vertical-align: inherit;">
+                                        <div style="vertical-align: inherit;">Yes
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="respuestas[7][1][valor]" value="2"
+                                    id="p7r2">
+                                <label for="p7r2" class="form-check-label">
+                                    <div style="vertical-align: inherit;">
+                                        <div style="vertical-align: inherit;">No
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="collapse" id="p7r1">
+                                <textarea name="respuestas[7][1][comentario]" class="form-control input-form mt-2"
+                                    placeholder="Name the chemicals if you know them"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--PREGUNTA NUMERO 8-->
+                <div class="col-12 mt-4 independiente" id="pregunta8">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Have you ever worked with the materials or
+                                    conditions listed below:
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="35" id="p8r35"
+                                name="respuestas[8][35][valor]">
+                            <label class="form-check-label" for="p8r35">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Asbestos
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="36" id="p8r36"
+                                name="respuestas[8][36][valor]">
+                            <label class="form-check-label label-span" for="p8r36">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Silica (ie, abrasive sandblasting)
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="37" id="p8r37"
+                                name="respuestas[8][37][valor]">
+                            <label class="form-check-label label-span" for="p8r37">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Tungsten/cobalt (eg, grinding this material)
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="38" id="p8r38"
+                                name="respuestas[8][38][valor]">
+                            <label class="form-check-label" for="p8r38">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Beryllium
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="39" id="p8r39"
+                                name="respuestas[8][39][valor]">
+                            <label class="form-check-label" for="p8r39">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Aluminum
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="40" id="p8r40"
+                                name="respuestas[8][40][valor]">
+                            <label class="form-check-label label-span" for="p8r40">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Coal (eg mining)
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="41" id="p8r41"
+                                name="respuestas[8][41][valor]">
+                            <label class="form-check-label" for="p8r41">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Iron
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="42" id="p8r42"
+                                name="respuestas[8][42][valor]">
+                            <label class="form-check-label" for="p8r42">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Tin
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="43" id="p8r43"
+                                name="respuestas[8][43][valor]">
+                            <label class="form-check-label" for="p8r43">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">environmental dust
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="44" id="p8r44"
+                                name="respuestas[8][44][valor]">
+                            <label class="form-check-label label-span" for="p8r44">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Any other dangerous exposures
+                                    </div>
+                                </div>
+                            </label>
+
+
+                            <div class="collapse" id="p8r44">
+                                <textarea name="respuestas[8][44][comentario]" class="form-control input-form mt-2"
+                                    placeholder="Describe these exhibits"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="81" id="p8r81"
+                                name="respuestas[8][81][valor]">
+                            <label class="form-check-label label-span" for="p8r81">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Does not apply
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--PREGUNTA NUMERO 9-->
+                <div class="col-12 mt-4 independiente" id="pregunta9">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Have you used a respirator?
+                                </div>
+                            </div>
+                        </label>
+                        <!-- Si contesto "sí", nombre los productos químicos si los conoce-->
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input respirador" type="radio" name="respuestas[9][1][valor]"
+                                    value="1" id="p9r1">
+                                <label class="form-check-label" for="p9r1">
+                                    <div style="vertical-align: inherit;">
+                                        <div style="vertical-align: inherit;">Yes
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input respirador" type="radio" name="respuestas[9][1][valor]"
+                                    value="2" id="p9r2">
+                                <label for="p9r2" class="form-check-label">
+                                    <div style="vertical-align: inherit;">
+                                        <div style="vertical-align: inherit;">No
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="collapse" id="p9r1">
+                                <textarea name="respuestas[9][1][comentario]" class="form-control input-form mt-2"
+                                    placeholder="What type have you used?"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!--PREGUNTA NUMERO 10-->
+                <div class="col-12 mt-4 independiente" id="pregunta10">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">If you have used a respirator, have you ever had
+                                    any of the following problems?
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="45" id="p10r45"
+                                name="respuestas[10][45][valor]">
+                            <label class="form-check-label label-span" for="p10r45">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">eye irritation
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="46" id="p10r46"
+                                name="respuestas[10][46][valor]">
+                            <label class="form-check-label label-span" for="p10r46">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Allergies or skin rashes
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="47" id="p10r47"
+                                name="respuestas[10][47][valor]">
+                            <label class="form-check-label" for="p10r47">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Anxiety
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="48" id="p10r48"
+                                name="respuestas[10][48][valor]">
+                            <label class="form-check-label label-span" for="p10r48">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">General weakness or fatigue
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="49" id="p10r49"
+                                name="respuestas[10][49][valor]">
+                            <label class="form-check-label label-span" for="p10r49">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Any other problem that interferes with your
+                                        use of the respirator
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="81" id="p10r81"
+                                name="respuestas[10][81][valor]">
+                            <label class="form-check-label label-span" for="p10r81">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Does not apply
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--PREGUNTA NUMERO 5-->
+                <div class="col-12 mt-4 independiente" id="pregunta5">
+                    <div class="col-12">
+                        <label class="form-label fw-bold label-span titulo">
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Are you currently taking medication for any of
+                                    the following problems?
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-12 ">
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="32" id="p5r32"
+                                name="respuestas[5][32][valor]">
+                            <label class="form-check-label label-span" for="p5r32">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Breathing or lung problems
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="33" id="p5r33"
+                                name="respuestas[5][33][valor]">
+                            <label class="form-check-label label-span" for="p5r33">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">heart problems
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="34" id="p5r34"
+                                name="respuestas[5][34][valor]">
+                            <label class="form-check-label label-span" for="p5r34">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Blood pressure
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline col-12 mb-2">
+                            <input class="form-check-input" type="checkbox" value="81" id="p5r81"
+                                name="respuestas[5][81][valor]">
+                            <label class="form-check-label label-span" for="p5r81">
+                                <div style="vertical-align: inherit;">
+                                    <div style="vertical-align: inherit;">Does not apply
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <hr><!--############################################################################-->
+
+
+
+            <!--SEGUNDA SITUACIÓN-->
+
+            <div class="col-12 mt-4 situacion1">
+                <h5>
+                    <div style="vertical-align: inherit;">
+                        <div style="vertical-align: inherit;">Respirator Usage Data
+                        </div>
+                    </div>
+                </h5>
+                <br>
+                <p class="mb-3" style="text-align: justify;">
+                <div style="vertical-align: inherit;">
+                    <div style="vertical-align: inherit;">Next, the following questions must be answered by every
+                        employee who has been selected to use a full facepiece respirator or self-contained
+                        breathing apparatus (SCBA). </div>
+                    <div style="vertical-align: inherit;">For employees who have been selected to use other types
+                        of respirators, answering these questions is voluntary. </div>
+                    <div style="vertical-align: inherit;">If this is not your case, please choose the </div>
+                </div><b>
+                    <div style="vertical-align: inherit;">
+                        <div style="vertical-align: inherit;">"Not applicable" option below.</div>
+                    </div>
+                </b>
+                </p>
+
+                <div class="form-check form-check-inline col-12 mb-2">
+                    <input class="form-check-input" type="checkbox" name="respuestas[43][81][valor]" value="81"
+                        id="no_aplica2">
+                    <label class="form-check-label" for="no_aplica2"><b>
+                            <div style="vertical-align: inherit;">
+                                <div style="vertical-align: inherit;">Does not apply
+                                </div>
+                            </div>
+                        </b></label>
+
+
+                    <div class="collapse show" id="pregunta43">
+                        <hr>
+                        <div class="col-12 mb-3 mt-4">
+                            <div class="row">
+
+                                <div class="col-lg-6 col-12">
+
+                                    <!---PREGUNTA NUMERO 22-->
+                                    <div class="col-12 mt-4 situaciones1" id="pregunta22">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold label-span titulo">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">Have you ever lost vision in
+                                                        either eye (temporary or permanent)?
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    name="respuestas[22][1][valor]" value="1" id="p22r1">
+                                                <label class="form-check-label" for="p22r1">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Yes
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    name="respuestas[22][1][valor]" value="2" id="p22r2">
+                                                <label class="form-check-label" for="p22r2">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">No
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--PREGUNTA NUMERO 23-->
+                                    <div class="col-12 mt-4 situaciones1" id="pregunta23">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold label-span titulo">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">Do you currently have any of
+                                                        the following vision problems?
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 ">
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="64" id="p23r64"
+                                                    name="respuestas[23][64][valor]">
+                                                <label class="form-check-label label-span" for="p23r64">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Use of contact lenses
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="65" id="p23r65"
+                                                    name="respuestas[23][65][valor]">
+                                                <label class="form-check-label label-span" for="p23r65">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Use of glasses
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="66" id="p23r66"
+                                                    name="respuestas[23][66][valor]">
+                                                <label class="form-check-label" for="p23r66">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">colour blindness
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="67" id="p23r67"
+                                                    name="respuestas[23][67][valor]">
+                                                <label class="form-check-label label-span" for="p23r67">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Any other vision problem
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="81" id="p23r81"
+                                                    name="respuestas[23][81][valor]">
+                                                <label class="form-check-label label-span" for="p23r81">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Does not apply
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--PREGUNTA  NUMERO 24-->
+                                    <div class="col-12 mt-4 situaciones1" id="pregunta24">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold label-span titulo">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">Have you ever had an ear
+                                                        injury, including a perforated eardrum?
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    name="respuestas[24][1][valor]" value="1" id="p24r1">
+                                                <label class="form-check-label" for="p24r1">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Yes
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    name="respuestas[24][1][valor]" value="2" id="p24r2">
+                                                <label class="form-check-label" for="p24r2">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">No
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--PREGUNTA NUMERO 25-->
+                                    <div class="col-12 mt-4 situaciones1" id="pregunta25">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold label-span titulo">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">Do you currently have any of
+                                                        the following hearing problems?
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 ">
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="68" id="p25r68"
+                                                    name="respuestas[25][68][valor]">
+                                                <label class="form-check-label label-span" for="p25r68">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">difficulty hearing
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="69" id="p25r69"
+                                                    name="respuestas[25][69][valor]">
+                                                <label class="form-check-label label-span" for="p25r69">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">wear a hearing aid
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="70" id="p25r70"
+                                                    name="respuestas[25][70][valor]">
+                                                <label class="form-check-label label-span" for="p25r70">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Any other hearing problem
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="81" id="p25r81"
+                                                    name="respuestas[25][81][valor]">
+                                                <label class="form-check-label label-span" for="p25r81">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Does not apply
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-6 col-12">
+
+                                    <!--PREGUNTA NUMERO 26-->
+                                    <div class="col-12 mt-4 situaciones1" id="pregunta26">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold label-span titulo">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">Have you ever had a back
+                                                        injury?
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    name="respuestas[26][1][valor]" value="1" id="p26r1">
+                                                <label class="form-check-label" for="p26r1">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Yes
+                                                        </div>
+                                                    </div>
+                                                </label>
+
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    name="respuestas[26][1][valor]" value="2" id="p26r2">
+                                                <label class="form-check-label" for="p26r2">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">No
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--PREGUNTA NUMERO 27-->
+                                    <div class="col-12 mt-4 situaciones1" id="pregunta27">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold label-span titulo">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">Do you currently have any of
+                                                        the following musculoskeletal problems?
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-12 ">
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="71" id="p27r71"
+                                                    name="respuestas[27][71][valor]">
+                                                <label class="form-check-label label-span" for="p27r71">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Weakness of the arms,
+                                                            hands, legs, or feet
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="72" id="p27r72"
+                                                    name="respuestas[27][72][valor]">
+                                                <label class="form-check-label label-span" for="p27r72">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Back pain
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="73" id="p27r73"
+                                                    name="respuestas[27][73][valor]">
+                                                <label class="form-check-label label-span" for="p27r73">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Difficulty fully moving
+                                                            arms and legs
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="74" id="p27r74"
+                                                    name="respuestas[27][74][valor]">
+                                                <label class="form-check-label label-span" for="p27r74">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Pain or stiffness when
+                                                            you lean forward or behind the waist
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="75" id="p27r75"
+                                                    name="respuestas[27][75][valor]">
+                                                <label class="form-check-label label-span" for="p27r75">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Difficulty moving the
+                                                            head all the way up or down
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="76" id="p27r76"
+                                                    name="respuestas[27][76][valor]">
+                                                <label class="form-check-label label-span" for="p27r76">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Difficulty moving the
+                                                            head from side to side
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="77" id="p27r77"
+                                                    name="respuestas[27][77][valor]">
+                                                <label class="form-check-label label-span" for="p27r77">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Difficulty bending the
+                                                            knees
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="78" id="p27r78"
+                                                    name="respuestas[27][78][valor]">
+                                                <label class="form-check-label label-span" for="p27r78">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Difficulty squatting
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="79" id="p27r79"
+                                                    name="respuestas[27][79][valor]">
+                                                <label class="form-check-label label-span" for="p27r79">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Climb a flight of stairs
+                                                            or ladder carrying more than 25 pounds
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="80" id="p27r80"
+                                                    name="respuestas[27][80][valor]">
+                                                <label class="form-check-label label-span" for="p27r80">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Any other musculoskeletal
+                                                            problem
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline col-12 mb-2">
+                                                <input class="form-check-input" type="checkbox" value="81" id="p27r81"
+                                                    name="respuestas[27][81][valor]">
+                                                <label class="form-check-label label-span" for="p27r81">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Does not apply
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 mb-3 mt-4">
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-12">
+
+                                        <!--PREGUNTA NUMERO 11-->
+                                        <div class="col-12 mt-4 situaciones1" id="pregunta11">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Check the type of
+                                                            respirator you will use (you can check more than one
+                                                            category)
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="50"
+                                                        id="p11r50" name="respuestas[11][50][valor]">
+                                                    <label class="form-check-label label-span" for="p11r50">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">N, R or P disposable
+                                                                respirator (non-cartridge type filter facepiece only).
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="51"
+                                                        id="p11r51" name="respuestas[11][51][valor]">
+                                                    <label class="form-check-label label-span" for="p11r51">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Other type (eg, half
+                                                                or full facepiece type, self-contained air-purifying,
+                                                                self-contained breathing apparatus (SCBA), supplied
+                                                                air).
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="81"
+                                                        id="p11r81" name="respuestas[11][81][valor]">
+                                                    <label class="form-check-label label-span" for="p11r81">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Does not apply
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--PREGUNTA NUMERO 12-->
+                                        <div class="col-12 mt-4 situaciones1" id="pregunta12">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Will you be using any of
+                                                            the following items in your respirators?
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="52"
+                                                        id="p12r52" name="respuestas[12][52][valor]">
+                                                    <label class="form-check-label" for="p12r52">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">HEPA filters
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="53"
+                                                        id="p12r53" name="respuestas[12][53][valor]">
+                                                    <label class="form-check-label label-span" for="p12r53">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Baskets (for example,
+                                                                gas masks)
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="54"
+                                                        id="p12r54" name="respuestas[12][54][valor]">
+                                                    <label class="form-check-label" for="p12r54">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">cartridges
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="81"
+                                                        id="p12r81" name="respuestas[12][81][valor]">
+                                                    <label class="form-check-label label-span" for="p12r81">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Does not apply
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--PREGUNTA NUMERO 13-->
+                                        <div class="col-12 mt-4 situaciones1" id="pregunta13">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">How often am I expected
+                                                            to use respirators?
+                                                        </div>
+                                                        <div style="vertical-align: inherit;">(check all that apply)
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="55"
+                                                        id="p13r55" name="respuestas[13][55][valor]">
+                                                    <label class="form-check-label label-span" for="p13r55">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Escape only (no
+                                                                rescue)
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="56"
+                                                        id="p13r56" name="respuestas[13][56][valor]">
+                                                    <label class="form-check-label label-span" for="p13r56">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">emergency rescue only
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="57"
+                                                        id="p13r57" name="respuestas[13][57][valor]">
+                                                    <label class="form-check-label label-span" for="p13r57">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Less than five hours
+                                                                a week
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="58"
+                                                        id="p13r58" name="respuestas[13][58][valor]">
+                                                    <label class="form-check-label label-span" for="p13r58">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Less than two hours
+                                                                per day
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="59"
+                                                        id="p13r59" name="respuestas[13][59][valor]">
+                                                    <label class="form-check-label label-span" for="p13r59">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Two to four hours per
+                                                                day
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="60"
+                                                        id="p13r60" name="respuestas[13][60][valor]">
+                                                    <label class="form-check-label label-span" for="p13r60">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">More than four hours
+                                                                per day
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="81"
+                                                        id="p13r81" name="respuestas[13][81][valor]">
+                                                    <label class="form-check-label label-span" for="p13r81">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Does not apply
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--PREGUNTA NUMERO 14-->
+                                        <div class="col-12 mt-4 situaciones1" id="pregunta14">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">During the period you are
+                                                            wearing the respirator, is your work effort:
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12" id="esfuerzo_trabajo_contenedorIndependiente">
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input esfuerzo_trabajo" type="radio"
+                                                        name="respuestas[14][1][valor]" value="61" id="p14r61">
+                                                    <label class="form-check-label label-span" for="p14r61">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Light (less than 200
+                                                                kcal per hour)
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+
+                                                    <div class="esfuerzo_trabajo collapse" id="p14r61">
+                                                        <p class="mt-2" style="text-align: justify;"><b>
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">How long is
+                                                                        this period on average?
+                                                                    </div>
+                                                                </div>
+                                                            </b></p>
+
+                                                        <div class="input-group mt-2 mb-2">
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">Per turn:
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[39][0][comentario]" id="p39">
+
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">hours:</div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[40][0][comentario]" id="p40">
+
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">minutes:
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[41][0][comentario]" id="p41">
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <p class="lead mb-3" style="font-size: 15px; text-align: justify;">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">
+                                                        Example of light work is sitting while writing, typing,
+                                                        sketching, or performing light assembly work: OR standing
+                                                        while operating a drill press (1-3 lbs.), or driving
+                                                        machines.
+                                                    </div>
+                                                </div>
+                                                </p>
+
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input esfuerzo_trabajo" type="radio"
+                                                        name="respuestas[14][1][valor]" value="62" id="p14r62">
+                                                    <label class="form-check-label label-span" for="p14r62">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Moderate (200 to 350
+                                                                kcal per hour)
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <div class="esfuerzo_trabajo collapse" id="p14r62">
+                                                        <p class="mt-2" style="text-align: justify;"><b>
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">How long is
+                                                                        this period on average?
+                                                                    </div>
+                                                                </div>
+                                                            </b></p>
+                                                        <div class="input-group mt-2 mb-2">
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">Per turn:
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[39][00][comentario]" id="p39">
+
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">hours:</div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[40][00][comentario]" id="p40">
+
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">minutes:
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[41][00][comentario]" id="p41">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <p class="lead mb-3" style="font-size: 15px; text-align: justify;">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">
+                                                        at trunk level; </div>
+                                                    <div style="vertical-align: inherit;">walking on a level
+                                                        surface around 2 mph or down a 5 degree drop around 3 mph;
+                                                    </div>
+                                                    <div style="vertical-align: inherit;">or push a wheelbarrow
+                                                        with a heavy load (about 100 lbs.) on a level surface.
+                                                    </div>
+                                                </div>
+                                                </p>
+
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input esfuerzo_trabajo" type="radio"
+                                                        name="respuestas[14][1][valor]" value="63" id="p14r63">
+                                                    <label class="form-check-label label-span" for="p14r63">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Heavy (over 350 kcal
+                                                                per hour)
+                                                            </div>
+                                                        </div>
+                                                    </label>
+
+
+                                                    <div class="esfuerzo_trabajo collapse" id="p14r63">
+                                                        <p class="mt-2" style="text-align: justify;"><b>
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">How long is
+                                                                        this period on average?
+                                                                    </div>
+                                                                </div>
+                                                            </b></p>
+                                                        <div class="input-group mt-2 mb-2">
+
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">Per turn:
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[39][000][comentario]" id="p39">
+
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">hours:</div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[40][000][comentario]" id="p40">
+
+                                                            <span class="input-group-text input-span">
+                                                                <div style="vertical-align: inherit;">
+                                                                    <div style="vertical-align: inherit;">minutes:
+                                                                    </div>
+                                                                </div>
+                                                            </span>
+                                                            <input type="number" class="form-control input-form"
+                                                                name="respuestas[41][000][comentario]" id="p41">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <p class="lead mb-3" style="font-size: 15px; text-align: justify;">
+                                                <div style="vertical-align: inherit;">
+                                                    <div style="vertical-align: inherit;">
+                                                        Examples of heavy work are lifting a heavy load (about 50
+                                                        lbs.), from the floor to the waist or shoulder; </div>
+                                                    <div style="vertical-align: inherit;">work at a loading dock;
+                                                    </div>
+                                                    <div style="vertical-align: inherit;">shovel; </div>
+                                                    <div style="vertical-align: inherit;">standing, while bricking
+                                                        ; </div>
+                                                    <div style="vertical-align: inherit;">or break molds; </div>
+                                                    <div style="vertical-align: inherit;">walking on an eight
+                                                        degree incline around 2 mph; </div>
+                                                    <div style="vertical-align: inherit;">climb stairs with a heavy
+                                                        load (about 50 lbs.)
+                                                    </div>
+                                                </div>
+                                                </p>
+
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <input class="form-check-input esfuerzo_trabajo" type="radio"
+                                                        value="81" id="p14r81" name="respuestas[14][1][valor]">
+                                                    <label class="form-check-label label-span form-label" for="p14r81">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Does not apply
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!--PREGUNTA NUMERO 15-->
+                                        <div class="col-12 mt-4 situaciones1" id="pregunta15">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Will you be wearing
+                                                            protective clothing/equipment (other than a respirator)
+                                                            while wearing your respirator?
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-check form-check-inline col-12 mb-2">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input ropa" type="radio"
+                                                            name="respuestas[15][1][valor]" value="1" id="p15r1">
+                                                        <label class="form-check-label" for="p15r1">
+                                                            <div style="vertical-align: inherit;">
+                                                                <div style="vertical-align: inherit;">Yes
+                                                                </div>
+                                                            </div>
+                                                        </label>
+
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input ropa" type="radio"
+                                                            name="respuestas[15][1][valor]" value="2" id="p15r2">
+                                                        <label class="form-check-label" for="p15r2">
+                                                            <div style="vertical-align: inherit;">
+                                                                <div style="vertical-align: inherit;">No
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="collapse" id="p15r1">
+                                                        <textarea name="respuestas[15][1][comentario]"
+                                                            class="form-control input-form mt-2"
+                                                            placeholder="Describe this protective clothing and/or equipment:"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!---PREGUNTA NUMERO 16-->
+                                        <div class="col-12 mt-4 situaciones1" id="pregunta16">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Will you work under hot
+                                                            conditions (temperatures exceeding 771 F/ 410.55 C)?
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="respuestas[16][1][valor]" value="1" id="p16r1">
+                                                    <label class="form-check-label" for="p16r1">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Yes
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="respuestas[16][1][valor]" value="2" id="p16r2">
+                                                    <label class="form-check-label" for="p16r2">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">No
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--PREGUNTA NUMERO 17-->
+                                        <div class="col-12 mt-4 situaciones1" id="pregunta17">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Will you work under wet
+                                                            conditions?
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="respuestas[17][1][valor]" value="1" id="p17r1">
+                                                    <label class="form-check-label" for="p17r1">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Yes
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="respuestas[17][1][valor]" value="2" id="p17r2">
+                                                    <label class="form-check-label" for="p17r2">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">No
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--PREGUNTA NUMERO 21-->
+                                        <div class="col-12 mt-4 " id="pregunta18">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Describe any special
+                                                            responsibilities you have while wearing your respirator that
+                                                            could affect the safety and well-being of others (for
+                                                            example, rescue, security):
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="text" name="respuestas[21][0][comentario]"
+                                                    class="form-control input-form" placeholder="Description..."
+                                                    id="p21">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-12">
+
+                                        <!--PREGUNTA NUMERO 18-->
+                                        <div class="col-12 mt-4 " id="pregunta18">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Describe the work you
+                                                            will be doing while wearing the respirator:
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <input class="form-control input-form"
+                                                    name="respuestas[18][0][comentario]" type="text"
+                                                    placeholder="Description..." id="p18">
+                                            </div>
+                                        </div>
+
+                                        <!---PREGUNTA NUMERO 19-->
+                                        <div class="col-12 mt-4 " id="pregunta19">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Describe any special or
+                                                            dangerous conditions you may encounter while wearing your
+                                                            respirator (for example, confined spaces, life-threatening
+                                                            gases):
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12">
+                                                <input class="form-control input-form"
+                                                    name="respuestas[19][0][comentario]" type="text"
+                                                    placeholder="Description..." id="p19">
+                                            </div>
+                                        </div>
+
+                                        <!--PREGUNTA NUMERO 20 -->
+                                        <div class="col-12 mt-4">
+                                            <div class="col-12">
+                                                <label class="form-label fw-bold label-span titulo">
+                                                    <div style="vertical-align: inherit;">
+                                                        <div style="vertical-align: inherit;">Provide the following
+                                                            information, if known, for each toxic substance to which you
+                                                            will be exposed while wearing the respirator:
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <!---PREGUNTA NUMERO 29-->
+                                            <hr>
+                                            <div class="col-12">
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Name of the first
+                                                                toxic substance:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[29][0][comentario]"
+                                                        class="form-control input-form" id="p29"
+                                                        placeholder="Substance name">
+                                                </div>
+
+                                                <!---PREGUNTA NUMERO 32-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">1. Estimated maximum
+                                                                exposure level per shift:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[32][0][comentario]"
+                                                        class="form-control input-form" id="p32"
+                                                        placeholder="exposure level">
+
+                                                </div>
+
+                                                <!--PREGUNTA NUMEOR 33-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">1.Exposure duration
+                                                                per shift:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[33][0][comentario]"
+                                                        class="form-control input-form" id="p33"
+                                                        placeholder="Exposure duration">
+
+                                                </div>
+                                                <br>
+                                                <hr>
+
+                                                <!--PREGUNTA NUMEOR 30-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Name of the second
+                                                                toxic substance:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[30][0][comentario]"
+                                                        class="form-control input-form" id="p30"
+                                                        placeholder="substance name">
+                                                </div>
+
+                                                <!--PREGUNTA NUMERO 34-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">2. Estimated maximum
+                                                                exposure level per shift:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[34][0][comentario]"
+                                                        class="form-control input-form" id="p34"
+                                                        placeholder="exposure level">
+                                                </div>
+
+                                                <!--PREGUNTA NUMERO 35-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">2.Exposure duration
+                                                                per shift:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[35][0][comentario]"
+                                                        class="form-control input-form" id="p35"
+                                                        placeholder="Exposure duration">
+                                                </div>
+                                                <br>
+                                                <hr>
+
+                                                <!--PREGUNTA NUMERO 31-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">Name of the third
+                                                                toxic substance:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[31][0][comentario]"
+                                                        class="form-control input-form" id="p31"
+                                                        placeholder="Substance name">
+                                                </div>
+
+                                                <!--PREGUNTA NUMERO 36-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">3. Estimated maximum
+                                                                exposure level per shift:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[36][0][comentario]"
+                                                        class="form-control input-form" id="p36"
+                                                        placeholder="exposure level">
+                                                </div>
+
+                                                <!--PREGUNTA NUMERO 37-->
+                                                <div class="col-12 mt-3">
+                                                    <label class="form-label fw-bold label-span">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">3.Exposure duration
+                                                                per shift:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[37][0][comentario]"
+                                                        class="form-control input-form" id="p37"
+                                                        placeholder="Exposure duration">
+                                                </div>
+                                                <br>
+                                                <hr>
+                                                <!--PREGUNTA NUMERO 38 -->
+                                                <div class="col-12 mt-3">
+                                                    <label class="label-span fw-bold form-label">
+                                                        <div style="vertical-align: inherit;">
+                                                            <div style="vertical-align: inherit;">The name of any other
+                                                                substances to which you will be exposed while wearing
+                                                                the respirator:
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="text" name="respuestas[38][0][comentario]"
+                                                        class="form-control input-form" id="p38"
+                                                        placeholder="Substance names">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!--PRIMERA SITUACION-->
+            <!-- <div class="col-12 mt-4 situacion1">
+
+            <p class="mb-3" style="text-align: justify;">En caso de que aplique la siguiente situación, conteste las
+                preguntas marcando <b> "Si" o
+                    "No" </b> según sea el caso, sí
+                no aplica favor de seleccionar <b> " No aplica"</b></b></p>
+
+            <div class="form-check form-check-inline col-12 mb-2">
+                <input class="form-check-input" type="checkbox" name="respuestas[42][81][valor]" value="81"
+                    id="no_aplica1">
+                <label class="form-check-label " for="no_aplica1"><b>No aplica</b></label>
+
+                <div class="collapse show" id="pregunta42">
+
+                    
+
+
+
+                </div>
+            </div>
+
+
+
+
+        </div> -->
+
+
+
+            <script>
+
+
+
+
+                //FUNCIONES DE LOS BOTONES DE EL ESFUERZO DE TRABAJO
+                $(document).on('change, keyup, click', 'input:radio[class="form-check-input esfuerzo_trabajo"]', function () {
+
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+                    $('.esfuerzo_trabajo').collapse('hide')
+                    let contenedorIndependiente_global = $('#esfuerzo_trabajo_contenedorIndependiente')
+                    let input_grup = contenedorIndependiente_global.find("div[class='input-group mt-2 mb-2']")
+                    let inputs = input_grup.find("input[type='number']")
+
+                    if ($(this).is(':checked')) {
+                        let children = $(parent).children("div[class='esfuerzo_trabajo collapse']")
+                        inputs.val('')
+                        children.collapse('show')
+
+                    } else {
+
+                        let children = $(parent).children("div[class='esfuerzo_trabajo collapse show']")
+                        children.collapse('hide')
+
+                    }
+                })
+
+
+                //FUNCION PARA TODOS LOS CHECKBOX QUE CONTENGAN UNA TEXTAREA
+                $(document).on('change, keyup, click', 'input[type="checkbox"]', function () {
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+
+                    if ($(this).is(':checked')) {
+                        let children = $(parent).children("div[class='collapse']")
+                        let input = children.find('textarea');
+                        input.prop('required', true);
+                        // iput.prop('disabled', false);
+                        children.collapse('show')
+
+                    } else {
+                        let children = $(parent).children("div[class='collapse show']")
+                        let input = children.find('textarea');
+                        input.prop('required', false);
+                        input.val('');
+                        // iput.prop('disabled', true);
+                        children.collapse('hide')
+                    }
+                })
+
+
+
+                //FUNCIONES PARA LOS DOS RADIO QUE DESPLIEGA UNA PREGUNTA CON RADIOS
+                $(document).on('change, keyup, click', 'input:radio[id="p6r1"]', function () {
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+                    if ($(this).is(':checked')) {
+                        let children = $(parent).children("div[class='collapse']")
+                        children.collapse('show')
+                    }
+                })
+                $(document).on('change, keyup, click', 'input:radio[id="p6r2"]', function () {
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+                    if ($(this).is(':checked')) {
+                        let children = $(parent).children("div[class='collapse show']")
+                        children.collapse('hide')
+                        $('input[class="form-check-input mareos"]').prop('checked', false);
+                    }
+                })
+
+
+
+                //FUNCION PARA LOS RADIOS QUE DESPLIENGAN UN TEXTAREA
+                $(document).on('change, keyup, click', 'input:radio[id="p7r1"]', function () {
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+                    if ($(this).is(':checked')) {
+                        let children = $(parent).children("div[class='collapse']")
+                        let input = children.find('textarea');
+                        //input.prop('required', true);
+                        children.collapse('show')
+                    }
+
+                })
+                $(document).on('change, keyup, click', 'input:radio[id="p7r2"]', function () {
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+                    if ($(this).is(':checked')) {
+                        let children = $(parent).children("div[class='collapse show']")
+                        let input = children.find('textarea');
+                        input.prop('required', false);
+                        input.val('')
+                        children.collapse('hide')
+                    }
+                })
+
+
+
+                //FUNCION PARA EL RADIO DE ROPA
+                $(document).on('change, keyup, click', 'input:radio[class="form-check-input ropa"]', function () {
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+                    if ($(this).val() == 1) {
+                        let children = $(parent).children("div[class='collapse']")
+                        let input = children.find('textarea');
+                        //input.prop('required', true);
+                        children.collapse('show')
+                    }
+                    if ($(this).val() == 2) {
+                        let children = $(parent).children("div[class='collapse show']")
+                        let input = children.find('textarea');
+                        input.prop('required', false);
+                        input.val('');
+                        children.collapse('hide')
+                    }
+                })
+
+
+
+                //FUNCION PARA EL RADIO CON NAME 7
+                $(document).on('change, keyup, click', 'input:radio[class="form-check-input respirador"]', function () {
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+
+
+                    if ($(this).val() == 1) {
+                        let children = $(parent).children("div[class='collapse']")
+                        let input = children.find('textarea');
+                        input.prop('required', true);
+                        children.collapse('show')
+                    }
+
+                    if ($(this).val() == 2) {
+                        let children = $(parent).children("div[class='collapse show']")
+                        let input = children.find('textarea');
+                        input.val('');
+                        input.prop('required', false);
+                        children.collapse('hide')
+                    }
+
+                })
+
+
+                $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica2"]', function () {
+
+                    let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+                    let btn_no_aplica2 = $(this).is(':checked')
+
+                    if (btn_no_aplica2) {
+
+                        let children = $(parent).children("div[id='pregunta43']")
+                        let radios = children.find('input[type="radio"]')
+                        let checkboxes = children.find('input[type="checkbox"]')
+                        let textos = children.find('input[type="text"]')
+                        let numeros = children.find('input[type="number"]')
+                        //let textareas = children.find('textarea')
+
+                        radios.prop('checked', false)
+                        checkboxes.prop('checked', false)
+                        numeros.val('')
+                        textos.val('')
+                        // textareas.val('')
+
+                        children.collapse('hide')
+
+
+                        // let children = $(parent).children("div[id='pregunta42']")
+                        // let radios = children.find('input[type="radio"]')
+                        // let checkboxes = children.find('input[type="checkbox"]')
+                        // let textos = children.find('input[type="text"]')
+                        // let numeros = children.find('input[type="number"]')
+                        // //let textareas = children.find('textarea')
+
+                        // numeros.val('')
+                        // textos.val('')
+                        // // textareas.val('')
+                        // checkboxes.prop('checked', false)
+                        // radios.prop('checked', false)
+
+                        // children.collapse('hide')
+                    } else {
+                        let children = $(parent).children("div[class='collapse']")
+                        children.collapse('show')
+
+
+                    }
+                })
+                // $(document).on('change, keyup, click', 'input:checkbox[id="no_aplica1"]', function () {
+
+                //     let parent = $(this).closest('div[class="form-check form-check-inline col-12 mb-2"]')
+                //     let btn_no_aplica1 = $(this).is(':checked')
+
+                //     if (btn_no_aplica1) {
+
+                //     } else {
+                //         let children = $(parent).children("div[class='collapse']")
+                //         children.collapse('show')
+                //         //textareas.prop('required', true)
+                //     }
+                // })
+
+
+                //FUNCION PARA DELIMITAR LOS NUMEROS INGRESADOS
+                $('input[type="number"]').keypress(function (event) {
+                    if (event.which < 48 || event.which > 57 || this.value.length === 3) {
+                        return false;
+                    }
+                });
+
+
+            </script>
+
+
+        </form>
+    </div>
+
+    <script>
+        formEspiroHTML = $('#formAreadeEspirometria').html();
+    </script>
+</div>
