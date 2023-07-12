@@ -4,38 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traduccion</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-    <p id="saludo">Hola, mundo!</p>
-    <select onchange="traducir(this.value)">
-        <option value="español">Español</option>
-        <option value="inglés">Inglés</option>
-        <option value="francés">Francés</option>
-      </select>
-
-      
+    <p id="saludo"></p>
       <script>
-        var traducciones = {
-    saludo: {
-    español: "Hola, mundo!",
-    inglés: "Hello, world!",
-    francés: "Bonjour, le monde!"
-  },
-  // Agrega más elementos y traducciones aquí
-};
+            var traducciones;
 
-        function traducir(idioma) {
-  var elementos = document.getElementsByTagName("*");
-  
-  for (var i = 0; i < elementos.length; i++) {
-    var elemento = elementos[i];
-    var id = elemento.id;
-    
-    if (id && traducciones[id] && traducciones[id][idioma]) {
-      elemento.innerHTML = traducciones[id][idioma];
-    }
-  }
-}
+            //Hacemos la peticion y la guardamos en la variable traducciones
+                $.ajax({
+                  url: './archivos/sistema/json/idioma/en.json',
+                  type: 'POST',
+                  success: function(data) {
+                    traducciones = data;
+                    console.log(traducciones); 
+                  },
+                  error: function(error) {
+                    console.log(error);
+                  }
+                });
+
+             //Funcion para traducir un texto donde recibe el texto y el idioma
+            function traducir(texto, idioma){
+                switch(idioma){
+                    case 'es':
+                        traduccion = traducciones[texto];
+                        if (traduccion == null){
+                            return texto;
+                        } else {
+                            return traduccion;
+                        }
+                        
+                    break;
+
+                    default:
+                        return texto;
+                    break;
+                };
+            };
+
+            //  let traducir = (texto,idioma) => {
+            //   var elementos = document.getElementsByTagName("*");
+              
+            //   for (var i = 0; i < elementos.length; i++) {
+            //     var elemento = elementos[i];
+            //     var id = elemento.id;
+                
+            //     if (id && traducciones[id] && traducciones[id][idioma]) {
+            //       elemento.innerHTML = traducciones[id][idioma];
+            //     }
+            //   }
+            // }
+
+
+            //Ejemplo para traducir un texto
+            $('#saludo').html(traducir('Selecciona procedencia','es'));
 
       </script>
 </body>

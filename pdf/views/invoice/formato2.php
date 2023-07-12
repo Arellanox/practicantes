@@ -776,7 +776,7 @@
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> Equipo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> Enfriador </label>
                                                     </div>
                                                 </td>
                                                 <td class="">
@@ -833,40 +833,40 @@
                                             <tr class="">
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7"> Equipos:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                        <label class="h7"> Marca:</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"> BIMO </label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7"> Modelo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                        <label class="h7"> Factor de correción:</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold">-40 °C</label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7"> Localización:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                        <label class="h7"> MES:</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold">12</label>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr class="">
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7"> Marca:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                        <label class="h7"> ID </label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"> 12232</label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7">N° Serie:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                        <label class="h7">Fecha de verificación::</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold">22/12/2023</label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7">Intervalo Optimo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> -25 A -35°C </label>
+                                                        <label class="h7">AÑO:</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"> 2023 </label>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -877,7 +877,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> 
             </div>
             <!-- Fin de tabla de equipos y termoemtro -->
 
@@ -1049,6 +1049,7 @@
                 }
 
                 #supervisor input {
+                    text-align: center !important;
                     border-top: none !important;
                     border-left: none !important;
                     border-right: none !important;
@@ -1094,15 +1095,15 @@
                 <!-- Campos del supervisor -->
                 <div class="d-flex mb-3 " style="width: max-content !important;">
                     <label class="h7 w-50"> OBSERVACIONES:</label>
-                    <input class="h7 p-0 m-0" type="text" value="" style="  width: 750px !important;">
+                    <input class="h7 p-0 m-0" type="text" value="alskhdjksahdashkdhksladhkljashdjklsahdkjhsajkdhsakjdhksajhdkjsahdjksahjkdhsaa" style="  width: 750px !important;">
                 </div>
 
                 <div class="d-flex " style="width: max-content !important;">
                     <div>
                         <label class="h7 w-50"> SUPERVISO:</label>
-                        <input class="h7 p-0 m-0" type="text" value="" style="  width:200px  !important; margin-right:30px !important;">
-                        <input class="h7 p-0 m-0" type="text" value="" style="  width:170px  !important; margin-right:30px !important;">
-                        <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="JUAN DANIEL HERNANDEZ GARCIA" style="  width:200px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="SUPERVISOR" style="  width:170px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="23/09/2023" style="  width:150px  !important; margin-right:30px !important;">
                         <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important;">
                     </div>
                     <div class="d-flex" id="infoInput">
