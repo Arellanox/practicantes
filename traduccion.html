@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traduccion</title>
+</head>
+<body>
+    <p id="saludo">Hola, mundo!</p>
+    <select onchange="traducir(this.value)">
+        <option value="español">Español</option>
+        <option value="inglés">Inglés</option>
+        <option value="francés">Francés</option>
+      </select>
+
+      
+      <script>
+        var traducciones = {
+    saludo: {
+    español: "Hola, mundo!",
+    inglés: "Hello, world!",
+    francés: "Bonjour, le monde!"
+  },
+  // Agrega más elementos y traducciones aquí
+};
+
+        function traducir(idioma) {
+  var elementos = document.getElementsByTagName("*");
+  
+  for (var i = 0; i < elementos.length; i++) {
+    var elemento = elementos[i];
+    var id = elemento.id;
+    
+    if (id && traducciones[id] && traducciones[id][idioma]) {
+      elemento.innerHTML = traducciones[id][idioma];
+    }
+  }
+}
+
+      </script>
+</body>
+</html>
