@@ -12,20 +12,7 @@ switch ($menu) {
         <a href="#" class="navbar-brand" id="img"> <img src="https://bimo-lab.com/archivos/sistema/bimo_banner.png" id="logo_empresa_login" /> </a>
       </div>
     </nav>
-    <div class="px-3 py-2 border-bottom mb-3">
-      <div class="container d-flex flex-wrap">
-        <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-          <h2 class="text-center"><?php echo $menu; ?></h2> <!-- Dinamico -->
-        </div>
-        <div class="text-center" id="botones-menu-js">
-          <?php
-          if ($tip != 'pie') {
-            include "botones.php";
-          }
-          ?>
-        </div>
-      </div>
-    </div>
+
   <?php break;
   case 'Login': ?>
     <nav class="navbar border-3 border-bottom border-dark bg-navbar">
