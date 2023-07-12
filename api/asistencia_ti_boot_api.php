@@ -19,7 +19,7 @@ fclose($fh);
 $parametros = $master->setToNull(array(
     $msj,
     $nombre_usuario,
-    $numero_usuario
+    $numero_usuario,
 ));
 
 // echo json_encode(['result' => '99999']);
