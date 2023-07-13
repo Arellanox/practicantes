@@ -2,8 +2,8 @@
 include_once "../clases/master_class.php";
 
 
-class MiClase {
-    public function miMetodo() {
+class Whatsapp {
+    public function llamadaAlPersonal() {
       $params = array(
         'token' => 'edgo0h81kywa8qmg',
         'to' => '120363138555833074@g.us',
@@ -79,6 +79,9 @@ switch ($api) {
         break;
 }
 
+$whatsapp = new Whatsapp();
+if ($response !== null && $response !== "") {
+    $whatsapp->llamadaAlPersonal();
+}
+
 echo $master->returnApi (["TICKET" => $response]);
-$objeto = new MiClase();
-$objeto->miMetodo();
