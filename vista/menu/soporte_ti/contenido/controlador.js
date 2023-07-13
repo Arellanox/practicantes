@@ -10,11 +10,11 @@ async function contenidoSoporteTi() {
     $.post("contenido/vista_tabla_TI.html", function (html) {
       $("#body-js").html(html);
     }).done(function () {
-      tablaSoporteTi = { api: 1, id_area: 6, fecha_agenda: $('#fechaListadoAreaMaster').val() };
+    //   tablaSoporteTi = { api: 2,  fecha_agenda: $('#fechaListadoAreaMaster').val() };
       // DataTable
-    //   $.getScript('contenido/js/muestras-tabla.js')
+      $.getScript('contenido/js/muestra-tabla.js')
     })
   }
   
       // Botones
-      $.getScript('contenido/js/muestras-botones.js')
+    //   $.getScript('contenido/js/muestras-botones.js')

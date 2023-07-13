@@ -48,7 +48,8 @@ $correo = new Correo();
 
 $datos = json_decode(file_get_contents('php://input'), true);
 
-$api = $datos['api'];
+
+$api = isset($datos['api'])?$datos['api']:$_POST['api'];
 
 
 #insertar datos
