@@ -35,9 +35,8 @@ class MiClase {
 
     curl_close($curl);
 
-    return [2, "cURL Error #:" . $err];
-    
-      if ($err) {
+    if ($err) {
+        return [2, "cURL Error #:" . $err];
     } else {
       return [1, $response];
     }
