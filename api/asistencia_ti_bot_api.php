@@ -85,7 +85,7 @@ switch ($api) {
                 $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
             }
         }else{
-          $correo_cath = $objeto->miMetodo("Alguien intento hacer un ticket pero no lo logró.");
+          $correo_cath = $objeto->miMetodo("$nombre_usuario intento hacer un ticket pero no lo logró.");
 
           $razon_envio = "$nombre_usuario intento hacer un ticket pero no lo logró.";
           $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
