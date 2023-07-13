@@ -172,6 +172,9 @@ class Correo
                     $f = str_replace("_"," ",$paciente);
                     $mail->Body = $this->cuerpoCorreoFastCheckup($f);
                     break;
+                case "soporte_ti":
+                    $mail->Body = $this->cuerpoSoporte($token);
+                break;    
             }
 
             # send email
@@ -304,6 +307,24 @@ return $html;
                     </div>
                 </div>
             </body>
+        </html>';
+
+        return $html;
+    }
+    private function cuerpoSoporte($mensaje){
+        $html = '<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>¡Los mortales necesitan tu ayuda!</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; text-align: center; padding: 20px;">
+          <div style="background-color: #ffffff; max-width: 400px; margin: 0 auto; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #ff69b4;">¡Los mortales necesitan tu ayuda!</h2>
+            <p style="font-size: 16px; color: #555555;">'.$mensaje.'</p>
+          </div>
+        </body>
         </html>';
 
         return $html;

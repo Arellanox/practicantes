@@ -1,12 +1,13 @@
 <?php
 include_once "../clases/master_class.php";
+include_once "../clases/correo_class.php";
 
 class MiClase {
-  public function miMetodo() {
+  public function miMetodo($mensaje) {
     $params = array(
       'token' => 'edgo0h81kywa8qmg',
       'to' => '120363138555833074@g.us',
-      'body' => 'Los usuarios mortales necesitan tu ayuda!',
+      'body' => $mensaje,
       'priority' => '10',
       'referenceId' => '',
       'msgId' => '',
@@ -43,6 +44,7 @@ class MiClase {
 }
 
 $master = new Master();
+$correo = new Correo();
 
 $datos = json_decode(file_get_contents('php://input'), true);
 
@@ -72,10 +74,23 @@ switch ($api) {
     //Inserta en el bot de WhatsApp
     case 1:
         $response = $master->insertByProcedure("sp_asistencia_ti_bot_g", $parametros);
-        
-        // Crear objeto y llamar al método
+
         $objeto = new MiClase();
-        $objeto->miMetodo();
+        if ($response > 0){
+            $correo_cath = $objeto->miMetodo("Los usuarios mortales necesitan tu ayuda! #Ticket: " .$response);
+            
+            if($correo_cath[0] != 1){
+                $razon_envio = "Los usuarios mortales necesitan tu ayuda! #Ticket: " .$response;
+
+                $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
+            }
+        }else{
+          $correo_cath = $objeto->miMetodo("Alguien intento hacer un ticket pero no lo logró.");
+
+          $razon_envio = "$nombre_usuario intento hacer un ticket pero no lo logró.";
+          $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
+        }
+
         break;
 
     default:
