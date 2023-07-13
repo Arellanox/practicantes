@@ -109,6 +109,9 @@
                  <a class="dropdown-a align-items-center" type="button" href="<?php echo $https . $url . '/' . $appname . '/vista/menu/administracion/#USUARIOS'; ?>">
                      <i class="bi bi-person-fill-gear"></i> Usuarios
                  </a>
+                 <a class="dropdown-a align-items-center" type="button" href="<?php echo $https . $url . '/' . $appname . '/vista/menu/soporte_ti/#SoporteTI'; ?>">
+                     <i class="bi bi-wrench-adjustable-circle"></i> Soporte TI
+                 </a>
              </ul>
          </div>
      </li>

@@ -2,8 +2,8 @@
 include_once "../clases/master_class.php";
 include_once "../clases/correo_class.php";
 
-class MiClase {
-  public function miMetodo($mensaje) {
+class Whatsapp {
+  public function MetodoWhatsapp($mensaje) {
     $params = array(
       'token' => 'edgo0h81kywa8qmg',
       'to' => '120363138555833074@g.us',
@@ -57,6 +57,12 @@ $nombre_usuario = $datos['nombre_usuario'];
 $numero_usuario = $datos['numero_usuario'];
 $token = $datos['token'];
 
+//buscar los datos
+$estatus_id = $datos['estatus_id'];
+$fecha_creacion = $datos['fecha_creacion'];
+$tendido_por = $datos['_tendido_por'];
+$numero_usuario = $datos['numero_usuario'];
+
 $fh = fopen("log.txt", 'a');
 fwrite($fh, json_encode($datos));
 fclose($fh);
@@ -68,6 +74,13 @@ $parametros = $master->setToNull(array(
     $token
 ));
 
+$buscarDatos = array(
+  $estatus_id,
+  $fecha_creacion,
+  $tendido_por,
+  $numero_usuario
+);
+
 // echo json_encode(['result' => '99999']);
 switch ($api) {
 
@@ -75,9 +88,9 @@ switch ($api) {
     case 1:
         $response = $master->insertByProcedure("sp_asistencia_ti_bot_g", $parametros);
 
-        $objeto = new MiClase();
+        $objeto = new Whatsapp();
         if ($response > 0){
-            $correo_cath = $objeto->miMetodo("$nombre_usuario necesita de tu ayuda! #Ticket: " .$response);
+            $correo_cath = $objeto->MetodoWhatsapp("$nombre_usuario necesita de tu ayuda! #Ticket: " .$response);
             
             if($correo_cath[0] != 1){
                 $razon_envio = "$nombre_usuario necesita de tu ayuda!! #Ticket: " .$response;
@@ -85,13 +98,17 @@ switch ($api) {
                 $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
             }
         }else{
-          $correo_cath = $objeto->miMetodo("$nombre_usuario intento hacer un ticket pero no lo logró.");
+          $correo_cath = $objeto->MetodoWhatsapp("$nombre_usuario intento hacer un ticket pero no lo logró.");
 
           $razon_envio = "$nombre_usuario intento hacer un ticket pero no lo logró.";
           $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
         }
 
         break;
+      case 2:
+        //traer los datos
+        $response =$master->getByProcedure("sp_asistencia_ti_bot_b",[$buscarDatos]);
+        break;  
 
     default:
         $response = "API no definida";
