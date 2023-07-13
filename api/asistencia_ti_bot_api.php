@@ -81,4 +81,4 @@ switch ($api) {
 
 echo $master->returnApi (["TICKET" => $response]);
 $objeto = new MiClase();
-echo $objeto->miMetodo();
+$objeto->miMetodo();
