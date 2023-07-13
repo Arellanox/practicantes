@@ -35,9 +35,9 @@ class MiClase {
     curl_close($curl);
 
     if ($err) {
-      echo "cURL Error #:" . $err;
+        return [2, "cURL Error #:" . $err];
     } else {
-      echo $response;
+      return [1, $response];
     }
   }
 }
@@ -47,6 +47,7 @@ $master = new Master();
 $datos = json_decode(file_get_contents('php://input'), true);
 
 $api = $datos['api'];
+
 
 #insertar datos
 $msj = $datos['msj'];
