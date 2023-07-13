@@ -107,7 +107,7 @@ switch ($api) {
         break;
       case 2:
         //traer los datos
-        $response =$master->getByProcedure("sp_asistencia_ti_bot_b",[$buscarDatos]);
+        $response =$master->getByProcedure("sp_asistencia_ti_bot_b",[]);
         break;  
 
     default:
