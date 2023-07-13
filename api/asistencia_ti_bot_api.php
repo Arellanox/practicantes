@@ -77,10 +77,10 @@ switch ($api) {
 
         $objeto = new MiClase();
         if ($response > 0){
-            $correo_cath = $objeto->miMetodo("Los usuarios mortales necesitan tu ayuda! #Ticket: " .$response);
+            $correo_cath = $objeto->miMetodo("$nombre_usuario necesita de tu ayuda! #Ticket: " .$response);
             
             if($correo_cath[0] != 1){
-                $razon_envio = "Los usuarios mortales necesitan tu ayuda! #Ticket: " .$response;
+                $razon_envio = "$nombre_usuario necesita de tu ayuda!! #Ticket: " .$response;
 
                 $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
             }
