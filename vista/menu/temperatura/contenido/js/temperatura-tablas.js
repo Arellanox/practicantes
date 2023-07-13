@@ -239,7 +239,6 @@ function CrearTablaPuntos(id_grupo) {
                         var rect = dot.getBoundingClientRect();
                         var x = rect.left + rect.width / 2 - canvas.getBoundingClientRect().left;
                         var y = rect.top + rect.height / 2 - canvas.getBoundingClientRect().top;
-                        console.log(x, y);
                         dot.dataset.x = x; // Guardar la posición x en un atributo de datos
                         dot.dataset.y = y; // Guardar la posición y en un atributo de datos
                     }

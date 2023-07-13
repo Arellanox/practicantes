@@ -1,5 +1,6 @@
 <?php
 
+include 't_generarPDF.html';
 include 't_turnos.html';
 include 't_termometros.html';
 include "t_firma.html";
