@@ -926,7 +926,7 @@
 
                 .grafica-tabla {
                     height: 350px;
-                    width: 850px;
+                    /* width: 850px; */
                     position: absolute;
                     margin-left: 90px;
                     z-index: 0;

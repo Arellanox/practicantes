@@ -54,12 +54,16 @@ function tomarCapturaPantalla(data = {}) {
     element.style.transform = 'scale(' + zoom + ')';
     element.style.transformOrigin = 'top left';
 
-    html2canvas(element, {
+    var scale = 2; // Ajusta este valor según tus necesidades
+    var options = {
+        scale: scale * zoom, // Considerar el nivel de zoom actual
         useCORS: true,
         allowTaint: true,
         scrollX: 0,
         scrollY: 0,
-    }).then(function (canvas) {
+    };
+
+    html2canvas(element, options).then(function (canvas) {
         // Restaurar el tamaño original del elemento
         element.style.transform = '';
         element.style.transformOrigin = '';
