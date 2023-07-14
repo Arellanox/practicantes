@@ -1,8 +1,6 @@
-
 //Para iniciar el motivo consulta una vez iniciado...
 $(document).on('submit', '#formMotivoConsultaMedica', function (e) {
     e.preventDefault();
-
     alertMensajeConfirm({
         title: '¿Desea iniciar el motivo de consulta?',
         text: '¡No podrás actualizarlo!',

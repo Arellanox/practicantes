@@ -145,4 +145,4 @@ Signos Meníngeos: rigidez de la nuca, Kernig, Brudzinski."
 // // Exploracion clinica
 // $('#select-exploracion-clinica').on('change', function () {
 
-// })
+// }) 

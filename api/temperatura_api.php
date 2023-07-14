@@ -61,7 +61,8 @@ $factor_correcion = isset($_POST['factor_correcion']) ? $_POST['factor_correcion
 #checkFactorCorrecion para checar si necesita aplicar el factor de correccion que tiene el termometro
 $checkFactorCorrecion = $_POST['checkFactorCorrecion'];
 
-
+// Obtener la imagen en base64 desde la solicitud, estas son las 3 capas de imagenes de la tabla de temperatura, Tabla, Dots, Canva
+$imageBase64 = $_POST['image'];
 
 $parametros =  array(
     $equipo,
@@ -211,6 +212,25 @@ switch ($api) {
         break;
     case 14:
         $response = $master->insertByProcedure('sp_temperaturas_equipos_termometros_g', $equipos_termometros);
+        break;
+    case 15:
+
+    if ($imageBase64 !== null){
+         // Eliminar el encabezado de base64 para obtener solo los datos de la imagen
+          $base64Data = str_replace('data:image/png;base64,', '', $imageBase64);
+
+          // Generar un nombre único para la imagen
+          $imageName = time() . '.png';
+
+          // Guardar la imagen en la carpeta deseada
+          $path = '../archivos/sistema/capas_temperaturas/' . $imageName;
+          file_put_contents($path, base64_decode($base64Data));
+
+          // Enviar una respuesta indicando que la imagen se ha guardado correctamente
+          $response = array();
+    } else {
+        $response = "No se inserto la imagen por que no llego";
+    }
         break;
     default:
         $response = "Api no definida.";

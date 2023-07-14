@@ -99,3 +99,38 @@
 
 <!-- pdfmake -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+
+
+<!-- SCREENSHOT HTMl -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+
+<!-- dom-to-image -->
+<script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/dom-to-image.js' ?>"></script>
+<script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/FileSaver.js' ?>"></script>
+
+
+
+<script>
+    $.post('../../archivos/sistema/json/idioma/en.json')
+    .done(function(response) {
+        console.log(response)
+    });
+
+    var traducciones = {};
+
+
+
+    let Traducir = (texto, idioma) => {
+        var elementos = document.getElementsByTagName("*");
+
+        for (var i = 0; i < elementos.length; i++) {
+            var elemento = elementos[i];
+            var id = elemento.id;
+
+            if (id && traducciones[id] && traducciones[id][idioma]) {
+                elemento.innerHTML = traducciones[id][idioma];
+            }
+        }
+    };
+</script>

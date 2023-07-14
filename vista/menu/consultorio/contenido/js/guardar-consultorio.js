@@ -4,8 +4,6 @@ var id
 var texto = ''
 var title = ''
 
-
-
 //Regresar a perfil de paciente
 $('#btn-regresar-vista').click(function () {
     alertMensajeConfirm({
@@ -20,40 +18,22 @@ $('#btn-regresar-vista').click(function () {
 //botones de pdf de vista previa
 //vista previa del pdf
 $('#btn-ver-reporte-consultorio2').click(function () {
-    alert(1);
     area_nombre = 'consultorio2'
-  
+
     api = encodeURIComponent(window.btoa(area_nombre));
     turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
     area = encodeURIComponent(window.btoa(19));
-  
-  
-    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-  })
 
-//vista previa de recetas
-$('#btn-ver-receta-consultorio2').click(function () {
-    area_nombre = 'receta'
-  
-    api = encodeURIComponent(window.btoa(area_nombre));
-    turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
-    area = encodeURIComponent(window.btoa(-2));
-  
-  
+
     window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-  })
-  
-  //Vista previa de solicitud de estudios
-  $('#btn-ver-solicitud-estudios-consultorio2').click(function () {
-    area_nombre = 'solicitud_estudios'
-  
-    api = encodeURIComponent(window.btoa(area_nombre));
-    turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
-    area = encodeURIComponent(window.btoa(-3));
-  
-  
-    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
-  })
+})
+
+//botones de pdf de vista previa
+//busca y muestra lso botones solo si tiene ya una receta y solicitud mientrtas que las url esten vacias no las mostrara
+// ajaxAwait({ api: 2, turno_id: pacienteActivo.array['ID_TURNO'] }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
+//     let row = data.response.data[0]
+
+// })
 
 
 //alerta en general, sirve para todos los botons y btn se llama al switch y guardar consultorio
@@ -271,6 +251,7 @@ tablaListaRecetas = $("#tablaListaRecetas").DataTable({
         },
         complete: function () {
             tablaListaRecetas.columns.adjust().draw()
+            obtenerBTNRecetas();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
@@ -315,6 +296,28 @@ tablaListaRecetas = $("#tablaListaRecetas").DataTable({
 })
 
 inputBusquedaTable('tablaListaRecetas', tablaListaRecetas, [], [], 'col-12')
+
+//Verifica si hay receta
+function obtenerBTNRecetas() {
+    let btn = $('#btn-ver-receta-consultorio2');
+    // Verificar si la tabla tiene contenido
+    if (tablaListaRecetas.rows().any()) {
+        area_nombre = 'receta'
+
+        api = encodeURIComponent(window.btoa(area_nombre));
+        turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+        area = encodeURIComponent(window.btoa(-2));
+
+        //lo muestra
+        btn.show()
+        btn.attr('target', '_blank')
+        btn.attr('href', `${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`)
+
+    } else {
+        //oculta el boton
+        btn.hide()
+    }
+}
 
 //Desactivar datos en la tabla de recetas
 function desactivarTablaReceta() {
@@ -369,6 +372,7 @@ TablaListaEstudios = $("#TablaListaEstudios").DataTable({
         },
         complete: function () {
             TablaListaEstudios.columns.adjust().draw()
+            obtenerBTNEstudios()
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
@@ -397,6 +401,28 @@ TablaListaEstudios = $("#TablaListaEstudios").DataTable({
     ]
 })
 inputBusquedaTable('TablaListaEstudios', TablaListaEstudios, [], [], 'col-18')
+
+function obtenerBTNEstudios() {
+    let btn = $('#btn-ver-solicitud-estudios-consultorio2');
+    // Verificar si la tabla tiene contenido
+    if (TablaListaEstudios.rows().any()) {
+        area_nombre = 'solicitud_estudios'
+
+        api = encodeURIComponent(window.btoa(area_nombre));
+        turno = encodeURIComponent(window.btoa(pacienteActivo.array['ID_TURNO']));
+        area = encodeURIComponent(window.btoa(-3));
+
+        //lo muestra
+        btn.show()
+        btn.attr('target', '_blank')
+        btn.attr('href', `${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`)
+
+    } else {
+        //oculta el boton
+        btn.hide()
+    }
+
+}
 
 //Desactivar registro de solicitud de estudios
 function desactivarTablaEstudio() {

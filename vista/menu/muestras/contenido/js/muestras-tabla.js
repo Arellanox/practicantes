@@ -112,3 +112,4 @@ function obtenerListaEstudiosContenedores(idturno = null) {
 
 //Panel turnos, mandar id fisica al  principio
 obtenerPanelInformacion(7, null, "turnos_panel", '#turnos_panel')
+ 
