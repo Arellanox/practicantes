@@ -62,7 +62,8 @@ $factor_correcion = isset($_POST['factor_correcion']) ? $_POST['factor_correcion
 $checkFactorCorrecion = $_POST['checkFactorCorrecion'];
 
 // Obtener la imagen en base64 desde la solicitud, estas son las 3 capas de imagenes de la tabla de temperatura, Tabla, Dots, Canva
-$imageBase64 = $_POST['image'];
+$UrlImg = $_POST['UrlImg'];
+$NameImg = $_POST['NameImg'];
 
 $parametros =  array(
     $equipo,
@@ -118,6 +119,12 @@ $equipos_termometros = array(
     $id_temperaturas_equipos,
     $factor_correcion
 );
+
+$DatosImg = array(
+    $UrlImg,
+    $NameImg
+);
+
 
 switch ($api) {
 
@@ -214,23 +221,23 @@ switch ($api) {
         $response = $master->insertByProcedure('sp_temperaturas_equipos_termometros_g', $equipos_termometros);
         break;
     case 15:
+        if ($UrlImg !== null) {
 
-    if ($imageBase64 !== null){
-         // Eliminar el encabezado de base64 para obtener solo los datos de la imagen
-          $base64Data = str_replace('data:image/png;base64,', '', $imageBase64);
+            // Eliminar el encabezado de base64 para obtener solo los datos de la imagen
+            $base64Data = str_replace('data:image/png;base64,', '', $UrlImg,);
 
-          // Generar un nombre único para la imagen
-          $imageName = time() . '.png';
+            // Generar un nombre único para la imagen
+            $imageName = $NameImg . '.png';
 
-          // Guardar la imagen en la carpeta deseada
-          $path = '../archivos/sistema/capas_temperaturas/' . $imageName;
-          file_put_contents($path, base64_decode($base64Data));
+            // Guardar la imagen en la carpeta deseada
+            $path = '../archivos/sistema/capas_temperaturas/' . $imageName;
+            file_put_contents($path, base64_decode($base64Data));
 
-          // Enviar una respuesta indicando que la imagen se ha guardado correctamente
-          $response = array();
-    } else {
-        $response = "No se inserto la imagen por que no llego";
-    }
+            // Enviar una respuesta indicando que la imagen se ha guardado correctamente
+            $response = array();
+        } else {
+            $response = "No se inserto la imagen por que no llego";
+        }
         break;
     default:
         $response = "Api no definida.";

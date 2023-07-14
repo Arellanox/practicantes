@@ -127,7 +127,7 @@
                     </div>
                 </div> -->
 
-                <div class="table--container" id="grafica">
+                <div class="table--container" style="width: fit-content;" id="grafica">
 
                 </div>
             </div>
