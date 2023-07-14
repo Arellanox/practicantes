@@ -677,6 +677,19 @@
         </head>
         <?php
 
+        function convertirObjetoAArray($objeto)
+        {
+            if (is_object($objeto)) {
+                $objeto = (array)$objeto;
+            }
+            if (is_array($objeto)) {
+                return array_map('convertirObjetoAArray', $objeto);
+            }
+            return $objeto;
+        }
+
+        $array = convertirObjetoAArray($resultados);
+
         // para el path del logo 
         $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
         $encode = base64_encode($ruta);
@@ -697,6 +710,10 @@
 
         $captura_dot = file_get_contents('../pdf/public/assets/temperaturas/544/dot.png'); //DOT    _URL
         $encode_dot = base64_encode($captura_dot);
+
+        $Tabla_puntos = file_get_contents($array['EQUIPO']['URL_TABLA']);
+        $encode_tabla = base64_encode($Tabla_puntos);
+
         ?>
 
         <div id="body">
@@ -877,7 +894,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table> 
+                </table>
             </div>
             <!-- Fin de tabla de equipos y termoemtro -->
 
@@ -887,9 +904,9 @@
             <div style="width:100%;  text-align: center;">
 
                 <?php
-                echo "<img src='data:image/png;base64, " . $encode_canva . "' class='grafica-canva'>";
-                echo "<img src='data:image/png;base64, " . $encode_dot . "' class='grafica-dot'>";
-                echo "<img src='data:image/png;base64, " . $encode_tabla . "' class='grafica-tabla'>";
+                echo "<img src='data:image/png;base64, " .  $encode_tabla . "' class='grafica-tabla'>";
+                // echo "<img src='data:image/png;base64, " . $encode_dot . "' class='grafica-dot'>";
+                // echo "<img src='data:image/png;base64, " . $encode_tabla . "' class='grafica-tabla'>";
                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
                 ?>
 
@@ -913,8 +930,6 @@
                     position: absolute;
                     margin-left: 90px;
                     z-index: 0;
-                    border-right: 2px solid black;
-                    border-bottom: 1px dashed black;
                 }
 
                 .grafica-dot {

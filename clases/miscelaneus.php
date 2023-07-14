@@ -1416,6 +1416,7 @@ class Miscelaneus
             $valor = $e['valor'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
+            $url_tabla = $e['RUTA_TABLA'];
             if (!isset($result[$dia])) {
                 $result[$dia] = array();
             }
@@ -1444,6 +1445,8 @@ class Miscelaneus
         $response = [];
         $response['EQUIPO']['INTERVALO_MIN'] = $intervalo_min;
         $response['EQUIPO']['INTERVALO_MAX'] = $intervalo_max;
+        $response['EQUIPO']['URL_TABLA'] = $url_tabla;
+
 
         $response['DIAS'] = $result;
 

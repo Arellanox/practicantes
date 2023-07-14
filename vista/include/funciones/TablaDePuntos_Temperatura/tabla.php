@@ -416,7 +416,7 @@
     }
 
     .border-bottomm {
-        border-bottom: 3px solid !important;
+        /* border-bottom: 3px solid !important; */
     }
 
 

@@ -69,7 +69,8 @@ function tomarCapturaPantalla(data = {}) {
         DatosAjax = {
             api: 15,
             UrlImg: elementImg,
-            NameImg: elementName
+            NameImg: elementName,
+            folio: FolioMesEquipo
         }
 
         ajaxAwait(DatosAjax, 'temperatura_api', { callbackAfter: true }, false, (data) => {

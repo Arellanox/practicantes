@@ -120,11 +120,6 @@ $equipos_termometros = array(
     $factor_correcion
 );
 
-$DatosImg = array(
-    $UrlImg,
-    $NameImg
-);
-
 
 switch ($api) {
 
@@ -233,8 +228,16 @@ switch ($api) {
             $path = '../archivos/sistema/capas_temperaturas/' . $imageName;
             file_put_contents($path, base64_decode($base64Data));
 
+            $path = 'http://localhost/practicantes/archivos/sistema/capas_temperaturas/' . $imageName;
+
+            $SubirFormato = array(
+                $folio,
+                $usuario,
+                $path
+            );
+
             // Enviar una respuesta indicando que la imagen se ha guardado correctamente
-            $response = array();
+            $response = $master->insertByProcedure('sp_temperatura_formato_g', $SubirFormato);
         } else {
             $response = "No se inserto la imagen por que no llego";
         }
