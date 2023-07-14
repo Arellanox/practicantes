@@ -76,6 +76,21 @@ $menu = $_POST['menu']; ?>
   </button>
 <?php endif; ?>
 
+<?php if ($menu == "Pre-registration") : ?>
+  <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#ModalRegistrarPaciente">
+    <i class="bi bi-person-plus-fill"></i> Register my information
+  </button>
+
+  <!-- Menú desplegable de cambio de idioma -->
+  <div class="language-dropdown">
+    <select onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+<?php endif; ?>
+
 
 <?php if (
   $menu == "Estudios - Laboratorio" ||
