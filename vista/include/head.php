@@ -112,25 +112,40 @@
 
 
 <script>
-    $.post('../../archivos/sistema/json/idioma/en.json')
-    .done(function(response) {
-        console.log(response)
+    var traducciones;
+
+    //Hacemos la peticion y la guardamos en la variable traducciones
+    $.ajax({
+        url: '../../archivos/sistema/json/idioma/en.json',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            traducciones = data;
+            console.log(traducciones);
+        },
+        error: function(error) {
+            console.log(error);
+        }
     });
 
-    var traducciones = {};
+    //Funcion para traducir un texto donde recibe el texto y el idioma
+    function traducir(texto, idioma) {
+        switch (idioma) {
+            case '-en':
+                console.log(texto);
+                traduccion = traducciones[texto][idioma];
+                console.log(traduccion);
+                if (traduccion == null) {
+                    return texto;
+                } else {
+                    return traduccion;
+                }
 
+                break;
 
-
-    let Traducir = (texto, idioma) => {
-        var elementos = document.getElementsByTagName("*");
-
-        for (var i = 0; i < elementos.length; i++) {
-            var elemento = elementos[i];
-            var id = elemento.id;
-
-            if (id && traducciones[id] && traducciones[id][idioma]) {
-                elemento.innerHTML = traducciones[id][idioma];
-            }
-        }
+            default:
+                return texto;
+                break;
+        };
     };
 </script>

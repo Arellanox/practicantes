@@ -25,14 +25,14 @@ $("#formRegistrarPaciente").submit(function (event) {
   //   $i++;
   // });
   Swal.fire({
-    title: '¿¡Está seguro de tener todos los datos correctamente!?',
-    text: "¡Asegurate de tener la procedencia correcta! : )",
+    title: `${traducir('¿Está seguro que todos sus datos son correctos?', language)}`,
+    text: `${traducir('¡Asegurate de tener la procedencia correcta!', language)} : )`,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, regístrame',
-    cancelButtonText: "Cancelar"
+    confirmButtonText: `${traducir('Sí, regístrame', language)}`,
+    cancelButtonText: `${traducir('Cancelar', language)}`,
   }).then((result) => {
     if (result.isConfirmed) {
       edited = true;
@@ -46,7 +46,7 @@ $("#formRegistrarPaciente").submit(function (event) {
         contentType: false,
         beforeSend: function () {
           $("#btn-formregistrar-informacion").prop('disabled', true);
-          alertMensaje('info', '¡Se están cargando sus datos!', 'El sistema está guardando su agenda. Se enviará un correo de confirmación con su prefolio.')
+          alertMensaje('info', `${traducir('¡Se están cargando sus datos!', language)}`, `${traducir('El sistema está guardando su agenda. Se enviará un correo de confirmación con su prefolio.', language)}`);
         },
         dataType: 'json',
         success: function (data) {
@@ -92,8 +92,8 @@ $("#formRegistrarPaciente").submit(function (event) {
                         //   timer: 2000
                         // });
                         //MOSTRAR PREFOLIO EN HTML PARA RESALTARLO EN ROJOS
-                        alertMensaje('success', '¡Registro completado!', 'Su registro ha sido agendado, si correo está correcto, le llegará un mensaje de confirmación con su prefolio (' + data.response.data + ')')
-                        $('#log').html('<div class="alert alert-success" role="alert">Su registro ha sido agendado, si correo está correcto, le llegará un mensaje de confirmación junto a su prefolio(<strong class="bg-danger">(' + data.response.data + ')</strong>)</div>')
+                        alertMensaje('success', `${traducir('¡Registro completado!', language)}`, `${traducir('Su registro ha sido agendado, si su correo es correcto, le llegará un mensaje de confirmación con su prefolio', language)} (${data.response.data})`)
+                        $('#log').html(`<div class="alert alert-success" role="alert">${traducir('Su registro ha sido agendado, si su correo es correcto, le llegará un mensaje de confirmación con su prefolio', language)} (<strong class="bg-danger">(${data.response.data})</strong>)</div>`)
                         // Autocompletar el campo de prefolio y CURP en consulta de resultado
                         // document.getElementById("formAntecedentes").reset();
                         // if (session.user != null) {
@@ -102,7 +102,7 @@ $("#formRegistrarPaciente").submit(function (event) {
                         // }
                         tablaRecepcionPacientes.ajax.reload();
                       } else {
-                        alertMensaje('error', 'Agenda no registrada', 'Hubo un error, comuniquese con el personal.');
+                        alertMensaje('error', `${traducir('Agenda no registrada', language)}`, `${traducir('Hubo un error, comuniquese con el personal.', language)}`);
                       }
                     }
                   },
@@ -112,7 +112,7 @@ $("#formRegistrarPaciente").submit(function (event) {
               default:
                 Toast.fire({
                   icon: 'success',
-                  title: 'Su información a sido registrada :)',
+                  title: `${traducir('Su información a sido registrada :)', language)}`,
                   timer: 2000
                 });
                 break;
@@ -142,13 +142,13 @@ $('#checkCurpPasaporte').change(function () {
     $('#curp-registro-infor').prop('disabled', true);
     $('#pasaporte-registro').prop('required', true);
     $("#pasaporte-registro").focus();
-    alertSelectTable('Use su pasaporte como identificación', 'info', 3000)
+    alertSelectTable(`${traducir('Use su pasaporte como identificación', language)}`, 'info', 3000)
   } else {
     $('#pasaporte-registro').removeAttr('required');
     $('#curp-registro-infor').prop('disabled', false);
     $('#curp-registro-infor').prop('required', true);
     $("#curp-registro-infor").focus();
-    alertSelectTable('Use su CURP como identificación', 'info', 3000)
+    alertSelectTable(`${traducir('Use su CURP como identificación', language)}`, 'info', 3000)
   }
   // $('#checkCurpPasaporte').val($(this).is(':checked'));
 });
@@ -164,9 +164,9 @@ $('#formRegistrarPaciente input[type=text]').on('change keyup', function () {
 
 
 if (registroAgendaRecepcion == 1) {
-  $('#contenido-procedencia').html(`<label for="selectIngresoProcedencia" class="form-label">Selecciona procedencia</label>
-  <select class="form-control input-form dataIdProcedencias" id="selectIngresoProcedencia">
-  </select>`)
+  $('#contenido-procedencia').html(`< label for= "selectIngresoProcedencia" class= "form-label" > Selecciona procedencia</label >
+              <select class="form-control input-form dataIdProcedencias" id="selectIngresoProcedencia">
+              </select>`)
 
   select2('#selectIngresoProcedencia', "ModalRegistrarPaciente", 'Cargando...')
   rellenarSelect('#selectIngresoProcedencia', 'clientes_api', 2, 'ID_CLIENTE', 'NOMBRE_COMERCIAL')

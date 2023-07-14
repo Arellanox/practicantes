@@ -1,48 +1,188 @@
 {
-    "Asegúrese que toda su información esté correcta.":"Make sure all your information is correct.",
-    "Al guardar su información personal, se crea automaticamente su agenda para el servicio":"When you save your personal information, your address book is automatically created for the service.",
-    "Utilice su CURP o PASAPORTE para futuros registros.":"Use your CURP or PASSPORT for future registrations.",
+    "Asegúrese que toda su información esté correcta." :
+    {   
+        "-es":"Asegúrese que toda su información esté correcta.",
+        "-en":"Make sure all your information is correct."
+    },
+    "Al guardar su información personal, se crea automaticamente su agenda para el servicio":
+    {
+        "-es":"Al guardar su información personal, se crea automaticamente su agenda para el servicio",
+        "-en":"When you save your personal information, your address book is automatically created for the service."
+    },
+    "Utilice su CURP o PASAPORTE para futuros registros.":
+    {
+        "-es":"Utilice su CURP o PASAPORTE para futuros registros.",
+        "-en":"Use your CURP or PASSPORT for future registrations."
+    },
 
 
-    "¡Asegurate de tener la procedencia correcta! :":"Make sure you have the right source! :",
-    "Sí, regístrame":"Yes, please register me",
-    "Cancelar":"Cancel",
-    "¡Se están cargando sus datos!":"Your data is being uploaded!",
-    "El sistema está guardando su agenda. Se enviará un correo de confirmación con su prefolio.":"The system is saving your agenda. A confirmation email will be sent with your portfolio.",
-    "¡Registro completado!":"Registration completed!",
-    "Su registro ha sido agendado, si correo está correcto, le llegará un mensaje de confirmación con su prefolio ":"Your registration has been scheduled, if your email is correct, you will receive a confirmation message with your portfolio ",
-    "Su registro ha sido agendado, si correo está correcto, le llegará un mensaje de confirmación junto a su prefolio": "Your registration has been scheduled, if your email is correct, you will receive a confirmation message with your portfolio.",
-    "Agenda no registrada":"Unregistered agenda",
-    "Hubo un error, comuniquese con el personal.":"There was an error, please contact the staff.",
-    "Su información a sido registrada :)":"Your information has been registered :)",
-    "Use su pasaporte como identificación":"Use your passport as identification",
-    "Use su CURP como identificación":"Use your CURP as identification",
-    "Selecciona procedencia":"Select source",
-    "Cargando...":"Loading...",
+    "¡Asegurate de tener la procedencia correcta!":
+    {
+        "-es":"¡Asegurate de tener la procedencia correcta!",
+        "-en":"Make sure you have the right source!"
+    },
+    "Sí, regístrame":
+    {
+        "-es":"Sí, regístrame",
+        "-en":"Yes, please register me"
+    },
+    "Cancelar":
+    {
+        "-es":"Cancelar",
+        "-en":"Cancel"
+    },
+    "¡Se están cargando sus datos!":
+    {
+        "-es":"¡Se están cargando sus datos!",
+        "-en":"Your data is being uploaded!"
+    },
+    "El sistema está guardando su agenda. Se enviará un correo de confirmación con su prefolio.":
+    {
+        "-es":"El sistema está guardando su agenda. Se enviará un correo de confirmación con su prefolio.",
+        "-en":"The system is saving your agenda. A confirmation email will be sent with your portfolio."
+    },
+    "¡Registro completado!":
+    {
+        "-es":"¡Registro completado!",
+        "-en":"Registration completed!"
+    },
+    "Su registro ha sido agendado, si su correo es correcto, le llegará un mensaje de confirmación con su prefolio":
+    {
+        "-es":"Su registro ha sido agendado, si su correo es correcto, le llegará un mensaje de confirmación con su prefolio",
+        "-en":"Your registration has been scheduled, if your email is correct, you will receive a confirmation message with your portfolio "
+    },
+    "Su registro ha sido agendado, si su correo es correcto, le llegará un mensaje de confirmación junto a su prefolio":
+    {
+        "-es":"Su registro ha sido agendado,si su correo es correcto, le llegará un mensaje de confirmación junto a su prefolio",
+        "-en":"Your registration has been scheduled, if your email is correct, you will receive a confirmation message with your portfolio."
+    },
+    "Agenda no registrada":
+    {
+        "-es":"Agenda no registrada",
+        "-en":"Unregistered agenda"
+    },
+    "Hubo un error, comuniquese con el personal.":
+    {
+        "-es":"Hubo un error, comuniquese con el personal.",
+        "-en":"There was an error, please contact the staff."
+    },
+    "Su información a sido registrada :)":
+    {
+        "-es":"Su información a sido registrada :)",
+        "-en":"Your information has been registered :)"
+    },
+    "Use su pasaporte como identificación":
+    {
+        "-es":"Use su pasaporte como identificación",
+        "-en":"Use your passport as identification"
+    },
+    "Use su CURP como identificación":
+    {
+        "-es":"Use su CURP como identificación",
+        "-en":"Use your CURP as identification"
+    },
+    "Selecciona procedencia":
+    {
+        "-es":"Selecciona procedencia",
+        "-en":"Select source"
+    },
+    "Cargando...":
+    {
+        "-es":"Cargando...",
+        "-en":"Loading..."
+    },
     
     
     
 
-    "¿Está seguro que todos sus datos son correctos?" : "Are you sure all your data is correct?"  ,
-    "¡No podrá volver a registrarse hasta terminar la solicitud de registro anterior!":"You will not be able to register again until you finish the previous registration request!",
+    "¿Está seguro que todos sus datos son correctos?":
+    {
+        "-es":"¿Está seguro que todos sus datos son correctos?",
+        "-en":"Are you sure all your data is correct?"  
+    },
+    "¡No podrá volver a registrarse hasta terminar la solicitud de registro anterior!":
+    {
+        "-es":"¡No podrá volver a registrarse hasta terminar la solicitud de registro anterior!",
+        "-en":"You will not be able to register again until you finish the previous registration request!"
+    },
 
-    "Su registro ha sido agendado, identifique con el siguiente prefolio":"Your registration has been scheduled, please identify with the following prefolio",
+    "Su registro ha sido agendado, identifique con el siguiente prefolio":
+    {
+        "-es":"Su registro ha sido agendado, identifique con el siguiente prefolio",
+        "-en":"Your registration has been scheduled, please identify with the following prefolio"
+    },
 
-    "Antecedentes personales patológicos":"Personal pathological history",
-    "Antecedentes no patológicos":"Non-pathological history",
-    "Antecedentes heredofamiliares":"Hereditary-family history",
-    "Antecedentes psicológicos/psiquiátricos":"Psychological/psychiatric history",
-    "Antecedentes nutricionales":"Nutritional background",
-    "Antecedentes medio laboral":"Labor background",
-    "Formulario incompleto, favor de rellenar todos":   "Incomplete form, please fill in all fields",
-    "Asegurese que que este usando correctamente su CURP o pasaporte":"Make sure you are using your CURP or passport correctly.",
-    "Identificador invalido":"Identificador invalido",
+    "Antecedentes personales patológicos":
+    {
+        "-es":"Antecedentes personales patológicos",
+        "-en":"Personal pathological history"
+    },
+    "Antecedentes no patológicos":
+    {
+        "-es":"Antecedentes no patológicos",
+        "-en":"Non-pathological history"
+    },
+    "Antecedentes heredofamiliares":
+    {
+        "-es":"Antecedentes heredofamiliares",
+        "-en":"Hereditary-family history"
+    },
+    "Antecedentes psicológicos/psiquiátricos":
+    {
+        "-es":"Antecedentes psicológicos/psiquiátricos",
+        "-en":"Psychological/psychiatric history"
+    },
+    "Antecedentes nutricionales":
+    {
+        "-es":"Antecedentes nutricionales",
+        "-en":"Nutritional background"
+    },
+    "Antecedentes medio laboral":{
+        "-es":"Antecedentes medio laboral",
+        "-en":"Labor background"
+    },
+    "Formulario incompleto, favor de rellenar todos":
+    {
+        "-es":"Formulario incompleto, favor de rellenar todos",
+        "-en":"Incomplete form, please fill in all fields"
+    },
+    "Asegurese que que este usando correctamente su CURP o pasaporte":
+    {
+        "-es":"Asegurese que que este usando correctamente su CURP o pasaporte",
+        "-en":"Make sure you are using your CURP or passport correctly."
+    },
+    "Identificador invalido":
+    {
+        "-es":"Identificador invalido",
+        "-en":"Identificador invalido"
+    },
 
-    "CURP valida...":"CURP valid...",
+    "CURP valida...":
+    {
+        "-es":"CURP valida...",
+        "-en":"CURP valid..."
+    },
 
-    "Pre-registro": "Pre-registration",
-    "Registrar mi información":"Register my information",
-    "Quiero generar mi cita": ""
-
+    "Pre-registro":
+    {
+        "-es":"Pre-registro",
+        "-en":"Pre-registration"
+    },
+    "Registrar mi información":
+    {
+        "-es":"Registrar mi información",
+        "-en":"Register my information"
+    },
+    "Quiero generar mi cita":
+    {
+        "-es":"Quiero generar mi cita",
+        "-en":"I want to generate my appointment"
+    },
+    
+    "CURP aceptada, concluya su registro y verifiqué los siguientes campos a continuación.":
+    {
+        "-es":"CURP aceptada, concluya su registro y verifiqué los siguientes campos a continuación",
+        "-en":"CURP accepted, complete your registration and verify the following fields below."
+    }
 
 }

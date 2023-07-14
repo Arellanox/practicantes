@@ -124,14 +124,14 @@ $("#formRegistrarAgenda").submit(function (event) {
 
   // console.log(formData);
   Swal.fire({
-    title: '¿Está seguro que todos sus datos son correctos?',
-    text: "¡No podrá volver a registrarse hasta terminar la solicitud de registro anterior!",
+    title: `${traducir('¿Está seguro que todos sus datos son correctos?', language)}`,
+    text: `${traducir("¡No podrá volver a registrarse hasta terminar la solicitud de registro anterior!", language)}`,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, regístrame',
-    cancelButtonText: "Cancelar"
+    confirmButtonText: `${traducir('Sí, regístrame', language)}`,
+    cancelButtonText: `${traducir("Cancelar", language)}`
   }).then((result) => {
     if (result.isConfirmed) {
       $("#btn-formregistrar-agenda").prop('disabled', true);
@@ -144,16 +144,16 @@ $("#formRegistrarAgenda").submit(function (event) {
         contentType: false,
         dataType: "json",
         beforeSend: function () {
-          alertMensaje('info', '¡Se están cargando sus datos!', 'El sistema está guardando su agenda. Se enviará un correo de confirmación con su prefolio.')
+          alertMensaje('info', `${traducir('¡Se están cargando sus datos!', language)}`, `${traducir('El sistema está guardando su agenda. Se enviará un correo de confirmación con su prefolio.', language)}`)
         },
         success: function (data) {
           if (mensajeAjax(data)) {
             if (data.response.code == 1) {
               //MOSTRAR PREFOLIO EN HTML PARA RESALTARLO EN ROJOS
               // alertMensaje('success', '¡Registro completado!', 'Su registro ha sido agendado, llegará un correo de confirmación con su prefolio (' + data.response.data + ')')
-              alertMensaje('success', '¡Registro completado!', 'Su registro ha sido agendado, identifique con el siguiente prefolio(' + data.response.data + ')')
+              alertMensaje('success', '¡Registro completado!', `${traducir('Su registro ha sido agendado, identifique con el siguiente prefolio', language)} ${data.response.data}`)
               // $('#log').html('<div class="alert alert-success" role="alert">Su registro ha sido agendado, llegará un correo de confirmación junto a su prefolio(<strong class="bg-danger">(' + data.response.data + ')</strong>)</div>')
-              $('#log').html('<div class="alert alert-success" role="alert">Su registro ha sido agendado, identifiquese con el siguiente prefolio(<strong class="bg-danger">(' + data.response.data + ') en bimo</strong>)</div>')
+              $('#log').html(`<div class="alert alert-success" role="alert"> ${traducir('Su registro ha sido agendado, identifiquese con el siguiente prefolio', language)} (<strong class="bg-danger">(${data.response.data})</strong>)</div>`)
 
 
 
@@ -176,7 +176,7 @@ $("#formRegistrarAgenda").submit(function (event) {
                 console.log(error);
               }
             } else {
-              alertMensaje('error', 'Agenda no registrada', 'Hubo un error, comuniquese con el personal.');
+              alertMensaje('error', `${traducir('Agenda no registrada', language)}`, `${traducir('Hubo un error, comuniquese con el personal.', language)}`);
             }
           }
         },
@@ -189,32 +189,32 @@ $("#formRegistrarAgenda").submit(function (event) {
 function evaluarAntecedentes(div1, div2, div3, div4, div5, div6) {
   // console.log(div1.length)
   if (div1.length != 51) {
-    alertMensaje('info', 'Antecedentes personales patológicos', 'Formulario incompleto, favor de rellenar todos')
+    alertMensaje('info', `${traducir('Antecedentes personales patológicos', language)}`, `${traducir('Formulario incompleto, favor de rellenar todos', language)}`)
     mostrarAntecedente('collapse-Patologicos-Target', 'formAntPersonalPato')
     return true;
   }
   if (div2.length != 20) {
-    alertMensaje('info', 'Antecedentes no patológicos', 'Formulario incompleto, favor de rellenar todos')
+    alertMensaje('info', `${traducir('Antecedentes no patológicos', language)}`, `${traducir('Formulario incompleto, favor de rellenar todos', language)}`)
     mostrarAntecedente('collapse-nopatologicos-Target', 'formAntNoPatologicos')
     return true;
   }
   if (div3.length != 20) {
-    alertMensaje('info', 'Antecedentes heredofamiliares', 'Formulario incompleto, favor de rellenar todos')
+    alertMensaje('info', `${traducir('Antecedentes heredofamiliares', language)}`, `${traducir('Formulario incompleto, favor de rellenar todos', language)}`)
     mostrarAntecedente('collapse-anteHeredo-Target', 'formAntHeredofamiliares')
     return true;
   }
   if (div4.length != 15) {
-    alertMensaje('info', 'Antecedentes psicológicos/psiquiátricos', 'Formulario incompleto, favor de rellenar todos')
+    alertMensaje('info', `${traducir('Antecedentes psicológicos/psiquiátricos', language)}`, `${traducir('Formulario incompleto, favor de rellenar todos', language)}`)
     mostrarAntecedente('collapse-antPsico-Target', 'formAntPsicologico')
     return true;
   }
   if (div5.length != 26) {
-    alertMensaje('info', 'Antecedentes nutricionales', 'Formulario incompleto, favor de rellenar todos')
+    alertMensaje('info', `${traducir('Antecedentes nutricionales', language)}`, `${traducir('Formulario incompleto, favor de rellenar todos', language)}`)
     mostrarAntecedente('collapse-antNutri-Target', 'formAntNutricionales')
     return true;
   }
   if (div6.length != 45) {
-    alertMensaje('info', 'Antecedentes medio laboral', 'Formulario incompleto, favor de rellenar todos')
+    alertMensaje('info', `${traducir('Antecedentes medio laboral', language)}`, `${traducir('Formulario incompleto, favor de rellenar todos', language)}`)
     mostrarAntecedente('collapse-MedLabo-Target', 'formMedioLaboral')
     return true;
   }
@@ -281,15 +281,13 @@ $(document).on('click', '#actualizarForm', async function () {
           if (data['response']['data'].length > 0) {
             Toast.fire({
               icon: 'success',
-              title: 'CURP valida...',
+              title: `${traducir('CURP valida...', language)}`,
               timer: 2000
             });
             $("#formDIV").fadeIn(400);
             $('#curp-paciente').prop('readonly', true);
             $('#eliminarForm').prop('disabled', false);
-            document.getElementById("mensaje").innerHTML = '<div class="alert alert-success" role="alert">' +
-              'CURP aceptada, concluya su registro y verifiqué los siguientes campos a continuación.' +
-              '</div>';
+            document.getElementById("mensaje").innerHTML = `<div class="alert alert-success" role="alert">${traducir('CURP aceptada, concluya su registro y verifiqué los siguientes campos a continuación.', language)}</div>`;
 
 
             $('#paciente-registro').html(data.response.data[0].NOMBRE_COMPLETO);
@@ -306,7 +304,7 @@ $(document).on('click', '#actualizarForm', async function () {
           } else {
             $('#actualizarForm').prop('disabled', false);
             $('#checkCurpPasaporte-agenda').prop('disabled', false);
-            alertMensaje('error', 'Identificador invalido', 'Asegurese que que este usando correctamente su CURP o pasaporte');
+            alertMensaje('error', `${traducir('Identificador invalido', language)}`, `${traducir('Asegurese que que este usando correctamente su CURP o pasaporte', language)}`);
           }
         }
       },
@@ -316,7 +314,7 @@ $(document).on('click', '#actualizarForm', async function () {
       }
     });
   } else {
-    alertMensaje('error', 'Identificador invalido', 'Asegurese que que este usando correctamente su CURP o pasaporte');
+    alertMensaje('error', `${traducir('Identificador invalido', language)}`, `${traducir('Asegurese que que este usando correctamente su CURP o pasaporte', language)}`);
   }
 
   // obtenerSignosVitales('#antecedentes-registro')
