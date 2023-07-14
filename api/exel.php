@@ -4,7 +4,7 @@ $master = new Master();
 
 $datos = json_decode(file_get_contents('php://input'), true);
 
-// if (isset($datos['dispositivo']) && $datos['datos']) {
+if (isset($datos['dispositivo']) && $datos['datos']) {
 
 
     switch ($datos['dispositivo']) {
@@ -20,12 +20,8 @@ $datos = json_decode(file_get_contents('php://input'), true);
             
 
             $data = getValuesCsvEquipos($datos);
-
-            $fh = fopen("algo.txt", 'a');
-            fwrite($fh, json_encode($data));
-            fclose($fh);
-             
-       
+            $response = $master->insertByProcedure('sp_pseudo_interface', [json_encode($data)]);
+           
             break;
 
         case 'SelectraProS':
@@ -43,15 +39,13 @@ $datos = json_decode(file_get_contents('php://input'), true);
             fclose($fh);
     }
 
-
     echo $master->returnApi($response);
 
-// }
+}
 
+#============================================================== FUNCIONES DE ORDENAMINETO DE DATOS
 
-
-
-//FUNCION PARA EQUIPOS QUE DAN ARCHIVOS XLS
+//FUNCION PARA EQUIPOS QUE DAN ARCHIVOS XLS (MAGLUMI)
 function getValuesExelEquipos($datos, $getVal1, $getVal2, $getVal3)
 {
 
@@ -80,7 +74,7 @@ function getValuesExelEquipos($datos, $getVal1, $getVal2, $getVal3)
 }
 
 
-//FUNCION PARA EQUIPOS QUE DAN ARCHIVOS TXT
+//FUNCION PARA EQUIPOS QUE DAN ARCHIVOS TXT (SELECTRA)
 function getValuesTxtEquipos($datos, $getVal1, $getVal2, $getVal3)
 {
    
@@ -116,7 +110,7 @@ function getValuesTxtEquipos($datos, $getVal1, $getVal2, $getVal3)
 
 }
 
-
+#FUNCION PARA EQUIPOS QUE DAN ARCHIVOS DE CSV (ERBA)
 function getValuesCsvEquipos($datos){
 
 
