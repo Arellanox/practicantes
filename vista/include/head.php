@@ -108,7 +108,7 @@
 <!-- dom-to-image -->
 <script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/dom-to-image.js' ?>"></script>
 <script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/FileSaver.js' ?>"></script>
-
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 
 <script>
