@@ -15,6 +15,6 @@ async function contenidoSoporteTi() {
       $.getScript('contenido/js/muestra-tabla.js')
     })
   }
-  
+
       // Botones
     //   $.getScript('contenido/js/muestras-botones.js')

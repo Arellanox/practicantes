@@ -59,10 +59,14 @@ $numero_usuario = $datos['numero_usuario'];
 $token = $datos['token'];
 
 //buscar los datos
-$estatus_id = $datos['estatus_id'];
+$estatus_id = isset($datos['estatus_id'])?$datos['estatus_id']:$_POST['estatus_id'];
+
 $fecha_creacion = $datos['fecha_creacion'];
 $tendido_por = $datos['_tendido_por'];
 $numero_usuario = $datos['numero_usuario'];
+
+//actualizar estatus
+$ticket = isset($datos['ticket'])?$datos['ticket']:$_POST['ticket'];
 
 $fh = fopen("log.txt", 'a');
 fwrite($fh, json_encode($datos));
@@ -82,19 +86,27 @@ $buscarDatos = array(
   $numero_usuario
 );
 
+$actualizarEstatus = array(
+  $estatus_id,
+  $ticket
+);
+
 // echo json_encode(['result' => '99999']);
 switch ($api) {
 
     //Inserta en el bot de WhatsApp
     case 1:
+      $codigo = 0;
         $response = $master->insertByProcedure("sp_asistencia_ti_bot_g", $parametros);
 
         $objeto = new Whatsapp();
         if ($response > 0){
-            $correo_cath = $objeto->MetodoWhatsapp("$nombre_usuario necesita de tu ayuda! #Ticket: " .$response);
+          $response = ["TICKET" => $response];
+          
+            $correo_cath = $objeto->MetodoWhatsapp("$nombre_usuario necesita de tu ayuda! #Ticket: " .$response['TICKET']);
             
             if($correo_cath[0] != 1){
-                $razon_envio = "$nombre_usuario necesita de tu ayuda!! #Ticket: " .$response;
+                $razon_envio = "$nombre_usuario necesita de tu ayuda!! #Ticket: " .$response['TICKET'];
 
                 $correo->sendEmail("soporte_ti", "Asistente virtual TI", ["luis.cuevas@bimo.com.mx", "josue.delacruz@bimo.com.mx", "monica.gallegos@bimo-lab.com"], $correo_cath[1].". ".$razon_envio);
             }
@@ -109,11 +121,19 @@ switch ($api) {
       case 2:
         //traer los datos
         $response =$master->getByProcedure("sp_asistencia_ti_bot_b",[]);
+        echo $master->returnApi($response);
+        exit;
         break;  
+
+        case 3:
+          $response =$master->updateByProcedure("sp_bot_cambiar_estatus", $actualizarEstatus); 
+          echo $master->returnApi($response);
+          exit;         
+          break;
 
     default:
         $response = "API no definida";
         break;
 }
 
-echo $master->returnApi(["TICKET" => $response]);
+echo $master->returnApi($response);
