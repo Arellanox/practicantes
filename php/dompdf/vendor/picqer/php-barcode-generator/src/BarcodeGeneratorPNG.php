@@ -49,7 +49,7 @@ class BarcodeGeneratorPNG extends BarcodeGenerator
      * @param array $foregroundColor RGB (0-255) foreground color for bar elements (background is transparent).
      * @return string image data or false in case of error.
      */
-    public function getBarcode($barcode, $type, int $widthFactor = 1, int $height = 30, array $foregroundColor = [0, 0, 0])
+    public function getBarcode($barcode, $type, int $widthFactor = 1, int $height = 25, array $foregroundColor = [0, 0, 0])
     {
         $barcodeData = $this->getBarcodeData($barcode, $type);
         $width = round($barcodeData->getWidth() * $widthFactor);
