@@ -1,3 +1,4 @@
+
 //Vista de la tabla de soporte TI
 TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
@@ -24,11 +25,13 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
     },
     columns: [
         { data: 'COUNT' },
+        //trae el nombre y el numero de telefono concatenado
         {
             data: null, render: function (meta, data) {
                 return `${meta.NOMBRE_USUARIO} (${meta.NUMERO_USUARIO})`
             }
         },
+        //trae la fecha de creacion formateada
         { data: 'FECHA_CREACION', render: function (data) {
             return formatoFecha2(data,[3, 1, 4, 2,1,1,1])
         }},
@@ -43,8 +46,8 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
         } },
         {
             data: null, render: function (meta, data) {
-
                 let html = `<div class = "estatusUsuariosTabla">`
+                //cambia el estatus dependiendo en el estado que se encuentre de igual forma junto al icono
                 switch (meta.ID_ESTATUS) {
                     case '1':
                         html += `<i class="bi bi-check-circle-fill text-success"></i> ${meta.DESCRIPCION}`;
@@ -69,15 +72,6 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
             }
         },
         { data: 'MOTIVO_CANCELACION' },
-        // {
-        //     data: 'ID_RECETA', render: function (data) {
-
-
-        //         return `<i class="bi bi-trash eliminar-receta" data-id = "${data}" style = "cursor: pointer"
-        //     onclick="desactivarTablaReceta.call(this)"></i>`;
-
-        //     }
-        // }
 
     ],
     columnDefs: [
@@ -96,7 +90,7 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
 
 inputBusquedaTable('TablaVistaSoporteTi', TablaVistaSoporteTi, [], [], 'col-12')
 
-
+//Funcion para cambiar el estatus (funcion global)
 selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
     unSelect: true, reload: ['col-xl-9'],
     OnlyDate: true,
@@ -107,10 +101,12 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
 
                 switch (data['ESTATUS_ID']) {
 
+                    //Este usuario ya fuie atendido
                     case '1':
                         alertToast('Este usuario ya fue atendido', 'success', 4000)
                         break;
 
+                    //Este usuario esta pendiente
                     case '2':
                         alertMensajeConfirm({
                             title: '¿Deseas atender a este Usuario?',
@@ -122,7 +118,6 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
                                 api : 3,
                                 estatus_id: '3',
                                 ticket: data['TICKET']
-                                //quien lo atendio
                             }
 
                             ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
@@ -132,11 +127,13 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
                             })
                         }, 1)
                         break;
-
+                    
+                    //Este usuario esta siendo atendido    
                     case '3':
                         alertToast('Este usuario esta siendo atendido', 'info', 4000)
                         break;
 
+                    //Este usuario cancelo su solicitud  
                     case '4':
                         alertMensajeConfirm({
                             title: '¿Deseas atender a este Usuario?',
