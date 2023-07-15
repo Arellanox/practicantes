@@ -108,7 +108,7 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
 
                     //Este usuario esta pendiente
                     case '2':
-                        if(data['ESTATUS_ID'] == '2' && data['ATENDIDO_POR'] != null){
+                        if(data['ESTATUS_ID'] == '2'){
                             alertMensajeConfirm({
                                 title: '¿Deseas atender a este Usuario?',
                                 text: 'Se cambiara el estado de este ticket a En atención',
