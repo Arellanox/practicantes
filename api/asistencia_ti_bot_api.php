@@ -66,7 +66,7 @@ $estatus_id = isset($datos['estatus_id']) ? $datos['estatus_id'] : $_POST['estat
 
 $fecha_creacion = $datos['fecha_creacion'];
 $tendido_por = $datos['_tendido_por'];
-$numero_usuario = $datos['numero_usuario'];
+$numero_usuario = isset($datos['numero_usuario']) ? $datos['numero_usuario'] : $_POST['numero_usuario'];
 
 //actualizar estatus
 $ticket = isset($datos['ticket']) ? $datos['ticket'] : $_POST['ticket'];
@@ -137,7 +137,7 @@ switch ($api) {
     break;
 
   case 4:
-    $response = $master->getByProcedure("sp_vista_ticket_bot_b", []);
+    $response = $master->getByProcedure("sp_vista_ticket_bot_b", [$numero_usuario]);
     echo $master->returnApi($response);
     exit;
     break;
