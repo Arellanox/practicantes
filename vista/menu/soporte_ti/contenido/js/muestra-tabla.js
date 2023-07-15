@@ -108,29 +108,36 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
 
                     //Este usuario esta pendiente
                     case '2':
-                        alertMensajeConfirm({
-                            title: '¿Deseas atender a este Usuario?',
-                            text: 'Se cambiara el estado de este ticket a En atención',
-                            icon: 'info',
-                        }, function () {
+                        if(data['ESTATUS_ID'] == '2' && data['ATENDIDO_POR'] != null){
+                            alertMensajeConfirm({
+                                title: '¿Deseas atender a este Usuario?',
+                                text: 'Se cambiara el estado de este ticket a En atención',
+                                icon: 'info',
+                            }, function () {
+    
+                                dataJson_tomarPaciente = {
+                                    api : 3,
+                                    estatus_id: '3',
+                                    ticket: data['TICKET']
+                                }
+    
+                                ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
+                                    alertToast('Este usuario esta siendo atendido!', 'success', 4000)
+                
+                                    TablaVistaSoporteTi.ajax.reload();
+                                })
+                            }, 1)
 
-                            dataJson_tomarPaciente = {
-                                api : 3,
-                                estatus_id: '3',
-                                ticket: data['TICKET']
-                            }
-
-                            ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
-                                alertToast('Este usuario esta siendo atendido!', 'success', 4000)
-                                
-                                TablaVistaSoporteTi.ajax.reload();
-                            })
-                        }, 1)
+                        }else{
+                            alertToast(`Este usuario lo esta atendiendo ${data['ATENDIDO_POR_US']}`,'info', 4000)
+                            TablaVistaSoporteTi.ajax.reload();
+                        }
                         break;
                     
                     //Este usuario esta siendo atendido    
                     case '3':
-                        alertToast('Este usuario esta siendo atendido', 'info', 4000)
+                        alertToast(`Este usuario lo esta atendiendo ${data['ATENDIDO_POR_US']}`,'info', 4000)
+                        TablaVistaSoporteTi.ajax.reload();
                         break;
 
                     //Este usuario cancelo su solicitud  
