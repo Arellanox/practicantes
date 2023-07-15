@@ -1,6 +1,7 @@
 <?php
 include_once "../clases/master_class.php";
 include_once "../clases/correo_class.php";
+include_once "../clases/token_auth.php";
 
 class Whatsapp {
   public function MetodoWhatsapp($mensaje) {
@@ -67,6 +68,7 @@ $numero_usuario = $datos['numero_usuario'];
 
 //actualizar estatus
 $ticket = isset($datos['ticket'])?$datos['ticket']:$_POST['ticket'];
+$atendido_por = $_SESSION['id'];
 
 $fh = fopen("log.txt", 'a');
 fwrite($fh, json_encode($datos));
@@ -88,7 +90,8 @@ $buscarDatos = array(
 
 $actualizarEstatus = array(
   $estatus_id,
-  $ticket
+  $ticket,
+  $atendido_por 
 );
 
 // echo json_encode(['result' => '99999']);

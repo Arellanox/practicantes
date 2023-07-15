@@ -23,7 +23,7 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
         dataSrc: 'response.data'
     },
     columns: [
-        // { data: 'COUNT' },
+        { data: 'COUNT' },
         {
             data: null, render: function (meta, data) {
                 return `${meta.NOMBRE_USUARIO} (${meta.NUMERO_USUARIO})`
@@ -34,7 +34,7 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
         }},
         { data: 'TICKET' },
         { data: 'MSJ' },
-        { data: 'ATENDIDO_POR' },
+        { data: 'ATENDIDO_POR_US' },
         { data: 'INCIO_ATENCION', render: function(data){
             return formatoFecha2(data,[3, 1, 4, 2,1,1,1])
         } },
@@ -81,7 +81,7 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
 
     ],
     columnDefs: [
-        // { target: 0, title: '#', className: 'all' },
+        { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Nombre (#)', className: 'all' },
         { target: 2, title: 'Fecha', className: 'min-tablet' },
         { target: 3, title: 'Tikect', className: 'all' },
@@ -148,7 +148,6 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
                                 api : 3,
                                 estatus_id: '4',
                                 ticket: data['TICKET']
-                                //quien lo atendio
                             }
 
                             ajaxAwait(dataJson_cacelarUsuario, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
