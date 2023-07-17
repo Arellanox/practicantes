@@ -31,8 +31,8 @@ $usuario_id = $_SESSION['id'];
 
 // decomentar las siguientes 3 lineas para hacer las pruebas
 
-$api = 'temperatura';
-$turno_id = 471;
+// $api = 'temperatura';
+// $turno_id = 3;
 $area_id = -1;
 // // $area_id = 12;
 // $turno_id = 742;

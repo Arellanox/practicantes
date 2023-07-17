@@ -689,6 +689,15 @@
         }
 
         $array = convertirObjetoAArray($resultados);
+        $valores = $array['DIAS'];
+
+        // echo "<pre>";
+        // var_dump($array['EQUIPO']);
+        // // var_dump($valores[1][1]['valores']);
+        // // $num = 20;
+        // // var_dump($valores[$num] !== null ? "si existe" : "no existe");
+        // echo "</pre>";
+        // exit;
 
         // para el path del logo 
         $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
@@ -714,6 +723,43 @@
         $Tabla_puntos = file_get_contents($array['EQUIPO']['URL_TABLA']);
         $encode_tabla = base64_encode($Tabla_puntos);
 
+
+        function metodoCalculo($dia, $turno, $valor, $valores, $type)
+        {
+
+            if ($valores[$dia] !== null) {
+                // $valor = floatval($valores[$dia][$turno]["valor"]);
+                // $valor_redondeado = round($valor);
+                $valor = $valores[$dia][$turno]["valor"];
+                $hora = $valores[$dia][$turno]["hora"];
+                $horaMinutos = substr($hora, 0, 5);
+                // $hora_parseada = date("h:i a", strtotime($hora));
+                // $hora_parseada = strtolower($hora_parseada);
+
+
+                if ($type == 1) {
+                    return "<td class=''>
+                    <p class='h8 m-0 p-0' style='text-align:center;'>
+                    $valor
+                    </p>
+                    </td>";
+                } else if ($type == 2) {
+                    return "<td class=''>
+                    <p class='h8 m-0 p-0' style='text-align:center;'>
+                    
+                    </p>
+                    </td>";
+                } else {
+                    return "<td class=''>
+                    <p class='h8 m-0 p-0' style='text-align:center;'>
+                    $horaMinutos
+                    </p>
+                    </td>";
+                }
+            }
+
+            return "<td class=''></td>";
+        }
         ?>
 
         <div id="body">
@@ -765,7 +811,7 @@
                                                 </div>
                                             </td>
                                             <td class="p-0 m-0 line-height col-foot-izq d-flex">
-                                                <input class=" p-0 m-0 folio" type="text" value="123" style="max-width:100px;">
+                                                <input class=" p-0 m-0 folio" type="text" value="<?php echo $array['EQUIPO']['FOLIO']; ?>" style="max-width:100px;">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -793,19 +839,21 @@
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> Equipo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> Enfriador </label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['EQUIPO_NOMBRE']; ?> </label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> Modelo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"><?php echo $array['EQUIPO']['EQUIPO_MODELO']; ?></label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> Localización:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold">
+                                                            <?php echo $array['EQUIPO']['LOCALIZACION']; ?>
+                                                        </label>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -813,19 +861,19 @@
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> Marca:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> Congelador</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['EQUIPO_MARCA']; ?></label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7">N° Serie:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold">&&&&&&&&</label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"><?php echo $array['EQUIPO']['EQUIPO_NUMERO_SERIE']; ?></label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7">Intervalo Optimo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> -25 A -35°C </label>
+                                                        <label class="h7 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['INTERVALO_MIN']; ?> A <?php echo $array['EQUIPO']['INTERVALO_MAX']; ?> </label>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -851,19 +899,19 @@
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> Marca:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"> BIMO </label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"> <?php echo $array['EQUIPO']['TERMOMETRO_MARCA']; ?> </label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> Factor de correción:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold">-40 °C</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FACTOR_CORRECCION']; ?> °C</label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> MES:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold">12</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['MES']; ?></label>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -871,19 +919,19 @@
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7"> ID </label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"> 12232</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['TERMOMETRO_ID']; ?></label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7">Fecha de verificación::</label>
+                                                        <label class="h7">Fecha de verificación:</label>
                                                         <label class="h7 border-bottom px-4 fw-bold">22/12/2023</label>
                                                     </div>
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7">AÑO:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"> 2023 </label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"> <?php echo $array['EQUIPO']['ANHO']; ?> </label>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -925,7 +973,10 @@
                 }
 
                 .grafica-tabla {
-                    height: 350px;
+                    /* min-height: 200px; */
+                    max-height: 350px;
+                    /* height: 50%; */
+                    /* height: 350px; */
                     width: 77%;
                     position: absolute;
                     margin-left: 115px;
@@ -952,7 +1003,6 @@
                 #rubrica {
                     position: relative;
                     top: 355px;
-                    margin-left: 10px;
                 }
 
                 #rubrica table {
@@ -1003,9 +1053,29 @@
                         for ($m = 1; $m < 4; $m++) {
                             echo "<tr class=''>";
 
-                            echo "<th class='celdasDias'>$m</th>";
+                            if ($m == 1) {
+                                echo "<th class='celdasDias'>
+                                <label class='h7'>
+                                LECT 1
+                                </label>
+                                </th>";
+                            } else if ($m == 2) {
+                                echo "<th class='celdasDias'>
+                                 <label class='h7'>
+                                RUBRICA
+                                </label>
+                                </th>";
+                            } else {
+                                echo "<th class='celdasDias'>
+                                <label class='h7'>
+                                HORA
+                                </label>
+                                </th>";
+                            }
+
                             for ($i = 1; $i <= 31; $i++) {
-                                echo "<td class=''></td>";
+                                // echo "<td class=''></td>";
+                                echo metodoCalculo($i, 1, $valor, $valores, $m);
                             }
 
                             if ($m == 1) {
@@ -1027,9 +1097,29 @@
                         for ($t = 1; $t < 4; $t++) {
                             echo "<tr class=' ' style='margin-top:10px !important;'>";
 
-                            echo "<th class='celdasDias'>$t</th>";
+                            if ($t == 1) {
+                                echo "<th class='celdasDias'>
+                                <label class='h7'>
+                                LECT 2
+                                </label>
+                                </th>";
+                            } else if ($t == 2) {
+                                echo "<th class='celdasDias'>
+                                 <label class='h7'>
+                                RUBRICA
+                                </label>
+                                </th>";
+                            } else {
+                                echo "<th class='celdasDias'>
+                                <label class='h7'>
+                                HORA
+                                </label>
+                                </th>";
+                            }
+
                             for ($l = 1; $l <= 31; $l++) {
-                                echo "<td class=''></td>";
+
+                                echo metodoCalculo($l, 2, $valor, $valores, $t);
                             }
 
                             if ($t == 1) {
