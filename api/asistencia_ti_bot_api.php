@@ -124,19 +124,21 @@ switch ($api) {
 
     break;
   case 2:
-    //traer los datos
+    //traer todos los datos 
     $response = $master->getByProcedure("sp_asistencia_ti_bot_b", []);
     echo $master->returnApi($response);
     exit;
     break;
 
   case 3:
+    //Actualizar los datos 
     $response = $master->updateByProcedure("sp_bot_cambiar_estatus", $actualizarEstatus);
     echo $master->returnApi($response);
     exit;
     break;
 
   case 4:
+    //mostrar los ticket en el bot de whatsapp
     $response = $master->getByProcedure("sp_vista_ticket_bot_b", [$numero_usuario]);
     echo $master->returnApi($response);
     exit;
