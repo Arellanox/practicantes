@@ -90,11 +90,11 @@ $buscarDatos = array(
   $numero_usuario
 );
 
-$actualizarEstatus = array(
+$actualizarEstatus = $master->setToNull(array(
   $estatus_id,
   $ticket,
   $atendido_por
-);
+));
 
 // echo json_encode(['result' => '99999']);
 switch ($api) {
