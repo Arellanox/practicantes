@@ -25,34 +25,28 @@ let dataJson = {
 $("#btn-generar-formato-temperatura").on('click', function (e) {
     // body...
     e.preventDefault();
-    DatosAjax.observaciones = $("#observaciones_pdf").val()
-    console.log(DatosAjax);
-    return false;
+    DatosAjax.observaciones = $("#observaciones_pdf").val();
 
     // data = new FormData(document.getElementById("GenerarPdfForm"));
-
-    ajaxAwaitFormData({
-        api: 16
-    }, 'temperatura_api.php', 'GenerarPdfForm', { callbackAfter: true }, false, function () {
-
-    })
 
     alertMensajeConfirm({
         title: 'Esta seguro de realizar esta accion',
         text: `Se generar el formato para el folio ${FolioMesEquipo}`,
         icon: 'info'
     }, function () {
-        console.log(data)
         // Toma captura de pantalla solo al canvas 
-        alertToast('Elementos Capturados', 'success', 2000);
+        ajaxAwait(DatosAjax, 'temperatura_api', { callbackAfter: true }, false,(data) => {
 
-        api = encodeURIComponent(window.btoa('temperatura'));
-        area = encodeURIComponent(window.btoa(-1));
-        turno = encodeURIComponent(window.btoa(FolioMesEquipo));
+            api = encodeURIComponent(window.btoa('temperatura'));
+            area = encodeURIComponent(window.btoa(-1));
+            turno = encodeURIComponent(window.btoa(FolioMesEquipo));
 
-        var win = window.open(`http://localhost/practicantes/visualizar_reporte/index-pruebas.php/?api=${api}&turno=${turno}&area=${area}`, '_blank');
+            var win = window.open(`http://localhost/practicantes/visualizar_reporte/index-pruebas.php/?api=${api}&turno=${turno}&area=${area}`, '_blank');
 
-        win.focus();
+            win.focus();
+
+        });
+
     }, 1)
 
 })
@@ -93,6 +87,8 @@ function tomarCapturaPantalla(data = {}) {
         }
 
         swal.close();
+
+        $("#observaciones_pdf").val("");
         $("#TemperaturaModalGeneralFirma").modal("show");
     });
 

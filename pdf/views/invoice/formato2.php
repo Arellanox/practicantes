@@ -1200,7 +1200,7 @@
                 <!-- Campos del supervisor -->
                 <div class="d-flex mb-3 " style="width: max-content !important;">
                     <label class="h7 w-50"> OBSERVACIONES:</label>
-                    <input class="h7 p-0 m-0" type="text" value="alskhdjksahdashkdhksladhkljashdjklsahdkjhsajkdhsakjdhksajhdkjsahdjksahjkdhsaa" style="  width: 750px !important;">
+                    <input class="h7 p-0 m-0" type="text" value="<?php echo $array['EQUIPO']['OBSERVACIONES']; ?>" style="  width: 750px !important;">
                 </div>
 
                 <div class="d-flex " style="width: max-content !important;">
