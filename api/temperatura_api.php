@@ -121,6 +121,7 @@ $equipos_termometros = array(
 );
 
 
+
 switch ($api) {
 
     case 1:
@@ -233,7 +234,8 @@ switch ($api) {
             $SubirFormato = array(
                 $folio,
                 $usuario,
-                $path
+                $path,
+                $observaciones
             );
 
             // Enviar una respuesta indicando que la imagen se ha guardado correctamente
