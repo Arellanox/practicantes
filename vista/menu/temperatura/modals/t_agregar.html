@@ -13,52 +13,55 @@
                         agregan automaticamente.</strong>
                 </p>
 
-                 <form class="" id="formCapturarTemperatura" name="formCapturarTemperatura">
-                        <div class="row">
-                            <div class="col-12 col-xl-12 align-self-center">
-                                <input type="hidden" name="Enfriador" id="Enfriador">
-                                <input type="hidden" name="Termometro" id="Termometro">
-                            </div>
-                            <div class="col-12 col-xl-12">
-                                <div class="mb-3">
-                                    <label for="lectura">Lectura:</label>
-                                    <div class="input-group mb-3">
+                <form class="" id="formCapturarTemperatura" name="formCapturarTemperatura">
+                    <div class="row">
+                        <div class="col-12 col-xl-12 align-self-center">
+                            <input type="hidden" name="Enfriador" id="Enfriador">
+                            <input type="hidden" name="Termometro" id="Termometro">
+                        </div>
+                        <div class="col-12 col-xl-12">
+                            <div class="mb-3">
+                                <label for="lectura">Lectura:</label>
+                                <div class="input-group mb-3">
 
-                                        <input type="number" value="0" step="0.01" name="lectura" class="form-control input-form" required id="lectura">
-                                        <span class="input-span">°C</span>
-                                    </div>
+                                    <input type="number" value="0" step="0.01" name="lectura"
+                                        class="form-control input-form" required id="lectura">
+                                    <span class="input-span">°C</span>
                                 </div>
-                            </div>
-                            <div class="col-12 col-xl-12">
-                                <div class="mb-3">
-                                    <label for="observaciones">Observaciones:</label>
-                                    <input type="text" name="observaciones" value="" class="form-control input-form" required id="observaciones">
-                                    <!-- <input type="hidden" id="firma_guardar" name="firma" required /> -->
-                                </div>
-                            </div>
-                            <div class="col-12 col-xl-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="checkFactorCorrecion">
-                                    <label class="form-check-label" for="checkFactorCorrecion">
-                                        Activar factor de correcion
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-xl-6 d-flex justify-content-end my-auto">
-                                <!-- <button id="ModalFirmaTemperatura" class="btn btn-confirmar me-2"><i class="bi bi-pencil-square"></i></button> -->
-                                
                             </div>
                         </div>
-                 </form>
-                
+                        <div class="col-12 col-xl-12">
+                            <div class="mb-3">
+                                <label for="observaciones">Observaciones:</label>
+                                <input type="text" name="observaciones" value="" class="form-control input-form"
+                                    required id="observaciones">
+                                <!-- <input type="hidden" id="firma_guardar" name="firma" required /> -->
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkFactorCorrecion">
+                                <label class="form-check-label" for="checkFactorCorrecion">
+                                    Activar factor de correcion
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-6 d-flex justify-content-end my-auto">
+                            <!-- <button id="ModalFirmaTemperatura" class="btn btn-confirmar me-2"><i class="bi bi-pencil-square"></i></button> -->
+
+                        </div>
+                    </div>
+                </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
                         class="bi bi-arrow-left-short"></i>
                     Cancelar</button>
-                <button type="submit" class=" btn btn-confirmar" form="formCapturarTemperatura" id="btn-equipo-temperatura">
-                                    <i class="bi bi-person-x"></i> Guardar
-                                </button>
+                <button type="submit" class=" btn btn-confirmar" form="formCapturarTemperatura"
+                    id="btn-equipo-temperatura">
+                    <i class="bi bi-person-x"></i> Guardar
+                </button>
             </div>
         </div>
     </div>

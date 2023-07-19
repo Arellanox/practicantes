@@ -20,10 +20,13 @@ $("#liberarDiaTemperaturaForm").on("submit", function (e) {
 
         ajaxAwaitFormData({
             api: 5,
-            Enfriador: id_equipos
+            Enfriador: id_equipos,
+            Termometro: Termometro
         }, 'temperatura_api', 'liberarDiaTemperaturaForm', { callbackAfter: true }, false, function (data) {
             alertTemperatura("Dias liberado");
-            console.log(data)
+            $("#Tabla-termometro").html('')
+            $("#Tabla-equipos").html('')
+            // console.log(data)
         })
     }, 1)
 })

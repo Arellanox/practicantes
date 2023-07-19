@@ -1417,7 +1417,7 @@ class Miscelaneus
             $hora = $e['HORA'];
             $anho = $e['ANHO'];
             $mes = $e['MES'];
-            $observaciones =$e['OBSERVACIONES'];
+            $observaciones = $e['OBSERVACIONES'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
             $url_tabla = $e['RUTA_TABLA'];

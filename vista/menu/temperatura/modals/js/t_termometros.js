@@ -1,8 +1,3 @@
-
-
-
-
-
 DataEquiposTermometros = {
     api: 13
 }
@@ -58,8 +53,11 @@ TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
     ]
 })
 
-inputBusquedaTable("TablaTermometros", TablaTermometrosDataTable, [], {
-    msj: "Filtre los resultados por el folio o por la empresa",
+inputBusquedaTable("TablaTermometros", TablaTermometrosDataTable, [{
+    msj: 'Eliga un termometro para cada equipo, tomando en cuenta que al momento de asignarle un factor de correcion a un termometro este se le aplicara a todos los equipos que tengan asignado dicho termometro',
+    place: 'left'
+}], {
+    msj: "Filtre los resultados por el nombre del equipo",
     place: 'top'
 }, "col-12")
 

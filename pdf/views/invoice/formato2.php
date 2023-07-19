@@ -904,7 +904,7 @@
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7"> Factor de correción:</label>
+                                                        <label class="h7"> Factor de corrección:</label>
                                                         <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FACTOR_CORRECCION']; ?> °C</label>
                                                     </div>
                                                 </td>
@@ -1002,7 +1002,7 @@
             <style>
                 #rubrica {
                     position: relative;
-                    top: 355px;
+                    top: 330px;
                 }
 
                 #rubrica table {
@@ -1143,7 +1143,7 @@
             <style>
                 #supervisor {
                     position: relative;
-                    top: 365px;
+                    top: 335px;
                     margin-left: 100px;
                     /* margin-right: 200px !important; */
                 }

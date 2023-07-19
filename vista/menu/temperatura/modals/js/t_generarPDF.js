@@ -1,11 +1,14 @@
 // Folio del mes que se esta seleccionando en la tabla
-FolioMesEquipo = {}, DatosAjax = {}, observaciones = "";
+FolioMesEquipo = {}, DatosAjax = {}, observaciones = "", Termometro = "";
 // Evento Click para abrir el modal de exportar PDF
-$("#GenerarPDFTemperatura").on("click", function (e) {
+$("#GenerarPDFTemperatura").on("click", async function (e) {
     e.preventDefault();
 
     // En SelectedFoliosData esta toda la informacion del mes
     FolioMesEquipo = SelectedFoliosData['FOLIO']
+    $("#observaciones_pdf").val("");
+
+    await rellenarSelect("#Termometro_pdf", "temperatura_api", 16, "TERMOMETRO_ID", "DESCRIPCION", { folio: FolioMesEquipo })
 
 
     $("#TemperaturaModalGeneralFirma").modal("show");
@@ -45,6 +48,12 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
                 var win = window.open(`http://localhost/practicantes/visualizar_reporte/index-pruebas.php/?api=${api}&turno=${turno}&area=${area}`, '_blank')
 
                 win.focus();
+
+
+
+                $("#TemperaturaModalGeneralFirma").modal("hide");
+                $("#observaciones_pdf").val("");
+                observaciones = "";
             });
         }, 3000)
 
@@ -56,6 +65,7 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
 // Funcion para tomar captura de pantalla a la tabla de temperaturas en 3 capas Tabla, Dots, Canvas
 async function tomarCapturaPantalla(data = {}) {
     return await new Promise(function (resolve, reject) {
+        Termometro = $("#Termometro_pdf").val();
         var element = document.getElementById(data['elementId']);
         var zoom = 1 / (window.devicePixelRatio || 1); // Nivel de zoom actual de la página
 
@@ -82,6 +92,7 @@ async function tomarCapturaPantalla(data = {}) {
             DatosAjax.api = 15
             DatosAjax.UrlImg = elementImg
             DatosAjax.NameImg = elementName
+            DatosAjax.Termometro = Termometro
             DatosAjax.folio = FolioMesEquipo
             DatosAjax.observaciones = observaciones
 
@@ -96,3 +107,4 @@ async function tomarCapturaPantalla(data = {}) {
 $("#observaciones_pdf").change(function () {
     observaciones = $(this).val();
 })
+

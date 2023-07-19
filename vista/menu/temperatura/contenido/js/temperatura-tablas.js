@@ -12,7 +12,7 @@ rellenarSelect("#Equipos", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_ti
 tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
-    info: false,
+    info: true,
     paging: false,
     scrollY: '75vh',
     scrollCollapse: true,
@@ -36,6 +36,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
             //Para ocultar segunda columna
             reloadSelectTable()
             $("#lista-meses-temperatura").fadeIn(0);
+            $('#btn-desbloquear-equipos').fadeIn(0)
             // $("#lista-meses-temperatura").fadeIn(0);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -72,23 +73,6 @@ inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
 loaderDiv("Out", null, "#loader-temperatura", '#loaderDivtemperatura');
 loaderDiv("Out", null, "#loader-temperatura2", '#loaderDivtemperatura2');
 
-// selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, function (select, data) {
-
-//     if (select) {
-//         $("#grafica").html("");
-//         CrearTablaPuntos(data['FOLIO']);
-//         selectTableFolio = true
-//         $(".informacion-temperatura").fadeIn(0);
-//         DataFolio.folio = data['ID_FOLIOS_TEMPERATURA']
-//         tablaTemperatura.ajax.reload()
-//         SelectedFoliosData = data;
-//     } else {
-//         selectTableFolio = false;
-//         fadeRegistro('Out')
-//         $(".informacion-temperatura").fadeOut(0);
-//     }
-// })
-
 
 selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     unSelect: true, dblClick: true, reload: ['col-xl-9']
@@ -102,10 +86,18 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
         tablaTemperatura.ajax.reload()
         SelectedFoliosData = data;
         $("#GenerarPDFTemperatura").fadeIn(0)
+
+        CrearEncabezadoEquipos(data['FOLIO']);
+
+        $("#Equipos_Termometros").fadeIn(0);
         callback('In')
     } else {
         selectTableFolio = false;
+
+        $("#Equipos_Termometros").fadeOut(0);
         $("#GenerarPDFTemperatura").fadeOut(0)
+        $("#Tabla-termometro").html('')
+        $("#Tabla-equipos").html('')
         callback('Out')
     }
 }, async function (select, data, callback) {

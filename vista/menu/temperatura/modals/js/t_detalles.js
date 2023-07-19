@@ -137,6 +137,7 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
         // resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
         if (data['ESTATUS'] == 0) {
             editRegistro = true
+            $("#btn-actualizar-temperatura").removeClass("disable-element")
             $('.btn-liberar').fadeOut(0)
             console.log("el estatus esta en 0")
             $("#formActualizarTemperatura").removeClass('disable-element');
@@ -177,12 +178,9 @@ selectTable('#TablaTemperatura', tablaTemperatura, { unSelect: true, dblClick: t
 $("#formActualizarTemperatura").on("submit", function (e) {
     e.preventDefault();
     editRegistro = true;
-    // if (validarFormulario(firma_actualizar.canvas, firma_actualizar.ctx, firma_actualizar.firma) == false) {
-    //     return false;
-    // }
 
+    $("#btn-actualizar-temperatura").addClass("disable-element")
     CargarTemperatura()
-
 })
 
 

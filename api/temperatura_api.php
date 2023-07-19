@@ -83,7 +83,8 @@ $parametros_g = array(
     $observaciones,
     $usuario,
     $equipo,
-    $turno
+    $turno,
+    $termometro
 );
 
 $parametros_a = array(
@@ -157,8 +158,13 @@ switch ($api) {
             $dia = $e['DIA'];
             $turno = $e['TURNO'];
             $valor = $e['valor'];
+            $hora = $e['HORA'];
+            $anho = $e['ANHO'];
+            $mes = $e['MES'];
+            $observaciones = $e['OBSERVACIONES'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
+            $url_tabla = $e['RUTA_TABLA'];
             if (!isset($result[$dia])) {
                 $result[$dia] = array();
             }
@@ -173,21 +179,53 @@ switch ($api) {
                 $i = 2;
             }
 
-            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro);
+            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro, "hora" => $hora);
             $i++;
-        };
+        }
+
 
         foreach ($response[1] as $key => $e) {
             # code...
             $intervalo_min = $e['INTERVALO_MIN'];
             $intervalo_max = $e['INTERVALO_MAX'];
+            $equipo = $e['ENFRIADOR'];
+            $equipo_marca = $e['ENFRIADOR_MARCA'];
+            $equipo_modelo = $e['ENFRIADOR_MODELO'];
+            $equipo_numero_serie = $e['ENFRIADOR_NUMERO_SERIE'];
+            $termometro_marca = $e['TERMOMETRO_MARCA'];
+            $termometro_id = $e['TERMOMETRO_ID'];
+            $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
         }
 
+        foreach ($response[2] as $key => $e) {
+            # code...
+            $termometro_marca = $e['TERMOMETRO_MARCA'];
+            $termometro_id = $e['TERMOMETRO_ID'];
+            $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
+        }
+
+
+        $localizacion = null;
         $response = [];
-        $response['EQUIPO']['INTERVALO_MIN'] = $intervalo_min;
-        $response['EQUIPO']['INTERVALO_MAX'] = $intervalo_max;
+        $response['EQUIPO']['OBSERVACIONES'] = $observaciones;
+        $response['EQUIPO']['ANHO'] = $anho;
+        $response['EQUIPO']['MES'] = $mes;
+        $response['EQUIPO']['FOLIO'] = $folio;
+        $response['EQUIPO']['LOCALIZACION'] = is_null($localizacion) ? 'N/A' : $localizacion;
+        $response['EQUIPO']['INTERVALO_MIN'] = is_null($intervalo_min) ? 'N/A' : $intervalo_min;
+        $response['EQUIPO']['INTERVALO_MAX'] = is_null($intervalo_max) ? 'N/A' : $intervalo_max;
+        $response['EQUIPO']['URL_TABLA'] = is_null($url_tabla) ? 'N/A' : $url_tabla;
+        $response['EQUIPO']['EQUIPO_NOMBRE'] = is_null($equipo) ? 'N/A' : $equipo;
+        $response['EQUIPO']['EQUIPO_MARCA'] = is_null($equipo_marca) ? 'N/A' : $equipo_marca;
+        $response['EQUIPO']['EQUIPO_MODELO'] =  is_null($equipo_modelo) ? 'N/A' : $equipo_modelo;
+        $response['EQUIPO']['EQUIPO_NUMERO_SERIE'] = is_null($equipo_numero_serie) ? 'N/A' : $equipo_numero_serie;
+        $response['EQUIPO']['TERMOMETRO_MARCA'] = is_null($termometro_marca) ? 'N/A' : $termometro_marca;
+        $response['EQUIPO']['TERMOMETRO_ID'] = is_null($termometro_id) ? 'N/A' : $termometro_id;
+        $response['EQUIPO']['FACTOR_CORRECCION'] = is_null($termometro_factor_correcion) ? 'N/A' : $termometro_factor_correcion;
+
 
         $response['DIAS'] = $result;
+
 
         break;
     case 8:
@@ -234,6 +272,7 @@ switch ($api) {
             $SubirFormato = array(
                 $folio,
                 $usuario,
+                $termometro,
                 $path,
                 $observaciones
             );
@@ -243,6 +282,9 @@ switch ($api) {
         } else {
             $response = "No se inserto la imagen por que no llego";
         }
+        break;
+    case 16:
+        $response = $master->getByProcedure('sp_temperaturas_termometros_usados_b', [$folio]);
         break;
     default:
         $response = "Api no definida.";

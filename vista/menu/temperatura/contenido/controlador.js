@@ -8,7 +8,7 @@ if (validarVista('REGISTRO_TEMPERATURA')) {
 }
 
 // Variables globales
-var selectRegistro, selectedEquipos, editRegistro = false, id_equipos = null, btnequipos = false;
+var selectRegistro, selectedEquipos, editRegistro = false, id_equipos = null, btnequipos = false, Termometro = null;
 var Domingos, dataConfig = {}, selectedEquiposTemperaturas = {}, SelectedFoliosData = {};
 
 var selectTableFolio = false
