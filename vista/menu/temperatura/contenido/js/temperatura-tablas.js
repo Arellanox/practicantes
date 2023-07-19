@@ -61,7 +61,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         },
         {
             data: null, render: function (data) {
-                let html = `<i class="bi bi-file-earmark-pdf-fill generarPDF" style="cursor: pointer; color: red;font-size: 23px;></i>`
+                let html = `<i class="bi bi-file-earmark-pdf-fill generarPDF" style="cursor: pointer; color: red;font-size: 23px;"></i>`
 
                 return html;
             }
