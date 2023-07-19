@@ -968,8 +968,8 @@ function rellenarSelect(select = false, api, apinum, v, c, values = {}, callback
 
         if (typeof data == "string" && data.indexOf('response') > -1) {
           data = JSON.parse(data);
-          // if (!mensajeAjax(data))
-          //   return false;
+          if (!mensajeAjax(data))
+            return false;
           data = data['response']['data'];
           // data = data['data'];
         } else {
@@ -2302,7 +2302,7 @@ function obtenerVistaAntecenetesPaciente(div, cliente, pagina = 1) {
         resolve(1)
       }, 100);
     });
-  });
+  })
 }
 //
 
@@ -2317,7 +2317,7 @@ function obtenerVistaEspiroPacientes(div) {
           resolve(1)
         }, 100);
       });
-  });
+  })
 }
 
 
@@ -2677,7 +2677,7 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                   url: http + servidor + "/" + appname + "/api/recepcion_api.php",
                   type: "POST",
                   dataType: 'json',
-                  data: { api: 6, id_turno: row['ID_TURNO'] },
+                  data: { api: 6, id_turno: row['ID_TURNO'] ? row['ID_TURNO'] : row['TURNO_ID'] },
                   success: function (data) {
                     if (!mensajeAjax(data))
                       return false;
@@ -3184,6 +3184,59 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                   $(panel).fadeIn(100);
                 }, 100);
                 resolve(1);
+                break;
+
+              case 'area_faltantes':
+                await ajaxAwait({
+                  api: 5,
+                  turno_id: id
+                }, 'turnero_api', { callbackAfter: true }, false, function (data) {
+
+                  try {
+                    data = data.response.data[0]['AREAS_PENDIENTES']
+                    let html = '';
+                    console.log(data);
+
+                    let filter = data.filter((data) => {
+                      return data.FINALIZADO === 0;
+                    });
+
+                    console.log(filter);
+
+                    for (const key in filter) {
+                      if (Object.hasOwnProperty.call(filter, key)) {
+                        const element = filter[key];
+                        html += `${element.AREA}, `;
+                      }
+                    }
+
+                    $('#areas_faltantes').html(html);
+
+
+                    html = '';
+                    // console.log(data);
+
+                    filter = data.filter((data) => {
+                      return data.FINALIZADO === 1;
+                    });
+
+                    for (const key in filter) {
+                      if (Object.hasOwnProperty.call(filter, key)) {
+                        const element = filter[key];
+                        html += `${element.AREA}, `;
+                      }
+                    }
+
+                    $('#areas_terminadas').html(html);
+                  } catch (error) {
+
+                  }
+
+                  $(panel).fadeIn(100);
+                  resolve(1);
+
+                })
+
                 break;
 
 
