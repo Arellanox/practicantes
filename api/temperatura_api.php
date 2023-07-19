@@ -16,7 +16,7 @@ $equipo =  $_POST['Enfriador'];
 $termometro = $_POST['Termometro'];
 $usuario = $_SESSION['id'];
 $lectura = isset($_POST['lectura']) ? $_POST['lectura'] : null;
-$observaciones = $_POST['observaciones'];
+$observaciones = isset($_POST['observaciones']) ? $_POST['observaciones'] : null;
 $id_registro_temperatura = $_POST['id_registro_temperatura'];
 $turno = $_POST['turno'];
 

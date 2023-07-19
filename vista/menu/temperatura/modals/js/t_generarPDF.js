@@ -67,6 +67,7 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
 async function tomarCapturaPantalla(data = {}) {
     return await new Promise(function (resolve, reject) {
         Termometro = $("#Termometro_pdf").val();
+        observaciones = $("#observaciones_pdf").val();
         var element = document.getElementById(data['elementId']);
         var zoom = 1 / (window.devicePixelRatio || 1); // Nivel de zoom actual de la página
 
@@ -105,7 +106,4 @@ async function tomarCapturaPantalla(data = {}) {
     })
 }
 
-$("#observaciones_pdf").change(function () {
-    observaciones = $(this).val();
-})
 

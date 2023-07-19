@@ -58,7 +58,7 @@
                 <div class="row" id="Equipos_Termometros" style="display: none;">
                     <!-- Informacion del equipo y termometro asignados -->
                     <div class="col-12">
-                        <div class="mt-3 p-3">
+                        <div class="mt-3">
                             <div class="row gap-3">
                                 <!-- Informacion del equipos -->
                                 <div class='col card p-3'>
