@@ -73,12 +73,7 @@ async function buildPageTemperatura() {
 
         $("#formCapturarTemperatura").trigger("reset")
         ListaEnfriadoresActiva = true;
-        $.fn.dataTable
-            .tables({
-                visible: true,
-                api: true
-            })
-            .columns.adjust();
+
     })
 }
 

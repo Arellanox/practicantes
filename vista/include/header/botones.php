@@ -239,26 +239,16 @@ $menu = $_POST['menu']; ?>
   </div>
 <?php endif; ?>
 
-<?php if ($menu == "Registros de Temperatura" && $_SESSION['permisos']['RegTemp'] == 1) : ?>
+<?php if ($menu == "Registros de Temperatura") : ?>
   <!-- <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="capturarTemperatura">
     <i class="bi bi-plus-circle-fill"></i> Capturar
   </button> -->
 
-  <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
+  <?php if (TRUE) : ?>
     <div class="d-flex">
       <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
         <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
       </button>
-
-    <?php endif; ?>
-
-
-    <?php if ($_SESSION['permisos']['SupTemp'] ==  1) : ?>
-      <!-- DROPDOWN CONFIGURACIÓN -->
-      <!-- <button class="btn btn-hover me-2" type="button" style="margin-bottom:4px;" id="">
-        <i class="bi bi-gear-fill"></i> Configuracion
-      </button> -->
-      <!-- <button class="btn" id="TermometrosbtnTemperaturas">Termometros</button> -->
 
       <div class="dropdown">
         <button class="btn btn-hover me-2 dropdown-toggle" type="button" style="margin-bottom:4px;" data-bs-toggle="dropdown" aria-expanded="false">
@@ -277,6 +267,7 @@ $menu = $_POST['menu']; ?>
     </div>
 
   <?php endif; ?>
+
 
 <?php endif; ?>
 

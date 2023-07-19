@@ -37,6 +37,13 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
             reloadSelectTable()
             $("#lista-meses-temperatura").fadeIn(0);
             $('#btn-desbloquear-equipos').fadeIn(0)
+
+            $.fn.dataTable
+                .tables({
+                    visible: true,
+                    api: true
+                })
+                .columns.adjust();
             // $("#lista-meses-temperatura").fadeIn(0);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -54,10 +61,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         },
         {
             data: null, render: function (data) {
-                let html = `
-                <button type="button" class="btn-borrar me-2 d-flex justify-content-center" style = "margin-bottom:4px;" id="GenerarPDFTemperatura" >
-                        <i class="bi bi-file-earmark-pdf-fill"></i>
-                </button>`
+                let html = `<i class="bi bi-file-earmark-pdf-fill generarPDF" style="cursor: pointer; color: red;font-size: 23px;></i>`
 
                 return html;
             }
@@ -70,9 +74,9 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         }
     ],
     columnDefs: [
-        { target: 0, title: '#', className: 'all', width: '1%' },
-        { target: 1, title: 'FOLIO', className: 'all', width: '49%' },
-        { target: 2, title: 'PDF', className: 'all', width: '49%' },
+        { target: 0, title: '#', className: 'all', width: '10px' },
+        { target: 1, title: 'FOLIO', className: 'all', width: '80%' },
+        { target: 2, title: 'PDF', className: 'all', width: '10px' },
         { target: 3, title: 'ANHO', className: 'none' }
 
     ],
@@ -104,10 +108,21 @@ loaderDiv("Out", null, "#loader-temperatura2", '#loaderDivtemperatura2');
 selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     unSelect: true, ClickClass: [
         {
-            class: '',
-            callback: function (data) {
-                console.log()
-            }
+            class: 'generarPDF',
+            callback: async function (data) {
+                // e.preventDefault();
+
+                // En SelectedFoliosData esta toda la informacion del mes
+                FolioMesEquipo = data['FOLIO']
+                $("#observaciones_pdf").val("");
+                $("#Termometro_pdf").val("");
+
+                await rellenarSelect("#Termometro_pdf", "temperatura_api", 16, "TERMOMETRO_ID", "DESCRIPCION", { folio: FolioMesEquipo })
+
+
+                $("#TemperaturaModalGeneralFirma").modal("show");
+
+            }, selected: false
 
         },
     ], dblClick: true, reload: ['col-xl-9']
@@ -147,13 +162,6 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     // Abre un modal del detalle
     $('#detallesTemperaturaModal').modal('show');
     tablaTemperatura.ajax.reload()
-    $.fn.dataTable
-        .tables({
-            visible: true,
-            api: true
-        })
-        .columns.adjust();
-
 
 })
 

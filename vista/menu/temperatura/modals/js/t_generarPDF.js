@@ -1,20 +1,9 @@
 // Folio del mes que se esta seleccionando en la tabla
 FolioMesEquipo = {}, DatosAjax = {}, observaciones = "", Termometro = "";
 // Evento Click para abrir el modal de exportar PDF
-$(document).on("click", '#GenerarPDFTemperatura', async function (e) {
-    e.preventDefault();
+// $(document).on("click", '#GenerarPDFTemperatura', async function (e) {
 
-    // En SelectedFoliosData esta toda la informacion del mes
-    FolioMesEquipo = SelectedFoliosData['FOLIO']
-    $("#observaciones_pdf").val("");
-    $("#Termometro_pdf").val("");
-
-    await rellenarSelect("#Termometro_pdf", "temperatura_api", 16, "TERMOMETRO_ID", "DESCRIPCION", { folio: FolioMesEquipo })
-
-
-    $("#TemperaturaModalGeneralFirma").modal("show");
-
-})
+// })
 
 let dataJson = {
     api: 15

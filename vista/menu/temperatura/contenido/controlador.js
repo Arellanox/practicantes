@@ -12,8 +12,8 @@ var selectRegistro, selectedEquipos, editRegistro = false, id_equipos = null, bt
 var Domingos, dataConfig = {}, selectedEquiposTemperaturas = {}, SelectedFoliosData = {};
 
 var selectTableFolio = false
-function obtenerTemperaturas() {
-    obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area
+async function obtenerTemperaturas() {
+    await obtenerTitulo('Registros de Temperatura'); //Aqui mandar el nombre de la area
     $.post("contenido/temperatura.php", function (html) {
         $("#body-js").html(html);
     }).done(function () {
