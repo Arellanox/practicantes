@@ -73,14 +73,12 @@ async function buildPageTemperatura() {
 
         $("#formCapturarTemperatura").trigger("reset")
         ListaEnfriadoresActiva = true;
-        setTimeout(() => {
-            $.fn.dataTable
-                .tables({
-                    visible: true,
-                    api: true
-                })
-                .columns.adjust();
-        }, 100);
+        $.fn.dataTable
+            .tables({
+                visible: true,
+                api: true
+            })
+            .columns.adjust();
     })
 }
 
@@ -611,7 +609,7 @@ async function rellenarInformacionEquipos(data = [], col, elementId) {
                 html += `
                 <div class="${col}">
                     <strong>${element['title']}:</strong>
-                    ${element['Description'] == "" ? 'N/A' : element['Description']}
+                    ${ifnull(element['Description'], 'N/A')}
                 </div>
                 `;
             }

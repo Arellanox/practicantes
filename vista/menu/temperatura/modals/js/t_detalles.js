@@ -81,7 +81,7 @@ tablaTemperatura = $('#TablaTemperatura').DataTable({
         {
             text: ' <i class="bi bi-box-arrow-up " style="cursor: pointer; font-size:18px;"></i>',
             className: 'btn btn-warning btn-liberar',
-            action: function () {
+            action: function (data) {
 
                 alertMensajeConfirm({
                     title: '¿Desea liberar este registro?',

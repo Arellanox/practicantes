@@ -37,23 +37,15 @@
                 <div class="col-12" id="lista-meses-temperatura" style="margin-right: -5px !important; display:none;">
                     <div class="card mt-3 p-3 ">
                         <h5>Lista de Registro por Meses</h5>
-                        <div class="d-flex justify-content-center my-2" id="btn-temperaturas-actions">
+                        <!-- <div class="d-flex justify-content-center my-2" id="btn-temperaturas-actions">
                             <button type="button" class="btn btn-borrar me-2" style="margin-bottom:4px; display:none ;" id="GenerarPDFTemperatura">
                                 <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
                             </button>
-                        </div>
+                        </div> -->
                         <!-- Control de turnos -->
                         <div id="turnos_panel"></div>
                         <table class="table display responsive" id="TablaTemperaturasFolio" style="width: 100%">
-                            <thead class="">
-                                <tr>
-                                    <th scope="col d-flex justify-content-center" class="all">#</th>
-                                    <th scope="col d-flex justify-content-center" class="all">Descripcion</th>
-                                    <th scope="col d-flex justify-content-center" class="min-tablet">Folio</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
+
                         </table>
                     </div>
                 </div>

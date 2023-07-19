@@ -45,20 +45,47 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         dataSrc: 'response.data'
     },
     columns: [
-        { data: 'COUNT' },
+        { data: 'FOLIO' },
         {
             data: 'FECHA_REGISTRO', render: function (data) {
-                return formatoFecha2(data, [0, 1, 3, 0]).toUpperCase();
+                // Mes
+                return formatoFecha2(data, [0, 0, 3, 0]).toUpperCase();
             }
         },
-        { data: 'FOLIO' }
+        {
+            data: null, render: function (data) {
+                let html = `
+                <button type="button" class="btn-borrar me-2 d-flex justify-content-center" style = "margin-bottom:4px;" id="GenerarPDFTemperatura" >
+                        <i class="bi bi-file-earmark-pdf-fill"></i>
+                </button>`
+
+                return html;
+            }
+        },
+        {
+            data: 'FECHA_REGISTRO', render: function (data) {
+                // ANHO
+                return formatoFecha2(data, [0, 1, 0, 0]).toUpperCase();
+            }
+        }
     ],
     columnDefs: [
-        { target: 0, title: '#', className: 'all' },
-        { target: 1, title: 'Descripcion', className: 'all' },
-        { target: 2, title: 'Folio', className: 'all' }
+        { target: 0, title: '#', className: 'all', width: '1%' },
+        { target: 1, title: 'FOLIO', className: 'all', width: '49%' },
+        { target: 2, title: 'PDF', className: 'all', width: '49%' },
+        { target: 3, title: 'ANHO', className: 'none' }
 
-    ]
+    ],
+    // dom: 'Bfrtip',
+    // buttons: [
+    //     {
+    //         text: '<i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF',
+    //         className: 'btn btn-borrar',
+    //         action: function (data) {
+
+    //         }
+    //     }
+    // ]
 })
 
 
@@ -75,7 +102,15 @@ loaderDiv("Out", null, "#loader-temperatura2", '#loaderDivtemperatura2');
 
 
 selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
-    unSelect: true, dblClick: true, reload: ['col-xl-9']
+    unSelect: true, ClickClass: [
+        {
+            class: '',
+            callback: function (data) {
+                console.log()
+            }
+
+        },
+    ], dblClick: true, reload: ['col-xl-9']
 }, async function (select, data, callback) {
     if (select) {
         $("#grafica").html("");
@@ -85,7 +120,7 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
         DataMes = data
         tablaTemperatura.ajax.reload()
         SelectedFoliosData = data;
-        $("#GenerarPDFTemperatura").fadeIn(0)
+        // $("#GenerarPDFTemperatura").fadeIn(0)
 
         CrearEncabezadoEquipos(data['FOLIO']);
 
@@ -95,7 +130,7 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
         selectTableFolio = false;
 
         $("#Equipos_Termometros").fadeOut(0);
-        $("#GenerarPDFTemperatura").fadeOut(0)
+        // $("#GenerarPDFTemperatura").fadeOut(0)
         $("#Tabla-termometro").html('')
         $("#Tabla-equipos").html('')
         callback('Out')
