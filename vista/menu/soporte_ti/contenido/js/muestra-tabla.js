@@ -57,7 +57,7 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
                         html += `<i class="bi bi-exclamation-circle-fill text-warning"></i> ${meta.DESCRIPCION}`;
                         break;
                     case '3':
-                        html += `<i class="bi bi-arrow-right-circle-fill text-primary"></i> ${meta.DESCRIPCION}`;
+                        html += `<i class="bi bi-arrow-right-circle-fill text-primary"></i><span class="clickable-text" data-bs-toggle="modal" data-bs-target="#modalPendienteSoporte">${meta.DESCRIPCION}</span>`;
                         break;
                     case '4':
                         html += `<i class="bi bi-x-circle-fill text-danger"></i> ${meta.DESCRIPCION}`;
@@ -72,19 +72,24 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
             }
         },
         { data: 'MOTIVO_CANCELACION' },
+        { data: 'METODO_SOLUCION' },
+        { data: 'COMENTARIO_SOLUCION' },
 
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Nombre (#)', className: 'all' },
         { target: 2, title: 'Fecha', className: 'min-tablet' },
-        { target: 3, title: 'Tikect', className: 'all' },
+        { target: 3, title: 'Ticket', className: 'all' },
         { target: 4, title: 'Mensaje', className: 'none' },
         { target: 5, title: 'Atendido por', className: 'desktop' },
         { target: 6, title: 'Inicio', className: 'desktop' },
         { target: 7, title: 'Fin', className: 'all' },
         { target: 8, title: 'Estatus', className: 'min-tablet' },
         { target: 9, title: 'Motivo de cancelacion', className: 'none' },
+        { target: 10, title: 'Metodo de solucion', className: 'none' },
+        { target: 11, title: 'Solucion', className: 'none' },
+        
     ]
 })
 
@@ -98,10 +103,11 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
         {
             class: 'estatusUsuariosTabla',
             callback: function (data) {
+                ticket = data
 
                 switch (data['ESTATUS_ID']) {
 
-                    //Este usuario ya fuie atendido
+                    //Este usuario ya fue atendido
                     case '1':
                         alertToast('Este usuario ya fue atendido', 'success', 4000)
                         break;
@@ -113,42 +119,76 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
                                 text: 'Se cambiara el estado de este ticket a En atención',
                                 icon: 'info',
                             }, function () {
-    
                                 dataJson_tomarPaciente = {
                                     api : 3,
                                     estatus_id: data['ESTATUS_ID'],
                                     ticket: data['TICKET']
                                 }
-    
                                 ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
                                     alertToast('Este usuario esta siendo atendido!', 'success', 4000)
                 
                                     TablaVistaSoporteTi.ajax.reload();
                                 })
                             }, 1)
-
                         break;
                     
-                    //Este usuario esta siendo atendido    
+                    //Este usuario esta siendo atendido  
+                    //variable session_start  
                     case '3':
-                        alertMensajeConfirm({
-                            title: '¿Deseas terminar la atencion?',
-                            text: 'Se cambiara el estado de este ticket a Terminado',
-                            icon: 'info',
-                        }, function () {
+                        $(document).on('click', "#modalPendienteSoporte", function(e) {
+                            $(document).on('submit', '#btn-guardar-solucion-problema', function (e) {
+                                // e.preventDefault()
+                                alertMensajeConfirm({
+                                    title: '¿Deseas atender a este Usuario?',
+                                    text: 'Se cambiara el estado de este ticket a En atención',
+                                    icon: 'info',
+                                }, function () {
 
-                            dataJson_tomarPaciente = {
-                                api : 3,
-                                estatus_id: data['ESTATUS_ID'],
-                                ticket: data['TICKET']
-                            }
+                                    let dataJson_solucionProblema = {
+                                        api: 3,
+                                        estatus_id: ticket['ESTATUS_ID'],
+                                        ticket: ticket['TICKET'],
+                                        //para ver el if de una linea
+                                        metodo_solucion: $("#buscar-metodo-solucion").val(),
+                                        comentario_solucion: $("#comentarioSoluciuon").val()
+                                    }    
+        
+                                    ajaxAwait(dataJson_solucionProblema, 'asistencia_ti_bot_api', {callbackAfter : true}, false, function(data){
+                                    alertToast('Este usuario ya fue atendido!', 'success', 4000)
+                                    TablaVistaSoporteTi.ajax.reload();
+                                    })
 
-                            ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
-                                alertToast('Este usuario esta siendo atendido!', 'success', 4000)
-            
-                                TablaVistaSoporteTi.ajax.reload();
+                                }, 1)
+
+
                             })
-                        }, 1)
+                        })
+                    
+                        // ajaxAwait(dataJson_recetas, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
+                        //     alertToast('Receta guardada!', 'success', 4000)
+                        //     tablaListaRecetas.ajax.reload();
+                        // })
+                        // //Limpiar los datos del formulario
+                        // $("#nombre_generico").val("")
+
+                        // alertMensajeConfirm({
+                        //     title: '¿Deseas terminar la atencion?',
+                        //     text: 'Se cambiara el estado de este ticket a Terminado',
+                        //     icon: 'info',
+                        // }, function () {
+
+                        //     dataJson_tomarPaciente = {
+                        //         api : 3,
+                        //         estatus_id: data['ESTATUS_ID'],
+                        //         ticket: data['TICKET']
+                        //     }
+
+                        //     ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
+                        //         alertToast('Este usuario esta siendo atendido!', 'success', 4000)
+            
+                        //         TablaVistaSoporteTi.ajax.reload();
+                        //     })
+                        // }, 1)
 
                         break;
 

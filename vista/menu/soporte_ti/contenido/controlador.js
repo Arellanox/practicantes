@@ -4,8 +4,9 @@
     contenidoSoporteTi()
 // }
 
+var ticket
 
-async function contenidoSoporteTi() {
+async function contenidoSoporteTi(data) {
     await obtenerTitulo("Soporte TI");
     $.post("contenido/vista_tabla_TI.html", function (html) {
       $("#body-js").html(html);
@@ -15,6 +16,5 @@ async function contenidoSoporteTi() {
       $.getScript('contenido/js/muestra-tabla.js')
     })
   }
-
       // Botones
     //   $.getScript('contenido/js/muestras-botones.js')
