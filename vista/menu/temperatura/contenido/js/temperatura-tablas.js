@@ -113,7 +113,10 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
                 $("#observaciones_pdf").val("");
                 $("#Termometro_pdf").val("");
 
-                await rellenarSelect("#Termometro_pdf", "temperatura_api", 16, "TERMOMETRO_ID", "DESCRIPCION", { folio: FolioMesEquipo })
+                await rellenarSelect("#Termometro_pdf", "temperatura_api", 16, "TERMOMETRO_ID", "DESCRIPCION", { folio: FolioMesEquipo }, function (data, html) {
+                    if (data[0])
+                        $('#Termometro_pdf').val(data[0]['TERMOMETRO_PRINCIPAL'])
+                })
 
 
                 $("#TemperaturaModalGeneralFirma").modal("show");
