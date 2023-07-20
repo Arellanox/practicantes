@@ -25,19 +25,15 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         method: 'POST',
         url: '../../../api/temperatura_api.php',
         beforeSend: function () {
-            $("#lista-meses-temperatura").fadeOut(0);
+            fadeRegistro('Out')
             loader("In")
             selectTableFolio = false
-            // fadeRegistro('Out')
-
         },
         complete: function () {
-            loader("Out", 'bottom')
             //Para ocultar segunda columna
+            loader("Out", 'bottom')
             reloadSelectTable()
-            $("#lista-meses-temperatura").fadeIn(0);
-            $('#btn-desbloquear-equipos').fadeIn(0)
-
+            fadeRegistro('In')
             $.fn.dataTable
                 .tables({
                     visible: true,
@@ -122,7 +118,7 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
 
                 $("#TemperaturaModalGeneralFirma").modal("show");
 
-            }, selected: false
+            }, selected: true
 
         },
     ], dblClick: true, reload: ['col-xl-9']
@@ -143,7 +139,6 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
         callback('In')
     } else {
         selectTableFolio = false;
-
         $("#Equipos_Termometros").fadeOut(0);
         // $("#GenerarPDFTemperatura").fadeOut(0)
         $("#Tabla-termometro").html('')
@@ -156,11 +151,15 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     // $('#FormularioActualizarTemperatura_container').fadeOut(0)
     $('.detallesTemperaturatitle').html("");
     rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
-
+    $("#lectura_actualizar").val("")
+    $("#observaciones_actualizar").val("")
     $('.detallesTemperaturatitle').html(`Detalles de las temperaturas del equipo (${DataEquipo.Descripcion}) - ${formatoFecha2(DataMes['FECHA_REGISTRO'], [0, 1, 3, 0]).toUpperCase()}`)
     $("#formActualizarTemperatura").addClass('disable-element');
     // Abre un modal del detalle
-    $('#detallesTemperaturaModal').modal('show');
+
+    setTimeout(function () {
+        $('#detallesTemperaturaModal').modal('show');
+    }, 500)
     tablaTemperatura.ajax.reload()
 
 })
@@ -171,30 +170,14 @@ var DataFolio = {
 };
 
 
-// selectDatatable("TablaTemperatura", tablaTemperatura, 0, 0, 0, 0, async function (select, data) {
-//     selectRegistro = data
-//     if (select) {
-//         $("#formularioActualizarTemperatura").fadeIn(0);
 
-//         /*  if (data.ESTATUS == 1) {
-//              alert("Seleccion")
-//          } */
-
-//     } else {
-
-//     }
-// })
-
-
-function fadeRegistro(tipe) {
-    if (tipe == 'Out') {
-        $("#TablaTemperaturaDia").fadeOut(0)
-        $("#loaderDivtemperatura").fadeIn(0);
-        $("#loader-temperatura").fadeIn(0);
-    } else if (tipe == 'In') {
-        $("#TablaTemperaturaDia").fadeIn(0)
-        $("#loaderDivtemperatura").fadeOut(0);
-        $("#loader-temperatura").fadeOut(0);
+function fadeRegistro(type) {
+    if (type == 'Out') {
+        $("#lista-meses-temperatura").fadeOut(0);
+    } else if (type == 'In') {
+        $("#lista-meses-temperatura").fadeIn(0);
+        $('#btn-desbloquear-equipos').fadeIn(0)
+        $('#CapturarTemperaturabtn').removeClass('disable-element');
     }
 }
 

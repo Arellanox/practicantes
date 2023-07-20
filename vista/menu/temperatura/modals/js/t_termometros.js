@@ -2,6 +2,11 @@ DataEquiposTermometros = {
     api: 13
 }
 
+$("#TermometrosbtnTemperaturas").on("click", async function (e) {
+    TablaTermometrosDataTable.ajax.reload();
+    $("#TermometrosTemperaturasModal").modal("show");
+})
+
 TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json" },
     lengthChange: false,
@@ -17,12 +22,17 @@ TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
         method: 'POST',
         url: '../../../api/temperatura_api.php',
         beforeSend: function () {
-            console.log(DataEquiposTermometros)
+            // console.log(DataEquiposTermometros)
             // fadeRegistro('Out')
         },
         complete: function () {
             // fadeRegistro('In')
-
+            $.fn.dataTable
+                .tables({
+                    visible: true,
+                    api: true
+                })
+                .columns.adjust();
             tablaTemperatura.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -106,18 +116,6 @@ $('#activarFactorCorrecion').on('change', function () {
         $('#factor_correcion').collapse('hide');
     }
 });
-
-
-const TurnosTemperaturasModal = document.getElementById('TurnosTemperaturasModal')
-TurnosTemperaturasModal.addEventListener('show.bs.modal', event => {
-    $.fn.dataTable
-        .tables({
-            visible: true,
-            api: true
-        })
-        .columns.adjust();
-})
-
 
 $("#TermometrosTemperaturasForm").on("submit", function (e) {
     e.preventDefault();

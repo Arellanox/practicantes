@@ -23,7 +23,7 @@
                                     <i class="bi bi-arrow-bar-up"></i> Capturar
                                 </button>
                                 <button type="submit" form="EquiposTemperaturasForm" class="btn btn-confirmar " id="btn-equipo-temperatura">
-                                    <i class="bi bi-person-x"></i> Mostrar
+                                    <i class="bi bi-thermometer-half"></i> Mostrar
                                 </button>
                                 <button class="btn btn-confirmar me-2 disable-element" id="btn-desbloquear-equipos" style="display: none;">
                                     <i id="btn-lock" class="bi bi-lock-fill"></i>
@@ -100,7 +100,7 @@
 </div>
 
 
-
+<!-- Modal de comentarios de los registros -->
 <div class="modal-comentarios">
     <div class="modal fade" id="modalComentariosRegistro" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -111,16 +111,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12 col-lg-8">
-                            <div id="content-comentarios-registros">
-
-                                <div class="card m-3 p-3">
-                                    <h5>Comentario creado por</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo libero obcaecati necessitatibus doloremque. Incidunt ad, alias corrupti nihil est cupiditate rerum itaque illo consequuntur quis aliquid laboriosam possimus magnam ipsa.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-12">
                             <h5>Agregar comentario del día</h5>
                             <form class="row" id="formAgregarComentario">
                                 <div class="mb-3">
@@ -135,6 +126,15 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="col-12 col-lg-12">
+                            <div id="content-comentarios-registros">
+                                <div class="card m-3 p-3">
+                                    <h5>Comentario creado por</h5>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo libero obcaecati necessitatibus doloremque. Incidunt ad, alias corrupti nihil est cupiditate rerum itaque illo consequuntur quis aliquid laboriosam possimus magnam ipsa.</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -217,29 +217,15 @@
                     </div>
                 </div>
                 <hr>
-                <!-- <div class="d-flex justify-content-end">
-                <button type="submit" form="TermometrosTemperaturasForm" class=" btn btn-confirmar" id="btn-equipo-temperatura">
-                    <i class="bi bi-person-x"></i> Guardar
-                </button>
-            </div> -->
+
 
 
             </form>
             <button type="submit" form="ConfiguracionTemperaturaForm" class=" btn btn-confirmar" id="btn-configuracion-temperatura">
-                <i class="bi bi-person-x"></i> Guardar
+                <i class="bi bi-thermometer-half"></i> Guardar
             </button>
 
         </div>
-        <!-- <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div> -->
     </div>
 </div>
 

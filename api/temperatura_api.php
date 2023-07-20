@@ -77,6 +77,8 @@ $parametros =  array(
 
 
 
+
+
 $parametros_g = array(
     $fecha_inicial,
     $fecha_final,
@@ -286,8 +288,44 @@ switch ($api) {
     case 16:
         $response = $master->getByProcedure('sp_temperaturas_termometros_usados_b', [$folio]);
         break;
+    case 17:
+        //Funcion para registrar temperaturas desde el QR
+        $response = loginTemperaturas($_POST['user'], $_POST['pass'], $equipo, $termometro, $lectura, $observaciones, null, $checkFactorCorrecion);
+        break;
     default:
         $response = "Api no definida.";
+}
+
+
+function loginTemperaturas($user, $password, $equipo, $termometro, $lectura, $observaciones, $id_registro_temperatura, $checkFactorCorrecion)
+{
+    $master = new Master();
+    $activo = 1;
+    $bloqueado = 0;
+    $parametros = [$user, $activo, $bloqueado];
+    $result = $master->getByProcedure("sp_usuarios_login_b", $parametros);
+
+    if (count($result) > 0) {
+        if (password_verify($password, $result[0]['CONTRASENIA'])) {
+            $parametros_movil =  array(
+                $equipo,
+                $termometro,
+                $result[0]['ID_USUARIO'],
+                $lectura,
+                $observaciones,
+                $id_registro_temperatura,
+                $checkFactorCorrecion
+            );
+
+            $response = $master->insertByProcedure("sp_temperatura_g", $parametros_movil);
+        } else {
+            $response =  "Contrasena Incorrecta";
+        }
+    } else {
+        $response = "Usuario Incorrecto";
+    }
+
+    return $response;
 }
 
 echo $master->returnApi($response);
