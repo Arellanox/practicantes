@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="temperaturaTitle">Generar Formato de Temperaturas</h5>
+                <h5 class="modal-title" id="temperaturaPdfTitle">Generar Formato de Temperaturas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -18,14 +18,15 @@
                         </div>
                         <div class="col-12 col-lg-12">
                             <div class="mb-3">
-                                <label for="enfriadorMarca">Termometro del mes:</label>
+                                <label for="enfriadorMarca">Termometro del folio:</label>
+                                <p>
+                                    Lista de los termometros usados para el folio, Puedes cambiar el termometro
+                                    definido, Este se actualizara para el folio
+                                </p>
                                 <select class="form-select input-form" name="Termometro" id="Termometro_pdf" required>
                                     <option selected>Eliga un equipo</option>
                                 </select>
-                                <p>
-                                    Lista de los termometros usados del mes, Puedes cambiar el termometro del mes que
-                                    aparecera en el formato final.
-                                </p>
+
                             </div>
                         </div>
                     </div>
@@ -39,10 +40,10 @@
                 </button>
                 <button type="submit" class="btn btn-borrar" style="display: none;"
                     id="btn-mostrar-formato-temperatura">
-                    <i class="bi bi-file-earmark-pdf-fill"></i> Mostrar
+                    <i class="bi bi-file-earmark-pdf-fill"></i> Visualizar PDF
                 </button>
                 <button type="submit" class="btn btn-confirmar" id="btn-generar-formato-temperatura">
-                    <i class="bi bi-clipboard2-plus"></i> Guardar
+                    <i class="bi bi-box-arrow-down"></i> Guardar
                 </button>
             </div>
         </div>

@@ -107,7 +107,7 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
         {
             class: 'generarPDF',
             callback: async function (data) {
-                // console.log(data)
+                console.log(data['FECHA_REGISTRO'])
                 // e.preventDefault();
                 if (session['permisos']['SupTemp'] != 1)
                     return false;
@@ -124,6 +124,8 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
                 })
 
                 URL_TABLA != null ? $('#btn-mostrar-formato-temperatura').fadeIn(0) : $('#btn-mostrar-formato-temperatura').fadeOut(0);
+
+                $("#temperaturaPdfTitle").html(`Generar Formato del Mes: <b>${formatoFecha2(data['FECHA_REGISTRO'], [0, 1, 3, 0])}</b> (Folio:<b>${FolioMesEquipo}</b>)`)
 
                 $("#TemperaturaModalGeneralFirma").modal("show");
 
@@ -185,7 +187,8 @@ function fadeRegistro(type) {
         $("#lista-meses-temperatura").fadeOut(0);
     } else if (type == 'In') {
         $("#lista-meses-temperatura").fadeIn(0);
-        $('#btn-desbloquear-equipos').fadeIn(0)
+        // $('#btn-desbloquear-equipos').fadeIn(0)
+        $('#btn-desbloquear-equipos').removeClass('disable-element')
         $('#CapturarTemperaturabtn').removeClass('disable-element');
     }
 }

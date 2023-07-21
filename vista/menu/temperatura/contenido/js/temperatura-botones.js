@@ -3,7 +3,7 @@ var checkFactorCorrecion;
 ListaEnfriadoresActiva = false;
 $("#EquiposTemperaturasForm").on("submit", async function (e) {
     e.preventDefault();
-    $('#btn-equipo-temperatura').fadeOut(0)
+    // $('#btn-equipo-temperatura').fadeOut(0)
     alertToast('Espere un momento en lo que cargan los datos', 'info', 3000);
 
     await buildPageTemperatura()
@@ -37,23 +37,23 @@ function fadeMenuTemperatura(type) {
         $('#LibererDiaTemperatura').fadeOut(0);
         $('#btn-lock').removeClass('bi bi-unlock-fill')
         $('#btn-lock').addClass('bi bi-lock-fill')
-        // $('#btn-equipo-temperatura').removeClass('disable-element')
+        $('#btn-equipo-temperatura').removeClass('disable-element')
         $("#lista-meses-temperatura").fadeOut(0);
         $(".grafica-temperatura").fadeOut(0);
-        // $('#btn-desbloquear-equipos').addClass('disable-element')
+        $('#btn-desbloquear-equipos').addClass('disable-element')
         $('#CapturarTemperaturabtn').addClass('disable-element');
         // $("#SupervisorConfiguracion").fadeOut(0)
-        $('#btn-equipo-temperatura').fadeIn(0)
-        $('#btn-desbloquear-equipos').fadeOut(0)
+        // $('#btn-equipo-temperatura').fadeIn(0)
+        // $('#btn-desbloquear-equipos').fadeOut(0)
         $('#Equipos').removeClass('disable-element')
     } else if (type == 'In') {
         $('#LibererDiaTemperatura').fadeIn(0);
         $('#Equipos').addClass('disable-element')
-        // $('#btn-equipo-temperatura').addClass('disable-element')
+        $('#btn-equipo-temperatura').addClass('disable-element')
         // $("#SupervisorConfiguracion").fadeIn(0)
         $('#btn-lock').removeClass('bi bi-lock-fill')
         $('#btn-lock').addClass('bi bi-unlock-fill')
-        $('#btn-desbloquear-equipos').removeClass('disable-element')
+        // $('#btn-desbloquear-equipos').removeClass('disable-element')
     }
 }
 

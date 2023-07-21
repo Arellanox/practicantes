@@ -22,12 +22,13 @@
                                 <button type="button" class="btn btn-pantone-3165 me-2 disable-element" id="CapturarTemperaturabtn">
                                     <i class="bi bi-arrow-bar-up"></i> Capturar
                                 </button>
+                                <button class="btn btn-confirmar me-2 disable-element" id="btn-desbloquear-equipos">
+                                    <i id="btn-lock" class="bi bi-lock-fill"></i>
+                                </button>
                                 <button type="submit" form="EquiposTemperaturasForm" class="btn btn-confirmar " id="btn-equipo-temperatura">
                                     <i class="bi bi-thermometer-half"></i> Mostrar
                                 </button>
-                                <button class="btn btn-confirmar me-2 disable-element" id="btn-desbloquear-equipos" style="display: none;">
-                                    <i id="btn-lock" class="bi bi-lock-fill"></i>
-                                </button>
+
 
                             </div>
                         </form>

@@ -17,8 +17,8 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
     // data = new FormData(document.getElementById("GenerarPdfForm"));
 
     alertMensajeConfirm({
-        title: 'Esta seguro de realizar esta accion',
-        text: `Se generar el formato para el folio ${FolioMesEquipo}`,
+        title: 'Esta seguro de guardar los datos',
+        text: `Se guardaran los datos para el folio (${FolioMesEquipo})`,
         icon: 'info'
     }, async function () {
         // alertToast('Tomando Captura de la tabla', 'info', 2000);
@@ -31,18 +31,12 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
 
         setTimeout(async function () {
             await ajaxAwait(DatosAjax, 'temperatura_api', { callbackAfter: true }, false, (data) => {
-                // alertToast("Formato Generado y Guardado", 'success', 2000)
-                alertMsj({
-                    title: 'Formato Generado y Guardado',
-                    text: '',
-                    icon: 'success',
-                    showCancelButton: false
-                }, function () {
-                })
+                alertToast("Formato Generado y Guardado", 'success', 2000)
                 $("#observaciones_pdf").val("");
                 observaciones = "";
                 CrearEncabezadoEquipos(SelectedFoliosData['FOLIO']);
-                $("#TemperaturaModalGeneralFirma").modal('hide');
+                $('#btn-mostrar-formato-temperatura').fadeIn(0)
+                // $("#TemperaturaModalGeneralFirma").modal('hide');
             });
         }, 2000)
 

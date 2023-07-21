@@ -692,7 +692,7 @@
         $valores = $array['DIAS'];
 
         // echo "<pre>";
-        // var_dump($array['EQUIPO']);
+        // var_dump($valores);
         // // var_dump($valores[1][1]['valores']);
         // // $num = 20;
         // // var_dump($valores[$num] !== null ? "si existe" : "no existe");
@@ -731,7 +731,7 @@
         function metodoCalculo($dia, $turno, $valor, $valores, $type)
         {
 
-            if ($valores[$dia] !== null) {
+            if ($valores[$dia][$turno] !== null) {
                 // $valor = floatval($valores[$dia][$turno]["valor"]);
                 // $valor_redondeado = round($valor);
                 $valor = $valores[$dia][$turno]["valor"];
@@ -740,6 +740,9 @@
                 // $hora_parseada = date("h:i a", strtotime($hora));
                 // $hora_parseada = strtolower($hora_parseada);
 
+                $ruta_rubrica = $valores[$dia][$turno]["FIRMA"];
+                $rubrica = file_get_contents($ruta_rubrica);
+                $encode_rubrica = base64_encode($rubrica);
 
                 if ($type == 1) {
                     return "<td class=''>
@@ -748,10 +751,8 @@
                     </p>
                     </td>";
                 } else if ($type == 2) {
-                    return "<td class=''>
-                    <p class='h8 m-0 p-0' style='text-align:center;'>
-                    
-                    </p>
+                    return "<td class='' style='text-align:center;'>
+                    <img src='data:image/png;base64," . $encode_rubrica . "' height='25'  style='display:flex; justify-content:center; object-fit:cover; max-height:23px;'>
                     </td>";
                 } else {
                     return "<td class=''>
@@ -985,7 +986,7 @@
                     /* height: 350px; */
                     width: 77%;
                     position: absolute;
-                    margin-left: 115px;
+                    margin-left: 125px;
                     z-index: 0;
                 }
 

@@ -1408,6 +1408,7 @@ class Miscelaneus
         $i = 1;
         foreach ($response[0] as $key => $e) {
             $dia = $e['DIA'];
+            $firma_usuario = $e['RUBRICA_FIRMA'];
             $turno = $e['TURNO'];
             $valor = $e['valor'];
             $hora = $e['HORA'];
@@ -1430,7 +1431,7 @@ class Miscelaneus
                 $i = 2;
             }
 
-            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro, "hora" => $hora);
+            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro, "hora" => $hora, "FIRMA" => $firma_usuario);
             $i++;
         }
 
