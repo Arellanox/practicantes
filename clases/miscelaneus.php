@@ -510,11 +510,7 @@ class Miscelaneus
         $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre . "-" . $infoPaciente[0]['ETIQUETA_TURNO'] . '-' . $fecha_resultado);
         $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
 
-        // print_r($arregloPaciente);
-        // $pacientes = json_encode($arregloPaciente);
-        // print_r(json_decode($pacientes));
-        // print_r(json_encode($infoPaciente[0]));
-        // exit;
+
         $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
 
         // $pdf = '';
@@ -1420,7 +1416,6 @@ class Miscelaneus
             $observaciones = $e['OBSERVACIONES'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
-            $url_tabla = $e['RUTA_TABLA'];
             if (!isset($result[$dia])) {
                 $result[$dia] = array();
             }
@@ -1441,7 +1436,7 @@ class Miscelaneus
 
 
         foreach ($response[1] as $key => $e) {
-            # code...
+            # Equipo
             $intervalo_min = $e['INTERVALO_MIN'];
             $intervalo_max = $e['INTERVALO_MAX'];
             $equipo = $e['ENFRIADOR'];
@@ -1451,24 +1446,17 @@ class Miscelaneus
             $termometro_marca = $e['TERMOMETRO_MARCA'];
             $termometro_id = $e['TERMOMETRO_ID'];
             $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
-        }
-
-        foreach ($response[2] as $key => $e) {
-            # code...
+            #Termometro
             $termometro_marca = $e['TERMOMETRO_MARCA'];
             $termometro_id = $e['TERMOMETRO_ID'];
             $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
-        }
-
-        foreach ($response[3] as $key => $e) {
-            # code...
+            #Ultima fecha de registro
             $fecha_formato = $e['FECHA'];
-        }
-
-        foreach ($response[4] as $key => $e) {
-            # code...
+            #Supervisor
             $usuario_name = $e['px'];
             $usuario_rubrica = $e['RUBRICA'];
+            #Ruta tabla
+            $url_tabla = $e['RUTA_TABLA'];
         }
 
 
