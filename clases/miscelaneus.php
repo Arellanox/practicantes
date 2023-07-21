@@ -1460,10 +1460,23 @@ class Miscelaneus
             $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
         }
 
+        foreach ($response[3] as $key => $e) {
+            # code...
+            $fecha_formato = $e['FECHA'];
+        }
+
+        foreach ($response[4] as $key => $e) {
+            # code...
+            $usuario_name = $e['px'];
+            $usuario_rubrica = $e['RUBRICA'];
+        }
+
 
         $localizacion = null;
+        $fecha_verificacion = null;
+        $cargo = 'SUPERVISOR';
         $response = [];
-        $response['EQUIPO']['OBSERVACIONES'] = $observaciones;
+        // Datos de los equipos que se usaron en el mes como el equipo que se le checo la temperatura y el termometro que se uso para saber la temperatura del equipo.
         $response['EQUIPO']['ANHO'] = $anho;
         $response['EQUIPO']['MES'] = $mes;
         $response['EQUIPO']['FOLIO'] = $folio;
@@ -1477,8 +1490,23 @@ class Miscelaneus
         $response['EQUIPO']['EQUIPO_NUMERO_SERIE'] = is_null($equipo_numero_serie) ? 'N/A' : $equipo_numero_serie;
         $response['EQUIPO']['TERMOMETRO_MARCA'] = is_null($termometro_marca) ? 'N/A' : $termometro_marca;
         $response['EQUIPO']['TERMOMETRO_ID'] = is_null($termometro_id) ? 'N/A' : $termometro_id;
+        $response['EQUIPO']['FECHA_VERIFICACION'] = is_null($fecha_verificacion) ? 'N/A' : $fecha_verificacion;
         $response['EQUIPO']['FACTOR_CORRECCION'] = is_null($termometro_factor_correcion) ? 'N/A' : $termometro_factor_correcion;
 
+        // Datos de la persona que superviso el formato como las observaciones, el nombre, el cargo, la fecha y la firma
+        $response['USUARIO']['OBSERVACIONES'] = is_null($observaciones) ? 'N/A' : $observaciones;
+        $response['USUARIO']['NOMBRE'] = is_null($usuario_name) ? 'N/A' : $usuario_name;
+        $response['USUARIO']['CARGO'] = is_null($cargo) ? 'N/A' : $cargo;
+        $response['USUARIO']['FECHA'] = is_null($fecha_formato) ? 'N/A' : $fecha_formato;
+        $response['USUARIO']['RUBRICA'] = is_null($usuario_rubrica) ? 'N/A' : $usuario_rubrica;
+
+
+        #Laura
+        #Aurora
+        #Nery -> supervisor
+        #Enoc  -> supervisor
+        #Karen
+        #Jaime
 
         $response['DIAS'] = $result;
 

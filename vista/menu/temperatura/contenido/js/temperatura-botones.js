@@ -24,11 +24,8 @@ async function buildPageTemperatura() {
         LoadTermometros(id_equipos, 'Termometro');
         tablaTemperaturaFolio.ajax.reload()
         $('#Enfriador').val(id_equipos)
-
-
         $("#formCapturarTemperatura").trigger("reset")
         ListaEnfriadoresActiva = true;
-
         fadeMenuTemperatura('In')
 
     })

@@ -44,6 +44,7 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
                 $("#TemperaturaModalGeneralFirma").modal("hide");
                 $("#observaciones_pdf").val("");
                 observaciones = "";
+                CrearEncabezadoEquipos(SelectedFoliosData['FOLIO']);
             });
         }, 3000)
 
