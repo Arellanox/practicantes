@@ -17,14 +17,24 @@ $("#liberarDiaTemperaturaForm").on("submit", function (e) {
         text: "Ya no podras modificar este registro",
         icon: "info"
     }, function () {
+        fechaInicio = $("#FechaInicio").val();
+        fechaFinal = $("#FechaFinal").val();
+        if (fechaInicio > fechaFinal) {
+            alertToast('El rango de fechas seleccionado es incorrecto', 'error', 2000)
+        } else {
+            ajaxAwaitFormData({
+                api: 5,
+                Enfriador: id_equipos,
+                Termometro: Termometro
+            }, 'temperatura_api', 'liberarDiaTemperaturaForm', { callbackAfter: true }, false, function (data) {
+                alertTemperatura("Dias liberado");
+                $("#Tabla-termometro").html('')
+                $("#Tabla-equipos").html('')
+                // console.log(data)
+            })
+        }
 
-        ajaxAwaitFormData({
-            api: 5,
-            Enfriador: id_equipos
-        }, 'temperatura_api', 'liberarDiaTemperaturaForm', { callbackAfter: true }, false, function (data) {
-            alertTemperatura("Dias liberado");
-            console.log(data)
-        })
+
     }, 1)
 })
 

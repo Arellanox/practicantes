@@ -1,16 +1,9 @@
 // Folio del mes que se esta seleccionando en la tabla
-FolioMesEquipo = {}, DatosAjax = {}, observaciones = "";
+FolioMesEquipo = {}, DatosAjax = {}, observaciones = "", Termometro = "";
 // Evento Click para abrir el modal de exportar PDF
-$("#GenerarPDFTemperatura").on("click", function (e) {
-    e.preventDefault();
+// $(document).on("click", '#GenerarPDFTemperatura', async function (e) {
 
-    // En SelectedFoliosData esta toda la informacion del mes
-    FolioMesEquipo = SelectedFoliosData['FOLIO']
-
-
-    $("#TemperaturaModalGeneralFirma").modal("show");
-
-})
+// })
 
 let dataJson = {
     api: 15
@@ -28,8 +21,8 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
         text: `Se generar el formato para el folio ${FolioMesEquipo}`,
         icon: 'info'
     }, async function () {
-        alertToast('Tomando Captura de la tabla', 'info', 2000);
-
+        // alertToast('Tomando Captura de la tabla', 'info', 2000);
+        alertMensaje('info', 'Tomando Captura de pantalla', 'Se esta capturando la tabla para el reporte', null, null, 2000)
         await tomarCapturaPantalla({
             type: 'div',
             name: `TablaDePuntos_Temperatura_folio${FolioMesEquipo}`,
@@ -38,24 +31,45 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
 
         setTimeout(async function () {
             await ajaxAwait(DatosAjax, 'temperatura_api', { callbackAfter: true }, false, (data) => {
-                api = encodeURIComponent(window.btoa('temperatura'));
-                area = encodeURIComponent(window.btoa(-1));
-                turno = encodeURIComponent(window.btoa(FolioMesEquipo));
-
-                var win = window.open(`http://localhost/practicantes/visualizar_reporte/index-pruebas.php/?api=${api}&turno=${turno}&area=${area}`, '_blank')
-
-                win.focus();
+                // alertToast("Formato Generado y Guardado", 'success', 2000)
+                alertMsj({
+                    title: 'Formato Generado y Guardado',
+                    text: '',
+                    icon: 'success',
+                    showCancelButton: false
+                }, function () {
+                })
+                $("#observaciones_pdf").val("");
+                observaciones = "";
+                CrearEncabezadoEquipos(SelectedFoliosData['FOLIO']);
+                $("#TemperaturaModalGeneralFirma").modal('hide');
             });
-        }, 3000)
+        }, 2000)
+
 
     }, 1)
 
+})
+
+$("#btn-mostrar-formato-temperatura").on('click', async function (e) {
+    e.preventDefault();
+
+    api = encodeURIComponent(window.btoa('temperatura'));
+    area = encodeURIComponent(window.btoa(-1));
+    turno = encodeURIComponent(window.btoa(FolioMesEquipo));
+
+    var win = window.open(`http://localhost/practicantes/visualizar_reporte/index-pruebas.php/?api=${api}&turno=${turno}&area=${area}`, '_blank')
+
+    win.focus();
+    // $("#TemperaturaModalGeneralFirma").modal("hide");
 })
 
 
 // Funcion para tomar captura de pantalla a la tabla de temperaturas en 3 capas Tabla, Dots, Canvas
 async function tomarCapturaPantalla(data = {}) {
     return await new Promise(function (resolve, reject) {
+        Termometro = $("#Termometro_pdf").val();
+        observaciones = $("#observaciones_pdf").val();
         var element = document.getElementById(data['elementId']);
         var zoom = 1 / (window.devicePixelRatio || 1); // Nivel de zoom actual de la página
 
@@ -82,10 +96,13 @@ async function tomarCapturaPantalla(data = {}) {
             DatosAjax.api = 15
             DatosAjax.UrlImg = elementImg
             DatosAjax.NameImg = elementName
+            DatosAjax.Termometro = Termometro
             DatosAjax.folio = FolioMesEquipo
             DatosAjax.observaciones = observaciones
 
             swal.close();
+
+
             resolve(1)
         });
 
@@ -93,6 +110,4 @@ async function tomarCapturaPantalla(data = {}) {
     })
 }
 
-$("#observaciones_pdf").change(function () {
-    observaciones = $(this).val();
-})
+

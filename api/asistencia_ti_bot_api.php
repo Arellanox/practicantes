@@ -72,6 +72,10 @@ $numero_usuario = isset($datos['numero_usuario']) ? $datos['numero_usuario'] : $
 $ticket = isset($datos['ticket']) ? $datos['ticket'] : $_POST['ticket'];
 $atendido_por = $_SESSION['id'];
 
+//Datos para la atencion del usuario
+$metodo_solucion = isset($datos['metodo_solucion'])?  $datos['metodo_solucion'] : $_POST['metodo_solucion'];
+$comentario_solucion = isset($datos['comentario_solucion'])?  $datos['comentario_solucion'] : $_POST['comentario_solucion'];
+
 $fh = fopen("log.txt", 'a');
 fwrite($fh, json_encode($datos));
 fclose($fh);
@@ -93,7 +97,9 @@ $buscarDatos = array(
 $actualizarEstatus = $master->setToNull(array(
   $estatus_id,
   $ticket,
-  $atendido_por
+  $atendido_por,
+  $metodo_solucion,
+  $comentario_solucion
 ));
 
 // echo json_encode(['result' => '99999']);
@@ -143,7 +149,6 @@ switch ($api) {
     echo $master->returnApi($response);
     exit;
     break;
-
   default:
     $response = "API no definida";
     break;

@@ -1,0 +1,36 @@
+
+  <div class="modal fade" id="modalPendienteSoporte" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header header-modal">
+          <h5 class="modal-title" id="filtrador">Atencion a usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form class="">
+            <select name="buscar-metodo-solucion" id="buscar-metodo-solucion">
+              <option selected>Selecciona uno de los metodos de solucion</option>
+              <option value="Remoto">Remoto</option>
+              <option value="Presencial">Presencial</option>
+              <option value="Por chat">Por chat</option>
+            </select>
+          
+            <div class="form-floating">
+              <textarea class="form-control" placeholder="Leave a comment here" id="comentarioSoluciuon"
+                style="height: 100px"></textarea>
+              <label for="floatingTextarea2">Escribe cómo lo solucionaste</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i> Cancelar</button>
+          
+          <button type="submit" form="formSolucionProblema" id="btn-guardar-solucion-problema" class="btn btn-confirmar">
+            <i class="bi bi-person-plus"></i> Terminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

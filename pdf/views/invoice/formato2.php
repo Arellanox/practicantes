@@ -723,6 +723,10 @@
         $Tabla_puntos = file_get_contents($array['EQUIPO']['URL_TABLA']);
         $encode_tabla = base64_encode($Tabla_puntos);
 
+        // Rubrica del supervisor
+        $rubrica_supervisor = file_get_contents($array['USUARIO']['RUBRICA']);
+        $encode_rubrica_supervisor = base64_encode($rubrica_supervisor);
+
 
         function metodoCalculo($dia, $turno, $valor, $valores, $type)
         {
@@ -904,7 +908,7 @@
                                                 </td>
                                                 <td class="">
                                                     <div class="d-flex">
-                                                        <label class="h7"> Factor de correción:</label>
+                                                        <label class="h7"> Factor de corrección:</label>
                                                         <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FACTOR_CORRECCION']; ?> °C</label>
                                                     </div>
                                                 </td>
@@ -925,7 +929,7 @@
                                                 <td class="">
                                                     <div class="d-flex">
                                                         <label class="h7">Fecha de verificación:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold">22/12/2023</label>
+                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FECHA_VERIFICACION'] ?></label>
                                                     </div>
                                                 </td>
                                                 <td class="">
@@ -952,7 +956,7 @@
             <div style="width:100%;  text-align: center;">
 
                 <?php
-                echo "<img src='data:image/png;base64, " .  $encode_tabla . "' class='grafica-tabla'>";
+                echo "<img src='data:image/png;base64, " .  $encode_tabla . "' class='grafica-tabla' style='object-fit: cover !important;'>";
                 // echo "<img src='data:image/png;base64, " . $encode_dot . "' class='grafica-dot'>";
                 // echo "<img src='data:image/png;base64, " . $encode_tabla . "' class='grafica-tabla'>";
                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
@@ -974,7 +978,9 @@
 
                 .grafica-tabla {
                     /* min-height: 200px; */
-                    max-height: 350px;
+                    max-height: 325px;
+                    /* min-height: 40%; */
+                    object-fit: cover !important;
                     /* height: 50%; */
                     /* height: 350px; */
                     width: 77%;
@@ -1002,7 +1008,7 @@
             <style>
                 #rubrica {
                     position: relative;
-                    top: 355px;
+                    top: 330px;
                 }
 
                 #rubrica table {
@@ -1143,7 +1149,7 @@
             <style>
                 #supervisor {
                     position: relative;
-                    top: 365px;
+                    top: 335px;
                     margin-left: 100px;
                     /* margin-right: 200px !important; */
                 }
@@ -1165,6 +1171,12 @@
                     position: relative !important;
                     bottom: 10px !important;
                     left: 130px !important;
+                }
+
+                .rubrica_supervisor {
+                    position: absolute;
+                    right: 180px;
+                    top: 65px;
                 }
             </style>
             <div id="supervisor">
@@ -1200,16 +1212,18 @@
                 <!-- Campos del supervisor -->
                 <div class="d-flex mb-3 " style="width: max-content !important;">
                     <label class="h7 w-50"> OBSERVACIONES:</label>
-                    <input class="h7 p-0 m-0" type="text" value="<?php echo $array['EQUIPO']['OBSERVACIONES']; ?>" style="  width: 750px !important;">
+                    <input class="h7 p-0 m-0" type="text" value="<?php echo $array['USUARIO']['OBSERVACIONES']; ?>" style="  width: 750px !important;">
                 </div>
 
                 <div class="d-flex " style="width: max-content !important;">
                     <div>
                         <label class="h7 w-50"> SUPERVISO:</label>
-                        <input class="h7 p-0 m-0" type="text" value="JUAN DANIEL HERNANDEZ GARCIA" style="  width:200px  !important; margin-right:30px !important;">
-                        <input class="h7 p-0 m-0" type="text" value="SUPERVISOR" style="  width:170px  !important; margin-right:30px !important;">
-                        <input class="h7 p-0 m-0" type="text" value="23/09/2023" style="  width:150px  !important; margin-right:30px !important;">
-                        <input class="h7 p-0 m-0" type="text" value="" style="  width:150px  !important;">
+                        <input class="h7 p-0 m-0" type="text" value="<?php echo $array['USUARIO']['NOMBRE']; ?>" style="  width:200px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="<?php echo $array['USUARIO']['CARGO']; ?>" style="  width:170px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="<?php echo $array['USUARIO']['FECHA']; ?>" style="  width:150px  !important; margin-right:30px !important;">
+                        <input class="h7 p-0 m-0" type="text" value="<?php echo $array['USUARIO']['FIRMA']; ?>" style="  width:150px  !important;">
+
+                        <?php echo "<img class='rubrica_supervisor' src='data:image/png;base64, " . $encode_rubrica_supervisor . "' height='35'>"; ?>
                     </div>
                     <div class="d-flex" id="infoInput">
                         <span class="h7 p-0 m-0 subtitle" style="margin-right:190px !important;">NOMBRE</span>
@@ -1227,37 +1241,38 @@
             <!-- Fin campos del supervisor -->
 
 
-
-
-            <!-- <style>
-                table {
-                    border-collapse: collapse;
+            <!-- Footer  -->
+            <style>
+                #footer label {
+                    color: rgb(000, 078, 089);
+                    font-size: 10.5px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    font-weight: bold;
+                    /* margin-right: 275px; */
                 }
 
-                table,
-                th,
-                td {
-                    border: 1px solid black;
+                #footer .container_footer {
+                    position: relative;
+                    top: 360px;
+                    left: 80px;
                 }
+            </style>
+            <div id="footer">
+                <div class="container_footer">
+                    <label class="" style='margin-right:300px;'>
+                        REV .: 2023-03-31
+                    </label>
+                    <label class="" style='margin-right:380px;'>
+                        FUG-08-DB
+                    </label>
+                    <label class="">
+                        Pagina 1
+                    </label>
+                </div>
 
-                th,
-                td {
-                    padding: 8px;
-                }
-
-                th {
-                    text-align: center;
-                }
-
-                tr:first-child th {
-                    border-top: none;
-                }
-
-                td:first-child {
-                    border-left: none;
-                }
-            </style> -->
-
+            </div>
+            <!-- Fin del footer -->
         </div>
     </div>
 

@@ -1,83 +1,61 @@
 var checkFactorCorrecion;
 
-
-// $(document).on("click", ".btn-editar", function (e) {
-//     e.stopPropagation()
-
-//     editRegistro = true
-//     if (selectRegistro && !(validarPermiso('SupTemp') ? false : parseInt(selectRegistro['ESTATUS']))) {
-//         firstSelect(true)
-//     } else {
-//         alertToast("No ha seleccionado ningun registro", "info", 4000)
-//     }
-// })
-
-
-
-
-$(document).on('click', '.btn-liberar', function(event) {
-    event.stopPropagation();
-
-})
-
-
-// $(document).on('click', '#ModalFirmaTemperatura', function (e) {
-//     e.preventDefault();
-//     e.stopPropagation()
-//     console.log("estas en firma modal")
-//     resetFirma(firma_guardar.ctx, firma_guardar.canvas)
-//     $('#TemperaturaModalFirma').modal('show');
-// })
-
 ListaEnfriadoresActiva = false;
-$("#EquiposTemperaturasForm").on("submit", function(e) {
+$("#EquiposTemperaturasForm").on("submit", async function (e) {
     e.preventDefault();
+    $('#btn-equipo-temperatura').fadeOut(0)
+    alertToast('Espere un momento en lo que cargan los datos', 'info', 3000);
 
-
-
-    console.log($("#Equipos").val())
-    id_equipos = $("#Equipos").val()
-    selectedText = $("#Equipos option:selected").text();
-    DataEquipo = {
-        api: 2,
-        Enfriador: id_equipos,
-        Descripcion: selectedText
-    }
-
-
-    LoadTermometros(id_equipos, 'Termometro');
-
-
-    tablaTemperaturaFolio.ajax.reload()
-
-
-    $('#Enfriador').val(id_equipos)
-    $('#lista-meses-temperatura').fadeToggle(0)
-    $('#LibererDiaTemperatura').fadeIn(0);
-    $('#Equipos').addClass('disable-element')
-    $('#btn-equipo-temperatura').addClass('disable-element')
-    $('#btn-desbloquear-equipos').fadeIn(0)
-    $('#CapturarTemperaturabtn').removeClass('disable-element');
-    // $("#SupervisorConfiguracion").fadeIn(0)
-
-
-    $('#btn-lock').removeClass('bi bi-lock-fill')
-    $('#btn-lock').addClass('bi bi-unlock-fill')
-    $('#btn-desbloquear-equipos').removeClass('disable-element')
-
-    $("#formCapturarTemperatura").trigger("reset")
-
-    setTimeout(() => {
-        $.fn.dataTable
-            .tables({
-                visible: true,
-                api: true
-            })
-            .columns.adjust();
-    }, 100);
-
-    ListaEnfriadoresActiva = true;
+    await buildPageTemperatura()
 })
+
+async function buildPageTemperatura() {
+    return new Promise(function (resolve, reject) {
+        $("#Tabla-termometro").html('')
+        $("#Tabla-equipos").html('')
+        console.log($("#Equipos").val())
+        id_equipos = $("#Equipos").val()
+        selectedText = $("#Equipos option:selected").text();
+        DataEquipo = {
+            api: 2,
+            Enfriador: id_equipos,
+            Descripcion: selectedText
+        }
+        LoadTermometros(id_equipos, 'Termometro');
+        tablaTemperaturaFolio.ajax.reload()
+        $('#Enfriador').val(id_equipos)
+        $("#formCapturarTemperatura").trigger("reset")
+        ListaEnfriadoresActiva = true;
+        fadeMenuTemperatura('In')
+
+    })
+}
+
+function fadeMenuTemperatura(type) {
+    if (type == 'Out') {
+        $("#Equipos_Termometros").fadeOut(0);
+        $('#LibererDiaTemperatura').fadeOut(0);
+        $('#btn-lock').removeClass('bi bi-unlock-fill')
+        $('#btn-lock').addClass('bi bi-lock-fill')
+        // $('#btn-equipo-temperatura').removeClass('disable-element')
+        $("#lista-meses-temperatura").fadeOut(0);
+        $(".grafica-temperatura").fadeOut(0);
+        // $('#btn-desbloquear-equipos').addClass('disable-element')
+        $('#CapturarTemperaturabtn').addClass('disable-element');
+        // $("#SupervisorConfiguracion").fadeOut(0)
+        $('#btn-equipo-temperatura').fadeIn(0)
+        $('#btn-desbloquear-equipos').fadeOut(0)
+        $('#Equipos').removeClass('disable-element')
+    } else if (type == 'In') {
+        $('#LibererDiaTemperatura').fadeIn(0);
+        $('#Equipos').addClass('disable-element')
+        // $('#btn-equipo-temperatura').addClass('disable-element')
+        // $("#SupervisorConfiguracion").fadeIn(0)
+        $('#btn-lock').removeClass('bi bi-lock-fill')
+        $('#btn-lock').addClass('bi bi-unlock-fill')
+        $('#btn-desbloquear-equipos').removeClass('disable-element')
+    }
+}
 
 function LoadTermometros(id_equipos, input) {
     $(`#${input}`).html("")
@@ -90,79 +68,29 @@ function LoadTermometros(id_equipos, input) {
         selectedEquipos = data.response.data;
 
         selectedEquipos.forEach(e => {
-        //     $(`#${input}`).html(`
-        // <option value='${e['TERMOMETRO_ID']}' selected>${e['TERMOMETRO']}</option>
-        // `)
+            //     $(`#${input}`).html(`
+            // <option value='${e['TERMOMETRO_ID']}' selected>${e['TERMOMETRO']}</option>
+            // `)
 
-        $(`#${input}`).val(e['TERMOMETRO_ID']);
+            $(`#${input}`).val(e['TERMOMETRO_ID']);
+            Termometro = e['TERMOMETRO_ID']
 
         });
     })
 
 }
 
-$('#btn-desbloquear-equipos').on('click', function(e) {
+$('#btn-desbloquear-equipos').on('click', function (e) {
+    e.preventDefault()
     ListaEnfriadoresActiva = false;
     $("#Termometro").html("")
-    e.preventDefault()
-    $('#Equipos').removeClass('disable-element')
-    $('#LibererDiaTemperatura').fadeOut(0);
-
-
-    $('#btn-lock').removeClass('bi bi-unlock-fill')
-    $('#btn-lock').addClass('bi bi-lock-fill')
-
-    $('#btn-equipo-temperatura').removeClass('disable-element')
-    $("#lista-meses-temperatura").fadeOut(0);
-    $(".grafica-temperatura").fadeOut(0);
-    $('#btn-desbloquear-equipos').addClass('disable-element')
-
-    $('#CapturarTemperaturabtn').addClass('disable-element');
-    // $("#SupervisorConfiguracion").fadeOut(0)
-
     $("#formCapturarTemperatura").trigger("reset")
 
+    fadeMenuTemperatura('Out')
 })
-
-// $(document).on("click", ".reset_firma", function (e) {
-//     e.preventDefault();
-//     e.stopPropagation()
-
-//     let tipo = $(this).attr("data_tipo");
-
-//     switch (tipo) {
-//         case "actualizar":
-//             resetFirma(firma_actualizar.ctx, firma_actualizar.canvas);
-//             break;
-//         case "guardar":
-//             resetFirma(firma_guardar.ctx, firma_guardar.canvas);
-//             break;
-//         default:
-//             break;
-//     }
-
-// })
-
-//Comprueba el evento submit del formulario, si dan click al button se manda el formulario, se recupera la informacion de los input y se guarda y setea en un formData para enviarlo a la api y capturarlos en la base de datos
-$("#formCapturarTemperatura").on("submit", function(e) {
-    e.preventDefault();
-
-    editRegistro = false;
-
-
-    // if (firmaExist == false) {
-    //     if (validarFormulario(firma_guardar.canvas, firma_guardar.ctx, firma_guardar.firma) == false) {
-    //         return false;
-    //     }
-    // }
-
-    CargarTemperatura()
-
-})
-
 
 // Checa si requiere o no aplicar el factor de correcion
-$('#checkFactorCorrecion').change(function() {
+$('#checkFactorCorrecion').change(function () {
     var switchState = $(this).is(':checked');
     if (switchState) {
         checkFactorCorrecion = 1;
@@ -172,14 +100,13 @@ $('#checkFactorCorrecion').change(function() {
 
 });
 
-
 function CargarTemperatura() {
 
     alertMensajeConfirm({
         title: "¿Está seguro de su captura?",
         text: "Recuerde usar el simbolo - si es necesario",
         icon: "info"
-    }, function() {
+    }, function () {
         // data = new FormData(document.getElementById('formCapturarTemperatura'));
         // console.log(data);
 
@@ -210,11 +137,11 @@ function CargarTemperatura() {
                 break;
         }
 
-        ajaxAwaitFormData(dataJson, 'temperatura_api', form, { callbackAfter: true }, false, function(data) {
+        ajaxAwaitFormData(dataJson, 'temperatura_api', form, { callbackAfter: true }, false, function (data) {
             alertToast(text, 'success', 4000)
             $("#grafica").html("");
             CrearTablaPuntos(DataMes['FOLIO']);
-
+            CrearEncabezadoEquipos(DataMes['FOLIO']);
 
             $('#formCapturarTemperatura').trigger("reset");
             $('#formActualizarTemperatura').trigger("reset");
@@ -234,14 +161,13 @@ function CargarTemperatura() {
                 LoadTermometros(DataEquipo.Enfriador);
             }
 
-            editRegistro == true ? $('#detallesTemperaturaModal').modal('hide') : null
+            editRegistro == true ? $('#detallesTemperaturaModal').modal('hide') : $('#CapturarTemperaturaModal').modal('hide')
         })
     }, 1)
 }
 
-
 id_registro_dor = false
-$(document).on('click', '.td-hover', async function(event) {
+$(document).on('click', '.td-hover', async function (event) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -267,7 +193,7 @@ $(document).on('submit', '#formAgregarComentario', (event) => {
         title: '¿Está seguro de agregar este comentario?',
         text: 'No podrás actualizarlo',
         icon: 'info'
-    }, function() {
+    }, function () {
         ajaxAwaitFormData({
             api: 8,
             id_registro_temperatura: id_registro_dor
@@ -285,7 +211,7 @@ $(document).on('submit', '#formAgregarComentario', (event) => {
     }, 1)
 })
 
-$(document).on("click", ".comentario-eliminar", function(event) {
+$(document).on("click", ".comentario-eliminar", function (event) {
     event.preventDefault();
 
     let dot = $(this)
@@ -296,7 +222,7 @@ $(document).on("click", ".comentario-eliminar", function(event) {
         title: '¿Está seguro de eliminar este comentario?',
         text: 'No podrás revertirlo',
         icon: 'info'
-    }, function() {
+    }, function () {
         ajaxAwait({
             api: 10,
             id_comentario: id_comentario
@@ -311,7 +237,7 @@ $(document).on("click", ".comentario-eliminar", function(event) {
 
 //Muestra los comentarios
 function mostrarComentariosDiaTemperatura() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         //Recupera los comentarios
         ajaxAwait({
             api: 9,
@@ -336,7 +262,6 @@ function mostrarComentariosDiaTemperatura() {
 
 
 }
-
 
 function agregarNota(element = [], div) {
     if (element['COMENTARIO'] == null) {
@@ -364,8 +289,7 @@ function agregarNota(element = [], div) {
     $(div).append(html);
 }
 
-
-$("#ConfiguracionTemperaturasbtn").on("click", async function() {
+$("#ConfiguracionTemperaturasbtn").on("click", async function () {
     alertToast('Cargando Configuracion...', 'info', 2000)
     await CargarConfiguracionTemperaturas()
 
@@ -374,7 +298,7 @@ $("#ConfiguracionTemperaturasbtn").on("click", async function() {
     $('#offcanvasConfiguracionTemperaturas').offcanvas('show');
 })
 
-$("#btn-configuracion-temperatura").on("click", function(e) {
+$("#btn-configuracion-temperatura").on("click", function (e) {
     e.preventDefault();
 
     switchState = $('#Domingos').is(':checked');
@@ -395,10 +319,9 @@ $("#btn-configuracion-temperatura").on("click", function(e) {
 
 })
 
-
 var domingos;
 // Escuchar los cambios en el switch
-$('#Domingos').on('change', function() {
+$('#Domingos').on('change', function () {
     var switchState = $(this).is(':checked');
     if (switchState) {
         domingos = 1
@@ -408,7 +331,6 @@ $('#Domingos').on('change', function() {
         // $('#factor_coreccion').collapse('hide');
     }
 });
-
 
 // $("#SupervisorConfiguracion").on("click", function (e) {
 //     e.preventDefault();
@@ -443,8 +365,7 @@ $('#Domingos').on('change', function() {
 //     $("#ConfiguracionModal").modal('show');
 // })
 
-
-$("#DomingosbtnTemperaturas").on('click', function(e) {
+$("#DomingosbtnTemperaturas").on('click', function (e) {
     e.preventDefault();
 
     CargarConfiguracionTemperaturas()
@@ -505,16 +426,9 @@ $("#DomingosbtnTemperaturas").on('click', function(e) {
 
 })
 
-$("#TurnosbtnTemperaturas").on("click", function(e) {
+$("#TurnosbtnTemperaturas").on("click", function (e) {
 
     $("#TurnosTemperaturasModal").modal("show");
-})
-
-
-$("#TermometrosbtnTemperaturas").on("click", async function(e) {
-
-    TablaTermometrosDataTable.ajax.reload();
-    $("#TermometrosTemperaturasModal").modal("show");
 })
 
 async function CargarConfiguracionTemperaturas() {
@@ -546,3 +460,82 @@ async function CargarConfiguracionTemperaturas() {
         }
     })
 }
+
+async function CrearEncabezadoEquipos(folio) {
+    return await ajaxAwait({
+        api: 7,
+        folio: folio
+    }, 'temperatura_api', { callbackAfter: true, WithoutResponseData: true }, false, async (row) => {
+        $("#Tabla-termometro").html('');
+        $("#Tabla-equipos").html('');
+        // console.log(row['EQUIPO'])
+        await rellenarInformacionEquipos([{
+            title: 'Equipo',
+            Description: `${row['EQUIPO']['EQUIPO_NOMBRE']}`
+        }, {
+            title: 'Marca',
+            Description: `${row['EQUIPO']['EQUIPO_MARCA']}`
+        }, {
+            title: 'Modelo',
+            Description: `${row['EQUIPO']['EQUIPO_MODELO']}`,
+        }, {
+            title: 'N° Serie',
+            Description: `${row['EQUIPO']['EQUIPO_NUMERO_SERIE']}`
+        }, {
+            title: 'Localizacion',
+            Description: `${row['EQUIPO']['LOCALIZACION']}`
+        }, {
+            title: 'Intervalo optimo',
+            Description: `${row['EQUIPO']['INTERVALO_MIN']} A ${row['EQUIPO']['INTERVALO_MAX']}`
+        }], 'col-6', 'Tabla-equipos');
+
+        await rellenarInformacionEquipos([{
+            title: 'Marca',
+            Description: `${row['EQUIPO']['TERMOMETRO_MARCA']}`
+        }, {
+            title: 'ID',
+            Description: `${row['EQUIPO']['TERMOMETRO_ID']}`
+        }, {
+            title: 'Factor de correccion',
+            Description: `${row['EQUIPO']['FACTOR_CORRECCION']}`,
+        }, {
+            title: 'Fecha de verificacion',
+            Description: `${row['EQUIPO']['MES']}`
+        }, {
+            title: 'MES',
+            Description: `${row['EQUIPO']['MES']}`
+        }, {
+            title: 'AÑO',
+            Description: `${row['EQUIPO']['ANHO']}`
+        }], 'col-6', 'Tabla-termometro');
+    })
+
+
+
+
+
+}
+
+async function rellenarInformacionEquipos(data = [], col, elementId) {
+    return new Promise(function (resolve, reject) {
+        let html = `<div class='row'>`
+
+        for (const key in data) {
+            if (Object.hasOwnProperty.call(data, key)) {
+                const element = data[key];
+
+                html += `
+                <div class="${col}">
+                    <strong>${element['title']}:</strong>
+                    ${ifnull(element['Description'], 'N/A')}
+                </div>
+                `;
+            }
+        }
+        html += `</div>`
+
+        $(`#${elementId}`).html(html)
+        resolve(1)
+    })
+}
+

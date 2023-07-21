@@ -2,97 +2,92 @@
 <div id="tab-button"></div>
 
 <div class="row">
-    <div class="col-12 tab-first" id="tab-principal">
-        <!-- Vista de equipo y formulario -->
+    <div class="col-12" id="tab-principal">
         <div class="row">
             <div class="col-12 col-xl-3">
-                <div class="card mt-3 p-3" id="lista-pacientes">
-                    <h5>Lista de Equipos Enfriadores</h5>
+                <!-- Lista de los equipos a los que se debe capturar temperaturas -->
+                <div class="col-12">
+                    <div class="card mt-3 p-3" id="lista-pacientes">
+                        <h5>Lista de Equipos Enfriadores</h5>
 
-                    <form name="EquiposTemperaturasForm" id="EquiposTemperaturasForm">
-                        <div class="mb-3">
-                            <label for="Equipo" class="form-label p-0 m-0">Equipo:</label>
-                            <select class="form-select input-form" name="Equipos" id="Equipos" required>
-                                <option selected>Eliga un equipo</option>
-                            </select>
-                        </div>
+                        <form name="EquiposTemperaturasForm" id="EquiposTemperaturasForm">
+                            <div class="mb-3">
+                                <label for="Equipo" class="form-label p-0 m-0">Equipo:</label>
+                                <select class="form-select input-form" name="Equipos" id="Equipos" required>
+                                    <option selected>Eliga un equipo</option>
+                                </select>
+                            </div>
 
-                        <div class="d-flex justify-content-end d-block d-lg-flex d-print-block">
-                            <button class="btn btn-confirmar me-2 disable-element" id="btn-desbloquear-equipos">
-                                <i id="btn-lock" class="bi bi-lock-fill"></i>
+                            <div class="d-flex justify-content-end d-block d-lg-flex d-print-block">
+                                <button type="button" class="btn btn-pantone-3165 me-2 disable-element" id="CapturarTemperaturabtn">
+                                    <i class="bi bi-arrow-bar-up"></i> Capturar
+                                </button>
+                                <button type="submit" form="EquiposTemperaturasForm" class="btn btn-confirmar " id="btn-equipo-temperatura">
+                                    <i class="bi bi-thermometer-half"></i> Mostrar
+                                </button>
+                                <button class="btn btn-confirmar me-2 disable-element" id="btn-desbloquear-equipos" style="display: none;">
+                                    <i id="btn-lock" class="bi bi-lock-fill"></i>
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Tabla de los meses que se tienen registrado de los equipo -->
+                <div class="col-12" id="lista-meses-temperatura" style="margin-right: -5px !important; display:none;">
+                    <div class="card mt-3 p-3 ">
+                        <h5>Lista de Registro por Meses</h5>
+                        <!-- <div class="d-flex justify-content-center my-2" id="btn-temperaturas-actions">
+                            <button type="button" class="btn btn-borrar me-2" style="margin-bottom:4px; display:none ;" id="GenerarPDFTemperatura">
+                                <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
                             </button>
+                        </div> -->
+                        <!-- Control de turnos -->
+                        <div id="turnos_panel"></div>
+                        <table class="table display responsive" id="TablaTemperaturasFolio" style="width: 100%">
 
-                            <button type="button" class="btn btn-confirmar me-2 disable-element" id="CapturarTemperaturabtn">
-                                <i class="bi bi-plus-circle-fill"></i> Capturar
-                            </button>
-                            <button type="submit" form="EquiposTemperaturasForm" class=" btn btn-confirmar" id="btn-equipo-temperatura">
-                                <i class="bi bi-person-x"></i> Mostrar
-                            </button>
-
-                        </div>
-                    </form>
+                        </table>
+                    </div>
+                </div>
+                <!-- Loader que carga cuando la tabla se esta llenando -->
+                <div class="col-12 d-flex justify-content-center align-items-center" id='loaderDivtemperatura2' style="max-height: 75vh; display: none; ">
+                    <div class="preloader" id="loader-temperatura2"></div>
                 </div>
             </div>
-
             <div class="col-12 col-xl-9">
-                <div class="card mt-3 p-3">
-                    <div class='col-3 border'>
-                        <p>Equipo</p>
-                        
+                <div class="row" id="Equipos_Termometros" style="display: none;">
+                    <!-- Informacion del equipo y termometro asignados -->
+                    <div class="col-12">
+                        <div class="mt-3">
+                            <div class="row gap-3">
+                                <!-- Informacion del equipos -->
+                                <div class='col card p-3'>
+                                    <p class="text-center mb-2">Equipo</p>
+                                    <div id="Tabla-equipos">
+                                    </div>
+                                </div>
+
+                                <!-- Informacion del termometro -->
+                                <div class='col card p-3'>
+                                    <p class="text-center mb-2">Termometro</p>
+                                    <div id="Tabla-termometro">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class='col-3 border'>
-                        <p>Termometro</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    <!-- Grafica -->
+                    <div class="col-12 tab-second  grafica-temperatura" id="tab-informacion" style="margin-right: -5px !important; display:none !important;">
+                        <div class="card mt-3 p-3 ">
+                            <div class="table--container" style="width: fit-content;" id="grafica">
 
-<div class="row">
-    <div class="col-12 col-xl-3 tab-fist mb-3">
-        <!-- Tabla de meses -->
-        <div class="row">
-            <div class="col-12" id="lista-meses-temperatura" style="margin-right: -5px !important; display:none;">
-                <div class="card mt-3 p-3 ">
-                    <h5>Lista de Registro por Meses</h5>
-
-                    <!-- Control de turnos -->
-                    <div id="turnos_panel"></div>
-                    <table class="table display responsive" id="TablaTemperaturasFolio" style="width: 100%">
-                        <thead class="">
-                            <tr>
-                                <th scope="col d-flex justify-content-center" class="all">#</th>
-                                <th scope="col d-flex justify-content-center" class="all">Descripcion</th>
-                                <th scope="col d-flex justify-content-center" class="min-tablet">Folio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="col-12 d-flex justify-content-center align-items-center" id='loaderDivtemperatura2' style="max-height: 75vh; display: none; ">
-                <div class="preloader" id="loader-temperatura2"></div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-12 col-xl-9 tab-second  grafica-temperatura" id="tab-informacion" style="margin-right: -5px !important; display:none !important;">
-        <!-- Grafica -->
-        <div class="row">
-            <div class="col-12 col-lg-12">
-                <div class="card mt-3 p-3 ">
-                    <div class="table--container" style="width: fit-content;" id="grafica">
-
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Detalle grafica -->
-
     </div>
 </div>
 
@@ -105,7 +100,7 @@
 </div>
 
 
-
+<!-- Modal de comentarios de los registros -->
 <div class="modal-comentarios">
     <div class="modal fade" id="modalComentariosRegistro" tabindex="-1" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
@@ -116,16 +111,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12 col-lg-8">
-                            <div id="content-comentarios-registros">
-
-                                <div class="card m-3 p-3">
-                                    <h5>Comentario creado por</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo libero obcaecati necessitatibus doloremque. Incidunt ad, alias corrupti nihil est cupiditate rerum itaque illo consequuntur quis aliquid laboriosam possimus magnam ipsa.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-12">
                             <h5>Agregar comentario del día</h5>
                             <form class="row" id="formAgregarComentario">
                                 <div class="mb-3">
@@ -140,6 +126,15 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="col-12 col-lg-12">
+                            <div id="content-comentarios-registros">
+                                <div class="card m-3 p-3">
+                                    <h5>Comentario creado por</h5>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo libero obcaecati necessitatibus doloremque. Incidunt ad, alias corrupti nihil est cupiditate rerum itaque illo consequuntur quis aliquid laboriosam possimus magnam ipsa.</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -222,29 +217,15 @@
                     </div>
                 </div>
                 <hr>
-                <!-- <div class="d-flex justify-content-end">
-                <button type="submit" form="TermometrosTemperaturasForm" class=" btn btn-confirmar" id="btn-equipo-temperatura">
-                    <i class="bi bi-person-x"></i> Guardar
-                </button>
-            </div> -->
+
 
 
             </form>
             <button type="submit" form="ConfiguracionTemperaturaForm" class=" btn btn-confirmar" id="btn-configuracion-temperatura">
-                <i class="bi bi-person-x"></i> Guardar
+                <i class="bi bi-thermometer-half"></i> Guardar
             </button>
 
         </div>
-        <!-- <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div> -->
     </div>
 </div>
 

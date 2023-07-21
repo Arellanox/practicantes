@@ -104,7 +104,7 @@
             // $valor = floatval($valores[$dia][$turno]["valor"]);
             // $valor_redondeado = round($valor);
             $valor = $valores[$dia][$turno]["valor"];
-            $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, $max + 5, $min - 5);
+            $valor_turno = redondear($valores[$dia][$turno]["valor"], $valorAprox, $max + 2, $min - 2);
             $valor_redondeado = $valor_turno[0];
             $valor_decimal_px = $valor_turno[1];
 
@@ -129,7 +129,7 @@
     }
 
     // Generar las celdas de la tabla
-    for ($j = $max + 5; $j >= $min - 5; $j--) {
+    for ($j = $max + 2; $j >= $min - 2; $j--) {
         if ($j == $max) {
             echo "<tr class='border-bottomm'>";
         } else if ($j == $min) {
@@ -175,7 +175,7 @@
     }
 
     echo "<tr class='border$j'>";
-    echo "<th class='celdasDias text$j'>" . $j . "</th>";
+    echo "<th class='celdasDias d-flex justify-content-end text$j'>+</th>";
     for ($i = 1; $i <= 31; $i++) {
         echo "<td class='empty turno-1 background'></td>";
         echo "<td class='empty turno-2 background'></td>";
@@ -230,6 +230,7 @@
     function redondear2($valor, $valorAprox, $max, $min)
     {
 
+        $pixeles = 0;
         $explode = explode('.', $valor);
 
         // $signo = $explode[0] > 0 ? '' : '-';
@@ -248,15 +249,12 @@
         if ($valor >= $max) {
             $pixeles = 10;
             $explode[0] = $max;
-        }
-
-        if ($valor <= $min) {
+        } else if ($valor <= $min) {
+            // echo "si entro al minimo";
             $pixeles = 10;
             $explode[0] = $min;
-        }
-
-
-        if ($valor > 0 && $explode[1] > 0) {
+        } else if ($valor > 0 && $explode[1] > 0) {
+            // echo "no entro a ninguna ni minimo ni maximo";
             $pixeles = (($explode[1] / 100) * 30) + 10;
 
             $pixeles = (($pixeles) - ($pixeles * 0.8)) * -1;
@@ -291,7 +289,7 @@
             // $valor = floatval($valores[$dia][$turno]["valor"]);
             // $valor_redondeado = round($valor);
             $valor = $valores[$dia][$turno]["valor"];
-            $valor_turno = redondear2($valores[$dia][$turno]["valor"], $valorAprox, $max + 5, $min - 5);
+            $valor_turno = redondear2($valores[$dia][$turno]["valor"], $valorAprox, $max + 2, $min - 2);
             $valor_redondeado = $valor_turno[0];
             $valor_decimal_px = $valor_turno[1];
 
@@ -316,7 +314,7 @@
     }
 
     // Generar las celdas de la tabla
-    for ($j = $max + 5; $j >= $min - 5; $j--) {
+    for ($j = $max + 2; $j >= $min - 2; $j--) {
         if ($j == $max) {
             echo "<tr class='border-bottomm'>";
         } else if ($j == $min) {
@@ -362,7 +360,7 @@
     }
 
     echo "<tr class='border$j'>";
-    echo "<th class='celdasDias text$j' style='opacity:0;'>" . $j . "</th>";
+    echo "<th class='celdasDias text$j' style='opacity:0;'>+</th>";
     for ($i = 1; $i <= 31; $i++) {
         echo "<td class='empty turno-1 background'></td>";
         echo "<td class='empty turno-2 background'></td>";

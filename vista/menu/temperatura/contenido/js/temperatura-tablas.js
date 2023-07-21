@@ -12,7 +12,7 @@ rellenarSelect("#Equipos", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_ti
 tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
-    info: false,
+    info: true,
     paging: false,
     scrollY: '75vh',
     scrollCollapse: true,
@@ -25,17 +25,21 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         method: 'POST',
         url: '../../../api/temperatura_api.php',
         beforeSend: function () {
-            $("#lista-meses-temperatura").fadeOut(0);
+            fadeRegistro('Out')
             loader("In")
             selectTableFolio = false
-            // fadeRegistro('Out')
-
         },
         complete: function () {
-            loader("Out", 'bottom')
             //Para ocultar segunda columna
+            loader("Out", 'bottom')
             reloadSelectTable()
-            $("#lista-meses-temperatura").fadeIn(0);
+            fadeRegistro('In')
+            $.fn.dataTable
+                .tables({
+                    visible: true,
+                    api: true
+                })
+                .columns.adjust();
             // $("#lista-meses-temperatura").fadeIn(0);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -44,20 +48,45 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         dataSrc: 'response.data'
     },
     columns: [
-        { data: 'COUNT' },
+        { data: 'FOLIO' },
         {
             data: 'FECHA_REGISTRO', render: function (data) {
-                return formatoFecha2(data, [0, 1, 3, 0]).toUpperCase();
+                // Mes
+                return formatoFecha2(data, [0, 0, 3, 0]).toUpperCase();
             }
         },
-        { data: 'FOLIO' }
+        {
+            data: null, render: function (data) {
+                let html = `<i class="bi bi-file-earmark-pdf-fill generarPDF" style="cursor: pointer; color: red;font-size: 23px;"></i>`
+
+
+                return session['permisos']['SupTemp'] == '1' ? html : '';
+            }
+        },
+        {
+            data: 'FECHA_REGISTRO', render: function (data) {
+                // ANHO
+                return formatoFecha2(data, [0, 1, 0, 0]).toUpperCase();
+            }
+        }
     ],
     columnDefs: [
-        { target: 0, title: '#', className: 'all' },
-        { target: 1, title: 'Descripcion', className: 'all' },
-        { target: 2, title: 'Folio', className: 'all' }
+        { target: 0, title: '#', className: 'all', width: '10px' },
+        { target: 1, title: 'FOLIO', className: 'all', width: '80%' },
+        { target: 2, title: 'PDF', className: 'all', width: '10px', visible: session['permisos']['SupTemp'] == '1' ? true : false },
+        { target: 3, title: 'ANHO', className: 'none' }
 
-    ]
+    ],
+    // dom: 'Bfrtip',
+    // buttons: [
+    //     {
+    //         text: '<i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF',
+    //         className: 'btn btn-borrar',
+    //         action: function (data) {
+
+    //         }
+    //     }
+    // ]
 })
 
 
@@ -72,26 +101,36 @@ inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
 loaderDiv("Out", null, "#loader-temperatura", '#loaderDivtemperatura');
 loaderDiv("Out", null, "#loader-temperatura2", '#loaderDivtemperatura2');
 
-// selectDatatable("TablaTemperaturasFolio", tablaTemperaturaFolio, 0, 0, 0, 0, function (select, data) {
-
-//     if (select) {
-//         $("#grafica").html("");
-//         CrearTablaPuntos(data['FOLIO']);
-//         selectTableFolio = true
-//         $(".informacion-temperatura").fadeIn(0);
-//         DataFolio.folio = data['ID_FOLIOS_TEMPERATURA']
-//         tablaTemperatura.ajax.reload()
-//         SelectedFoliosData = data;
-//     } else {
-//         selectTableFolio = false;
-//         fadeRegistro('Out')
-//         $(".informacion-temperatura").fadeOut(0);
-//     }
-// })
-
-
+var URL_TABLA = {};
 selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
-    unSelect: true, dblClick: true, reload: ['col-xl-9']
+    unSelect: true, ClickClass: [
+        {
+            class: 'generarPDF',
+            callback: async function (data) {
+                // console.log(data)
+                // e.preventDefault();
+                if (session['permisos']['SupTemp'] != 1)
+                    return false;
+
+                // En SelectedFoliosData esta toda la informacion del mes
+                FolioMesEquipo = data['FOLIO']
+                $("#observaciones_pdf").val("");
+                $("#Termometro_pdf").val("");
+
+                await rellenarSelect("#Termometro_pdf", "temperatura_api", 16, "TERMOMETRO_ID", "DESCRIPCION", { folio: FolioMesEquipo }, function (data, html) {
+                    URL_TABLA = data[0]['URL_TABLA'];
+                    if (data[0])
+                        $('#Termometro_pdf').val(data[0]['TERMOMETRO_PRINCIPAL'])
+                })
+
+                URL_TABLA != null ? $('#btn-mostrar-formato-temperatura').fadeIn(0) : $('#btn-mostrar-formato-temperatura').fadeOut(0);
+
+                $("#TemperaturaModalGeneralFirma").modal("show");
+
+            }, selected: true
+
+        },
+    ], dblClick: true, reload: ['col-xl-9']
 }, async function (select, data, callback) {
     if (select) {
         $("#grafica").html("");
@@ -101,11 +140,18 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
         DataMes = data
         tablaTemperatura.ajax.reload()
         SelectedFoliosData = data;
-        $("#GenerarPDFTemperatura").fadeIn(0)
+        // $("#GenerarPDFTemperatura").fadeIn(0)
+
+        CrearEncabezadoEquipos(data['FOLIO']);
+
+        $("#Equipos_Termometros").fadeIn(0);
         callback('In')
     } else {
         selectTableFolio = false;
-        $("#GenerarPDFTemperatura").fadeOut(0)
+        $("#Equipos_Termometros").fadeOut(0);
+        // $("#GenerarPDFTemperatura").fadeOut(0)
+        $("#Tabla-termometro").html('')
+        $("#Tabla-equipos").html('')
         callback('Out')
     }
 }, async function (select, data, callback) {
@@ -114,19 +160,16 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     // $('#FormularioActualizarTemperatura_container').fadeOut(0)
     $('.detallesTemperaturatitle').html("");
     rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
-
+    $("#lectura_actualizar").val("")
+    $("#observaciones_actualizar").val("")
     $('.detallesTemperaturatitle').html(`Detalles de las temperaturas del equipo (${DataEquipo.Descripcion}) - ${formatoFecha2(DataMes['FECHA_REGISTRO'], [0, 1, 3, 0]).toUpperCase()}`)
     $("#formActualizarTemperatura").addClass('disable-element');
     // Abre un modal del detalle
-    $('#detallesTemperaturaModal').modal('show');
-    tablaTemperatura.ajax.reload()
-    $.fn.dataTable
-        .tables({
-            visible: true,
-            api: true
-        })
-        .columns.adjust();
 
+    setTimeout(function () {
+        $('#detallesTemperaturaModal').modal('show');
+    }, 500)
+    tablaTemperatura.ajax.reload()
 
 })
 
@@ -136,30 +179,14 @@ var DataFolio = {
 };
 
 
-// selectDatatable("TablaTemperatura", tablaTemperatura, 0, 0, 0, 0, async function (select, data) {
-//     selectRegistro = data
-//     if (select) {
-//         $("#formularioActualizarTemperatura").fadeIn(0);
 
-//         /*  if (data.ESTATUS == 1) {
-//              alert("Seleccion")
-//          } */
-
-//     } else {
-
-//     }
-// })
-
-
-function fadeRegistro(tipe) {
-    if (tipe == 'Out') {
-        $("#TablaTemperaturaDia").fadeOut(0)
-        $("#loaderDivtemperatura").fadeIn(0);
-        $("#loader-temperatura").fadeIn(0);
-    } else if (tipe == 'In') {
-        $("#TablaTemperaturaDia").fadeIn(0)
-        $("#loaderDivtemperatura").fadeOut(0);
-        $("#loader-temperatura").fadeOut(0);
+function fadeRegistro(type) {
+    if (type == 'Out') {
+        $("#lista-meses-temperatura").fadeOut(0);
+    } else if (type == 'In') {
+        $("#lista-meses-temperatura").fadeIn(0);
+        $('#btn-desbloquear-equipos').fadeIn(0)
+        $('#CapturarTemperaturabtn').removeClass('disable-element');
     }
 }
 
