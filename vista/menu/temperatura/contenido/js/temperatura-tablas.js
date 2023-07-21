@@ -59,7 +59,8 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
             data: null, render: function (data) {
                 let html = `<i class="bi bi-file-earmark-pdf-fill generarPDF" style="cursor: pointer; color: red;font-size: 23px;"></i>`
 
-                return html;
+
+                return session['permisos']['SubTemp'] == 1 ? html : '';
             }
         },
         {
@@ -72,7 +73,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     columnDefs: [
         { target: 0, title: '#', className: 'all', width: '10px' },
         { target: 1, title: 'FOLIO', className: 'all', width: '80%' },
-        { target: 2, title: 'PDF', className: 'all', width: '10px' },
+        { target: 2, title: 'PDF', className: 'all', width: '10px', visible: session['permisos']['SupTemp'] === 1 ? true : false },
         { target: 3, title: 'ANHO', className: 'none' }
 
     ],
@@ -107,6 +108,8 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
             class: 'generarPDF',
             callback: async function (data) {
                 // e.preventDefault();
+                if (session['permisos']['SupTemp'] != 1)
+                    return false;
 
                 // En SelectedFoliosData esta toda la informacion del mes
                 FolioMesEquipo = data['FOLIO']
