@@ -21,8 +21,8 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
         text: `Se generar el formato para el folio ${FolioMesEquipo}`,
         icon: 'info'
     }, async function () {
-        alertToast('Tomando Captura de la tabla', 'info', 2000);
-
+        // alertToast('Tomando Captura de la tabla', 'info', 2000);
+        alertMensaje('info', 'Tomando Captura de pantalla', 'Se esta capturando la tabla para el reporte', null, null, 2000)
         await tomarCapturaPantalla({
             type: 'div',
             name: `TablaDePuntos_Temperatura_folio${FolioMesEquipo}`,
@@ -31,25 +31,37 @@ $("#btn-generar-formato-temperatura").on('click', async function (e) {
 
         setTimeout(async function () {
             await ajaxAwait(DatosAjax, 'temperatura_api', { callbackAfter: true }, false, (data) => {
-                api = encodeURIComponent(window.btoa('temperatura'));
-                area = encodeURIComponent(window.btoa(-1));
-                turno = encodeURIComponent(window.btoa(FolioMesEquipo));
-
-                var win = window.open(`http://localhost/practicantes/visualizar_reporte/index-pruebas.php/?api=${api}&turno=${turno}&area=${area}`, '_blank')
-
-                win.focus();
-
-
-
-                $("#TemperaturaModalGeneralFirma").modal("hide");
+                // alertToast("Formato Generado y Guardado", 'success', 2000)
+                alertMsj({
+                    title: 'Formato Generado y Guardado',
+                    text: '',
+                    icon: 'success',
+                    showCancelButton: false
+                }, function () {
+                })
                 $("#observaciones_pdf").val("");
                 observaciones = "";
                 CrearEncabezadoEquipos(SelectedFoliosData['FOLIO']);
+                $("#TemperaturaModalGeneralFirma").modal('hide');
             });
-        }, 3000)
+        }, 2000)
+
 
     }, 1)
 
+})
+
+$("#btn-mostrar-formato-temperatura").on('click', async function (e) {
+    e.preventDefault();
+
+    api = encodeURIComponent(window.btoa('temperatura'));
+    area = encodeURIComponent(window.btoa(-1));
+    turno = encodeURIComponent(window.btoa(FolioMesEquipo));
+
+    var win = window.open(`http://localhost/practicantes/visualizar_reporte/index-pruebas.php/?api=${api}&turno=${turno}&area=${area}`, '_blank')
+
+    win.focus();
+    // $("#TemperaturaModalGeneralFirma").modal("hide");
 })
 
 
@@ -89,6 +101,8 @@ async function tomarCapturaPantalla(data = {}) {
             DatosAjax.observaciones = observaciones
 
             swal.close();
+
+
             resolve(1)
         });
 

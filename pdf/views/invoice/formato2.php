@@ -956,7 +956,7 @@
             <div style="width:100%;  text-align: center;">
 
                 <?php
-                echo "<img src='data:image/png;base64, " .  $encode_tabla . "' class='grafica-tabla'>";
+                echo "<img src='data:image/png;base64, " .  $encode_tabla . "' class='grafica-tabla' style='object-fit: cover !important;'>";
                 // echo "<img src='data:image/png;base64, " . $encode_dot . "' class='grafica-dot'>";
                 // echo "<img src='data:image/png;base64, " . $encode_tabla . "' class='grafica-tabla'>";
                 // echo "<img src='data:image/png;base64," . $barcode . "' height='75'>";
@@ -978,7 +978,9 @@
 
                 .grafica-tabla {
                     /* min-height: 200px; */
-                    max-height: 350px;
+                    max-height: 325px;
+                    /* min-height: 40%; */
+                    object-fit: cover !important;
                     /* height: 50%; */
                     /* height: 350px; */
                     width: 77%;

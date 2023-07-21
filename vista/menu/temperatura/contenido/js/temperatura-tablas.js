@@ -101,12 +101,13 @@ inputBusquedaTable("TablaTemperaturasFolio", tablaTemperaturaFolio, [{
 loaderDiv("Out", null, "#loader-temperatura", '#loaderDivtemperatura');
 loaderDiv("Out", null, "#loader-temperatura2", '#loaderDivtemperatura2');
 
-
+var URL_TABLA = {};
 selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     unSelect: true, ClickClass: [
         {
             class: 'generarPDF',
             callback: async function (data) {
+                // console.log(data)
                 // e.preventDefault();
                 if (session['permisos']['SupTemp'] != 1)
                     return false;
@@ -117,10 +118,12 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
                 $("#Termometro_pdf").val("");
 
                 await rellenarSelect("#Termometro_pdf", "temperatura_api", 16, "TERMOMETRO_ID", "DESCRIPCION", { folio: FolioMesEquipo }, function (data, html) {
+                    URL_TABLA = data[0]['URL_TABLA'];
                     if (data[0])
                         $('#Termometro_pdf').val(data[0]['TERMOMETRO_PRINCIPAL'])
                 })
 
+                URL_TABLA != null ? $('#btn-mostrar-formato-temperatura').fadeIn(0) : $('#btn-mostrar-formato-temperatura').fadeOut(0);
 
                 $("#TemperaturaModalGeneralFirma").modal("show");
 
