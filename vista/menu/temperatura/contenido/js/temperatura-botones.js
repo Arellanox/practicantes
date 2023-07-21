@@ -90,7 +90,7 @@ $('#btn-desbloquear-equipos').on('click', function (e) {
 })
 
 // Checa si requiere o no aplicar el factor de correcion
-$('#checkFactorCorrecion').change(function () {
+$(document).on('change', '#checkFactorCorrecion', function () {
     var switchState = $(this).is(':checked');
     if (switchState) {
         checkFactorCorrecion = 1;
@@ -289,10 +289,9 @@ function agregarNota(element = [], div) {
     $(div).append(html);
 }
 
-$("#ConfiguracionTemperaturasbtn").on("click", async function () {
+$(document).on("click", "#ConfiguracionTemperaturasbtn", async function () {
     alertToast('Cargando Configuracion...', 'info', 2000)
     await CargarConfiguracionTemperaturas()
-
 
 
     $('#offcanvasConfiguracionTemperaturas').offcanvas('show');
