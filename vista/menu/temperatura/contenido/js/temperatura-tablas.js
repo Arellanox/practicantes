@@ -60,7 +60,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
                 let html = `<i class="bi bi-file-earmark-pdf-fill generarPDF" style="cursor: pointer; color: red;font-size: 23px;"></i>`
 
 
-                return session['permisos']['SubTemp'] == 1 ? html : '';
+                return session['permisos']['SupTemp'] == '1' ? html : '';
             }
         },
         {
@@ -73,7 +73,7 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     columnDefs: [
         { target: 0, title: '#', className: 'all', width: '10px' },
         { target: 1, title: 'FOLIO', className: 'all', width: '80%' },
-        { target: 2, title: 'PDF', className: 'all', width: '10px', visible: session['permisos']['SupTemp'] === 1 ? true : false },
+        { target: 2, title: 'PDF', className: 'all', width: '10px', visible: session['permisos']['SupTemp'] == '1' ? true : false },
         { target: 3, title: 'ANHO', className: 'none' }
 
     ],
