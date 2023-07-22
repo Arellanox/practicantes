@@ -1,0 +1,47 @@
+<div class="modal fade" id="modalInfoDetalleCotizacion" tabindex="" aria-labelledby="filtrador" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header header-modal">
+                <h5 class="modal-title" id="title-paciente_rechazar">Guardar Cotización</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="" id="formRechazarPaciente">
+                    <div class="col-12">
+                        <label for="atencion" class="form-label">Dirigido a</label>
+                        <input type="text" name="atencion" id="input-atencion-cortizaciones" value=""
+                            class="form-control input-form">
+                    </div>
+                    <div class="col-12">
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="text" name="correo" id="input-correo-cortizaciones" value=""
+                            class="form-control input-form">
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                        <label for="observaciones" class="form-label">Observaciones</label>
+                        <textarea name="observaciones" id="input-observaciones-cortizaciones" class="input-form"
+                            rows="4" cols="40" placeholder="" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i
+                        class="bi bi-arrow-left-short"></i> Cancelar</button>
+                <button type="button" class="btn btn-pantone-7408" id="guardar-contenido-paquete">
+                    <i class="bi bi-person-x"></i> Rechazar paciente
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // jQuery('#modalInfoDetalleCotizacion').on('shown.bs.modal', function () {
+    //     jQuery(document).off('focusin.modal');
+    // });
+
+    const myModal = new bootstrap.Modal('#modalInfoDetalleCotizacion', {
+        focus: false
+    })
+
+
+</script>

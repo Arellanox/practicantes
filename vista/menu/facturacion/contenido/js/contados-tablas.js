@@ -2,7 +2,7 @@
 //     .clone(true)
 //     .addClass('filters')
 //     .appendTo('#TablaContados thead');
-
+selectTicket = null
 tablaContados = $('#TablaContados').DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     scrollY: autoHeightDiv(0, 374),
@@ -77,29 +77,50 @@ tablaContados = $('#TablaContados').DataTable({
 
     ],
 
-    // dom: 'Bfrtip',
-    // buttons: [
-    //     {
-    //         extend: 'copyHtml5',
-    //         text: '<i class="fa fa-files-o"></i>',
-    //         titleAttr: 'Copy'
-    //     },
-    //     {
-    //         extend: 'excelHtml5',
-    //         text: '<i class="fa fa-file-excel-o"></i>',
-    //         titleAttr: 'Excel'
-    //     },
-    //     {
-    //         extend: 'csvHtml5',
-    //         text: '<i class="fa fa-file-text-o"></i>',
-    //         titleAttr: 'CSV'
-    //     },
-    //     {
-    //         extend: 'pdfHtml5',
-    //         text: '<i class="fa fa-file-pdf-o"></i>',
-    //         titleAttr: 'PDF'
-    //     }
-    // ]
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            text: '<i class="bi bi-receipt-cutoff" style="cursor: pointer;"> Ticket',
+            titleAttr: 'PDF',
+            className: 'btn btn-danger',
+            action: function () {
+                if (selectTicket) {
+                    alertMensaje('info', 'Generando Ticket', 'Podrás visualizar el ticket en una nueva ventana', 'Si la ventana no fue abierta, usted tiene bloqueada las ventanas emergentes')
+
+                    api = encodeURIComponent(window.btoa('ticket'));
+                    turno = encodeURIComponent(window.btoa(selectTicket['TURNO_ID']));
+                    area = encodeURIComponent(window.btoa(16));
+
+
+                    window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, "_blank");
+
+
+                } else {
+                    alertToast('Por favor, seleccione un paciente', 'info', 4000)
+                }
+            }
+        }
+        // {
+        //     extend: 'copyHtml5',
+        //     text: '<i class="fa fa-files-o"></i>',
+        //     titleAttr: 'Copy'
+        // },
+        // {
+        //     extend: 'excelHtml5',
+        //     text: '<i class="fa fa-file-excel-o"></i>',
+        //     titleAttr: 'Excel'
+        // },
+        // {
+        //     extend: 'csvHtml5',
+        //     text: '<i class="fa fa-file-text-o"></i>',
+        //     titleAttr: 'CSV'
+        // },
+        // {
+        //     extend: 'pdfHtml5',
+        //     text: '<i class="fa fa-file-pdf-o"></i>',
+        //     titleAttr: 'PDF'
+        // }
+    ]
 
     //UNA IDEA de funcion
     // initComplete: function () {
@@ -158,7 +179,7 @@ tablaContados = $('#TablaContados').DataTable({
 
 
 selectDatatable("TablaContados", tablaContados, 0, 0, 0, 0, async function (select, data) {
-
+    selectTicket = data;
     if (select) {
         selectCuenta = new GuardarArreglo({
             select: select,
@@ -167,6 +188,7 @@ selectDatatable("TablaContados", tablaContados, 0, 0, 0, 0, async function (sele
         })
         await obtenerPanelInformacion(data['TURNO_ID'], 'tickets_api', 'PanelTickets', '#InformacionTickets')
     } else {
+        selectTicket = null;
         selectCuenta = false
         await obtenerPanelInformacion(0, 'tickets_api', 'PanelTickets', '#InformacionTickets')
     }
@@ -178,5 +200,5 @@ inputBusquedaTable('TablaContados', tablaContados, [
         msj: 'Dale click a un registro para ver la información de ticket y/o factura.',
         place: 'top'
     }
-])
+], {}, 'col-12')
 

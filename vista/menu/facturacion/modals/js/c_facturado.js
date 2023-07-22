@@ -9,7 +9,14 @@ $("#formFacturarGrupoCredito").on('submit', function (e) {
         return false;
     }
 
+    alertMensajeConfirm({
+        title: '¿Deseas facturar este grupo?',
+        text: 'No podrás cambiar la factura.',
+        icon: 'info',
+    }, () => {
 
-    id_grupo = SelectedGruposCredito['ID_GRUPO']
-    FacturarGruposCredito(facturado, id_grupo)
+        id_grupo = SelectedGruposCredito['ID_GRUPO']
+        FacturarGruposCredito(facturado, id_grupo)
+    }, 1)
+
 })

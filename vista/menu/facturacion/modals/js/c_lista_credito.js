@@ -25,6 +25,7 @@ rellenarSelect('#cliente_fill', 'clientes_api', 2, 'ID_CLIENTE', 'NOMBRE_COMERCI
 
 const modalFiltroPacientesFacturacion = document.getElementById('modalFiltroPacientesFacturacion')
 modalFiltroPacientesFacturacion.addEventListener('show.bs.modal', event => {
+    $('#title-grupo-factura').html('')
     setTimeout(() => {
         $.fn.dataTable
             .tables({
@@ -33,7 +34,7 @@ modalFiltroPacientesFacturacion.addEventListener('show.bs.modal', event => {
             })
             .columns.adjust();
 
-    }, 200);
+    }, 300);
 })
 
 
@@ -63,6 +64,12 @@ tFillPaciCredito = $('#TablaFiltradaCredito').DataTable({
             //Para ocultar segunda columna
             // reloadSelectTable()
         },
+        // error: function (error) {
+        //     if (error && error.status == 404) {
+        //         self.notFound = true;
+        //         alertToast(error.message, 'info', 4000);
+        //     }
+        // },
         dataSrc: 'response.data'
     },
     columns: [
@@ -71,7 +78,7 @@ tFillPaciCredito = $('#TablaFiltradaCredito').DataTable({
                 return '';
             }
         },
-        { data: 'PACIENTE' },
+        { data: 'PX' },
         { data: 'NUM_ESTADO_CUENTA' },
         { data: 'PREFOLIO' },
         // { data: 'PROCEDENCIA' },
@@ -86,7 +93,6 @@ tFillPaciCredito = $('#TablaFiltradaCredito').DataTable({
         { targets: 3, className: 'none', title: 'Prefolio' },
         { targets: 4, className: 'none', title: 'Recepción' }
     ],
-
 })
 
 inputBusquedaTable('TablaFiltradaCredito', tFillPaciCredito, [], [], 'col-12')
@@ -96,6 +102,7 @@ selectTable('#TablaFiltradaCredito', tFillPaciCredito, { unSelect: true, multipl
     SelectPaciFiltrada = dataRow
 })
 
+dataFill_edit = { api: 3, id_grupo: 18 }
 tListPaciGrupo = $('#TablaPacientesNewGrupo').DataTable({
     language: {
         url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -105,13 +112,30 @@ tListPaciGrupo = $('#TablaPacientesNewGrupo').DataTable({
     paging: false,
     scrollY: "43vh",
     scrollCollapse: true,
+    ajax: {
+        dataType: 'json',
+        data: function (d) {
+            return $.extend(d, dataFill_edit);
+        },
+        method: 'POST',
+        url: '../../../api/admon_grupos_api.php',
+        beforeSend: function () { loader("In"); tFillPaciCredito.clear().draw(); },
+        complete: function () {
+            // loader("Out", 'bottom')
+
+
+            //Para ocultar segunda columna
+            // reloadSelectTable()
+        },
+        dataSrc: 'response.data'
+    },
     columns: [
         {
             data: 'ID_TURNO', render: function (data) {
                 return '';
             }
         },
-        { data: 'PACIENTE' },
+        { data: 'PX' },
         { data: 'NUM_ESTADO_CUENTA' },
         { data: 'PREFOLIO' },
         // { data: 'PROCEDENCIA' },
