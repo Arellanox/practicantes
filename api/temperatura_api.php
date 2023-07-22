@@ -292,6 +292,13 @@ switch ($api) {
         //Funcion para registrar temperaturas desde el QR
         $response = loginTemperaturas($_POST['user'], $_POST['pass'], $equipo, $termometro, $lectura, $observaciones, null, $checkFactorCorrecion);
         break;
+    case 18:
+        $tipo = "EquiposTemperatura";
+        $equipoID = $equipo;
+        $codeContents = "http://localhost/practicantes/vista/movil/temperatura/?equipo=$equipoID";
+        $nombre = 'Equipo-' . $equipoID;
+        $response = ["qr" => $master->generarQRURL($tipo, $codeContents, $nombre), "url" => $codeContents, "fileName" => $nombre];
+        break;
     default:
         $response = "Api no definida.";
 }

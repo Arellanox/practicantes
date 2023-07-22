@@ -26,11 +26,11 @@ function hasLocation() {
     $("a").removeClass("navlinkactive");
     $("nav li a[href='#" + hash + "']").addClass("navlinkactive");
     switch (hash) {
-        case "AgregarTemperatura":
+        case "":
             ObtenerContenido();
             break;
         default:
-            window.location.hash = '#AgregarTemperatura';
+            window.location.hash = '';
             break;
     }
 }

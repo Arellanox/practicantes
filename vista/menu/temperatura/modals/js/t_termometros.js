@@ -8,9 +8,10 @@ $("#TermometrosbtnTemperaturas").on("click", async function (e) {
     $('#factor_correcion').val('');
     $("#Termometros_Equipos").val("");
     FadeTermometro('Out')
-    $("#TermometrosTemperaturasModal").modal("show");
     SwitchFactorCorrecion()
 
+
+    $("#TermometrosTemperaturasModal").modal("show");
 })
 
 TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
@@ -66,6 +67,42 @@ TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
         { target: 1, title: 'Equipo', className: 'all' },
         { target: 2, title: 'Termometro', className: 'all' },
         { target: 3, title: 'Factor de correcion', className: 'all' }
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            text: '<i class="bi bi-qr-code"  style="cursor: pointer; font-size:18px;"></i> QR',
+            className: 'btn btn-success btn-equipos-qr ',
+            titleAttr: 'Generar QR para los equipos',
+            action: function (data) {
+                if (SelectedEquiposTermometrosQR) {
+                    // alertToast('Si lo selecciono ', 'success', 500)
+                    // console.log(selectedEquiposTemperaturas)
+                    EQUIPO_ID = selectedEquiposTemperaturas['EQUIPO_ID'];
+
+                    ajaxAwait({
+                        api: 18,
+                        Enfriador: EQUIPO_ID
+                    }, 'temperatura_api', { callbackAfter: true }, false, (data) => {
+                        data = data.response.data
+                        Swal.fire({
+                            html: `<div><div class="d-flex justify-content-center"><img src="` + data.qr + `" alt="" style="width:100%"></div>` +
+                                `<a href="${data.url}" target="_blank">${data.url}</a>
+                    <div class="d-flex justify-content-center"> 
+                    <button type="button" class="btn btn-borrar" name="button" style="width: 50%" onClick="DownloadFromUrl('` + data.qr + `', '` + data.fileName + `')"> <i class="bi bi-image"></i> Descargar</button>` +
+                                '</div></div>',
+                            showCloseButton: true,
+                            showConfirmButton: false,
+                        })
+
+                    })
+
+                } else {
+                    alertToast('Seleccione un equipo para generar el QR', 'info', 2000)
+                }
+
+            }
+        },
     ]
 })
 
@@ -79,6 +116,7 @@ inputBusquedaTable("TablaTermometros", TablaTermometrosDataTable, [{
 
 rellenarSelect("#Termometros_Equipos", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 });
 
+var SelectedEquiposTermometrosQR;
 selectTable('#TablaTermometros', TablaTermometrosDataTable, { unSelect: true, dblClick: true, noColumns: true }, async function (select, data, callback) {
 
     if (select) {
@@ -89,11 +127,13 @@ selectTable('#TablaTermometros', TablaTermometrosDataTable, { unSelect: true, db
         $("#TermometrosTemperaturasForm").removeClass('disable-element');
         $("#Termometros_Equipos").val(selectedEquiposTemperaturas['TERMOMETRO_ID']);
         SwitchFactorCorrecion()
+        SelectedEquiposTermometrosQR = true;
         FadeTermometro('In')
     } else {
         $('#activarFactorCorrecion').prop('checked', false)
         $('#factor_correcion').val('');
         $("#Termometros_Equipos").val("");
+        SelectedEquiposTermometrosQR = false;
         FadeTermometro('Out')
     }
 })

@@ -1,6 +1,7 @@
 <?php
 //Variables dinamicas;
 include "../../variables.php";
+$equipo_id = $_GET['equipo'];
 $menu = "Temperatura_movil";
 ?>
 <!DOCTYPE html>
@@ -13,6 +14,7 @@ $menu = "Temperatura_movil";
 
 <body class="" id="body-controlador"> </body>
 <script type="text/javascript">
+    equipo_id = '<?php echo $equipo_id ?>';
     vista('<?php echo $menu; ?>', '<?php echo $https . $url . '/' . $appname . '/vista/menu/controlador/controlador.php'; ?>')
 
     function vista(menu, url) {
