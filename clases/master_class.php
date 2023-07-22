@@ -58,6 +58,11 @@ class Master extends Miscelaneus
                 $dbname = "u808450138_capacitaciones";
                 $username = "u808450138_capacitador";
                 $password = '4[v[D7Vm+';
+
+                $host = "212.1.208.201";
+                $dbname = "u808450138_practicantes";
+                $username = "u808450138_practica";
+                $password = '+Eb5Rc~TpeV';
                 break;
         }
 
