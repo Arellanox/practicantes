@@ -802,7 +802,7 @@
 
             <!-- Tabla de equipos y Termometro -->
             <div class="body  mx-7">
-                <table id="equipos" style="position: relative; bottom:10px;" class="p-0">
+                <table id="equipos" style=" position: relative; bottom:10px;" class="p-0">
                     <tbody class="m-0 p-0">
                         <tr class="line-height p-0 m-0">
                             <td class="line-height col-foot-der"></td>
@@ -825,13 +825,13 @@
                         </tr>
                     </tbody>
                 </table>
-                <table id="equipos" class="p-0 m-0">
+                <table id="equipos" style="max-width:100px; " class="p-0 m-0">
                     <tbody class="p-0 m-0">
                         <tr>
                             <td class="col-foot-der" style="border-bottom: none">
                                 <!-- Tabla Equipos -->
                                 <div class="tabla-equipos">
-                                    <table class="">
+                                    <table class="" style="max-width:10px !important; ">
                                         <thead class="border-top border-left border-right ">
                                             <tr class="p-0 m-0">
                                                 <th colspan="3" class="bg-title">
@@ -841,57 +841,55 @@
                                         </thead>
                                         <tbody class="border">
                                             <tr class="">
-                                                <td class="">
+                                                <td class="" style='max-width:190px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> Equipo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['EQUIPO_NOMBRE']; ?> </label>
+                                                        <label class="h8 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['EQUIPO_NOMBRE']; ?> </label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> Modelo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"><?php echo $array['EQUIPO']['EQUIPO_MODELO']; ?></label>
+                                                        <label class="h8 border-bottom px-3 fw-bold"><?php echo $array['EQUIPO']['EQUIPO_MODELO']; ?></label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> Localización:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold">
+                                                        <label class="h8 border-bottom px-3 fw-bold">
                                                             <?php echo $array['EQUIPO']['LOCALIZACION']; ?>
                                                         </label>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr class="">
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> Marca:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['EQUIPO_MARCA']; ?></label>
+                                                        <label class="h8 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['EQUIPO_MARCA']; ?></label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7">N° Serie:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"><?php echo $array['EQUIPO']['EQUIPO_NUMERO_SERIE']; ?></label>
+                                                        <label class="h8 border-bottom px-3 fw-bold"><?php echo $array['EQUIPO']['EQUIPO_NUMERO_SERIE']; ?></label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7">Intervalo Optimo:</label>
-                                                        <label class="h7 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['INTERVALO_MIN']; ?> A <?php echo $array['EQUIPO']['INTERVALO_MAX']; ?> </label>
+                                                        <label class="h8 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['INTERVALO_MIN']; ?> A <?php echo $array['EQUIPO']['INTERVALO_MAX']; ?> </label>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-
                             </td>
-                            <div class="mx-2"></div>
                             <td class="col-foot-izq" style="border-bottom: none; text-align:center;">
                                 <!-- Tabla termometros -->
                                 <div class="tabla-termometros">
-                                    <table class="">
+                                    <table class="" style="max-width:10px !important; ">
                                         <thead class="border-top border-left border-right ">
                                             <tr class="p-0 m-0">
                                                 <th colspan="3" class="bg-title">
@@ -901,42 +899,42 @@
                                         </thead>
                                         <tbody class="border">
                                             <tr class="">
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> Marca:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"> <?php echo $array['EQUIPO']['TERMOMETRO_MARCA']; ?> </label>
+                                                        <label class="h8 border-bottom px-4 fw-bold"> <?php echo $array['EQUIPO']['TERMOMETRO_MARCA']; ?> </label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> Factor de corrección:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FACTOR_CORRECCION']; ?> °C</label>
+                                                        <label class="h8 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FACTOR_CORRECCION']; ?> °C</label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> MES:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['MES']; ?></label>
+                                                        <label class="h8 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['MES']; ?></label>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr class="">
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7"> ID </label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['TERMOMETRO_ID']; ?></label>
+                                                        <label class="h8 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['TERMOMETRO_ID']; ?></label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7">Fecha de verificación:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FECHA_VERIFICACION'] ?></label>
+                                                        <label class="h8 border-bottom px-4 fw-bold"><?php echo $array['EQUIPO']['FECHA_VERIFICACION'] ?></label>
                                                     </div>
                                                 </td>
-                                                <td class="">
+                                                <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7">AÑO:</label>
-                                                        <label class="h7 border-bottom px-4 fw-bold"> <?php echo $array['EQUIPO']['ANHO']; ?> </label>
+                                                        <label class="h8 border-bottom px-4 fw-bold"> <?php echo $array['EQUIPO']['ANHO']; ?> </label>
                                                     </div>
                                                 </td>
                                             </tr>

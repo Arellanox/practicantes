@@ -1452,7 +1452,7 @@ class Miscelaneus
             $termometro_id = $e['TERMOMETRO_ID'];
             $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
             #Ultima fecha de registro
-            $fecha_formato = $e['FECHA'];
+            $fecha_formato = date("d/m/Y", strtotime($e['FECHA']));
             #Supervisor
             $usuario_name = $e['px'];
             $usuario_rubrica = $e['RUBRICA'];

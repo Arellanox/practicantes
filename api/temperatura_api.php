@@ -13,7 +13,7 @@ $master = new Master();
 
 $api = $_POST['api'];
 $equipo =  $_POST['Enfriador'];
-$termometro = $_POST['Termometro'];
+$termometro = isset($_POST['Termometro']) ? $_POST['Termometro'] : null;
 $usuario = $_SESSION['id'];
 $lectura = isset($_POST['lectura']) ? $_POST['lectura'] : null;
 $observaciones = isset($_POST['observaciones']) ? $_POST['observaciones'] : null;

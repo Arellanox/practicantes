@@ -246,7 +246,7 @@ $menu = $_POST['menu']; ?>
 
   <?php if (TRUE) : ?>
     <div class="d-flex">
-      <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
+      <button type="button" data-bs-toggle='tooltip' data-bs-placement='top' title="Liberar un rango de dias para la captura de temperaturas de los equipos" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
         <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
       </button>
 
@@ -256,10 +256,10 @@ $menu = $_POST['menu']; ?>
         </button>
         <ul class="dropdown-menu">
           <li>
-            <button class="btn dropdown-item" id="TermometrosbtnTemperaturas">Termometros</button>
+            <button class="btn dropdown-item" id="TermometrosbtnTemperaturas" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuracion de los termometros asignados a los equipos">Termometros</button>
           </li>
           <li>
-            <button class="btn dropdown-item" id="ConfiguracionTemperaturasbtn">Mas configuracion</button>
+            <button class="btn dropdown-item" id="ConfiguracionTemperaturasbtn" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuracion de los turnos y activar los dias domingos">Mas configuracion</button>
           </li>
         </ul>
       </div>

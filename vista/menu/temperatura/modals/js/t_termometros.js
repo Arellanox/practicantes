@@ -4,7 +4,13 @@ DataEquiposTermometros = {
 
 $("#TermometrosbtnTemperaturas").on("click", async function (e) {
     TablaTermometrosDataTable.ajax.reload();
+    $('#activarFactorCorrecion').prop('checked', false)
+    $('#factor_correcion').val('');
+    $("#Termometros_Equipos").val("");
+    FadeTermometro('Out')
     $("#TermometrosTemperaturasModal").modal("show");
+    SwitchFactorCorrecion()
+
 })
 
 TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
@@ -82,40 +88,20 @@ selectTable('#TablaTermometros', TablaTermometrosDataTable, { unSelect: true, db
         session.permisos.SupTemp == 1 ? $("#TermometrosTemperaturasForm").removeClass('disable-element') : $("#TermometrosTemperaturasForm").addClass('disable-element');
         $("#TermometrosTemperaturasForm").removeClass('disable-element');
         $("#Termometros_Equipos").val(selectedEquiposTemperaturas['TERMOMETRO_ID']);
-
-        switchState = $('#activarFactorCorrecion').is(':checked');
-        // Escuchar los cambios en el switch
-
-        if (switchState) {
-            $('#factor_correcion').collapse('show');
-        } else {
-            $('#factor_correcion').collapse('hide');
-        }
-
-
-        $("#btn-equipos-termometros-temperatura").fadeIn(0);
-
-
+        SwitchFactorCorrecion()
+        FadeTermometro('In')
     } else {
         $('#activarFactorCorrecion').prop('checked', false)
         $('#factor_correcion').val('');
-        $("#TermometrosTemperaturasForm").addClass('disable-element');
         $("#Termometros_Equipos").val("");
-
-        $("#btn-equipos-termometros-temperatura").fadeOut(0);
-
+        FadeTermometro('Out')
     }
 })
 
 $('#activarFactorCorrecion').on('change', function () {
-    var switchState = $(this).is(':checked');
-    $('#factor_correcion').val('');
-    if (switchState) {
-        $('#factor_correcion').collapse('show');
-    } else {
-        $('#factor_correcion').collapse('hide');
-    }
+    SwitchFactorCorrecion()
 });
+
 
 $("#TermometrosTemperaturasForm").on("submit", function (e) {
     e.preventDefault();
@@ -135,12 +121,12 @@ $("#TermometrosTemperaturasForm").on("submit", function (e) {
 
 
     alertMensajeConfirm({
-        title: "¿Está seguro de su captura?",
-        text: "Se asignara el termometro al equipo",
+        title: "¿Está seguro de cambiarle el termometro al equipo?",
+        text: '',
         icon: "info"
     }, function () {
         ajaxAwaitFormData(dataJsonTermometrosTemperaturas, 'temperatura_api', 'TermometrosTemperaturasForm', { callbackAfter: true }, false, function (data) {
-            alertToast('Termometro asigando con exito', 'success', 2000);
+            alertToast('Termometro cambiado con exito', 'success', 2000);
             $('#activarFactorCorrecion').prop('checked', false)
             $('#factor_correcion').val('');
             $("#Termometros_Equipos").val("");
@@ -153,3 +139,24 @@ $("#TermometrosTemperaturasForm").on("submit", function (e) {
         })
     }, 1)
 })
+
+function SwitchFactorCorrecion() {
+    switchState = $('#activarFactorCorrecion').is(':checked');
+    // Escuchar los cambios en el switch
+
+    if (switchState) {
+        $('#factor_correcion').collapse('show');
+    } else {
+        $('#factor_correcion').collapse('hide');
+    }
+}
+
+function FadeTermometro(type) {
+    if (type == 'Out') {
+        $("#TermometrosTemperaturasForm").addClass('disable-element');
+        $("#btn-equipos-termometros-temperatura").fadeOut(0);
+    } else if (type == 'In') {
+        $("#btn-equipos-termometros-temperatura").fadeIn(0);
+        $("#TermometrosTemperaturasForm").removeClass('disable-element');
+    }
+}
