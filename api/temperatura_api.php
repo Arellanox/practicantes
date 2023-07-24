@@ -19,6 +19,7 @@ $lectura = isset($_POST['lectura']) ? $_POST['lectura'] : null;
 $observaciones = isset($_POST['observaciones']) ? $_POST['observaciones'] : null;
 $id_registro_temperatura = $_POST['id_registro_temperatura'];
 $turno = $_POST['turno'];
+$area = $_POST['area'];
 
 /* 
 
@@ -306,6 +307,10 @@ switch ($api) {
         $codeContents = "http://localhost/practicantes/vista/movil/temperatura/?equipo=$equipoID";
         $nombre = 'Equipo-' . $equipoID;
         $response = ["qr" => $master->generarQRURL($tipo, $codeContents, $nombre), "url" => $codeContents, "fileName" => $nombre];
+        break;
+    case 19:
+        $url = $master->reportador($master, $turno, $area, 'temperatura', 'url', 0);
+        $response = [$url];
         break;
     default:
         $response = "Api no definida.";

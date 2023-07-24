@@ -50,13 +50,10 @@ function hasLocation() {
     $("nav li a[href='#" + hash + "']").addClass("navlinkactive");
     switch (hash) {
         case "TEMPERATURA":
-            obtenerTemperaturas();
-            break;
-        case "PRUEBA":
             obtenerPrueba();
             break;
         default:
-            window.location.hash = '#PRUEBA';
+            window.location.hash = '#TEMPERATURA';
             break;
     }
 }

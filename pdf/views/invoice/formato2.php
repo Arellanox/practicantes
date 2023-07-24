@@ -743,7 +743,6 @@
                 $ruta_rubrica = $valores[$dia][$turno]["FIRMA"];
                 $rubrica = file_get_contents($ruta_rubrica);
                 $encode_rubrica = base64_encode($rubrica);
-
                 if ($type == 1) {
                     return "<td class=''>
                     <p class='h8 m-0 p-0' style='text-align:center;'>
