@@ -1,0 +1,32 @@
+<!-- modalCertificadoMedico -->
+
+<div class="modal fade" id="modalCertificadoMedico" tabindex="-1" aria-labelledby="resultados" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header header-modal">
+                <h5 class="modal-title" id="title-paciente_aceptar">Cargue un nuevo Certificado Medico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form id="subirResultadosCertificadoMedico">
+                            <h4>Seleccione el certificado que desea a subir</h4>
+                            <input type="file" class="form-control input-form mt-3" name="certificado-medico[]" accept=".pdf" id="certificado-medico">
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-borrar" id="btn-limpiar-resultado-espiro">Limpiar</button>
+
+                <!-- BTN SUBIR RESULTADOS DE ESPIRO -->
+                <button type="submit" class="btn btn-confirmar" id="btn-subir-certificado-medico" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
+                    <i class="bi bi-clipboard2-plus"></i> Subir certificado
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

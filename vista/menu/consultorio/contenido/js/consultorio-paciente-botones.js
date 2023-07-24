@@ -100,6 +100,16 @@ $(document).on('click', '.guardarAnt ', function (event) {
 
 });
 
+$('#recuperarPDfCerticicadoMedico').on('click', function(){
+
+  ajaxAwait({api: 2, turno_id: pacienteActivo.array['ID_TURNO']}, 'certificado_medico_api', { callbackAfter: true }, false, function (data) {
+    row = data.response.data[0]
+
+    let win = window.open(row['RUTA_CERTIFICADO'],'_blank')
+    win.focus()
+  })
+})
+
 //botones de pdf de vista previa
 //busca y muestra lso botones solo si tiene ya una receta y solicitud mientrtas que las url esten vacias no las mostrara
 // ajaxAwait({ api: 2, turno_id: pacienteActivo.array['ID_TURNO'] }, 'consultorio2_api', { callbackAfter: true }, false, function (data) {
