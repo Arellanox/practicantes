@@ -75,10 +75,6 @@ $parametros =  array(
     $checkFactorCorrecion
 );
 
-
-
-
-
 $parametros_g = array(
     $fecha_inicial,
     $fecha_final,
@@ -158,6 +154,7 @@ switch ($api) {
         $i = 1;
         foreach ($response[0] as $key => $e) {
             $dia = $e['DIA'];
+            $firma_usuario = $e['RUBRICA_FIRMA'];
             $turno = $e['TURNO'];
             $valor = $e['valor'];
             $hora = $e['HORA'];
@@ -166,7 +163,6 @@ switch ($api) {
             $observaciones = $e['OBSERVACIONES'];
             $color = $e['MODIFICADO'] == 0 ?  "blue" : "mostaza";
             $id_registro = $e['ID_REGISTRO_TEMPERATURA'];
-            $url_tabla = $e['RUTA_TABLA'];
             if (!isset($result[$dia])) {
                 $result[$dia] = array();
             }
@@ -181,13 +177,13 @@ switch ($api) {
                 $i = 2;
             }
 
-            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro, "hora" => $hora);
+            $result[$dia][$i] = array("valor" => $valor, "color" => $color, "id" => $id_registro, "hora" => $hora, "FIRMA" => $firma_usuario);
             $i++;
         }
 
 
         foreach ($response[1] as $key => $e) {
-            # code...
+            # Equipo
             $intervalo_min = $e['INTERVALO_MIN'];
             $intervalo_max = $e['INTERVALO_MAX'];
             $equipo = $e['ENFRIADOR'];
@@ -197,19 +193,24 @@ switch ($api) {
             $termometro_marca = $e['TERMOMETRO_MARCA'];
             $termometro_id = $e['TERMOMETRO_ID'];
             $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
-        }
-
-        foreach ($response[2] as $key => $e) {
-            # code...
+            #Termometro
             $termometro_marca = $e['TERMOMETRO_MARCA'];
             $termometro_id = $e['TERMOMETRO_ID'];
             $termometro_factor_correcion = $e['FACTOR_DE_CORRECCION'];
+            #Ultima fecha de registro
+            $fecha_formato = date("d/m/Y", strtotime($e['FECHA']));
+            #Supervisor
+            $usuario_name = $e['px'];
+            $usuario_rubrica = $e['RUBRICA'];
+            #Ruta tabla
+            $url_tabla = $e['RUTA_TABLA'];
+            $localizacion = $e['LOCALIZACION'];
+            $fecha_verificacion = $e['FECHA_VERIFICACION'];
         }
 
-
-        $localizacion = null;
+        $cargo = 'SUPERVISOR';
         $response = [];
-        $response['EQUIPO']['OBSERVACIONES'] = $observaciones;
+        // Datos de los equipos que se usaron en el mes como el equipo que se le checo la temperatura y el termometro que se uso para saber la temperatura del equipo.
         $response['EQUIPO']['ANHO'] = $anho;
         $response['EQUIPO']['MES'] = $mes;
         $response['EQUIPO']['FOLIO'] = $folio;
@@ -223,8 +224,15 @@ switch ($api) {
         $response['EQUIPO']['EQUIPO_NUMERO_SERIE'] = is_null($equipo_numero_serie) ? 'N/A' : $equipo_numero_serie;
         $response['EQUIPO']['TERMOMETRO_MARCA'] = is_null($termometro_marca) ? 'N/A' : $termometro_marca;
         $response['EQUIPO']['TERMOMETRO_ID'] = is_null($termometro_id) ? 'N/A' : $termometro_id;
+        $response['EQUIPO']['FECHA_VERIFICACION'] = is_null($fecha_verificacion) ? 'N/A' : $fecha_verificacion;
         $response['EQUIPO']['FACTOR_CORRECCION'] = is_null($termometro_factor_correcion) ? 'N/A' : $termometro_factor_correcion;
 
+        // Datos de la persona que superviso el formato como las observaciones, el nombre, el cargo, la fecha y la firma
+        $response['USUARIO']['OBSERVACIONES'] = is_null($observaciones) ? 'N/A' : $observaciones;
+        $response['USUARIO']['NOMBRE'] = is_null($usuario_name) ? 'N/A' : $usuario_name;
+        $response['USUARIO']['CARGO'] = is_null($cargo) ? 'N/A' : $cargo;
+        $response['USUARIO']['FECHA'] = is_null($fecha_formato) ? 'N/A' : $fecha_formato;
+        $response['USUARIO']['RUBRICA'] = is_null($usuario_rubrica) ? 'N/A' : $usuario_rubrica;
 
         $response['DIAS'] = $result;
 
@@ -323,6 +331,7 @@ function loginTemperaturas($user, $password, $equipo, $termometro, $lectura, $ob
                 $id_registro_temperatura,
                 $checkFactorCorrecion
             );
+
 
             $response = $master->insertByProcedure("sp_temperatura_g", $parametros_movil);
         } else {

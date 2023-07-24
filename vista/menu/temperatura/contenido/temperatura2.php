@@ -62,16 +62,16 @@
                         <div class="mt-3">
                             <div class="row gap-3">
                                 <!-- Informacion del equipos -->
-                                <div class='col card p-3'>
-                                    <p class="text-center mb-2">Equipo</p>
-                                    <div id="Tabla-equipos">
+                                <div class='col'>
+                                    <!-- <p class="text-center mb-2">Equipo</p> -->
+                                    <div class="card p-3" id="Tabla-equipos">
                                     </div>
                                 </div>
 
                                 <!-- Informacion del termometro -->
-                                <div class='col card p-3'>
-                                    <p class="text-center mb-2">Termometro</p>
-                                    <div id="Tabla-termometro">
+                                <div class='col'>
+                                    <!-- <p class="text-center mb-2">Termometro</p> -->
+                                    <div class="card p-3" id="Tabla-termometro">
 
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <!-- Grafica -->
-                    <div class="col-12 tab-second  grafica-temperatura" id="tab-informacion" style="margin-right: -5px !important; display:none !important;">
+                    <div class="col-12" id="grafica-container" style="margin-right: -5px !important; display:none !important;">
                         <div class="card mt-3 p-3 ">
                             <div class="table--container" style="width: fit-content;" id="grafica">
 
@@ -158,7 +158,7 @@
             <!-- <img src="https://www.bimo-lab.com/archivos/sistema/LogoConFondoAppAndroid.png" style="height: 36px;margin-right: 20px;" /> -->
             <span class="fs-4">
                 <i class="bi bi-gear-fill"></i>
-                Configuracion</span>
+                Configuración</span>
         </div>
         <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -168,7 +168,7 @@
             <form name="ConfiguracionTemperaturaForm" id="ConfiguracionTemperaturaForm">
                 <div class="col-12 mb-4">
                     <div class="mb-3 text-center">
-                        Habilitar o Deshabilitar los Domingos
+                        Habilitar o Deshabilitar los domingos
                     </div>
 
                     <div class="form-check form-switch">

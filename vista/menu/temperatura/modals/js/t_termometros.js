@@ -29,18 +29,14 @@ TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
         method: 'POST',
         url: '../../../api/temperatura_api.php',
         beforeSend: function () {
+            $('#TermometrosContenido').fadeOut(0)
             // console.log(DataEquiposTermometros)
             // fadeRegistro('Out')
         },
         complete: function () {
             // fadeRegistro('In')
-            $.fn.dataTable
-                .tables({
-                    visible: true,
-                    api: true
-                })
-                .columns.adjust();
-            tablaTemperatura.columns.adjust().draw()
+            $('#TermometrosContenido').fadeIn(0)
+            TablaTermometrosDataTable.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
@@ -65,8 +61,8 @@ TablaTermometrosDataTable = $("#TablaTermometros").DataTable({
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Equipo', className: 'all' },
-        { target: 2, title: 'Termometro', className: 'all' },
-        { target: 3, title: 'Factor de correcion', className: 'all' }
+        { target: 2, title: 'Termómetro', className: 'all' },
+        { target: 3, title: 'Factor de corrección', className: 'all' }
     ],
     dom: 'Bfrtip',
     buttons: [
@@ -183,7 +179,6 @@ $("#TermometrosTemperaturasForm").on("submit", function (e) {
 function SwitchFactorCorrecion() {
     switchState = $('#activarFactorCorrecion').is(':checked');
     // Escuchar los cambios en el switch
-
     if (switchState) {
         $('#factor_correcion').collapse('show');
     } else {
@@ -200,3 +195,16 @@ function FadeTermometro(type) {
         $("#TermometrosTemperaturasForm").removeClass('disable-element');
     }
 }
+
+const TermometrosTemperaturasModal = document.getElementById('TermometrosTemperaturasModal')
+TermometrosTemperaturasModal.addEventListener('show.bs.modal', event => {
+    setTimeout(() => {
+        $.fn.dataTable
+            .tables({
+                visible: true,
+                api: true
+            })
+            .columns.adjust();
+    }, 100);
+
+})

@@ -1,7 +1,8 @@
 <?php
 //Variables dinamicas;
 include "../../variables.php";
-$equipo_id = $_GET['equipo'];
+#Aqui se recibe el ID del equipo que llega por la URL 
+$equipo_id = isset($_GET['equipo']) ? $_GET['equipo'] : true;
 $menu = "Temperatura_movil";
 ?>
 <!DOCTYPE html>

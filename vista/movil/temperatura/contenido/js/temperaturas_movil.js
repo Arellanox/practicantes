@@ -1,8 +1,27 @@
 var checkFactorCorrecion;
+BuildPage()
+
+// Renderizar title:
+async function BuildPage() {
+    await ajaxAwait({
+        api: 1,
+        id_equipo: equipo_id,
+        id_tipos_equipos: 5
+    }, 'equipos_api', { callbackAfter: true }, false, (data) => {
+        selectedEquipos = data.response.data;
+
+        selectedEquipos.forEach(e => {
+            $("#agregartitle").html(`Agregar Temperaturas del equipo: ${e['DESCRIPCION']}`)
+        });
+    })
+
+    loader('Out')
+}
+
 // Button para enviar el formulario de nuevo registro de temperaturas desde el QR
 $("#formCapturarTemperatura").on('submit', function (e) {
     e.preventDefault();
-    console.log(equipo_id)
+    // console.log(equipo_id)
 
 
     alertMensajeConfirm({
@@ -37,5 +56,6 @@ $(document).on('change', '#checkFactorCorrecion', function () {
     }
 
 });
+
 
 

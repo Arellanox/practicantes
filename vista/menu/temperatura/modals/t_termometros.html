@@ -3,14 +3,14 @@
     <div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="">Termometros Asignados</h5>
+                <h5 class="modal-title" id="">Termómetros Asignados</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p class="mb-3">
-                    Lista de termometros asgignador por equipos
+                    Lista de termómetros asignados por equipos
                 </p>
-                <div class="row">
+                <div class="row" id="TermometrosContenido" style="display: none;">
                     <div class="col-12 col-lg-8">
                         <div class=" p-3" id="TablaTemperaturaTermometros">
                             <table class="table table-hover display responsive" id="TablaTermometros"
@@ -22,17 +22,17 @@
                         <form class="disable-element" name="TermometrosTemperaturasForm"
                             id="TermometrosTemperaturasForm">
                             <div class="mb-3">
-                                <label for="" class="form-label p-0 m-0">Termometros:</label>
+                                <label for="" class="form-label p-0 m-0">Termómetros:</label>
                                 <select class="form-select input-form" name="Termometro" id="Termometros_Equipos"
                                     required>
-                                    <option selected>Eliga un equipo</option>
+                                    <option selected>Elija un equipo</option>
                                 </select>
                             </div>
                             <div class="form-check form-switch ps-0 mb-3">
                                 <input class="form-check-input float-end" type="checkbox" role="switch"
                                     id="activarFactorCorrecion" name="activarFactorCorrecion">
                                 <label class="form-check-label" for="activarFactorCorrecion">Activar Factor de
-                                    correcion</label>
+                                    correción</label>
                                 <input type="number" name="factor_correcion" value="0"
                                     class="form-control input-form collapse" id="factor_correcion">
                             </div>

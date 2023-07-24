@@ -52,14 +52,12 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
         {
             data: 'FECHA_REGISTRO', render: function (data) {
                 // Mes
-                return formatoFecha2(data, [0, 0, 3, 0]).toUpperCase();
+                return formatoFecha2(data, [0, 1, 3, 0]).toUpperCase();
             }
         },
         {
             data: null, render: function (data) {
                 let html = `<i class="bi bi-file-earmark-pdf-fill generarPDF" style="cursor: pointer; color: red;font-size: 23px;"></i>`
-
-
                 return session['permisos']['SupTemp'] == '1' ? html : '';
             }
         },
@@ -72,9 +70,9 @@ tablaTemperaturaFolio = $("#TablaTemperaturasFolio").DataTable({
     ],
     columnDefs: [
         { target: 0, title: '#', className: 'all', width: '10px' },
-        { target: 1, title: 'FOLIO', className: 'all', width: '80%' },
+        { target: 1, title: 'FECHA', className: 'all', width: '80%' },
         { target: 2, title: 'PDF', className: 'all', width: '10px', visible: session['permisos']['SupTemp'] == '1' ? true : false },
-        { target: 3, title: 'ANHO', className: 'none' }
+        { target: 3, title: 'AÑO', className: 'none' }
 
     ],
     // dom: 'Bfrtip',
@@ -135,42 +133,50 @@ selectTable('#TablaTemperaturasFolio', tablaTemperaturaFolio, {
     ], dblClick: true, reload: ['col-xl-9']
 }, async function (select, data, callback) {
     if (select) {
+        // Limpiar Elementos
         $("#grafica").html("");
-        CrearTablaPuntos(data['FOLIO']);
+        $("#Tabla-termometro").html('')
+        $("#Tabla-equipos").html('')
+
+        // Setear variables globales
         selectTableFolio = true
         DataFolio.folio = data['FOLIO']
         DataMes = data
         tablaTemperatura.ajax.reload()
         SelectedFoliosData = data;
-        // $("#GenerarPDFTemperatura").fadeIn(0)
 
+        // Ejecutar Funciones
         CrearEncabezadoEquipos(data['FOLIO']);
-
-        $("#Equipos_Termometros").fadeIn(0);
+        CrearTablaPuntos(data['FOLIO']);
+        fadeTabla('In')
         callback('In')
     } else {
-        selectTableFolio = false;
-        $("#Equipos_Termometros").fadeOut(0);
-        // $("#GenerarPDFTemperatura").fadeOut(0)
+
+        // Limpiar Elementos
         $("#Tabla-termometro").html('')
         $("#Tabla-equipos").html('')
+
+        // Setear Variables globales
+        selectTableFolio = false;
+
+        // Ejecutar funciones
+        fadeTabla('Out')
         callback('Out')
     }
 }, async function (select, data, callback) {
 
-    // $("#formularioActualizarTemperatura").fadeOut(0);
-    // $('#FormularioActualizarTemperatura_container').fadeOut(0)
     $('.detallesTemperaturatitle').html("");
     rellenarSelect("#Termometro_actualizar", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
     $("#lectura_actualizar").val("")
     $("#observaciones_actualizar").val("")
     $('.detallesTemperaturatitle').html(`Detalles de las temperaturas del equipo (${DataEquipo.Descripcion}) - ${formatoFecha2(DataMes['FECHA_REGISTRO'], [0, 1, 3, 0]).toUpperCase()}`)
     $("#formActualizarTemperatura").addClass('disable-element');
-    // Abre un modal del detalle
 
-    setTimeout(function () {
+    setTimeout(async function () {
         $('#detallesTemperaturaModal').modal('show');
     }, 500)
+
+
     tablaTemperatura.ajax.reload()
 
 })
@@ -193,12 +199,22 @@ function fadeRegistro(type) {
     }
 }
 
+function fadeTabla(type) {
+    if (type == 'Out') {
+        $('#grafica-container').fadeOut(0)
+        $("#Equipos_Termometros").fadeOut(0);
+    } else if (type == 'In') {
+        $('#grafica-container').fadeIn(0)
+        $("#Equipos_Termometros").fadeIn(0);
+    }
+}
+
 
 function CrearTablaPuntos(id_grupo) {
+    // console.log('se esta ejecutando esta funcion y quien sabe donde xd')
     $.post("http://localhost/practicantes/vista/include/funciones/TablaDePuntos_Temperatura/tabla.php", { folio: id_grupo }, function (html) {
         $("#grafica").html(html);
     }).done(
-
         function () {
             setTimeout(function () {
 

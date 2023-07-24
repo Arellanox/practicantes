@@ -215,16 +215,19 @@ class Miscelaneus
         echo "Hello World!";
     }
 
-    function generarQRURL($tipo, $codeContents, $nombre, $frame = QR_ECLEVEL_M, $size = 3)
+    function generarQRURL($tipo, $codeContents, $nombre, $frame = QR_ECLEVEL_M, $size = 10)
     {
         # URL carpeta
         $tempDir = 'archivos/sistema/temp/qr/' . $tipo . '/';
+
+        $this->createDir('../' . $tempDir);
 
         # Enviar la url o codigo necesario desde antes
         QRcode::png($codeContents, '../' . $tempDir . $nombre . '.png', $frame, $size, 2);
 
         # retorna la URL donde se ubica el archivo
         return 'https://bimo-lab.com/nuevo_checkup/' . $tempDir . $nombre . '.png';
+        #return 'http://localhost/practicantes/' . $tempDir . $nombre . '.png';
     }
 
     function guardarFiles($files, $posicion = 'default', $dir/*, $carpetas = ['temp/']*/, $nombre)
@@ -1458,11 +1461,10 @@ class Miscelaneus
             $usuario_rubrica = $e['RUBRICA'];
             #Ruta tabla
             $url_tabla = $e['RUTA_TABLA'];
+            $localizacion = $e['LOCALIZACION'];
+            $fecha_verificacion = $e['FECHA_VERIFICACION'];
         }
 
-
-        $localizacion = null;
-        $fecha_verificacion = null;
         $cargo = 'SUPERVISOR';
         $response = [];
         // Datos de los equipos que se usaron en el mes como el equipo que se le checo la temperatura y el termometro que se uso para saber la temperatura del equipo.

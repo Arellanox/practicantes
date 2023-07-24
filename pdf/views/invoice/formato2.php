@@ -877,7 +877,7 @@
                                                 </td>
                                                 <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
-                                                        <label class="h7">Intervalo Optimo:</label>
+                                                        <label class="h7">Intervalo óptimo:</label>
                                                         <label class="h8 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['INTERVALO_MIN']; ?> A <?php echo $array['EQUIPO']['INTERVALO_MAX']; ?> </label>
                                                     </div>
                                                 </td>
@@ -893,7 +893,7 @@
                                         <thead class="border-top border-left border-right ">
                                             <tr class="p-0 m-0">
                                                 <th colspan="3" class="bg-title">
-                                                    <h6 class=" m-0 p-0">TERMOMETRO</h6>
+                                                    <h6 class=" m-0 p-0">TERMÓMETRO</h6>
                                                 </th>
                                             </tr>
                                         </thead>

@@ -68,13 +68,8 @@ function LoadTermometros(id_equipos, input) {
         selectedEquipos = data.response.data;
 
         selectedEquipos.forEach(e => {
-            //     $(`#${input}`).html(`
-            // <option value='${e['TERMOMETRO_ID']}' selected>${e['TERMOMETRO']}</option>
-            // `)
-
             $(`#${input}`).val(e['TERMOMETRO_ID']);
-            Termometro = e['TERMOMETRO_ID']
-
+            Termometro = e['TERMOMETRO_ID'];
         });
     })
 
@@ -100,6 +95,8 @@ $(document).on('change', '#checkFactorCorrecion', function () {
 
 });
 
+
+//Funcion para agregar o actualizar temperaturas
 function CargarTemperatura() {
 
     alertMensajeConfirm({
@@ -107,9 +104,6 @@ function CargarTemperatura() {
         text: "Recuerde usar el simbolo - si es necesario",
         icon: "info"
     }, function () {
-        // data = new FormData(document.getElementById('formCapturarTemperatura'));
-        // console.log(data);
-
         let dataJson = {
             api: 1,
             Enfriador: DataEquipo['Enfriador'],
@@ -120,19 +114,19 @@ function CargarTemperatura() {
         text = ""
         switch (editRegistro) {
             case true:
-                console.log("esta actualizando nueva temperatura")
+                //esta actualizando nueva temperatura
                 dataJson["id_registro_temperatura"] = selectRegistro['ID_REGISTRO_TEMPERATURA']
                 form = "formActualizarTemperatura"
                 text = "Registro actualizado correctamente"
 
                 break;
             case false:
-                console.log("esta registrando una nueva temperatura")
+                //esta registrando una nueva temperatura
                 form = "formCapturarTemperatura"
                 text = "Registro realizado correctamente"
                 break;
             default:
-                console.log("no esta ni registrando ni actualizando")
+                //no esta ni registrando ni actualizando
                 return false;
                 break;
         }
@@ -150,10 +144,10 @@ function CargarTemperatura() {
             // resetFirma(firma_guardar.ctx, firma_guardar.canvas);
             // firmaExist = false
             if (selectTableFolio) {
-                console.log('si entro')
+                // Si entro
                 tablaTemperatura.ajax.reload()
             } else {
-                console.log('No')
+                // No entro
                 tablaTemperaturaFolio.ajax.reload()
             }
 
@@ -172,7 +166,6 @@ $(document).on('click', '.td-hover', async function (event) {
     event.stopPropagation();
 
     session.permisos.SupTemp == 0 ? $("#formAgregarComentario").addClass("disable-element") : $("#formAgregarComentario").removeClass("disable-element")
-
 
     let dot = $(this)
     id_registro_dor = dot.attr('data_id')
@@ -290,7 +283,7 @@ function agregarNota(element = [], div) {
 }
 
 $(document).on("click", "#ConfiguracionTemperaturasbtn", async function () {
-    alertToast('Cargando Configuracion...', 'info', 2000)
+    alertToast('Cargando Configuración...', 'info', 2000)
     await CargarConfiguracionTemperaturas()
 
 
@@ -302,19 +295,25 @@ $("#btn-configuracion-temperatura").on("click", function (e) {
 
     switchState = $('#Domingos').is(':checked');
 
-    console.log(domingos)
-    data = new FormData(document.getElementById('ConfiguracionTemperaturaForm'));
+    alertMensajeConfirm({
+        title: 'Esta seguro de cambiar la configuración',
+        text: '',
+        icon: 'info',
+        confirmButtonText: "Si"
+        // denyButtonText: "No",
+        // showDenyButton: true
+    }, () => {
+        ajaxAwaitFormData({
+            api: 12,
+            domingos: domingos
+        }, 'temperatura_api', 'ConfiguracionTemperaturaForm', { callbackAfter: true }, false, (data) => {
+            alertToast('Configuración Actualizada', 'success', 1000)
 
+            $('#offcanvasConfiguracionTemperaturas').offcanvas('hide');
+        })
 
+    }, 1)
 
-    ajaxAwaitFormData({
-        api: 12,
-        domingos: domingos
-    }, 'temperatura_api', 'ConfiguracionTemperaturaForm', { callbackAfter: true }, false, (data) => {
-        alertToast('Configuracion Actualizada', 'success', 1000)
-
-        $('#offcanvasConfiguracionTemperaturas').offcanvas('hide');
-    })
 
 })
 
@@ -330,39 +329,6 @@ $('#Domingos').on('change', function () {
         // $('#factor_coreccion').collapse('hide');
     }
 });
-
-// $("#SupervisorConfiguracion").on("click", function (e) {
-//     e.preventDefault();
-//     $('#Si').prop('checked', false)
-//     $('#No').prop('checked', false)
-//     $('#flexSwitchCheckChecked').prop('checked', false)
-//     $('#factor_coreccion').collapse('hide');
-//     $('#factor_coreccion').val('');
-//     rellenarSelect("#Termometro_configuracion", "equipos_api", 1, "ID_EQUIPO", "DESCRIPCION", { id_tipos_equipos: 4 })
-
-//     ajaxAwait({
-//         api: 11,
-//     }, 'temperatura_api', { callbackAfter: true, WithoutResponseData: true }, false, (row) => {
-//         for (const key in row) {
-//             if (Object.hasOwnProperty.call(row, key)) {
-//                 const element = row[key];
-//                 $("#MATUTINO").val(element['MATUTINO_INICIO'])
-//                 $("#VESPERTINO").val(element['VESPERTINO_INICIO'])
-
-//                 if (element['DOMINGOS'] == 0) {
-//                     $('#No').prop('checked', true)
-//                 } else {
-//                     $('#Si').prop('checked', true)
-//                 }
-//             }
-//         }
-
-//     })
-
-
-
-//     $("#ConfiguracionModal").modal('show');
-// })
 
 $("#DomingosbtnTemperaturas").on('click', function (e) {
     e.preventDefault();
@@ -481,12 +447,12 @@ async function CrearEncabezadoEquipos(folio) {
             title: 'N° Serie',
             Description: `${row['EQUIPO']['EQUIPO_NUMERO_SERIE']}`
         }, {
-            title: 'Localizacion',
+            title: 'Localización',
             Description: `${row['EQUIPO']['LOCALIZACION']}`
         }, {
-            title: 'Intervalo optimo',
+            title: 'Intervalo óptimo',
             Description: `${row['EQUIPO']['INTERVALO_MIN']} A ${row['EQUIPO']['INTERVALO_MAX']}`
-        }], 'col-6', 'Tabla-equipos');
+        }], 'col-6', 'Tabla-equipos', 'Equipo');
 
         await rellenarInformacionEquipos([{
             title: 'Marca',
@@ -495,19 +461,20 @@ async function CrearEncabezadoEquipos(folio) {
             title: 'ID',
             Description: `${row['EQUIPO']['TERMOMETRO_ID']}`
         }, {
-            title: 'Factor de correccion',
+            title: 'Factor de corrección',
             Description: `${row['EQUIPO']['FACTOR_CORRECCION']}`,
         }, {
             title: 'Fecha de verificacion',
-            Description: `${row['EQUIPO']['MES']}`
+            Description: `${row['EQUIPO']['FECHA_VERIFICACION']}`
         }, {
             title: 'MES',
             Description: `${row['EQUIPO']['MES']}`
         }, {
             title: 'AÑO',
             Description: `${row['EQUIPO']['ANHO']}`
-        }], 'col-6', 'Tabla-termometro');
+        }], 'col-6', 'Tabla-termometro', 'Termómetro');
     })
+
 
 
 
@@ -515,9 +482,10 @@ async function CrearEncabezadoEquipos(folio) {
 
 }
 
-async function rellenarInformacionEquipos(data = [], col, elementId) {
+async function rellenarInformacionEquipos(data = [], col, elementId, title) {
     return new Promise(function (resolve, reject) {
-        let html = `<div class='row'>`
+        let html = `<div class='row'>
+        <p class="text-center mb-2">${title}</p>`
 
         for (const key in data) {
             if (Object.hasOwnProperty.call(data, key)) {

@@ -246,20 +246,20 @@ $menu = $_POST['menu']; ?>
 
   <?php if (TRUE) : ?>
     <div class="d-flex">
-      <button type="button" data-bs-toggle='tooltip' data-bs-placement='top' title="Liberar un rango de dias para la captura de temperaturas de los equipos" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
+      <button type="button" data-bs-toggle='tooltip' data-bs-placement='top' title="Liberar un rango de días  para la captura de temperaturas de los equipos" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
         <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
       </button>
 
       <div class="dropdown">
         <button class="btn btn-hover me-2 dropdown-toggle" type="button" style="margin-bottom:4px;" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-gear-fill"></i> Configuracion
+          <i class="bi bi-gear-fill"></i> Configuración
         </button>
         <ul class="dropdown-menu">
           <li>
-            <button class="btn dropdown-item" id="TermometrosbtnTemperaturas" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuracion de los termometros asignados a los equipos">Termometros</button>
+            <button class="btn dropdown-item" id="TermometrosbtnTemperaturas" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuración de los termómetros asignados a los equipos">Termómetros</button>
           </li>
           <li>
-            <button class="btn dropdown-item" id="ConfiguracionTemperaturasbtn" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuracion de los turnos y activar los dias domingos">Mas configuracion</button>
+            <button class="btn dropdown-item" id="ConfiguracionTemperaturasbtn" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuración de los turnos y activar los días domingos">Más Configuración</button>
           </li>
         </ul>
       </div>
