@@ -31,6 +31,12 @@ include "../../variables.php";
   const appname = 'practicantes';
   var http = "http://";
   var servidor = "localhost";
+  try {
+    var language = language.length ? language : '';
+  } catch (error) {
+    var language = '';
+  }
+
 
   miStorage = window.localStorage;
   miStorage.setItem("Olakace", "HOLA MUNDO XD");
