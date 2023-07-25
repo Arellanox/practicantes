@@ -12,7 +12,18 @@
                     <div class="col-12">
                         <form id="subirResultadosCertificadoMedico">
                             <h4>Seleccione el certificado que desea a subir</h4>
-                            <input type="file" class="form-control input-form mt-3" name="certificado-medico[]" accept=".pdf" id="certificado-medico">
+                            <div class="d-flex justify-content-center">
+                                <div class="input-file-contenedor col-11">
+                                    <!-- <label for="certificado-medico[]" class="form-label">Cargar Capturas</label>-->
+                                    <label for="certificado-medico[]" class="input-file-label">
+                                        <i class="bi bi-box-arrow-up"></i> Seleccione archivo(s)
+                                    </label>
+                                    <input type="file" name="certificado-medico[]" id="certificado-medico[]"
+                                        accept=".pdf" required class="input-file">
+                                </div>
+                            </div>
+                            <!-- <input type="file" class="form-control input-form mt-3" name="certificado-medico[]"
+                                accept=".pdf" id="certificado-medico"> -->
                         </form>
                     </div>
 
@@ -20,11 +31,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-borrar" id="btn-limpiar-resultado-espiro">Limpiar</button>
-
-                <!-- BTN SUBIR RESULTADOS DE ESPIRO -->
-                <button type="submit" class="btn btn-confirmar" id="btn-subir-certificado-medico" data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
-                    <i class="bi bi-clipboard2-plus"></i> Subir certificado
+                <!-- <button type="button" class="btn btn-borrar" id="btn-limpiar-resultado-espiro">Limpiar</button> -->
+                <button type="submit" class="btn btn-confirmar" id="btn-subir-certificado-medico"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Guarda los documentos subidos">
+                    <i class="bi bi-clipboard2-plus"></i> Guardar
                 </button>
             </div>
         </div>
