@@ -451,7 +451,7 @@ async function CrearEncabezadoEquipos(folio) {
             Description: `${row['EQUIPO']['LOCALIZACION']}`
         }, {
             title: 'Intervalo óptimo',
-            Description: `${row['EQUIPO']['INTERVALO_MIN']} A ${row['EQUIPO']['INTERVALO_MAX']}`
+            Description: `${row['EQUIPO']['INTERVALO_MIN']} A ${row['EQUIPO']['INTERVALO_MAX']} °C`
         }], 'col-6', 'Tabla-equipos', 'Equipo');
 
         await rellenarInformacionEquipos([{
