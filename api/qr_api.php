@@ -15,12 +15,14 @@ $master = new Master();
 
 
 $api = $_POST['api'];
+$clave = $_POST['clave'];
+$area = $_POST['area'];
 
 switch ($api) {
     
     case 1:
 
-        $result = $master->getByProcedure('sp_recuperar_qr', ['98c62cdb39d651ee9fe65990893dd3df', 8]);
+        $result = $master->getByProcedure('sp_recuperar_qr', [$clave, $area]);
 
         // print_r($result);
         // exit;
@@ -33,7 +35,6 @@ switch ($api) {
             $response[] = $r; 
         }
 
-        print_r($response);
         break;
 }
 
@@ -42,7 +43,7 @@ switch ($api) {
 
 
 
-// echo $master->returnApi($response);
+echo $master->returnApi($response);
 
 
 
