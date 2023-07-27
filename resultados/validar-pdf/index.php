@@ -1,6 +1,9 @@
 <?php
 
-include '../../vista/variables.php';
+// include_once '../../vista/variables.php';
+
+
+
 date_default_timezone_set('America/Mexico_City');
 session_start();
 session_unset();
@@ -37,8 +40,11 @@ $contexto = stream_context_create($opciones);
 $json = file_get_contents($url, false, $contexto);
 
 $array = json_decode($json, true);
-print_r( $array['response']['data']);
-exit;
+
+
+$http = 'http://';
+$url = 'localhost';
+$appname = 'practicantes';
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
