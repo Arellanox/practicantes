@@ -8,4 +8,7 @@ $.post("modals/a_modals.php", function (html) {
 
   // Modal para crear consulta medica
   $.getScript('modals/js/motivo-consulta-medica.js');
+
+  //Modal para certificado medico
+  $.getScript('modals/js/certificado-medico.js');
 });

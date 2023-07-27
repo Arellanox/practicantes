@@ -1,8 +1,17 @@
 var checkFactorCorrecion;
 BuildPage()
 
-// Renderizar title:
+// Renderizar Contenido Principal:
 async function BuildPage() {
+
+    equipo_id == '' ? equipo_id = false : equipo_id = equipo_id;
+
+    if (!equipo_id) {
+        alertToast('No se encontro ningun equipo', 'error', 5000);
+        return false;
+    }
+
+
     await ajaxAwait({
         api: 1,
         id_equipo: equipo_id,
@@ -46,7 +55,7 @@ $("#formCapturarTemperatura").on('submit', function (e) {
     }, 1)
 })
 
-
+// Event onChange que setea la variable checkFactorCorrecion 
 $(document).on('change', '#checkFactorCorrecion', function () {
     var switchState = $(this).is(':checked');
     if (switchState) {

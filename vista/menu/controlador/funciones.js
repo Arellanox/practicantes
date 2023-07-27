@@ -948,7 +948,7 @@ function setProcedenciaOption(select, idProcedencia) {
 }
 
 // Obtener cargo y tipos de usuarios
-function rellenarSelect(select = false, api, apinum, v, c, values = {}, callback = function (array, html) { }) {
+function rellenarSelect(select = false, api, apinum, v, c, values = {}, callback = function (array) { }) {
   return new Promise(resolve => {
     values.api = apinum;
 

@@ -743,7 +743,6 @@
                 $ruta_rubrica = $valores[$dia][$turno]["FIRMA"];
                 $rubrica = file_get_contents($ruta_rubrica);
                 $encode_rubrica = base64_encode($rubrica);
-
                 if ($type == 1) {
                     return "<td class=''>
                     <p class='h8 m-0 p-0' style='text-align:center;'>
@@ -878,7 +877,7 @@
                                                 <td class="" style='max-width:180px;'>
                                                     <div class="d-flex">
                                                         <label class="h7">Intervalo óptimo:</label>
-                                                        <label class="h8 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['INTERVALO_MIN']; ?> A <?php echo $array['EQUIPO']['INTERVALO_MAX']; ?> </label>
+                                                        <label class="h8 border-bottom px-3 fw-bold"> <?php echo $array['EQUIPO']['INTERVALO_MIN']; ?> A <?php echo $array['EQUIPO']['INTERVALO_MAX']; ?> °C </label>
                                                     </div>
                                                 </td>
                                             </tr>
