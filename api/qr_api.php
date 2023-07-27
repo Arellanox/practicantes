@@ -20,8 +20,19 @@ switch ($api) {
     
     case 1:
 
-        $response = $master->getByProcedure('sp_recuperar_qr', ['98c62cdb39d651ee9fe65990893dd3df', 8]);
-        $response = json_decode($response[0], true);
+        $result = $master->getByProcedure('sp_recuperar_qr', ['98c62cdb39d651ee9fe65990893dd3df', 8]);
+
+        // print_r($result);
+        // exit;
+        
+        $response = [];
+        foreach($result as $r){
+            if(isset($r['info'])){
+                $r['info']= $master->decodeJsonRecursively([$r['info']]);
+            }
+            $response[] = $r; 
+        }
+
         print_r($response);
         break;
 }

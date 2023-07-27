@@ -1165,8 +1165,8 @@ class Miscelaneus
 
                 $aux = $value;
             }
-            // $aux = json_decode($value, true);
-            // $s = 0;
+            $aux = json_decode($value, true);
+            $s = 0;
             if (is_array($aux)) {
                 foreach ($aux as $a) {
                     if (is_string($a)) {
@@ -1185,6 +1185,31 @@ class Miscelaneus
 
         return $decoded;
     }
+
+    function decodeJsonRecursively($jsonArray) {
+        $decodedArray = array();
+    
+        foreach ($jsonArray as $key => $value) {
+            if (is_array($value)) {
+                $decodedArray[$key] = $this->decodeJsonRecursively($value);
+            } else {
+                $decodedValue = json_decode($value, true);
+    
+                // Si json_decode devuelve NULL, significa que el valor no es un JSON válido,
+                // por lo que simplemente lo mantenemos tal como está.
+                // De lo contrario, seguimos decodificando recursivamente.
+                if ($decodedValue === NULL) {
+                    $decodedArray[$key] = $value;
+                } else {
+                    $decodedArray[$key] = $this->decodeJsonRecursively($decodedValue);
+                }
+            }
+        }
+    
+        return $decodedArray;
+    }
+    
+
     function str_ends_with($haystack, $needle)
     {
         return (@substr_compare($haystack, $needle, -strlen($needle)) == 0);
