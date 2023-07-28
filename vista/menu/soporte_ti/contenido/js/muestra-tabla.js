@@ -32,18 +32,24 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
             }
         },
         //trae la fecha de creacion formateada
-        { data: 'FECHA_CREACION', render: function (data) {
-            return formatoFecha2(data,[3, 1, 4, 2,1,1,1])
-        }},
+        {
+            data: 'FECHA_CREACION', render: function (data) {
+                return formatoFecha2(data, [3, 1, 4, 2, 1, 1, 1])
+            }
+        },
         { data: 'TICKET' },
         { data: 'MSJ' },
         { data: 'ATENDIDO_POR_US' },
-        { data: 'INCIO_ATENCION', render: function(data){
-            return formatoFecha2(data,[3, 1, 4, 2,1,1,1])
-        } },
-        { data: 'TERMINO_ATENCION', render: function(data){
-            return formatoFecha2(data,[3, 1, 4, 2,1,1,1])
-        } },
+        {
+            data: 'INCIO_ATENCION', render: function (data) {
+                return formatoFecha2(data, [3, 1, 4, 2, 1, 1, 1])
+            }
+        },
+        {
+            data: 'TERMINO_ATENCION', render: function (data) {
+                return formatoFecha2(data, [3, 1, 4, 2, 1, 1, 1])
+            }
+        },
         {
             data: null, render: function (meta, data) {
                 let html = `<div class = "estatusUsuariosTabla">`
@@ -89,7 +95,7 @@ TablaVistaSoporteTi = $("#TablaVistaSoporteTi").DataTable({
         { target: 9, title: 'Motivo de cancelacion', className: 'none' },
         { target: 10, title: 'Metodo de solucion', className: 'none' },
         { target: 11, title: 'Solucion', className: 'none' },
-        
+
     ]
 })
 
@@ -114,81 +120,60 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
 
                     //Este usuario esta pendiente
                     case '2':
-                            alertMensajeConfirm({
-                                title: '¿Deseas atender a este Usuario?',
-                                text: 'Se cambiara el estado de este ticket a En atención',
-                                icon: 'info',
-                            }, function () {
-                                dataJson_tomarPaciente = {
-                                    api : 3,
-                                    estatus_id: data['ESTATUS_ID'],
-                                    ticket: data['TICKET']
-                                }
-                                ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
-                                    alertToast('Este usuario esta siendo atendido!', 'success', 4000)
-                
-                                    TablaVistaSoporteTi.ajax.reload();
-                                })
-                            }, 1)
+                        alertMensajeConfirm({
+                            title: '¿Deseas atender a este Usuario?',
+                            text: 'Se cambiara el estado de este ticket a En atención',
+                            icon: 'info',
+                        }, function () {
+                            dataJson_tomarPaciente = {
+                                api: 3,
+                                estatus_id: data['ESTATUS_ID'],
+                                ticket: data['TICKET']
+                            }
+                            ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
+                                alertToast('Este usuario esta siendo atendido!', 'success', 4000)
+
+                                TablaVistaSoporteTi.ajax.reload();
+                            })
+                        }, 1)
                         break;
-                    
+
                     //Este usuario esta siendo atendido  
                     //variable session_start  
                     case '3':
-                        $(document).on('click', "#modalPendienteSoporte", function(e) {
-                            $(document).on('submit', '#btn-guardar-solucion-problema', function (e) {
-                                // e.preventDefault()
-                                alertMensajeConfirm({
-                                    title: '¿Deseas atender a este Usuario?',
-                                    text: 'Se cambiara el estado de este ticket a En atención',
-                                    icon: 'info',
-                                }, function () {
-
-                                    let dataJson_solucionProblema = {
-                                        api: 3,
-                                        estatus_id: ticket['ESTATUS_ID'],
-                                        ticket: ticket['TICKET'],
-                                        //para ver el if de una linea
-                                        metodo_solucion: $("#buscar-metodo-solucion").val(),
-                                        comentario_solucion: $("#comentarioSoluciuon").val()
-                                    }    
-        
-                                    ajaxAwait(dataJson_solucionProblema, 'asistencia_ti_bot_api', {callbackAfter : true}, false, function(data){
-                                    alertToast('Este usuario ya fue atendido!', 'success', 4000)
-                                    TablaVistaSoporteTi.ajax.reload();
-                                    })
-
-                                }, 1)
+                        // $(document).on('click', "#modalPendienteSoporte", function (e) {
+                        //     $(document).on('submit', '#btn-guardar-solucion-problema', function (e) {
+                        //         // e.preventDefault()
 
 
-                            })
-                        })
-                    
-                        // ajaxAwait(dataJson_recetas, 'consultorio_recetas_api', { callbackAfter: true }, false, function (data) {
-                        //     alertToast('Receta guardada!', 'success', 4000)
-                        //     tablaListaRecetas.ajax.reload();
-                        // })
-                        // //Limpiar los datos del formulario
-                        // $("#nombre_generico").val("")
+                        //         alertMensajeConfirm({
+                        //             title: '¿Deseas atender a este Usuario?',
+                        //             text: 'Se cambiara el estado de este ticket a En atención',
+                        //             icon: 'info',
+                        //         }, function () {
 
-                        // alertMensajeConfirm({
-                        //     title: '¿Deseas terminar la atencion?',
-                        //     text: 'Se cambiara el estado de este ticket a Terminado',
-                        //     icon: 'info',
-                        // }, function () {
+                        //             let dataJson_solucionProblema = {
+                        //                 api: 3,
+                        //                 estatus_id: ticket['ESTATUS_ID'],
+                        //                 ticket: ticket['TICKET'],
+                        //                 //para ver el if de una linea
+                        //                 metodo_solucion: $("#buscar-metodo-solucion").val(),
+                        //                 comentario_solucion: $("#comentarioSoluciuon").val()
+                        //             }
 
-                        //     dataJson_tomarPaciente = {
-                        //         api : 3,
-                        //         estatus_id: data['ESTATUS_ID'],
-                        //         ticket: data['TICKET']
-                        //     }
+                        //             ajaxAwait(dataJson_solucionProblema, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
+                        //                 console.log(ticket)
+                        //                 alertToast('Este usuario ya fue atendido!', 'success', 4000)
+                        //                 TablaVistaSoporteTi.ajax.reload();
+                        //             })
 
-                        //     ajaxAwait(dataJson_tomarPaciente, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
-                        //         alertToast('Este usuario esta siendo atendido!', 'success', 4000)
-            
-                        //         TablaVistaSoporteTi.ajax.reload();
+                        //         }, 1)
+
+
                         //     })
-                        // }, 1)
+
+                        // })
+
 
                         break;
 

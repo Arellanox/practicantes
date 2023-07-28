@@ -12,8 +12,10 @@ async function contenidoSoporteTi(data) {
       $("#body-js").html(html);
     }).done(function () {
     //   tablaSoporteTi = { api: 2,  fecha_agenda: $('#fechaListadoAreaMaster').val() };
+      ajaxAwait({ api: 2 }, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
+        $.getScript('contenido/js/muestra-tabla.js')
+      })
       // DataTable
-      $.getScript('contenido/js/muestra-tabla.js')
     })
   }
       // Botones
