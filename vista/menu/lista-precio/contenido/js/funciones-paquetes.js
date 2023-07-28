@@ -1,4 +1,5 @@
 async function mantenimientoPaquete() {
+  $('#btn-excel-previa').attr('disabled', false)
   loader("In");
   await rellenarSelect('#seleccion-paquete', 'paquetes_api', 2, 0, 'DESCRIPCION.CLIENTE', {
     contenido: 1
@@ -16,9 +17,10 @@ async function mantenimientoPaquete() {
   $("#seleccion-estudio").find('option').remove().end()
   loader("Out");
 }
- 
+
 async function contenidoPaquete(select = null) {
   loader("In");
+  $('#btn-excel-previa').attr('disabled', true)
   await rellenarSelect('#seleccion-paquete', 'paquetes_api', 2, 0, 'DESCRIPCION.CLIENTE', {
     contenido: 0
   });
