@@ -343,7 +343,7 @@ if ($tipoAdvertencia === "LEVE") {
                 <tr>
                     <td class="col-der" style="border-bottom: none">
                         <p>
-                            <b>DIAGNOSTICO BIOMOLECULAR</b><br>
+                            <b>DIAGNÓSTICO BIOMOLECULAR</b><br>
                             RFC DBI2012084N2<br>
                             Calle AV. RUIZ CORTINES, 1344, TABASCO 2000, CENTRO,<br>
                             VILLAHERMOSA, TABASCO, 86060, MEX<br>

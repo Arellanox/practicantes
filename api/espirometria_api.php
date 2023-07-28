@@ -67,7 +67,7 @@ switch ($api) {
         }
 
 
-        
+
         $response = $master->insertByProcedure("sp_espiro_cuestionario_g", [json_encode($principal), $id_turno, $area_id, $usuario_id, 0]);
 
         if ($confirmado == 1) {
@@ -91,7 +91,7 @@ switch ($api) {
 
                 foreach ($reportes as $reporte) {
 
-                    $reporte_bimo = explode("practicantes", $reporte['RUTA']);
+                    $reporte_bimo = explode("nuevo_checkup", $reporte['RUTA']);
                     $arreglo[] = ".." . $reporte_bimo[1];
                 }
 
@@ -130,18 +130,16 @@ switch ($api) {
 
     case 2:
         #RECUPERAMOS TODOS LOS DATOS DEL FORMULARIO (PREGUNTAS, RESPUESTAS Y COMENTARIOS)
-        if(isset($curp)){
+        if (isset($curp)) {
 
             $response = $master->getByProcedure("sp_recuperar_ultimo_cuestionario_espiro_b", [$curp]);
-
-        }else{
+        } else {
 
             $resultados = $master->getByNext("sp_espiro_cuestionario_b", [$turno_id]);
             $resultados[1][0]['PREGUNTAS'] = $resultados[0];
             $response = $resultados[1];
-
         }
-       
+
 
 
 
@@ -159,17 +157,17 @@ switch ($api) {
 
         $destination = "../reportes/modulo/espirometria/$id_turno/";
         $r = $master->createDir($destination);
-        
+
         #LE AÑADIMOS UN NOMBRE A NUESTRO ARCHIVO
         $name = $master->getByPatientNameByTurno($master, $id_turno);
 
         // Verificar si el archivo existe
-        if (file_exists($destination. "EASYONE_$id_turno" . "_" . "$name")) {
-            
+        if (file_exists($destination . "EASYONE_$id_turno" . "_" . "$name")) {
+
             // Eliminar el archivo existente
             unlink($destination . "EASYONE_$id_turno" . "_" . "$name");
         }
-        
+
 
         $interpretacion = $master->guardarFiles($_FILES, "resultado_espiro", $destination, "EASYONE_$id_turno" . "_" . "$name");
 

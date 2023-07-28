@@ -25,11 +25,12 @@
           <div class="" id="selectDisabled">
             <label for="inputBuscarPaquetes">Busque un cliente:</label>
             <select name="seleccionpaquete" id="seleccion-paquete" class="input-form" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione/Busque un cliente"> </select>
+            <div class="listaPresupuestos" id="container-select-presupuesto">
+              <label for="inputBuscarPaquetes">Busque un presupuesto:</label>
+              <select name="seleccionpaquete" id="select-presupuestos" class="input-form" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione/Busque un presupuesto ya guardado"> </select>
+            </div>
           </div>
-          <div class="listaPresupuestos" id="container-select-presupuesto">
-            <label for="inputBuscarPaquetes">Busque un presupuesto:</label>
-            <select name="seleccionpaquete" id="select-presupuestos" class="input-form" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione/Busque un presupuesto ya guardado"> </select>
-          </div>
+
           <div class="row d-flex justify-content-center" style="margin-bottom: 15px">
             <div class="col-auto">
               <button class="btn btn-sm btn-pantone-7408" type="button" id="UsarPaquete"><i class="bi bi-binoculars"></i> Usar</button>
@@ -127,7 +128,7 @@
   <div class="card col-9 pt-3" style="margin-bottom:5px;">
     <div class="col-12 d-flex align-items-center d-flex justify-content-center">
       <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalInfoDetalleCotizacion">
-        <i class="bi bi-person-plus-fill"></i> Crear Cotización
+        <i class="bi bi-save2"></i> Guardar Cotización
       </button>
     </div>
 

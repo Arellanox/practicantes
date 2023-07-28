@@ -240,7 +240,7 @@ $encode_firma = base64_encode($ruta_firma);
                 <tr>
                     <td class="col-der" style="border-bottom: none">
                         <h4>
-                            DIAGNOSTICO BIOMOLECULAR S.A.de C.V. <br>
+                            DIAGNÓSTICO BIOMOLECULAR S.A.de C.V. <br>
                             Checkup Clínica y Prevención<br>
                             <?php echo $encabezado->TITULO ?>
                         </h4>
@@ -331,38 +331,18 @@ $encode_firma = base64_encode($ruta_firma);
                     <td colspan="10">
                     </td>
                     <td colspan="2" style="text-align: left;">
-                        <?php
-                        if ($preview == 0) {
-
-                            echo "<img style='position:absolute; right:25px; margin-top: -48px ' src='data:image/png;base64, " . $encode_firma . "' height='137px'> ";
-                        }
-                        ?>
+                        <!-- <?php echo "<img style='position:absolute; right:25px; margin-top: -15px ' src='data:image/png;base64,height='80px'> " ?> -->
                     </td>
                 </tr>
                 <tr class="col-foot-three" style="font-size: 13px;">
-                    <td colspan="6" style="text-align: center; width: 50%">
-                        <?php
-                        if ($preview == 0) {
-                            echo "<a target='_blank' href='#'> <img src='" . $qr[1] . "' alt='QR Code' width='110' height='110'> </a>";
-                        }
-                        ?>
+                    <td colspan="6" style="text-align: center; width: 50%; height: 110px;">
+                        <a target="_blank" href="#"> <img src='<?= $qr[1] ?>' alt='QR Code' width='110' height='110'> </a>
                     </td>
                     <td colspan="6" style="text-align: right; width: 50%; padding-top: 30px; margin-bottom: -25px">
-                        <strong style="font-size: 12px;">
-                            <?php
-                            echo $pie['datos_medicos'][0]['NOMBRE_COMPLETO'] . '<br> Médico Radiódiologo - ' . $pie['datos_medicos'][0]['UNIVERSIDAD'] . ' - ' . $pie['datos_medicos'][0]['CEDULA'];
-                            $indice = 1;
-                            foreach ($pie['datos_medicos'][0]['ESPECIALIDADES'] as $key => $value) {
-                                // $contador = count($value);
-                                $indice++;
-                                echo '<br>' . $value['CARRERA'] . ' / ' . $value['UNIVERSIDAD'] . ' / '  . $value['CEDULA'] . '<br>';
-                                echo 'Certificado por: ' . $value['CERTIFICADO_POR'];
-                            }
-                            ?>
-                            <!-- Dra. Zoila Aideé Quiroz Colorado <br>
-                            Cédula profesional <br>
-                            Radiologia e imagen <br>
-                            Subespecialista en radiología pediátrica -->
+                        <strong style="font-size: 12px;"><?php
+                                                            $footerDoctor = 'Dra. Elsa G Calderón Valencia <br>Medicina Interna<br>Cédula profesional: 4896084';
+
+                                                            if (isset($footerDoctor)) echo $footerDoctor; ?>
                         </strong>
                     </td>
                 </tr>

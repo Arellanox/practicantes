@@ -311,11 +311,13 @@ function passdata($indice)
         "PCR SARS-CoV-2" => 'pcr',
         "PCR SARS-CoV-2/INFLUENZA A Y B" => 'pcr',
         "PANEL RESPIRATORIO POR PCR" => 'PANEL21',
-        "ANTIGENO" => 'ANTIGENO',
+        "Ag. SARS-CoV-2" => 'antigeno',
         "VPH" => 'vph',
         "CITOLOGÍA" => 'CITOLOGIA',
         "rT-PCR-ETS" => 'PCR-ETS',
     ];
+
+    // echo $indice;
 
     return $estudios[$indice];
 }

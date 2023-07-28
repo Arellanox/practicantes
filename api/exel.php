@@ -21,10 +21,7 @@ if (isset($datos['dispositivo']) && $datos['datos']) {
 
             $data = getValuesCsvEquipos($datos);
             $response = $master->insertByProcedure('sp_pseudo_interface', [json_encode($data)]);
-
-            $fp = fopen('algo.txt', 'a');
-            fwrite($fp, json_encode($data));
-            fclose($fp);
+           
             break;
 
         case 'SelectraProS':
@@ -218,24 +215,19 @@ function getValuesTxtEquipos($datos, $getVal1, $getVal2, $getVal3)
 #FUNCION PARA EQUIPOS QUE DAN ARCHIVOS DE CSV (ERBA)
 function getValuesCsvEquipos($datos){
 
-    // $fp = fopen('algo.txt', 'a');
-    // fwrite($fp, json_encode($datos));
-    // fclose($fp);
 
     $data = json_decode($datos['datos'], true);
 
     $arreglo = [];
     foreach ($data as $fila){
-        if ($fila['Sample ID'] != 0){
 
-            if ($fila['Index'] == 'APTT') {
+        if ($fila['Index'] == 'APTT'){
 
-                $arreglo[] = ['PREFOLIO' => $fila['Sample ID'], 'TPT' => $fila['Result 1'], 'REL' => $fila['Result 2'],  'INDEX' => $fila['Index']];
-            } else {
-                $arreglo[] = ['PREFOLIO' => $fila['Sample ID'], 'ACT' => $fila['Result 1'], 'INR' => $fila['Result 2'], 'TP' => $fila['Result 3'], 'INDEX' => $fila['Index']];
-            }
+        $arreglo[] = ['PREFOLIO' => $fila['Method name'], 'TPT' => $fila['Date and time of results'], 'REL' => $fila['Result 1'],  'INDEX' => $fila['Index']];
+
+        }else{
+            $arreglo[] = ['PREFOLIO' => $fila['Method name'], 'ACT' => $fila['Date and time of results'], 'INR' => $fila['Result 1'], 'TP' => $fila['Result 2'], 'INDEX' => $fila['Index']];
         }
-     
         
     }
 

@@ -105,9 +105,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
 
-<!-- dom-to-image -->
-<script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/dom-to-image.js' ?>"></script>
-<script src="<?php echo 'http://' . $url . '/' . $appname . '/css/framework/FileSaver.js' ?>"></script>
+<!-- Capturar HTML -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 

@@ -190,6 +190,7 @@ function tablaContenido(descuento = false) {
         exportOptions: {
           columns: [0, 1, 3, 4, 6, 7] // Índices de las columnas a exportar
         },
+
         // customizeData: function (data) {
         //   console.log(data)
         //   let tabla = tablaContenidoPaquete
@@ -202,7 +203,14 @@ function tablaContenido(descuento = false) {
         //     }
         //   }
         // }
-      }
+      },
+      // {
+      //   text: '<i class="bi bi-save2"></i> Guardar',
+      //   className: 'btn btn-pantone-7408',
+      //   attr: {
+      //     id: 'guardar-contenido-paquete'
+      //   }
+      // }
     ]
   });
   loader("Out");

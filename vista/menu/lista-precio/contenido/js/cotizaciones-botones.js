@@ -10,6 +10,7 @@ $('#agregar-estudio-paquete').click(function () {
   // console.log($("#seleccion-estudio").prop('selectedIndex'))
   // console.log(selectData)
   selectData = selectEstudio.array[$("#seleccion-estudio").prop('selectedIndex')]
+
   meterDato(selectData['SERVICIO'], selectData['ABREVIATURA'], selectData['COSTO'], selectData['PRECIO_VENTA'], 1, null, selectData['ID_SERVICIO'], selectData['ABREVIATURA'], tablaContenidoPaquete);
 })
 
@@ -46,7 +47,7 @@ $('#UsarPaquete').on('click', function () {
 
   let id_cotizacion = $('#select-presupuestos').val();
 
-  $('#select-presupuestos').prop('disabled', true);
+  // $('#select-presupuestos').prop('disabled', true);
   $("#selectDisabled").addClass("disable-element");
   // $('.formContenidoPaquete').prop('disabled', false);
   $("#formPaqueteBotonesArea").removeClass("disable-element");
@@ -59,22 +60,16 @@ $('#UsarPaquete').on('click', function () {
   switch ($('input[type=radio][name=selectPaquete]:checked').val()) {
     case '2': //Lista de precios para clientes
       tablaContenido(true);
-      $.ajax({
-        url: `${http}${servidor}/${appname}/api/cotizaciones_api.php`,
-        type: "POST",
-        dataType: 'json',
-        data: {
-          id_cotizacion: id_cotizacion,
-          api: 2
-        },
-        success: function (data) {
-          // console.log(data);
-          row = data.response.data;
-          for (var i = 0; i < row.length; i++) {
-            meterDato(row[i]['SERVICIO'], row[i].ABREVIATURA, row[i].COSTO_UNITARIO, row[i].COSTO_TOTAL, row[i].CANTIDAD, null, row[i].ID_SERVICIO, row[i].ABREVIATURA, tablaContenidoPaquete)
-          }
+      ajaxAwait({
+        id_cotizacion: id_cotizacion,
+        api: 2
+      }, 'cotizaci9ones_api', { callbackAfter: true }, false, () => {
+        row = data.response.data;
+        for (var i = 0; i < row.length; i++) {
+          meterDato(row[i]['SERVICIO'], row[i].ABREVIATURA, row[i].COSTO_UNITARIO, row[i].COSTO_TOTAL, row[i].CANTIDAD, null, row[i].ID_SERVICIO, row[i].ABREVIATURA, tablaContenidoPaquete)
         }
       })
+
       break;
   }
 })
@@ -132,14 +127,14 @@ $('#guardar-contenido-paquete').on('click', function () {
   let dataAjaxDetalleCotizacion = data[1];
   let tableData = tablaContenidoPaquete.rows().data().toArray();
   if (tableData.length > 0) {
-    alertMensajeFormConfirm({
+    alertPassConfirm({
       title: 'Ingrese su contraseña para guardar la lista',
       text: 'Use su contraseña para confirmar',
       showCancelButton: true,
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar',
       showLoaderOnConfirm: true,
-    }, 'usuarios_api', 9, 'password', async function () {
+    }, async function () {
       let data = await ajaxAwait({
         api: 1,
         detalle: dataAjax,
@@ -159,7 +154,7 @@ $('#guardar-contenido-paquete').on('click', function () {
         dataEliminados = new Array()
         alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
       }
-    }, 1)
+    })
   } else {
     alertMensaje('error', '¡Faltan datos!', 'Necesita rellenar la tabla de estudios para continuar')
   }
@@ -169,7 +164,7 @@ function formpassword() {
   //No submit form with enter
 }
 
-$(document).on("change ,  keyup", "input[name='cantidad-paquete'], input[name='descuento-paquete'], #descuento-paquete", function () {
+$(document).on("change", "input[name='cantidad-paquete'], input[name='descuento-paquete'], #descuento-paquete", function () {
   calcularFilasTR()
 
   if ($(this).attr('id') == 'descuento-paquete') {

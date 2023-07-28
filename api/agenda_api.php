@@ -53,17 +53,17 @@ switch ($api) {
         #buscar agendas
         $response = $master->getByProcedure("sp_agenda_b", [$area_id, $fecha_agenda]);
 
-        for ($i=0; $i < count($response); $i++) { 
+        for ($i = 0; $i < count($response); $i++) {
             $response[$i]["DETALLE_AGENDA"] = $master->decodeJson([$response[$i]["DETALLE_AGENDA"]]);
         }
         break;
     case 4:
         # eliminar una agenda
-        $response = $master->deleteByProcedure("sp_agenda_e", [ $id_agenda ]);
+        $response = $master->deleteByProcedure("sp_agenda_e", [$id_agenda]);
         break;
     case 5:
         # agregar una horario a un area
-        $response = $master->insertByProcedure("sp_agenda_horarios_g", [ null, $hora_inicial, $area_id]);
+        $response = $master->insertByProcedure("sp_agenda_horarios_g", [null, $hora_inicial, $area_id]);
         break;
     case 6:
         # eliminar horarios de un area

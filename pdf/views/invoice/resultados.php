@@ -51,6 +51,7 @@
                             padding-bottom: 5px;
                             padding-right: 30px;
                             padding-left: 30px;
+                            padding-top: 10px;
                             text-align: justify;
                             text-justify: inter-word;
                         }
@@ -310,9 +311,9 @@
                         <p style="font-size: 12px; padding-left: 3.5px; margin: -1px; margin-top: 5px">
                             <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'>" . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?> </strong>
                         </p>
-
+                        <hr style="text-align: center; border-style: solid none solid none; width: 100%; ">
                     </div>
-
+                    
                     <div class="footer">
                         <table>
                             <tbody>

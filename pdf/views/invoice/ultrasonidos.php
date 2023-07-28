@@ -225,7 +225,8 @@ $encode = base64_encode($ruta);
 // echo '<img src="data:image/png;base64, '. $img_valido .'" alt="" height="75" >';
 
 // path firma
-$ruta_firma = file_get_contents('../pdf/public/assets/firma_quiroz.png'); //FIRMA_URL
+$firma_url = $pie['datos_medicos'][0]['FIRMA'];
+$ruta_firma = file_get_contents("..$firma_url"); //FIRMA_URL
 $encode_firma = base64_encode($ruta_firma);
 
 ?>
@@ -332,8 +333,8 @@ $encode_firma = base64_encode($ruta_firma);
                     <td colspan="2" style="text-align: left;">
                         <?php
                         if ($preview == 0) {
-
-                            echo "<img style='position:absolute; right:25px; margin-top: -48px ' src='data:image/png;base64, " . $encode_firma . "' height='137px'> ";
+                            // echo $encode_firma;
+                            echo "<img style='position:absolute; right:25px; margin-top: -48px ' src='data:image/png;base64, " . $encode_firma . "' height='117px'> ";
                         }
                         ?>
                     </td>
@@ -349,13 +350,20 @@ $encode_firma = base64_encode($ruta_firma);
                     <td colspan="6" style="text-align: right; width: 50%; padding-top: 30px; margin-bottom: -25px">
                         <strong style="font-size: 12px;">
                             <?php
-                            echo $pie['datos_medicos'][0]['NOMBRE_COMPLETO'] . '<br> Médico Radiódiologo - ' . $pie['datos_medicos'][0]['UNIVERSIDAD'] . ' - ' . $pie['datos_medicos'][0]['CEDULA'];
+                            echo $pie['datos_medicos'][0]['NOMBRE_COMPLETO'] . '<br> ' . $pie['datos_medicos'][0]['CARRERA'] . ' - ' . $pie['datos_medicos'][0]['UNIVERSIDAD'] . ' - ' . $pie['datos_medicos'][0]['CEDULA'];
                             $indice = 1;
                             foreach ($pie['datos_medicos'][0]['ESPECIALIDADES'] as $key => $value) {
                                 // $contador = count($value);
                                 $indice++;
-                                echo '<br>' . $value['CARRERA'] . ' / ' . $value['UNIVERSIDAD'] . ' / '  . $value['CEDULA'] . '<br>';
-                                echo 'Certificado por: ' . $value['CERTIFICADO_POR'];
+                                echo '<br>' . $value['CARRERA'] . ' / ' . $value['UNIVERSIDAD'];
+                                if ($value['CEDULA'] != 0) {
+                                    echo  ' / '  . $value['CEDULA'];
+                                }
+
+                                echo '<br>';
+
+                                if ($value['CERTIFICADO_POR'] != 0)
+                                    echo 'Certificado por: ' . $value['CERTIFICADO_POR'];
                             }
                             ?>
                             <!-- Dra. Zoila Aideé Quiroz Colorado <br>

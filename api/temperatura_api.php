@@ -20,7 +20,7 @@ $observaciones = isset($_POST['observaciones']) ? $_POST['observaciones'] : null
 $id_registro_temperatura = $_POST['id_registro_temperatura'];
 $turno = $_POST['turno'];
 $area = $_POST['area'];
-
+$host = $_SERVER['SERVER_NAME'] == "localhost" ? "http://localhost/nuevo_checkup" : "https://djrb.com.mx/nuevo_checkup";
 /* 
 
 die();
@@ -269,6 +269,7 @@ switch ($api) {
         if ($UrlImg !== null) {
 
             // Eliminar el encabezado de base64 para obtener solo los datos de la imagen
+            $master->createDir('../archivos/sistema/capas_temperaturas/');
             $base64Data = str_replace('data:image/png;base64,', '', $UrlImg,);
 
             // Generar un nombre único para la imagen
@@ -277,8 +278,7 @@ switch ($api) {
             // Guardar la imagen en la carpeta deseada
             $path = '../archivos/sistema/capas_temperaturas/' . $imageName;
             file_put_contents($path, base64_decode($base64Data));
-
-            $path = 'http://localhost/practicantes/archivos/sistema/capas_temperaturas/' . $imageName;
+            $path = "$host/archivos/sistema/capas_temperaturas/$imageName";
 
             $SubirFormato = array(
                 $folio,
@@ -304,7 +304,7 @@ switch ($api) {
     case 18:
         $tipo = "EquiposTemperatura";
         $equipoID = $equipo;
-        $codeContents = "http://localhost/practicantes/vista/movil/temperatura/?equipo=$equipoID";
+        $codeContents = "$host/vista/movil/temperatura/?equipo=$equipoID";
         $nombre = 'Equipo-' . $equipoID;
         $response = ["qr" => $master->generarQRURL($tipo, $codeContents, $nombre), "url" => $codeContents, "fileName" => $nombre];
         break;

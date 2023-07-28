@@ -23,6 +23,8 @@ $descripcion = $_POST['descripcion'];
 $esta_libre = $_POST['esta_libre'];
 $prioridad = $_POST['prioridad'];
 
+$id_area_fisica = $_POST['id_area_fisica'];
+
 $parametros = array(
     $id_area,
     $encargado_id,
@@ -48,6 +50,10 @@ switch ($api) {
     case 4:
         # desactivar
         $response = $master->deleteByProcedure("sp_areas_e", [$id]);
+        break;
+    case 5:
+        # recuperar las areas fisicas o salas
+        $response = $master->getByProcedure("sp_areas_fisicas_b", [$id_area_fisica]);
         break;
     default:
         $response = "api no reconocida";

@@ -45,8 +45,8 @@ $kit = $body[count($body) - 4];
     ?>
             <tr>
                 <td style="text-align: left;" class="cursive"><?php echo $value->nombre ?></td>
-                <td class="<?php echo $value->resultado == 'POSITIVO' ? "bold rojo" : "bold";  ?>"><?php if ($resultado->value != 'N/A') echo $value->resultado ?></td>
-                <td>NEGATIVO</td>
+                <td class="<?php echo $value->resultado == 'POSITIVO' ? "bold rojo" : "bold";  ?>"><?php if ($value->resultado != 'N/A') echo $value->resultado ?></td>
+                <td><?php if ($value->resultado != 'N/A') echo "NEGATIVO"; ?></td>
             </tr>
         <?php
         } else {

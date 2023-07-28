@@ -58,6 +58,8 @@ function meterDato(DESCRIPCION, CVE, costo_total, precio_venta, CANTIDAD, DESCUE
     precio_venta = precio_venta;
   }
 
+  costo_total = parseFloat(costo_total).toFixed(2)
+
   tablaContenidoPaquete.row.add([
     DESCRIPCION,
     CVE,
@@ -80,12 +82,14 @@ function calcularFilasTR() {
   var CotizacionDetalle = new Array();
   try {
     $('#TablaListaPaquetes tbody tr').each(function () {
+      tabledata = tablaContenidoPaquete.row(this).data();
+
+
       var arregloEstudios = new Array();
       let id_servicio;
       let calculo = caluloFila(this)
       subtotalCosto += calculo[0];
       subtotalPrecioventa += calculo[1];
-      tabledata = tablaContenidoPaquete.row(this).data();
       id_servicio = tabledata[8]
       arregloEstudios = {
         'id': id_servicio,
@@ -105,7 +109,9 @@ function calcularFilasTR() {
 
   }
   // console.log(paqueteEstudios);
-
+  iva = (subtotalPrecioventa * 16) / 100;
+  iva_sindescuento = (subtotalPrecioventa_sindescuento * 16) / 100;
+  total = subtotalPrecioventa + iva;
 
   if (!checkNumber(subtotalCosto)) {
     subtotalCosto = 0;
@@ -132,10 +138,7 @@ function calcularFilasTR() {
     }
   }
 
-  iva = (subtotalPrecioventa * 16) / 100;
-  iva_sindescuento = (subtotalPrecioventa_sindescuento * 16) / 100;
 
-  total = subtotalPrecioventa + iva;
   if (!checkNumber(total))
     total = 0;
 
@@ -147,10 +150,10 @@ function calcularFilasTR() {
   $('#sin_descuento-subtotal-precioventa-paquete').html('$' + subtotalPrecioventa_sindescuento.toFixed(2));
   $('#sin_descuento-total-paquete').html(`$${total_sindecuento.toFixed(2)}`);
 
-  // $('#subtotal-costo-paquete').html('$' + subtotalCosto.toFixed(2));
   $('#subtotal-precioventa-paquete').html('$' + subtotalPrecioventa.toFixed(2));
   $('#total-paquete').html(`$${total.toFixed(2)}`);
-  // console.log(typeof total.toFixed(2))
+
+
   CotizacionDetalle = {
     'total': total,
     'subtotal-costo': subtotalCosto,
@@ -175,8 +178,10 @@ function caluloFila(parent_element) {
   let costoTotal = cantidad * costo;
   if (checkNumber(costoTotal)) {
     $(parent_element).find("div[class='costototal-paquete text-center']").html('$' + costoTotal.toFixed(2))
+    costoTotal = costoTotal.toFixed(2)
   } else {
     $(parent_element).find("div[class='costototal-paquete text-center']").html('$0')
+    costoTotal = 0
   }
   let subtotal = cantidad * precioventa;
   if (descuento > 0) {
@@ -190,10 +195,26 @@ function caluloFila(parent_element) {
   }
   if (checkNumber(subtotal)) {
     $(parent_element).find("div[class='subtotal-paquete text-center']").html('$' + subtotal.toFixed(2))
+    subtotal = subtotal.toFixed(2);
   } else {
     $(parent_element).find("div[class='subtotal-paquete text-center']").html('$0')
+    subtotal = 0
   }
-  return data = [costoTotal, subtotal, cantidad, costo, precioventa, descuento, descuento_precio, subtotal_sin_descuento]
+  let row = tablaContenidoPaquete.row(parent_element)
+  // Invalida el row modificado en lugar de dibujar toda la tabla
+  // row.invalidate();
+  row.data({
+    0: row.data()[0],
+    1: row.data()[1],
+    2: `<div class="input-group"><input type="number" class="form-control input-form cantidad-paquete text-center" name="cantidad-paquete" placeholder="0%" value="${cantidad}"><span class="input-span">ud</span></div>`,
+    3: `<div class="costo-paquete text-center">$${costo}</div>`,
+    4: `<div class="costototal-paquete text-center">$${costoTotal}</div>`,
+    5: `<div class="input-group"><input type="number" class="form-control input-form descuento-paquete text-center" name="descuento-paquete" placeholder="0%" value="${descuento}"><span class="input-span">%</span></div>`,
+    6: `<div class="precioventa-paquete text-center">$${precioventa}</div>`,
+    7: `<div class="subtotal-paquete text-center">$${subtotal}</div>`,
+    8: row.data()[8]
+  }).invalidate().draw(false);
+  return data = [costoTotal, subtotal, cantidad, costo, precioventa]
 }
 
 // Precargar listado

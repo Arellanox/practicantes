@@ -244,9 +244,9 @@ if (!isset($qr)) {
                 <tr>
                     <td class="col-der" style="border-bottom: none">
                         <h4>
-                            DIAGNOSTICO BIOMOLECULAR S.A.de C.V. <br>
+                            DIAGNÓSTICO BIOMOLECULAR S.A.de C.V. <br>
                             Checkup Clínica y Prevención<br>
-                            Reporte de oftamologia
+                            Reporte de Oftalmologia
                         </h4>
                     </td>
                     <td class="col-izq" style="border-bottom: none; text-align:center;">

@@ -312,7 +312,7 @@ $encode_firma = base64_encode($ruta_firma);
         $cit = new CachingIterator($ait);
 
         foreach ($cit as $tabla) :
-            echo "<br>"; ?>
+            echo "<br> <h3>Datos generales de espirometría</h3> <br>"; ?>
             <table class="table">
                 <?php foreach ($tabla as $preguntaIndex => $pregunta) : ?>
                     <?php if (!in_array($pregunta['id_pregunta'], [39, 40, 41])) :  ?>

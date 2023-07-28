@@ -206,6 +206,24 @@ switch ($api) {
         }
 
         break;
+    case 0:
+        # actualizar ruta de reporte de consultorio dados las id del turno.
+
+        $prefolios = [1177,
+        1180,
+        1192,
+        1193,
+        1194,
+        1197];
+
+        foreach($prefolios as $prefolio){
+            $url = $master->reportador($master, $prefolio, 1, "consultorio", 'url', 0);
+            $response = $master->updateByProcedure('sp_reportes_actualizar_ruta', ["consultorio_consulta","RUTA_REPORTE",$url,$prefolio,null]);
+        }
+
+        
+
+        break;
     case 12:
         # buscar las exploraciones clinicas.
         $response = $master->getByProcedure('sp_consultorio_exploracion_clinica_b', [$turno_id]);

@@ -92,38 +92,38 @@ $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
     <div class="footer">
     </div>
     <div class="label">
-        <table>
-            <?php
-            $count = count($resultados->CONTENEDORES);
-            $i = 0;
+        <?php
+        $count = count($resultados->CONTENEDORES);
+        $i = 0;
 
-            $recipientes = $resultados;
-            foreach ($recipientes->CONTENEDORES as $a => $recipiente) {
-                echo "<tr>
+        $recipientes = $resultados;
+        foreach ($recipientes->CONTENEDORES as $a => $recipiente) {
+            echo "<table>";
+            echo "<tr>
                         <td>
                             <p style='font-size: 7px;'><span style='font-weight:bold;'>" . $recipiente->CONTENEDOR . " (" . $recipiente->MUESTRA . ")</span> | " . $recipientes->FECHA_TOMA . "</p>
                             <p style='font-size: 7px;'>" . $recipientes->NOMBRE . "</p>
                             <p style='font-size: 7px;'>" . $recipientes->EDAD . " AÑOS | " . $recipientes->SEXO . "</p>
-                            <p style='padding-bottom:3px'>" . $recipiente->MAQUILA_ABR . "</p>
+                            <p style='padding-bottom:3px; position: absolute; '>" . $recipiente->MAQUILA_ABR . "</p>
                         </td>
                     </tr>";
-                echo " </table>";
+            echo " </table>";
 
-                echo "<div style='right:-80px; position:relative;'><img  width='100px' height='30px'  src='data:image/png;base64," . base64_encode($generator->getBarcode($recipientes->PREFOLIO, $generator::TYPE_CODE_128)) . "></div>";
+            echo "<div style='right:-80px; position:relative;'><img  width='100px' height='30px'  src='data:image/png;base64," . base64_encode($generator->getBarcode($recipientes->PREFOLIO, $generator::TYPE_CODE_128)) . "></div>";
 
-                echo "<div style='top:20px; position:relative; right:10px; left:100px'><p>$recipientes->PREFOLIO</p> </div>";
+            echo "<div style='top:20px; position:relative; right:10px; left:100px'><p>$recipientes->PREFOLIO</p> </div>";
 
-                $etiqueta = '';
-                foreach ($recipiente->ESTUDIOS as $b => $estudio) {
-                    $etiqueta = $etiqueta . $estudio->ABREVIATURA . ", ";
-                }
-                echo "   
+            $etiqueta = '';
+            foreach ($recipiente->ESTUDIOS as $b => $estudio) {
+                $etiqueta = $etiqueta . $estudio->ABREVIATURA . ", ";
+            }
+            echo "   
                     <p style='font-size: 7px; padding-right:2px; padding-top:2px'>" . $etiqueta . "</p>";
 
-                $i++;
-            }
+            $i++;
+        }
 
-            ?>
+        ?>
 
 
     </div>

@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            margin-top: 70px;
+            margin-top: 80px;
             margin-bottom: 40px;
             font-size: 10px;
             /* background-color: gray; */
@@ -129,24 +129,24 @@
 
         /* Para divisiones de 3 encabezado*/
         .col-left {
-            width: 42%;
-            max-width: 42%;
+            width: 44%;
+            max-width: 44%;
             text-align: left;
             font-size: 11px;
             margin-left: 2px;
         }
 
         .col-center {
-            width: 41%;
-            max-width: 41%;
+            width: 32%;
+            max-width: 32%;
             text-align: left;
             font-size: 11px;
             margin-left: 2px;
         }
 
         .col-right {
-            width: 17%;
-            max-width: 17%;
+            width: 24%;
+            max-width: 24%;
             text-align: left;
             font-size: 11px;
             margin-left: 2px;
@@ -242,7 +242,7 @@ $encode_firma = base64_encode($ruta_firma);
     <div class="header">
         <?php
         $titulo = 'Checkup Clínica y Prevención';
-        $tituloPersonales = 'Informacón del paciente';
+        $tituloPersonales = 'Información del paciente';
         $subtitulo = 'Historia Clínica';
         $encabezado->FECHA_RESULTADO = $encabezado->FECHA_RESULTADO_CONSULTA;
         include 'includes/header.php';
@@ -298,7 +298,7 @@ $encode_firma = base64_encode($ruta_firma);
         <?php
                 }
             }
-            echo '<div class="break"> </div>';
+            // echo '<div class="break"> </div>';
         }
         ?>
 
@@ -353,7 +353,7 @@ $encode_firma = base64_encode($ruta_firma);
             }
             ?>
 
-            <div class="break"> </div>
+            <!-- <div class="break"> </div> -->
         <?php
 
         }
@@ -424,9 +424,14 @@ $encode_firma = base64_encode($ruta_firma);
             echo '</br><h2 style="padding-bottom: 6px; padding-top: 6px;">Diagnóstico</h2>';
             echo "<p>" . $resultados->DIAGNOSTICO . "</p>";
         } ?>
+
+
+        <!-- DIAGNOSTICO -->
+        <?php if (isset($resultados->CONCLUSIONES)) {
+            echo '</br><h2 style="padding-bottom: 6px; padding-top: 6px;">Conclusiones</h2>';
+            echo "<p>" . $resultados->CONCLUSIONES . "</p>";
+        } ?>
     </div>
-
-
 </body>
 
 

@@ -93,7 +93,7 @@ switch ($api) {
         echo $master->returnApi($response);
         break;
     case 2:
-        $response = $master->getByProcedure("sp_usuarios_b",[$id_usuario,$correo]);
+        $response = $master->getByProcedure("sp_usuarios_b", [$id_usuario, $correo]);
         echo $master->returnApi($response);
         // $response = $usuario->getAll();
 
@@ -124,7 +124,7 @@ switch ($api) {
 
     case 3:
         # eliminar especialidad de una usuario
-        $response = $master->deleteByProcedure("sp_usuarios_especialidades_e", [$id_usuario,$id_especialidad]);
+        $response = $master->deleteByProcedure("sp_usuarios_especialidades_e", [$id_usuario, $id_especialidad]);
         echo $master->returnApi($response);
 
         // $response  = $usuario->getById($_POST['id']);
@@ -239,6 +239,7 @@ switch ($api) {
 
     case 13:
         # Actualizar contrasenia
+
         $opciones = [
             'cost' => 12,
         ];

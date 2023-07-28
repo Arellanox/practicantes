@@ -24,16 +24,16 @@ $fecha_agenda = $_POST['fecha_agenda'];
 // $parametros = array(
 //     $id_turno
 // );
-$response="";
+$response = "";
 
 $master = new Master();
 switch ($api) {
     case 1:
-        $response = $master->getByProcedure("sp_toma_de_muestra_lista_de_trabajo", [$fecha_agenda,$id_area]);
+        $response = $master->getByProcedure("sp_toma_de_muestra_lista_de_trabajo", [$fecha_agenda, $id_area]);
         break;
     case 2:
         # buscar_servicios de toma de muestra
-        $response = $master->getByProcedure("sp_toma_de_muestra_servicios_b", [$id_paciente,$id_area,$id_turno]);
+        $response = $master->getByProcedure("sp_toma_de_muestra_servicios_b", [$id_paciente, 6, $id_turno]);
         break;
     case 3:
         # actualizar toma de muestra

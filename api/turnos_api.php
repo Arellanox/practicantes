@@ -106,11 +106,11 @@ switch ($api) {
 
     case 7:
         # api falsa
-        // print_r($_POST);
-        print_r($_POST['servicios']);
-        print_r($_POST);
 
-        echo json_encode(array("response" => array("code" => 1, "data" => array())));
+
+        $response = $master->getEmailMedico($master, 436);
+        $response[] = "prueba@hotmail.com";
+        print_r(array_unique($response));
         exit;
         break;
 
@@ -159,12 +159,12 @@ switch ($api) {
         foreach ($setResultados as $key => $resultado) {
             #determinamos si el estudio de laboratorio tiene valor absoluto.
             $valor_absoluto = isset($resultado['VALOR']) ? $resultado['VALOR'] : NULL;
-            $group = strtolower($resultado['ID_GRUPO']) == "null" ? NULL : $resultado['ID_GRUPO'];
+            $group = strtolower($resultado['ID_GRUPO']) == "null" ? NULL: $resultado['ID_GRUPO'];
 
 
             #$a = array($id_turno, $servicio_id, $resultado, $confirmar, $confirmado_por, $valor_absoluto);
-            $response = $master->updateByProcedure('sp_subir_resultados', array($id_turno, $resultado['ID_SERVICIO'], $resultado['RESULTADO'], $confirmar, $confirmado_por, $valor_absoluto, $group));
-
+            $response = $master->updateByProcedure('sp_subir_resultados', array($id_turno, $resultado['ID_SERVICIO'], $resultado['RESULTADO'], $confirmar, $confirmado_por, $valor_absoluto,$group));
+          
             #  print_r($response);
             if (!is_numeric($response)) {
                 echo $master->returnApi($response);
@@ -229,23 +229,29 @@ switch ($api) {
     case 13:
         # Dar el 2 check en resultados de laboratorio [particulares]
         $response = $master->updateByProcedure("sp_db_check_laboratorio", [$id_turno, $_SESSION['id']]);
-        // $mail = new Correo();
+        $mail = new Correo();
 
-        // if ($response >= 0) {
-        //     # si se confirmo en la base de datos, enviamos el correo
-        //     $response = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 6, 1, null, 0]);
-        //     $files = $master->cleanAttachingFiles($response);
-        //     if (!empty($files)) {
-        //         $r = $mail->sendEmail("resultados", "Resultados de laboratorio", [$response[0]['CORREO']], null, $files, 1);
-        //         if ($r) {
-        //             $response = 1;
-        //         } else {
-        //             $response = "No se envió el resultado.";
-        //         }
-        //     } else {
-        //         $response = "No hay archivos para enviar.";
-        //     }
-        // }
+        if ($response >= 0) {
+            # si se confirmo en la base de datos, enviamos el correo
+            $response = $master->getByProcedure("sp_recuperar_reportes_confirmados", [$id_turno, 6, 1, null, 0]);
+            $files = $master->cleanAttachingFiles($response);
+
+            # creamos el arreglo para saber a cuantos correo hay que mandarlo
+            $mails = $master->getEmailMedico($master, $id_turno);
+            #agregamos el correo del paciente.
+            $mails[] = $response[0]['CORREO'];
+
+            if (!empty($files)) {
+                $r = $mail->sendEmail("resultados", "Resultados de laboratorio", array_unique($mails), null, $files, 1);
+                if ($r) {
+                    $response = 1;
+                } else {
+                    $response = "No se envió el resultado.";
+                }
+            } else {
+                $response = "No hay archivos para enviar.";
+            }
+        }
         break;
     case 14:
 
@@ -279,7 +285,7 @@ switch ($api) {
         # variable ['turno_completado']
         # mandar 1 para completado
         # mandar 0 para mandar incompleto
-        $response = $master->updateByProcedure("sp_turnos_completados_g", [$id_turno, $turno_completado]);
+        $response = $master->updateByProcedure("sp_turnos_completados_g", [ $id_turno, $turno_completado ]);
         break;
     case 20:
         # mostrar la lista de los pacientes/turnos completados

@@ -5,7 +5,7 @@
                                 <tr>
                                     <td class="col-der" style="border-bottom: none; text-align: center">
                                         <h4>
-                                        DIAGNÓSTICO BIOMOLECULAR S.A.de C.V. <br>
+                                            DIAGNÓSTICO BIOMOLECULAR S.A.de C.V. <br>
                                             <?php echo $titulo; ?> <br>
                                             <?php if (isset($subtitulo)) {
                                                 echo $subtitulo;

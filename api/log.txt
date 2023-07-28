@@ -1,1 +1,293 @@
-nullnull{"api":3,"estatus_id":3,"ticket":13}nullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnullnull
+25/11/22 16:27:36 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+25/11/22 19:39:28 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2006] MySQL server has gone away
+29/11/22 10:57:49 sp_consultorio_exploracion_g Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_consultorio_exploracion_g does not exist
+29/11/22 11:01:27 sp_consultorio_exploracion_g Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_consultorio_exploracion_g does not exist
+29/11/22 12:25:57 sp_consultorio_recetas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'cns_rec.MEDICAMENTO' in 'field list'
+04/12/22 18:20:28 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+04/12/22 18:34:00 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+04/12/22 18:34:30 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+05/12/22 11:17:28 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+05/12/22 11:17:56 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+05/12/22 11:36:38 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+05/12/22 17:29:09 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+05/12/22 17:29:30 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+12/12/22 11:53:26 sp_consultorio_odontograma_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_consultorio_odontograma_g; expected 7, got 6
+12/12/22 11:54:09 sp_consultorio_odontograma_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_consultorio_odontograma_g; expected 7, got 6
+12/12/22 12:00:54 sp_consultorio_odontograma_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_consultorio_odontograma_g; expected 7, got 6
+12/12/22 15:36:54 sp_consultorio_odontograma_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_consultorio_odontograma_g; expected 7, got 6
+12/12/22 15:37:53 sp_consultorio_odontograma_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_consultorio_odontograma_g; expected 7, got 6
+12/12/22 15:59:04 sp_consultorio_odontograma_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_consultorio_odontograma_g; expected 7, got 6
+12/12/22 16:13:00 sp_consultorio_odontograma_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`consultorio_odontograma`, CONSTRAINT `fk_consultorio_odontograma_consultorio_pieza_dental_caras_1` FOREIGN KEY (`CARA_ID`) REFERENCES `consultorio_pieza_dental_caras` (`I)
+13/12/22 10:34:17 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2002] Se ha intentado una operación de socket en una red no accesible.
+
+19/12/22 15:10:20 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+19/12/22 15:11:13 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+19/12/22 15:15:19 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+19/12/22 16:32:13 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+20/12/22 10:10:40 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:42 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:44 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:46 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:47 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:49 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:50 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:51 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:52 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:54 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:54 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:56 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:57 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+20/12/22 10:10:58 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1226] User 'u808450138_bimo' has exceeded the 'max_connections_per_hour' resource (current value: 500)
+21/12/22 09:59:31 sp_informacion_paciente Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_informacion_paciente; expected 1, got 3
+21/12/22 10:01:30 sp_informacion_paciente Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_informacion_paciente; expected 1, got 3
+05/01/23 12:43:30 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+05/01/23 14:13:08 sp_capturas_imagen_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`capturas_imagen`, CONSTRAINT `fk_capturas_imagen_turnos_1` FOREIGN KEY (`TURNO_ID`) REFERENCES `turnos` (`ID_TURNO`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+05/01/23 14:14:07 sp_capturas_imagen_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`capturas_imagen`, CONSTRAINT `fk_capturas_imagen_turnos_1` FOREIGN KEY (`TURNO_ID`) REFERENCES `turnos` (`ID_TURNO`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+10/01/23 15:02:20 [function guardarFiles][reportes] El archivo esta vacio, error al subir archivo.
+11/01/23 16:40:35 [function guardarFiles][reportes] El archivo esta vacio, error al subir archivo.
+24/01/23 11:04:24 sp_oftalmo_resultados_g Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'ANTECEDENTES_PERSONALES' in 'field list'
+24/01/23 11:06:11 sp_oftalmo_resultados_g Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'ANTECEDENTES_PERSONALES' in 'field list'
+24/01/23 13:32:26 sp_oftalmo_resultados_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_oftalmo_resultados_g; expected 23, got 22
+03/02/23 12:43:41  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '()' at line 1
+03/02/23 13:09:52  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '()' at line 1
+04/02/23 13:08:14 sp_recuperar_reportes_confirmados Ha ocurrido un error(21S01). 21S01 1136 Column count doesn't match value count at row 1
+28/02/23 17:54:19 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+28/02/23 17:54:27 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+01/03/23 12:15:51  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '()' at line 1
+01/03/23 13:08:50 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+01/03/23 13:28:10 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+01/03/23 14:03:16 fn_connect_db Could not connect to the database u808450138_checkup_copio :SQLSTATE[HY000] [2006] MySQL server has gone away
+01/03/23 14:03:16 fn_connect_db Could not connect to the database u808450138_checkup_copio :SQLSTATE[HY000] [2006] MySQL server has gone away
+04/03/23 14:37:38 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+04/03/23 14:37:42 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+04/03/23 15:09:55 sp_turnero_pantalla Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_turnero_pantalla does not exist
+07/03/23 09:50:09 sp_turnero_pantalla Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_turnero_pantalla does not exist
+07/03/23 10:35:06 Clase correo [sendMail] PHPMailer\PHPMailer\Exception: Could not access file: ../reportes/modulo/oftalmologia/200223/210/JOSUE_DE_LA_CRUZ_ARELLANO-bimo4-200223.pdf in C:\AppServ\www\nuevo_checkup\clases\PHPMailer\src\PHPMailer.php:3181
+Stack trace:
+#0 C:\AppServ\www\nuevo_checkup\clases\correo_class.php(151): PHPMailer\PHPMailer\PHPMailer->addAttachment('../reportes/mod...')
+#1 C:\AppServ\www\nuevo_checkup\api\recepcion_api.php(127): Correo->sendEmail('resultados', '[bimo] Resultad...', Array, NULL, Array, 1)
+#2 {main}
+07/03/23 10:35:06 [recepcion api, case 4] Falla al enviar correo.
+07/03/23 10:46:57 sp_turnero_pantalla Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_turnero_pantalla does not exist
+07/03/23 10:47:22 sp_turnero_pantalla Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_turnero_pantalla does not exist
+07/03/23 10:47:40 sp_turnero_pantalla Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_turnero_pantalla does not exist
+07/03/23 10:47:51 sp_turnero_pantalla Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_turnero_pantalla does not exist
+07/03/23 11:21:33 sp_info_medicos Ha ocurrido un error(20000). 20000 1339 Case not found for CASE statement
+23/03/23 09:29:37 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+23/03/23 09:29:48 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+23/03/23 09:48:57 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2002] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+
+23/03/23 10:42:56  Area: 1
+23/03/23 10:47:19 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+23/03/23 10:47:38 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+23/03/23 10:47:57 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+23/03/23 10:48:26 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+23/03/23 10:48:33  Area: 3
+23/03/23 10:48:54  Area: 3
+23/03/23 10:49:07 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+23/03/23 10:49:12  Area: 3
+23/03/23 10:49:27  Area: 3
+23/03/23 11:50:29  Ha ocurrido un error(42000). 42000 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '()' at line 1
+23/03/23 15:32:46 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2006] MySQL server has gone away
+23/03/23 16:38:26  Area: 1
+23/03/23 16:47:29  Area: 7
+23/03/23 16:47:55  Area: 1
+23/03/23 16:50:24  Area: 1
+23/03/23 16:51:12  Area: 1
+23/03/23 16:53:59  Area: 1
+23/03/23 16:54:26  Area: 1
+23/03/23 17:07:30  Area: 1
+23/03/23 17:08:53  Area: 7
+25/03/23 07:06:06  Area: 7
+25/03/23 07:17:11  Area: 7
+25/03/23 09:07:35  Area: 7
+25/03/23 09:25:49  Area: 1
+25/03/23 09:27:20  Area: 1
+25/03/23 09:28:44  Area: 1
+25/03/23 09:29:41  Area: 1
+25/03/23 09:29:52  Area: 1
+25/03/23 11:10:34  Area: 3
+25/03/23 11:10:34  Area: 3
+25/03/23 11:10:35  Area: 3
+25/03/23 11:11:21  Area: 3
+25/03/23 11:22:44  Area: 3
+25/03/23 11:34:48  Area: 3
+25/03/23 11:36:20  Area: 3
+27/03/23 10:30:20  Area: 8
+27/03/23 10:57:58  Area: 1
+28/03/23 09:20:40  Area: 1
+28/03/23 11:37:04 sp_detalle_paquete_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`detalle_paquete`, CONSTRAINT `fk_detalla_paquete_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+28/03/23 11:58:54  Area: 1
+28/03/23 12:38:24 sp_detalle_paquete_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`detalle_paquete`, CONSTRAINT `fk_detalla_paquete_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+28/03/23 12:38:24 sp_detalle_paquete_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`detalle_paquete`, CONSTRAINT `fk_detalla_paquete_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDATE CASCADE)
+28/03/23 15:33:39 sp_cotizaciones_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_cotizaciones_g; expected 11, got 10
+28/03/23 15:47:28 sp_cotizaciones_g Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_cotizaciones_g; expected 11, got 10
+28/03/23 16:55:51 sp_cotizaciones_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`cotizaciones_detalle`, CONSTRAINT `fk_cotizaciones_detalle_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDA)
+28/03/23 19:30:29  Area: 3
+28/03/23 19:31:18 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+28/03/23 19:38:43 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+29/03/23 09:43:54  Area: 1
+29/03/23 10:09:02  Area: 1
+29/03/23 13:04:10  Area: 1
+29/03/23 14:37:06  Area: 1
+29/03/23 15:43:13 sp_laboratorio_servicios_g Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup_copio.sp_laboratorio_servicios_g does not exist
+29/03/23 15:45:49 sp_servicio_laboratorio_g Ha ocurrido un error(42000). 42000 1305 FUNCTION u808450138_checkup_copio.JSON_LEGTH does not exist
+29/03/23 15:46:47 sp_servicio_laboratorio_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`laboratorio_equipos_examenes`, CONSTRAINT `fk_equipos_examenes_laboratorio_equipos_1` FOREIGN KEY (`EQUIPO_ID`) REFERENCES `laboratorio_equipos` (`ID_EQUIPO`) ON DE)
+29/03/23 15:52:00 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+29/03/23 15:57:04 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+29/03/23 15:58:07 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+29/03/23 15:58:53 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+29/03/23 15:58:56 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+29/03/23 15:59:51 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+29/03/23 15:59:54 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+30/03/23 09:14:02  Area: 1
+30/03/23 09:27:19 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+30/03/23 09:27:20 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+30/03/23 09:28:39 sp_recepcion_detalle_paciente_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup`.`cargos_turno`, CONSTRAINT `fk_cargos_turno_paquetes_1` FOREIGN KEY (`PAQUETE_ID`) REFERENCES `paquetes` (`ID_PAQUETE`) ON DELETE CASCADE ON UPDATE CASCADE)
+30/03/23 09:40:30 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [1045] Access denied for user 'u808450138_bimo'@'localhost' (using password: YES)
+30/03/23 13:46:13  Area: 7
+31/03/23 08:53:36  Area: 7
+31/03/23 09:49:51  Area: 7
+31/03/23 10:15:39 sp_cotizaciones_g Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_cotizaciones_g does not exist
+31/03/23 10:22:28 sp_cotizaciones_g Ha ocurrido un error(23000). 23000 1452 Cannot add or update a child row: a foreign key constraint fails (`u808450138_checkup_copio`.`cotizaciones_detalle`, CONSTRAINT `fk_cotizaciones_detalle_servicios_1` FOREIGN KEY (`SERVICIO_ID`) REFERENCES `servicios` (`ID_SERVICIO`) ON DELETE CASCADE ON UPDA)
+31/03/23 11:44:51  Area: 7
+31/03/23 12:08:01 sp_trabajdores_empresas_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_trabajdores_empresas_b does not exist
+31/03/23 12:08:31 sp_generar_folio_laboratorio Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_generar_folio_laboratorio; expected 1, got 0
+01/04/23 13:57:02  Area: 7
+01/04/23 14:02:41  Area: 7
+01/04/23 14:17:51  Area: 5
+03/04/23 08:40:48  Area: 5
+03/04/23 12:28:25  Area: 10
+03/04/23 13:59:53  Area: 1
+03/04/23 14:18:51  Area: 1
+03/04/23 17:50:55 sp_trabajadores_empresas_g Ha ocurrido un error(42S22). 42S22 1054 Unknown column '_mecido_envia' in 'field list'
+03/04/23 22:37:38  Area: 1
+04/04/23 10:08:00  Area: 1
+04/04/23 11:05:48  Area: 1
+04/04/23 11:13:44  Area: 1
+04/04/23 11:21:04  Area: 1
+04/04/23 12:12:33  Area: 1
+04/04/23 12:12:39 sp_recuperar_reportes_confirmados Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_recuperar_reportes_confirmados; expected 4, got 5
+04/04/23 12:13:09 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client
+04/04/23 12:13:37  Area: 1
+04/04/23 12:14:16  Area: 1
+04/04/23 12:15:14  Area: 1
+04/04/23 12:15:38  Area: 1
+04/04/23 12:30:45  Area: 1
+04/04/23 12:32:20  Area: 1
+04/04/23 12:33:15  Area: 1
+04/04/23 12:33:47  Area: 1
+04/04/23 12:34:10  Area: 1
+04/04/23 12:47:00 sp_turnos_historial Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_turnos_historial; expected 2, got 3
+04/04/23 13:04:22  Area: 1
+04/04/23 13:10:17  Area: 8
+04/04/23 13:36:25 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client
+04/04/23 13:50:30 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client
+04/04/23 13:50:45 fn_connect_db Could not connect to the database u808450138_checkup :SQLSTATE[HY000] [2054] The server requested authentication method unknown to the client
+04/04/23 13:51:03  Area: 1
+04/04/23 13:51:06 sp_recuperar_reportes_confirmados Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup.sp_recuperar_reportes_confirmados; expected 4, got 5
+04/04/23 13:51:30  Area: 1
+04/04/23 15:38:20  Area: 1
+04/04/23 16:46:01  Area: 1
+04/04/23 16:47:14  Area: 1
+04/04/23 16:48:13  Area: 1
+04/04/23 16:53:13  Area: 1
+04/04/23 17:02:52  Area: 1
+04/04/23 17:11:51  Area: 1
+04/04/23 17:13:02  Area: 1
+04/04/23 17:14:15  Area: 1
+04/04/23 17:23:06  Area: 1
+04/04/23 17:23:18  Area: 1
+04/04/23 17:23:28  Area: 1
+04/04/23 17:23:40  Area: 1
+04/04/23 17:28:28  Area: 1
+04/04/23 17:28:40  Area: 1
+04/04/23 17:47:49  Area: 1
+04/04/23 17:48:49  Area: 1
+04/04/23 17:49:08  Area: 1
+04/04/23 17:50:41  Area: 1
+04/04/23 17:50:58  Area: 1
+04/04/23 17:53:39  Area: 1
+04/04/23 17:54:25  Area: 8
+05/04/23 10:24:11  Area: 1
+05/04/23 10:25:56 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 10:26:05  Area: 1
+05/04/23 10:26:11 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 10:59:37  Area: 1
+05/04/23 10:59:52 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 11:02:28 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:02:28 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:04:42  Area: 1
+05/04/23 11:04:47 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 11:08:24  Area: 1
+05/04/23 11:08:27 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 11:09:07  Area: 1
+05/04/23 11:09:11 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 11:10:10  Area: 1
+05/04/23 11:10:13 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 11:16:43  Area: 1
+05/04/23 11:16:47 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 11:22:40  Area: 1
+05/04/23 11:22:44 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.RUTA_REPORTE' in 'field list'
+05/04/23 11:25:57 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:25:57 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:26:04 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:26:04 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:26:18 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:26:19 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:26:29 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:26:29 sp_trabajdores_empresas_b Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'MEDICO_ENVIA' in 'field list'
+05/04/23 11:32:36  Area: 1
+05/04/23 11:32:39 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.TURNO_ID' in 'where clause'
+05/04/23 11:33:11  Area: 1
+05/04/23 11:33:16  Area: 1
+05/04/23 11:33:31 sp_recuperar_reportes_confirmados Ha ocurrido un error(42S22). 42S22 1054 Unknown column 'rep.TURNO_ID' in 'where clause'
+05/04/23 11:37:17  Area: 1
+05/04/23 11:37:20 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:38:00  Area: 1
+05/04/23 11:38:04 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:38:14 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:41:38  Area: 1
+05/04/23 11:41:42 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:41:48 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:42:10 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:42:25  Area: 1
+05/04/23 11:42:48 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:42:53 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:45:24  Area: 1
+05/04/23 11:45:27 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 11:45:35 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 12:03:14  Area: 3
+05/04/23 12:18:40  Area: 1
+05/04/23 12:18:43 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 12:18:51 sp_recuperar_reportes_confirmados Ha ocurrido un error(HY000). HY000 1271 Illegal mix of collations for operation 'UNION'
+05/04/23 13:01:12  Area: 1
+05/04/23 13:08:39  Area: 1
+05/04/23 13:10:00  Area: 1
+05/04/23 13:13:39  Area: 1
+05/04/23 13:22:18  Area: 1
+05/04/23 13:26:08  Area: 1
+05/04/23 13:28:05  Area: 1
+05/04/23 13:41:45  Area: 1
+05/04/23 13:48:20  Area: 1
+05/04/23 13:52:41  Area: 1
+25/07/23 11:45:30 sp_status_paciente Ha ocurrido un error(42S02). 42S02 1146 Table 'u808450138_practicantes.esp' doesn't exist
+25/07/23 12:45:03 http://localhost/practicantes//archivos/sistema/capas_temperaturas/ no pudo crear el directorio. http://localhost/practicantes//archivos/sistema/capas_temperaturas/
+25/07/23 12:46:06 http://localhost/nuevo_checkup/archivos/sistema/capas_temperaturas/ no pudo crear el directorio. http://localhost/nuevo_checkup/archivos/sistema/capas_temperaturas/
+25/07/23 16:19:33 sp_admon_grupos_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admon_grupos_b does not exist
+25/07/23 16:19:34 sp_admon_detalle_grupo Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admon_detalle_grupo does not exist
+25/07/23 16:19:34 sp_admn_pacientes_credito Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admn_pacientes_credito does not exist
+25/07/23 16:19:35 sp_admon_detalle_grupo Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admon_detalle_grupo does not exist
+25/07/23 16:20:03 sp_admon_detalle_grupo Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admon_detalle_grupo does not exist
+25/07/23 16:20:03 sp_admon_grupos_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admon_grupos_b does not exist
+25/07/23 16:20:04 sp_admn_pacientes_credito Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admn_pacientes_credito does not exist
+25/07/23 16:20:04 sp_admon_detalle_grupo Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup.sp_admon_detalle_grupo does not exist
+26/07/23 11:29:07 sp_laboratorio_equipos_b Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_laboratorio_equipos_b; expected 1, got 2
+26/07/23 11:29:08 sp_laboratorio_equipos_b Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_laboratorio_equipos_b; expected 1, got 2
+27/07/23 09:57:31 sp_laboratorio_equipos_b Ha ocurrido un error(42000). 42000 1318 Incorrect number of arguments for PROCEDURE u808450138_checkup_copio.sp_laboratorio_equipos_b; expected 1, got 2
+27/07/23 13:16:17  Area: 1
+27/07/23 13:16:40 sp_consultorio2_consulta_b Ha ocurrido un error(42000). 42000 1305 PROCEDURE u808450138_checkup_copio.sp_consultorio2_consulta_b does not exist
+27/07/23 13:16:44  Area: 1

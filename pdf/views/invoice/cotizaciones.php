@@ -308,18 +308,18 @@
 // para el path del logo 
 $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
 $encode = base64_encode($ruta);
-?>
-
-<body>
-    <div class="container-fluid">
-        <table style="width: 100%; text-align: center;">
+$idioma = 1;
+switch ($idioma) {
+    case 1:
+        echo
+        "<body>
+    <div class=\"container-fluid\">
+        <table style=\"width: 100%; text-align: center;\">
             <tr>
-                <td style="width: 25%">
-                    <?php
-                    echo "<img src='data:image/png;base64, " . $encode . "' height='65' >";
-                    ?>
+                <td style=\"width: 25%\">
+                    <img src='data:image/png;base64, " . $encode . "' height='65' >
                 </td>
-                <td style="width: 50%;text-align: center;">
+                <td style=\"width: 50%;text-align: center;\">
                     <p>
                         <b>DIAGNOSTICO BIOMOLECULAR</b><br>
                         RFC DBI2012084N2<br>
@@ -329,113 +329,267 @@ $encode = base64_encode($ruta);
                         hola@bimo.com.mx
                     </p>
                 </td>
-                <td style="width: 25%;text-align: center;">
+                <td style=\"width: 25%;text-align: center;\">
                     <p>Cotización<br>
-                        <b>No. <?php echo $encabezado->FOLIO_COTIZACIONES ?></b>
+                        <b>No. " . $encabezado->FOLIO_COTIZACIONES . "</b>
                     </p>
                 </td>
             </tr>
         </table>
         <!--COTIZACIONES-->
         <!--INICIO DE TABLA INFORMACIÓN-->
-        <table style="width: 100%; text-align: center; text-align: right; border: darkgrey 1px solid;" class="rounded" ;>
+        <table style=\"width: 100%; text-align: center; text-align: right; border: darkgrey 1px solid;\" class=\"rounded\" ;>
             <tbody>
                 <tr>
-                    <td style="background-color: darkgrey; width: 15%; border-radius: 4px 0px 0px 0px; "><b>RAZÓN SOCIAL</b></td>
-                    <td style="width: 55%; text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;" colspan="3"><?php echo $resultados->RAZON_SOCIAL; ?></td>
-                    <td style="background-color: darkgrey; width: 30%; text-align: center; border-radius: 0px 4px 0px 0px; border-left: 1px solid darkgrey;"><b>FECHA DE EXPEDICIÓN (DD/MM/AA)</td>
+                    <td style=\"background-color: darkgrey; width: 15%; border-radius: 4px 0px 0px 0px; \"><b>RAZÓN SOCIAL</b></td>
+                    <td style=\"width: 55%; text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\" colspan=\"3\">" . $resultados->RAZON_SOCIAL . "</td>
+                    <td style=\"background-color: darkgrey; width: 30%; text-align: center; border-radius: 0px 4px 0px 0px; border-left: 1px solid darkgrey;\"><b>FECHA DE EXPEDICIÓN (DD/MM/AA)</td>
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color: darkgrey; width: 15%; border-radius: 0px 0px 0px 0px;"><b>DOMICILIO FISCAL</b></td>
-                    <td style="width: 55%;text-align: left; border-top: 1px solid darkgrey;" colspan="3" class="cell">País: MEX</td>
-                    <td style="width: 30%;text-align: left; border-left: 1px solid darkgrey;"><?php echo $resultados->FECHA_CREACION; ?></td>
+                    <td style=\"background-color: darkgrey; width: 15%; border-radius: 0px 0px 0px 0px;\"><b>DOMICILIO FISCAL</b></td>
+                    <td style=\"width: 55%;text-align: left; border-top: 1px solid darkgrey;\" colspan=\"3\" class=\"cell\">País: MEX</td>
+                    <td style=\"width: 30%;text-align: center; border-left: 1px solid darkgrey;\">" . $resultados->FECHA_CREACION . "</td>
                 </tr>
                 <tr>
-                    <td style="background-color: darkgrey; width: 15%;" class="colored-cell"></td>
-                    <td style="width: 55%; border-bottom: 1px solid darkgrey;" class="colored-cell" colspan="3"></td>
-                    <td style="background-color: darkgrey; width: 30%; text-align: center; border-left: 1px solid darkgrey;"><b>FECHA DE VENCIMIENTO (DD/MM/AA)</td>
+                    <td style=\"background-color: darkgrey; width: 15%;\" class=\"colored-cell\"></td>
+                    <td style=\"width: 55%; border-bottom: 1px solid darkgrey;\" class=\"colored-cell\" colspan=\"3\"></td>
+                    <td style=\"background-color: darkgrey; width: 30%; text-align: center; border-left: 1px solid darkgrey;\"><b>FECHA DE VENCIMIENTO (DD/MM/AA)</td>
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color: darkgrey; width: 15%; border-radius: 0px 0px 0px 4px;"><b>TELÉFONO</td>
+                    <td style=\"background-color: darkgrey; width: 15%; border-radius: 0px 0px 0px 4px;\"><b>TELÉFONO</td>
                     </td>
-                    <td style="width: 20%; text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;"><?php echo $resultados->TELEFONO; ?></td>
-                    <td style="background-color: darkgrey; width: 10%; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;"><b>RFC</td>
-                    <td style="width: 20%;text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;"><?php echo $resultados->RFC; ?></td>
-                    <td style="width: 30%;border-bottom: 1px solid darkgrey; border-radius: 0px 0px 4px 0px; border-left: 1px solid darkgrey;"><?php echo $resultados->FECHA_VENCIMIENTO; ?></td>
+                    <td style=\"width: 20%; text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\">" . $resultados->TELEFONO . "</td>
+                    <td style=\"background-color: darkgrey; width: 10%; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\"><b>RFC</td>
+                    <td style=\"width: 20%;text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\">" . $resultados->RFC . "</td>
+                    <td style=\"width: 30%;border-bottom: 1px solid darkgrey; border-radius: 0px 0px 4px 0px; border-left: 1px solid darkgrey; text-align: center;\">" . $resultados->FECHA_VENCIMIENTO . "</td>
                 </tr>
             </tbody>
         </table>
         <!--FIN DE TABLA INFORMACIÓN-->
-        <p style="line-height: 1"></p>
+        <p style=\"line-height: 1\"></p>
         <!---INICIO DE LA TABLA DE PRODUCTOS--->
-        <table style="text-align: center; width: 100%; min-height: 550px;" class="rounded2">
-            <thead style="text-align: center; background-color: darkgrey; font-size: 9px;">
+        <table style=\"text-align: center; width: 100%; min-height: 550px;\" class=\"rounded2\">
+            <thead style=\"text-align: center; background-color: darkgrey; font-size: 9px;\">
                 <tr>
-                    <th style="width: 34%;">Producto</th>
-                    <th style="width: 11%;">Unidad de Medida</th>
-                    <th style="width: 11%;">Precio unitario</th>
-                    <th style="width: 11%;">Cantidad</th>
-                    <th style="width: 11%;">Descuento</th>
-                    <th style="width: 11%;">Impuesto</th>
-                    <th style="width: 11%;">Total</th>
+                    <th style=\"width: 34%;\">Producto</th>
+                    <th style=\"width: 11%;\">Unidad de Medida</th>
+                    <th style=\"width: 11%;\">Precio unitario</th>
+                    <th style=\"width: 11%;\">Cantidad</th>
+                    <th style=\"width: 11%;\">Descuento</th>
+                    <th style=\"width: 11%;\">Impuesto</th>
+                    <th style=\"width: 11%;\">Total</th>
                 </tr>
-            </thead>
-            <tbody style="height: 420px">
-                <tr>
-                    <td style="width: 34%; text-align: left;">Ag. Carcinoembrionario (LABORATORIO)</td>
-                    <td style="width: 11%; text-align: left;">E48 -Unidad de servicio</td>
-                    <td style="width: 11%; text-align: right;">$418.00 </td>
-                    <td style="width: 11%; text-align: center;">1.00</td>
-                    <td style="width: 11%; text-align: center;">0.00%</td>
-                    <td style="width: 11%; text-align: center;">16%</td>
-                    <td style="width: 11%; text-align: right;">$418.00</td>
-                </tr>
-               
-            </tbody>
+            </thead>";
+
+        $resultArray = $resultados->ESTUDIOS_DETALLE;
+        $count = count((array)$resultArray);
+        #// echo $count;
+        for ($i = 0; $i < $count; $i++) {
+
+            $numero = json_decode(json_encode($resultArray[$i]), true)['TOTAL'];
+
+            $formateado = number_format($numero, 2);
+            echo "  <tr>
+                                        <td style=\"width: 34%; text-align: left;\">" . json_decode(json_encode($resultArray[$i]), true)['PRODUCTO'] . "</td>
+                                        <td style=\"width: 11%; text-align: left;\">E48 -Service unit</td>
+                                        <td style=\"width: 11%; text-align: right;\">$" . json_decode(json_encode($resultArray[$i]), true)['PRECIO'] . "</td>
+                                        <td style=\"width: 11%; text-align: center;\">" . json_decode(json_encode($resultArray[$i]), true)['CANTIDAD'] . ".00</td>
+                                        <td style=\"width: 11%; text-align: right;\">" . $resultados->DESCUENTO . ".00%</td>
+                                        <td style=\"width: 11%; text-align: center;\">16% </td>
+                                        <td style=\"width: 11%; text-align: right;\">$" . $formateado . "</td>
+                                    </tr>";
+        }
+
+        echo "</tbody>
         </table>
-        <table class="esquina-inferior">
+        <table class=\"esquina-inferior\">
             <tbody>
-                <tr style="background-color: darkgrey; ">
-                    <td colspan="12"> Cantidad total 00/100 M.N.</td>
+                <tr style=\"background-color: darkgrey; \">
+                    <td colspan=\"12\"> Cantidad total 00/100 M.N.</td>
                 </tr>
             </tbody>
         </table>
         <!--Inicio tabla totales -->
-        <p style="line-height: 2.5"></p>
-        <div style=" float: right;width: 30%;">
-        <table style=" width: 150px; text-align: right; border-bottom: transparent; align-items:right; ">
-            <tbody>
+        <p style=\"line-height: 2.5\"></p>
+        <div style=\" float: right;width: 30%;\">
+            <table style=\" width: 150px; text-align: right; border-bottom: transparent; align-items:right; \">
+                <tbody>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>$ " . $resultados->SUBTOTAL . "</td>
+                    </tr>
+                    <tr>
+                        <td>IVA (16.00%)</td>
+                        <td>$ " . $resultados->IVA . "</td>
+                    </tr>
+                    <tr style=\"background-color: darkgrey;\">
+                        <td><b>Total</b></td>
+                        <td><b></p>$ " . $resultados->TOTAL_DETALLE . " </b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!---FIN DE LA TABLA DE PRODUCTOS--->
+        <div style=\"float: left;width: 70%;\">
+            <table style=\"width: 100%; padding-top: 16%; border-collapse: collapse;\" align=\"left\">
                 <tr>
-                    <td>Subtotal</td>
-                    <td><?php echo $resultados->SUBTOTAL; ?></td>
+                    <td style=\"text-align: center;\"></b></td>
                 </tr>
-                <tr>
-                    <td>IVA (16.00%)</td>
-                    <td><?php echo $resultados->IVA; ?></td>
+                <tr style=\"text-align: center;\">
+                    <td style=\"width: 10%; text-align: center; border-top: 1px solid black;\">
+                        ELABORADO POR
+                    </td>
                 </tr>
-                <tr style="background-color: darkgrey;">
-                    <td><b>Total</b></td>
-                    <td><b></p><?php echo $resultados->TOTAL_DETALLE; ?></b></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!---FIN DE LA TABLA DE PRODUCTOS--->
-    <div style="float: left;width: 70%;">
-        <table style="width: 100%; padding-top: 16%; border-collapse: collapse;" align="left">
-            <tr>
-                <td style = "text-align: center;"></b></td>
-            </tr>
-            <tr style="text-align: center;">
-                <td style="width: 10%; text-align: center; border-top: 1px solid black;">
-                   ELABORADO POR
-                </td>
-            </tr>
-        </table>
-    </div>
+            </table>
+        </div>
     </div>
 </body>
 
-</html>
+</html>";
+        break;
+    case 2:
+        echo
+        "<body>
+    <div class=\"container-fluid\">
+        <table style=\"width: 100%; text-align: center;\">
+            <tr>
+                <td style=\"width: 25%\">
+                    <img src='data:image/png;base64, " . $encode . "' height='65' >
+                </td>
+                <td style=\"width: 50%;text-align: center;\">
+                    <p>
+                        <b>DIAGNOSTICO BIOMOLECULAR</b><br>
+                        RFC DBI2012084N2<br>
+                        Street AV. RUIZ CORTINES, 1344, TABASCO 2000, CENTRO,<br>
+                        VILLAHERMOSA, TABASCO, 86060, MEX<br>
+                        9936340250<br>
+                        hola@bimo.com.mx
+                    </p>
+                </td>
+                <td style=\"width: 25%;text-align: center;\">
+                    <p>Quotation<br>
+                        <b>No. " . $encabezado->FOLIO_COTIZACIONES . "</b>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <!--COTIZACIONES-->
+        <!--INICIO DE TABLA INFORMACIÓN-->
+        <table style=\"width: 100%; text-align: center; text-align: right; border: darkgrey 1px solid;\" class=\"rounded\" ;>
+            <tbody>
+                <tr>
+                    <td style=\"background-color: darkgrey; width: 15%; border-radius: 4px 0px 0px 0px; \"><b>BUSINESS NAME</b></td>
+                    <td style=\"width: 55%; text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\" colspan=\"3\">" . $resultados->RAZON_SOCIAL . "</td>
+                    <td style=\"background-color: darkgrey; width: 30%; text-align: center; border-radius: 0px 4px 0px 0px; border-left: 1px solid darkgrey;\"><b>EXPEDITION DATE (DD/MM/AA)</td>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=\"background-color: darkgrey; width: 15%; border-radius: 0px 0px 0px 0px;\"><b>TAX RESIDENCE</b></td>
+                    <td style=\"width: 55%;text-align: left; border-top: 1px solid darkgrey;\" colspan=\"3\" class=\"cell\">País: MEX</td>
+                    <td style=\"width: 30%;text-align: center; border-left: 1px solid darkgrey;\">" . $resultados->FECHA_CREACION . "</td>
+                </tr>
+                <tr>
+                    <td style=\"background-color: darkgrey; width: 15%;\" class=\"colored-cell\"></td>
+                    <td style=\"width: 55%; border-bottom: 1px solid darkgrey;\" class=\"colored-cell\" colspan=\"3\"></td>
+                    <td style=\"background-color: darkgrey; width: 30%; text-align: center; border-left: 1px solid darkgrey;\"><b>EXPIRATION DATE (DD/MM/AA)</td>
+                    </td>
+                </tr>
+                <tr>
+                    <td style=\"background-color: darkgrey; width: 15%; border-radius: 0px 0px 0px 4px;\"><b>PHONE</td>
+                    </td>
+                    <td style=\"width: 20%; text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\">" . $resultados->TELEFONO . "</td>
+                    <td style=\"background-color: darkgrey; width: 10%; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\"><b>RFC</td>
+                    <td style=\"width: 20%;text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\">" . $resultados->RFC . "</td>
+                    <td style=\"width: 30%;border-bottom: 1px solid darkgrey; border-radius: 0px 0px 4px 0px; border-left: 1px solid darkgrey; text-align: center;\">" . $resultados->FECHA_VENCIMIENTO . "</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--FIN DE TABLA INFORMACIÓN-->
+        <p style=\"line-height: 1\"></p>
+        <!---INICIO DE LA TABLA DE PRODUCTOS--->
+        <table style=\"text-align: center; width: 100%; min-height: 550px;\" class=\"rounded2\">
+            <thead style=\"text-align: center; background-color: darkgrey; font-size: 9px;\">
+                <tr>
+                    <th style=\"width: 34%;\">Product</th>
+                    <th style=\"width: 11%;\">Measurement unit</th>
+                    <th style=\"width: 11%;\">unit price</th>
+                    <th style=\"width: 11%;\">quantity</th>
+                    <th style=\"width: 11%;\">Discount</th>
+                    <th style=\"width: 11%;\">Tax</th>
+                    <th style=\"width: 11%;\">Total</th>
+                </tr>
+            </thead>";
+
+        $resultArray = $resultados->ESTUDIOS_DETALLE;
+        $count = count((array)$resultArray);
+        #// echo $count;
+        for ($i = 0; $i < $count; $i++) {
+
+            $numero = json_decode(json_encode($resultArray[$i]), true)['TOTAL'];
+
+            $formateado = number_format($numero, 2);
+            echo "  <tr>
+                                        <td style=\"width: 34%; text-align: left;\">" . json_decode(json_encode($resultArray[$i]), true)['PRODUCTO'] . "</td>
+                                        <td style=\"width: 11%; text-align: left;\">E48 -Service unit</td>
+                                        <td style=\"width: 11%; text-align: right;\">$" . json_decode(json_encode($resultArray[$i]), true)['PRECIO'] . "</td>
+                                        <td style=\"width: 11%; text-align: center;\">" . json_decode(json_encode($resultArray[$i]), true)['CANTIDAD'] . ".00</td>
+                                        <td style=\"width: 11%; text-align: right;\">" . $resultados->DESCUENTO . ".00%</td>
+                                        <td style=\"width: 11%; text-align: center;\">16% </td>
+                                        <td style=\"width: 11%; text-align: right;\">$" . $formateado . "</td>
+                                    </tr>";
+        }
+
+        echo "</tbody>
+        </table>
+        <table class=\"esquina-inferior\">
+            <tbody>
+                <tr style=\"background-color: darkgrey; \">
+                    <td colspan=\"12\">" . $resultados->CANTIDAD . " Total quantity 00/100 M.N.</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--Inicio tabla totales -->
+        <p style=\"line-height: 2.5\"></p>
+        <div style=\" float: right;width: 30%;\">
+            <table style=\" width: 150px; text-align: right; border-bottom: transparent; align-items:right; \">
+                <tbody>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>$ " . $resultados->SUBTOTAL . "</td>
+                    </tr>
+                    <tr>
+                        <td>TAX (16.00%)</td>
+                        <td>$ " . $resultados->IVA . "</td>
+                    </tr>
+                    <tr style=\"background-color: darkgrey;\">
+                        <td><b>Total</b></td>
+                        <td><b></p>$ " . $resultados->TOTAL_DETALLE . " </b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!---FIN DE LA TABLA DE PRODUCTOS--->
+        <div style=\"float: left;width: 70%;\">
+            <table style=\"width: 100%; padding-top: 16%; border-collapse: collapse;\" align=\"left\">
+                <tr>
+                    <td style=\"text-align: center;\"></b></td>
+                </tr>
+                <tr style=\"text-align: center;\">
+                    <td style=\"width: 10%; text-align: center; border-top: 1px solid black;\">
+                    PREPARED BY
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>";
+        break;
+    default:
+        echo "frances";
+        break;
+}
+?>

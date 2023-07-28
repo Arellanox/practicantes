@@ -94,7 +94,7 @@
   <div class="card col-9 pt-3" style="margin-bottom:5px;">
     <div class="col-12 d-flex align-items-center d-flex justify-content-center">
       <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="guardar-contenido-paquete">
-        <i class="bi bi-person-plus-fill"></i> Guardar paquete
+        <i class="bi bi-save2"></i> Guardar paquete
       </button>
     </div>
     <div id="tabla-Paquetes">
