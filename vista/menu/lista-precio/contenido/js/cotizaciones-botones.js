@@ -153,6 +153,7 @@ $('#guardar-contenido-paquete').on('click', function () {
         tablaContenidoPaquete.clear().draw();
         dataEliminados = new Array()
         alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
+        $('#modalInfoDetalleCotizacion').modal('hide');
       }
     })
   } else {
@@ -176,7 +177,7 @@ $(document).on("change", "input[name='cantidad-paquete'], input[name='descuento-
   }
 });
 
-$(document).on('change', '#seleccion-paquete', async function (e) {
+$('#seleccion-paquete').on('change', async function (e) {
   await rellenarSelect("#select-presupuestos", 'cotizaciones_api', 4, 'ID_COTIZACION', 'FOLIO_COTIZACIONES.CLIENTE', {
     cliente_id: $('#seleccion-paquete').val()
   });
