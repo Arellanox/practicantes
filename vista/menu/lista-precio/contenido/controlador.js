@@ -113,7 +113,7 @@ function obtenerContenidoPaquetes(tabla) {
   });
 
 }
-
+ 
 //Vacia la tabla, para el poder rellenar en paquetes
 function tablaContenido(descuento = false) {
   tablaContenidoPaquete.destroy();
@@ -178,40 +178,7 @@ function tablaContenido(descuento = false) {
     language: {
       url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
     },
-    dom: 'Bfrtip',
-    buttons: [
-      {
-        extend: 'excelHtml5',
-        text: '<i class="fa fa-file-excel-o"></i> Excel',
-        className: 'btn btn-success',
-        titleAttr: 'Excel',
-        filename: $('#seleccion-paquete option:selected').text().split(' - ')[0],
-        title: $('#seleccion-paquete option:selected').text(),
-        exportOptions: {
-          columns: [0, 1, 3, 4, 6, 7] // Índices de las columnas a exportar
-        },
-
-        // customizeData: function (data) {
-        //   console.log(data)
-        //   let tabla = tablaContenidoPaquete
-        //   for (var i = data.header.length - 1; i >= 0; i--) {
-        //     if (!tabla.column(i).visible()) {
-        //       data.header.splice(i, 1);
-        //       for (var j = 0; j < data.body.length; j++) {
-        //         data.body[j].splice(i, 1)
-        //       }
-        //     }
-        //   }
-        // }
-      },
-      // {
-      //   text: '<i class="bi bi-save2"></i> Guardar',
-      //   className: 'btn btn-pantone-7408',
-      //   attr: {
-      //     id: 'guardar-contenido-paquete'
-      //   }
-      // }
-    ]
+    // 
   });
   loader("Out");
 }

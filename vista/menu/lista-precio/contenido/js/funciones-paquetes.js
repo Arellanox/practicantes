@@ -16,7 +16,7 @@ async function mantenimientoPaquete() {
   $("#seleccion-estudio").find('option').remove().end()
   loader("Out");
 }
-
+ 
 async function contenidoPaquete(select = null) {
   loader("In");
   await rellenarSelect('#seleccion-paquete', 'paquetes_api', 2, 0, 'DESCRIPCION.CLIENTE', {

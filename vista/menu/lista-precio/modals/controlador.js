@@ -8,4 +8,6 @@ $.post("modals/modals.php", function(html){
    //$.getScript('modals/js/p_rechazar.js');
    // Modal para rechazar
   // $.getScript('modals/js/subir-perfil.js');
+
+  $.getScript('modals/js/mo_vista_paquetes.js')
 });
