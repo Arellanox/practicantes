@@ -65,6 +65,9 @@
         <i class="bi bi-save"></i> Guardar
       </button>
     </div>
+    <div class="col-auto">
+      <button class="btn btn-success" id="vistaPreviaExel" type="button" disabled><i class="bi bi-filetype-exe" data-bs-toggle="modal" data-bs-target="#vistaPreviaExelModal" ></i> Vista previa</button>
+    </div>
     <div class="" style="margin-left: 30px; margin-right: 30px;">
       <table class="table table-hover display responsive " id="TablaListaPrecios" style="width: 100%">
         <thead style="width: 100%">

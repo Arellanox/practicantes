@@ -2,6 +2,7 @@ select2('#seleccionar-cliente', 'divSeleccionCliente', 'Cargando lista de client
 rellenarSelect('#seleccionar-cliente', 'clientes_api', 2, 0, 'NOMBRE_SISTEMA.NOMBRE_COMERCIAL');
 
 
+
 // Rellenan la tabla dependiendo de las opciones
 $('#seleccionar-cliente').change(function () {
   switch ($('input[type=radio][name=selectTipLista]:checked').val()) {
@@ -25,6 +26,8 @@ $('#seleccionar-cliente').change(function () {
 })
 
 $('input[type=radio][name=selectChecko]').change(function () {
+
+  $('#vistaPreviaExel').prop('disabled', false);
   switch ($('input[type=radio][name=selectTipLista]:checked').val()) {
     case '1': //Solo Concepto
       if ($(this).val() != 0) {
@@ -32,6 +35,7 @@ $('input[type=radio][name=selectChecko]').change(function () {
       } else {
         obtenertablaListaPrecios(columnsDefinidas, columnasData, 'servicios_api', { api: 2, otros_servicios: 1 })
       }
+
       break;
     case '2': //Lista de precios para clientes
       if ($('#seleccionar-cliente').val() != null || $('#seleccionar-cliente').val() != 0) {
@@ -44,11 +48,66 @@ $('input[type=radio][name=selectChecko]').change(function () {
         alertSelectTable('Seleccione un cliente')
       }
       break;
+
+
   }
 
 
 
 })
+
+$('#vistaPreviaExel').on('click', function () {
+
+  $('#vistaPreviaExelModal').modal('show')
+
+});
+
+menu = $('input[type=radio][name=selectTipLista]:checked').val()
+function obtenerDatosMostrar(menu) {
+  
+  switch (menu) {
+    case 1:
+      column = [
+
+        { data: 'COUNT' },
+        { data: 'ABREVIATURA' },
+        { data: 'DESCRIPCION' },
+        { data: 'COSTO' },
+
+      ]
+
+      columnDefs = [
+        { target: 0, title: '#', className: 'all', 'visible': true },
+        { target: 1, title: 'AB', className: 'all' },
+        { target: 2, title: 'Nombre', className: 'all' },
+        { target: 3, title: 'Costo', 'className': 'all' }
+
+      ]
+
+      return [columns, columnDefs]
+
+      break;
+
+    case 2:
+      return column = [
+
+        { data: 'COUNT' },
+        { data: 'ABREVIATURA' },
+        { data: 'DESCRIPCION' },
+        { data: 'COSTO' },
+        { data: 'UTILIDAD' },
+        { data: 'PRECIO_VENTA' },
+
+      ]
+
+      break;
+
+    case 3:
+
+
+      break;
+  }
+}
 
 select2('#seleccion-paquete', 'vista_paquetes-precios', 'Cargando lista de paquetes...')
 rellenarSelect('#seleccion-paquete', 'paquetes_api', 2, 0, 'DESCRIPCION', { cliente_id: 1 });
@@ -242,3 +301,57 @@ $('input[type=radio][name=selectTipLista]').change(function () {
   $('input[type=radio][name=selectChecko]:checked').prop('checked', false);
   // obtenertablaListaPrecios(columnsDefinidas, columnasData, apiurl)
 })
+
+
+opciones = obtenerDatosMostrar(menu)
+
+listaPreciosExelModal = $('#listaPreciosExel').DataTable({
+  language: {
+    url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
+  },
+  lengthChange: false,
+  info: false,
+  paging: false,
+  scrollY: "63vh",
+  scrollCollapse: true,
+  data: [],
+  columns: opciones[0],
+  columnDefs: opciones[1],
+  dom: 'Bfrtip',
+  buttons: [
+    {
+      extend: 'excelHtml5',
+      text: '<i class="bi bi-box-arrow-down"></i> Descargar Exel',
+      className: 'btn btn-success',
+      titleAttr: 'Excel',
+      filename: 'HOLA',
+      title: 'HOLA',
+      exportOptions: {
+        columns: [0, 1, 2, 3] // Índices de las columnas a exportar
+      },
+    },
+  ]
+
+});
+
+const listaPreciosExel = document.getElementById('vistaPreviaExelModal')
+listaPreciosExel.addEventListener('show.bs.modal', event => {
+  setTimeout(() => {
+    $.fn.dataTable
+      .tables({
+        visible: true,
+        api: true
+      })
+      .columns.adjust();
+  }, 350);
+  listaPreciosExelModal.rows.add(tablaPrecio.data()).draw();
+
+
+
+
+})
+
+listaPreciosExel.addEventListener('hidden.bs.modal', event => {
+  listaPreciosExelModal.clear().draw();
+})
+
