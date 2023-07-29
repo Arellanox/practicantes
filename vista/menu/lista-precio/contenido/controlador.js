@@ -22,6 +22,10 @@ let columnsDefinidas;
 let columnasData;
 //
 
+//Personalizar la tabla de excel de cotizaciones y paquetes
+var dataVistaPq = {};
+var VistaExcelurl = '';
+
 //Cambia la vista a la lista de precios
 function obtenerContenidoPrecios() {
   obtenerTitulo("Lista de precios"); //Aqui mandar el nombre de la area
@@ -43,6 +47,9 @@ function obtenerContenidoPrecios() {
         paging: false,
         columnDefs: columnsDefinidas,
       });
+
+      inputBusquedaTable('TablaListaPrecios', tablaPrecio, [], [], 'col-12')
+
       // obtenertablaListaPrecios(columnsDefinidas, columnasData, apiurl, data)
       $.getScript("contenido/js/precios-tabla.js");
       // Calcula las tablas
@@ -89,6 +96,8 @@ function obtenertablaListaPrecios(columnDefs, columnsData, urlApi, dataAjax = {
     },
     columns: columnsData
   });
+  inputBusquedaTable('TablaListaPrecios', tablaPrecio, [], [], 'col-12')
+
 }
 
 var tablePaquetesHTML;
@@ -100,6 +109,10 @@ function obtenerContenidoPaquetes(tabla) {
     $("#body-js").html(html);
 
   }).done(function () {
+
+    dataVistaPq = { api: 9, id_paquete: $('#seleccion-paquete').val() }
+    VistaExcelurl = `${http}${servidor}/${appname}/api/paquetes_api.php`
+
     tablePaquetesHTML = $("#TablaListaPaquetes")
     $.getScript("contenido/js/funciones-paquetes.js").done(function () {
       tablaContenidoPaquete = $("#TablaListaPaquetes").DataTable()
@@ -113,7 +126,10 @@ function obtenerContenidoPaquetes(tabla) {
   });
 
 }
- 
+
+
+
+
 //Vacia la tabla, para el poder rellenar en paquetes
 function tablaContenido(descuento = false) {
   tablaContenidoPaquete.destroy();
@@ -180,6 +196,7 @@ function tablaContenido(descuento = false) {
     },
     // 
   });
+  inputBusquedaTable('TablaListaPaquetes', tablaContenidoPaquete, [], [], 'col-12')
   loader("Out");
 }
 
@@ -307,6 +324,9 @@ function obtenerContenidoCotizaciones() {
   $.post("contenido/cotizaciones.php", function (html) {
     $("#body-js").html(html);
   }).done(function () {
+    VistaExcelurl = `${http}${servidor}/${appname}/api/cotizaciones_api.php`
+    dataVistaPq = { api: 9, id_paquete: $('#seleccion-paquete').val() }
+
     tablePaquetesHTML = $("#TablaListaPaquetes")
     $.getScript("contenido/js/funciones-cotizaciones.js").done(function () {
       tablaContenidoPaquete = $("#TablaListaPaquetes").DataTable()

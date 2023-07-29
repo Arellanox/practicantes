@@ -67,9 +67,14 @@ $('#UsarPaquete').on('click', function () {
       }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
         row = data.response.data[0]['DETALLE']
 
-        for (var i = 0; i < row.length; i++) {
-          meterDato(row[i]['SERVICIO'], row[i]['ABREVIATURA'], row[i]['COSTO_UNITARIO'], row[i]['COSTO_TOTAL'], row[i]['CANTIDAD'], , row[i]['ID_SERVICIO'], row[i]['ABREVIATURA'], tablaContenidoPaquete)
+        for (const key in row) {
+          if (Object.hasOwnProperty.call(row, key)) {
+            const element = row[key];
+            meterDato(row[key]['PRODUCTO'], row[key]['ABREVIATURA'], row[key]['COSTO_BASE'], row[key]['SUBTOTAL_BASE'], row[key]['CANTIDAD'], row[key]['DESCUENTO_PORCENTAJE'], row[key]['ID_SERVICIO'], null, tablaContenidoPaquete)
+
+          }
         }
+
       })
 
       break;
@@ -155,7 +160,13 @@ $('#guardar-contenido-paquete').on('click', function () {
       if (data) {
         tablaContenidoPaquete.clear().draw();
         dataEliminados = new Array()
-        alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
+        alertMsj({
+          title: 'Cotización guardada',
+          text: `Tu nuevo cotización ha sido guardada con el siguiente folio: ${data.response.data}`,
+          icon: 'success', showCancelButton: false, confirmButtonText: 'Confirmar', confirmButtonColor: 'green'
+        })
+
+        // alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
         $('#modalInfoDetalleCotizacion').modal('hide');
       }
     })
