@@ -3,7 +3,7 @@ select2('#seleccion-estudio', 'form-select-paquetes')
 select2('#select-presupuestos', 'form-select-paquetes')
 
 //Declarar variable para la clase
-var selectEstudio;
+var selectEstudio, SelectedFolio;
 
 $('#agregar-estudio-paquete').click(function () {
   // console.log(selectEstudio.array)
@@ -38,6 +38,7 @@ $("#informacionPaquete").addClass("disable-element");
 
 $('#UsarPaquete').on('click', function () {
 
+  SelectedFolio = $('#select-presupuestos').val();
   if ($('input[type=radio][name=selectPaquete]:checked').val() == 2) {
     if (!$('#select-presupuestos').val()) {
       alertToast('Necesitas seleccionar un presupuesto de este cliente', 'error', '5000')
@@ -63,10 +64,11 @@ $('#UsarPaquete').on('click', function () {
       ajaxAwait({
         id_cotizacion: id_cotizacion,
         api: 2
-      }, 'cotizaci9ones_api', { callbackAfter: true }, false, () => {
-        row = data.response.data;
+      }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
+        row = data.response.data[0]['DETALLE']
+
         for (var i = 0; i < row.length; i++) {
-          meterDato(row[i]['SERVICIO'], row[i].ABREVIATURA, row[i].COSTO_UNITARIO, row[i].COSTO_TOTAL, row[i].CANTIDAD, null, row[i].ID_SERVICIO, row[i].ABREVIATURA, tablaContenidoPaquete)
+          meterDato(row[i]['SERVICIO'], row[i]['ABREVIATURA'], row[i]['COSTO_UNITARIO'], row[i]['COSTO_TOTAL'], row[i]['CANTIDAD'], , row[i]['ID_SERVICIO'], row[i]['ABREVIATURA'], tablaContenidoPaquete)
         }
       })
 
@@ -86,7 +88,7 @@ $('#CambiarPaquete').on('click', function () {
   tablaContenido(true)
   // $('.formContenidoPaquete').prop('disabled', true);
 })
-//
+// 
 
 $('input[type="radio"][name="selectPaquete"]').change(function () {
   switch ($(this).val()) {
@@ -99,6 +101,7 @@ $('input[type="radio"][name="selectPaquete"]').change(function () {
 
   }
 });
+
 
 $('input[type=radio][name=selectChecko]').change(function () {
 
@@ -178,7 +181,7 @@ $(document).on("change", "input[name='cantidad-paquete'], input[name='descuento-
 });
 
 $('#seleccion-paquete').on('change', async function (e) {
-  await rellenarSelect("#select-presupuestos", 'cotizaciones_api', 4, 'ID_COTIZACION', 'FOLIO_COTIZACIONES.CLIENTE', {
+  await rellenarSelect("#select-presupuestos", 'cotizaciones_api', 4, 'ID_COTIZACION', 'FOLIO_FECHA', {
     cliente_id: $('#seleccion-paquete').val()
   });
 

@@ -3,7 +3,7 @@ async function mantenimientoPaquete() {
   await rellenarSelect('#seleccion-paquete', 'clientes_api', 2, 0, 'NOMBRE_SISTEMA.NOMBRE_COMERCIAL');
   $('#container-select-presupuesto').fadeIn('slow')
 
-  await rellenarSelect("#select-presupuestos", 'cotizaciones_api', 4, 'ID_COTIZACION', 'FOLIO_COTIZACIONES.CLIENTE', {
+  await rellenarSelect("#select-presupuestos", 'cotizaciones_api', 4, 'ID_COTIZACION', 'FOLIO_FECHA', {
     cliente_id: $('#seleccion-paquete').val()
   });
 
