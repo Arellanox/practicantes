@@ -22,6 +22,8 @@ $('#seleccionar-cliente').change(function () {
         paging: false,
         columnDefs: columnsDefinidas
       });
+
+      inputBusquedaTable('TablaListaPrecios', tablaPrecio, [], [], 'col-12')
   }
 })
 
@@ -259,6 +261,7 @@ $('input[type=radio][name=selectTipLista]').change(function () {
     paging: false,
     columnDefs: columnsDefinidas
   });
+  inputBusquedaTable('TablaListaPrecios', tablaPrecio, [], [], 'col-12')
   $('input[type=radio][name=selectChecko]:checked').prop('checked', false);
   // obtenertablaListaPrecios(columnsDefinidas, columnasData, apiurl)
 })
@@ -267,9 +270,7 @@ $('input[type=radio][name=selectTipLista]').change(function () {
 // opciones = obtenerDatosMostrar(menu)
 
 let exportColumns = [];
-
-
-
+let formatoExcel;
 listaPreciosExelModal = $('#listaPreciosExel').DataTable({
   language: {
     url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
@@ -342,17 +343,33 @@ listaPreciosExelModal = $('#listaPreciosExel').DataTable({
       text: '<i class="bi bi-box-arrow-down"></i> Descargar Exel',
       className: 'btn btn-success',
       titleAttr: 'Excel',
-      filename: 'HOLA',
-      title: 'HOLA',
+      filename: function () {
+        return formatoExcel
+      },
+      title: function () {
+        return formatoExcel
+      },
+      attr: {
+        'data-bs-toggle': "tooltip",
+        'data-bs-placement': "top",
+        'title': "Si filtras este listado, la exportación de excel será también filtrada"
+      },
       exportOptions: {
-        columns: exportColumns // Índices de las columnas a exportar
+        columns: function () {
+          return exportColumns
+        } // Índices de las columnas a exportar
       },
     },
   ]
 
 });
 
-inputBusquedaTable('listaPreciosExel', listaPreciosExelModal, [], [], 'col-12')
+
+
+inputBusquedaTable('listaPreciosExel', listaPreciosExelModal, [{
+  msj: 'Si filtras este listado, la exportación de excel será también filtrada',
+  place: 'top'
+}], [], 'col-12')
 
 const listaPreciosExel = document.getElementById('vistaPreviaExelModal')
 listaPreciosExel.addEventListener('show.bs.modal', event => {
@@ -402,16 +419,22 @@ function cargarTablaExcel(intento = 0) {
 function setTablaPreciosExcel(listaPreciosExelModal) {
   switch ($('input[type=radio][name=selectTipLista]:checked').val()) {
     case 1: case '1':
+      formatoExcel = `${$('input[type=radio][name=selectTipLista]:checked').attr('title')} (${$('input[type=radio][name=selectChecko]:checked').attr('title')}) | bimo ${formatoFecha2(new Date(), [])}`
+
       listaPreciosExelModal.columns([1, 4, 5]).visible(false);
       exportColumns = [0, 1, 2, 3]
       break;
 
     case 2: case '2':
+      formatoExcel = `${$('input[type=radio][name=selectTipLista]:checked').attr('title')} -${($('#seleccionar-cliente option:selected').text()).split('-')[1].trim()}- (${$('input[type=radio][name=selectChecko]:checked').attr('title')}) | bimo ${formatoFecha2(new Date(), [])}`
+
       listaPreciosExelModal.columns([1, 4, 5]).visible(true);
       exportColumns = [0, 1, 2, 3, 4, 5]
       break;
 
     case 3: case '3':
+      formatoExcel = `${$('input[type=radio][name=selectTipLista]:checked').attr('title')} -${($('#seleccionar-cliente option:selected').text()).split('-')[1].trim()}- (${$('input[type=radio][name=selectChecko]:checked').attr('title')}) | bimo ${formatoFecha2(new Date(), [])}`
+
       listaPreciosExelModal.columns([1]).visible(false);
       listaPreciosExelModal.columns([4, 5]).visible(true);
       exportColumns = [0, 2, 3, 4, 5]

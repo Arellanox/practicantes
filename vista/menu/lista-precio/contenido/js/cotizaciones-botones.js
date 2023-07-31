@@ -176,7 +176,13 @@ $('#guardar-contenido-paquete').on('click', function () {
       if (data) {
         tablaContenidoPaquete.clear().draw();
         dataEliminados = new Array()
-        alertMensaje('success', 'Contenido registrado', `El contenido se a registrado correctamente del folio ${SelectedFolio} :)`)
+        alertMsj({
+          title: 'Cotización guardada',
+          text: `Tu nuevo cotización ha sido guardada con el siguiente folio: ${data.response.data}`,
+          icon: 'success', showCancelButton: false, confirmButtonText: 'Confirmar', confirmButtonColor: 'green'
+        })
+
+        // alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
         $('#modalInfoDetalleCotizacion').modal('hide');
       }
     })

@@ -130,6 +130,11 @@
       <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalInfoDetalleCotizacion">
         <i class="bi bi-save2"></i> Guardar Cotización
       </button>
+      <span data-bs-toggle="tooltip" data-bs-placement="top" title="Debes tener un paquete guardado previamente, utiliza el boton de 'Mantenimiento'">
+        <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-excel-previa" disabled data-bs-toggle="modal" data-bs-target="#modalVistaPaquete">
+          <i class="bi bi-filetype-exe"></i> Excel (Vista previa)
+        </button>
+      </span>
     </div>
 
     <div id="tabla-Paquetes">

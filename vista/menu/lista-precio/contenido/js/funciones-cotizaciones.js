@@ -1,10 +1,14 @@
 async function mantenimientoPaquete() {
+  $('#btn-excel-previa').attr('disabled', false)
   loader("In");
   await rellenarSelect('#seleccion-paquete', 'clientes_api', 2, 0, 'NOMBRE_SISTEMA.NOMBRE_COMERCIAL');
   $('#container-select-presupuesto').fadeIn('slow')
 
   await rellenarSelect("#select-presupuestos", 'cotizaciones_api', 4, 'ID_COTIZACION', 'FOLIO_FECHA', {
     cliente_id: $('#seleccion-paquete').val()
+  }, function (data) {
+    detalle_paquetes = data;
+    console.log(detalle_paquetes);
   });
 
   tablaContenido(true);
@@ -24,6 +28,7 @@ async function mantenimientoPaquete() {
 }
 
 async function contenidoPaquete(select = null) {
+  $('#btn-excel-previa').attr('disabled', true)
   loader("In");
   await rellenarSelect('#seleccion-paquete', 'clientes_api', 2, 0, 'NOMBRE_SISTEMA.NOMBRE_COMERCIAL');
 
@@ -43,7 +48,7 @@ async function contenidoPaquete(select = null) {
 }
 
 // Agrega Un nuevo TR a la tabla de paquetes
-function meterDato(DESCRIPCION, CVE, costo_total, precio_venta, CANTIDAD, DESCUENTO, ID_SERVICIO, ABREVIATURA, tablaContenidoPaquete) {
+function meterDato(DESCRIPCION, CVE, costo_total, precio_venta, CANTIDAD, DESCUENTO, ID_SERVICIO, ABREVIATURA /* SIN USO XD */, tablaContenidoPaquete) {
   if (DESCUENTO === null) DESCUENTO = ''
   let longitud = dataSet.length + 1;
   if (costo_total == null) {
