@@ -562,9 +562,43 @@ class Miscelaneus
 
     private function getBodyInfoCotizacion($master, $id_cotizacion, $cliente_id)
     {
-        $arregloServicio = $master->getByNext("sp_cotizaciones_b", [$id_cotizacion, $cliente_id]);
+        $infoCliente = $master->getByProcedure('sp_cotizaciones_b', [$id_cotizacion, $cliente_id]);
+        $response = $master->getByNext("sp_cotizaciones_b", [$id_cotizacion, $cliente_id]);
+        // print_r($response);
+        $arrayDetalle = [];
+        $number = ["TOTAL" => $response[1][0]['TOTAL']];
+        $NumbersToLetters = new NumbersToLetters($number);
+        $cantidad = $NumbersToLetters->letters;
 
-        return $arregloServicio;
+        for ($i = 0; $i < count($response[1]); $i++) {
+
+            $cargosDetalle = [
+                "PRODUCTO" => $response[1][$i]['PRODUCTO'],
+                "PRECIO_UNITARIO" => $response[1][$i]['PRECIO_UNITARIO'],
+                "CANTIDAD" => $response[1][$i]['CANTIDAD'],
+                "TOTAL" => $response[1][$i]['TOTAL'],
+            ];
+
+            array_push($arrayDetalle, $cargosDetalle);
+        }
+
+        $arregloCotizaciones = array(
+            'ESTUDIOS_DETALLE' => $arrayDetalle,
+            'CLIENTE' => $infoCliente[0]['CLIENTE'],
+            "RAZON_SOCIAL" => $infoCliente[0]['RAZON_SOCIAL'],
+            'TELEFONO' => $infoCliente[0]['TELEFONO'],
+            'RFC' => $infoCliente[0]['RFC'],
+            'SUBTOTAL' => $response[0][0]['SUBTOTAL'],
+            'DESCUENTO' => $response[0][0]['DESCUENTO'],
+            'IVA' => $response[0][0]['IVA'],
+            'TOTAL_DETALLE' => $response[1][0]['TOTAL'],
+            'FECHA_CREACION' => $response[0][0]['FECHA_CREACION'],
+            'FECHA_VENCIMIENTO' => $response[0][0]['FECHA_VENCIMIENTO'],
+            'FOLIO' => $infoCliente[0][0]['FOLIO'],
+            'CANTIDAD' => $cantidad
+        );
+
+        return $arregloCotizaciones;
     }
 
     private function getBodyInfoConsultorio2($master, $turno_id)
