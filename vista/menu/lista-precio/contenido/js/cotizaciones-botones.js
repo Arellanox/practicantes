@@ -216,3 +216,7 @@ $('#seleccion-paquete').on('change', async function (e) {
   });
 
 })
+
+$('#btn-vistaPrevia-cotizacion').on('click', function () {
+
+})
