@@ -140,42 +140,8 @@ selectTable('#TablaVistaSoporteTi', TablaVistaSoporteTi, {
 
                     //Este usuario esta siendo atendido  
                     //variable session_start  
-                    case '3':
-                        // $(document).on('click', "#modalPendienteSoporte", function (e) {
-                        //     $(document).on('submit', '#btn-guardar-solucion-problema', function (e) {
-                        //         // e.preventDefault()
-
-
-                        //         alertMensajeConfirm({
-                        //             title: '¿Deseas atender a este Usuario?',
-                        //             text: 'Se cambiara el estado de este ticket a En atención',
-                        //             icon: 'info',
-                        //         }, function () {
-
-                        //             let dataJson_solucionProblema = {
-                        //                 api: 3,
-                        //                 estatus_id: ticket['ESTATUS_ID'],
-                        //                 ticket: ticket['TICKET'],
-                        //                 //para ver el if de una linea
-                        //                 metodo_solucion: $("#buscar-metodo-solucion").val(),
-                        //                 comentario_solucion: $("#comentarioSoluciuon").val()
-                        //             }
-
-                        //             ajaxAwait(dataJson_solucionProblema, 'asistencia_ti_bot_api', { callbackAfter: true }, false, function (data) {
-                        //                 console.log(ticket)
-                        //                 alertToast('Este usuario ya fue atendido!', 'success', 4000)
-                        //                 TablaVistaSoporteTi.ajax.reload();
-                        //             })
-
-                        //         }, 1)
-
-
-                        //     })
-
-                        // })
-
-
-                        break;
+                    // case '3':
+                    //     break;
 
                     //Este usuario cancelo su solicitud  
                     case '4':
