@@ -147,8 +147,6 @@ $('input[type=radio][name=selectChecko]').change(function () {
 
 $('#guardar-contenido-paquete').on('click', function () {
   let data = calcularFilasTR();
-  console.log('Este es el id de busqueda de presupuesto')
-  console.log(SelectedFolio)
   // console.log(data);
   let dataAjax = data[0];
   let dataAjaxDetalleCotizacion = data[1];
@@ -181,8 +179,9 @@ $('#guardar-contenido-paquete').on('click', function () {
         tablaContenidoPaquete.clear().draw();
         dataEliminados = new Array()
         alertMsj({
+          //${data.response.data}
           title: 'Cotización guardada',
-          text: `Tu nuevo cotización ha sido guardada con el siguiente folio: ${data.response.data}`,
+          text: `Tu nuevo cotización ha sido guardada con el siguiente folio: ${SelectedFolio}`,
           icon: 'success', showCancelButton: false, confirmButtonText: 'Confirmar', confirmButtonColor: 'green'
         })
 
