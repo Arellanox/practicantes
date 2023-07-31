@@ -175,7 +175,7 @@ $('#guardar-contenido-paquete').on('click', function () {
               if (mensajeAjax(data)) {
                 tablaContenidoPaquete.clear().draw();
                 dataEliminados = new Array()
-                alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
+                alertMensaje('success', `Contenido registrado del folio: ${SelectedFolio}`, 'El contenido se a registrado correctamente :)')
               }
             }
           })

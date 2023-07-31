@@ -36,9 +36,21 @@ $("#informacionPaquete").addClass("disable-element");
 
 // $(document).on("click", '')
 
+function lpad(value, length, padChar) {
+  value = value.toString();
+
+  while (value.length < length) {
+    value = padChar + value; 
+  }
+
+  return value;
+}
+
 $('#UsarPaquete').on('click', function () {
 
-  SelectedFolio = $('#select-presupuestos').val();
+  SelectedFolio = $('#select-presupuestos').val()
+  SelectedFolio = lpad(SelectedFolio, 4, '0')
+
   if ($('input[type=radio][name=selectPaquete]:checked').val() == 2) {
     if (!$('#select-presupuestos').val()) {
       alertToast('Necesitas seleccionar un presupuesto de este cliente', 'error', '5000')
@@ -65,11 +77,20 @@ $('#UsarPaquete').on('click', function () {
         id_cotizacion: id_cotizacion,
         api: 2
       }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
+        
         row = data.response.data[0]['DETALLE']
 
-        for (var i = 0; i < row.length; i++) {
-          meterDato(row[i]['SERVICIO'], row[i]['ABREVIATURA'], row[i]['COSTO_UNITARIO'], row[i]['COSTO_TOTAL'], row[i]['CANTIDAD'], , row[i]['ID_SERVICIO'], row[i]['ABREVIATURA'], tablaContenidoPaquete)
-        }
+        if (row) {
+          
+          for (var i = 0; i < row.length; i++) {
+            meterDato(row[i]['PRODUCTO'], row[i]['ABREVIATURA'], row[i]['COSTO_BASE'], row[i]['COSTO_TOTAL'], row[i]['CANTIDAD'], row[i]['ID_SERVICIO'], row[i]['SUBTOTAL_SIN_DESCUENTO'], row[i]['SUBTOTAL'], tablaContenidoPaquete)
+          }
+
+        };
+
+        // for (var i = 0; i < row.length; i++) {
+        //   meterDato(row[i]['SERVICIO'], row[i]['ABREVIATURA'], row[i]['COSTO_UNITARIO'], row[i]['COSTO_TOTAL'], row[i]['CANTIDAD'], row[i]['ID_SERVICIO'], row[i]['ABREVIATURA'], tablaContenidoPaquete)
+        // }
       })
 
       break;
@@ -155,7 +176,7 @@ $('#guardar-contenido-paquete').on('click', function () {
       if (data) {
         tablaContenidoPaquete.clear().draw();
         dataEliminados = new Array()
-        alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
+        alertMensaje('success', 'Contenido registrado', `El contenido se a registrado correctamente del folio ${SelectedFolio} :)`)
         $('#modalInfoDetalleCotizacion').modal('hide');
       }
     })
