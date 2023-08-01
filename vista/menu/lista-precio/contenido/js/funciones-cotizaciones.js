@@ -1,5 +1,6 @@
 async function mantenimientoPaquete() {
   $('#btn-excel-previa').attr('disabled', false)
+  $('#btn-vistaPrevia-cotizacion').attr('disabled', false)
   loader("In");
   await rellenarSelect('#seleccion-paquete', 'clientes_api', 2, 0, 'NOMBRE_SISTEMA.NOMBRE_COMERCIAL');
   $('#container-select-presupuesto').fadeIn('slow')
@@ -29,6 +30,7 @@ async function mantenimientoPaquete() {
 
 async function contenidoPaquete(select = null) {
   $('#btn-excel-previa').attr('disabled', true)
+  $('#btn-vistaPrevia-cotizacion').attr('disabled', true)
   loader("In");
   await rellenarSelect('#seleccion-paquete', 'clientes_api', 2, 0, 'NOMBRE_SISTEMA.NOMBRE_COMERCIAL');
 
@@ -124,6 +126,7 @@ function calcularFilasTR() {
     subtotalPrecioventa = 0;
     descuento = 0;
     descuentoPorcentaje = parseFloat($('#descuento-paquete').val());
+    subtotalPrecioventa_sindescuento = 0;
   } else {
     descuentoPorcentaje = parseFloat($('#descuento-paquete').val());
     subtotalPrecioventa_sindescuento = subtotalPrecioventa

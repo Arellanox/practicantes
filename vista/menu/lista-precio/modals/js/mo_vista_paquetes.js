@@ -189,11 +189,29 @@ ModalVistaPaquetes.addEventListener("show.bs.modal", (event) => {
             })
             .columns.adjust();
     }, 200);
-    dataVistaPq = { api: 9, id_paquete: $('#seleccion-paquete').val() }
 
-    filename = $('#seleccion-paquete:selected').text().split(' - ')[0]
-    title = $('#seleccion-paquete option:selected').text()
+    var hash = window.location.hash.substring(1);
+    var datajson = {}
+    if (hash === 'PAQUETES_ESTUDIOS') {
 
+        // Nueva configuración AJAX
+        datajson = {
+            "url": "nueva_ruta_del_servidor/datos.json",
+            "dataSrc": "nuevos_datos" // La nueva propiedad que contiene los datos en la respuesta JSON
+            // Otros parámetros de configuración, si es necesario...
+        };
+
+        dataVistaPq = { api: 9, id_paquete: $('#seleccion-paquete').val() }
+
+        filename = $('#seleccion-paquete:selected').text().split(' - ')[0]
+        title = $('#seleccion-paquete option:selected').text()
+    } else if (hash === 'COTIZACIONES_ESTUDIOS') {
+
+        dataVistaPq = { api: 9, id_paquete: $('#seleccion-paquete').val() }
+
+        filename = $('#seleccion-paquete:selected').text().split(' - ')[0]
+        title = $('#seleccion-paquete option:selected').text()
+    }
 
     TablaVistaListaPaquetes.clear().draw();
     TablaVistaListaPaquetes.ajax.reload()

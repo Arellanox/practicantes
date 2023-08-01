@@ -4,6 +4,7 @@ select2('#select-presupuestos', 'form-select-paquetes')
 
 //Declarar variable para la clase
 var selectEstudio, SelectedFolio;
+var datosUsuarioCotizacion = $('#datosUsuarioCotizacion');
 
 $('#agregar-estudio-paquete').click(function () {
   // console.log(selectEstudio.array)
@@ -70,7 +71,7 @@ $('#UsarPaquete').on('click', function () {
   $("#formPaqueteSelectEstudio").removeClass("disable-element");
   $("#informacionPaquete").removeClass("disable-element");
 
-
+  calcularFilasTR()
 
 
   switch ($('input[type=radio][name=selectPaquete]:checked').val()) {
@@ -82,8 +83,19 @@ $('#UsarPaquete').on('click', function () {
       }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
 
         row = data.response.data[0]['DETALLE']
-
+        row2 = data.response.data[0]
+        // var datosUsuarioCotizacion = $('#datosUsuarioCotizacion')
         if (row) {
+          datosUsuarioCotizacion.html(`<div class="col-6">
+                  <p>Nombre: </p>
+                  <span>${row2['CREADO_POR']}</span>
+
+              </div>
+              <div class="col-6">
+                  <p>Correo: </p>
+                  <span>${row2['CORREO']}</span>
+              </div>`)
+
 
           for (const key in row) {
             if (Object.hasOwnProperty.call(row, key)) {
@@ -92,6 +104,8 @@ $('#UsarPaquete').on('click', function () {
 
             }
           }
+
+          calcularFilasTR()
 
         };
 
@@ -105,6 +119,9 @@ $('#UsarPaquete').on('click', function () {
 })
 //
 $('#CambiarPaquete').on('click', function () {
+  //borrar el div para que se vuelva a abrir
+  datosUsuarioCotizacion.empty()
+
   $('#seleccion-paquete').prop('disabled', false);
   $("#selectDisabled").removeClass("disable-element");
   $("#formPaqueteBotonesArea").addClass("disable-element");
@@ -150,8 +167,16 @@ $('input[type=radio][name=selectChecko]').change(function () {
     });
   }
 });
+//mosotrar datos ya registrados
+$('#btn-info-detaelle-cotizacion').click(function () {
+  // console.log(row2) OBSERVACIONES CREADO_POR CORREO
+  $('#input-atencion-cortizaciones').val(row2['CREADO_POR'])
+  $('#input-correo-cortizaciones').val(row2['CORREO'])
+  $('#input-observaciones-cortizaciones').val(row2['OBSERVACIONES'])
+})
 
 $('#guardar-contenido-paquete').on('click', function () {
+
   let data = calcularFilasTR();
   // console.log(data);
   let dataAjax = data[0];
@@ -166,7 +191,6 @@ $('#guardar-contenido-paquete').on('click', function () {
       cancelButtonText: 'Cancelar',
       showLoaderOnConfirm: true,
     }, async function () {
-
       let datajson = {
         api: 1,
         detalle: dataAjax,
@@ -197,6 +221,8 @@ $('#guardar-contenido-paquete').on('click', function () {
           icon: 'success', showCancelButton: false, confirmButtonText: 'Confirmar', confirmButtonColor: 'green'
         })
 
+        //borrar el div para que se vuelva a abrir
+        datosUsuarioCotizacion.empty()
 
         // alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
         $('#modalInfoDetalleCotizacion').modal('hide');
@@ -227,16 +253,54 @@ $('#seleccion-paquete').on('change', async function (e) {
   await rellenarSelect("#select-presupuestos", 'cotizaciones_api', 4, 'ID_COTIZACION', 'FOLIO_FECHA', {
     cliente_id: $('#seleccion-paquete').val()
   });
-
 })
 
+
+// Función que se ejecuta cuando se realiza una acción para obtener un nuevo PDF
+function getNewView(url, filename) {
+  // Destruir la instancia existente de AdobeDC.View
+  // Crear una instancia inicial de AdobeDC.View
+  let adobeDCView = new AdobeDC.View({ clientId: "cd0a5ec82af74d85b589bbb7f1175ce3", divId: "adobe-dc-view" });
+
+  var nuevaURL = url;
+
+  // Agregar un parámetro único a la URL para evitar la caché del navegador
+  nuevaURL += "?timestamp=" + Date.now();
+
+  // Cargar y mostrar el nuevo PDF en el visor
+  adobeDCView.previewFile({
+    content: { location: { url: nuevaURL } },
+    metaData: { fileName: filename }
+  });
+}
+
 $('#btn-vistaPrevia-cotizacion').click(function () {
-  area_nombre = 'cotizacion'
+  // Obtén los parámetros necesarios
+  var area_nombre = 'cotizacion';
+  var api = encodeURIComponent(window.btoa(area_nombre));
+  var area = encodeURIComponent(window.btoa(15));
+  var id_cotizacion = encodeURIComponent(window.btoa(SelectedFolio));
 
-  api = encodeURIComponent(window.btoa(area_nombre));
-  id_cotizacion = encodeURIComponent(window.btoa(18));
-  area = encodeURIComponent(window.btoa(13));
+  // console.log(SelectedFolio)
+  // Construye la vista y se almacena en la variable url
+  var url = `${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&area=${area}&id_cotizacion=${id_cotizacion}`;
+  //Se manda la url y se agrega un titulo donde se cargara la vista del pdf
+  getNewView(url, 'Vista prevía cotización')
+
+  // Muestra el modal
+  $('#modal-cotizacion').modal('show');
+});
 
 
-  window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&id_cotizacion=${id_cotizacion}&area=${area}`, "_blank");
+$('#btn-enviarCorreo-cotizaciones').click(function (e) {
+
+  // alertMensaje('info', '¿Esta seguro que desea enviarlo?', `Se enviara a este correo ${SelectedFolio}`)
+  alertMensajeConfirm({
+    title: "¿Esta seguro que desea enviarlo?",
+    text: `Se enviara a este correo ${SelectedFolio}`,
+    icon: "info",
+  }, function () {
+    console.log('Hola')
+  }, 1)
+
 })

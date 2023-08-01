@@ -19,21 +19,28 @@ $clave = $_POST['clave'];
 $area = $_POST['area'];
 
 switch ($api) {
-    
+
     case 1:
 
         $result = $master->getByProcedure('sp_recuperar_qr', [$clave, $area]);
 
         // print_r($result);
         // exit;
-        
-        $response = [];
-        foreach($result as $r){
-            if(isset($r['info'])){
-                $r['info']= $master->decodeJsonRecursively([$r['info']]);
+
+
+        if (!isset($result[0]['ERROR'])) {
+            $response = [];
+            foreach ($result as $r) {
+                if (isset($r['info'])) {
+                    $r['info'] = $master->decodeJsonRecursively([$r['info']]);
+                }
+                $response[] = $r;
             }
-            $response[] = $r; 
+        } else {
+            $response = $result[0]['ERROR'];
         }
+
+
 
         break;
 }
@@ -44,8 +51,3 @@ switch ($api) {
 
 
 echo $master->returnApi($response);
-
-
-
-
-?>
