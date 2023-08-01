@@ -141,61 +141,32 @@ function tablaContenido(descuento = false) {
     paging: false,
     scrollY: "63vh",
     scrollCollapse: true,
-    columnDefs: [{
-      width: "213.266px",
-      title: "Descripción",
-      targets: 0
-    },
-    {
-      width: "80.75px",
-      title: "CVE",
-      targets: 1
-    },
-    {
-      width: "90.516px",
-      title: "Cantidad",
-      targets: 2,
-      orderable: false
-    },
-    {
-      width: "80.8438px",
-      title: "Costo",
-      targets: 3
-    },
-    {
-      width: "102.484px",
-      title: "Costo Total",
-      targets: 4
-    },
-    {
-      width: "90.516px",
-      title: "Descuento",
-      targets: 5,
-      orderable: false,
-      visible: descuento
-    },
-    {
-      width: "99.344px",
-      title: "Precio Venta",
-      targets: 6
-    },
-    {
-      width: "64.75px",
-      title: "Subtotal",
-      targets: 7
-    },
-    {
-      visible: false,
-      title: "?",
-      targets: 8,
-      searchable: false,
-    },
+    columnDefs: [
+      { className: 'all', width: "213.266px", title: "Descripción", targets: 0 },
+      { className: 'desktop', width: "80.75px", title: "CVE", targets: 1 },
+      { className: 'min-tablet', width: "90.516px", title: "Cantidad", targets: 2, orderable: false },
+      { className: 'all', width: "80.8438px", title: "Costo", targets: 3 },
+      { className: 'desktop', width: "102.484px", title: "Costo Total", targets: 4 },
+      { className: 'min-tablet', width: "90.516px", title: "Descuento", targets: 5, orderable: false, visible: descuento },
+      { className: 'desktop', width: "99.344px", title: "Precio Venta", targets: 6 },
+      { className: 'all', width: "64.75px", title: "Subtotal", targets: 7 },
+      { visible: false, title: "?", targets: 8, searchable: false, },
     ],
     language: {
       url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
     },
     // 
   });
+
+  // selectDatatabledblclick((selected, data, row) => {
+  //   dataEliminados.push(data[7])
+  //   console.log(dataEliminados);
+  //   tablaContenidoPaquete.row($(row)).remove().draw();
+  //   if (tablaContenidoPaquete.data().count()) {
+  //     calcularFilasTR()
+  //   }
+  // }, tablePaquetesHTML, tablaContenidoPaquete)
+
   inputBusquedaTable('TablaListaPaquetes', tablaContenidoPaquete, [], [], 'col-12')
   loader("Out");
 }

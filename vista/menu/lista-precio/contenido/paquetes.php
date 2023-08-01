@@ -4,7 +4,7 @@
 
 <div class="row" id="paq">
 
-    <div class="col-3 card">
+    <div class="card col-12 col-lg-3">
         <div class="row">
             <div class="col-12">
                 <div class="row d-flex justify-content-center">
@@ -94,7 +94,7 @@
             </div>
         </div>
     </div>
-    <div class="card col-9 pt-3" style="margin-bottom:5px;">
+    <div class="card col-12 col-lg-9 pt-3" style="margin-bottom:5px;">
         <div class="col-12 d-flex align-items-center d-flex justify-content-center">
             <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="guardar-contenido-paquete">
                 <i class="bi bi-save2"></i> Guardar paquete
