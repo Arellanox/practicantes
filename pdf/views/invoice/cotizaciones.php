@@ -310,7 +310,7 @@ $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
 $encode = base64_encode($ruta);
 $idioma = 1;
 switch ($idioma) {
-    case 1:
+    case 1: 
         echo
         "<body>
     <div class=\"container-fluid\">
@@ -331,7 +331,7 @@ switch ($idioma) {
                 </td>
                 <td style=\"width: 25%;text-align: center;\">
                     <p>Cotización<br>
-                        <b>No. " . $encabezado->FOLIO_COTIZACIONES . "</b>
+                        <b>No. " . $resultados->FOLIO . "</b>
                     </p>
                 </td>
             </tr>
@@ -362,7 +362,7 @@ switch ($idioma) {
                     </td>
                     <td style=\"width: 20%; text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\">" . $resultados->TELEFONO . "</td>
                     <td style=\"background-color: darkgrey; width: 10%; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\"><b>RFC</td>
-                    <td style=\"width: 20%;text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\">" . $resultados->RFC . "</td>
+                    <td style=\"width: 20%;text-align: left; border-bottom: 1px solid darkgrey; border-top: 1px solid darkgrey;\"> " . $resultados->RFC . "</td>
                     <td style=\"width: 30%;border-bottom: 1px solid darkgrey; border-radius: 0px 0px 4px 0px; border-left: 1px solid darkgrey; text-align: center;\">" . $resultados->FECHA_VENCIMIENTO . "</td>
                 </tr>
             </tbody>
@@ -394,7 +394,7 @@ switch ($idioma) {
             echo "  <tr>
                                         <td style=\"width: 34%; text-align: left;\">" . json_decode(json_encode($resultArray[$i]), true)['PRODUCTO'] . "</td>
                                         <td style=\"width: 11%; text-align: left;\">E48 -Service unit</td>
-                                        <td style=\"width: 11%; text-align: right;\">$" . json_decode(json_encode($resultArray[$i]), true)['PRECIO'] . "</td>
+                                        <td style=\"width: 11%; text-align: right;\">$" . json_decode(json_encode($resultArray[$i]), true)['PRECIO_UNITARIO'] . "</td>
                                         <td style=\"width: 11%; text-align: center;\">" . json_decode(json_encode($resultArray[$i]), true)['CANTIDAD'] . ".00</td>
                                         <td style=\"width: 11%; text-align: right;\">" . $resultados->DESCUENTO . ".00%</td>
                                         <td style=\"width: 11%; text-align: center;\">16% </td>
@@ -407,7 +407,7 @@ switch ($idioma) {
         <table class=\"esquina-inferior\">
             <tbody>
                 <tr style=\"background-color: darkgrey; \">
-                    <td colspan=\"12\"> Cantidad total 00/100 M.N.</td>
+                    <td colspan=\"12\">" .$resultados->CANTIDAD ."</td>
                 </tr>
             </tbody>
         </table>
@@ -435,7 +435,7 @@ switch ($idioma) {
         <div style=\"float: left;width: 70%;\">
             <table style=\"width: 100%; padding-top: 16%; border-collapse: collapse;\" align=\"left\">
                 <tr>
-                    <td style=\"text-align: center;\"></b></td>
+                    <td style=\"text-align: center;\"><b> ".$resultados->RAZON_SOCIAL ."</b></td>
                 </tr>
                 <tr style=\"text-align: center;\">
                     <td style=\"width: 10%; text-align: center; border-top: 1px solid black;\">

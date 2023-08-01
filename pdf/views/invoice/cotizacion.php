@@ -380,7 +380,7 @@ $encode_firma = base64_encode($ruta_firma);
         $conteo = count($resultados->ESTUDIOS);
 
 
-        echo "<h2 style='padding-bottom: 6px; padding-top: 6px;'>" . $resultados->ESTUDIO . "</h2>";
+        echo "<h2 style='padding-bottom: 6px; padding-top: 6px;'>" . $resultados->PRODUCTO . "</h2>";
 
         echo "<p style='margin-bottom: 0;'><strong>Técnica: </strong>" . $resultados->TECNICA . "</p><br>";
         echo "<h5 style='line-height: 1.5;'>Hallazgos</h5>";

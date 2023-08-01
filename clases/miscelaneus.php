@@ -8,6 +8,7 @@ use iio\libmergepdf\Driver\TcpdiDriver;
 use iio\libmergepdf\Driver\Fpdi2Driver;
 use iio\libmergepdf\Source\FileSource;
 
+include "numero_a_texto_class.php";
 include_once "Pdf.php";
 date_default_timezone_set('America/Mexico_City');
 
@@ -315,7 +316,7 @@ class Miscelaneus
                 }
             } // fin foreach
             $newArray = $aux;
-        }
+        } 
         return $newArray;
     } // fin de checkArray
 
@@ -439,11 +440,13 @@ class Miscelaneus
             case 13:
             case "13":
                 # COTIZACIONES
-                $infoCliente = $this->getBodyInfoCotizacion($master, $id_cotizacion, $cliente_id);
+                $arregloPaciente = $this->getBodyInfoCotizacion($master, $id_cotizacion, $cliente_id);
                 $fecha_resultado = $infoPaciente[0]['FECHA_CREACION'];
                 $carpeta_guardado = "cotizacion";
-                $infoCliente = [$infoCliente[count($infoCliente) - 1]];
-                $folio = $infoPaciente[0]['FOLIO_COTIZACIONES'];
+                // $arregloPaciente = [$arregloPaciente[count($arregloPaciente) - 1]];
+                $folio = $arregloPaciente[0]['FOLIO'];
+                // print_r($arregloPaciente);
+                // exit;
                 break;
             case 5:
             case "5":
@@ -513,7 +516,8 @@ class Miscelaneus
         $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre . "-" . $infoPaciente[0]['ETIQUETA_TURNO'] . '-' . $fecha_resultado);
         $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
 
-
+        // print_r($arregloPaciente);
+        // exit;
         $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
 
         // $pdf = '';
@@ -566,15 +570,15 @@ class Miscelaneus
         $response = $master->getByNext("sp_cotizaciones_b", [$id_cotizacion, $cliente_id]);
         // print_r($response);
         $arrayDetalle = [];
-        $number = ["TOTAL" => $response[1][0]['TOTAL']];
-        $NumbersToLetters = new NumbersToLetters($number);
-        $cantidad = $NumbersToLetters->letters;
-
+        // $number = ["TOTAL" => $response[0][0]['TOTAL']];
+        // $NumbersToLetters = new NumbersToLetters($number['TOTAL']);
+        // $cantidad = $NumbersToLetters->letters;
+        $subTotalCal = 0;
         for ($i = 0; $i < count($response[1]); $i++) {
 
             $cargosDetalle = [
                 "PRODUCTO" => $response[1][$i]['PRODUCTO'],
-                "PRECIO_UNITARIO" => $response[1][$i]['PRECIO_UNITARIO'],
+                "PRECIO_UNITARIO" => $response[1][$i]['COSTO_BASE'],
                 "CANTIDAD" => $response[1][$i]['CANTIDAD'],
                 "TOTAL" => $response[1][$i]['TOTAL'],
             ];
@@ -582,21 +586,35 @@ class Miscelaneus
             array_push($arrayDetalle, $cargosDetalle);
         }
 
+        #Calculamos el subtotal
+        foreach ($arrayDetalle as $detalle) {
+            $subTotalCal += $detalle['TOTAL'];
+        }
+
+        #Carlulamos el IVA y el total
+        $ivaCalculado = $subTotalCal * 0.16;
+        $totalCal = $subTotalCal + $ivaCalculado;
+
+        $NumbersToLetters = new NumbersToLetters($totalCal);
+        $cantidad = $NumbersToLetters->letters;
+
         $arregloCotizaciones = array(
             'ESTUDIOS_DETALLE' => $arrayDetalle,
             'CLIENTE' => $infoCliente[0]['CLIENTE'],
             "RAZON_SOCIAL" => $infoCliente[0]['RAZON_SOCIAL'],
             'TELEFONO' => $infoCliente[0]['TELEFONO'],
             'RFC' => $infoCliente[0]['RFC'],
-            'SUBTOTAL' => $response[0][0]['SUBTOTAL'],
+            'SUBTOTAL' => round($subTotalCal, 2),
             'DESCUENTO' => $response[0][0]['DESCUENTO'],
-            'IVA' => $response[0][0]['IVA'],
-            'TOTAL_DETALLE' => $response[1][0]['TOTAL'],
+            'IVA' => round($ivaCalculado, 2),
+            'TOTAL_DETALLE' => round($totalCal, 2),
             'FECHA_CREACION' => $response[0][0]['FECHA_CREACION'],
             'FECHA_VENCIMIENTO' => $response[0][0]['FECHA_VENCIMIENTO'],
-            'FOLIO' => $infoCliente[0][0]['FOLIO'],
+            'FOLIO' => $infoCliente[0]['FOLIO'],
             'CANTIDAD' => $cantidad
+
         );
+       
 
         return $arregloCotizaciones;
     }
