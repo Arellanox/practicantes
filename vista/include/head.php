@@ -17,9 +17,12 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
 
 <!-- 5.3.0 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+</script>
 
 
 <!-- Icons bootstrap -->
@@ -40,8 +43,10 @@
 
 <!-- summernote -->
 <link rel="stylesheet" href="<?php echo 'http://' . $url . '/' . $appname . '/summernote/css/font-awesome.min.css'; ?>">
-<link rel="stylesheet" href="<?php echo 'http://' . $url . '/' . $appname . '/summernote/summernote/summernote-lite.css'; ?>">
-<link rel="stylesheet" href="<?php echo 'http://' . $url . '/' . $appname . '/summernote/summernote/summernote-bs5.min.css'; ?>">
+<link rel="stylesheet"
+    href="<?php echo 'http://' . $url . '/' . $appname . '/summernote/summernote/summernote-lite.css'; ?>">
+<link rel="stylesheet"
+    href="<?php echo 'http://' . $url . '/' . $appname . '/summernote/summernote/summernote-bs5.min.css'; ?>">
 <link rel="stylesheet" href="<?php echo 'http://' . $url . '/' . $appname . '/summernote/css/styles.css'; ?>">
 <script src="<?php echo 'http://' . $url . '/' . $appname . '/summernote/summernote/summernote-lite.js'; ?>"></script>
 
@@ -83,11 +88,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script> -->
 
-<link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.5/af-2.6.0/b-2.4.1/b-colvis-2.4.1/b-html5-2.4.1/b-print-2.4.1/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.10.0/r-2.5.0/rg-1.4.0/rr-1.4.1/sc-2.2.0/sb-1.5.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.css" rel="stylesheet">
+<link
+    href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.5/af-2.6.0/b-2.4.1/b-colvis-2.4.1/b-html5-2.4.1/b-print-2.4.1/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.10.0/r-2.5.0/rg-1.4.0/rr-1.4.1/sc-2.2.0/sb-1.5.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.css"
+    rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.5/af-2.6.0/b-2.4.1/b-colvis-2.4.1/b-html5-2.4.1/b-print-2.4.1/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.10.0/r-2.5.0/rg-1.4.0/rr-1.4.1/sc-2.2.0/sb-1.5.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.js"></script>
+<script
+    src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.5/af-2.6.0/b-2.4.1/b-colvis-2.4.1/b-html5-2.4.1/b-print-2.4.1/cr-1.7.0/date-1.5.1/fc-4.3.0/fh-3.4.0/kt-2.10.0/r-2.5.0/rg-1.4.0/rr-1.4.1/sc-2.2.0/sb-1.5.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.js">
+</script>
 
 <!-- SheetJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
@@ -113,46 +122,49 @@
 <!-- SCREENSHOT HTMl -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
+<!-- Adobe View -->
+<script src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
+
 
 <!-- Capturar HTML -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 
 <script>
-    var traducciones;
+var traducciones;
 
-    //Hacemos la peticion y la guardamos en la variable traducciones
-    $.ajax({
-        url: '../../archivos/sistema/json/idioma/en.json',
-        type: 'POST',
-        dataType: 'json',
-        success: function(data) {
-            traducciones = data;
-            console.log(traducciones);
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
+//Hacemos la peticion y la guardamos en la variable traducciones
+$.ajax({
+    url: '../../archivos/sistema/json/idioma/en.json',
+    type: 'POST',
+    dataType: 'json',
+    success: function(data) {
+        traducciones = data;
+        console.log(traducciones);
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});
 
-    //Funcion para traducir un texto donde recibe el texto y el idioma
-    function traducir(texto, idioma) {
-        switch (idioma) {
-            case '-en':
-                console.log(texto);
-                traduccion = traducciones[texto][idioma];
-                console.log(traduccion);
-                if (traduccion == null) {
-                    return texto;
-                } else {
-                    return traduccion;
-                }
-
-                break;
-
-            default:
+//Funcion para traducir un texto donde recibe el texto y el idioma
+function traducir(texto, idioma) {
+    switch (idioma) {
+        case '-en':
+            console.log(texto);
+            traduccion = traducciones[texto][idioma];
+            console.log(traduccion);
+            if (traduccion == null) {
                 return texto;
-                break;
-        };
+            } else {
+                return traduccion;
+            }
+
+            break;
+
+        default:
+            return texto;
+            break;
     };
+};
 </script>
