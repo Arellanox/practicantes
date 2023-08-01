@@ -25,11 +25,19 @@ $total = $_POST['total'];
 # este es el arreglo de los servicios que contiene la cotizacion 
 $detalle = $_POST['detalle'];
 $observaciones = $_POST['observaciones'];
+$subtotal_sin_descuento = $_POST['subtotal_sin_descuento'];
 
 switch ($api) {
     case 1:
         # guardar cotizacion
-        $response = $master->insertByProcedure("sp_cotizaciones_g", [$id_cotizacion, $cliente_id, $atencion, $correo, $subtotal, $iva, $descuento, $descuento_porcentaje, $observaciones, $total, $_SESSION['id'], json_encode($detalle)]);
+        $response = $master->insertByProcedure("sp_cotizaciones_g", [$id_cotizacion, $cliente_id, $atencion, $correo, $subtotal, $iva, $descuento, $descuento_porcentaje, $observaciones, $total, $_SESSION['id'], json_encode($detalle), $subtotal_sin_descuento]);
+
+        //Guardamos el PDF de la cotizacion
+        $url = $master->reportador($master, $turno_id, 13, 'cotizaciones', 'url', 0,0,0,$cliente_id, $id_cotizacion);
+        
+        $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['cotizaciones', 'RUTA_REPORTE', $url, $id_cotizacion, 13]);
+
+
         break;
     case 2:
         # buscar informacion de las cotizaciones
