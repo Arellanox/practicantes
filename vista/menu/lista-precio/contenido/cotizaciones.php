@@ -161,7 +161,7 @@
             </span>
 
             <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-vistaPrevia-cotizacion">
-                <i class="bi bi-save2"></i> Vista previa
+                <i class="bi bi-file-earmark-pdf"></i> Cotización (Vista previa)
             </button>
         </div>
 

@@ -230,6 +230,13 @@ $('#seleccion-paquete').on('change', async function (e) {
 
 })
 
-$('#btn-vistaPrevia-cotizacion').on('click', function () {
+$('#btn-vistaPrevia-cotizacion').click(function () {
+  area_nombre = 'cotizacion'
 
+  api = encodeURIComponent(window.btoa(area_nombre));
+  id_cotizacion = encodeURIComponent(window.btoa(18));
+  area = encodeURIComponent(window.btoa(13));
+
+
+  window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&id_cotizacion=${id_cotizacion}&area=${area}`, "_blank");
 })
