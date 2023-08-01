@@ -302,6 +302,11 @@
             border-left: 1px solid black;
             height: 100px;
         }
+
+        .tachado-doble {
+            text-decoration: line-through;
+            color: #a9a9a9;
+        }
     </style>
 </head>
 <?php
@@ -310,7 +315,7 @@ $ruta = file_get_contents('../pdf/public/assets/icono_reporte_checkup.png');
 $encode = base64_encode($ruta);
 $idioma = 1;
 switch ($idioma) {
-    case 1: 
+    case 1:
         echo
         "<body>
     <div class=\"container-fluid\">
@@ -391,6 +396,7 @@ switch ($idioma) {
             $numero = json_decode(json_encode($resultArray[$i]), true)['TOTAL'];
 
             $formateado = number_format($numero, 2);
+            $formateado2 = number_format(json_decode(json_encode($resultArray[$i]), true)['TOTAL_ORIGINAL'], 2);
             echo "  <tr>
                                         <td style=\"width: 34%; text-align: left;\">" . json_decode(json_encode($resultArray[$i]), true)['PRODUCTO'] . "</td>
                                         <td style=\"width: 11%; text-align: left;\">E48 -Service unit</td>
@@ -398,7 +404,8 @@ switch ($idioma) {
                                         <td style=\"width: 11%; text-align: center;\">" . json_decode(json_encode($resultArray[$i]), true)['CANTIDAD'] . ".00</td>
                                         <td style=\"width: 11%; text-align: right;\">" . $resultados->DESCUENTO . ".00%</td>
                                         <td style=\"width: 11%; text-align: center;\">16% </td>
-                                        <td style=\"width: 11%; text-align: right;\">$" . $formateado . "</td>
+                                        <td style=\"width: 11%; text-align: right;\">$" . $formateado . "<br>
+                                        <span class='tachado-doble'>$".$formateado2 ."</span> </td>
                                     </tr>";
         }
 
@@ -407,7 +414,7 @@ switch ($idioma) {
         <table class=\"esquina-inferior\">
             <tbody>
                 <tr style=\"background-color: darkgrey; \">
-                    <td colspan=\"12\">" .$resultados->CANTIDAD ."</td>
+                    <td colspan=\"12\">" . $resultados->CANTIDAD . "</td>
                 </tr>
             </tbody>
         </table>
@@ -435,7 +442,7 @@ switch ($idioma) {
         <div style=\"float: left;width: 70%;\">
             <table style=\"width: 100%; padding-top: 16%; border-collapse: collapse;\" align=\"left\">
                 <tr>
-                    <td style=\"text-align: center;\"><b> ".$resultados->RAZON_SOCIAL ."</b></td>
+                    <td style=\"text-align: center;\"><b> " . $resultados->CREADO_POR . "</b></td> 
                 </tr>
                 <tr style=\"text-align: center;\">
                     <td style=\"width: 10%; text-align: center; border-top: 1px solid black;\">

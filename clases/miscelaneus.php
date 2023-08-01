@@ -581,6 +581,7 @@ class Miscelaneus
                 "PRECIO_UNITARIO" => $response[1][$i]['COSTO_BASE'],
                 "CANTIDAD" => $response[1][$i]['CANTIDAD'],
                 "TOTAL" => $response[1][$i]['TOTAL'],
+                'TOTAL_ORIGINAL' => $response[1][$i]['TOTAL_ORIGINAL']
             ];
 
             array_push($arrayDetalle, $cargosDetalle);
@@ -604,6 +605,7 @@ class Miscelaneus
             "RAZON_SOCIAL" => $infoCliente[0]['RAZON_SOCIAL'],
             'TELEFONO' => $infoCliente[0]['TELEFONO'],
             'RFC' => $infoCliente[0]['RFC'],
+            'CREADO_POR' => $infoCliente[0]['CREADO_POR'],
             'SUBTOTAL' => round($subTotalCal, 2),
             'DESCUENTO' => $response[0][0]['DESCUENTO'],
             'IVA' => round($ivaCalculado, 2),
