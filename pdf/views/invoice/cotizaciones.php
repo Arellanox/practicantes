@@ -397,16 +397,21 @@ switch ($idioma) {
 
             $formateado = number_format($numero, 2);
             $formateado2 = number_format(json_decode(json_encode($resultArray[$i]), true)['TOTAL_ORIGINAL'], 2);
-            echo "  <tr>
-                                        <td style=\"width: 34%; text-align: left;\">" . json_decode(json_encode($resultArray[$i]), true)['PRODUCTO'] . "</td>
-                                        <td style=\"width: 11%; text-align: left;\">E48 -Service unit</td>
-                                        <td style=\"width: 11%; text-align: right;\">$" . json_decode(json_encode($resultArray[$i]), true)['PRECIO_UNITARIO'] . "</td>
-                                        <td style=\"width: 11%; text-align: center;\">" . json_decode(json_encode($resultArray[$i]), true)['CANTIDAD'] . ".00</td>
-                                        <td style=\"width: 11%; text-align: right;\">" . $resultados->DESCUENTO . ".00%</td>
-                                        <td style=\"width: 11%; text-align: center;\">16% </td>
-                                        <td style=\"width: 11%; text-align: right;\">$" . $formateado . "<br>
-                                        <span class='tachado-doble'>$".$formateado2 ."</span> </td>
-                                    </tr>";
+            $descuento = json_decode(json_encode($resultArray[$i]), true)['DESCUENTO_PORCENTAJE'];
+
+            echo "<tr>
+                <td style=\"width: 34%; text-align: left;\">" . json_decode(json_encode($resultArray[$i]), true)['PRODUCTO'] . "</td>
+                <td style=\"width: 11%; text-align: left;\">E48 -Service unit</td>
+                <td style=\"width: 11%; text-align: right;\">$" . json_decode(json_encode($resultArray[$i]), true)['PRECIO_UNITARIO'] . "</td>
+                <td style=\"width: 11%; text-align: center;\">" . json_decode(json_encode($resultArray[$i]), true)['CANTIDAD'] . ".00</td>
+                <td style=\"width: 11%; text-align: right;\">" . $descuento . "%</td>
+                <td style=\"width: 11%; text-align: center;\">16% </td>
+                <td style=\"width: 11%; text-align: right;\">$" . $formateado;
+
+            echo $descuento == 0 ? '' : "<br>
+                <span class='tachado-doble'>$" . $formateado2 . "</span>";
+
+            echo " </td> </tr>";
         }
 
         echo "</tbody>
@@ -421,11 +426,15 @@ switch ($idioma) {
         <!--Inicio tabla totales -->
         <p style=\"line-height: 2.5\"></p>
         <div style=\" float: right;width: 30%;\">
-            <table style=\" width: 150px; text-align: right; border-bottom: transparent; align-items:right; \">
+            <table style=\" width: 180px; text-align: right; border-bottom: transparent; align-items:right; \">
                 <tbody>
                     <tr>
                         <td>Subtotal</td>
-                        <td>$ " . $resultados->SUBTOTAL . "</td>
+                        <td>$ " . $resultados->SUBTOTAL_SIN_DESCUENTO . "</td>
+                    </tr>
+                    <tr>
+                        <td>Descuento (" . $resultados->PORCENTAJE_DESCUENTO . "%)</td>
+                        <td>$ " . $resultados->SUBTOTAL. "</td>
                     </tr>
                     <tr>
                         <td>IVA (16.00%)</td>

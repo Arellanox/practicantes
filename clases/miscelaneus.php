@@ -578,10 +578,11 @@ class Miscelaneus
 
             $cargosDetalle = [
                 "PRODUCTO" => $response[1][$i]['PRODUCTO'],
-                "PRECIO_UNITARIO" => $response[1][$i]['COSTO_BASE'],
+                "PRECIO_UNITARIO" => $response[1][$i]['SUBTOTAL_BASE'],
                 "CANTIDAD" => $response[1][$i]['CANTIDAD'],
-                "TOTAL" => $response[1][$i]['TOTAL'],
-                'TOTAL_ORIGINAL' => $response[1][$i]['TOTAL_ORIGINAL']
+                "TOTAL" => $response[1][$i]['SUBTOTAL'],
+                'TOTAL_ORIGINAL' => $response[1][$i]['SUBTOTAL_SIN_DESCUENTO'],
+                'DESCUENTO_PORCENTAJE' => $response[1][$i]['DESCUENTO_PORCENTAJE']
             ];
 
             array_push($arrayDetalle, $cargosDetalle);
@@ -595,8 +596,9 @@ class Miscelaneus
         #Carlulamos el IVA y el total
         $ivaCalculado = $subTotalCal * 0.16;
         $totalCal = $subTotalCal + $ivaCalculado;
+        $descuentoSubtotal = $subTotalCal * $cargosDetalle['DESCUENTO_PORCENTAJE'];
 
-        $NumbersToLetters = new NumbersToLetters($totalCal);
+        $NumbersToLetters = new NumbersToLetters($infoCliente[0]['TOTAL']);
         $cantidad = $NumbersToLetters->letters;
 
         $arregloCotizaciones = array(
@@ -606,17 +608,19 @@ class Miscelaneus
             'TELEFONO' => $infoCliente[0]['TELEFONO'],
             'RFC' => $infoCliente[0]['RFC'],
             'CREADO_POR' => $infoCliente[0]['CREADO_POR'],
-            'SUBTOTAL' => round($subTotalCal, 2),
+            'SUBTOTAL' => $infoCliente[0]['SUBTOTAL'],
+            'SUBTOTAL_SIN_DESCUENTO' => $infoCliente[0]['SUBTOTAL_SIN_DESCUENTO'],
             'DESCUENTO' => $response[0][0]['DESCUENTO'],
-            'IVA' => round($ivaCalculado, 2),
-            'TOTAL_DETALLE' => round($totalCal, 2),
+            'IVA' => $infoCliente[0]['IVA'],
+            'TOTAL_DETALLE' => $infoCliente[0]['TOTAL'],
             'FECHA_CREACION' => $response[0][0]['FECHA_CREACION'],
             'FECHA_VENCIMIENTO' => $response[0][0]['FECHA_VENCIMIENTO'],
             'FOLIO' => $infoCliente[0]['FOLIO'],
-            'CANTIDAD' => $cantidad
+            'CANTIDAD' => $cantidad,
+            'PORCENTAJE_DESCUENTO' => $infoCliente[0]['PORCENTAJE_DESCUENTO']
 
         );
-       
+        
 
         return $arregloCotizaciones;
     }
