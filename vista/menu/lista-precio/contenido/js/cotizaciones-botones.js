@@ -70,7 +70,7 @@ $('#UsarPaquete').on('click', function () {
   $("#formPaqueteSelectEstudio").removeClass("disable-element");
   $("#informacionPaquete").removeClass("disable-element");
 
-
+  calcularFilasTR()
 
 
   switch ($('input[type=radio][name=selectPaquete]:checked').val()) {
@@ -107,6 +107,8 @@ $('#UsarPaquete').on('click', function () {
 
             }
           }
+
+          calcularFilasTR()
 
         };
 
