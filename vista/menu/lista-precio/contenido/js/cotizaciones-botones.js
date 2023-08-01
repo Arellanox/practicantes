@@ -4,6 +4,7 @@ select2('#select-presupuestos', 'form-select-paquetes')
 
 //Declarar variable para la clase
 var selectEstudio, SelectedFolio;
+var datosUsuarioCotizacion = $('#datosUsuarioCotizacion');
 
 $('#agregar-estudio-paquete').click(function () {
   // console.log(selectEstudio.array)
@@ -83,12 +84,8 @@ $('#UsarPaquete').on('click', function () {
 
         row = data.response.data[0]['DETALLE']
         row2 = data.response.data[0]
-        var datosUsuarioCotizacion = $('#datosUsuarioCotizacion')
+        // var datosUsuarioCotizacion = $('#datosUsuarioCotizacion')
         if (row) {
-          // // console.log(row2)
-          // // console.log(row2['CREADO_POR'])
-          // $("#datosNombreVistaPrevia").html(row2['CREADO_POR'])
-          // $("#datosCorreoVistaPrevia").html(row2['CORREO'])
           datosUsuarioCotizacion.html(`<div class="col-6">
                   <p>Nombre: </p>
                   <span>${row2['CREADO_POR']}</span>
@@ -122,6 +119,9 @@ $('#UsarPaquete').on('click', function () {
 })
 //
 $('#CambiarPaquete').on('click', function () {
+  //borrar el div para que se vuelva a abrir
+  datosUsuarioCotizacion.empty()
+
   $('#seleccion-paquete').prop('disabled', false);
   $("#selectDisabled").removeClass("disable-element");
   $("#formPaqueteBotonesArea").addClass("disable-element");
@@ -167,8 +167,16 @@ $('input[type=radio][name=selectChecko]').change(function () {
     });
   }
 });
+//mosotrar datos ya registrados
+$('#btn-info-detaelle-cotizacion').click(function () {
+  // console.log(row2) OBSERVACIONES CREADO_POR CORREO
+  $('#input-atencion-cortizaciones').val(row2['CREADO_POR'])
+  $('#input-correo-cortizaciones').val(row2['CORREO'])
+  $('#input-observaciones-cortizaciones').val(row2['OBSERVACIONES'])
+})
 
 $('#guardar-contenido-paquete').on('click', function () {
+
   let data = calcularFilasTR();
   // console.log(data);
   let dataAjax = data[0];
@@ -183,7 +191,6 @@ $('#guardar-contenido-paquete').on('click', function () {
       cancelButtonText: 'Cancelar',
       showLoaderOnConfirm: true,
     }, async function () {
-
       let datajson = {
         api: 1,
         detalle: dataAjax,
