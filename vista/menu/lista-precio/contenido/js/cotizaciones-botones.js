@@ -221,6 +221,8 @@ $('#guardar-contenido-paquete').on('click', function () {
           icon: 'success', showCancelButton: false, confirmButtonText: 'Confirmar', confirmButtonColor: 'green'
         })
 
+        //borrar el div para que se vuelva a abrir
+        datosUsuarioCotizacion.empty()
 
         // alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
         $('#modalInfoDetalleCotizacion').modal('hide');
