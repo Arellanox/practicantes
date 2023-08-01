@@ -97,6 +97,9 @@ $('#UsarPaquete').on('click', function () {
               </div>`)
 
 
+          $('#descuento-paquete').val(row2['PORCENTAJE_DESCUENTO'])
+
+
           for (const key in row) {
             if (Object.hasOwnProperty.call(row, key)) {
               const element = row[key];
@@ -196,6 +199,7 @@ $('#guardar-contenido-paquete').on('click', function () {
         detalle: dataAjax,
         total: dataAjaxDetalleCotizacion['total'].toFixed(2),
         subtotal: dataAjaxDetalleCotizacion['subtotal'].toFixed(2),
+        subtotal_sin_descuento: dataAjaxDetalleCotizacion['subtotal_sin_descuento'].toFixed(2),
         iva: dataAjaxDetalleCotizacion['iva'].toFixed(2),
         descuento: dataAjaxDetalleCotizacion['descuento'],
         descuento_porcentaje: dataAjaxDetalleCotizacion['descuento_porcentaje'],
@@ -280,6 +284,12 @@ $('#btn-vistaPrevia-cotizacion').click(function () {
   var api = encodeURIComponent(window.btoa(area_nombre));
   var area = encodeURIComponent(window.btoa(15));
   var id_cotizacion = encodeURIComponent(window.btoa(SelectedFolio));
+
+
+
+
+
+  window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&id_cotizacion=${id_cotizacion}&area=${area}`, "_blank");
 
   // console.log(SelectedFolio)
   // Construye la vista y se almacena en la variable url

@@ -167,7 +167,8 @@ function calcularFilasTR() {
     'iva_porcentaje': '16%',
     'cliente_id': $('#seleccion-paquete').val(),
     'descuento': descuento.toFixed(2),
-    'descuento_porcentaje': descuentoPorcentaje.toFixed(2)
+    'descuento_porcentaje': descuentoPorcentaje.toFixed(2),
+    'subtotal_sindescuento': subtotalPrecioventa_sindescuento
   }
   return [paqueteEstudios, CotizacionDetalle]
 }

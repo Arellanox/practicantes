@@ -191,29 +191,34 @@ ModalVistaPaquetes.addEventListener("show.bs.modal", (event) => {
     }, 200);
 
     var hash = window.location.hash.substring(1);
-    var datajson = {}
+    var datajson = { "url": '', "dataSrc": "response.data" }
+    let select = '', selectTitle = '';
     if (hash === 'PAQUETES_ESTUDIOS') {
-
-        // Nueva configuración AJAX
-        datajson = {
-            "url": "nueva_ruta_del_servidor/datos.json",
-            "dataSrc": "nuevos_datos" // La nueva propiedad que contiene los datos en la respuesta JSON
-            // Otros parámetros de configuración, si es necesario...
-        };
+        datajson['url'] = `${http}${servidor}/${appname}/api/paquetes_api.php`;
 
         dataVistaPq = { api: 9, id_paquete: $('#seleccion-paquete').val() }
 
-        filename = $('#seleccion-paquete:selected').text().split(' - ')[0]
-        title = $('#seleccion-paquete option:selected').text()
+        select = '#seleccion-paquete:selected';
+        selectTitle = '#seleccion-paquete option:selected';
+
     } else if (hash === 'COTIZACIONES_ESTUDIOS') {
+        datajson['url'] = `${http}${servidor}/${appname}/api/cotizaciones_api.php`;
+        datajson['dataSrc'] = 'response.data[0].DETALLE'
 
-        dataVistaPq = { api: 9, id_paquete: $('#seleccion-paquete').val() }
+        dataVistaPq = { id_cotizacion: $('#select-presupuestos').val(), api: 2 }
 
-        filename = $('#seleccion-paquete:selected').text().split(' - ')[0]
-        title = $('#seleccion-paquete option:selected').text()
+        select = '#select-presupuestos:selected';
+        selectTitle = '#select-presupuestos option:selected';
+
     }
 
+    filename = $(select).text().split(' - ')[0]
+    title = $(selectTitle).text()
+
     TablaVistaListaPaquetes.clear().draw();
+
+    TablaVistaListaPaquetes.settings()[0].oInit.dataSrc = datajson.dataSrc;
+    TablaVistaListaPaquetes.ajax.url(datajson.url)
     TablaVistaListaPaquetes.ajax.reload()
 });
 
