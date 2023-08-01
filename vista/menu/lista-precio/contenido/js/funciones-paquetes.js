@@ -99,7 +99,7 @@ function calcularFilasTR() {
   // console.log(paqueteEstudios);
   iva = (subtotalPrecioventa * 16) / 100;
   total = subtotalPrecioventa + iva;
-
+  console.log(subtotalCosto)
   if (!checkNumber(subtotalCosto)) {
     subtotalCosto = 0;
   } else {

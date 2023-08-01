@@ -48,14 +48,16 @@ function lpad(value, length, padChar) {
 
 $('#UsarPaquete').on('click', function () {
 
-  SelectedFolio = $('#select-presupuestos').val()
-  SelectedFolio = lpad(SelectedFolio, 4, '0')
+
 
 
   if ($('input[type=radio][name=selectPaquete]:checked').val() == 2) {
     if (!$('#select-presupuestos').val()) {
       alertToast('Necesitas seleccionar un presupuesto de este cliente', 'error', '5000')
       return false;
+    } else {
+      SelectedFolio = $('#select-presupuestos').val()
+      SelectedFolio = lpad(SelectedFolio, 4, '0')
     }
   }
 
@@ -83,8 +85,12 @@ $('#UsarPaquete').on('click', function () {
 
         if (row) {
 
-          for (var i = 0; i < row.length; i++) {
-            meterDato(row[i]['PRODUCTO'], row[i]['ABREVIATURA'], row[i]['COSTO_BASE'], row[i]['COSTO_TOTAL'], row[i]['CANTIDAD'], row[i]['ID_SERVICIO'], row[i]['SUBTOTAL_SIN_DESCUENTO'], row[i]['SUBTOTAL'], tablaContenidoPaquete)
+          for (const key in row) {
+            if (Object.hasOwnProperty.call(row, key)) {
+              const element = row[key];
+              meterDato(row[key]['PRODUCTO'], row[key]['ABREVIATURA'], row[key]['COSTO_BASE'], row[key]['SUBTOTAL_BASE'], row[key]['CANTIDAD'], row[key]['DESCUENTO_PORCENTAJE'], row[key]['ID_SERVICIO'], null, tablaContenidoPaquete)
+
+            }
           }
 
         };
@@ -160,9 +166,9 @@ $('#guardar-contenido-paquete').on('click', function () {
       cancelButtonText: 'Cancelar',
       showLoaderOnConfirm: true,
     }, async function () {
-      let data = await ajaxAwait({
+
+      let datajson = {
         api: 1,
-        id_cotizacion: SelectedFolio,
         detalle: dataAjax,
         total: dataAjaxDetalleCotizacion['total'].toFixed(2),
         subtotal: dataAjaxDetalleCotizacion['subtotal'].toFixed(2),
@@ -173,17 +179,24 @@ $('#guardar-contenido-paquete').on('click', function () {
         atencion: $('#input-atencion-cortizaciones').val(),
         correo: $('#input-correo-cortizaciones').val(),
         observaciones: $('#input-observaciones-cortizaciones').val()
-      }, 'cotizaciones_api')
+      }
+
+      if ($('input[type=radio][name=selectPaquete]:checked').val() == 2) {
+        datajson['id_cotizacion'] = SelectedFolio;
+      }
+
+      let data = await ajaxAwait(datajson, 'cotizaciones_api')
 
       if (data) {
         tablaContenidoPaquete.clear().draw();
-        dataEliminados = new Array()
+        dataEliminados = new Array();
         alertMsj({
           //${data.response.data}
           title: 'Cotización guardada',
-          text: `Tu nuevo cotización ha sido guardada con el siguiente folio: ${SelectedFolio}`,
+          text: `Tu nuevo cotización ha sido guardada con el siguiente folio: ${data.response.data === '1' ? SelectedFolio : data.response.data}`,
           icon: 'success', showCancelButton: false, confirmButtonText: 'Confirmar', confirmButtonColor: 'green'
         })
+
 
         // alertMensaje('success', 'Contenido registrado', 'El contenido se a registrado correctamente :)')
         $('#modalInfoDetalleCotizacion').modal('hide');
