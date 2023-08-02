@@ -307,8 +307,6 @@ $('#btn-vistaPrevia-cotizacion').click(function () {
 
 
 $('#btn-enviarCorreo-cotizaciones').click(function (e) {
-
-  // alertMensaje('info', '¿Esta seguro que desea enviarlo?', `Se enviara a este correo ${SelectedFolio}`)
   alertMensajeConfirm({
     title: '',
     html: `<h4 style = "font-weight: bold";>¿Esta seguro de enviar la cotización al correo: <span style = "background-color : yellow">${row2['CORREO']}<span>?</h4 style>
@@ -316,7 +314,8 @@ $('#btn-enviarCorreo-cotizaciones').click(function (e) {
     icon: "info",
   }, function () {
 
-    ajaxAwait({ api: 5, id_cotizacion: id_cotizacion }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
+    ajaxAwait({ api: 5, id_cotizacion: SelectedFolio }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
+      console.log(data)
       alertToast('Se envio la cotizacion!', 'success', '5000')
 
     })
