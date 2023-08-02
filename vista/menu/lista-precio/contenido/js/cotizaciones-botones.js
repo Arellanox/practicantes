@@ -6,6 +6,8 @@ select2('#select-presupuestos', 'form-select-paquetes')
 var selectEstudio, SelectedFolio;
 var datosUsuarioCotizacion = $('#datosUsuarioCotizacion');
 
+console.log()
+
 $('#agregar-estudio-paquete').click(function () {
   // console.log(selectEstudio.array)
   // console.log($("#seleccion-estudio").prop('selectedIndex'))
@@ -199,7 +201,7 @@ $('#guardar-contenido-paquete').on('click', function () {
         detalle: dataAjax,
         total: dataAjaxDetalleCotizacion['total'].toFixed(2),
         subtotal: dataAjaxDetalleCotizacion['subtotal'].toFixed(2),
-        subtotal_sin_descuento: dataAjaxDetalleCotizacion['subtotal_sin_descuento'].toFixed(2),
+        subtotal_sin_descuento: dataAjaxDetalleCotizacion['subtotal_sin_descuento'],
         iva: dataAjaxDetalleCotizacion['iva'].toFixed(2),
         descuento: dataAjaxDetalleCotizacion['descuento'],
         descuento_porcentaje: dataAjaxDetalleCotizacion['descuento_porcentaje'],
@@ -289,7 +291,7 @@ $('#btn-vistaPrevia-cotizacion').click(function () {
 
 
 
-  window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&id_cotizacion=${id_cotizacion}&area=${area}`, "_blank");
+  // window.open(`${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&id_cotizacion=${id_cotizacion}&area=${area}`, "_blank");
 
   // console.log(SelectedFolio)
   // Construye la vista y se almacena en la variable url
@@ -307,7 +309,7 @@ $('#btn-enviarCorreo-cotizaciones').click(function (e) {
   // alertMensaje('info', '¿Esta seguro que desea enviarlo?', `Se enviara a este correo ${SelectedFolio}`)
   alertMensajeConfirm({
     title: "¿Esta seguro que desea enviarlo?",
-    text: `Se enviara a este correo ${SelectedFolio}`,
+    text: `Se enviara a este correo ${row2['CORREO']}`,
     icon: "info",
   }, function () {
     console.log('Hola')

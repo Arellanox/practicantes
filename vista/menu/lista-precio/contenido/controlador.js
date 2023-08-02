@@ -25,6 +25,7 @@ let columnasData;
 //Personalizar la tabla de excel de cotizaciones y paquetes
 var dataVistaPq = {};
 var VistaExcelurl = '';
+var row2
 
 //Cambia la vista a la lista de precios
 function obtenerContenidoPrecios() {
