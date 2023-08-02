@@ -148,7 +148,7 @@ class Correo
 
             # attach files
             foreach ($reportes as $file) {
-                $f = explode("nuevo_checkup", $file);
+                $f = explode("practicantes", $file);
                 if (!$mail->addAttachment(".." . $f[1])) {
                     $mis->setLog("No se adjunto el archivo.", basename($file));
                 }

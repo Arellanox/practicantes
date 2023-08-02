@@ -27,13 +27,14 @@ $total = $_POST['total'];
 $detalle = $_POST['detalle'];
 $observaciones = $_POST['observaciones'];
 $subtotal_sin_descuento = $_POST['subtotal_sin_descuento'];
+$fecha_vigencia = $_POST['fecha_vigencia'];
 
 
 switch ($api) {
     case 1:
         # guardar cotizacion
 
-        $response = $master->insertByProcedure("sp_cotizaciones_g", [$id_cotizacion, $cliente_id, $atencion, $correo, $subtotal, $iva, $descuento, $descuento_porcentaje, $observaciones, $total, $_SESSION['id'], json_encode($detalle), $subtotal_sin_descuento]);
+        $response = $master->insertByProcedure("sp_cotizaciones_g", [$id_cotizacion, $cliente_id, $atencion, $correo, $subtotal, $iva, $descuento, $descuento_porcentaje, $observaciones, $total, $_SESSION['id'], json_encode($detalle), $subtotal_sin_descuento, $fecha_vigencia]);
 
         #Obtemos el ID_COTIZACION para crear el poder crear el PDF
         $id_cotizacion_pdf = $master->getByProcedure('sp_cotizaciones_info_b',[$id_cotizacion]);
@@ -76,10 +77,13 @@ switch ($api) {
         $response = $master->getByProcedure("sp_cotizaciones_info_b", [$id_cotizacion]);
         $correo = $response[0]['CORREO'];
         $reporte = $response[0]['RUTA_REPORTE'];
+        // echo $correo;
+        // echo $reporte;
+        // exit;
 
         if (!empty($response[0])) {
             $mail = new Correo();
-            if ($mail->sendEmail('cotizacion', '[bimo] Cotización', [$correo], null, [$reporte], 1)) {
+            if ($mail->sendEmail('cotizacion', '[bimo] Cotización', [$correo], null, [$reporte])) {
                 $master->setLog("Correo enviado.", "Reporte de Cotización enviado");
             }
         }
