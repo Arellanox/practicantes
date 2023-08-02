@@ -442,9 +442,8 @@ class Miscelaneus
                 # COTIZACIONES
                 $arregloPaciente = $this->getBodyInfoCotizacion($master, $id_cotizacion, $cliente_id);
                 $fecha_resultado = $arregloPaciente['FECHA_CREACION'];
-                $fecha_resultado = date('dmY ', $fecha_resultado);
+                $fecha_resultado = date('dmY', strtotime($fecha_resultado));
                 $carpeta_guardado = "cotizacion";
-                $turno_id = rand(1,9999);
                 // $arregloPaciente = [$arregloPaciente[count($arregloPaciente) - 1]];
                 $folio = $arregloPaciente['FOLIO'];
                 $nombre_paciente = 'COTIZACION_'.$folio;
