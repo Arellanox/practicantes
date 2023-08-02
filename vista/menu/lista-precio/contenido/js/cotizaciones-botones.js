@@ -201,7 +201,9 @@ $('#guardar-contenido-paquete').on('click', function () {
         detalle: dataAjax,
         total: dataAjaxDetalleCotizacion['total'].toFixed(2),
         subtotal: dataAjaxDetalleCotizacion['subtotal'].toFixed(2),
-        subtotal_sin_descuento: dataAjaxDetalleCotizacion['subtotal_sin_descuento'],
+
+        subtotal_sin_descuento: dataAjaxDetalleCotizacion['subtotal_sindescuento'].toFixed(2),
+
         iva: dataAjaxDetalleCotizacion['iva'].toFixed(2),
         descuento: dataAjaxDetalleCotizacion['descuento'],
         descuento_porcentaje: dataAjaxDetalleCotizacion['descuento_porcentaje'],

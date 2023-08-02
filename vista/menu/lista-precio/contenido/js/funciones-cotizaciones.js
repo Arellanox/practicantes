@@ -122,11 +122,12 @@ function calcularFilasTR() {
     subtotalCosto_sindescuento = subtotalCosto;
   }
 
+  subtotalPrecioventa_sindescuento = 0;
   if (!checkNumber(subtotalPrecioventa)) {
     subtotalPrecioventa = 0;
     descuento = 0;
     descuentoPorcentaje = parseFloat($('#descuento-paquete').val());
-    subtotalPrecioventa_sindescuento = 0;
+
   } else {
     descuentoPorcentaje = parseFloat($('#descuento-paquete').val());
     subtotalPrecioventa_sindescuento = subtotalPrecioventa

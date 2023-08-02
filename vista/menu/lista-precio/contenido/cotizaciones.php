@@ -132,7 +132,7 @@
         </div>
     </div>
 
-    <div class="card col-9 pt-3" style="margin-bottom:5px;">
+    <div class="card col-12 col-lg-9 pt-3" style="margin-bottom:5px;">
 
         <div class="mx-2 mb-2">
             <div class="row" id="datosUsuarioCotizacion">
