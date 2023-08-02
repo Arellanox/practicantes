@@ -518,12 +518,24 @@ class Miscelaneus
                 # Seteamos la ruta del reporte para poder recuperarla despues con el atributo $ruta_reporte.
                 $this->setRutaReporte($ruta_saved);
 
+            
                 # Crear el directorio si no existe
                 $r = $master->createDir("../" . $ruta_saved);
-                 
-                $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre_paciente );
-                $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
 
+                if ($r === 1){
+
+                    $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre_paciente );
+                    $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
+
+
+                }else{
+
+                    echo "Imposible crear la ruta del archivo";
+                    exit;
+                    
+                }
+                
+                
                 break;
 
             default:
