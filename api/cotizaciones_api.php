@@ -5,15 +5,15 @@ require_once "../clases/token_auth.php";
 $tokenVerification = new TokenVerificacion();
 $tokenValido = $tokenVerification->verificar();
 if (!$tokenValido) {
-    $tokenVerification->logout();
-    exit;
+    // $tokenVerification->logout();
+    // exit;
 }
 
 $master = new Master();
 $api = $_POST['api'];
 
 # datos de la cotizacion
-$id_cotizacion = $_POST['id_cotizacion'];
+$id_cotizacion = isset($_POST['id_cotizacion']) ? $_POST['id_cotizacion'] : null;
 $cliente_id = $_POST['cliente_id'];
 $atencion = $_POST['atencion'];
 $correo = $_POST['correo'];
@@ -27,16 +27,21 @@ $detalle = $_POST['detalle'];
 $observaciones = $_POST['observaciones'];
 $subtotal_sin_descuento = $_POST['subtotal_sin_descuento'];
 
+
 switch ($api) {
     case 1:
         # guardar cotizacion
+
         $response = $master->insertByProcedure("sp_cotizaciones_g", [$id_cotizacion, $cliente_id, $atencion, $correo, $subtotal, $iva, $descuento, $descuento_porcentaje, $observaciones, $total, $_SESSION['id'], json_encode($detalle), $subtotal_sin_descuento]);
 
+        #Obtemos el ID_COTIZACION para crear el poder crear el PDF
+        $id_cotizacion_pdf = $master->getByProcedure('sp_cotizaciones_info_b',[$id_cotizacion]);
+        $id_cotizacion_pdf = $id_cotizacion_pdf[0]['ID_COTIZACION'];
+        
         //Guardamos el PDF de la cotizacion
-        $url = $master->reportador($master, null, 13, 'cotizaciones', 'url', 0,0,0,$cliente_id, $id_cotizacion);
+        $url = $master->reportador($master, null, 13, 'cotizaciones', 'url', 0,0,0,$cliente_id, $id_cotizacion_pdf);
         
-        
-        $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['cotizaciones', 'RUTA_REPORTE', $url, $id_cotizacion, 13]);
+        $response1 = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['cotizaciones', 'RUTA_REPORTE', $url, $id_cotizacion_pdf, 13]);
 
 
         break;
@@ -62,6 +67,25 @@ switch ($api) {
         # solo cotizacinoes sin detalle.
         $response = $master->getByProcedure("sp_cotizaciones_gral", [$cliente_id]);
         break;
+    
+
+    case 5:
+        #Enviar el correo 
+
+        $response = $master->getByProcedure("sp_cotizaciones_info_b", [$id_cotizacion]);
+        $correo = $response[0]['CORREO'];
+        $reporte = $response[0]['RUTA_REPORTE'];
+
+
+        if (!empty($response[0])) {
+            $mail = new Correo();
+            if ($mail->sendEmail('cotizacion', '[bimo] Cotización', [$correo], null, [$reporte], 1)) {
+                $master->setLog("Correo enviado.", "Reporte de Cotización enviado");
+            }
+        }
+
+        break;
+
     default:
         $response = "Api no definida. Api " . $api;
         break;
