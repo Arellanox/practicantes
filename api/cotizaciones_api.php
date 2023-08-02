@@ -1,6 +1,7 @@
 <?php
 require_once "../clases/master_class.php";
 require_once "../clases/token_auth.php";
+include_once "../clases/correo_class.php";
 
 $tokenVerification = new TokenVerificacion();
 $tokenValido = $tokenVerification->verificar();
@@ -75,7 +76,6 @@ switch ($api) {
         $response = $master->getByProcedure("sp_cotizaciones_info_b", [$id_cotizacion]);
         $correo = $response[0]['CORREO'];
         $reporte = $response[0]['RUTA_REPORTE'];
-
 
         if (!empty($response[0])) {
             $mail = new Correo();
