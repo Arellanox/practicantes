@@ -322,7 +322,7 @@ class Miscelaneus
 
     public function reportador($master, $turno_id, $area_id, $reporte, $tipo = 'url', $preview = 0, $lab = 0, $id_consulta = 0, $cliente_id = 1, $id_cotizacion = 8)
     {
-
+ 
         #Recupera la información personal del paciente
         $infoPaciente = $master->getByProcedure('sp_informacion_paciente', [$turno_id]);
         $infoPaciente = [$infoPaciente[count($infoPaciente) - 1]];

@@ -359,7 +359,7 @@ class Miscelaneus
                 $carpeta_guardado = 'lab';
                 $datos_medicos = array(); #Mandar vacio
                 $folio = $infoPaciente[0]['FOLIO'];
-                if ($area_id == 12 || $area_id == '12') {
+                if ($area_id == 12 || $area_id == '12') { 
                     $carpeta_guardado = 'lab-molecular';
                     $folio = $infoPaciente[0]['FOLIO_BIOMOLECULAR'];
                 }
@@ -445,6 +445,7 @@ class Miscelaneus
                 $carpeta_guardado = "cotizacion";
                 // $arregloPaciente = [$arregloPaciente[count($arregloPaciente) - 1]];
                 $folio = $arregloPaciente[0]['FOLIO'];
+                $nombre_paciente = 'COTIZACION_'.$folio;
                 // print_r($arregloPaciente);
                 // exit;
                 break;

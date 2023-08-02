@@ -33,7 +33,8 @@ switch ($api) {
         $response = $master->insertByProcedure("sp_cotizaciones_g", [$id_cotizacion, $cliente_id, $atencion, $correo, $subtotal, $iva, $descuento, $descuento_porcentaje, $observaciones, $total, $_SESSION['id'], json_encode($detalle), $subtotal_sin_descuento]);
 
         //Guardamos el PDF de la cotizacion
-        $url = $master->reportador($master, $turno_id, 13, 'cotizaciones', 'url', 0,0,0,$cliente_id, $id_cotizacion);
+        $url = $master->reportador($master, null, 13, 'cotizaciones', 'url', 0,0,0,$cliente_id, $id_cotizacion);
+        
         
         $response = $master->updateByProcedure("sp_reportes_actualizar_ruta", ['cotizaciones', 'RUTA_REPORTE', $url, $id_cotizacion, 13]);
 
