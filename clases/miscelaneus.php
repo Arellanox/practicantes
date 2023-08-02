@@ -441,10 +441,10 @@ class Miscelaneus
             case "13":
                 # COTIZACIONES
                 $arregloPaciente = $this->getBodyInfoCotizacion($master, $id_cotizacion, $cliente_id);
-                $fecha_resultado = $infoPaciente[0]['FECHA_CREACION'];
+                $fecha_resultado = $arregloPaciente['FECHA_CREACION'];
                 $carpeta_guardado = "cotizacion";
                 // $arregloPaciente = [$arregloPaciente[count($arregloPaciente) - 1]];
-                $folio = $arregloPaciente[0]['FOLIO'];
+                $folio = $arregloPaciente['FOLIO'];
                 $nombre_paciente = 'COTIZACION_'.$folio;
                 // print_r($arregloPaciente);
                 // exit;
