@@ -315,9 +315,8 @@ $('#btn-enviarCorreo-cotizaciones').click(function (e) {
   }, function () {
 
     ajaxAwait({ api: 5, id_cotizacion: SelectedFolio }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
-      console.log(data)
       alertToast('Se envio la cotizacion!', 'success', '5000')
-
+      $('#modal-cotizacion').modal('hide');
     })
   }, 1)
 
