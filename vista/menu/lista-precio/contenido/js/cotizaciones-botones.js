@@ -210,7 +210,8 @@ $('#guardar-contenido-paquete').on('click', function () {
         cliente_id: dataAjaxDetalleCotizacion['cliente_id'],
         atencion: $('#input-atencion-cortizaciones').val(),
         correo: $('#input-correo-cortizaciones').val(),
-        observaciones: $('#input-observaciones-cortizaciones').val()
+        observaciones: $('#input-observaciones-cortizaciones').val(),
+        fecha_vigencia: $('#input-fecha-vigencia').val()
       }
 
       if ($('input[type=radio][name=selectPaquete]:checked').val() == 2) {
@@ -321,3 +322,15 @@ $('#btn-enviarCorreo-cotizaciones').click(function (e) {
   }, 1)
 
 })
+
+
+// $(document).ready(function () {
+//   // Inicializa el datepicker
+//   // Data Picker Initialization
+//   // $('.datepicker').datepicker({
+//   //   inline: true
+//   // });
+//   $(function () {
+//     $('#datetimepicker1').datetimepicker();
+//   });
+// });
