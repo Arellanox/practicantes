@@ -89,6 +89,13 @@ switch ($api) {
         }
 
         break;
+    case 6:
+        # obtener el detalle de la cotizacion sin datos de la cotizacion
+        $set = $master->getByNext("sp_cotizaciones_b", [$id_cotizacion, $cliente_id]);
+
+        # obtenemos solo el set que trae el detalle de la cotizacion
+        $response = $set[1];
+        break;
 
     default:
         $response = "Api no definida. Api " . $api;
