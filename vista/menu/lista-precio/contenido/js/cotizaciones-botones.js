@@ -174,11 +174,16 @@ $('input[type=radio][name=selectChecko]').change(function () {
 });
 //mosotrar datos ya registrados
 $('#btn-info-detaelle-cotizacion').click(function () {
-  // console.log(row2) OBSERVACIONES CREADO_POR CORREO
-  $('#input-atencion-cortizaciones').val(row2['CREADO_POR'])
-  $('#input-correo-cortizaciones').val(row2['CORREO'])
-  $('#input-observaciones-cortizaciones').val(row2['OBSERVACIONES'])
-})
+
+  if (row2 && row2['CREADO_POR'] && row2['CORREO'] && row2['OBSERVACIONES']) {
+
+    $('#input-atencion-cortizaciones').val(row2['CREADO_POR']);
+    $('#input-correo-cortizaciones').val(row2['CORREO']);
+    $('#input-fecha-vigencia').val(row2['FECHA_VENCIMIENTO'])
+    $('#input-observaciones-cortizaciones').val(row2['OBSERVACIONES']);
+  }
+
+});
 
 $('#guardar-contenido-paquete').on('click', function () {
 
