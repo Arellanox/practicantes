@@ -360,17 +360,26 @@ function checkNumber(x, transform = 0) {
 }
 
 
-function ifnull(data, siNull = '') {
-  if (data === 'NaN') return siNull;
-  if (typeof data === 'undefined') return siNull;
-  if (data) {
-    data = `${data}`.replace(/["]+/g, '&quot');
-    data = `${data}`.replace(/["]+/g, '&#44;');
-
-
-    return data;
+function ifnull(data, siNull = '', values = ['option1', 'option2']) {
+  // Caso de Objeto
+  if (typeof data === 'object' && data !== null) {
+    for (const key of values) {
+      if (data.hasOwnProperty(key)) {
+        return data[key]; // Devuelve el valor de la primera clave que exista
+      }
+    }
+    return siNull; // Devuelve siNull si no se encuentra ninguna clave
   }
-  return siNull;
+  // Otros Casos
+  else {
+    if (data === 'NaN' || typeof data === 'undefined' || data === '') return siNull;
+    if (data) {
+      data = `${data}`.replace(/["]+/g, '&quot;');
+      return data;
+    }
+    return siNull;
+  }
+
 }
 
 function htmlCaracter(data) {
