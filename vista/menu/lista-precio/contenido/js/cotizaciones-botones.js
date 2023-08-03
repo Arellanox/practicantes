@@ -322,15 +322,3 @@ $('#btn-enviarCorreo-cotizaciones').click(function (e) {
   }, 1)
 
 })
-
-
-// $(document).ready(function () {
-//   // Inicializa el datepicker
-//   // Data Picker Initialization
-//   // $('.datepicker').datepicker({
-//   //   inline: true
-//   // });
-//   $(function () {
-//     $('#datetimepicker1').datetimepicker();
-//   });
-// });
