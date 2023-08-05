@@ -25,7 +25,7 @@ $pdf_a_comparar = $_FILES['pdf']['tmp_name'];
 switch ($api) {
 
     case 1:
-
+        # recuperar informacion de los QR
         $result = $master->getByProcedure('sp_recuperar_qr', [$clave, $area]);
 
         // print_r($result);
@@ -49,7 +49,7 @@ switch ($api) {
         break;
     case 2:
         # validar que el pdf no haya sido modificado.
-        $response = comparePDFContents($pdf_nube,$pdf_a_comparar);
+        $response = comparePDFContents($pdf_nube, $pdf_a_comparar);
         break;
     default:
         $response = "API no definida.";
@@ -59,12 +59,13 @@ switch ($api) {
 echo $master->returnApi($response);
 
 
-function comparePDFContents($file1, $file2) {
+function comparePDFContents($file1, $file2)
+{
     // Leer el contenido de los archivos PDF
     $content1 = file_get_contents($file1);
     $content2 = file_get_contents($file2);
 
-    if(!empty($file1) && !empty($file2)){
+    if (!empty($file1) && !empty($file2)) {
         // Comparar los contenidos de los archivos
         if ($content1 === $content2) {
             return "Los archivos tienen el mismo contenido.";
@@ -74,5 +75,4 @@ function comparePDFContents($file1, $file2) {
     } else {
         return "Error: Debes enviar 2 archivos.";
     }
-   
 }
