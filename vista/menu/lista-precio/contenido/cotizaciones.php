@@ -182,7 +182,26 @@
             </span>
         </div>
 
+        <div id="tabla-Paquetes">
+            <table class="table table-hover display responsive " id="TablaListaPaquetes" style="width: 100%">
+                <thead style="width: 100%">
+                    <tr>
+                        <th class="all">Descripción</th>
+                        <th class="min-tablet">CVE</th>
+                        <th class="min-tablet">Cantidad</th>
+                        <th class="min-tablet">Costo</th>
+                        <th class="min-tablet">Costo Total</th>
+                        <th class="min-tablet">Precio Venta</th>
+                        <th class="min-tablet">Descuento</th>
+                        <th class="min-tablet">Subtotal</th>
+                        <th class="all" style="display:none">ID</th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                </tbody>
+            </table>
+        </div>
 
 
     </div>
