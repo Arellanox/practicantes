@@ -113,6 +113,10 @@ $('#UsarPaquete').on('click', function () {
               <div class="col-6">
                   <p>Correo: </p>
                   <span>${row2['CORREO']}</span>
+              </div>
+              <div class="col-6">
+                  <p>Observaciones: </p>
+                  <span>${row2['OBSERVACIONES']}</span>
               </div>`)
 
 
