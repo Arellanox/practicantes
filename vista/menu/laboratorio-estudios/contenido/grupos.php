@@ -13,6 +13,9 @@
         <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-estudio-editar">
           <i class="bi bi-pencil-square"></i> Editar
         </button>
+        <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-rellenar-grupo">
+          <i class="bi bi-box-seam"></i> Rellenar Grupo
+        </button>
       </div>
       <table class="table table-hover display responsive tableContenido" id="TablaGruposServicios" style="width: 100%">
         <thead class="" style="width: 100%">

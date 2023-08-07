@@ -24,7 +24,6 @@
                             <div class="" style="padding: 0px">
                                 <button class="btn btn-sm btn-pantone-7408" type="button" id="UsarPaquete"><i class="bi bi-binoculars"></i> Usar</button>
                                 <button class="btn btn-sm btn-borrar" type="button" id="CambiarPaquete" data-bs-toggle="tooltip" data-bs-placement="top" title="Borrará todo la tabla"><i class="bi bi-eraser"></i> Cambiar</button>
-
                             </div>
                         </div>
                     </div>

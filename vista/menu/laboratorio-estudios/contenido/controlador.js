@@ -32,6 +32,9 @@ function obtenerContenidoGrupos(titulo) {
     $("#body-js").html(html);
     // Datatable
     $.getScript("contenido/js/grupos-tabla.js");
+
+    // Botones
+    $.getScript("contenido/js/grupos-botones.js");
   });
 }
 
