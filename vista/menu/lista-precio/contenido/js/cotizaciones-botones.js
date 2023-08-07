@@ -50,10 +50,6 @@ function lpad(value, length, padChar) {
 }
 
 $('#UsarPaquete').on('click', function () {
-
-
-
-
   if ($('input[type=radio][name=selectPaquete]:checked').val() == 2) {
     if (!$('#select-presupuestos').val()) {
       alertToast('Necesitas seleccionar un presupuesto de este cliente', 'error', '5000')
@@ -67,7 +63,7 @@ $('#UsarPaquete').on('click', function () {
   let id_cotizacion = $('#select-presupuestos').val();
 
   // $('#select-presupuestos').prop('disabled', true);
-  $("#selectDisabled").addClass("disable-element");
+  $(".selectDisabled").addClass("disable-element");
   // $('.formContenidoPaquete').prop('disabled', false);
   $("#formPaqueteBotonesArea").removeClass("disable-element");
   $("#formPaqueteSelectEstudio").removeClass("disable-element");
@@ -75,6 +71,11 @@ $('#UsarPaquete').on('click', function () {
 
   calcularFilasTR()
 
+  $('#input-atencion-cortizaciones').val('');
+  $('#input-correo-cortizaciones').val('');
+  $('#input-domicilio_fiscal').val('')
+  $('#input-fecha-vigencia').val('')
+  $('#input-observaciones-cortizaciones').val('');
 
   switch ($('input[type=radio][name=selectPaquete]:checked').val()) {
     case '2': //Lista de precios para clientes
@@ -86,6 +87,22 @@ $('#UsarPaquete').on('click', function () {
 
         row = data.response.data[0]['DETALLE']
         row2 = data.response.data[0]
+
+
+        var datetimeString = row2['FECHA_VENCIMIENTO']; // Puedes reemplazar esta línea con tu dato datetime
+        // Convertir la cadena de fecha a un objeto Date utilizando Moment.js
+        var fecha = moment(datetimeString);
+        // Formatear a solo fecha
+        var fechaFormateada = fecha.format('YYYY-MM-DD');
+
+        $('#input-atencion-cortizaciones').val(row2['CREADO_POR']);
+        $('#input-correo-cortizaciones').val(row2['CORREO']);
+        $('#input-fecha-vigencia').val(fechaFormateada)
+        $('#input-observaciones-cortizaciones').val(row2['OBSERVACIONES']);
+        $('#input-domicilio_fiscal').val(row2['DOMICILIO_FISCAL'])
+
+
+
         // var datosUsuarioCotizacion = $('#datosUsuarioCotizacion')
         if (row) {
           datosUsuarioCotizacion.html(`<div class="col-6">
@@ -128,7 +145,7 @@ $('#CambiarPaquete').on('click', function () {
   datosUsuarioCotizacion.empty()
 
   $('#seleccion-paquete').prop('disabled', false);
-  $("#selectDisabled").removeClass("disable-element");
+  $(".selectDisabled").removeClass("disable-element");
   $("#formPaqueteBotonesArea").addClass("disable-element");
   $("#formPaqueteSelectEstudio").addClass("disable-element");
   $("#informacionPaquete").addClass("disable-element");
@@ -172,23 +189,6 @@ $('input[type=radio][name=selectChecko]').change(function () {
     });
   }
 });
-//mosotrar datos ya registrados
-$('#btn-info-detaelle-cotizacion').click(function () {
-  if (row2 && row2['CREADO_POR'] && row2['CORREO'] && row2['OBSERVACIONES']) {
-
-    var datetimeString = row2['FECHA_VENCIMIENTO']; // Puedes reemplazar esta línea con tu dato datetime
-    // Convertir la cadena de fecha a un objeto Date utilizando Moment.js
-    var fecha = moment(datetimeString);
-    // Formatear a solo fecha
-    var fechaFormateada = fecha.format('YYYY-MM-DD');
-
-    $('#input-atencion-cortizaciones').val(row2['CREADO_POR']);
-    $('#input-correo-cortizaciones').val(row2['CORREO']);
-    $('#input-fecha-vigencia').val(fechaFormateada)
-    $('#input-observaciones-cortizaciones').val(row2['OBSERVACIONES']);
-  }
-
-});
 
 
 $('#guardar-contenido-paquete').on('click', function () {
@@ -222,11 +222,12 @@ $('#guardar-contenido-paquete').on('click', function () {
         atencion: $('#input-atencion-cortizaciones').val(),
         correo: $('#input-correo-cortizaciones').val(),
         observaciones: $('#input-observaciones-cortizaciones').val(),
+        domicilio_fiscal: $('#input-domicilio_fiscal').val(),
         fecha_vigencia: $('#input-fecha-vigencia').val()
       }
 
       if ($('input[type=radio][name=selectPaquete]:checked').val() == 2) {
-        datajson['id_cotizacion'] = SelectedFolio;
+        datajson['id_cotizacion'] = $('#select-presupuestos').val();
       }
 
       let data = await ajaxAwait(datajson, 'cotizaciones_api')
@@ -299,7 +300,7 @@ $('#btn-vistaPrevia-cotizacion').click(function () {
   var area_nombre = 'cotizacion';
   var api = encodeURIComponent(window.btoa(area_nombre));
   var area = encodeURIComponent(window.btoa(15));
-  var id_cotizacion = encodeURIComponent(window.btoa(SelectedFolio));
+  var id_cotizacion = encodeURIComponent(window.btoa($('#select-presupuestos').val()));
 
 
 
@@ -311,6 +312,7 @@ $('#btn-vistaPrevia-cotizacion').click(function () {
   // Construye la vista y se almacena en la variable url
   var url = `${http}${servidor}/${appname}/visualizar_reporte/?api=${api}&area=${area}&id_cotizacion=${id_cotizacion}`;
   //Se manda la url y se agrega un titulo donde se cargara la vista del pdf
+  console.log(url, $('#select-presupuestos').val());
   getNewView(url, 'Vista prevía cotización')
 
   // Muestra el modal
@@ -321,15 +323,27 @@ $('#btn-vistaPrevia-cotizacion').click(function () {
 $('#btn-enviarCorreo-cotizaciones').click(function (e) {
   alertMensajeConfirm({
     title: '',
-    html: `<h4 style = "font-weight: bold";>¿Esta seguro de enviar la cotización al correo: <span style = "background-color : yellow">${row2['CORREO']}<span>?</h4 style>
-    <br> <small>No podra revertir este cambio</small>`,
+    html: `<h4 style = "font-weight: bold";>¿Desea enviar está cotización al correo: <span style = "background-color : yellow">${row2['CORREO']}<span> ?</h4 style>
+    <br> <small>No podrás cancelar el correo</small>`,
     icon: "info",
   }, function () {
 
-    ajaxAwait({ api: 5, id_cotizacion: SelectedFolio }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
-      alertToast('Se envio la cotizacion!', 'success', '5000')
+    ajaxAwait({ api: 5, id_cotizacion: $('#select-presupuestos').val() }, 'cotizaciones_api', { callbackAfter: true }, false, (data) => {
+      alertToast('¡Cotización Enviada!', 'success', '4000')
       $('#modal-cotizacion').modal('hide');
     })
   }, 1)
 
 })
+
+
+// $(document).ready(function () {
+//   // Inicializa el datepicker
+//   // Data Picker Initialization
+//   // $('.datepicker').datepicker({
+//   //   inline: true
+//   // });
+//   $(function () {
+//     $('#datetimepicker1').datetimepicker();
+//   });
+// });

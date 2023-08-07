@@ -290,8 +290,8 @@ function tablaContenido(descuento = false) {
 
 
 var cliente_id;
-function obtenerContenidoCotizaciones() {
-  obtenerTitulo("Cotizaciones de estudios"); //Aqui mandar el nombre de la area
+async function obtenerContenidoCotizaciones() {
+  await obtenerTitulo("Cotizaciones de estudios"); //Aqui mandar el nombre de la area
   // Funciones js
   $.post("contenido/cotizaciones.php", function (html) {
     $("#body-js").html(html);

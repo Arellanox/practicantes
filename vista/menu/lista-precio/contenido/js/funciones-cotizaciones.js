@@ -31,10 +31,11 @@ async function mantenimientoPaquete() {
 async function contenidoPaquete(select = null) {
   $('#btn-excel-previa').attr('disabled', true)
   $('#btn-vistaPrevia-cotizacion').attr('disabled', true)
+  $('#container-select-presupuesto').fadeOut();
   loader("In");
   await rellenarSelect('#seleccion-paquete', 'clientes_api', 2, 0, 'NOMBRE_SISTEMA.NOMBRE_COMERCIAL');
 
-  $('#container-select-presupuesto').fadeOut();
+
 
   $('#seleccion-paquete').prop('disabled', false);
   $("#selectDisabled").removeClass("disable-element");

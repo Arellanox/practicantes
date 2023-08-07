@@ -2,12 +2,93 @@
     <div class=" preloader" id="preloader"> </div>
 </div>
 
-<div class="row" id="paq">
+<!-- Selects -->
+<div class="row">
+    <div class="col-12">
+        <div class="card m-1 p-2">
+
+            <!-- Cliente y paquetes a seleccionar -->
+            <div class="row mb-1">
+                <div class="col-12 col-md-6 col-lg-5 selectDisabled">
+                    <label for="inputBuscarPaquetes">Cliente:</label>
+                    <select name="seleccionpaquete" id="seleccion-paquete" class="input-form" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione/Busque un cliente">
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-5 selectDisabled" class="listaPresupuestos" id="container-select-presupuesto">
+                    <label for="inputBuscarPaquetes">Cotización:</label>
+                    <select name="seleccionpaquete" id="select-presupuestos" class="input-form" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione/Busque un presupuesto ya guardado"> </select>
+                </div>
+                <div class="col-12 col-md-12 col-lg-2 d-flex justify-content-end align-items-center" style="padding: 0px 27px 0px 0px">
+                    <div class="row">
+                        <div class="" style="padding: 0px">
+                            <button class="btn btn-sm btn-pantone-7408" type="button" id="UsarPaquete"><i class="bi bi-binoculars"></i> Usar</button>
+                            <button class="btn btn-sm btn-borrar" type="button" id="CambiarPaquete" data-bs-toggle="tooltip" data-bs-placement="top" title="Borrará todo la tabla"><i class="bi bi-eraser"></i> Cambiar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parametros del paquete -->
+            <div class="row" id="form-select-paquetes">
+                <div class="col-12 col-lg-6 text-start formContenidoPaquete" id="formPaqueteBotonesArea" style="margin-top:4px;margin-bottom:5px;">
+
+                    <label for="inputBuscarPaquetes">Pulse el area del estudio:</label> <br>
+                    <input type="radio" class="btn-check" name="selectChecko" id="check-img" value="11" autocomplete="off">
+                    <label class="btn btn-outline-success" for="check-img"><i class="bi bi-list"></i>
+                        Ultrasonido</label>
+
+                    <input type="radio" class="btn-check" name="selectChecko" id="check-rx" value="8" autocomplete="off">
+                    <label class="btn btn-outline-success" for="check-rx"><i class="bi bi-list"></i> Rayos X</label>
+
+                    <input type="radio" class="btn-check" name="selectChecko" id="check-lab" value="6" autocomplete="off">
+                    <label class="btn btn-outline-success" for="check-lab"><i class="bi bi-list"></i>
+                        Laboratorio</label>
+
+                    <input type="radio" class="btn-check" name="selectChecko" id="check-otros" value="0" autocomplete="off">
+                    <label class="btn btn-outline-success" for="check-otros"><i class="bi bi-list"></i>Otros
+                        Servicios</label>
+
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="row formContenidoPaquete" id="formPaqueteSelectEstudio">
+                        <div class="col-12">
+                            <label for="inputBuscarAreaEstudio">Lista de estudios por area:</label>
+                            <select name="estudio" id="seleccion-estudio" class="input-form" required>
+                            </select>
+                        </div>
+                        <div class="col-12 d-flex align-items-center d-flex justify-content-end">
+                            <button type="submit" form="formCompletarPaquete" class="btn btn-pantone-7408 m-1" id="agregar-estudio-paquete">
+                                <i class="bi bi-plus"></i> Agregar
+                            </button>
+                            <button type="submit" form="formCompletarPaquete" class="btn btn-borrar m-1" id="submit-cancelarPaquete" style="display:none">
+                                <i class="bi bi-plus"></i> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col-12 col-lg-2">
+        <div class="d-flex justify-content-end align-items-center">
+            <div class="" style="padding: 0px">
+                <button class="btn btn-sm btn-borrar" type="button" id="CambiarPaquete" data-bs-toggle="tooltip" data-bs-placement="top" title="Borrará todo la tabla"><i class="bi bi-eraser"></i> Cambiar</button>
+                <button class="btn btn-sm btn-pantone-7408" type="button" id="UsarPaquete"><i class="bi bi-binoculars"></i> Usar</button>
+
+            </div>
+        </div>
+    </div> -->
+</div>
+
+
+<div class="row m-2 p-2" id="paq">
 
     <div class="card col-12 col-lg-3">
         <div class="row">
             <div class="col-12">
-                <div class="row d-flex justify-content-center">
+                <!-- <div class="row d-flex justify-content-center">
                     <div class="col-12 text-center">
                         <h4 class="pt-3">Seleccione una acción</h4>
                     </div>
@@ -22,64 +103,10 @@
                             Mantenimiento</label>
                     </div>
 
-                </div>
-                <div class="p-3" id="form-select-paquetes">
-                    <div class="" id="selectDisabled">
-                        <label for="inputBuscarPaquetes">Busque un cliente:</label>
-                        <select name="seleccionpaquete" id="seleccion-paquete" class="input-form" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione/Busque un cliente">
-                        </select>
-                        <div class="listaPresupuestos" id="container-select-presupuesto">
-                            <label for="inputBuscarPaquetes">Cotización:</label>
-                            <select name="seleccionpaquete" id="select-presupuestos" class="input-form" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione/Busque un presupuesto ya guardado"> </select>
+                </div> -->
+                <!-- <div class="p-3" id="form-select-paquetes">
 
-                        </div>
-                    </div>
-                    <div class="row d-flex justify-content-center" style="margin-bottom: 15px">
-                        <div class="col-auto">
-                            <button class="btn btn-sm btn-pantone-7408" type="button" id="UsarPaquete"><i class="bi bi-binoculars"></i> Usar</button>
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-sm btn-borrar" type="button" id="CambiarPaquete" data-bs-toggle="tooltip" data-bs-placement="top" title="Borrará todo la tabla"><i class="bi bi-eraser"></i> Cambiar</button>
-                        </div>
-                    </div>
-
-
-
-                    <div class="text-start formContenidoPaquete" id="formPaqueteBotonesArea" style="margin-top:4px;zoom:95%;margin-bottom:5px;">
-
-                        <label for="inputBuscarPaquetes">Pulse el area del estudio:</label> <br>
-                        <input type="radio" class="btn-check" name="selectChecko" id="check-img" value="11" autocomplete="off">
-                        <label class="btn btn-outline-success" for="check-img"><i class="bi bi-list"></i>
-                            Ultrasonido</label>
-
-                        <input type="radio" class="btn-check" name="selectChecko" id="check-rx" value="8" autocomplete="off">
-                        <label class="btn btn-outline-success" for="check-rx"><i class="bi bi-list"></i> Rayos X</label>
-
-                        <input type="radio" class="btn-check" name="selectChecko" id="check-lab" value="6" autocomplete="off">
-                        <label class="btn btn-outline-success" for="check-lab"><i class="bi bi-list"></i>
-                            Laboratorio</label>
-
-                        <input type="radio" class="btn-check" name="selectChecko" id="check-otros" value="0" autocomplete="off">
-                        <label class="btn btn-outline-success" for="check-otros"><i class="bi bi-list"></i>Otros
-                            Servicios</label>
-
-                    </div>
-                    <div class="row formContenidoPaquete" id="formPaqueteSelectEstudio">
-                        <div class="col-12">
-                            <label for="inputBuscarAreaEstudio">Lista de estudios por area:</label>
-                            <select name="estudio" id="seleccion-estudio" class="input-form" required>
-                            </select>
-                        </div>
-                        <div class="col-12 d-flex align-items-center d-flex justify-content-center">
-                            <button type="submit" form="formCompletarPaquete" class="btn btn-pantone-7408 m-1" id="agregar-estudio-paquete">
-                                <i class="bi bi-plus"></i> Agregar
-                            </button>
-                            <button type="submit" form="formCompletarPaquete" class="btn btn-borrar m-1" id="submit-cancelarPaquete" style="display:none">
-                                <i class="bi bi-plus"></i> Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-12 pt-2" id="informacionPaquete">
                 <div class="row">
@@ -157,26 +184,7 @@
 
 
 
-        <div id="tabla-Paquetes">
-            <table class="table table-hover display responsive " id="TablaListaPaquetes" style="width: 100%">
-                <thead style="width: 100%">
-                    <tr>
-                        <th class="all">Descripción</th>
-                        <th class="min-tablet">CVE</th>
-                        <th class="min-tablet">Cantidad</th>
-                        <th class="min-tablet">Costo</th>
-                        <th class="min-tablet">Costo Total</th>
-                        <th class="min-tablet">Precio Venta</th>
-                        <th class="min-tablet">Descuento</th>
-                        <th class="min-tablet">Subtotal</th>
-                        <th class="all" style="display:none">ID</th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
 
@@ -196,11 +204,11 @@
 <div class="modal fade" id="modal-cotizacion" tabindex="-1" role="dialog" aria-labelledby="modal-cotizacion-label" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header header-modal">
+            <!-- <div class="modal-header header-modal">
                 <h5 class="modal-title" id="title-paciente_rechazar">Vista previa cotizacion</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+            </div> -->
+            <div class="modal-body" style="padding:0px">
                 <div id="adobe-dc-view" style="height:100%"></div>
             </div>
             <div class="modal-footer">
