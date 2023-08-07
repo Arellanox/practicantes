@@ -139,6 +139,22 @@
             <div class="card col-6 p-2">
                 <div class="mx-2 mb-2">
                     <div class="row" id="datosUsuarioCotizacion">
+                        <div class="col-12 text-center">
+                            <h5>Datos del cliente</h5>
+                        </div>
+                        <div class="col-6">
+                            <p>Nombre: </p>
+                            <span id="nombreCotizacionCliente"></span>
+
+                        </div>
+                        <div class="col-6">
+                            <p>Correo: </p>
+                            <span id="correoCotizacionCliente"></span>
+                        </div>
+                        <div class="col-6">
+                            <p>Observaciones: </p>
+                            <span id="observacionesCotizacionCliente"></span>
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="row d-flex justify-content-center">

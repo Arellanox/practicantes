@@ -67,7 +67,6 @@ $('#UsarPaquete').on('click', function () {
   // $('.formContenidoPaquete').prop('disabled', false);
   $("#formPaqueteBotonesArea").removeClass("disable-element");
   $("#formPaqueteSelectEstudio").removeClass("disable-element");
-  $('#card_paq').removeClass("disable-element");
   $("#informacionPaquete").removeClass("disable-element");
 
   calcularFilasTR()
@@ -106,23 +105,10 @@ $('#UsarPaquete').on('click', function () {
 
         // var datosUsuarioCotizacion = $('#datosUsuarioCotizacion')
         if (row) {
-          datosUsuarioCotizacion.html(`
-            <div class="col-12 text-center">
-                    <h5>Datos del cliente</h5>
-                </div>
-          <div class="col-6">
-                  <p>Nombre: </p>
-                  <span>${row2['CREADO_POR']}</span>
-
-              </div>
-              <div class="col-6">
-                  <p>Correo: </p>
-                  <span>${row2['CORREO']}</span>
-              </div>
-              <div class="col-6">
-                  <p>Observaciones: </p>
-                  <span>${row2['OBSERVACIONES']}</span>
-              </div>`)
+          // console.log(row2)
+          $('#nombreCotizacionCliente').html(row2['CREADO_POR'])
+          $('#correoCotizacionCliente').html(row2['CORREO'])
+          $('#observacionesCotizacionCliente').html(row2['OBSERVACIONES'])
 
 
           $('#descuento-paquete').val(row2['PORCENTAJE_DESCUENTO'])
@@ -151,7 +137,10 @@ $('#UsarPaquete').on('click', function () {
 //
 $('#CambiarPaquete').on('click', function () {
   //borrar el div para que se vuelva a abrir
-  datosUsuarioCotizacion.empty()
+  // datosUsuarioCotizacion.empty()
+  $('#nombreCotizacionCliente').html('')
+  $('#correoCotizacionCliente').html('')
+  $('#observacionesCotizacionCliente').html('')
 
   $('#seleccion-paquete').prop('disabled', false);
   $(".selectDisabled").removeClass("disable-element");
