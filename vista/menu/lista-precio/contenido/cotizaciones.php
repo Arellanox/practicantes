@@ -96,18 +96,22 @@
             </div>
         </div> -->
 
+        <!-- Botones de los paquetes -->
         <div class="col-12 d-flex justify-content-center aling-item-center">
             <button type="button" class="btn  btn-sm btn-pantone-7408 me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalInfoDetalleCotizacion" id="btn-info-detaelle-cotizacion">
-                <i class="bi bi-save2"></i> Guardar Cotización
+                <i class="bi bi-save2"></i>
+                <span class="d-none d-xl-inline d-sm-inline"> Guardar Cotización</span>
             </button>
             <span data-bs-toggle="tooltip" data-bs-placement="top" title="Debes tener un paquete guardado previamente, utiliza el boton de 'Mantenimiento'">
                 <button type="button" class="btn btn-success me-2" style="margin-bottom:4px" id="btn-excel-previa" disabled data-bs-toggle="modal" data-bs-target="#modalVistaPaquete">
-                    <i class="bi bi-filetype-exe"></i> Excel (Vista previa)
+                    <i class="bi bi-filetype-exe"></i>
+                    <span class="d-none d-xl-inline d-sm-inline"> Excel (Vista previa)</span>
                 </button>
             </span>
             <span data-bs-toggle="tooltip" data-bs-placement="top" title="Debes tener un paquete guardado previamente, utiliza el boton de 'Mantenimiento'">
                 <button type="button" class="btn btn-borrar me-2" style="margin-bottom:4px" id="btn-vistaPrevia-cotizacion">
-                    <i class="bi bi-file-earmark-pdf"></i> Cotización (Vista previa)
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    <span class="d-none d-xl-inline d-sm-inline">Cotización (Vista previa)</span>
                 </button>
             </span>
         </div>
@@ -139,6 +143,7 @@
     <!-- Calculo de paquete -->
     <div class=" col-12 col-xl-12 col-md-12 ">
         <div class="row gap-3">
+            <!-- Datos del cliente -->
             <div class="card shadow-lg col-12 col-sm col-xl  p-2 d-none d-xl-flex d-sm-flex">
                 <div class="mx-2 mb-2">
                     <div class="row" id="datosUsuarioCotizacion">
@@ -184,6 +189,8 @@
 
                 </div> -->
             </div>
+
+            <!-- Calculo del paquete -->
             <div class="card shadow-lg col-12 col-sm col-xl  pt-2" id="informacionPaquete">
                 <div class="row">
                     <div class="col-12 text-center">
