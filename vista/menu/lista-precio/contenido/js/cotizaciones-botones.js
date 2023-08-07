@@ -66,6 +66,7 @@ $('#UsarPaquete').on('click', function () {
   $(".selectDisabled").addClass("disable-element");
   // $('.formContenidoPaquete').prop('disabled', false);
   $("#formPaqueteBotonesArea").removeClass("disable-element");
+  $('#card_paq').removeClass("disable-element");
   $("#formPaqueteSelectEstudio").removeClass("disable-element");
   $("#informacionPaquete").removeClass("disable-element");
 
