@@ -145,16 +145,20 @@
                         <div class="col-12 text-center">
                             <h5>Datos del cliente</h5>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <p>Nombre: </p>
                             <span id="nombreCotizacionCliente"></span>
 
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <p>Correo: </p>
                             <span id="correoCotizacionCliente"></span>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
+                            <p>Direccion fiscal: </p>
+                            <span id="fiscalCotizacionCliente"></span>
+                        </div>
+                        <div class="col-12">
                             <p>Observaciones: </p>
                             <span id="observacionesCotizacionCliente"></span>
                         </div>
