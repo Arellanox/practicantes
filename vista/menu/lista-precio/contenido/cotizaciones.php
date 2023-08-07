@@ -85,9 +85,62 @@
 
 <div class="row m-2 p-2" id="paq">
 
-    <div class="card col-12 col-lg-3">
+
+    <div class="card col-12 col-xl-12 col-md-12  pt-3 disable-element" id="card_paq" style="margin-bottom:5px;">
+        <!-- 
+        <div class="mx-2 mb-2">
+            <div class="row" id="datosUsuarioCotizacion">
+            </div>
+        </div> -->
+
+        <div class="col-12 d-flex justify-content-center aling-item-center">
+            <button type="button" class="btn  btn-sm btn-pantone-7408 me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalInfoDetalleCotizacion" id="btn-info-detaelle-cotizacion">
+                <i class="bi bi-save2"></i> Guardar Cotización
+            </button>
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Debes tener un paquete guardado previamente, utiliza el boton de 'Mantenimiento'">
+                <button type="button" class="btn btn-success me-2" style="margin-bottom:4px" id="btn-excel-previa" disabled data-bs-toggle="modal" data-bs-target="#modalVistaPaquete">
+                    <i class="bi bi-filetype-exe"></i> Excel (Vista previa)
+                </button>
+            </span>
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Debes tener un paquete guardado previamente, utiliza el boton de 'Mantenimiento'">
+                <button type="button" class="btn btn-borrar me-2" style="margin-bottom:4px" id="btn-vistaPrevia-cotizacion">
+                    <i class="bi bi-file-earmark-pdf"></i> Cotización (Vista previa)
+                </button>
+            </span>
+        </div>
+
+        <!-- Tabla de paquetes -->
+        <div id="tabla-Paquetes">
+            <table class="table table-hover display responsive " id="TablaListaPaquetes" style="width: 100%">
+                <thead style="width: 100%">
+                    <tr>
+                        <th class="all">Descripción</th>
+                        <th class="min-tablet">CVE</th>
+                        <th class="min-tablet">Cantidad</th>
+                        <th class="min-tablet">Costo</th>
+                        <th class="min-tablet">Costo Total</th>
+                        <th class="min-tablet">Precio Venta</th>
+                        <th class="min-tablet">Descuento</th>
+                        <th class="min-tablet">Subtotal</th>
+                        <th class="all" style="display:none">ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Calculo de paquete -->
+    <div class=" col-12 col-xl-12 col-md-12 ">
         <div class="row">
-            <div class="col-12">
+            <div class="card col-6 p-2">
+                <div class="mx-2 mb-2">
+                    <div class="row" id="datosUsuarioCotizacion">
+                    </div>
+                </div>
                 <!-- <div class="row d-flex justify-content-center">
                     <div class="col-12 text-center">
                         <h4 class="pt-3">Seleccione una acción</h4>
@@ -108,7 +161,7 @@
 
                 </div> -->
             </div>
-            <div class="col-12 pt-2" id="informacionPaquete">
+            <div class="card col-6 pt-2" id="informacionPaquete">
                 <div class="row">
                     <div class="col-12 text-center">
                         <h5>Calculo del paquete</h5>
@@ -157,53 +210,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="card col-12 col-lg-9 pt-3" style="margin-bottom:5px;">
-
-        <div class="mx-2 mb-2">
-            <div class="row" id="datosUsuarioCotizacion">
-            </div>
-        </div>
-
-        <div class="col-12 d-flex align-items-center d-flex justify-content-center">
-            <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalInfoDetalleCotizacion" id="btn-info-detaelle-cotizacion">
-                <i class="bi bi-save2"></i> Guardar Cotización
-            </button>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Debes tener un paquete guardado previamente, utiliza el boton de 'Mantenimiento'">
-                <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-excel-previa" disabled data-bs-toggle="modal" data-bs-target="#modalVistaPaquete">
-                    <i class="bi bi-filetype-exe"></i> Excel (Vista previa)
-                </button>
-            </span>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Debes tener un paquete guardado previamente, utiliza el boton de 'Mantenimiento'">
-                <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-vistaPrevia-cotizacion">
-                    <i class="bi bi-file-earmark-pdf"></i> Cotización (Vista previa)
-                </button>
-            </span>
-        </div>
-
-        <div id="tabla-Paquetes">
-            <table class="table table-hover display responsive " id="TablaListaPaquetes" style="width: 100%">
-                <thead style="width: 100%">
-                    <tr>
-                        <th class="all">Descripción</th>
-                        <th class="min-tablet">CVE</th>
-                        <th class="min-tablet">Cantidad</th>
-                        <th class="min-tablet">Costo</th>
-                        <th class="min-tablet">Costo Total</th>
-                        <th class="min-tablet">Precio Venta</th>
-                        <th class="min-tablet">Descuento</th>
-                        <th class="min-tablet">Subtotal</th>
-                        <th class="all" style="display:none">ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-
-
     </div>
 </div>
 

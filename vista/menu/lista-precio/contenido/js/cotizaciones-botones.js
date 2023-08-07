@@ -67,6 +67,7 @@ $('#UsarPaquete').on('click', function () {
   // $('.formContenidoPaquete').prop('disabled', false);
   $("#formPaqueteBotonesArea").removeClass("disable-element");
   $("#formPaqueteSelectEstudio").removeClass("disable-element");
+  $('#card_paq').removeClass("disable-element");
   $("#informacionPaquete").removeClass("disable-element");
 
   calcularFilasTR()
@@ -105,7 +106,11 @@ $('#UsarPaquete').on('click', function () {
 
         // var datosUsuarioCotizacion = $('#datosUsuarioCotizacion')
         if (row) {
-          datosUsuarioCotizacion.html(`<div class="col-6">
+          datosUsuarioCotizacion.html(`
+            <div class="col-12 text-center">
+                    <h5>Datos del cliente</h5>
+                </div>
+          <div class="col-6">
                   <p>Nombre: </p>
                   <span>${row2['CREADO_POR']}</span>
 
