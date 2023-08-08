@@ -1,5 +1,5 @@
 
-
+var estatus = 0;
 let dataJson = {
     api: 16,
     id_grupo: 1,
@@ -14,7 +14,7 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
     scrollY: '60vh', //347px  scrollCollapse: true,
     scrollCollapse: true,
     // lengthMenu: [[15, 20, 25, 30, 35, 40, 45, 50, -1], [15, 20, 25, 30, 35, 40, 45, 50, "All"]],
-    lengthChange: false,
+    lengthMenu: false,
     ajax: {
         dataType: 'json',
         data: function (d) {
@@ -22,7 +22,13 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
         },
         method: 'POST',
         url: `${http}${servidor}/${appname}/api/servicios_api.php`,
-        complete: function () { },
+
+        before: function () {
+            estatus = 0
+        },
+        complete: function () {
+            estatus = 1
+        },
         dataSrc: function (json) {
             let counter = 1;
             json.response.data.forEach(item => {
@@ -46,34 +52,110 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
     ],
     columnDefs: [
         { width: "10%", targets: 0, title: 'Orden' },
-        { width: "50%", targets: 1, title: 'Servicio' },
-        { width: "30", targets: 2, title: '<i class="bi bi-trash"></i>' },
+        { width: "80%", targets: 1, title: 'Servicio' },
+        { width: "10%", targets: 2, title: '<i class="bi bi-trash"></i>' },
     ],
 
 });
 
-
 tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
-    let orderedData = tablaLLenarGrupo.rows({ order: 'current' }).data();
-    let orderData = [];
-    orderedData.each(function (value, index) {
-        value.ORDEN = index + 1;
-        orderData.push({
-            ID_SERVICIO: value.ID_SERVICIO,
-            ORDEN: value.ORDEN
-        });
-    });
 
-    // Aquí puedes enviar "orderData" al servidor para actualizar los órdenes.
+    tablaLLenarGrupo.rows().nodes().to$().removeClass('selected'); // Elimina la clase de todas las filas1
+    for (let i = 0; i < diff.length; i++) {
+        let newData = tablaLLenarGrupo.row(diff[i].node).data();
+        newData.ORDEN = diff[i].newPosition + 1; // +1 para que comience desde 1
+        tablaLLenarGrupo.row(diff[i].node).data(newData);
+
+        // Agrega la clase solo a la fila en movimiento
+        $(diff[i].node).addClass('selected');
+    }
+
 });
+
+// tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
+//     let orderedData = tablaLLenarGrupo.rows({ order: 'current' }).data();
+//     let orderData = [];
+//     orderedData.each(function (value, index) {
+//         value.ORDEN = index + 1;
+//         orderData.push({
+//             ID_SERVICIO: value.ID_SERVICIO,
+//             ORDEN: value.ORDEN
+//         });
+//     });
+
+//     console.log(orderedData)
+//     // Aquí puedes enviar "orderData" al servidor para actualizar los órdenes.
+// });
 
 
 
 function firstDataModal() {
-    dataJson['id_grupo'] = array_selected['ID_SERVICIO']
-    tablaLLenarGrupo.ajax.reload();
+    console.log(estatus)
+    if (estatus == 0) {
+
+        setTimeout(function () {
+            firstDataModal()
+        }, 500)
+    } else if (estatus == 1) {
+        // swal.close()V
+        dataJson['id_grupo'] = array_selected['ID_SERVICIO']
+        tablaLLenarGrupo.clear().draw()
+        tablaLLenarGrupo.ajax.reload();
 
 
-    $('#modalRellenarGrupos').modal('show');
+        $('#modalRellenarGrupos').modal('show');
+
+        setTimeout(() => {
+            $.fn.dataTable
+                .tables({
+                    visible: true,
+                    api: true
+                })
+                .columns.adjust();
+        }, 250);
+    }
 }
+
+$(document).on('click', '#btn-guardar-grupo', function () {
+
+    alertMensajeConfirm({
+        icon: 'info',
+        title: '¿Estas seguro de realizar esta acción?',
+        text: 'No podra revertir esta acción',
+        showCancelButton: true
+    }, function () {
+        // Llamar a esta función para obtener los datos tratados
+        let arrayTratado = getTratadosDataFromTable();
+        // console.log(arrayTratado);
+
+        console.log(array_selected['ID_SERVICIO'])
+        ajaxAwait({
+            api: 4,
+            id_grupo: array_selected['ID_SERVICIO'],
+            servicios: arrayTratado
+        }, 'laboratorio_servicios_api', { callbackAfter: true }, false, function (data) {
+
+        })
+    })
+
+
+})
+
+// Recupera los datos tratados de la tabla
+function getTratadosDataFromTable() {
+    let tratadosData = [];
+
+    tablaLLenarGrupo.rows().every(function () {
+        let data = this.data();
+        tratadosData.push({
+            ID_SERVICIO: data.ID_SERVICIO,
+            ORDEN: data.ORDEN,
+            DESCRIPCION: data.DESCRIPCION
+            // Agrega más propiedades si es necesario
+        });
+    });
+
+    return tratadosData;
+}
+
 

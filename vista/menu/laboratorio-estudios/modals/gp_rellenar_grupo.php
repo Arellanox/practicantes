@@ -30,3 +30,15 @@
         </div>
     </div>
 </div>
+
+
+<style>
+    /* Estilo CSS para resaltar la fila durante el reordenamiento */
+    .last-selected-row {
+        background-color: #004e59 !important;
+        color: red !important;
+        /* Cambia el color a tu elección */
+        transition: background-color 0.3s ease;
+        /* Agrega una transición suave */
+    }
+</style>

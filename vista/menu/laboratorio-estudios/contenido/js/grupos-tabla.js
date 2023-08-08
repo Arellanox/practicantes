@@ -45,6 +45,7 @@ var tablaGrupos = $('#TablaGruposServicios').DataTable({
       action: function () {
         if (array_selected != null) {
           firstDataModal();
+          alertToast('Espere un momento..', 'info', 2500)
         } else {
           alertSelectTable();
         }
