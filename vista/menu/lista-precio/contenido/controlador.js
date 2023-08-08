@@ -140,7 +140,7 @@ function tablaContenido(descuento = false) {
     lengthChange: false,
     // info: false,
     paging: true,
-    scrollY: "63vh",
+    scrollY: "50vh",
     scrollCollapse: true,
     columnDefs: [
       { className: 'all', width: "213.266px", title: "Descripción", targets: 0 },
