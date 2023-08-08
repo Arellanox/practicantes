@@ -26,5 +26,33 @@ var tablaGrupos = $('#TablaGruposServicios').DataTable({
     { "width": "3px", "targets": [0, 4] },
   ],
 
+  dom: 'Blfrtip',
+  buttons: [
+    {
+      text: '<i class="bi bi-pencil-square"></i> Editar',
+      className: 'btn btn-pantone-7408',
+      action: function () {
+        if (array_selected != null) {
+          getDataFirst(1, array_selected['ID_SERVICIO'])
+        } else {
+          alertSelectTable();
+        }
+      }
+    },
+    {
+      text: '<i class="bi bi-box-seam"></i> Rellenar Grupo',
+      className: 'btn btn-pantone-7408',
+      action: function () {
+        if (array_selected != null) {
+          firstDataModal();
+        } else {
+          alertSelectTable();
+        }
+      }
+    },
+  ],
+
 })
+
+
 selectDatatable("TablaGruposServicios", tablaGrupos, 1, 'servicios_api', 'estudio')

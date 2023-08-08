@@ -10,15 +10,6 @@
 // })
 // })
 
-$(document).on('click', '#btn-estudio-editar', function (event) {
-  if (array_selected != null) {
-    getDataFirst(1, array_selected['ID_SERVICIO'])
-  } else {
-    alertSelectTable();
-  }
-})
-
-
 $("#btn-estudio-editar-info").click(function () {
   // getatrribute
   // if (infoServicioEdit == false) {
