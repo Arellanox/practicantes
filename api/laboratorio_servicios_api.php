@@ -44,6 +44,11 @@ $seleccionable = $_POST['selecionable'];
 $es_para = $_POST['para'];
 $costos = $_POST['costos'];
 
+#datos para rellenar un grupo
+$id_grupo = $_POST['id_grupo'];
+$usuario =  $_SESSION['id'];
+$servicios = $_POST['servicios'];
+
 $parametros = array(
     $descripcion,
     $abreviatura,
@@ -174,6 +179,23 @@ switch ($api) {
         $grupo_id = $_POST['grupo_id'];
 
         $response = $master->getByProcedure('sp_servicios_por_grupo_b', [$grupo_id, $servicio_id]); #<-- Falta obtener grupos por servicio 
+        break;
+    case 4:
+        #Agregar varios estudios a un grupo
+        $grupos_data = array(
+            $id_grupo,
+            $usuario,
+            json_encode($servicios)
+        );
+
+
+        $response = $master->insertByProcedure('sp_detalle_grupo_g_2', $grupos_data);
+
+        // echo '<pre>';
+        // print_r($grupos_data);
+        // echo '</pre>';
+        // exit;
+
         break;
     default:
 

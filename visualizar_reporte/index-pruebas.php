@@ -22,7 +22,6 @@ $master = new Master();
 $api = mb_convert_encoding(base64_decode(urldecode($_GET['api'])), 'UTF-8');
 $turno_id = mb_convert_encoding(base64_decode(urldecode($_GET['turno'])), 'UTF-8');
 $area_id = mb_convert_encoding(base64_decode(urldecode($_GET['area'])), 'UTF-8');
-$id_cotizacion = mb_convert_encoding(base64_decode(urldecode($_GET['id_cotizacion'])), 'UTF-8');
 $usuario_id = $_SESSION['id'];
 
 // mb_convert_encoding($rePa['paterno'],'UTF-8'));
@@ -32,197 +31,68 @@ $usuario_id = $_SESSION['id'];
 
 // decomentar las siguientes 3 lineas para hacer las pruebas
 
-// $api = 'cotizacion';
-// $turno_id = 3;
-// $area_id = 13;
-// $area_id = 12;
-// $id_cotizacion = 18;
 
 
 
 //$cliente_id = 19;
 // $id_cotizacion = 7;
 
+$preview = 0; // <- debe estar activo, y la firma de quien interpreta no debe aparecer
+
+
 switch ($api) {
     case 'imagenologia':
         # previsualizar el reporte [el reporte que previsualizan debe ir sin pie de pagina]
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'ultrasonido',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, $area_id, 'ultrasonido', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'oftalmo':
         $r = $master->reportador($master, $turno_id, 3, 'oftalmologia', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'laboratorio':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            6,
-            'resultados',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, 6, 'resultados', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'biomolecular':
         $r = $master->reportador($master, $turno_id, 12, 'biomolecular', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'etiquetas':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            0,
-            "etiquetas",
-            "mostrar",
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, 0, "etiquetas", "mostrar", $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'consultorio':
         $r = $master->reportador($master, $turno_id, 1, 'consultorio', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'electro':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'electro',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, $area_id, 'electro', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'soma':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'reporte_masometria',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, $area_id, 'reporte_masometria', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'cotizacion':
-        $r = $master->reportador($master, $turno_id,  $area_id, 'cotizaciones', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        $r = $master->reportador($master, $turno_id, 13, 'cotizaciones', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        // $r = $master->reportador($master, $turno_id,  $area_id, 'cotizaciones', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'ticket':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'ticket',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, $area_id, 'ticket', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'fast_checkup':
-        $r = $master->reportador($master, $turno_id,  $area_id, 'fast_checkup', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        $r = $master->reportador($master, $turno_id, 17, 'fast_checkup', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
-
-        // case 'temperaturas':
-        //     $r = $master->reportador($master, $turno_id,  $area_id, 'temperaturas', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
-        //     break;
-
-    case 'consulta_medica':
-        $r = $master->reportador($master, $turno_id,  $area_id, 'consulta_medica', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+    case 'corte':
+        $r = $master->reportador($master, $turno_id, $area_id, 'corte', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
-
-    case 'espirometria':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'espirometria',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
-
-        break;
-    case 'temperatura':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'temperatura',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+    case 'espiro':
+        $r = $master->reportador($master, $turno_id, 5, 'espirometria', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'consultorio2':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'consultorio2',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, $area_id, 'consultorio2', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'receta':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'receta',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, $area_id, 'receta', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'solicitud_estudios':
-        $r = $master->reportador(
-            $master,
-            $turno_id,
-            $area_id,
-            'solicitud_estudios',
-            'mostrar',
-            $preview,
-            0,
-            0,
-            $id_cliente,
-            $id_cotizacion
-        );
+        $r = $master->reportador($master, $turno_id, $area_id, 'solicitud_estudios', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        break;
+    case 'temperatura':
+        $r = $master->reportador($master, $turno_id, $area_id, 'temperatura', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     default:
         echo '<script language="javascript">alert("¡URL invalida!"); window.close()</script>';

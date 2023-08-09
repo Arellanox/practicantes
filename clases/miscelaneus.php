@@ -511,7 +511,8 @@ class Miscelaneus
         
         switch ($area_id){
 
-            case 13:
+            # para reportes que no usan $turno_id para su creacion.
+            case 15:
                 $ruta_saved = "reportes/modulo/$carpeta_guardado/$fecha_resultado/";
 
                 # Seteamos la ruta del reporte para poder recuperarla despues con el atributo $ruta_reporte.

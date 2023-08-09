@@ -6,7 +6,7 @@ date_default_timezone_set('America/Mexico_City');
 $menu = $_POST['menu']; ?>
 
 
-<?php if ($menu == "Menú principal") : ?>
+<?php if ($menu == "Menú principal" || $menu == "Reporte de Excel") : ?>
   <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalFiltrarTabla">
     <i class="bi bi-archive"></i> Filtro
   </button>
@@ -82,12 +82,12 @@ $menu = $_POST['menu']; ?>
   </button>
 
   <!-- Menú desplegable de cambio de idioma -->
-  <div class="language-dropdown">
+  <!-- <div class="language-dropdown">
     <select onchange="changeLanguage(this.value)">
       <option value="es">Español</option>
       <option value="en">English</option>
     </select>
-  </div>
+  </div> -->
 
 <?php endif; ?>
 
@@ -222,7 +222,7 @@ $menu = $_POST['menu']; ?>
   </div>
 <?php endif; ?>
 
-<?php if ($menu == 'Agenda de pacientes | Ultrasonido') : ?>
+<?php if (strpos($menu, 'Agenda de pacientes') !== false) : ?>
   <div class="row">
     <div class="col-auto d-flex align-items-center">
       <label for="fechaSelected" class="form-label">Día</label>
@@ -239,41 +239,52 @@ $menu = $_POST['menu']; ?>
   </div>
 <?php endif; ?>
 
-<?php if ($menu == "Registros de Temperatura") : ?>
-  <!-- <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="capturarTemperatura">
-    <i class="bi bi-plus-circle-fill"></i> Capturar
-  </button> -->
-
-  <?php if (TRUE) : ?>
-    <div class="d-flex">
-      <button type="button" data-bs-toggle='tooltip' data-bs-placement='top' title="Liberar un rango de días  para la captura de temperaturas de los equipos" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
-        <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
-      </button>
-
-      <div class="dropdown">
-        <button class="btn btn-hover me-2 dropdown-toggle" type="button" style="margin-bottom:4px;" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-gear-fill"></i> Configuración
-        </button>
-        <ul class="dropdown-menu">
-          <li>
-            <button class="btn dropdown-item" id="TermometrosbtnTemperaturas" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuración de los termómetros asignados a los equipos">Termómetros</button>
-          </li>
-          <li>
-            <button class="btn dropdown-item" id="ConfiguracionTemperaturasbtn" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuración de los turnos y activar los días domingos">Más Configuración</button>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-
-  <?php endif; ?>
-
-
-<?php endif; ?>
-
 
 <?php if ($menu == 'Pacientes (Crédito)') : ?>
   <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" data-bs-toggle="modal" data-bs-target="#modalFiltroPacientesFacturacion">
     <i class="bi bi-archive"></i> Generar Grupo
   </button>
+<?php endif; ?>
+
+
+<?php if ($menu == "Registros de Temperatura" && $_SESSION['permisos']['RegTemp'] == 1) : ?>
+  <!-- <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="capturarTemperatura">
+    <i class="bi bi-plus-circle-fill"></i> Capturar
+  </button> -->
+
+  <div class="d-flex">
+    <button type="button" data-bs-toggle='tooltip' data-bs-placement='left' title="Liberar un rango de días  para la captura de temperaturas de los equipos" class="btn btn-hover me-2" style="margin-bottom:4px; display:none" id="LibererDiaTemperatura">
+      <i class="bi bi-arrow-down-circle-fill"></i> Liberar Dia
+    </button>
+
+    <div class="dropdown">
+      <button class="btn btn-hover me-2 dropdown-toggle" type="button" style="margin-bottom:4px;" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-gear-fill"></i> Configuración
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <button class="btn dropdown-item" id="TermometrosbtnTemperaturas" data-bs-toggle='tooltip' data-bs-placement='top' title="Configuración de los termómetros asignados a los equipos">Termómetros</button>
+        </li>
+        <li>
+          <button class="btn dropdown-item" id="ConfiguracionTemperaturasbtn" data-bs-toggle='tooltip' data-bs-placement='right' title="Configuración de los turnos y activar los días domingos">Más Configuración</button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+
+<?php endif; ?>
+
+<?php if ($menu == 'Cotizaciones de estudios') : ?>
+  <div class="">
+    <input type="radio" class="btn-check" name="selectPaquete" id="check-agregar" value="1" checked autocomplete="off">
+    <label class="btn btn-outline-success" for="check-agregar"><i class="bi bi-list"></i>
+      Nuevo</label>
+
+    <input type="radio" class="btn-check" name="selectPaquete" id="check-editar" value="2" autocomplete="off">
+    <label class="btn btn-outline-success" for="check-editar"><i class="bi bi-list"></i>
+      Mantenimiento</label>
+  </div>
+
 <?php endif; ?>

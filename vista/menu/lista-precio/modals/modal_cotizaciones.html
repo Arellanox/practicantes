@@ -17,8 +17,64 @@
                         <input type="text" name="correo" id="input-correo-cortizaciones" value=""
                             class="form-control input-form">
                     </div>
+                    <div class="col-12">
+                        <label for="domicilio_fiscal" class="form-label">Domicilio Fiscal</label>
+                        <input type="text" name="domicilio_fiscal" id="input-domicilio_fiscal" value=""
+                            class="form-control input-form">
+                    </div>
+
+                    <!-- <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="fecha-vigencia" class="form-label">Fecha</label>
+                                <div class="input-group">
+                                    <input type="text" name="fecha-vigencia" id="input-fecha-vigencia" value=""
+                                        class="form-control">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="bi bi-calendar2-week"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-12">
+                        <label for="fecha-vigencia" class="form-label">Fecha de vencimiento</label>
+                        <input type="date" name="fecha-vigencia" id="input-fecha-vigencia" value=""
+                            class="form-control input-form">
+                    </div>
+
+                    <!-- <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="fecha-vigencia" id="input-fecha-vigencia"
+                            value="">
+                        <span class="input-group-text" id="datepicker"><i class="bi bi-calendar2-week"></i></span>
+                    </div> -->
+
+
+                    <!-- <div class="container">
+                        <div class="col-sm-6" style="height:130px;">
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker9'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar">
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker9').datepicker({
+                                    viewMode: 'years'
+                                });
+                            });
+                        </script>
+                    </div> -->
+
+
                     <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                        <label for="observaciones" class="form-label">Observaciones</label>
+                        <label for="observaciones" class="form-label">Comentarios</label>
                         <textarea name="observaciones" id="input-observaciones-cortizaciones" class="input-form"
                             rows="4" cols="40" placeholder="" required></textarea>
                     </div>
@@ -42,6 +98,5 @@
     const myModal = new bootstrap.Modal('#modalInfoDetalleCotizacion', {
         focus: false
     })
-
 
 </script>

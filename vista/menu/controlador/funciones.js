@@ -360,17 +360,26 @@ function checkNumber(x, transform = 0) {
 }
 
 
-function ifnull(data, siNull = '') {
-  if (data === 'NaN') return siNull;
-  if (typeof data === 'undefined') return siNull;
-  if (data) {
-    data = `${data}`.replace(/["]+/g, '&quot');
-    data = `${data}`.replace(/["]+/g, '&#44;');
-
-
-    return data;
+function ifnull(data, siNull = '', values = ['option1', 'option2']) {
+  // Caso de Objeto
+  if (typeof data === 'object' && data !== null) {
+    for (const key of values) {
+      if (data.hasOwnProperty(key)) {
+        return data[key]; // Devuelve el valor de la primera clave que exista
+      }
+    }
+    return siNull; // Devuelve siNull si no se encuentra ninguna clave
   }
-  return siNull;
+  // Otros Casos
+  else {
+    if (data === 'NaN' || typeof data === 'undefined' || data === '') return siNull;
+    if (data) {
+      data = `${data}`.replace(/["]+/g, '&quot;');
+      return data;
+    }
+    return siNull;
+  }
+
 }
 
 function htmlCaracter(data) {
@@ -1655,10 +1664,11 @@ function inputBusquedaTable(
   });
 
 
-
-  $('select[name="' + tablename + '_length"]').removeClass('form-select form-select-sm');
-  $('select[name="' + tablename + '_length"]').addClass('select-form input-form');
-  $('select[name="' + tablename + '_length"]').css('margin-bottom', '0px')
+  let select = $('select[name="' + tablename + '_length"]');
+  select.removeClass('form-select form-select-sm');
+  select.addClass('select-form input-form');
+  select.css('margin-bottom', '0px')
+  select.css('width', 'max-content')
 
 }
 //
@@ -1877,7 +1887,7 @@ function eventClassClick(event, tr, config, data) {
       const element = rowClick[key];
 
       if ($(clickedElement).hasClass(`${element.class}`)) {
-        element.callback(data, clickedElement)
+        element.callback(data, clickedElement, tr)
         return [true, element.selected];
       }
 
@@ -1958,7 +1968,6 @@ function selectTable(tablename, datatable,
     let tr = this
     let row = datatable.row(tr);
     let dataRow = row.data();
-    array_selected = row.data();
 
     // let td = $(event.target).is('td')
 
@@ -1996,6 +2005,9 @@ function selectTable(tablename, datatable,
     if (config.OnlyData) {
       return callbackClick(1, dataRow, function (data) { return 'No action' }, tr, row);
     }
+
+
+    array_selected = row.data();
 
     selectTableClickCount++;
     if ($(tr).hasClass('selected')) {

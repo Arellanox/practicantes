@@ -22,9 +22,6 @@ $master = new Master();
 $api = mb_convert_encoding(base64_decode(urldecode($_GET['api'])), 'UTF-8');
 $turno_id = mb_convert_encoding(base64_decode(urldecode($_GET['turno'])), 'UTF-8');
 $area_id = mb_convert_encoding(base64_decode(urldecode($_GET['area'])), 'UTF-8');
-$id_cotizacion = mb_convert_encoding(base64_decode(urldecode($_GET['id_cotizacion'])), 'UTF-8');
-// print_r($id_cotizacion);
-// exit;
 $usuario_id = $_SESSION['id'];
 
 
@@ -32,7 +29,7 @@ $usuario_id = $_SESSION['id'];
 // Imagenologia --> 8 para rayos y 11 para ultrasonido
 
 
-$preview = 1; // <- debe estar activo, y la firma de quien interpreta no debe aparecer
+$preview = 0; // <- debe estar activo, y la firma de quien interpreta no debe aparecer
 
 
 switch ($api) {
@@ -54,9 +51,6 @@ switch ($api) {
         break;
     case 'consultorio':
         $r = $master->reportador($master, $turno_id, 1, 'consultorio', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
-        break;
-    case 'consultorio2':
-        $r = $master->reportador($master, $turno_id, $area_id, 'consultorio2', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'electro':
         $r = $master->reportador($master, $turno_id, $area_id, 'electro', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
@@ -80,11 +74,17 @@ switch ($api) {
     case 'espiro':
         $r = $master->reportador($master, $turno_id, 5, 'espirometria', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
+    case 'consultorio2':
+        $r = $master->reportador($master, $turno_id, $area_id, 'consultorio2', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        break;
     case 'receta':
         $r = $master->reportador($master, $turno_id, $area_id, 'receta', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'solicitud_estudios':
         $r = $master->reportador($master, $turno_id, $area_id, 'solicitud_estudios', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        break;
+    case 'temperatura':
+        $r = $master->reportador($master, $turno_id, $area_id, 'temperatura', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     default:
         echo '<script language="javascript">alert("¡URL invalida!"); window.close()</script>';

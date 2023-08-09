@@ -122,11 +122,18 @@
 <!-- Capturar HTML -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
+<!-- Date picker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Momen js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <!-- xlsx-style -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/xlsx-style@0.8.13/dist/xlsx.full.min.js" integrity="sha256-ZsKzBmgTjgDejmkVE2stLbhlGu+psgjJrenYEHzCF1w=" crossorigin="anonymous"></script> -->
 
-<script src="https:localhost/practicantes/js/xlsx.full.min.js">
-</script>
+<!-- <script src="https:localhost/practicantes/js/xlsx.full.min.js"> -->
+<!-- </script> -->
 
 <script>
     var traducciones;

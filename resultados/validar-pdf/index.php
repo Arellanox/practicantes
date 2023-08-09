@@ -13,13 +13,6 @@ session_destroy();
 $clave = isset($_GET['clave']) ? $_GET['clave'] : null;
 $area = isset($_GET['modulo']) ?  $_GET['modulo'] : null;
 
-
-// var_dump($clave, $area);
-
-// 8 = RAYOS X
-// 11 = ULTRASONIDO
-// 6 = LABORATORIO CLINICO
-
 // folio
 // $explode = preg_split("/(\d+)/", $id, -1, PREG_SPLIT_DELIM_CAPTURE);
 // $folio_etiqueta = $explode[0];
@@ -33,6 +26,7 @@ $datos = [
     "clave" => $clave,
     "area" => $area,
 ];
+
 // Crear opciones de la petición HTTP
 $opciones = array(
     "http" => array(
@@ -49,11 +43,12 @@ $json = file_get_contents($url1, false, $contexto);
 $res = json_decode($json, true);
 
 
-// echo '<pre>';
-// var_dump($res);
-// echo '</pre>';
 
 $array = $res['response']['data'][0];
+// echo '<pre>';
+// var_dump($array);
+// echo '</pre>';
+
 // $msj_error = $array[0];
 // var_dump($clave, $area, $array);
 $code = $res['response']['code'];
@@ -95,8 +90,7 @@ function ifnull($variable, $msj = "N/A")
 
 // Obtener solo la extensión
 $extension = ifnull($array['EXTENSION']);
-
-
+$ruta_reporte = ifnull($array['RUTA_REPORTE']);
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -160,221 +154,241 @@ $extension = ifnull($array['EXTENSION']);
         </div>
 
         <div class="card m-3 p-3">
-            <?php
-            switch ($modulo) {
-                case 6: ?>
-                    <!-- Laboratorio -->
-                    <section id="6" style="display: none;">
-                        <h4 class="" style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6 text-center mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Toma de Muestra / Collected:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_TOMA_MUESTRA']) ?></span></p>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
-                            </div>
-                            <div class="col-12">
-                                <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA']) ?>" target="_blank" class="btn btn-borrar">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                <?php break;
-                case 8:
-                case 11: ?>
-                    <!-- Rayos X y Ultrasonido -->
-                    <section id="8" style="display:none;">
-                        <h4 class='' style="font-size: 20px; font-weight: bold; margin-bottom: 15px;" id=''>Resultados | <?php echo $array['NOMBRE_AREA'] ?></h4>
-                        <?php
-                        $capturaID = 0;
-                        foreach ($array['info'] as $key => $value) {
-                            foreach ($array['info'][$key] as $key2 => $value2) { ?>
-                                <hr>
+            <section>
+                <div class='row'>
+                    <div class="col-12 col-md-6 d-flex align-self-center my-auto">
+                        <h4 class="" style="font-size: 20px; font-weight: bold;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex justify-content-end">
+                        <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA_REPORTE']) ?>" class="btn btn-borrar ">
+                            <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
+                        </button>
+                    </div>
+                </div>
+                <hr>
+                <?php
+                switch ($modulo) {
+                    case 6: ?>
+                        <!-- Laboratorio Clinico -->
+                        <div id="6" style="display: none;" class="row mt-3">
+                            <div class="col-12 col-lg-3">
                                 <div class="row">
-                                    <p> <?php echo ifnull($value2['SERVICIO']) ?> </p>
-
-                                    <!-- Texto -->
-                                    <div class='col-12 col-lg-6 mb-3 '>
-                                        <div class="">
-                                            <p class="none-p" id="nacimiento-paciente-consulta">Técnica:</p>
-                                            <p class="info-detalle-p"><?php echo ifnull($value2['TECNICA']) ?></p>
-                                        </div>
-                                        <div class="">
-                                            <p class="none-p" id="nacimiento-paciente-consulta">Hallazgo:</p>
-                                            <p class="info-detalle-p"><?php echo ifnull($value2['HALLAZGO']) ?></p>
-                                        </div>
-                                        <div class="">
-                                            <p class="none-p" id="nacimiento-paciente-consulta">COMENTARIO:</p>
-                                            <p class="info-detalle-p"><?php echo ifnull($value2['COMENTARIO']) ?></p>
-                                        </div>
-
+                                    <div class="col-12  text-center mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Toma de Muestra / Collected:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_TOMA_MUESTRA']) ?></span></p>
                                     </div>
 
-                                    <!-- Imagenes -->
-                                    <div class="col-12 col-lg-6 mb-3 d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none ">
-                                        <div class=" image-row">
-                                            <div class="row">
+                                    <div class="col-12  text-center mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-9 overflow-auto" style="max-height:65vh;">
+                                <div id="adobe-dc-view" class="border" width='100%'></div>
+                            </div>
+                        </div>
+                    <?php break;
+                    case 8:
+                    case 11: ?>
+                        <!-- Rayos X y Ultrasonido -->
+                        <div id="8" style="display:none;">
 
-                                                <?php foreach ($value2['CAPTURAS'] as $key3 => $value3) { ?>
+                            <?php
+                            $capturaID = 0;
+                            foreach ($array['info'] as $key => $value) {
+                                foreach ($array['info'][$key] as $key2 => $value2) { ?>
+                                    <hr>
+                                    <div class="row">
+                                        <p> <?php echo ifnull($value2['SERVICIO']) ?> </p>
 
-                                                    <div class="col-6">
-                                                        <img src="<?php echo $value3['url'] ?>" class="mb-3 rounded-2 img-fluid" alt="">
-                                                    </div>
+                                        <!-- Texto -->
+                                        <div class='col-12 col-lg-6 mb-3 '>
+                                            <div class="">
+                                                <p class="none-p" id="nacimiento-paciente-consulta">Técnica:</p>
+                                                <p class="info-detalle-p"><?php echo ifnull($value2['TECNICA']) ?></p>
+                                            </div>
+                                            <div class="">
+                                                <p class="none-p" id="nacimiento-paciente-consulta">Hallazgo:</p>
+                                                <p class="info-detalle-p"><?php echo ifnull($value2['HALLAZGO']) ?></p>
+                                            </div>
+                                            <div class="">
+                                                <p class="none-p" id="nacimiento-paciente-consulta">COMENTARIO:</p>
+                                                <p class="info-detalle-p"><?php echo ifnull($value2['COMENTARIO']) ?></p>
+                                            </div>
 
-                                                <?php } ?>
+                                        </div>
+
+                                        <!-- Imagenes -->
+                                        <div class="col-12 col-lg-6 mb-3 d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none ">
+                                            <div class=" image-row">
+                                                <div class="row">
+
+                                                    <?php foreach ($value2['CAPTURAS'] as $key3 => $value3) { ?>
+
+                                                        <div class="col-6">
+                                                            <img src="<?php echo $value3['url'] ?>" class="mb-3 rounded-2 img-fluid" alt="">
+                                                        </div>
+
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-6 mb-3">
+                                            <div class="image-row">
+                                                <?php
+                                                echo generateCarousel($value2['CAPTURAS'], $capturaID);
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
+                            <?php
+                                    $capturaID++;
+                                }
+                            }
+                            ?>
 
-                                    <div class="col-12 col-lg-6 mb-3">
-                                        <div class="image-row">
-                                            <?php
-                                            echo generateCarousel($value2['CAPTURAS'], $capturaID);
-                                            ?>
-                                        </div>
+                        </div>
+                    <?php break;
+                    case 3: ?>
+                        <!-- Oftalmologia -->
+                        <div class="row mt-3" id="3" style="display: none;">
+                            <div class="col-12 col-lg-3">
+                                <div class="row">
+                                    <div class="col-12  mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Diagnóstico:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['DIAGNOSTICO_OFTALMOLOGIA']) ?></span></p>
+                                    </div>
+                                    <div class="col-12  mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Plan / Plan:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['PLAN']) ?></span></p>
+                                    </div>
+                                    <div class="col-12  mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
                                     </div>
                                 </div>
-                        <?php
-                                $capturaID++;
-                            }
-                        }
-                        ?>
+                            </div>
+                            <div class="col-12 col-lg-9 overflow-auto" style="max-height:65vh;">
+                                <div id="adobe-dc-view" class="border" width='100%'></div>
+                            </div>
+                        </div>
+                    <?php break;
+                    case 5: ?>
+                        <!-- ESPIROMETRIA -->
+                        <div class="row mt-3" id="5" style="display: none;">
+                            <div class="col-12 col-lg-3 mb-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-9 overflow-auto" style="max-height:65vh;">
+                                <div id="adobe-dc-view" class="border" width='100%'></div>
+                            </div>
+                        </div>
+                    <?php break;
+                    case 4: ?>
+                        <!-- AUDIOMETRIA -->
+                        <div class="row mt-3" id="4" style="display: none;">
+                            <div class="col-12 col-lg-3  mb-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-9 overflow-auto" style="max-height:65vh;">
+                                <div id="adobe-dc-view" class="border" width='100%'></div>
+                            </div>
+                        </div>
+                    <?php break;
+                    case 2: ?>
+                        <!-- SOMATOMETRIA -->
+                        <div class="row mt-3 resultados-soma" id="2" style="display: none;">
+                            <div class='col-12 col-md-4 overflow-auto' style="max-height: 80vh">
+                                <div class="row">
+                                    <div class="col-12 mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
+                                    </div>
+                                    <?php
+                                    foreach ($soma as $key => $value7) { ?>
+                                        <hr>
+                                        <p><?php echo ifnull($value7['DESCRIPCION']) ?></p>
+                                        <div class="col-12 mb-4">
+                                            <p class="none-p" style="font-size: 16px; ">VALOR: <span class="span-info-paci info-detalle-p fw-bold" style="font-size: 18px;"><?php echo ifnull($value7['VALOR']) ?><?php echo ifnull($value7['UNIDAD_MEDIDA']) ?></span> </p>
+                                            <p></p>
+                                        </div>
+                                        <!-- <div class="col-12 col-lg-6  mb-4">
+                                            <p class="none-p" style="font-size: 16px; ">UM:</p>
+                                            <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php # echo ifnull($value7['UNIDAD_MEDIDA']) 
+                                                                                                                                    ?></span></p>
+                                        </div> -->
 
-                    </section>
-                <?php break;
-                case 3: ?>
-                    <!-- Oftalmologia -->
-                    <section id="3" style="display: none;">
-                        <h4 class="" style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6 mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Plan / Plan:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['PLAN']) ?></span></p>
-                            </div>
-                            <div class="col-12 col-md-6 mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
-                            </div>
-                            <div class="col-12">
-                                <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA_REPORTE']) ?>" class="btn btn-borrar">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                <?php break;
-                case 5: ?>
-                    <!-- ESPIROMETRIA -->
-                    <section id="5" style="display: none;">
-                        <h4 class="" style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6 mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
-                            </div>
-                            <div class="col-12">
-                                <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA_REPORTE_FINAL']) ?>" class="btn btn-borrar">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                <?php break;
-                case 4: ?>
-                    <!-- AUDIOMETRIA -->
-                    <section id="4" style="display: none;">
-                        <h4 class="" style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6  mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
-                            </div>
-                            <div class="col-12">
-                                <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA_REPORTE_AUDIO']) ?>" class="btn btn-borrar">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                <?php break;
-                case 2: ?>
-                    <!-- SOMATOMETRIA -->
-                    <section id="2" style="display: none;">
-                        <h4 class="" style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
-                        <div class="row mt-3" id="resultados-soma">
-                            <?php
-                            foreach ($soma as $key => $value7) { ?>
+                                    <?php } ?>
+                                </div>
                                 <hr>
-                                <p><?php echo ifnull($value7['DESCRIPCION']) ?></p>
-                                <div class="col-12 col-md-6  mb-4">
-                                    <p class="info-detalle-p" style="font-size: 16px; ">VALOR:</p>
-                                    <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($value7['VALOR']) ?><?php # echo ifnull($value7['UNIDAD_MEDIDA']) 
-                                                                                                                                                                                                ?></span></p>
-                                </div>
-                                <div class="col-12 col-md-6  mb-4">
-                                    <p class="info-detalle-p" style="font-size: 16px; ">UNIDAD DE MEDIDA:</p>
-                                    <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($value7['UNIDAD_MEDIDA']) ?></span></p>
-                                </div>
+                            </div>
 
-                            <?php } ?>
-                            <hr>
+                            <div class="col-12 col-md-8 overflow-auto" style="max-height: 80vh;">
+                                <div id="adobe-dc-view" class="border" width='100%'></div>
+                            </div>
 
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6  mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
+                    <?php break;
+                    case 1: ?>
+                        <!-- CONSULTORIO 1 -->
+                        <div class="row mt-3" id="1" style="display: none;">
+                            <div class='col-12 col-md-4 overflow-auto' style="max-height: 80vh">
+                                <div class="row mt-3">
+                                    <div class="col-12 mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Conclusiones / Diagnóstico:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['CONCLUSIONES']) ?></span></p>
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-12 mb-4">
-                                <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA_REPORTE']) ?>" class="btn btn-borrar">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
-                                </button>
+
+                            <div class="col-12 col-md-8 overflow-auto" style="max-height: 80vh;">
+                                <div id="adobe-dc-view" class="border" width='100%'></div>
                             </div>
                         </div>
-                    </section>
+                    <?php break;
+                    case 19: ?>
+                        <!-- CONSULTORIO 2 -->
+                        <div class="row mt-3" id="19" style="display: none;">
+                            <div class='col-12 col-md-4 overflow-auto' style="max-height: 80vh">
+                                <div class="row mt-3">
+                                    <div class="col-12 mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Conclusiones / Diagnóstico:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['DIAGNOSTICO_CON2']) ?></span></p>
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <p class="none-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
+                                        <p class="info-detalle-p fw-bold" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-8 overflow-auto" style="max-height: 80vh;">
+                                <div id="adobe-dc-view" class="border" width='100%'></div>
+                            </div>
+                        </div>
                 <?php break;
-                case 1: ?>
-                    <!-- CONSULTORIO 1 -->
-                    <section id="1" style="display: none;">
-                        <h4 class="" style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6  mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
-                            </div>
-                            <div class="col-12">
-                                <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA_REPORTE']) ?>" class="btn btn-borrar">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                <?php break;
-                case 19: ?>
-                    <!-- CONSULTORIO 2 -->
-                    <section id="19" style="display: none;">
-                        <h4 class="" style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Resultados | <?php echo ifnull($array['NOMBRE_AREA']) ?></h4>
-                        <div class="row mt-3">
-                            <div class="col-12 col-md-6  mb-4">
-                                <p class="info-detalle-p" style="font-size: 16px; ">Fecha de Resultado / Reported:</p>
-                                <p class="info-detalle-p fw-bold" id="fecha_muestra-resultado" style="font-size: 18px;"><span class="span-info-paci"><?php echo ifnull($array['FECHA_RESULTADO']) ?></span></p>
-                            </div>
-                            <div class="col-12">
-                                <button id="ReportePDF" data-url="<?php echo ifnull($array['RUTA_REPORTE']) ?>" class="btn btn-borrar">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i> Descargar
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-            <?php break;
-                default:
-                    echo `No se hay ningun resultado para mostrar`;
-                    break;
-            }
-            ?>
+                    default:
+                        echo `No se hay ningun resultado para mostrar`;
+                        break;
+                }
+                ?>
+            </section>
         </div>
     </div>
     </div>
@@ -383,6 +397,29 @@ $extension = ifnull($array['EXTENSION']);
     <div id="lightbox" onclick="this.style.display='none'">
         <img id="lightbox-img" src="" alt="">
     </div>
+
+
+    <script type="text/javascript">
+        document.addEventListener("adobe_dc_view_sdk.ready", function() {
+            var adobeDCView = new AdobeDC.View({
+                clientId: "34a82f04f8804b4cbdc2cd6bc6a17c57",
+                divId: "adobe-dc-view"
+            });
+            adobeDCView.previewFile({
+                content: {
+                    location: {
+                        url: "<?php echo $ruta_reporte; ?>"
+                    }
+                },
+                metaData: {
+                    fileName: "Summary.pdf"
+                }
+            }, {
+                embedMode: "IN_LINE",
+                showDownloadPDF: false
+            });
+        });
+    </script>
 
     <script>
         // Selecciona todas las imágenes
@@ -400,27 +437,16 @@ $extension = ifnull($array['EXTENSION']);
     </script>
 
     <script>
-        // 8 = RAYOS X
-        // 11 = ULTRASONIDO
-        // 6 = LABORATORIO CLINICO
-        // = AUDIO 
-        // = ESPIROMETRIA
-
         modulo = `<?php echo $modulo ?>`;
         clave = `<?php echo $clave ?>`;
-
         code = parseInt(`<?php echo $code ?>`)
         msj_error = `<?php echo "error: $msj" ?>`
-
-        console.log(code)
-
-        console.log(msj_error)
+        // console.log(code)
+        // console.log(msj_error)
         $(document).ready(function() {
             if (code == 2) {
-                console.log('esta mal esa madre')
                 ClearBody(msj_error)
             } else if (code !== 2) {
-                console.log('si entro xd')
                 switch (parseInt(modulo)) {
                     case 11:
                         // Ultrasonido
@@ -475,11 +501,6 @@ $extension = ifnull($array['EXTENSION']);
         }
 
         function DownloadFromUrl(fileURL, fileName) {
-            // var link = document.createElement('a');
-            // link.href = fileURL;
-            // link.download = fileName;
-            // document.body.appendChild(link);
-            // link.click();
             fetch(url)
                 .then(response => response.blob())
                 .then(blob => {
@@ -490,7 +511,13 @@ $extension = ifnull($array['EXTENSION']);
                     a.click();
                     URL.revokeObjectURL(urlBlob);
                 })
-                .catch(error => alert('Error al descargar el archivo', error));
+                .catch(error => alertMsj({
+                    title: 'No se pudo descargar el PDF',
+                    text: 'La ruta del PDF esta dañada, contacte con el soporte de BIMO para apoyarlo con este problema',
+                    footer: `error: ${error}`,
+                    icon: 'error',
+                    showCancelButton: false
+                }))
         }
 
         function ClearBody(msj_error) {
@@ -545,10 +572,9 @@ $extension = ifnull($array['EXTENSION']);
             })
         }
 
-
         $(document).on('click', '#ReportePDF', function(e) {
             url = $(this).attr('data-url');
-            DownloadFromUrl(url, `validacion_reporte.<?php echo $extension ?>`)
+            DownloadFromUrl(url, `document.<?php echo $extension ?>`)
         });
     </script>
 </body>
@@ -572,6 +598,7 @@ $extension = ifnull($array['EXTENSION']);
         display: none;
         align-items: center;
         justify-content: center;
+        z-index: 2 !important;
     }
 
     #lightbox img {
@@ -583,9 +610,12 @@ $extension = ifnull($array['EXTENSION']);
         font-weight: 400px !important;
     }
 
-    #resultados-soma {
-        overflow: auto !important;
-        max-height: 450px;
+
+
+    @media (min-width: "480px") {
+        .resultados-soma {
+            max-height: 80vh;
+        }
     }
 </style>
 <?php
@@ -631,5 +661,36 @@ function generateCarousel($capturas,   $capturasID)
     return $html;
 }
 ?>
+
+
+<!-- Carrousel de ultra y rayos X| -->
+<style>
+    .carousel-control-prev,
+    .carousel-control-next {
+        opacity: 1 !important;
+    }
+
+
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon,
+    .carousel-indicators button {
+        position: relative;
+
+        filter: drop-shadow(0px 0 4px rgba(0, 0, 0, 1)) sepia(65%) saturate(100%) hue-rotate(192deg) !important;
+    }
+
+
+    /* .carousel-control-next-icon::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        z-index: -1;
+    } */
+</style>
 
 </html>

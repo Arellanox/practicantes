@@ -139,8 +139,8 @@ function tablaContenido(descuento = false) {
   tablaContenidoPaquete = $("#TablaListaPaquetes").DataTable({
     lengthChange: false,
     // info: false,
-    paging: false,
-    scrollY: "63vh",
+    paging: true,
+    scrollY: "50vh",
     scrollCollapse: true,
     columnDefs: [
       { className: 'all', width: "213.266px", title: "Descripción", targets: 0 },
@@ -290,8 +290,8 @@ function tablaContenido(descuento = false) {
 
 
 var cliente_id;
-function obtenerContenidoCotizaciones() {
-  obtenerTitulo("Cotizaciones de estudios"); //Aqui mandar el nombre de la area
+async function obtenerContenidoCotizaciones() {
+  await obtenerTitulo("Cotizaciones de estudios"); //Aqui mandar el nombre de la area
   // Funciones js
   $.post("contenido/cotizaciones.php", function (html) {
     $("#body-js").html(html);

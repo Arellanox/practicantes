@@ -2,127 +2,131 @@
   background-color: rgb(216, 223, 225);
   border-radius: 4px;
   color: rgb(0, 0, 0);
+  border-color: rgb(216, 223, 225);
 }
 
 .btn-cancelar:hover {
-   background-color: rgba(216, 223, 225, 0.637);
+  background-color: rgba(216, 223, 225, 0.637);
   color: rgb(0, 0, 0) !important;
+  border-color: rgba(216, 223, 225, 0.637);
 }
 
 .btn-confirmar {
-  background-color: rgb(247, 190, 000);
+  background-color: rgb(247, 190, 0);
   border-radius: 4px;
   color: rgb(0, 0, 0);
+  border-color: rgb(247, 190, 0);
 }
 
 .btn-confirmar:hover {
-  background-color: rgba(247, 190, 000, 0.637);
+  background-color: rgba(247, 190, 0, 0.637);
   color: rgb(0, 0, 0) !important;
+  border-color: rgba(247, 190, 0, 0.637);
 }
 
 .btn-option {
   background-color: rgb(0, 115, 247);
   border-radius: 4px;
   color: white;
+  border-color: rgb(0, 115, 247);
 }
 
 .btn-option:hover {
   background-color: rgba(0, 115, 247, 0.5);
   color: white !important;
+  border-color: rgba(0, 115, 247, 0.5);
 }
 
 .btn-borrar {
-  background-color: rgb(247 0 0);
+  background-color: rgb(247, 0, 0);
   border-radius: 4px;
   color: white;
+  border-color: rgb(247, 0, 0);
 }
 
 .btn-borrar:hover {
-  background-color: rgb(247 0 0 / 70%);
+  background-color: rgb(247, 0, 0, 70%);
   color: rgb(0, 0, 0) !important;
+  border-color: rgb(247, 0, 0, 70%);
 }
 
 .btn-turquesa {
-  background-color: rgb(000, 175, 170);
+  background-color: rgb(0, 175, 170);
   border-radius: 4px;
   color: white;
+  border-color: rgb(0, 175, 170);
 }
 
 .btn-turquesa:hover {
   background-color: rgba(0, 175, 169, 0.637);
   color: white !important;
+  border-color: rgba(0, 175, 169, 0.637);
 }
 
-
-
-/* Botones con colores de la empresa */
-
 .btn-pantone-3165 {
-  background-color: rgb(000, 078, 89);
-
+  background-color: rgb(0, 78, 89);
   border-radius: 4px;
   color: white;
+  border-color: rgb(0, 78, 89);
 }
 
 .btn-pantone-3165:hover {
-  background-color: rgba(000, 078, 89, 0.637);
+  background-color: rgba(0, 78, 89, 0.637);
   color: rgb(0, 0, 0) !important;
+  border-color: rgba(0, 78, 89, 0.637);
 }
 
-
-
 .btn-pantone-326 {
-  background-color: rgb(000, 175, 170);
-
+  background-color: rgb(0, 175, 170);
   border-radius: 4px;
   color: white;
+  border-color: rgb(0, 175, 170);
 }
 
 .btn-pantone-326:hover {
-  background-color: rgba(000, 175, 170, 0.637);
+  background-color: rgba(0, 175, 170, 0.637);
   color: rgb(0, 0, 0) !important;
+  border-color: rgba(0, 175, 170, 0.637);
 }
 
-
-
 .btn-pantone-325 {
-  background-color: rgb(098, 203, 201);
+  background-color: rgb(98, 203, 201);
   border-radius: 4px;
   color: white;
+  border-color: rgb(98, 203, 201);
 }
 
 .btn-pantone-325:hover {
-  background-color: rgba(098, 203, 201, 0.637);
+  background-color: rgba(98, 203, 201, 0.637);
   color: rgb(0, 0, 0) !important;
+  border-color: rgba(98, 203, 201, 0.637);
 }
-
-
-
 
 .btn-pantone-7541 {
   background-color: rgb(216, 223, 225);
   border-radius: 4px;
   color: rgb(0, 0, 0);
+  border-color: rgb(216, 223, 225);
 }
 
 .btn-pantone-7541:hover {
   background-color: rgba(216, 223, 225, 0.637);
   color: rgb(0, 0, 0) !important;
+  border-color: rgba(216, 223, 225, 0.637);
 }
 
-
-
 .btn-pantone-7408 {
-  background-color: rgb(247, 190, 000);
+  background-color: rgb(247, 190, 0);
   border-radius: 4px;
   color: rgb(0, 0, 0);
+  border-color: rgb(247, 190, 0);
 }
 
 .btn-pantone-7408:hover {
-  background-color: rgba(247, 190, 000, 0.637);
+  background-color: rgba(247, 190, 0, 0.637);
   color: rgb(0, 0, 0) !important;
+  border-color: rgba(247, 190, 0, 0.637);
 }
-
 
 
 .btn:focus{
