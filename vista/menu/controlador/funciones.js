@@ -3087,14 +3087,49 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                   event.preventDefault();
 
                   let btn = $(this);
-                  //console.log(btn.attr('id'));
+                  // console.log(btn.attr('id'));
                   switch (btn.attr('id')) {
+
                     case 'btn-laboratorio-etiquetas':
+                     
+              
                       area_nombre = 'etiquetas'
                       api = encodeURIComponent(window.btoa(area_nombre));
                       turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO'],));
 
                       window.open(http + servidor + "/nuevo_checkup/visualizar_reporte/?api=" + api + "&turno=" + turno, "_blank");
+
+                      break;
+                    
+                    case 'btn-laboratorio-etiquetas-imprimir':
+
+                        area_nombre = 'etiquetas'
+                      api = encodeURIComponent(window.btoa(area_nombre));
+                      turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO'],));
+
+                      const nombrePDf = 'ticket.pdf';
+                      const nombreImpresora = 'PDF24';
+                      const url = `http://localhost:8080/?nombrePdf=${nombrePDf}&impresora=${nombreImpresora}`;
+
+                  
+                      fetch(url)
+                        .then(respuesta => {
+
+                          if (respuesta.status == 200) {
+
+                            alertToast('Imprimiendo etiquetas', 'info', 5000)
+                            console.log("Impresion OK")
+
+                          } else {
+                            respuesta.json()
+                              .then(mensaje => {
+                                
+                                console.log("Error: " + mensaje)
+
+                              })
+                          }
+                        })
+
                       break;
 
                     case 'btn-PERFIL':

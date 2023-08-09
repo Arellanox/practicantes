@@ -3,9 +3,22 @@
     <!-- <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
         The current button
     </button> -->
-    <button type="button" id="btn-laboratorio-etiquetas" class="list-group-item list-group-item-action">
-        Etiquetas laboratorio
-    </button>
+
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+
+        <button type="button" id="btn-laboratorio-etiquetas" class="list-group-item list-group-item-action"
+            data-bs-toggle='tooltip' data-bs-placement='top' title="Visualizar etiquetas">
+            Etiquetas laboratorio
+        </button>
+
+        <button type="button" class="list-group-item btn_documentacion_paciente rounded-2"
+            id="btn-laboratorio-etiquetas-imprimir" data-bs-toggle='tooltip' data-bs-placement='top'
+            title="Clic para Imprimir etiquetas">
+            <i class="bi bi-printer"></i>
+        </button>
+
+    </div>
 
     <button type="button" style="display: none;"
         class="btn_documentacion_paciente list-group-item list-group-item-action" id="btn-PERFIL">
