@@ -1968,7 +1968,6 @@ function selectTable(tablename, datatable,
     let tr = this
     let row = datatable.row(tr);
     let dataRow = row.data();
-    array_selected = row.data();
 
     // let td = $(event.target).is('td')
 
@@ -2006,6 +2005,9 @@ function selectTable(tablename, datatable,
     if (config.OnlyData) {
       return callbackClick(1, dataRow, function (data) { return 'No action' }, tr, row);
     }
+
+
+    array_selected = row.data();
 
     selectTableClickCount++;
     if ($(tr).hasClass('selected')) {
