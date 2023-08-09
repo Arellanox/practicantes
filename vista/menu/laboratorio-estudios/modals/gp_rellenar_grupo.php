@@ -11,7 +11,8 @@
                     <div class="col-12 p-4">
                         <div class="card p-3">
                             <h5>Estudios</h5>
-                            <p>Pulse y arrastre el estudio para cargar su orden</p>
+                            <p>Pulse en la primera columna y arrastre el estudio para cargar su orden, con el icono de <i class="bi bi-trash"></i> puedes eliminar el estudio de la tabla.</p>
+                            <p class="none-p">No te olvides de guardar cambios.</p>
                             <table class="table display responsive" id="TablaLLenarGrupo" style="width: 100%">
 
                             </table>

@@ -14,7 +14,7 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
     scrollY: '60vh', //347px  scrollCollapse: true,
     scrollCollapse: true,
     // lengthMenu: [[15, 20, 25, 30, 35, 40, 45, 50, -1], [15, 20, 25, 30, 35, 40, 45, 50, "All"]],
-    lengthMenu: false,
+    paging: false,
     ajax: {
         dataType: 'json',
         data: function (d) {
