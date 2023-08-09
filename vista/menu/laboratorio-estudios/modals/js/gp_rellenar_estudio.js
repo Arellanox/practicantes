@@ -99,7 +99,7 @@ selectTable('#TablaLLenarGrupo', tablaLLenarGrupo, {
 tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
     console.log(diff)
     tablaLLenarGrupo.rows().nodes().to$().removeClass('selected'); // Elimina la clase de todas las filas1
-    modificado = 1
+
     for (let i = 0; i < diff.length; i++) {
         let newData = tablaLLenarGrupo.row(diff[i].node).data();
         newData.ORDEN = diff[i].newPosition + 1; // +1 para que comience desde 1
@@ -107,6 +107,7 @@ tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
 
         // Agrega la clase solo a la fila en movimiento
         $(diff[i].node).closest('tr').addClass('selected');
+        modificado = 1
     }
 
 });
