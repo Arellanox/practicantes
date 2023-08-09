@@ -1664,10 +1664,11 @@ function inputBusquedaTable(
   });
 
 
-
-  $('select[name="' + tablename + '_length"]').removeClass('form-select form-select-sm');
-  $('select[name="' + tablename + '_length"]').addClass('select-form input-form');
-  $('select[name="' + tablename + '_length"]').css('margin-bottom', '0px')
+  let select = $('select[name="' + tablename + '_length"]');
+  select.removeClass('form-select form-select-sm');
+  select.addClass('select-form input-form');
+  select.css('margin-bottom', '0px')
+  select.css('width', 'max-content')
 
 }
 //
@@ -1886,7 +1887,7 @@ function eventClassClick(event, tr, config, data) {
       const element = rowClick[key];
 
       if ($(clickedElement).hasClass(`${element.class}`)) {
-        element.callback(data, clickedElement)
+        element.callback(data, clickedElement, tr)
         return [true, element.selected];
       }
 

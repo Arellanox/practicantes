@@ -9,7 +9,7 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
         url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
     },
     rowReorder: {
-        selector: 'tr',
+        selector: 'td.dtr-control',
     },
     scrollY: '60vh', //347px  scrollCollapse: true,
     scrollCollapse: true,
@@ -44,8 +44,9 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
             data: 'ID_SERVICIO', render: function (data) {
                 let html = `<div class="row">
                                 <div class="col-12" style="max-width: max-content; padding: 0px;">
-                                <i class="bibi-trash btn-delete" style="cursor: pointer; font-size:18px;padding: 2px 5px;"></i>
+                                <i class="bi bi-trash detele-estudio" style="cursor: pointer; font-size:18px;padding: 2px 5px;"></i>
                             </div></div>`
+
                 return html;
             }
         },
@@ -60,12 +61,22 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
 
 inputBusquedaTable('TablaLLenarGrupo', tablaLLenarGrupo, [], [], 'col-12')
 
-selectTable('#TablaFiltradaCredito', tFillPaciCredito, { unSelect: true, multipleSelect: true }, (select, dataRow, callback) => {
-    SelectPaciFiltrada = dataRow
+selectTable('#TablaLLenarGrupo', tablaLLenarGrupo, {
+    ClickClass: [
+        {
+            class: "detele-estudio",
+            callback: function (data, elementClicked, tr) {
+                let id = data['ID_SERVICIO']
+                // Proceso para eliminar el estudio
+                // Creo que puedes eliminar el TR asi:
+                // table.row(tr).remove(); <-- Investiga, agregué el TR apenas, si necesitas algo avisame -- Ger
+            }
+        }
+    ]
 })
 
 tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
-
+    console.log(diff)
     tablaLLenarGrupo.rows().nodes().to$().removeClass('selected'); // Elimina la clase de todas las filas1
     for (let i = 0; i < diff.length; i++) {
         let newData = tablaLLenarGrupo.row(diff[i].node).data();
@@ -73,7 +84,7 @@ tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
         tablaLLenarGrupo.row(diff[i].node).data(newData);
 
         // Agrega la clase solo a la fila en movimiento
-        $(diff[i].node).addClass('selected');
+        $(diff[i].node).closest('tr').addClass('selected');
     }
 
 });
