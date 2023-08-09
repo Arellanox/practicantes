@@ -58,6 +58,12 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
 
 });
 
+inputBusquedaTable('TablaLLenarGrupo', tablaLLenarGrupo, [], [], 'col-12')
+
+selectTable('#TablaLLenarGrupo', tablaLLenarGrupo, { unSelect: true, multipleSelect: true }, (select, dataRow, callback) => {
+    // SelectPaciFiltrada = dataRow
+})
+
 tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
 
     tablaLLenarGrupo.rows().nodes().to$().removeClass('selected'); // Elimina la clase de todas las filas1
@@ -71,21 +77,6 @@ tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
     }
 
 });
-
-// tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
-//     let orderedData = tablaLLenarGrupo.rows({ order: 'current' }).data();
-//     let orderData = [];
-//     orderedData.each(function (value, index) {
-//         value.ORDEN = index + 1;
-//         orderData.push({
-//             ID_SERVICIO: value.ID_SERVICIO,
-//             ORDEN: value.ORDEN
-//         });
-//     });
-
-//     console.log(orderedData)
-//     // Aquí puedes enviar "orderData" al servidor para actualizar los órdenes.
-// });
 
 
 
@@ -126,7 +117,7 @@ $(document).on('click', '#btn-guardar-grupo', function () {
     }, function () {
         // Llamar a esta función para obtener los datos tratados
         let arrayTratado = getTratadosDataFromTable();
-        // console.log(arrayTratado);
+        console.log(arrayTratado);
 
         console.log(array_selected['ID_SERVICIO'])
         ajaxAwait({
@@ -134,7 +125,8 @@ $(document).on('click', '#btn-guardar-grupo', function () {
             id_grupo: array_selected['ID_SERVICIO'],
             servicios: arrayTratado
         }, 'laboratorio_servicios_api', { callbackAfter: true }, false, function (data) {
-
+            alertToast('Cambios realizado correctamente..', 'success', 2000)
+            tablaLLenarGrupo.ajax.reload();
         })
     })
 
