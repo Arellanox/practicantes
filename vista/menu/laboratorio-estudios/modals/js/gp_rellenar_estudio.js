@@ -60,8 +60,8 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
 
 inputBusquedaTable('TablaLLenarGrupo', tablaLLenarGrupo, [], [], 'col-12')
 
-selectTable('#TablaLLenarGrupo', tablaLLenarGrupo, { unSelect: true, multipleSelect: true }, (select, dataRow, callback) => {
-    // SelectPaciFiltrada = dataRow
+selectTable('#TablaFiltradaCredito', tFillPaciCredito, { unSelect: true, multipleSelect: true }, (select, dataRow, callback) => {
+    SelectPaciFiltrada = dataRow
 })
 
 tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
