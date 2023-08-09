@@ -72,7 +72,7 @@ selectTable('#TablaLLenarGrupo', tablaLLenarGrupo, {
                 // table.row(tr).remove(); <-- Investiga, agregué el TR apenas, si necesitas algo avisame -- Ger
             }
         }
-    ]
+    ], OnlyData: true
 })
 
 tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
