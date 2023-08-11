@@ -46,7 +46,7 @@ $preview = 0; // <- debe estar activo, y la firma de quien interpreta no debe ap
 switch ($api) {
     case 'imagenologia':
         # previsualizar el reporte [el reporte que previsualizan debe ir sin pie de pagina]
-        $r = $master->reportador($master, $turno_id, $area_id, ($area_id == 8 ? "rayos" : "ultrasonido"), 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
+        $r = $master->reportador($master, $turno_id, $area_id, "ultrasonido", 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
         break;
     case 'oftalmo':
         $r = $master->reportador($master, $turno_id, 3, 'oftalmologia', 'mostrar', $preview, 0, 0, $id_cliente, $id_cotizacion);
