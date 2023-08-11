@@ -38,6 +38,14 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
           alertSelectTable();
         }
       }
+    }, {
+      text: '<i class="bi bi-rulers"></i> Referencia',
+      className: 'btn btn-pantone-325 ',
+      action: function () {
+
+
+        $('#modalReferencia').modal('show');
+      }
     }
   ],
 })
