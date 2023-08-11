@@ -10,7 +10,7 @@
                 <hr>
                 <h5>Información Valores de referencia</h5>
                 <p class="none-p">Escriba el valor de referencia para el reporte...</p>
-                <div class="row mt-3">
+                <div class="row my-3">
                     <div class="col-12 col-lg-6">
                         <p>Dirigido a:</p>
                         <select class="form-select input-form" name="select-genero-referencia" id="select-genero-referencia">
@@ -19,7 +19,26 @@
                             <option value="">AMBOS</option>
                         </select>
                     </div>
-                    <div class="col-12 col-lg-6">
+                    <div class="col-lg-6">
+                        <p>Edad: </p>
+                        <div class="input-group  mb-3">
+                            <input type="text" class="form-control input-form" placeholder="Edad Minima" aria-label="Username">
+                            <span class="input-span">-</span>
+                            <input type="text" class="form-control input-form" placeholder="Edad Maxima" aria-label="Server">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="SinEdad">
+                            <label class="form-check-label" for="SinEdad">
+                                Ignorar Edad
+                            </label>
+                        </div>
+
+                        <!-- <input type="number" id="number" name="number" placeholder='Edad Minima' class="form-input input-form" min='0'> -->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1">
 
                     </div>
                 </div>
