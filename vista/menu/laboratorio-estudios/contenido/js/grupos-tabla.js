@@ -44,7 +44,7 @@ var tablaGrupos = $('#TablaGruposServicios').DataTable({
         if (array_selected != null) {
           getDataFirst(1, array_selected['ID_SERVICIO'])
         } else {
-          alertSelectTable();
+          alertSelectTable()
         }
       }
     },

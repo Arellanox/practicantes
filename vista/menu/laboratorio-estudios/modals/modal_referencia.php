@@ -13,8 +13,7 @@
                 <div class="row my-3">
                     <div class="col-12 col-lg-6">
                         <p>Dirigido a:</p>
-                        <select class="form-select input-form" name="select-genero-referencia"
-                            id="select-genero-referencia">
+                        <select class="form-select input-form" name="select-genero-referencia" id="select-genero-referencia">
                             <option selected>Elije una de las opciones disponibles</option>
                             <option value="">HOMBRE</option>
                             <option value="">MUJER</option>
@@ -25,11 +24,9 @@
                     <div class="col-lg-6">
                         <p>Edad: </p>
                         <div class="input-group  mb-3">
-                            <input type="number" class="form-control input-form" id="edad-minima-referencia" min="0"
-                                placeholder="Edad Minima">
+                            <input type="number" class="form-control input-form" id="edad-minima-referencia" min="0" placeholder="Edad Minima">
                             <span class="input-span">-</span>
-                            <input type="number" class="form-control input-form" id="edad-maxima-referencia" min="0"
-                                placeholder="Edad Maxima">
+                            <input type="number" class="form-control input-form" id="edad-maxima-referencia" min="0" placeholder="Edad Maxima">
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="SinEdad">
@@ -43,8 +40,37 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-1">
-
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-8">
+                                <p>Valor Mínimo:</p>
+                                <input type="text" class="form-control input-form" name="" id="">
+                            </div>
+                            <div class="col-4">
+                                <p>Resultado es:</p>
+                                <select class="form-select input-form" name="select-genero-referencia" id="select-genero-referencia">
+                                    <!-- <option value="">&#62; Mayor que</option> -->
+                                    <option value="">&#60; Menor que</option>
+                                    <option value="">&#61; Igual</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-8">
+                                <p>Valor Maximo:</p>
+                                <input type="text" class="form-control input-form" name="" id="">
+                            </div>
+                            <div class="col-4">
+                                <p>Resultado es:</p>
+                                <select class="form-select input-form" name="select-genero-referencia" id="select-genero-referencia">
+                                    <option value="">&#62; Mayor que</option>
+                                    <option value="">&#60; Menor que</option>
+                                    <option value="">&#61; Igual</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,3 +81,19 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    entrada = 20
+
+    minimo = 60 // <=
+    maximo = 20 //<
+
+    if (entrada >= minimo && entrada <= maximo) {
+        console.log("Esta entre el rango")
+    } else if (entrada < minimo) {
+        console.log("Es menor que el minimo")
+    } else if (entrada > maximo) {
+        console.log("Es mayor que el maximo")
+    }
+</script>
