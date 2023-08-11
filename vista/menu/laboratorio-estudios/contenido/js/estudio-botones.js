@@ -5,10 +5,11 @@
 // } else {
 //   alertSelectTable();
 // }
-// esperaAbrirEdit(function () {
 
 // })
-// })
+
+
+
 
 $("#btn-estudio-editar-info").click(function () {
   // getatrribute

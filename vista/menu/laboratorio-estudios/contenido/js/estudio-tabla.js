@@ -2,7 +2,7 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
   language: {
     url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
   },
-  scrollY: autoHeightDiv(0, 330), //347px  scrollCollapse: true,
+  scrollY: '58vh', //347px  scrollCollapse: true,
   lengthMenu: [[15, 20, 25, 30, 35, 40, 45, 50, -1], [15, 20, 25, 30, 35, 40, 45, 50, "All"]],
   ajax: {
     dataType: 'json',
@@ -26,9 +26,23 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
     { "width": "3px", "targets": [0, 4] },
   ],
 
+  dom: 'Blfrtip',
+  buttons: [
+    {
+      text: '<i class="bi bi-pencil-square"></i> Editar',
+      className: 'btn btn-pantone-7408',
+      action: function () {
+        if (array_selected != null) {
+          getDataFirst(1, array_selected['ID_SERVICIO'])
+        } else {
+          alertSelectTable();
+        }
+      }
+    }
+  ],
 })
 
-selectDatatable("TablaEstudioServicio", tablaServicio, 1, 'servicios_api', 'estudio', '#panel-informacion', function (select, selectData) {
+selectDatatable("TablaEstudioServicio", tablaServicio, 0, 0, 0, 0, function (select, selectData) {
 
   if (select) {
     obtenerPanelInformacion(1, 'servicios_api', 'estudio');
@@ -46,7 +60,7 @@ selectDatatable("TablaEstudioServicio", tablaServicio, 1, 'servicios_api', 'estu
 
 })
 
-selectDatatable("TablaEstudioServicio", tablaServicio, 1, 'servicios_api', 'estudio')
 
-inputBusquedaTable('TablaEstudioServicio', tablaServicio, false)
+
+inputBusquedaTable('TablaEstudioServicio', tablaServicio, [], [], 'col-12')
 

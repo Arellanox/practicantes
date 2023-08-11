@@ -1,5 +1,5 @@
 
-var estatus = 0, modificado = 0;
+var estatus = 0
 let dataJson = {
     api: 16,
     id_grupo: 1,
@@ -40,6 +40,7 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
     columns: [
         { data: 'ORDEN', },
         { data: 'DESCRIPCION' },
+        { data: 'ORDEN_PREDETERMINADO' },
         {
             data: 'ID_SERVICIO', render: function (data) {
                 let html = `<div class="row">
@@ -53,8 +54,9 @@ tablaLLenarGrupo = $('#TablaLLenarGrupo').DataTable({
     ],
     columnDefs: [
         { width: "10%", targets: 0, title: 'Orden' },
-        { width: "80%", targets: 1, title: 'Servicio' },
-        { width: "10%", targets: 2, title: '<i class="bi bi-trash"></i>' },
+        { width: "70%", targets: 1, title: 'Servicio' },
+        { width: "20%", targets: 2, title: 'Anterior' },
+        { width: "10%", targets: 3, title: '<i class="bi bi-trash"></i>' },
     ],
 
 });
@@ -74,7 +76,8 @@ selectTable('#TablaLLenarGrupo', tablaLLenarGrupo, {
 
                 // tablaLLenarGrupo.row(tr).remove();
                 // tablaLLenarGrupo.draw();
-                modificado = 1
+
+
                 var filaEliminar = tablaLLenarGrupo.row(tr);
 
                 // Eliminar la fila seleccionada y redibujar la tabla
@@ -107,7 +110,8 @@ tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
 
         // Agrega la clase solo a la fila en movimiento
         $(diff[i].node).closest('tr').addClass('selected');
-        modificado = 1
+
+
     }
 
 });
@@ -117,7 +121,6 @@ tablaLLenarGrupo.on('row-reorder', function (e, diff, edit) {
 async function firstDataModal() {
     console.log(estatus)
     if (estatus == 0) {
-
         setTimeout(function () {
             firstDataModal()
         }, 500)
@@ -132,7 +135,7 @@ async function firstDataModal() {
 
         $('#title-grupo-estudios').html(`Rellenar grupo: (<b>${array_selected['DESCRIPCION']}</b>)`);
 
-        modificado = 0
+
         $('#modalRellenarGrupos').modal('show');
 
         setTimeout(() => {
@@ -164,9 +167,10 @@ $(document).on('click', '#btn-guardar-grupo', function () {
             id_grupo: array_selected['ID_SERVICIO'],
             servicios: arrayTratado
         }, 'laboratorio_servicios_api', { callbackAfter: true }, false, function (data) {
-            alertToast('Cambios realizado correctamente..', 'success', 2000)
+
+            alertToast('Cambios realizado correctamente..', 'success', 4000)
             tablaLLenarGrupo.ajax.reload();
-            modificado = 0
+
         })
     }, 1)
 
@@ -217,18 +221,27 @@ function rowDataAdd(tabla, newRowData = {}) {
     });
 
     if (descripcionExistente) {
-        modificado = 0
+
         alertToast('La descripción ya existe en la tabla.', 'error', 1500);
         return; // No agregar la fila si la descripción ya existe
     }
-    modificado = 1
+
+
     // Obtener la última fila para obtener el valor de "Orden"
     var ultimaFila = tablaLLenarGrupo.row(':last');
-    var ultimoOrden = ultimaFila.data().ORDEN;
+    console.log(ultimaFila.data())
+    if (ultimaFila.data()) {
+        var ultimoOrden = ultimaFila.data().ORDEN;
 
-    // Calcular el siguiente número en la secuencia
-    var nuevoOrden = ultimoOrden + 1;
-    newRowData.ORDEN = nuevoOrden
+        // Calcular el siguiente número en la secuencia
+        var nuevoOrden = ultimoOrden + 1;
+        newRowData.ORDEN = nuevoOrden
+        newRowData.ORDEN_PREDETERMINADO = 0
+    } else {
+        newRowData.ORDEN = 1
+        newRowData.ORDEN_PREDETERMINADO = 0
+    }
+
 
     // Agregar una nueva fila con solo los valores de ID y Nombre visibles en la tabla
     tabla.row.add(newRowData).draw();
@@ -252,19 +265,14 @@ function rowDataAdd(tabla, newRowData = {}) {
 $(document).on('click', '#btn-cerrar-grupo', function (e) {
     e.preventDefault();
 
-    if (modificado == 0) {
+    alertMensajeConfirm({
+        icon: 'warning',
+        title: '¿Está seguro de salir?',
+        text: 'Es probable que los cambios que has realizado sin guardar se puedan perder',
+        showCancelButton: true
+    }, function () {
         $('#modalRellenarGrupos').modal('hide');
-    } else if (modificado == 1) {
-        alertMensajeConfirm({
-            icon: 'info',
-            title: '¿Estas seguro de cerrar esta ventana?',
-            text: 'Los cambios realizados no se guardaran',
-            showCancelButton: true
-        }, function () {
-            $('#modalRellenarGrupos').modal('hide');
-        }, 1)
-    }
-
+    }, 1)
 
 
 })

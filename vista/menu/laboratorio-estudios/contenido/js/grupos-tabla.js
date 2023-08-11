@@ -2,7 +2,7 @@ var tablaGrupos = $('#TablaGruposServicios').DataTable({
   language: {
     url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
   },
-  scrollY: autoHeightDiv(0, 345), //347px  scrollCollapse: true,
+  scrollY: '58vh', //347px  scrollCollapse: true,
   scrollCollapse: true,
   lengthMenu: [[15, 20, 25, 30, 35, 40, 45, 50, -1], [15, 20, 25, 30, 35, 40, 45, 50, "All"]],
   ajax: {

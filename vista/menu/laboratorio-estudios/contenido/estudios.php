@@ -9,11 +9,11 @@
   </div>
   <div class="col-12 col-lg-9" style="margin-bottom:5px">
     <div class="card mt-2 p-3">
-      <div class="text-center" style="margin-top:4px;zoom:95%;margin-bottom:5px;">
+      <!-- <div class="text-center" style="margin-top:4px;zoom:95%;margin-bottom:5px;">
         <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-estudio-editar">
           <i class="bi bi-pencil-square"></i> Editar
         </button>
-      </div>
+      </div> -->
       <table class="table table-hover display responsive tableContenido" id="TablaEstudioServicio" style="width: 100%">
         <thead>
           <tr>

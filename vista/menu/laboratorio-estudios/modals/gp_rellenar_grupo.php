@@ -1,36 +1,25 @@
-<div class="modal fade" id="modalRellenarGrupos" tabindex="-1" aria-labelledby="filtrador" data-bs-focus="false" aria-hidden="true">
+<div class="modal fade" id="modalRellenarGrupos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="filtrador" data-bs-focus="false" aria-hidden="true">
     <div class="modal-dialog  modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header header-modal">
-                <h5 class="modal-title" id="title-grupo-estudios">Rellenar Grupo: </h5>
+                <h5 class="modal-title" id="title-grupo-estudios">Estudio: </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <hr>
-                <div class="row d-flex justify-content-center">
-                    <div class="col-12 p-4">
-                        <div class="card p-3">
-                            <h5>Lista de estudios</h5>
-                            <p>Seleccione un estudio para agregar al grupo, para realizar esta acción tienes que pulsar el boton de agregar.</p>
-                            <p class="none-p">No te olvides de guardar cambios <i class="bi bi-box-arrow-down"></i>.</p>
-                            <div>
-                                <select class="form-select input-form my-3" name="estudios" id="estudios" required>
-                                    <option selected>Eliga un estudio</option>
-                                </select>
-                                <button class='btn btn-confirmar' id="btn-agregar-estudios" type='button'><i class="bi bi-file-earmark-plus"></i> Agregar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 p-4">
-                        <div class="card p-3">
-                            <h5>Estudios</h5>
-                            <p>Pulse en la primera columna y arrastre el estudio para cargar su orden, con el icono de <i class="bi bi-trash"></i> puedes eliminar el estudio de la tabla.</p>
-                            <p class="none-p">No te olvides de guardar cambios <i class="bi bi-box-arrow-down"></i>.</p>
-                            <table class="table display responsive" id="TablaLLenarGrupo" style="width: 100%">
+                <div class="card p-3">
+                    <p>Pulse en la primera columna y arrastre el estudio para cargar su orden, con el icono de <i class="bi bi-trash"></i> puedes eliminar el estudio de la tabla.</p>
 
-                            </table>
-                        </div>
+                    <label for="form-label">Buscar:</label>
+                    <select class="form-select input-form my-3" name="estudios" id="estudios" required>
+                        <option selected>Eliga un estudio</option>
+                    </select>
+                    <div class="text-end">
+                        <button class='btn btn-confirmar' id="btn-agregar-estudios" type='button'><i class="bi bi-file-earmark-plus"></i> Agregar</button>
                     </div>
+
+                    <table class="table display responsive" id="TablaLLenarGrupo" style="width: 100%">
+
+                    </table>
                 </div>
             </div>
             <div class="modal-footer">
