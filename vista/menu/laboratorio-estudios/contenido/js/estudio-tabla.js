@@ -1,3 +1,6 @@
+// Variables locales
+var SelectEstudios = false;
+
 var tablaServicio = $('#TablaEstudioServicio').DataTable({
   language: {
     url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
@@ -43,6 +46,11 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
       className: 'btn btn-pantone-325 ',
       action: function () {
 
+        if (!SelectEstudios) {
+          alertSelectTable();
+          return false;
+        }
+
 
         $('#modalReferencia').modal('show');
       }
@@ -54,12 +62,14 @@ selectDatatable("TablaEstudioServicio", tablaServicio, 0, 0, 0, 0, function (sel
 
   if (select) {
     obtenerPanelInformacion(1, 'servicios_api', 'estudio');
+    SelectEstudios = true;
 
     //   console.log(select);
     //   infoServicioEdit = getInfoServicioLab(select['ID_SERVICIO']);
     //   console.log(infoServicioEdit)
     //   // obtenerPanelInformacion(1, infoServicioEdit, 'signos-vitales', '#signos-vitales'); //<-- en la opcion 2 mando arreglo, pero deberia estar la api donde ira, pero el case necesita la info, no busca en ajax
   } else {
+    SelectEstudios = false;
 
     //   infoServicioEdit = false;
     //   // obtenerPanelInformacion(0, null, 'signos-vitales', '#signos-vitales'); //<-- en la opcion 2 mando arreglo, pero deberia estar la api donde ira, pero el case necesita la info, no busca en ajax
