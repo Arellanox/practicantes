@@ -7,17 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
     <style>
-        @page {
-            margin: 165px 10px;
-        }
+    @page {
+        margin: 0px 10px;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin-top: 60px;
-            font-size: 10px;
-        }
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin-top: 60px;
+        font-size: 10px;
+    }
 
-        /* .header {
+    /* .header {
             position: fixed;
             top: -165px;
             left: 25px;
@@ -26,181 +26,182 @@
             margin-top: 0;
         } */
 
-        .footer {
-            position: fixed;
-            bottom: -165px;
-            left: 25px;
-            right: 25px;
-            height: 190px;
-        }
+    .footer {
+        position: fixed;
+        bottom: -165px;
+        left: 25px;
+        right: 25px;
+        /* background-color: purple; */
+    }
 
-        .footer .page:after {
-            content: counter(page);
-        }
+    .footer .page:after {
+        content: counter(page);
+    }
 
-        /* Saltar a nueva pagina */
-        .break {
-            page-break-after: always;
-        }
+    /* Saltar a nueva pagina */
+    .break {
+        page-break-after: always;
+    }
 
-        /* Content */
-        .invoice-content {
-            border-radius: 4px;
-            padding-bottom: 10px;
-            padding-right: 30px;
-            padding-left: 30px;
-            text-align: justify;
-            text-justify: inter-word;
-        }
+    /* Content */
+    .invoice-content {
+        border-radius: 4px;
+        padding-bottom: 10px;
+        padding-right: 30px;
+        padding-left: 30px;
+        text-align: justify;
+        text-justify: inter-word;
+        /* background-color: purple; */
+    }
 
 
-        h1 {
-            font-size: 22px;
-            margin-top: 2px;
-            margin-bottom: 2px;
-        }
+    h1 {
+        font-size: 22px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
 
-        h2 {
-            font-size: 18px;
-            margin-top: 18px;
-            margin-bottom: 10px;
-            text-align: center;
-            background-color: rgba(215, 222, 228, 0.748);
-            /* padding-top: 10px; */
-        }
+    h2 {
+        font-size: 18px;
+        margin-top: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+        background-color: rgba(215, 222, 228, 0.748);
+        /* padding-top: 10px; */
+    }
 
-        h3 {
-            font-size: 18px;
-            margin-top: 2px;
-            margin-bottom: 2px;
-        }
+    h3 {
+        font-size: 18px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
 
-        h4 {
-            font-size: 16px;
-            margin-top: 2px;
-            margin-bottom: 2px;
-        }
+    h4 {
+        font-size: 16px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
 
-        h5 {
-            font-size: 14.5px;
-            margin-top: 2px;
-            margin-bottom: 2px;
-        }
+    h5 {
+        font-size: 14.5px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
 
-        p {
-            font-size: 15px;
-        }
+    p {
+        font-size: 15px;
+    }
 
-        strong {
-            font-size: 14px;
-        }
+    strong {
+        font-size: 14px;
+    }
 
-        .align-center {
-            text-align: center;
-        }
+    .align-center {
+        text-align: center;
+    }
 
-        table {
-            width: 100%;
-            max-width: 100%;
-            margin: auto;
-            white-space: nowrap;
-            /* table-layout:fixed; */
-        }
+    table {
+        width: 100%;
+        max-width: 100%;
+        margin: auto;
+        white-space: nowrap;
+        /* table-layout:fixed; */
+    }
 
-        th,
-        td {
-            width: 100%;
-            max-width: 100%;
-            word-break: break-all;
-        }
+    th,
+    td {
+        width: 100%;
+        max-width: 100%;
+        word-break: break-all;
+    }
 
-        /* Para divisiones de 3 encabezado*/
-        .col-left {
-            width: 35%;
-            max-width: 35%;
-            text-align: left;
-            font-size: 12px;
-        }
+    /* Para divisiones de 3 encabezado*/
+    .col-left {
+        width: 35%;
+        max-width: 35%;
+        text-align: left;
+        font-size: 12px;
+    }
 
-        .col-center {
-            width: 35%;
-            max-width: 35%;
-            text-align: left;
-            font-size: 12px;
-        }
+    .col-center {
+        width: 35%;
+        max-width: 35%;
+        text-align: left;
+        font-size: 12px;
+    }
 
-        .col-right {
-            width: 30%;
-            max-width: 30%;
-            text-align: left;
-            font-size: 12px;
-        }
+    .col-right {
+        width: 30%;
+        max-width: 30%;
+        text-align: left;
+        font-size: 12px;
+    }
 
-        /* divisiones de 3 footer */
-        .col-foot-one {
-            width: 30%;
-            max-width: 30%;
-            text-align: left;
-            font-size: 12px;
-        }
+    /* divisiones de 3 footer */
+    .col-foot-one {
+        width: 30%;
+        max-width: 30%;
+        text-align: left;
+        font-size: 12px;
+    }
 
-        .col-foot-two {
-            width: 40%;
-            max-width: 40%;
-            text-align: center;
-            font-size: 12px;
-        }
+    .col-foot-two {
+        width: 40%;
+        max-width: 40%;
+        text-align: center;
+        font-size: 12px;
+    }
 
-        .col-foot-three {
-            width: 30%;
-            max-width: 30%;
-            text-align: right;
-            font-size: 12px;
-        }
+    .col-foot-three {
+        width: 30%;
+        max-width: 30%;
+        text-align: right;
+        font-size: 12px;
+    }
 
-        /* Para divisiones de 4 */
-        .result {
-            font-size: 12px
-        }
+    /* Para divisiones de 4 */
+    .result {
+        font-size: 12px
+    }
 
-        /* diviciones de 2 */
-        .col-izq {
-            width: 30%;
-            max-width: 30%;
-            text-align: left;
-        }
+    /* diviciones de 2 */
+    .col-izq {
+        width: 30%;
+        max-width: 30%;
+        text-align: left;
+    }
 
-        .col-der {
-            width: 70%;
-            max-width: 70%;
-            text-align: center;
-        }
+    .col-der {
+        width: 70%;
+        max-width: 70%;
+        text-align: center;
+    }
 
-        /* Fivisiones de cinco */
-        .col-one {
-            width: 30%;
-            max-width: 30%;
-            text-align: left;
-        }
+    /* Fivisiones de cinco */
+    .col-one {
+        width: 30%;
+        max-width: 30%;
+        text-align: left;
+    }
 
-        .col-two {
-            width: 20%;
-            max-width: 20%;
-            text-align: right;
-        }
+    .col-two {
+        width: 20%;
+        max-width: 20%;
+        text-align: right;
+    }
 
-        .col-three {
-            width: 25%;
-            max-width: 25%;
-            text-align: center;
+    .col-three {
+        width: 25%;
+        max-width: 25%;
+        text-align: center;
 
-        }
+    }
 
-        .col-four {
-            width: 25%;
-            max-width: 25%;
-            text-align: center;
-        }
+    .col-four {
+        width: 25%;
+        max-width: 25%;
+        text-align: center;
+    }
     </style>
 </head>
 
@@ -284,7 +285,8 @@ if (!isset($qr)) {
                         Nombre: <strong style="font-size: 12px;"> <?php echo $encabezado->NOMBRE; ?> </strong>
                     </td>
                     <td class="col-center" style="border-bottom: none">
-                        Fecha de Nacimiento: <strong style="font-size: 12px;"> <?php echo $encabezado->NACIMIENTO; ?> </strong>
+                        Fecha de Nacimiento: <strong style="font-size: 12px;"> <?php echo $encabezado->NACIMIENTO; ?>
+                        </strong>
                     </td>
                     <td class="col-right" style="border-bottom: none">
                     </td>
@@ -294,7 +296,8 @@ if (!isset($qr)) {
                         <?php echo (isset($encabezado->PASAPORTE)) ? "Pasaporte: <strong>" . $encabezado->PASAPORTE . "</strong>" : ""; ?>
                     </td>
                     <td class="col-center" style="border-bottom: none">
-                        Fecha de Resultado: <strong style="font-size: 12px;"><?php echo $encabezado->FECHA_RESULTADO_IMAGEN; ?> </strong>
+                        Fecha de Resultado: <strong
+                            style="font-size: 12px;"><?php echo $encabezado->FECHA_RESULTADO_IMAGEN; ?> </strong>
                     </td>
                     <td class="col-right" style="border-bottom: none">
                         <!-- Tipo de Muestra: <strong>Sangre</strong> -->
@@ -316,10 +319,11 @@ if (!isset($qr)) {
     </div>
 
     <div class="footer">
-        <table>
+        <table class="footer-table">
             <tbody>
                 <tr class="col-foot-one">
-                    <td colspan="12" style="text-align: right; padding-right: 0;"><strong style="font-size: 12px;">Atentamente</strong></td>
+                    <td colspan="12" style="text-align: right; padding-right: 0;"><strong
+                            style="font-size: 12px;">Atentamente</strong></td>
                 </tr>
                 <tr class="col-foot-two">
                     <td colspan="10">
@@ -332,7 +336,7 @@ if (!isset($qr)) {
                         ?>
                     </td>
                 </tr>
-                <tr class="col-foot-three" style="font-size: 13px;">
+                <tr class="col-foot-three" style="font-size: 100px;">
                     <td colspan="6" style="text-align: center; width: 50%">
                         <?php
                         if ($preview == 0) {
@@ -358,7 +362,11 @@ if (!isset($qr)) {
             </tbody>
         </table>
         <hr style="margin-top: -20px; height: 0.5px; background-color: black ;">
-        <p style="text-align: center;"><small><strong style="font-size: 12px;">Avenida José Pagés Llergo No. 150 Interior 1, Colonia Arboledas, Villahermosa Tabasco, C.P. 86079</strong> <br> <strong style="font-size: 12px;"> Teléfonos: 993 634 0251, 993 634 1469, 993 634 1483, 993 634 1484, 993 634 0245, 993 634 0246; </strong> <strong style="font-size: 12px;">Correo electrónico:</strong> <strong style="font-size: 12px;">hola@bimo.com.mx</strong></small></p>
+        <p style="text-align: center;"><small><strong style="font-size: 12px;">Avenida José Pagés Llergo No. 150
+                    Interior 1, Colonia Arboledas, Villahermosa Tabasco, C.P. 86079</strong> <br> <strong
+                    style="font-size: 12px;"> Teléfonos: 993 634 0251, 993 634 1469, 993 634 1483, 993 634 1484, 993 634
+                    0245, 993 634 0246; </strong> <strong style="font-size: 12px;">Correo electrónico:</strong> <strong
+                    style="font-size: 12px;">hola@bimo.com.mx</strong></small></p>
     </div>
 
     <!-- body -->
@@ -377,9 +385,32 @@ if (!isset($qr)) {
             $count++;
             if ($count % 2 == 0) {
         ?>
-                <div class="break"></div>
+        <!-- <div class="break"></div> -->
         <?php
             }
+        }
+        ?>
+
+        <div class="break"></div>
+        <h2 style="padding-bottom: 8px; padding-top:8px">Estos son los resultados</h2>
+        <?php
+        $jsonData = $resultados->IMAGENES;
+
+        $uniqueUrls = []; // Array para rastrear las URLs únicas
+
+        foreach ($jsonData as $conjunto) {
+            foreach ($conjunto as $captura) {
+                $url = $captura->CAPTURAS[0][0]->url;
+
+                if (!in_array($url, $uniqueUrls)) {
+                    $uniqueUrls[] = $url;
+                }
+            }
+        }
+
+        // Ahora puedes mostrar las imágenes directamente en la página web
+        foreach ($uniqueUrls as $url) {
+            echo "<div style='text-align: center; margin-bottom: 20px;'><img style='width: 25%;' src='$url' alt='Imagen'></div>";
         }
         ?>
     </div>
@@ -392,14 +423,14 @@ for ($i = 2; $i < $indice; $i++) {
 }
 ?>
 <style>
-    .footer {
-        position: fixed;
-        bottom: -165px;
-        left: 25px;
-        right: 25px;
-        height: <?php echo $altura . 'px' ?>;
-        /* background-color: pink; */
-    }
+.footer {
+    position: fixed;
+    bottom: 50px;
+    left: 25px;
+    right: 25px;
+    height: <?php echo $altura . 'px'?>;
+    /* background-color: pink; */
+}
 </style>
 
 </html>

@@ -316,7 +316,7 @@ class Miscelaneus
                 }
             } // fin foreach
             $newArray = $aux;
-        } 
+        }
         return $newArray;
     } // fin de checkArray
 
@@ -359,7 +359,7 @@ class Miscelaneus
                 $carpeta_guardado = 'lab';
                 $datos_medicos = array(); #Mandar vacio
                 $folio = $infoPaciente[0]['FOLIO'];
-                if ($area_id == 12 || $area_id == '12') { 
+                if ($area_id == 12 || $area_id == '12') {
                     $carpeta_guardado = 'lab-molecular';
                     $folio = $infoPaciente[0]['FOLIO_BIOMOLECULAR'];
                 }
@@ -372,6 +372,8 @@ class Miscelaneus
                 $fecha_resultado = $infoPaciente[0]['FECHA_CARPETA_IMAGEN'];
                 $infoPaciente[0]['TITULO'] = 'Reporte de Rayos X';
                 $carpeta_guardado = 'rayosx';
+                // print_r($arregloPaciente);
+                // exit;
 
                 //Folio
                 $infoPaciente[0]['FOLIO_IMAGEN'] = $infoPaciente[0]['FOLIO_IMAGEN_US'];
@@ -446,7 +448,7 @@ class Miscelaneus
                 $carpeta_guardado = "cotizacion";
                 // $arregloPaciente = [$arregloPaciente[count($arregloPaciente) - 1]];
                 $folio = $arregloPaciente['FOLIO'];
-                $nombre_paciente = 'COTIZACION_'.$folio;
+                $nombre_paciente = 'COTIZACION_' . $folio;
                 // print_r($arregloPaciente);
                 // exit;
                 break;
@@ -508,34 +510,31 @@ class Miscelaneus
             $nombre_paciente
         );
 
-        
-        switch ($area_id){
 
-            # para reportes que no usan $turno_id para su creacion.
+        switch ($area_id) {
+
+                # para reportes que no usan $turno_id para su creacion.
             case 15:
                 $ruta_saved = "reportes/modulo/$carpeta_guardado/$fecha_resultado/";
 
                 # Seteamos la ruta del reporte para poder recuperarla despues con el atributo $ruta_reporte.
                 $this->setRutaReporte($ruta_saved);
 
-            
+
                 # Crear el directorio si no existe
                 $r = $master->createDir("../" . $ruta_saved);
 
-                if ($r === 1){
+                if ($r === 1) {
 
-                    $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre_paciente );
+                    $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre_paciente);
                     $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
-
-
-                }else{
+                } else {
 
                     echo "Imposible crear la ruta del archivo";
                     exit;
-                    
                 }
-                
-                
+
+
                 break;
 
             default:
@@ -654,7 +653,7 @@ class Miscelaneus
             'PORCENTAJE_DESCUENTO' => $infoCliente[0]['PORCENTAJE_DESCUENTO']
 
         );
-        
+
 
         return $arregloCotizaciones;
     }
@@ -932,7 +931,15 @@ class Miscelaneus
         // $area_id = $area_id; #11 es el id para ultrasonido y rayosx.
         $response1 = $master->getByNext('sp_imagenologia_resultados_b', [null, $turno_id, $area_id]);
 
+        $response2 = $master->getByProcedure('sp_capturas_imagen_b', [$turno_id, $area_id]);
+
         $arrayimg = [];
+        $arrayNuevascapturas = [];
+
+        for ($i = 0; $i < count($response2); $i++) {
+            $decodedResponse2 = $master->decodeJsonRecursively($response2);
+            array_push($arrayNuevascapturas, $decodedResponse2);
+        }
 
         for ($i = 0; $i < count($response1[1]); $i++) {
 
@@ -953,7 +960,8 @@ class Miscelaneus
         }
 
         return array(
-            'ESTUDIOS' => $arrayimg
+            'ESTUDIOS' => $arrayimg,
+            'IMAGENES' => $arrayNuevascapturas
         );
     }
 
@@ -1278,15 +1286,16 @@ class Miscelaneus
         return $decoded;
     }
 
-    function decodeJsonRecursively($jsonArray) {
+    function decodeJsonRecursively($jsonArray)
+    {
         $decodedArray = array();
-    
+
         foreach ($jsonArray as $key => $value) {
             if (is_array($value)) {
                 $decodedArray[$key] = $this->decodeJsonRecursively($value);
             } else {
                 $decodedValue = json_decode($value, true);
-    
+
                 // Si json_decode devuelve NULL, significa que el valor no es un JSON válido,
                 // por lo que simplemente lo mantenemos tal como está.
                 // De lo contrario, seguimos decodificando recursivamente.
@@ -1297,10 +1306,10 @@ class Miscelaneus
                 }
             }
         }
-    
+
         return $decodedArray;
     }
-    
+
 
     function str_ends_with($haystack, $needle)
     {
