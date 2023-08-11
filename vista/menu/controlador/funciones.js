@@ -3115,32 +3115,53 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                     
                     case 'btn-laboratorio-etiquetas-imprimir':
 
-                        area_nombre = 'etiquetas'
-                      api = encodeURIComponent(window.btoa(area_nombre));
-                      turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO'],));
+                      var area_nombre = 'etiquetas';
+                      var api = encodeURIComponent(window.btoa(area_nombre));
+                      var turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO']));
 
-                      const nombrePDf = 'ticket.pdf';
-                      const nombreImpresora = 'PDF24';
-                      const url = `http://localhost:8080/?nombrePdf=${nombrePDf}&impresora=${nombreImpresora}`;
+                      
+                      var pdfUrl = http + servidor + "/nuevo_checkup/visualizar_reporte/?api=" + api + "&turno=" + turno;
 
-                  
-                      fetch(url)
-                        .then(respuesta => {
+                      
+                      var iframe = document.getElementById("pdf-frame");
+                      iframe.src = pdfUrl;
 
-                          if (respuesta.status == 200) {
+                     
+                      setTimeout(function () {
+                        try {
+                          alertToast('Imprimiendo etiquetas', 'info', 5000)
+                          iframe.contentWindow.print();
 
-                            alertToast('Imprimiendo etiquetas', 'info', 5000)
-                            console.log("Impresion OK")
+                        } catch (e) {
 
-                          } else {
-                            respuesta.json()
-                              .then(mensaje => {
-                                
-                                console.log("Error: " + mensaje)
+                          alertToast('No se pudieron imprimir las etiquetas', 'error', 5000)
+                          console.error("No se pudo imprimir el PDF: " + e.message);
+                        }
+                      }, 2000); 
+                
+                
+                      // area_nombre = 'etiquetas'
+                      // api = encodeURIComponent(window.btoa(area_nombre));
+                      // turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO'],));
+                      // url = `${http}${servidor}/practicantes/visualizar_reporte/?api=${api}&turno=${turno}`
 
-                              })
-                          }
-                        })
+                      // var url = ` http://localhost:8080/url?impresora=PDF24&urlPdf=${url}`;
+
+                      // fetch(url)
+                      //   .then(respuesta => {
+
+                      //     if (respuesta.status == 200) {
+                      //      alertToast('Imprimiendo etiquetas', 'info', 5000)
+                      //       console.log("Impresion OK")
+
+                      //     } else {
+                      //       respuesta.json()
+                      //         .then(mensaje => {
+                      //           console.log("Error: " + mensaje)
+                      //         })
+                      //     }
+                      //   })
+
 
                       break;
 
