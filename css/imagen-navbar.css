@@ -1,9 +1,19 @@
-#logo_empresa{
+#logo_empresa {
   height: 50px;
   border-radius: 6px;
 }
 
-.img_galeria{
+@media screen and (max-width: 1025px) {
+  #logo_empresa {
+    height: 35px;
+  }
+
+  #decoration-cumple {
+    width: 55px !important;
+  }
+}
+
+.img_galeria {
   width: 20%;
   height: auto;
   margin: 1%;
@@ -11,7 +21,8 @@
   position: relative;
   background: white;
 }
-#logo_empresa_login{
+
+#logo_empresa_login {
   height: 70px;
   border-radius: 6px;
 }

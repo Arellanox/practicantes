@@ -1,6 +1,6 @@
 @import "navbar.css?v=4";
-@import "imagen-navbar.css?v=2";
-@import "table.css?v=6";
+@import "imagen-navbar.css?v=4.1";
+@import "table.css?v=11";
 @import "modal.css?v=9";
 @import "botones-registro.css?v=2";
 @import "loader.css?v=2";
@@ -10,7 +10,7 @@
 @import "forms.css?v=9";
 @import "perfil-usuario.css?v=3";
 @import "offcanvas.css?v=2";
-@import "buttons.css?v=6";
+@import "buttons.css?v=7";
 @import "fullscreen-click-img.css";
 @import "colors.css?v=2";
 @import "boostrap-new.css?v=2";
@@ -38,11 +38,15 @@ body {
   background-color: #f6fdff !important;
 }
 
+
+div.dataTables_length,
 div.dataTables_filter,
-div.dataTables_length {
-  display: inline-block;
+div.dataTables_info, div.dataTables_toolbar, div.dataTables_paginate
+ {
+  display: contents;
   margin-left: 1em;
 }
+
 
 html {
   scroll-behavior: smooth;
