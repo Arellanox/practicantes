@@ -13,18 +13,23 @@
                 <div class="row my-3">
                     <div class="col-12 col-lg-6">
                         <p>Dirigido a:</p>
-                        <select class="form-select input-form" name="select-genero-referencia" id="select-genero-referencia">
+                        <select class="form-select input-form" name="select-genero-referencia"
+                            id="select-genero-referencia">
+                            <option selected>Elije una de las opciones disponibles</option>
                             <option value="">HOMBRE</option>
                             <option value="">MUJER</option>
                             <option value="">AMBOS</option>
                         </select>
                     </div>
+
                     <div class="col-lg-6">
                         <p>Edad: </p>
                         <div class="input-group  mb-3">
-                            <input type="text" class="form-control input-form" placeholder="Edad Minima" aria-label="Username">
+                            <input type="number" class="form-control input-form" id="edad-minima-referencia" min="0"
+                                placeholder="Edad Minima">
                             <span class="input-span">-</span>
-                            <input type="text" class="form-control input-form" placeholder="Edad Maxima" aria-label="Server">
+                            <input type="number" class="form-control input-form" id="edad-maxima-referencia" min="0"
+                                placeholder="Edad Maxima">
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="SinEdad">
