@@ -272,10 +272,12 @@ $encode_firma = base64_encode($ruta_firma);
                 <tr>
                     <td class="col-left" style="border-bottom: none">
 
-                        No. Identificación: <strong style="font-size: 12px;"> <?php echo $encabezado->FOLIO_IMAGEN; ?> </strong>
+                        No. Identificación: <strong style="font-size: 12px;"> <?php echo $encabezado->FOLIO_IMAGEN; ?>
+                        </strong>
                     </td>
                     <td class="col-center" style="border-bottom: none">
-                        Edad: <strong style="font-size: 12px;"> <?php echo $encabezado->EDAD < 1 ? ($encabezado->EDAD * 10) . " meses" : $encabezado->EDAD . " años"; ?></strong>
+                        Edad: <strong style="font-size: 12px;">
+                            <?php echo $encabezado->EDAD < 1 ? ($encabezado->EDAD * 10) . " meses" : $encabezado->EDAD . " años"; ?></strong>
                     </td>
                     <td class="col-right" style="border-bottom: none">
                         Sexo: <strong style="font-size: 12px;"><?php echo $encabezado->SEXO; ?> </strong>
@@ -286,10 +288,12 @@ $encode_firma = base64_encode($ruta_firma);
                         Nombre: <strong style="font-size: 12px;"> <?php echo $encabezado->NOMBRE; ?> </strong>
                     </td>
                     <td class="col-center" style="border-bottom: none">
-                        Fecha de Nacimiento: <strong style="font-size: 12px;"> <?php echo $encabezado->NACIMIENTO; ?> </strong>
+                        Fecha de Nacimiento: <strong style="font-size: 12px;"> <?php echo $encabezado->NACIMIENTO; ?>
+                        </strong>
                     </td>
                     <td class="col-right" style="border-bottom: none">
-                        Pasaporte: <strong style='font-size:12px'> <?php echo (isset($encabezado->PASAPORTE) && !empty($encabezado->PASAPORTE)) ? $encabezado->PASAPORTE : "SD"; ?>
+                        Pasaporte: <strong style='font-size:12px'>
+                            <?php echo (isset($encabezado->PASAPORTE) && !empty($encabezado->PASAPORTE)) ? $encabezado->PASAPORTE : "SD"; ?>
                     </td>
                 </tr>
                 <tr>
@@ -315,7 +319,8 @@ $encode_firma = base64_encode($ruta_firma);
             <?php echo "Procedencia: <strong style='font-size: 12px;'> $encabezado->PROCEDENCIA"; ?> </strong>
         </p>
         <p style="font-size: 12px; padding-left: 3.5px; margin: -1px; margin-top: 5px">
-            <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'>" . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?> </strong>
+            <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'>" . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?>
+            </strong>
         </p>
         <!-- <p>Aqui va el encabezado y es el espacio disponible hasta donde llegue el titulo siguiente.</p> -->
     </div>
@@ -377,7 +382,8 @@ $encode_firma = base64_encode($ruta_firma);
         </table>
         <hr style="height: 0.5px; background-color: black ;">
         <p style="text-align: center;"><small>
-                <strong style="font-size: 11px;">Avenida José Pagés Llergo No. 150 Interior 1, Colonia Arboledas, Villahermosa Tabasco, C.P. 86079</strong> <br>
+                <strong style="font-size: 11px;">Avenida José Pagés Llergo No. 150 Interior 1, Colonia Arboledas,
+                    Villahermosa Tabasco, C.P. 86079</strong> <br>
                 <strong style="font-size: 11px;">Teléfonos: </strong>
                 <strong style="font-size: 11px;">993 634 0250, 993 634 6245</strong>
                 <strong style="font-size: 11px;">Correo electrónico:</strong>
@@ -413,6 +419,28 @@ $encode_firma = base64_encode($ruta_firma);
                 <div class="break"></div>
         <?php
             }
+        }
+        ?>
+        <div class="break"></div>
+        <h2 style="padding-bottom: 8px; padding-top:8px">Estos son los resultados</h2>
+        <?php
+        $jsonData = $resultados->IMAGENES;
+
+        $uniqueUrls = []; // Array para rastrear las URLs únicas
+
+        foreach ($jsonData as $conjunto) {
+            foreach ($conjunto as $captura) {
+                $url = $captura->CAPTURAS[0][0]->url;
+
+                if (!in_array($url, $uniqueUrls)) {
+                    $uniqueUrls[] = $url;
+                }
+            }
+        }
+
+        // Ahora puedes mostrar las imágenes directamente en la página web
+        foreach ($uniqueUrls as $url) {
+            echo "<div style='text-align: center; margin-bottom: 20px;'><img style='width: 25%;' src='$url' alt='Imagen'></div>";
         }
         ?>
     </div>
