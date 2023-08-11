@@ -18,3 +18,6 @@ include "eq_editar_equipo.php";
 include "gp_agregar_grupo.php";
 include "gp_editar_grupo.php";
 include "gp_rellenar_grupo.php";
+
+//Referencia
+include "modal_referencia.php";
