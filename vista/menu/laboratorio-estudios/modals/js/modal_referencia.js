@@ -9,6 +9,14 @@ $(document).ready(function () {
 
 //Desactiva los imput de maximo y minimo de edad
 $('#SinEdad').on('click', function (e) {
-    $('#edad-minima-referencia').addClass('disable-element');
-    $('#edad-maxima-referencia').addClass('disable-element');
+    var minimaReferencia = $('#edad-minima-referencia');
+    var maximaReferencia = $('#edad-maxima-referencia');
+
+    if ($(this).prop('checked')) {
+        minimaReferencia.addClass('disable-element');
+        maximaReferencia.addClass('disable-element');
+    } else {
+        minimaReferencia.removeClass('disable-element');
+        maximaReferencia.removeClass('disable-element');
+    }
 })
