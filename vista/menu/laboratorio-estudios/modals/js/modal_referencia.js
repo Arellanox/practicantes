@@ -70,6 +70,15 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
             data: 'VALOR_REFERENCIA', render: function (data) {
                 return ifnull(data) ? ifnull(data) : 'N/A';
             }
+        },
+        {
+            data: 'ID_VALORES_REFERENCIA', render: function (data) {
+
+
+                return `<i class="bi bi-trash eliminar-receta" data-id = "${data}" style = "cursor: pointer"
+            onclick="desactivarTablaReferencia.call(this)"></i>`;
+
+            }
         }
     ],
     columnDefs: [
@@ -82,7 +91,8 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { target: 6, title: 'Valor Minimo', className: 'all' },
         { target: 7, title: 'Valor Maximo', className: 'all' },
         { target: 8, title: 'Operador Lógico', className: 'all' },
-        { target: 9, title: 'Referencia', className: 'all' }
+        { target: 9, title: 'Referencia', className: 'all' },
+        { target: 10, title: '<i class="bi bi-trash"></i>', className: 'all' }
 
     ]
 })
@@ -142,7 +152,7 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
         ajaxAwaitFormData({
             api: 1,
             servicio_id: array_selected['ID_SERVICIO'],
-            checkedCambiarReferencia : checkedCambiarReferencia
+            checkedCambiarReferencia: checkedCambiarReferencia
         }, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
             alertToast('Su referencia se a guardado!', 'success', 4000)
             TablaValoresReferencia.ajax.reload()
@@ -193,6 +203,26 @@ myModal.addEventListener('shown.bs.modal', () => {
             .columns.adjust();
 
     }, 250)
-
-
 })
+
+function desactivarTablaReferencia() {
+
+    var id_valores_referencia = $(this).data("id");
+
+    alertMensajeConfirm({
+        title: '¿Está seguro que desea desactivar el valor de referencia',
+        text: 'No podrá modificarlo despues',
+        icon: 'warning',
+    }, function () {
+        dataJson_eliminar = {
+            api: 1,
+            id_valores_referencia: id_valores_referencia
+        }
+
+        ajaxAwait(dataJson_eliminar, 'valores_referencia_api', { callbackAfter: true }, false, function (data) {
+            alertToast('Referencia eliminada!', 'success', 4000)
+
+            TablaValoresReferencia.ajax.reload()
+        })
+    }, 1)
+}

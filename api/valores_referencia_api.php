@@ -1,5 +1,6 @@
 <?php
 include_once '../clases/master_class.php';
+include_once '../clases/token_auth.php';
 
 $master = new Master();
 $api = $_POST['api'];
@@ -16,7 +17,10 @@ $operadores_logicos_id = $_POST['select-operador-referencia'];
 $valor_referencia = $_POST['valor_referencia'];
 $checkedCambiarReferencia = $_POST['checkedCambiarReferencia'];
 
-$checkedCambiarReferencia == 0 ? $operadores_logicos_id = null : $operadores_logicos_id = $operadores_logicos_id;  
+$checkedCambiarReferencia == 0 ? $operadores_logicos_id = null : $operadores_logicos_id = $operadores_logicos_id;
+
+//Desativar datos
+$id_valores_referencia = $_POST['id_valores_referencia'];
 
 $insert_datos = $master->setToNull(array(
     $servicio_id,
@@ -27,7 +31,8 @@ $insert_datos = $master->setToNull(array(
     $valor_maximo,
     $presentacion,
     $operadores_logicos_id,
-    $valor_referencia
+    $valor_referencia,
+    $id_valores_referencia
 ));
 
 switch ($api) {
@@ -44,6 +49,10 @@ switch ($api) {
         //Buscar todos los campos para tabla
     case 3:
         $response = $master->getByProcedure('sp_valores_referencia_b', [$servicio_id]);
+        break;
+
+    case 4:
+        $response = $master;
         break;
 
     default:
