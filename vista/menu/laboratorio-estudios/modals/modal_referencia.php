@@ -7,12 +7,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               <form id="formGuardarReferencia">
-                    <div class="row">
+             <form id="formGuardarReferencia">
+                <div class="row">
                     <div class="col-12 col-lg-9 p-3">
                         <!-- Aqui va a ir la tabla -->
-                        <table class="table table-hover display responsive " id="TablaListaPrecios" style="width: 100%">
-                            <thead style="width: 100%">
+                        <table class="table table-hover display responsive " id="TablaValoresReferencia" style="width: 100%">
+                            <!-- <thead style="width: 100%">
                               <tr>
                                 <th scope="col d-flex justify-content-center" class="all">#</th>
                                 <th scope="col d-flex justify-content-center" class="all">Ab</th>
@@ -31,7 +31,7 @@
                                 <td> 1 </td>
                                 <td> 1 </td>
                             </tr>
-                        </tbody>
+                        </tbody> -->
                     </table>
                 </div>
 
@@ -75,29 +75,29 @@
                     </div>  
 
                     <div class="row">
-                         <div class="col-12">
-                            <p>Presentacion:</p>
-                            <input type="text" class="form-control input-form" name="presentacion" id="presentacion">
-                        </div>
+                       <div class="col-12">
+                        <p>Presentacion:</p>
+                        <input type="text" class="form-control input-form" name="presentacion" id="presentacion">
+                    </div>
+                </div>
+
+                <div class="row" id="cambio-rango-referencia">
+                    <div class="col-12 col-lg-6">
+                        <p>Valor Mínimo:</p>
+                        <input type="text" class="form-control input-form" name="valor_minimo" id="valor_minimo">
                     </div>
 
-                    <div class="row" id="cambio-rango-referencia">
-                        <div class="col-12 col-lg-6">
-                            <p>Valor Mínimo:</p>
-                            <input type="text" class="form-control input-form" name="valor_minimo" id="valor_minimo">
-                        </div>
-
-                        <div class="col-12 col-lg-6">
-                            <p>Valor Maximo:</p>
-                            <input type="text" class="form-control input-form" name="valor_maximo" id="valor_maximo">
-                        </div>
-
+                    <div class="col-12 col-lg-6">
+                        <p>Valor Maximo:</p>
+                        <input type="text" class="form-control input-form" name="valor_maximo" id="valor_maximo">
                     </div>
 
-                    <div class="row" style="display: none;" id="resultado-select-rango">
-                        <div class="col-12 col-lg-6">
-                            <p>Resultado es:</p>
-                            <select class="form-control input-form" name="select-operador-referencia" id="select-operador-referencia">
+                </div>
+
+                <div class="row" style="display: none;" id="resultado-select-rango">
+                    <div class="col-12 col-lg-6">
+                        <p>Resultado es:</p>
+                        <select class="form-control input-form" name="select-operador-referencia" id="select-operador-referencia">
                                <!--  <option value="">&#62; Mayor que</option>
                                 <option value="">&#60; Menor que</option>
                                 <option value="">&#61; Igual</option> -->
@@ -110,16 +110,16 @@
                         </div>
                     </div>
                 </div>
-               </form>
-            </div>
-
-
-        </div> 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-pantone-7541" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" form="formGuardarReferencia" class="btn btn-confirmar" id="btn-guardar-referencia">Guardar</button>
+            </form>
         </div>
+
+
+    </div> 
+    <div class="modal-footer">
+        <button type="button" class="btn btn-pantone-7541" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" form="formGuardarReferencia" class="btn btn-confirmar" id="btn-guardar-referencia">Guardar</button>
     </div>
+</div>
 </div>
 </div>
 

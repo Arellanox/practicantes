@@ -53,6 +53,8 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
 
 
         $('#modalReferencia').modal('show');
+
+        TablaValoresReferencia.ajax.reload()
       }
     }
   ],
@@ -64,6 +66,7 @@ selectDatatable("TablaEstudioServicio", tablaServicio, 0, 0, 0, 0, function (sel
     obtenerPanelInformacion(1, 'servicios_api', 'estudio');
     SelectEstudios = true;
 
+    DataReferencia.servicio_id = array_selected['ID_SERVICIO']
     //   console.log(select);
     //   infoServicioEdit = getInfoServicioLab(select['ID_SERVICIO']);
     //   console.log(infoServicioEdit)

@@ -14,6 +14,7 @@ var modalEdit, formEstudios;
 var infoServicioEdit = false;
 
 
+
 function obtenerContenidoEstudios(titulo) {
   obtenerTitulo(titulo); //Aqui mandar el nombre de la area
   $.post("contenido/estudios.php", function (html) {
