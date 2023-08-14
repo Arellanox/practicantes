@@ -5,6 +5,7 @@ rellenarSelect("#select-operador-referencia", "valores_referencia_api", 2, "ID_O
 var DataReferencia = {
     api: 3
 }
+var checkedCambiarReferencia;
 
 // Tabla de valores de referencia
 TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
@@ -119,13 +120,13 @@ $(document).on('change, keyup, click', '#cambioReferencia', function () {
     if ($(this).is(':checked')) {
         $('#resultado-select-rango').fadeIn(1);
         $('#cambio-rango-referencia').fadeOut(1);
-
+        checkedCambiarReferencia = 1
 
         limpiarInputs('cambioReferencia', true)
     } else {
         $('#resultado-select-rango').fadeOut(1);
         $('#cambio-rango-referencia').fadeIn(1);
-
+        checkedCambiarReferencia = 0
         limpiarInputs('cambioReferencia', false)
     }
 })
@@ -140,17 +141,20 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
     }, function () {
         ajaxAwaitFormData({
             api: 1,
-            servicio_id: array_selected['ID_SERVICIO']
+            servicio_id: array_selected['ID_SERVICIO'],
+            checkedCambiarReferencia : checkedCambiarReferencia
         }, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
             alertToast('Su referencia se a guardado!', 'success', 4000)
             TablaValoresReferencia.ajax.reload()
 
-            $('#edad-minima-referencia').val('')
-            $('#edad-maxima-referencia').val('')
-            $('#presentacion').val('')
-            $('#valor_minimo').val('')
-            $('#valor_maximo').val('')
-            $('#valor_referencia').val('')
+            // $('#edad-minima-referencia').val('')
+            // $('#edad-maxima-referencia').val('')
+            // $('#presentacion').val('')
+            // $('#valor_minimo').val('')
+            // $('#valor_maximo').val('')
+            // $('#valor_referencia').val('')
+
+            $('#formGuardarReferencia').trigger("reset");
         })
     }, 1)
 

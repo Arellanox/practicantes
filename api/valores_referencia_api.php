@@ -14,6 +14,9 @@ $valor_maximo = $_POST['valor_maximo'];
 $presentacion = $_POST['presentacion'];
 $operadores_logicos_id = $_POST['select-operador-referencia'];
 $valor_referencia = $_POST['valor_referencia'];
+$checkedCambiarReferencia = $_POST['checkedCambiarReferencia'];
+
+$checkedCambiarReferencia == 0 ? $operadores_logicos_id = null : $operadores_logicos_id = $operadores_logicos_id;  
 
 $insert_datos = $master->setToNull(array(
     $servicio_id,

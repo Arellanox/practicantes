@@ -52,9 +52,12 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
         }
 
 
-        $('#modalReferencia').modal('show');
+  
 
+        TablaValoresReferencia.clear().draw()
         TablaValoresReferencia.ajax.reload()
+
+        $('#modalReferencia').modal('show');
       }
     }
   ],
