@@ -10,32 +10,13 @@
              <form id="formGuardarReferencia">
                 <div class="row">
                     <div class="col-12 col-lg-9 p-3">
-                        <!-- Aqui va a ir la tabla -->
-                        <table class="table table-hover display responsive " id="TablaValoresReferencia" style="width: 100%">
-                            <!-- <thead style="width: 100%">
-                              <tr>
-                                <th scope="col d-flex justify-content-center" class="all">#</th>
-                                <th scope="col d-flex justify-content-center" class="all">Ab</th>
-                                <th scope="col d-flex justify-content-center" class="all">Nombre</th>
-                                <th scope="col d-flex justify-content-center" class="min-tablet">Costo</th>
-                                <th scope="col d-flex justify-content-center" class="min-tablet">Margen</th>
-                                <th scope="col d-flex justify-content-center" class="min-tablet">Total</th>
-                            </tr> 
-                        </thead>
-                        <tbody id="contenido-lista-precios">
-                            <tr>
-                                <td> 1 </td>
-                                <td> 1 </td>
-                                <td> 1 </td>
-                                <td> 1 </td>
-                                <td> 1 </td>
-                                <td> 1 </td>
-                            </tr>
-                        </tbody> -->
-                    </table>
-                </div>
+                      <!-- Aqui va a ir la tabla -->
+                      <table class="table table-hover display responsive " id="TablaValoresReferencia" style="width: 100%">
 
-                <div class="col-12 col-lg card shadow p-3">
+                      </table>
+                  </div>
+
+                  <div class="col-12 col-lg card shadow p-3">
                     <!-- El formulario para agregar referencias -->
                     <h5>Información Valores de referencia</h5>
                     <p class="none-p">Escriba el valor de referencia para el reporte...</p>
@@ -116,25 +97,13 @@
 
     </div> 
     <div class="modal-footer">
-        <button type="button" class="btn btn-pantone-7541" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" form="formGuardarReferencia" class="btn btn-confirmar" id="btn-guardar-referencia">Guardar</button>
-    </div>
+      <button type="button" class="btn btn-pantone-7541" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" form="formGuardarReferencia" class="btn btn-borrar" id="btn-VisualizarPDFReferencia">
+          <i class="bi bi-file-earmark-pdf"></i> Visualizar PDF
+      </button>
+      <button type="button" form="formGuardarReferencia" class="btn btn-confirmar" id="btn-guardar-referencia">Guardar</button>
+
+  </div>
 </div>
 </div>
 </div>
-
-
-<script>
-    // entrada = 20
-
-    // minimo = 60 // <=
-    // maximo = 20 //<
-
-    // if (entrada >= minimo && entrada <= maximo) {
-    //     console.log("Esta entre el rango")
-    // } else if (entrada < minimo) {
-    //     console.log("Es menor que el minimo")
-    // } else if (entrada > maximo) {
-    //     console.log("Es mayor que el maximo")
-    // }
-</script>

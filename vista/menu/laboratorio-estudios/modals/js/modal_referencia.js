@@ -78,12 +78,12 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
             data: 'ID_VALORES_REFERENCIA', render: function (data) {
 
 
-                return `<i class="bi bi-trash eliminar-receta" data-id = "${data}" style = "cursor: pointer"
-            onclick="desactivarTablaReferencia.call(this)"></i>`;
+                return `<i class="bi bi-trash" data-id = "${data}" style = "cursor: pointer"
+                onclick="desactivarTablaReferencia.call(this)"></i>`;
 
             }
         }
-    ],
+        ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Servicio', className: 'all' },
@@ -97,7 +97,17 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { target: 9, title: 'Referencia', className: 'all' },
         { target: 10, title: '<i class="bi bi-trash"></i>', className: 'all' }
 
-    ]
+        ],
+    // dom: 'Blfrtip',
+    // buttons: [
+    // {
+    //     text: '<i class="bi bi-file-earmark-pdf"></i> Visualizar PDF',
+    //     className: 'btn btn-borrar',
+    //     action: function () {
+
+    //     }
+    // }
+    // ]
 })
 
 inputBusquedaTable("TablaValoresReferencia", TablaValoresReferencia, [], [], "col-12")
@@ -175,20 +185,20 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
 
 function limpiarInputs(elementID, isChecked) {
     switch (elementID) {
-        case 'SinEdad':
-            if (isChecked) {
-                $('#edad-maxima-referencia').val('')
-                $('#edad-minima-referencia').val('')
-            }
-            break;
-        case 'cambioReferencia':
-            if (isChecked) {
-                $('#valor_minimo').val('')
-                $('#valor_maximo').val('')
-            } else {
-                $('#valor_referencia').val('')
-            }
-            break;
+    case 'SinEdad':
+        if (isChecked) {
+            $('#edad-maxima-referencia').val('')
+            $('#edad-minima-referencia').val('')
+        }
+        break;
+    case 'cambioReferencia':
+        if (isChecked) {
+            $('#valor_minimo').val('')
+            $('#valor_maximo').val('')
+        } else {
+            $('#valor_referencia').val('')
+        }
+        break;
     }
 }
 
@@ -199,11 +209,11 @@ const myModal = document.getElementById('modalReferencia')
 myModal.addEventListener('shown.bs.modal', () => {
     setTimeout(function () {
         $.fn.dataTable
-            .tables({
-                visible: true,
-                api: true
-            })
-            .columns.adjust();
+        .tables({
+            visible: true,
+            api: true
+        })
+        .columns.adjust();
 
     }, 250)
 })
@@ -229,3 +239,17 @@ function desactivarTablaReferencia() {
         })
     }, 1)
 }
+
+
+
+$(document).on('click','#btn-VisualizarPDFReferencia', function(e){
+    e.preventDefault();
+
+    api = encodeURIComponent(window.btoa('laboratorio'));
+    area = encodeURIComponent(window.btoa(-1));
+    turno = encodeURIComponent(window.btoa(FolioMesEquipo));
+
+    var win = window.open(`http://localhost/practicantes/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, '_blank')
+
+    win.focus();
+})
