@@ -37,6 +37,10 @@ switch ($api) {
         $response = $master->insertByProcedure('sp_valores_referencia_g', $insert_datos);
         break;
 
+    case 2:
+        $response = $master->getByProcedure('sp_operadores_logicos_b', []);
+        break;
+
     default:
         $response = "API no definida";
         break;
