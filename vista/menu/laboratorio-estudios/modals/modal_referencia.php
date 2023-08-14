@@ -77,7 +77,7 @@
                     <div class="row" id="cambio-rango-referencia">
                         <div class="col-12">
                             <p>Presentacion:</p>
-                            <input type="text" class="form-control input-form" name="" id="">
+                            <input type="text" class="form-control input-form" name="presentacion" id="presentacion">
                         </div>
 
                         <div class="col-12 col-lg-6">

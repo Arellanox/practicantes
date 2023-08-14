@@ -29,6 +29,11 @@ $insert_datos = $master->setToNull(array(
 
 switch ($api) {
     case 1:
+
+        echo '<pre>';
+        var_dump($insert_datos);
+        echo '</pre>';
+        exit;
         $response = $master->insertByProcedure('sp_valores_referencia_g', $insert_datos);
         break;
 

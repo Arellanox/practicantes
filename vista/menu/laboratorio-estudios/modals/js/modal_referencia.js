@@ -80,8 +80,8 @@ $(document).on('click','#btn-guardar-referencia', function(e){
 
     dataJson = {
         api: 1,
-        servicio_id : array_selected['ID_SERVICIO'];
-    };
+        servicio_id : array_selected['ID_SERVICIO'] 
+    }
 
     ajaxAwaitFormData(dataJson, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
         alertToast(text, 'success', 4000)
