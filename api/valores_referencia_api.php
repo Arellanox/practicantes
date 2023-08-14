@@ -11,6 +11,7 @@ $edad_minima = $_POST['edad_minima'];
 $edad_maxima = $_POST['edad_maxima'];
 $valor_minimo = $_POST['valor_minimo'];
 $valor_maximo = $_POST['valor_maximo'];
+$presentacion = $_POST['presentacion'];
 $operadores_logicos_id = $_POST['select-operador-referencia'];
 $valor_referencia = $_POST['valor_referencia'];
 
@@ -21,6 +22,7 @@ $insert_datos = $master->setToNull(array(
     $edad_maxima,
     $valor_minimo,
     $valor_maximo,
+    $presentacion,
     $operadores_logicos_id,
     $valor_referencia
 ));
