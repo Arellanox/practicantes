@@ -62,14 +62,15 @@ $('#btn-agregar-vista-previa, #SinEdad ,#cambioReferencia').on('click', function
 
         case 'SinEdad':
 
-            alert(1)
+            // alert(1)
             break;
         case 'cambioReferencia':
 
-            alert(2)
+            // alert(2)
             break;
     }
 
 
 })
+
 
