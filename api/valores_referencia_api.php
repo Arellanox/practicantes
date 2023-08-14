@@ -28,12 +28,19 @@ $insert_datos = $master->setToNull(array(
 ));
 
 switch ($api) {
+        //Insertar datos en la tabla referencia_valores
     case 1:
         $response = $master->insertByProcedure('sp_valores_referencia_g', $insert_datos);
         break;
 
+        //Busca campos de operadores logicos
     case 2:
         $response = $master->getByProcedure('sp_operadores_logicos_b', []);
+        break;
+
+        //Buscar todos los campos para tabla
+    case 3:
+        $response = $master->getByProcedure('sp_valores_referencia_b', [$servicio_id]);
         break;
 
     default:
