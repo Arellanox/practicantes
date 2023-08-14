@@ -60,17 +60,31 @@ $('#btn-agregar-vista-previa, #SinEdad ,#cambioReferencia').on('click', function
 
     switch (btn.attr('id')) {
 
-        case 'SinEdad':
+    case 'SinEdad':
 
             // alert(1)
-            break;
-        case 'cambioReferencia':
+        break;
+    case 'cambioReferencia':
 
             // alert(2)
-            break;
+        break;
     }
 
 
 })
 
+$(document).on('click','#btn-guardar-referencia', function(e){
+    e.preventDefault();
 
+/*    console.log(array_selected['ID_SERVICIO'])*/
+
+    dataJson = {
+        api: 1,
+        servicio_id : array_selected['ID_SERVICIO'];
+    };
+
+    ajaxAwaitFormData(dataJson, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
+        alertToast(text, 'success', 4000)
+    })
+
+})

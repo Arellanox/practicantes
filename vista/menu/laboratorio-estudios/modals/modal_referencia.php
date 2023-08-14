@@ -7,7 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row">
+               <form id="formGuardarReferencia">
+                    <div class="row">
                     <div class="col-12 col-lg-9 p-3">
                         <!-- Aqui va a ir la tabla -->
                         <table class="table table-hover display responsive " id="TablaListaPrecios" style="width: 100%">
@@ -43,18 +44,18 @@
                             <p>Dirigido a:</p>  
                             <select class="form-select input-form" name="select-genero-referencia" id="select-genero-referencia">
                                 <option selected>Elije una de las opciones disponibles</option>
-                                <option value="">HOMBRE</option>
-                                <option value="">MUJER</option>
-                                <option value="">AMBOS</option>
+                                <option value="HOMBRE">HOMBRE</option>
+                                <option value="MUJER">MUJER</option>
+                                <option value="AMBOS">AMBOS</option>
                             </select>
                         </div>
 
                         <div class="col-lg-12">
                             <p>Edad: </p>
                             <div class="input-group  mb-3">
-                                <input type="number" class="form-control input-form" id="edad-minima-referencia" min="0" placeholder="Edad Minima">
+                                <input type="number" class="form-control input-form" name="edad-minima" id="edad-minima-referencia" min="0" placeholder="Edad Minima">
                                 <span class="input-span">-</span>
-                                <input type="number" class="form-control input-form" id="edad-maxima-referencia" min="0" placeholder="Edad Maxima">
+                                <input type="number" class="form-control input-form" name="edad-maxima" id="edad-maxima-referencia" min="0" placeholder="Edad Maxima">
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="SinEdad">
@@ -81,12 +82,12 @@
 
                         <div class="col-12 col-lg-6">
                             <p>Valor Mínimo:</p>
-                            <input type="text" class="form-control input-form" name="" id="">
+                            <input type="text" class="form-control input-form" name="valor_minimo" id="valor_minimo">
                         </div>
 
                         <div class="col-12 col-lg-6">
                             <p>Valor Maximo:</p>
-                            <input type="text" class="form-control input-form" name="" id="">
+                            <input type="text" class="form-control input-form" name="valor_maximo" id="valor_maximo">
                         </div>
 
                     </div>
@@ -99,7 +100,7 @@
 
                         <div class="col-12 col-lg-6">
                             <p>Resultado es:</p>
-                            <select class="form-control input-form" name="select-genero-referencia">
+                            <select class="form-control input-form" name="c">
                                 <option value="">&#62; Mayor que</option>
                                 <option value="">&#60; Menor que</option>
                                 <option value="">&#61; Igual</option>
@@ -108,19 +109,18 @@
 
                         <div class="col-12 col-lg-6">
                             <p>Valor de referencia:</p>
-                            <input type="text" class="form-control input-form" name="">
+                            <input type="text" class="form-control input-form" name="valor_referencia">
                         </div>
                     </div>
-
-
                 </div>
+               </form>
             </div>
 
 
         </div> 
         <div class="modal-footer">
             <button type="button" class="btn btn-pantone-7541" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-confirmar">Guardar</button>
+            <button type="button" form="formGuardarReferencia" class="btn btn-confirmar" id="btn-guardar-referencia">Guardar</button>
         </div>
     </div>
 </div>
