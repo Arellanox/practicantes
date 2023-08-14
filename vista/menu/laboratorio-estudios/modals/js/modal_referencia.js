@@ -49,7 +49,10 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
             }
         },
         {
-            data: 'PRESENTACION'
+            data: 'PRESENTACION', render: function (data) {
+                // body...
+                return ifnull(data) ? ifnull(data) : 'N/A';
+            }
         },
         {
             data: 'VALOR_MINIMO', render: function (data) {

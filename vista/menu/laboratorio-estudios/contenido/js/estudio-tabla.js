@@ -57,6 +57,8 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
         TablaValoresReferencia.clear().draw()
         TablaValoresReferencia.ajax.reload()
 
+        $('#titleValoresReferencia').html(`Asignar valores de referencia al servicio: (<b>${array_selected['DESCRIPCION']}</b>)`);
+
         $('#modalReferencia').modal('show');
       }
     }
