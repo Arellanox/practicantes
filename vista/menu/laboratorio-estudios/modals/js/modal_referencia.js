@@ -10,6 +10,9 @@ $(document).ready(function () {
     });
 });
 
+select2('#select-operador-referencia','modalReferencia')
+rellenarSelect("#select-operador-referencia", "valores_referencia_api", 2, "ID_OPERADORES_LOGICOS", "DESCRIPCION");  
+
 //Desactiva los imput de maximo y minimo de edad
 $('#SinEdad').on('click', function (e) {
     var minimaReferencia = $('#edad-minima-referencia');
@@ -18,6 +21,9 @@ $('#SinEdad').on('click', function (e) {
     if ($(this).prop('checked')) {
         minimaReferencia.addClass('disable-element');
         maximaReferencia.addClass('disable-element');
+
+        $('#edad-maxima-referencia').val('')
+        $('#edad-minima-referencia').val('')
     } else {
         minimaReferencia.removeClass('disable-element');
         maximaReferencia.removeClass('disable-element');
@@ -27,19 +33,21 @@ $('#SinEdad').on('click', function (e) {
 // $('#cambioReferencia').on('click', function () {
 
 
-
-// })
-$(document).on('click',)
-
 $(document).on('change, keyup, click', '#cambioReferencia', function () {
 
 
     if ($(this).is(':checked')) {
         $('#resultado-select-rango').fadeIn(1);
         $('#cambio-rango-referencia').fadeOut(1);
+
+        $('#valor_minimo').val('')
+        $('#valor_maximo').val('')
     } else {
         $('#resultado-select-rango').fadeOut(1);
         $('#cambio-rango-referencia').fadeIn(1);
+
+        $('#valor_referencia').val('')
+
 
     }
 })
@@ -75,8 +83,6 @@ $('#btn-agregar-vista-previa, #SinEdad ,#cambioReferencia').on('click', function
 
 $(document).on('click','#btn-guardar-referencia', function(e){
     e.preventDefault();
-
-/*    console.log(array_selected['ID_SERVICIO'])*/
 
     dataJson = {
         api: 1,

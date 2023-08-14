@@ -53,9 +53,9 @@
                         <div class="col-lg-12">
                             <p>Edad: </p>
                             <div class="input-group  mb-3">
-                                <input type="number" class="form-control input-form" name="edad-minima" id="edad-minima-referencia" min="0" placeholder="Edad Minima">
+                                <input type="number" class="form-control input-form" name="edad_minima" id="edad-minima-referencia" min="0" placeholder="Edad Minima">
                                 <span class="input-span">-</span>
-                                <input type="number" class="form-control input-form" name="edad-maxima" id="edad-maxima-referencia" min="0" placeholder="Edad Maxima">
+                                <input type="number" class="form-control input-form" name="edad_maxima" id="edad-maxima-referencia" min="0" placeholder="Edad Maxima">
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="SinEdad">
@@ -74,12 +74,14 @@
                         </label>
                     </div>  
 
-                    <div class="row" id="cambio-rango-referencia">
-                        <div class="col-12">
+                    <div class="row">
+                         <div class="col-12">
                             <p>Presentacion:</p>
                             <input type="text" class="form-control input-form" name="presentacion" id="presentacion">
                         </div>
+                    </div>
 
+                    <div class="row" id="cambio-rango-referencia">
                         <div class="col-12 col-lg-6">
                             <p>Valor Mínimo:</p>
                             <input type="text" class="form-control input-form" name="valor_minimo" id="valor_minimo">
@@ -93,23 +95,18 @@
                     </div>
 
                     <div class="row" style="display: none;" id="resultado-select-rango">
-                        <div class="col-12">
-                            <p>Presentacion:</p>
-                            <input type="text" class="form-control input-form" name="" id="">
-                        </div>
-
                         <div class="col-12 col-lg-6">
                             <p>Resultado es:</p>
-                            <select class="form-control input-form" name="c">
-                                <option value="">&#62; Mayor que</option>
+                            <select class="form-control input-form" name="select-operador-referencia" id="select-operador-referencia">
+                               <!--  <option value="">&#62; Mayor que</option>
                                 <option value="">&#60; Menor que</option>
-                                <option value="">&#61; Igual</option>
+                                <option value="">&#61; Igual</option> -->
                             </select>
                         </div>
 
                         <div class="col-12 col-lg-6">
                             <p>Valor de referencia:</p>
-                            <input type="text" class="form-control input-form" name="valor_referencia">
+                            <input type="text" class="form-control input-form" name="valor_referencia" id="valor_referencia">
                         </div>
                     </div>
                 </div>
