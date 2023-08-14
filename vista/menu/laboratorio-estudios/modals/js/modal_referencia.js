@@ -11,7 +11,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
     info: true,
-    paging: false,
+    paging: true,
     scrollY: '75vh',
     scrollCollapse: true,
     ajax: {
@@ -24,11 +24,11 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         beforeSend: function () {
         },
         complete: function () {
-            console.log(1)
+            // console.log(1)
             TablaValoresReferencia.columns.adjust().draw()
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log(2)
+            // console.log(2)
             alertErrorAJAX(jqXHR, textStatus, errorThrown);
         },
         dataSrc: 'response.data'
@@ -39,39 +39,35 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { data: 'SEXO' },
         {
             data: 'EDAD_MINIMA', render: function (data) {
-
                 return ifnull(data) ? ifnull(data) : 'N/A';
             }
         },
         {
             data: 'EDAD_MAXIMA', render: function (data) {
-
-                return ifnull(data) ? ifnull(data) : 'N/A';
-            }
-        },
-        {
-            data: 'VALOR_MINIMO', render: function (data) {
-
-                return ifnull(data) ? ifnull(data) : 'N/A';
-            }
-        },
-        {
-            data: 'VALOR_MAXIMO', render: function (data) {
-
                 return ifnull(data) ? ifnull(data) : 'N/A';
             }
         },
         {
             data: 'PRESENTACION'
-        }, {
+        },
+        {
+            data: 'VALOR_MINIMO', render: function (data) {
+                return ifnull(data) ? ifnull(data) : 'N/A';
+            }
+        },
+        {
+            data: 'VALOR_MAXIMO', render: function (data) {
+                return ifnull(data) ? ifnull(data) : 'N/A';
+            }
+        },
+        {
             data: 'CODIGO', render: function (data) {
                 return ifnull(data) ? ifnull(data) : 'N/A';
-
             }
-        }, {
+        },
+        {
             data: 'VALOR_REFERENCIA', render: function (data) {
                 return ifnull(data) ? ifnull(data) : 'N/A';
-
             }
         }
     ],
@@ -81,9 +77,9 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { target: 2, title: 'Dirigido', className: 'all' },
         { target: 3, title: 'Edad Minima', className: 'all' },
         { target: 4, title: 'Edad Maxima', className: 'all' },
-        { target: 5, title: 'Valor Minimo', className: 'all' },
-        { target: 6, title: 'Valor Maximo', className: 'all' },
-        { target: 7, title: 'Presentación', className: 'all' },
+        { target: 5, title: 'Presentación', className: 'all' },
+        { target: 6, title: 'Valor Minimo', className: 'all' },
+        { target: 7, title: 'Valor Maximo', className: 'all' },
         { target: 8, title: 'Operador Lógico', className: 'all' },
         { target: 9, title: 'Referencia', className: 'all' }
 
@@ -147,8 +143,14 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
             servicio_id: array_selected['ID_SERVICIO']
         }, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
             alertToast('Su referencia se a guardado!', 'success', 4000)
+            TablaValoresReferencia.ajax.reload()
 
-
+            $('#edad-minima-referencia').val('')
+            $('#edad-maxima-referencia').val('')
+            $('#presentacion').val('')
+            $('#valor_minimo').val('')
+            $('#valor_maximo').val('')
+            $('#valor_referencia').val('')
         })
     }, 1)
 
