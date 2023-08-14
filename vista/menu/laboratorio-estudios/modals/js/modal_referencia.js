@@ -22,8 +22,7 @@ $('#SinEdad').on('click', function (e) {
         minimaReferencia.addClass('disable-element');
         maximaReferencia.addClass('disable-element');
 
-        $('#edad-maxima-referencia').val('')
-        $('#edad-minima-referencia').val('')
+       limpiarInputs('SinEdad', true)
     } else {
         minimaReferencia.removeClass('disable-element');
         maximaReferencia.removeClass('disable-element');
@@ -40,13 +39,13 @@ $(document).on('change, keyup, click', '#cambioReferencia', function () {
         $('#resultado-select-rango').fadeIn(1);
         $('#cambio-rango-referencia').fadeOut(1);
 
-        $('#valor_minimo').val('')
-        $('#valor_maximo').val('')
+
+       limpiarInputs('cambioReferencia', true)
     } else {
         $('#resultado-select-rango').fadeOut(1);
         $('#cambio-rango-referencia').fadeIn(1);
 
-        $('#valor_referencia').val('')
+       limpiarInputs('cambioReferencia', false)
 
 
     }
@@ -94,3 +93,23 @@ $(document).on('click','#btn-guardar-referencia', function(e){
     })
 
 })
+
+
+function limpiarInputs(elementID, isChecked){
+    switch(elementID){
+    case 'SinEdad':
+        if (isChecked){
+            $('#edad-maxima-referencia').val('')
+            $('#edad-minima-referencia').val('')
+        } 
+        break;
+    case 'cambioReferencia' :
+        if (isChecked){
+            $('#valor_minimo').val('')
+            $('#valor_maximo').val('')
+        } else {
+           $('#valor_referencia').val('')
+        }
+        break;
+    }
+}
