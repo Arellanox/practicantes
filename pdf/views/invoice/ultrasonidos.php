@@ -319,7 +319,7 @@ $encode_firma = base64_encode($ruta_firma);
             <?php echo "Procedencia: <strong style='font-size: 12px;'> $encabezado->PROCEDENCIA"; ?> </strong>
         </p>
         <p style="font-size: 12px; padding-left: 3.5px; margin: -1px; margin-top: 5px">
-            <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'>" . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?>
+            <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'> JUAN DANIEL HERNANDEZ GARCIA" . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?>
             </strong>
         </p>
         <!-- <p>Aqui va el encabezado y es el espacio disponible hasta donde llegue el titulo siguiente.</p> -->
@@ -422,38 +422,41 @@ $encode_firma = base64_encode($ruta_firma);
         }
         ?>
         <div class="break"></div>
-        <h2 style="padding-bottom: 8px; padding-top:8px">Estos son los resultados</h2>
+        <h2 style="padding-bottom: 8px; padding-top:8px"><?php echo $resultado->ESTUDIO; ?></h2>
         <?php
         $jsonData = $resultados->IMAGENES;
 
-        $uniqueUrls = []; // Array para rastrear las URLs únicas
+        foreach ($jsonData[0][0]->CAPTURAS[0] as $captura) {
+            $ruta_img = file_get_contents($captura->url);
+            // print_r($captura->url);
 
-        foreach ($jsonData as $conjunto) {
-            foreach ($conjunto as $captura) {
-                $url = $captura->CAPTURAS[0][0]->url;
+            $img_code = base64_encode($ruta_img);
 
-                if (!in_array($url, $uniqueUrls)) {
-                    $uniqueUrls[] = $url;
-                }
-            }
+            // Aquí puedes mostrar la imagen o hacer lo que necesites con la URL y el tipo
+            echo "<div class='img--container'><img style='width: 45%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></div>";
         }
 
-        // Ahora puedes mostrar las imágenes directamente en la página web
-        foreach ($uniqueUrls as $url) {
-            echo "<div style='text-align: center; margin-bottom: 20px;'><img style='width: 25%;' src='$url' alt='Imagen'></div>";
-        }
+
         ?>
     </div>
 </body>
 <?php
 $altura = 220;
-
 for ($i = 2; $i < $indice; $i++) {
     $altura = $altura + 50;
 }
 // echo $altura;
 ?>
 <style>
+    .img--container {
+        text-align: center;
+    }
+
+    .img--container img {
+        margin-top: 20px;
+        position: relative;
+    }
+
     .footer {
         position: fixed;
         bottom: -165px;
