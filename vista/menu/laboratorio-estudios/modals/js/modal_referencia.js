@@ -5,7 +5,7 @@ rellenarSelect("#select-operador-referencia", "valores_referencia_api", 2, "ID_O
 var DataReferencia = {
     api: 3
 }
-var checkedCambiarReferencia;
+var checkedCambiarReferencia, normalidad = 0;
 
 // Tabla de valores de referencia
 TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
@@ -56,8 +56,6 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
 
 
                 // Calcular si esta llegando el minmo y maximo, si no llega no es un rango es una referencia, operador logico y referencia juntos
-
-
                 return `${ifnull(meta, 'Indefinido',['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido',['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
             }
         },
@@ -73,8 +71,8 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
-        { target: 1, title: 'Servicio', className: 'all' },
-        { target: 2, title: 'Dirigido', className: 'all' },
+        { target: 1, title: 'Servicio', className: 'desktop' },
+        { target: 2, title: 'Dirigido', className: 'desktop' },
         // { target: 4, title: 'Edad Maxima', className: 'none' }, 
         { target: 3, title: 'Presentación', className: 'all' },
         { target: 4, title: 'Edad', className: 'all' },
@@ -152,7 +150,8 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
         ajaxAwaitFormData({
             api: 1,
             servicio_id: array_selected['ID_SERVICIO'],
-            checkedCambiarReferencia: checkedCambiarReferencia
+            checkedCambiarReferencia: checkedCambiarReferencia,
+            valores_normalidad : normalidad
         }, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
             alertToast('Su referencia se a guardado!', 'success', 4000)
             TablaValoresReferencia.ajax.reload()
@@ -239,4 +238,15 @@ $(document).on('click', '#btn-VisualizarPDFReferencia', function (e) {
     var win = window.open(`http://localhost/practicantes/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, '_blank')
 
     win.focus();
+})  
+
+    
+// Normalidad
+$(document).on('change', '#valorBueno', function(e){
+     if ($(this).prop('checked')) {
+        normalidad = 1;
+     } else {
+        normalidad = 0;
+     }
 })
+

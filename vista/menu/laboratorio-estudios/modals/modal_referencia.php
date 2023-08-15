@@ -82,28 +82,39 @@
                                         <!--  <option value="">&#62; Mayor que</option>
                                 <option value="">&#60; Menor que</option>
                                 <option value="">&#61; Igual</option> -->
-                                    </select>
-                                </div>
-
-                                <div class="col-12 col-lg-6">
-                                    <p>Referencia:</p>
-                                    <input type="text" class="form-control input-form" name="valor_referencia" id="valor_referencia" placeholder="Valor">
-                                </div>
-                            </div>
+                            </select>
                         </div>
-                </form>
+
+                        <div class="col-12 col-lg-6">
+                            <p>Referencia:</p>
+                            <input type="text" class="form-control input-form" name="valor_referencia" id="valor_referencia" placeholder="Valor">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-12">
+                           <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="valorBueno">
+                            <label class="form-check-label" for="valorBueno">
+                                Valor de normalidad
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-pantone-7541" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" form="formGuardarReferencia" class="btn btn-borrar" id="btn-VisualizarPDFReferencia">
-                <i class="bi bi-file-earmark-pdf"></i> Visualizar PDF
-            </button>
-            <button type="button" form="formGuardarReferencia" class="btn btn-confirmar" id="btn-guardar-referencia">Guardar</button>
-
-        </div>
+        </form>
     </div>
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-pantone-7541" data-bs-dismiss="modal">Cerrar</button>
+    <button type="button" form="formGuardarReferencia" class="btn btn-borrar" id="btn-VisualizarPDFReferencia">
+        <i class="bi bi-file-earmark-pdf"></i> Visualizar PDF
+    </button>
+    <button type="button" form="formGuardarReferencia" class="btn btn-confirmar" id="btn-guardar-referencia">Guardar</button>
+
+</div>
+</div>
 </div>
 </div>
