@@ -55,10 +55,10 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
             data : null, render: function(meta){
 
 
-                // Calcular si el valor que 
+                // Calcular si esta llegando el minmo y maximo, si no llega no es un rango es una referencia, operador logico y referencia juntos
 
 
-                return `${ifnull(meta, '0',['VALOR_MINIMO'])} - ${ifnull(meta, '+100',['VALOR_MAXIMO'])} AÑOS`
+                return `${ifnull(meta, 'Indefinido',['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido',['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
             }
         },
         {
