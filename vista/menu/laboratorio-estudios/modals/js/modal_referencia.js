@@ -39,39 +39,26 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { data: 'SERVICIO' },
         { data: 'SEXO' },
         {
-            data: 'EDAD_MINIMA', render: function (data) {
-                return ifnull(data,)
-            }
-        },
-        {
-            data: 'EDAD_MAXIMA', render: function (data) {
-                return ifnull(data,)
-            }
-        },
-        {
             data: 'PRESENTACION', render: function (data) {
                 // body...
                 return ifnull(data,)
             }
         },
         {
-            data: 'VALOR_MINIMO', render: function (data) {
-                return ifnull(data,)
+            data: null, render: function (meta){
+
+
+                return `${ifnull(meta, '0',['EDAD_MINIMA'])} - ${ifnull(meta, '+100',['EDAD_MAXIMA'])} AÑOS`
             }
         },
         {
-            data: 'VALOR_MAXIMO', render: function (data) {
-                return ifnull(data,)
-            }
-        },
-        {
-            data: 'CODIGO', render: function (data) {
-                return ifnull(data,)
-            }
-        },
-        {
-            data: 'VALOR_REFERENCIA', render: function (data) {
-                return ifnull(data,)
+            data : null, render: function(meta){
+
+
+                // Calcular si el valor que 
+
+
+                return `${ifnull(meta, '0',['VALOR_MINIMO'])} - ${ifnull(meta, '+100',['VALOR_MAXIMO'])} AÑOS`
             }
         },
         {
@@ -83,21 +70,21 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
 
             }
         }
-    ],
+        ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Servicio', className: 'all' },
         { target: 2, title: 'Dirigido', className: 'all' },
-        { target: 3, title: 'Edad Minima', className: 'all' },
-        { target: 4, title: 'Edad Maxima', className: 'all' },
-        { target: 5, title: 'Presentación', className: 'all' },
-        { target: 6, title: 'Valor Minimo', className: 'all' },
-        { target: 7, title: 'Valor Maximo', className: 'all' },
-        { target: 8, title: 'Operador Lógico', className: 'all' },
-        { target: 9, title: 'Referencia', className: 'all' },
-        { target: 10, title: '<i class="bi bi-trash"></i>', className: 'all' }
+        // { target: 4, title: 'Edad Maxima', className: 'none' }, 
+        { target: 3, title: 'Presentación', className: 'all' },
+        { target: 4, title: 'Edad', className: 'all' },
+        // { target: 6, title: 'Valor Minimo', className: 'none' },
+        // { target: 7, title: 'Valor Maximo', className: 'none' },
+        // { target: 8, title: 'Operador Lógico', className: 'none' },
+        { target: 5, title: 'Referencia', className: 'min-tablet' },
+        { target: 6, title: '<i class="bi bi-trash"></i>', className: 'all' }
 
-    ],
+        ],
     // dom: 'Blfrtip',
     // buttons: [
     // {
@@ -185,20 +172,20 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
 
 function limpiarInputs(elementID, isChecked) {
     switch (elementID) {
-        case 'SinEdad':
-            if (isChecked) {
-                $('#edad-maxima-referencia').val('')
-                $('#edad-minima-referencia').val('')
-            }
-            break;
-        case 'cambioReferencia':
-            if (isChecked) {
-                $('#valor_minimo').val('')
-                $('#valor_maximo').val('')
-            } else {
-                $('#valor_referencia').val('')
-            }
-            break;
+    case 'SinEdad':
+        if (isChecked) {
+            $('#edad-maxima-referencia').val('')
+            $('#edad-minima-referencia').val('')
+        }
+        break;
+    case 'cambioReferencia':
+        if (isChecked) {
+            $('#valor_minimo').val('')
+            $('#valor_maximo').val('')
+        } else {
+            $('#valor_referencia').val('')
+        }
+        break;
     }
 }
 
@@ -209,11 +196,11 @@ const myModal = document.getElementById('modalReferencia')
 myModal.addEventListener('shown.bs.modal', () => {
     setTimeout(function () {
         $.fn.dataTable
-            .tables({
-                visible: true,
-                api: true
-            })
-            .columns.adjust();
+        .tables({
+            visible: true,
+            api: true
+        })
+        .columns.adjust();
 
     }, 250)
 })
