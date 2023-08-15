@@ -40,38 +40,38 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { data: 'SEXO' },
         {
             data: 'EDAD_MINIMA', render: function (data) {
-                return ifnull(data, '')
+                return ifnull(data,)
             }
         },
         {
             data: 'EDAD_MAXIMA', render: function (data) {
-                return ifnull(data, '')
+                return ifnull(data,)
             }
         },
         {
             data: 'PRESENTACION', render: function (data) {
                 // body...
-                return ifnull(data, '')
+                return ifnull(data,)
             }
         },
         {
             data: 'VALOR_MINIMO', render: function (data) {
-                return ifnull(data, '')
+                return ifnull(data,)
             }
         },
         {
             data: 'VALOR_MAXIMO', render: function (data) {
-                return ifnull(data, '')
+                return ifnull(data,)
             }
         },
         {
             data: 'CODIGO', render: function (data) {
-                return ifnull(data, '')
+                return ifnull(data,)
             }
         },
         {
             data: 'VALOR_REFERENCIA', render: function (data) {
-                return ifnull(data, '')
+                return ifnull(data,)
             }
         },
         {
