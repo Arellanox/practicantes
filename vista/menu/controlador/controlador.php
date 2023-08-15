@@ -46,6 +46,7 @@ include "../../variables.php";
     var language = language.length ? language : '';
   } catch (error) {
     var language = '';
+  }
 
   localStorage.setItem('http', http);
   localStorage.setItem('servidor', servidor);
