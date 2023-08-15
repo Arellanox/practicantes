@@ -60,6 +60,14 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
             }
         },
         {
+            data : null, render:function(meta){
+
+                let html = `<i class="bi bi-check-circle-fill text-success"></i>`
+
+                return html
+            }
+        },
+        {
             data: 'ID_VALORES_REFERENCIA', render: function (data) {
 
 
@@ -80,7 +88,8 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         // { target: 7, title: 'Valor Maximo', className: 'none' },
         // { target: 8, title: 'Operador Lógico', className: 'none' },
         { target: 5, title: 'Referencia', className: 'min-tablet' },
-        { target: 6, title: '<i class="bi bi-trash"></i>', className: 'all' }
+        {target :  6, title:'Val nor', className : 'min-tablet'},
+        { target: 7, title: '<i class="bi bi-trash"></i>', className: 'all' }
 
         ],
     // dom: 'Blfrtip',
@@ -154,6 +163,7 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
             valores_normalidad : normalidad
         }, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
             alertToast('Su referencia se a guardado!', 'success', 4000)
+            normalidad = 0;
             TablaValoresReferencia.ajax.reload()
 
             // $('#edad-minima-referencia').val('')
@@ -240,13 +250,13 @@ $(document).on('click', '#btn-VisualizarPDFReferencia', function (e) {
     win.focus();
 })  
 
-    
+
 // Normalidad
 $(document).on('change', '#valorBueno', function(e){
-     if ($(this).prop('checked')) {
-        normalidad = 1;
-     } else {
-        normalidad = 0;
-     }
+   if ($(this).prop('checked')) {
+    normalidad = 1;
+} else {
+    normalidad = 0;
+}
 })
 
