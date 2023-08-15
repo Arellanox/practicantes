@@ -16,6 +16,7 @@ $presentacion = $_POST['presentacion'];
 $operadores_logicos_id = $_POST['select-operador-referencia'];
 $valor_referencia = $_POST['valor_referencia'];
 $checkedCambiarReferencia = $_POST['checkedCambiarReferencia'];
+$valores_normalidad = $_POST['valores_normalidad'];
 
 $checkedCambiarReferencia == 0 ? $operadores_logicos_id = null : $operadores_logicos_id = $operadores_logicos_id;
 
@@ -32,6 +33,7 @@ $insert_datos = $master->setToNull(array(
     $presentacion,
     $operadores_logicos_id,
     $valor_referencia,
+    $valores_normalidad,
     $id_valores_referencia
 ));
 
