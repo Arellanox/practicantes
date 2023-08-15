@@ -197,7 +197,9 @@ function configAjaxAwait(config) {
     callbackAfter: false, //Activa una funcion para tratar datos enviados desde ajax, osea success
     returnData: true, // regresa los datos o confirmado (1)
     WithoutResponseData: false, //Manda los datos directos
-    resetForm: false, //Reinicia el formulario en ajaxAwaitFormData
+    resetForm: false, //Reinicia el formulario en ajaxAwaitFormData,
+    ajaxComplete: () => { }, //Mete una funcion para cuando se complete
+    ajaxError: () => { }, //Mete una funcion para cuando de error
   }
 
   Object.entries(defaults).forEach(([key, value]) => {
@@ -264,7 +266,9 @@ async function ajaxAwaitFormData(dataJson = { api: 0, }, apiURL, form = 'OnlyFor
         }
 
       },
+      // complete: ajaxComplete(),
       error: function (jqXHR, exception, data) {
+        // ajaxError()
         alertErrorAJAX(jqXHR, exception, data)
       },
     })
@@ -390,6 +394,7 @@ function ifnull(data, siNull = '', values = ['option1', 'option2']) {
   }
 
 }
+
 
 function htmlCaracter(data) {
 
@@ -1102,6 +1107,7 @@ function loader(fade, scroll = null) {
     $("html, body").animate({ scrollTop: altura + "px" });
   }
 
+
 }
 
 function loaderDiv(fade, div = null, loader, loaderDiv1 = null, seconds = 50, scroll = 0) {
@@ -1431,8 +1437,13 @@ function mensajeAjax(data, modulo = null) {
 function alertErrorAJAX(jqXHR, exception, data) {
   var msg = '';
   //Status AJAX
+  // console.log(jqXHR, exception, data)
+
   switch (jqXHR.status) {
-    case 0: alertToast('Sin conexión a internet', 'warning'); return 0;
+    case 0:
+      if (exception != 'abort') {
+        alertToast('Sin conexión a internet', 'warning'); return 0
+      };
     case 404: //console.log('Requested page not found. [404]'); return 0;
     case 500: alertToast('Internal Server Error', 'info'); return 0;
   }
@@ -1653,10 +1664,10 @@ function inputBusquedaTable(
   tooltipinput['place'] = tooltipinput['place'] ? tooltipinput['place'] : 'top';
 
   $(`#${tablename}_filter`).html(
-    '<div class="text-center mt-2" style="padding-right: 5%">' +
+    '<div class="text-center mt-2" style="">' +
     '<div class="input-group flex-nowrap">' +
     htmlTooltip +
-    '<input type="search" class="input-form form-control" aria-controls="' + tablename + '" style="display: unset !important; margin-left: 0px !important;margin-bottom: 0px !important"' +
+    '<input type="search" class="input-form form-control input-table-search" aria-controls="' + tablename + '" style="display: unset !important; margin-left: 0px !important;margin-bottom: 0px !important;"' +
     'name="inputBuscarTableListaNuevos" placeholder="Filtrar coincidencias" id="' + tablename + 'BuscarTablaLista"' +
     'data-bs-toggle="tooltip" data-bs-placement="' + tooltipinput['place'] + '" title="' + tooltipinput['msj'] + '">' +
     '</div></div>'
@@ -1787,56 +1798,58 @@ function getBtnTabs(config) {
 }
 
 //Visualiza la columna solo en movil
-let dinamicTabFunction = false
-function dinamicTabs(loader) {
-  dinamicTabFunction = false;
-  isMovil(() => {
-    dinamicTabFunction = () => {
-      // console.log('IS MOVIL')
-      $(document).on('click', '.tab-table', function () {
-        let btn = $(this);
-        if (!btn.hasClass('active')) {
-          $('.tab-first').fadeOut(100);
-          $('.tab-second').fadeOut(0);
+let dinamicTabFunction = false;
+let documentClick = false;
+let loader_selectTable = false;
+function dinamicTabs() {
+  // dinamicTabFunction = false;
+  // // loader = loader
+  // isMovil(() => {
+  //   dinamicTabFunction = () => {
+  //     // console.log('IS MOVIL')
+  //     documentClick = false;
+  //     // documentClick = 
+  //   }
 
-          $('.tab-table').removeClass('active');
-          btn.addClass('active');
-
-          setTimeout(() => {
-            let id = btn.attr('data-id-column');
-            // console.log(id);
-            let loaderVisible = function () {
-              if ($(loader).is(":hidden")) {
-                $(`${id}`).fadeIn(100);
-                loaderVisible = false;
-              } else {
-                setTimeout(() => {
-                  loaderVisible(id);
-                }, 150);
-              }
-            }
-            loaderVisible()
-          }, 100);
-        }
-
-      })
-    }
-
-    dinamicTabFunction();
-  })
-
-  try {
-    $.fn.dataTable
-      .tables({
-        visible: true,
-        api: true
-      })
-      .columns.adjust();
-  } catch (error) {
-
-  }
+  //   dinamicTabFunction();
+  // })
 
 }
+
+// Cambio de tab
+$(document).on('click', '.tab-table', function () {
+  // loader = loader
+  let btn = $(this);
+  if (!btn.hasClass('active')) {
+    $('.tab-first').fadeOut(100);
+    $('.tab-second').fadeOut(0);
+
+    $('.tab-table').removeClass('active');
+    btn.addClass('active');
+
+    setTimeout(() => {
+      let id = btn.attr('data-id-column');
+      // console.log(id);
+      let loaderVisible = false;
+
+      console.log(loader_selectTable)
+      loaderVisible = function () {
+        console.log($(loader_selectTable))
+        if ($(loader_selectTable).is(":hidden")) {
+          $(`${id}`).fadeIn(100);
+          loaderVisible = false;
+        } else {
+          console.log(loader_selectTable)
+          setTimeout(() => {
+            loaderVisible();
+          }, 150);
+        }
+      }
+      loaderVisible()
+    }, 100);
+  }
+
+})
 
 //Agrega el circulo para cargar el panel
 function setReloadSelecTable(name, param) {
@@ -1865,6 +1878,7 @@ function reloadSelectTable() {
     $('.loader-tab').fadeOut(0)
   } else {
     $('.tab-second').fadeOut();
+    console.log($('.tab-first'))
     $('.tab-first').fadeIn();
     $('.loader-tab').fadeOut(0)
   }
@@ -1912,7 +1926,9 @@ function resizeConfigMovil(config, nameTable) {
     //Cambia la vista del dispositivo
     getBtnTabs(config);
     //Activa los botones si es movil
-    dinamicTabs(`#loaderDiv-${nameTable}`)
+    // console.log(`#loaderDiv-${nameTable}`)
+
+    dinamicTabs()
     //Evalua el tipo de dispositivo
     selecTableTabs()
   }
@@ -1931,14 +1947,15 @@ function selectTable(tablename, datatable,
   config = configSelectTable(config)
 
   //Nombrando para usarlo
-  let nameTable = tablename.replace('#', '')
+  let tableString = tablename.replace('#', '')
 
   //Permite el reload y lo dibuja
   if (config.reload)
-    setReloadSelecTable(nameTable, config.reload)
+    setReloadSelecTable(tableString, config.reload)
 
+  loader_selectTable = `#loaderDiv-${tableString}`
   //Activa las funciones moviles,
-  resizeConfigMovil(config, nameTable);
+  resizeConfigMovil(config, loader_selectTable);
   resize = false;
   // $(window).resize(function () {
   //   //Toma un tiempo para poder refrescar cambios y no 
@@ -1958,16 +1975,8 @@ function selectTable(tablename, datatable,
 
 
     }
-    $(`#loaderDiv-${nameTable}`).attr("style", "display: none !important");
+    $(`#loaderDiv-${loader_selectTable}`).attr("style", "display: none !important");
 
-    setTimeout(() => {
-      $.fn.dataTable
-        .tables({
-          visible: true,
-          api: true
-        })
-        .columns.adjust();
-    }, 400);
   }
 
 
@@ -2103,7 +2112,7 @@ function selectTable(tablename, datatable,
 
   function selectTable_cargarVista() {
     $('.tab-second').fadeOut()
-    $(`#loaderDiv-${nameTable}`).fadeIn(0);
+    $(`#loaderDiv-${loader_selectTable}`).fadeIn(0);
   }
 
   function selectTable_resetSelect(tr, config, resetTR = false) {
@@ -2267,7 +2276,7 @@ function setValuesAntAnnameMetodo(DIV, array, key) {
   if (array) {
     try {
       if (DIV.length != array.length)
-        alertToast('Algunos datos de ' + key + ' se han perdido...', 'info')
+        alertToast('Algunos datos de ' + key + ' se han cargado correctamente...', 'info')
     } catch (error) {
 
     }
@@ -2699,7 +2708,7 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                   type: "POST",
                   dataType: 'json',
                   data: { api: 6, id_turno: row['ID_TURNO'] ? row['ID_TURNO'] : row['TURNO_ID'] },
-                  success: function (data) {
+                  success: async function (data) {
                     if (!mensajeAjax(data))
                       return false;
                     let row = data.response.data
@@ -2721,7 +2730,7 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                       let area = 0;
                       for (const key in row) {
                         const element = row[key];
-                        // //console.log(element)
+                        console.log(element)
                         if (element['AREA_ID'] == id) {
                           area = 1;
                           html += htmlLI(element['GRUPO']);
@@ -2732,7 +2741,7 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                           element['AREA_ID'] != '12' &&
                           element['AREA_ID'] != '8' &&
                           element['AREA_ID'] != '11' &&
-                          id == 0
+                          (id == 0 || id == 'paq')
                         ) {
                           area = 1;
                           html += htmlLI(element['GRUPO']);
@@ -2745,6 +2754,20 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                       return '';
                     }
 
+
+                    await ajaxAwait({ api: 5, turno_id: id }, 'cargos_turnos_api', { callbackAfter: true, ajaxComplete: resolve(1) }, false, (data) => {
+
+                      let row = data.response.data;
+                      // $('#append-html-historial-estudios').html('');
+
+                      //Paquetes
+                      html += crearDIV('<i class="bi bi-box-seam"></i> Paquetes', 'paq', row);
+
+                      // setListResultadosAreas('#append-html-historial-estudios', element, arrayArea)
+                    })
+
+
+
                     //Lab
                     html += crearDIV('<i class="bi bi-heart-pulse"></i> Laboratorio Clínico', 6, row);
                     //Lab Bio
@@ -2755,6 +2778,7 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                     html += crearDIV('<i class="bi bi-universal-access"></i>  Rayos X', 8, row);
                     //Otros
                     html += crearDIV('<i class="bi bi-window-stack"></i> Otros Servicios', 0, row);
+
 
 
 
@@ -2892,60 +2916,45 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                 break;
 
               case 'listado_resultados':
-                $.ajax({
-                  url: http + servidor + "/" + appname + "/api/consulta_api.php",
-                  type: "POST",
-                  dataType: 'json',
-                  data: { api: 21, turno_id: id },
-                  success: function (data) {
-                    if (mensajeAjax(data)) {
-                      //console.log(data)
+                ajaxAwait({ api: 21, turno_id: id }, 'consulta_api', { callbackAfter: true, ajaxComplete: resolve(1) }, false, (data) => {
+                  //console.log(data)
+                  let array = {
+                    1: 'CONSULTORIO',
+                    2: 'SOMATOMETRÍA',
+                    3: 'OFTALMOLOGÍA',
+                    4: 'AUDIOMETRÍA',
+                    5: 'ESPIROMETRÍA',
+                    6: 'LABORATORIO CLÍNICO',
+                    7: 'RAYOS X',
+                    8: 'ELECTROCARDIOGRAMA',
+                    9: 'ELECTRO_CAPTURAS',
+                    10: 'ULTRASONIDO',
+                    11: 'LABORATORIO BIOMOLECULAR',
+                    12: 'CITOLOGÍA',
+                    13: 'NUTRICIÓN',
+                    14: 'INBODY',
+                    15: 'CERTIFICADO MÉDICO',
+                    16: 'CONSULTORIO FASTCHECKUP'
+                  }
+                  let row = data.response.data;
+                  // $('#append-html-historial-estudios').html('');
 
-                      let array = {
-                        1: 'CONSULTORIO',
-                        2: 'SOMATOMETRÍA',
-                        3: 'OFTALMOLOGÍA',
-                        4: 'AUDIOMETRÍA',
-                        5: 'ESPIROMETRÍA',
-                        6: 'LABORATORIO CLÍNICO',
-                        7: 'RAYOS X',
-                        8: 'ELECTROCARDIOGRAMA',
-                        9: 'ELECTRO_CAPTURAS',
-                        10: 'ULTRASONIDO',
-                        11: 'LABORATORIO BIOMOLECULAR',
-                        12: 'CITOLOGÍA',
-                        13: 'NUTRICIÓN',
-                        14: 'INBODY',
-                      }
-                      let row = data.response.data;
-                      $('#append-html-historial-estudios').html('');
+                  for (const key in array) {
+                    if (Object.hasOwnProperty.call(array, key)) {
+                      const element = array[key];
 
-                      for (const key in array) {
-                        if (Object.hasOwnProperty.call(array, key)) {
-                          const element = array[key];
+                      let arrayArea = $.grep(row, function (n, i) {
+                        return n.AREA_LABEL === element;
+                      });
 
-                          let arrayArea = $.grep(row, function (n, i) {
-                            return n.AREA_LABEL === element;
-                          });
-
-                          //console.log(element, arrayArea)
-                          setListResultadosAreas('#append-html-historial-estudios', element, arrayArea)
-                        }
-                      }
-
-
-
+                      //console.log(element, arrayArea)
+                      setListResultadosAreas('#append-html-historial-estudios', element, arrayArea)
                     }
-                    $(panel).fadeIn(100);
-                    resolve(1);
-                  },
-                  complete: function () {
-                    resolve(1);
-                  },
-                  error: function (jqXHR, exception, data) {
-                    alertErrorAJAX(jqXHR, exception, data)
-                  },
-                });
+                  }
+
+                  $(panel).fadeIn(100);
+                  resolve(1);
+                })
 
                 function setListResultadosAreas(div, titulo, array) {
                   let html = '';
@@ -3112,8 +3121,8 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                   switch (btn.attr('id')) {
 
                     case 'btn-laboratorio-etiquetas':
-                     
-              
+
+
                       area_nombre = 'etiquetas'
                       api = encodeURIComponent(window.btoa(area_nombre));
                       turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO'],));
@@ -3121,56 +3130,35 @@ function obtenerPanelInformacion(id = null, api = null, tipPanel = null, panel =
                       window.open(http + servidor + "/nuevo_checkup/visualizar_reporte/?api=" + api + "&turno=" + turno, "_blank");
 
                       break;
-                    
+
                     case 'btn-laboratorio-etiquetas-imprimir':
 
-                      var area_nombre = 'etiquetas';
-                      var api = encodeURIComponent(window.btoa(area_nombre));
-                      var turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO']));
+                      area_nombre = 'etiquetas'
+                      api = encodeURIComponent(window.btoa(area_nombre));
+                      turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO'],));
 
-                      
-                      var pdfUrl = http + servidor + "/nuevo_checkup/visualizar_reporte/?api=" + api + "&turno=" + turno;
+                      const nombrePDf = 'ticket.pdf';
+                      const nombreImpresora = 'PDF24';
+                      const url = `http://localhost:8080/?nombrePdf=${nombrePDf}&impresora=${nombreImpresora}`;
 
-                      
-                      var iframe = document.getElementById("pdf-frame");
-                      iframe.src = pdfUrl;
 
-                     
-                      setTimeout(function () {
-                        try {
-                          alertToast('Imprimiendo etiquetas', 'info', 5000)
-                          iframe.contentWindow.print();
+                      fetch(url)
+                        .then(respuesta => {
 
-                        } catch (e) {
+                          if (respuesta.status == 200) {
 
-                          alertToast('No se pudieron imprimir las etiquetas', 'error', 5000)
-                          console.error("No se pudo imprimir el PDF: " + e.message);
-                        }
-                      }, 2000); 
-                
-                
-                      // area_nombre = 'etiquetas'
-                      // api = encodeURIComponent(window.btoa(area_nombre));
-                      // turno = encodeURIComponent(window.btoa(array_selected['ID_TURNO'],));
-                      // url = `${http}${servidor}/practicantes/visualizar_reporte/?api=${api}&turno=${turno}`
+                            alertToast('Imprimiendo etiquetas', 'info', 5000)
+                            console.log("Impresion OK")
 
-                      // var url = ` http://localhost:8080/url?impresora=PDF24&urlPdf=${url}`;
+                          } else {
+                            respuesta.json()
+                              .then(mensaje => {
 
-                      // fetch(url)
-                      //   .then(respuesta => {
+                                console.log("Error: " + mensaje)
 
-                      //     if (respuesta.status == 200) {
-                      //      alertToast('Imprimiendo etiquetas', 'info', 5000)
-                      //       console.log("Impresion OK")
-
-                      //     } else {
-                      //       respuesta.json()
-                      //         .then(mensaje => {
-                      //           console.log("Error: " + mensaje)
-                      //         })
-                      //     }
-                      //   })
-
+                              })
+                          }
+                        })
 
                       break;
 
