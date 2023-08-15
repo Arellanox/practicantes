@@ -12,7 +12,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
     language: { url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json", },
     lengthChange: false,
     info: true,
-    paging: true,
+    paging: false,
     scrollY: '75vh',
     scrollCollapse: true,
     ajax: {
@@ -40,38 +40,38 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { data: 'SEXO' },
         {
             data: 'EDAD_MINIMA', render: function (data) {
-                return ifnull(data) ? ifnull(data) : 'N/A';
+                return ifnull(data, '')
             }
         },
         {
             data: 'EDAD_MAXIMA', render: function (data) {
-                return ifnull(data) ? ifnull(data) : 'N/A';
+                return ifnull(data, '')
             }
         },
         {
             data: 'PRESENTACION', render: function (data) {
                 // body...
-                return ifnull(data) ? ifnull(data) : 'N/A';
+                return ifnull(data, '')
             }
         },
         {
             data: 'VALOR_MINIMO', render: function (data) {
-                return ifnull(data) ? ifnull(data) : 'N/A';
+                return ifnull(data, '')
             }
         },
         {
             data: 'VALOR_MAXIMO', render: function (data) {
-                return ifnull(data) ? ifnull(data) : 'N/A';
+                return ifnull(data, '')
             }
         },
         {
             data: 'CODIGO', render: function (data) {
-                return ifnull(data) ? ifnull(data) : 'N/A';
+                return ifnull(data, '')
             }
         },
         {
             data: 'VALOR_REFERENCIA', render: function (data) {
-                return ifnull(data) ? ifnull(data) : 'N/A';
+                return ifnull(data, '')
             }
         },
         {
@@ -83,7 +83,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
 
             }
         }
-        ],
+    ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Servicio', className: 'all' },
@@ -97,7 +97,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { target: 9, title: 'Referencia', className: 'all' },
         { target: 10, title: '<i class="bi bi-trash"></i>', className: 'all' }
 
-        ],
+    ],
     // dom: 'Blfrtip',
     // buttons: [
     // {
@@ -185,20 +185,20 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
 
 function limpiarInputs(elementID, isChecked) {
     switch (elementID) {
-    case 'SinEdad':
-        if (isChecked) {
-            $('#edad-maxima-referencia').val('')
-            $('#edad-minima-referencia').val('')
-        }
-        break;
-    case 'cambioReferencia':
-        if (isChecked) {
-            $('#valor_minimo').val('')
-            $('#valor_maximo').val('')
-        } else {
-            $('#valor_referencia').val('')
-        }
-        break;
+        case 'SinEdad':
+            if (isChecked) {
+                $('#edad-maxima-referencia').val('')
+                $('#edad-minima-referencia').val('')
+            }
+            break;
+        case 'cambioReferencia':
+            if (isChecked) {
+                $('#valor_minimo').val('')
+                $('#valor_maximo').val('')
+            } else {
+                $('#valor_referencia').val('')
+            }
+            break;
     }
 }
 
@@ -209,11 +209,11 @@ const myModal = document.getElementById('modalReferencia')
 myModal.addEventListener('shown.bs.modal', () => {
     setTimeout(function () {
         $.fn.dataTable
-        .tables({
-            visible: true,
-            api: true
-        })
-        .columns.adjust();
+            .tables({
+                visible: true,
+                api: true
+            })
+            .columns.adjust();
 
     }, 250)
 })
@@ -242,7 +242,7 @@ function desactivarTablaReferencia() {
 
 
 
-$(document).on('click','#btn-VisualizarPDFReferencia', function(e){
+$(document).on('click', '#btn-VisualizarPDFReferencia', function (e) {
     e.preventDefault();
 
     api = encodeURIComponent(window.btoa('laboratorio'));
