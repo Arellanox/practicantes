@@ -1,22 +1,18 @@
 // $("#btn-aceptar").click(function () {
-$(document).on('click', '#btn-aceptar', function () {
-  swal.close()
-  if (array_selected != null) {
-    $("#modalPacienteAceptar").modal('show');
-  } else {
-    alertSelectTable();
-  }
-})
+// $(document).on('click', '#btn-aceptar', function () {
+//   swal.close()
 
-$(document).on('click', '#btn-rechazar', function () {
-  // $("#btn-rechazar").click(function () {
-  swal.close()
-  if (array_selected != null) {
-    $("#modalPacienteRechazar").modal('show');
-  } else {
-    alertSelectTable();
-  }
-})
+// })
+
+// $(document).on('click', '#btn-rechazar', function () {
+//   // $("#btn-rechazar").click(function () {
+//   swal.close()
+//   if (array_selected != null) {
+//     $("#modalPacienteRechazar").modal('show');
+//   } else {
+//     alertSelectTable();
+//   }
+// })
 
 
 $(document).on('click', '#btn-espera-estatus', function () {
@@ -84,11 +80,11 @@ $(document).on('click', '#btn-concluir-paciente', function (e) {
       icon: 'warning'
     }, function () {
 
-      if (array_selected['CLIENTE_ID'] == 1) {
-        
-          //Abrir el modal de estudios, precios y detalle
-          configurarModal(array_selected);
-        
+      if (array_selected['CLIENTE_ID'] == 1 && servidor != 'bimo-lab.com') {
+
+        //Abrir el modal de estudios, precios y detalle
+        configurarModal(array_selected);
+
       } else {
         //Termina el proceso sin factura y sin credito
         finalizarProcesoRecepcion(array_selected);
@@ -152,7 +148,7 @@ $(document).on('click', '.btn-agregar-estudios-admin', function (event) {
   event.preventDefault();
   let tipo = $(this).attr('data-bs-tipo');
   let id = $(`#${tipo}`).val()
-  let name = $(`#${tipo} option: selected`).html()
+  let name = $(`#${tipo} option:selected`).html()
   console.log(id)
   console.log(tipo)
 
@@ -192,29 +188,6 @@ $(document).on('click', '#btn-ordenes-paciente', function () {
 
 
 
-
-$(document).on('click', '#btn-cargar-documentos', function () {
-  alertMsj({
-    icon: '',
-    title: 'Documentación del paciente <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Cargue/Guarde la documentación del paciente"></i>',
-    footer: 'Seleccione una opción.',
-    html: `
-      < button type = "button" class= "btn btn-hover me-2" style = "margin-bottom:4px" id = "btn-perfil-paciente" >
-      <i class="bi bi-person-bounding-box"></i> Foto de Perfil
-        </ >
-        <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-credencial-paciente">
-          <i class="bi bi-person-vcard-fill"></i> Credencial
-        </button> 
-        <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-ordenes-paciente">
-          <i class="bi bi-files"></i> Ordenes médicas
-        </button> 
-    `,
-    showCancelButton: false,
-    showConfirmButton: false,
-    allowOutsideClick: true,
-  })
-})
-
 // $(document).on('click', '#btn-botones-captura-documentos', function () {
 //   alertMsj({
 //     icon: '',
@@ -232,7 +205,7 @@ $(document).on('click', '#btn-cargar-documentos', function () {
 // })
 
 // $("#btn-editar").click(function () {
-$(document).on('click', '.btn-editar, #btn-editar', function () {
+$(document).on('click', '#btn-editar', function () {
   if (array_selected != null) {
     $("#ModalEditarPaciente").modal('show');
   } else {
@@ -250,66 +223,16 @@ $(document).on('click', "#btn-perfil", function () {
 
 // if (!session['permiso']['RepIngPaci'] == 1)
 if (!validarPermiso('RepIngPaci'))
-  $('#btn-pendiente').fadeOut(0);
+  $('#btn-pendiente-ingreso').fadeOut(0);
 
-$(document).on('click', '#btn-pendiente', function () {
+// $(document).on('click', '#btn-pendiente-ingreso', function () {
 
-  if (array_selected != null) {
-    // if (!session['permiso']['RepIngPaci'] == 1)
-    if (!validarPermiso('RepIngPaci', 1))
-      return false;
 
-    Swal.fire({
-      title: '¿Está Seguro de regresar al paciente en espera?',
-      text: "¡Sus estudios anteriores no se cargarán!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, colocarlo en espera',
-      cancelButtonText: "Cancelar"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Esto va dentro del AJAX
-        $.ajax({
-          data: {
-            id_turno: array_selected['ID_TURNO'],
-            api: 2,
-            // estado: null
-          },
-          url: "../../../api/recepcion_api.php",
-          type: "POST",
-          success: function (data) {
-            data = jQuery.parseJSON(data);
-            if (mensajeAjax(data)) {
-              alertMensaje('info', '¡Paciente en espera!', 'El paciente se cargó en espera.');
-              try {
-                tablaRecepcionPacientes.ajax.reload();
-              } catch (e) {
+// })
 
-              }
-              try {
-                tablaRecepcionPacientesIngrersados.ajax.reload();
-              } catch (e) {
+// $(document).on('click', "#btn-reagendar", function () {
 
-              }
-            }
-          }
-        });
-      }
-    })
-  } else {
-    alertSelectTable('No ha seleccionado ningún paciente', 'error')
-  }
-})
-
-$(document).on('click', "#btn-reagendar", function () {
-  if (array_selected != null) {
-    $("#modalPacienteReagendar").modal('show');
-  } else {
-    alertSelectTable('No ha seleccionado ningún paciente', 'error')
-  }
-})
+// })
 
 $(document).on('click', '#btn-correo-particular', function () {
   if (array_selected != null) {

@@ -16,6 +16,7 @@ $menu = "Recepción";
 <script type="text/javascript">
   registroAgendaRecepcion = 1;
   nombreCliente = null;
+  language = '';
 
 
   ant = false; // registro

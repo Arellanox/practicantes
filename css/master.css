@@ -38,6 +38,42 @@ body {
   background-color: #f6fdff !important;
 }
 
+/* Estilo general para el scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar vertical */
+    height: 8px; /* Altura del scrollbar horizontal */
+    background: #f6fdff; /* Color de fondo del track (la parte por donde se desplaza el pulgar) */
+}
+
+/* Pulgar (la parte móvil) del scrollbar vertical */
+::-webkit-scrollbar-thumb:vertical {
+    background: rgb(216, 223, 225); /* Color de fondo del pulgar vertical */
+    border-radius: 4px; /* Redondeo de las esquinas */
+}
+
+/* Pulgar (la parte móvil) del scrollbar horizontal */
+::-webkit-scrollbar-thumb:horizontal {
+    background: rgb(216, 223, 225); /* Color de fondo del pulgar horizontal */
+    border-radius: 4px; /* Redondeo de las esquinas */
+}
+
+/* Hover sobre el pulgar (para dar feedback al usuario) */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(196, 203, 205); /* Oscurecemos un poco el color al pasar el ratón por encima */
+}
+
+/* Botones (arriba, abajo, izquierda, derecha). En este caso, los escondemos para un diseño más minimalista */
+::-webkit-scrollbar-button {
+    display: none; 
+}
+
+/* Track (la parte por donde se desplaza el pulgar) */
+::-webkit-scrollbar-track {
+    background: #f6fdff;
+    border-radius: 4px; /* Redondeo de las esquinas */
+}
+
+
 
 div.dataTables_length,
 div.dataTables_filter,

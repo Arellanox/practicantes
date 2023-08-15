@@ -16,7 +16,7 @@ $("#formReagendarPaciente").submit(function (event) {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, colocarlo en espera',
+    confirmButtonText: 'Aceptar',
     cancelButtonText: "Cancelar"
   }).then((result) => {
     if (result.isConfirmed) {

@@ -53,11 +53,11 @@ $("#formEnviarCorreoIngreso").submit(function (event) {
 
 
 //FUNCION PARA MOSTRAR TODOS LOS CUESTIONARIOS
-$('#solicitudIngresoParticulares').click(function () {
+$(document).on('click', '#solicitudIngresoParticulares', function () {
   ajaxAwait({
     api: 12,
   }, 'recepcion_api', { callbackAfter: true, returnData: false }, false, function (data) {
-   
+
 
     let row = data.response.data;
     let htmlContent = ''
@@ -65,7 +65,7 @@ $('#solicitudIngresoParticulares').click(function () {
       if (Object.hasOwnProperty.call(row, key)) {
         const element = row[key];
 
-         htmlContent += ` 
+        htmlContent += ` 
           <div>
             <input class="form-check-input" type="checkbox" value="${element.ID_CUESTIONARIO}"
               id="${element.DESCRIPCION}${element.ID_CUESTIONARIO}" name="cuestionario[]">

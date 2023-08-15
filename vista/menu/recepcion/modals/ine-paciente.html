@@ -1,39 +1,30 @@
 <div class="modal fade" id="modalPacienteIne" tabindex="-1" aria-labelledby="filtrador" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header header-modal">
         <h5 class="modal-title" id="title-paciente_ine">?????</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <div class="col-8">
-            <!-- HTML markup -->
-            <div style="height: 50vh;">
-              <video id="video" width="100%" height="100%"></video>
+        <form class="" id="formInePaciente">
+          <div class="col-12 mt-3">
+            <div class="input-file-contenedor">
+              <label for="form-label">Parte frontal</label>
+              <label for="paciente-ine-front[]" class="input-file-label">
+                <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+              </label>
+              <input type="file" name="paciente-ine-front[]" id="paciente-ine-front[]" accept="image/*"
+                class="input-file">
             </div>
-            <div class="row">
-
-              <div class="col-4">
-                <select id="device-select" class="input-form"></select>
-              </div>
-              <div class="col-8">
-
-                <button type="button" class="btn btn-confirmar" id="start-button">
-                  <i class="bi bi-person-x"></i> Start camera
-                </button>
-                <button type="button" class="btn btn-confirmar" id="stop-button" disabled>Stop camera</button>
-                <button type="button" class="btn btn-confirmar" id="photo-button" disabled>Take photo</button>
-              </div>
-
-              <img src="" id="photo-preview" alt="">
+            <div class="input-file-contenedor">
+              <!-- <label for="form-label">Parte trasera</label>
+                                <label for="paciente-ine-back[]" class="input-file-label">
+                                  <i class="bi bi-box-arrow-up"></i> Seleccione un archivo
+                                </label>
+                                <input type="file" name="paciente-ine-back[]" id="paciente-ine-back[]" accept="image/*" class="input-file"> -->
             </div>
           </div>
-          <div class="col-4">
-            Informacion
-          </div>
-        </div>
-
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal"><i class="bi bi-arrow-left-short"></i>
@@ -47,7 +38,7 @@
 </div>
 
 
-<script>
+<!-- <script>
   class Camera {
     constructor(videoElement) {
       this.video = videoElement;
@@ -176,4 +167,4 @@
       $('#photo-preview').attr('src', dataUrl);
     });
   });
-</script>
+</script> -->

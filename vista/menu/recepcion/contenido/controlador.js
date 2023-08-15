@@ -4,11 +4,12 @@
 // obtenerContenidoRecepcion();
 var tablaRecepcionPacientes, dataRecepcion = { api: 1 };
 
-var estudiosLab = [], estudiosLabBio = [], estudiosRX = [], estudiosUltra = [], estudiosOtros = []
+var estudiosLab = [], estudiosLabBio = [], estudiosRX = [], estudiosUltra = [], estudiosOtros = [];
+var hash;
 
 //Validacion de usuario
 switch (session['cargo']) {
-  case '13': case 13:
+  case '18': case 18:
     $(location).attr('href', `${http}${servidor}/${appname}/vista/procedencia/pacientes/#UJAT`);
     destroySession();
     break;
@@ -30,9 +31,9 @@ function obtenerContenidoEspera() {
   obtenerTitulo('Recepción | Espera'); //Aqui mandar el nombre de la area
   $.post("contenido/recepcion.html", function (html) {
     $("#body-js").html(html);
+  }).done(function () {
     // Datatable
     $.getScript("contenido/js/recepcion-tabla.js");
-
   });
 }
 
@@ -41,6 +42,7 @@ function obtenerContenidoAceptados() {
   $.post("contenido/recepcion-ingresados.html", function (html) {
     $("#body-js").html(html);
     dataRecepcion = { api: 1, estado: 1 };
+  }).done(function () {
     // Datatable
     $.getScript("contenido/js/recepcion-aceptados-tabla.js");
   });
@@ -51,6 +53,7 @@ function obtenerContenidoRechazados() {
   $.post("contenido/recepcion-rechazados.html", function (html) {
     $("#body-js").html(html);
     dataRecepcion = { api: 1, estado: 0 };
+  }).done(function () {
     // Datatable
     $.getScript("contenido/js/recepcion-tabla.js");
   });
@@ -59,7 +62,7 @@ function obtenerContenidoRechazados() {
 
 
 function hasLocation() {
-  var hash = window.location.hash.substring(1);
+  hash = window.location.hash.substring(1);
   $("a").removeClass("navlinkactive");
   $("nav li a[href='#" + hash + "']").addClass("navlinkactive");
   switch (hash) {

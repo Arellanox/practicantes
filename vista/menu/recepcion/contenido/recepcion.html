@@ -1,13 +1,20 @@
-<div class="col-12 loader" id="loader" style="">
+<div class="col-12 loader" id="loader">
   <div class="preloader" id="preloader"> </div>
 </div>
+
+
+<!-- tabs para movil -->
+<div id="tab-button"></div>
+
 <div class="row">
-  <div class="col-12 col-lg-3 info-detalle card pt-5">
-    <div class="" id="panel-informacion">
+  <div class="col-12 col-xl-3 info-detalle">
+    <div class="rounded p-3 shadow-sm my-2 tab-second" id="tab-informacion-espera" style="display:none !important">
+      <div id="panel-informacion"></div>
     </div>
   </div>
-  <div class="col-12 col-lg-9 card">
-    <div class="table-responsive">
+
+  <div class="col-12 col-xl-9 tab-first" id="tab-paciente-espera">
+    <div class="rounded p-3 shadow-sm my-2 table-responsive">
       <div class="text-center" style="margin-top:4px;">
         <!-- <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-aceptar"
           data-bs-toggle="tooltip" data-bs-placement="top" title="Carga una solicitud de estudios">
@@ -18,15 +25,6 @@
           <i class="bi bi-x"></i> Rechazar paciente
         </button> -->
 
-        <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-espera-estatus"
-          data-bs-toggle="tooltip" data-bs-placement="top" title="Elige que hacer con el paciente">
-          <i class="bi bi-plus-slash-minus"></i> Aceptar/Rechazar paciente
-        </button> 
-
-        <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px" id="btn-editar"
-          data-bs-toggle="tooltip" data-bs-placement="top" title="Edite la información personal del paciente">
-          <i class="bi bi-pencil-square"></i> Actualizar información del paciente
-        </button>
 
         <button type="button" class="btn btn-hover me-2" style="margin-bottom:4px; display: none;"
           data-bs-toggle="modal" style="display: none;" data-bs-target="#ModalBeneficiario" id="buttonBeneficiario"
@@ -34,24 +32,20 @@
           <i class="bi bi-save"></i> Beneficiario
         </button>
       </div>
-      <div style=" margin: 25px;">
+      <div>
         <table class="table table-hover display responsive" id="TablaRecepcionPacientes" style="width: 100%;">
-          <thead class="">
-            <tr>
-              <th scope="col d-flex justify-content-center" class="all">#</th>
-              <th scope="col d-flex justify-content-center" class="all">Nombre</th>
-              <th scope="col d-flex justify-content-center" class="min-tablet">Prefolio</th>
-              <th scope="col d-flex justify-content-center" class="min-tablet">Procedencia</th>
-              <th scope="col d-flex justify-content-center" class="desktop">Segmento</th>
-              <th scope="col d-flex justify-content-center" class="min-tablet">Agenda</th>
-              <!-- <th scope="col d-flex justify-content-center" class="all"><i class="bi bi-three-dots"></i></th> -->
-              <th scope="col d-flex justify-content-center" class="none">Sexo</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
+
         </table>
       </div>
     </div>
   </div>
+
+
+  <!-- Tercera Columna visual -->
+  <div id="reload-selectable">
+
+  </div>
+
+
+
 </div>

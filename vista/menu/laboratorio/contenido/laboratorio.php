@@ -6,8 +6,8 @@
 <div id="tab-button"></div>
 
 <div class="row">
-  <div class="col-12 col-xl-4 tab-first" id="tab-paciente" style="margin-right: -5px !important;">
-    <div class="card mt-3 p-3" id="lista-pacientes">
+  <div class="col-12 col-xl-4 tab-first " id="tab-paciente" style="margin-right: -5px !important;">
+    <div class="rounded p-3 shadow my-2" id="lista-pacientes">
       <h4>Lista de pacientes</h4>
 
       <table class="table display responsive" id="TablaLaboratorio" style="width: 100%; zoom: 90%">
@@ -29,16 +29,16 @@
     </div>
   </div>
 
-  <div class="col-12 col-xl-3 tab-second" id="tab-informacion" style="margin-right: -5px !important;display:none !important">
-    <div class="card mt-3" id="panel-informacion"> </div>
-    <div class="card mt-3 p-4">
+  <div class="col-12 col-xl-3 tab-second overflow-auto" id="tab-informacion" style="margin-right: -5px !important; max-height:90vh;display:none !important">
+    <div class="rounded p-3 shadow my-2" id="panel-informacion"> </div>
+    <div class="rounded p-3 shadow my-2" style="margin-bottom: 18px !important;">
       <h4>Estudios anteriores</h4>
       <div class="accordion" id="accordionResultadosAnteriores">
       </div>
     </div>
   </div>
   <div class="col-12 col-xl-5 tab-second" id="tab-reporte" style="margin-right: -5px !important;display:none !important">
-    <div class="card mt-3 p-3">
+    <div class="rounded p-3 shadow my-2">
       <div class="row">
         <div class="col-12 col-lg-6">
           <h4>Formulario de resultados</h4>
@@ -58,7 +58,7 @@
       </div>
       <form class="" id="formAnalisisLaboratorio">
 
-        <div id="formulario-estudios" class="overflow-auto" style="max-width: 100%; margin-bottom:10px;height: 70vh;">
+        <div id="formulario-estudios" class="overflow-auto" style="max-width: 100%; margin-bottom:10px;max-height: 78vh;">
           <!-- <p class="mt-3">BIOMETRIA HEMATICA</p> -->
         </div>
       </form>

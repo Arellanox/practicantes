@@ -28,15 +28,42 @@ include "../../variables.php";
   var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
-  const appname = 'practicantes';
-  var http = "http://";
-  var servidor = "localhost";
-  try {
-    var language = language.length ? language : '';
-  } catch (error) {
-    var language = '';
+
+  // try {
+  //   var language = language.length ? language : '';
+  // } catch (error) {
+  //   var language = '';
+  // }
+
+  // const appname = 'practicantes';
+  // var http = "http://";
+  // var servidor = "localhost";
+
+  const appname = 'nuevo_checkup';
+  switch ('<?php echo $url; ?>') {
+    case 'localhost':
+      var http = "http://";
+      var servidor = "localhost";
+      break;
+    default:
+      var http = "https://";
+      var servidor = "bimo-lab.com";
+      break;
+
+    case 'drjb.com.mx':
+      var http = "https://";
+      var servidor = "drjb.com.mx";
+      break;
+
+    case 'helicebiologicos.com':
+      var http = "http://";
+      var servidor = "helicebiologicos.com";
+      break;
   }
 
+  localStorage.setItem('http', http);
+  localStorage.setItem('servidor', servidor);
+  localStorage.setItem('appname', appname);
 
   miStorage = window.localStorage;
   miStorage.setItem("Olakace", "HOLA MUNDO XD");
