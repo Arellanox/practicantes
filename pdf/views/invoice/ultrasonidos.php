@@ -429,45 +429,90 @@ $encode_firma = base64_encode($ruta_firma);
         $j = 0;
         $d = 0;
         $countArray = count($resultados->ESTUDIOS);
+        $cierre = 1;
+        $img_pasadas = 1;
         foreach ($resultados->ESTUDIOS as $key => $value) {
             // code...
+            // echo "</tr>";
+            // echo "</table>";
+            // echo "<div class='break'></div>";
             echo "<h2 style='padding-bottom: 8px; padding-top:8px'>$value->ESTUDIO</h2>";
 
-        ?>
-            <table style="width: 100%; border-collapse: collapse;">
-                <?php
-                foreach ($jsonData[0][$key]->CAPTURAS[0] as $key => $captura) {
-                    $ruta_img = file_get_contents($captura->url);
 
-                    $img_code = base64_encode($ruta_img);
+            foreach ($jsonData[0][$key]->CAPTURAS[0] as $key => $captura) {
+                // if ($img_pasadas == 1) {
+                //     echo "<table style='padding: 20px;width: 100%; border-collapse: collapse;'>";
+                // }
 
-                    // Encontrar una manera de que se pueda poner 4 imagenes en un tabla independientemente de cuantos vengan en el array 
-                    if ($d == 0 || $d == 2) {
-                        echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
-                    }
+                // if ($cierre == 1) {
+                //     echo "<tr>";
+                // }
+                // $ruta_img = file_get_contents($captura->url);
 
-                    if ($d == 3) {
-                        echo "<tr>";
-                    }
+                // $img_code = base64_encode($ruta_img);
 
-                    if ($d == 3 || $d == 4) {
-                        echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
-                    }
+                echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                // $cierre++;
+                // if ($cierre == 3) {
+                //     echo "</tr>";
+                //     $cierre = 1;
+                // }
 
-                    if ($d == 4) {
-                        echo "</tr>";
-                    }
+                // $img_pasadas++;
+                // if ($img_pasadas == 5) {
+                //     echo "</table>";
+                //     echo "<div class='break'></div>";
+                //     $img_pasadas = 1;
+                // }
+                // // Encontrar una manera de que se pueda poner 4 imagenes en un tabla independientemente de cuantos vengan en el array 
+                // // if ($d == 0 || $d == 2) {
+                // //     echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                // // }
 
+                // // if ($d == 3) {
+                // //     echo "<tr>";
+                // // }
 
+                // // if ($d == 3 || $d == 4) {
+                // //     echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                // // }
 
-                    $d++;
-                }
-                ?>
-            </table>
-            <?php
+                // // if ($d == 4) {
+                // //     echo "</tr>";
+
+                // //     $d = 0;
+                // // }
+                // $d++;
+            }
+            // echo "</table>";
+
+            // if ($img_pasadas < 5) {
+            //     for ($i = 0; $i <= 5 - $img_pasadas; $i++) {
+            //         # code...
+            //         echo "<td></td>";
+            //         $cierre++;
+            //         if ($cierre == 3) {
+            //             echo "</tr>";
+            //             $cierre = 1;
+            //         }
+
+            //         $img_pasadas++;
+            //         if ($img_pasadas == 5) {
+            //             echo "</table>";
+            //             echo "<div class='break'></div>";
+            //             $img_pasadas = 1;
+            //         }
+            //     }
+            //     echo "</table>";
+            //     // echo "<div class='break'></div>";   
+            // }
+
+            // $cierre = 1;
+            // $img_pasadas = 1;
+            // $img_pasadas = 1;
             $j++;
             if ($j == $countArray - 1) {
-            ?>
+        ?>
                 <div class="break"></div>
         <?php
             }
