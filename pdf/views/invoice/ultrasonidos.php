@@ -447,11 +447,11 @@ $encode_firma = base64_encode($ruta_firma);
                 // if ($cierre == 1) {
                 //     echo "<tr>";
                 // }
-                // $ruta_img = file_get_contents($captura->url);
+                $ruta_img = file_get_contents($captura->url);
 
-                // $img_code = base64_encode($ruta_img);
+                $img_code = base64_encode($ruta_img);
 
-                echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                echo "<img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'>";
                 // $cierre++;
                 // if ($cierre == 3) {
                 //     echo "</tr>";
@@ -463,7 +463,7 @@ $encode_firma = base64_encode($ruta_firma);
                 //     echo "</table>";
                 //     echo "<div class='break'></div>";
                 //     $img_pasadas = 1;
-                // }
+                // }    
                 // // Encontrar una manera de que se pueda poner 4 imagenes en un tabla independientemente de cuantos vengan en el array 
                 // // if ($d == 0 || $d == 2) {
                 // //     echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
