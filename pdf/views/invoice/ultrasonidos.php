@@ -431,85 +431,101 @@ $encode_firma = base64_encode($ruta_firma);
         $countArray = count($resultados->ESTUDIOS);
         $cierre = 1;
         $img_pasadas = 1;
+        // print_r($area);
+
         foreach ($resultados->ESTUDIOS as $key => $value) {
             // code...
             // echo "</tr>";
             // echo "</table>";
-            // echo "<div class='break'></div>";
+            // echo "<div class='break'></div>";c
             echo "<h2 style='padding-bottom: 8px; padding-top:8px'>$value->ESTUDIO</h2>";
 
-
             foreach ($jsonData[0][$key]->CAPTURAS[0] as $key => $captura) {
-                // if ($img_pasadas == 1) {
-                //     echo "<table style='padding: 20px;width: 100%; border-collapse: collapse;'>";
-                // }
 
-                // if ($cierre == 1) {
-                //     echo "<tr>";
-                // }
-                $ruta_img = file_get_contents($captura->url);
 
-                $img_code = base64_encode($ruta_img);
+                if ($area == 8) {
 
-                echo "<img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'>";
-                // $cierre++;
-                // if ($cierre == 3) {
-                //     echo "</tr>";
-                //     $cierre = 1;
-                // }
+                    $ruta_img = file_get_contents($captura->url);
 
-                // $img_pasadas++;
-                // if ($img_pasadas == 5) {
-                //     echo "</table>";
-                //     echo "<div class='break'></div>";
-                //     $img_pasadas = 1;
-                // }    
-                // // Encontrar una manera de que se pueda poner 4 imagenes en un tabla independientemente de cuantos vengan en el array 
-                // // if ($d == 0 || $d == 2) {
-                // //     echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
-                // // }
+                    $img_code = base64_encode($ruta_img);
 
-                // // if ($d == 3) {
-                // //     echo "<tr>";
-                // // }
+                    echo "<div class='img--container'><a href='$captura->url' target='_blank'><img style='max-width: 45%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></a></div>";
+                } else if ($area == 11) {
+                    if ($img_pasadas == 1) {
+                        echo "<table style='padding: 20px;width: 100%; border-collapse: collapse;'>";
+                    }
 
-                // // if ($d == 3 || $d == 4) {
-                // //     echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
-                // // }
+                    if ($cierre == 1) {
+                        echo "<tr>";
+                    }
+                    $ruta_img = file_get_contents($captura->url);
 
-                // // if ($d == 4) {
-                // //     echo "</tr>";
+                    $img_code = base64_encode($ruta_img);
 
-                // //     $d = 0;
-                // // }
-                // $d++;
+                    echo "<td><a href='$captura->url' target='_blank'><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></a></td>";
+                    // echo "<div class='break'></div>";
+                    $cierre++;
+                    if ($cierre == 3) {
+                        echo "</tr>";
+                        $cierre = 1;
+                    }
+
+                    $img_pasadas++;
+                    if ($img_pasadas == 5) {
+                        echo "</table>";
+                        echo "<div class='break'></div>";
+                        $img_pasadas = 1;
+                    }
+                    // // Encontrar una manera de que se pueda poner 4 imagenes en un tabla independientemente de cuantos vengan en el array 
+                    // // if ($d == 0 || $d == 2) {
+                    // //     echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                    // // }
+
+                    // // if ($d == 3) {
+                    // //     echo "<tr>";
+                    // // }
+
+                    // // if ($d == 3 || $d == 4) {
+                    // //     echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                    // // }
+
+                    // // if ($d == 4) {
+                    // //     echo "</tr>";
+
+                    // //     $d = 0;
+                    // // }
+                    $d++;
+                }
             }
-            // echo "</table>";
+            if ($area == 11) {
 
-            // if ($img_pasadas < 5) {
-            //     for ($i = 0; $i <= 5 - $img_pasadas; $i++) {
-            //         # code...
-            //         echo "<td></td>";
-            //         $cierre++;
-            //         if ($cierre == 3) {
-            //             echo "</tr>";
-            //             $cierre = 1;
-            //         }
+                // echo "</table>";
 
-            //         $img_pasadas++;
-            //         if ($img_pasadas == 5) {
-            //             echo "</table>";
-            //             echo "<div class='break'></div>";
-            //             $img_pasadas = 1;
-            //         }
-            //     }
-            //     echo "</table>";
-            //     // echo "<div class='break'></div>";   
-            // }
+                if ($img_pasadas < 5) {
+                    for ($i = 0; $i <= 5 - $img_pasadas; $i++) {
+                        # code...
+                        echo "<td></td>";
+                        $cierre++;
+                        if ($cierre == 3) {
+                            echo "</tr>";
+                            $cierre = 1;
+                        }
 
-            // $cierre = 1;
-            // $img_pasadas = 1;
-            // $img_pasadas = 1;
+                        $img_pasadas++;
+                        if ($img_pasadas == 5) {
+                            echo "</table>";
+                            echo "<div class='break'></div>";
+                            $img_pasadas = 1;
+                        }
+                    }
+                    echo "</table>";
+                    // echo "<div class='break'></div>";   
+                }
+
+                $cierre = 1;
+                $img_pasadas = 1;
+                $img_pasadas = 1;
+            }
             $j++;
             if ($j == $countArray - 1) {
         ?>
@@ -529,15 +545,14 @@ for ($i = 2; $i < $indice; $i++) {
 ?>
 <style>
     .img--container {
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        /* Espacio entre las imágenes */
+        text-align: center;
     }
 
     .img--container img {
-        max-width: 100%;
+        margin-top: 20px;
+        position: relative;
     }
+
 
     .footer {
         position: fixed;
