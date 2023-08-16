@@ -319,7 +319,7 @@ $encode_firma = base64_encode($ruta_firma);
             <?php echo "Procedencia: <strong style='font-size: 12px;'> $encabezado->PROCEDENCIA"; ?> </strong>
         </p>
         <p style="font-size: 12px; padding-left: 3.5px; margin: -1px; margin-top: 5px">
-            <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'> JUAN DANIEL HERNANDEZ GARCIA" . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?>
+            <?php echo (isset($encabezado->MEDICO_TRATANTE) || !empty($encabezado->MEDICO_TRATANTE)) ? "Médico Tratante: <strong style='font-size: 10px;'> " . $encabezado->MEDICO_TRATANTE . "</strong>" : ""; ?>
             </strong>
         </p>
         <!-- <p>Aqui va el encabezado y es el espacio disponible hasta donde llegue el titulo siguiente.</p> -->
@@ -422,21 +422,56 @@ $encode_firma = base64_encode($ruta_firma);
         }
         ?>
         <div class="break"></div>
-        <h2 style="padding-bottom: 8px; padding-top:8px"><?php echo $resultado->ESTUDIO; ?></h2>
+
         <?php
+        // print_r($resultados->ESTUDIOS[0]);
         $jsonData = $resultados->IMAGENES;
+        $j = 0;
+        $d = 0;
+        $countArray = count($resultados->ESTUDIOS);
+        foreach ($resultados->ESTUDIOS as $key => $value) {
+            // code...
+            echo "<h2 style='padding-bottom: 8px; padding-top:8px'>$value->ESTUDIO</h2>";
 
-        foreach ($jsonData[0][0]->CAPTURAS[0] as $captura) {
-            $ruta_img = file_get_contents($captura->url);
-            // print_r($captura->url);
+        ?>
+            <table style="width: 100%; border-collapse: collapse;">
+                <?php
+                foreach ($jsonData[0][$key]->CAPTURAS[0] as $key => $captura) {
+                    $ruta_img = file_get_contents($captura->url);
 
-            $img_code = base64_encode($ruta_img);
+                    $img_code = base64_encode($ruta_img);
 
-            // Aquí puedes mostrar la imagen o hacer lo que necesites con la URL y el tipo
-            echo "<div class='img--container'><img style='width: 45%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></div>";
+                    // Encontrar una manera de que se pueda poner 4 imagenes en un tabla independientemente de cuantos vengan en el array 
+                    if ($d == 0 || $d == 2) {
+                        echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                    }
+
+                    if ($d == 3) {
+                        echo "<tr>";
+                    }
+
+                    if ($d == 3 || $d == 4) {
+                        echo "<td><img style='max-width: 100%;' class='img' src='data:image/png;base64,$img_code' alt='Imagen'></td>";
+                    }
+
+                    if ($d == 4) {
+                        echo "</tr>";
+                    }
+
+
+
+                    $d++;
+                }
+                ?>
+            </table>
+            <?php
+            $j++;
+            if ($j == $countArray - 1) {
+            ?>
+                <div class="break"></div>
+        <?php
+            }
         }
-
-
         ?>
     </div>
 </body>
@@ -449,12 +484,14 @@ for ($i = 2; $i < $indice; $i++) {
 ?>
 <style>
     .img--container {
-        text-align: center;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        /* Espacio entre las imágenes */
     }
 
     .img--container img {
-        margin-top: 20px;
-        position: relative;
+        max-width: 100%;
     }
 
     .footer {
