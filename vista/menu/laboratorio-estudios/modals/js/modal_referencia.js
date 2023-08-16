@@ -45,22 +45,22 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
             }
         },
         {
-            data: null, render: function (meta){
+            data: null, render: function (meta) {
 
 
-                return `${ifnull(meta, '0',['EDAD_MINIMA'])} - ${ifnull(meta, '+100',['EDAD_MAXIMA'])} AÑOS`
+                return `${ifnull(meta, '0', ['EDAD_MINIMA'])} - ${ifnull(meta, '+100', ['EDAD_MAXIMA'])} AÑOS`
             }
         },
         {
-            data : null, render: function(meta){
+            data: null, render: function (meta) {
 
 
                 // Calcular si esta llegando el minmo y maximo, si no llega no es un rango es una referencia, operador logico y referencia juntos
-                return `${ifnull(meta, 'Indefinido',['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido',['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+                return `${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
             }
         },
         {
-            data : null, render:function(meta){
+            data: null, render: function (meta) {
 
                 let html = `<i class="bi bi-check-circle-fill text-success"></i>`
 
@@ -76,7 +76,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
 
             }
         }
-        ],
+    ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Servicio', className: 'desktop' },
@@ -88,10 +88,10 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         // { target: 7, title: 'Valor Maximo', className: 'none' },
         // { target: 8, title: 'Operador Lógico', className: 'none' },
         { target: 5, title: 'Referencia', className: 'min-tablet' },
-        {target :  6, title:'Val nor', className : 'min-tablet'},
+        { target: 6, title: 'Val nor', className: 'min-tablet' },
         { target: 7, title: '<i class="bi bi-trash"></i>', className: 'all' }
 
-        ],
+    ],
     // dom: 'Blfrtip',
     // buttons: [
     // {
@@ -160,7 +160,7 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
             api: 1,
             servicio_id: array_selected['ID_SERVICIO'],
             checkedCambiarReferencia: checkedCambiarReferencia,
-            valores_normalidad : normalidad
+            valores_normalidad: normalidad
         }, 'valores_referencia_api', 'formGuardarReferencia', { callbackAfter: true }, false, function (data) {
             alertToast('Su referencia se a guardado!', 'success', 4000)
             normalidad = 0;
@@ -181,20 +181,20 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
 
 function limpiarInputs(elementID, isChecked) {
     switch (elementID) {
-    case 'SinEdad':
-        if (isChecked) {
-            $('#edad-maxima-referencia').val('')
-            $('#edad-minima-referencia').val('')
-        }
-        break;
-    case 'cambioReferencia':
-        if (isChecked) {
-            $('#valor_minimo').val('')
-            $('#valor_maximo').val('')
-        } else {
-            $('#valor_referencia').val('')
-        }
-        break;
+        case 'SinEdad':
+            if (isChecked) {
+                $('#edad-maxima-referencia').val('')
+                $('#edad-minima-referencia').val('')
+            }
+            break;
+        case 'cambioReferencia':
+            if (isChecked) {
+                $('#valor_minimo').val('')
+                $('#valor_maximo').val('')
+            } else {
+                $('#valor_referencia').val('')
+            }
+            break;
     }
 }
 
@@ -205,11 +205,11 @@ const myModal = document.getElementById('modalReferencia')
 myModal.addEventListener('shown.bs.modal', () => {
     setTimeout(function () {
         $.fn.dataTable
-        .tables({
-            visible: true,
-            api: true
-        })
-        .columns.adjust();
+            .tables({
+                visible: true,
+                api: true
+            })
+            .columns.adjust();
 
     }, 250)
 })
@@ -248,15 +248,15 @@ $(document).on('click', '#btn-VisualizarPDFReferencia', function (e) {
     var win = window.open(`http://localhost/practicantes/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, '_blank')
 
     win.focus();
-})  
+})
 
 
 // Normalidad
-$(document).on('change', '#valorBueno', function(e){
-   if ($(this).prop('checked')) {
-    normalidad = 1;
-} else {
-    normalidad = 0;
-}
+$(document).on('change', '#valorBueno', function (e) {
+    if ($(this).prop('checked')) {
+        normalidad = 1;
+    } else {
+        normalidad = 0;
+    }
 })
 
