@@ -35,8 +35,8 @@ $usuario_id = $_SESSION['id'];
 //$cliente_id = 19;
 // $id_cotizacion = 7;
 $api = 'imagenologia';
-$area_id = 8;
-$turno_id = 440;
+$area_id = 11;
+$turno_id = 436;
 
 $preview = 0; // <- debe estar activo, y la firma de quien interpreta no debe aparecer
 
