@@ -15,6 +15,13 @@ date_default_timezone_set('America/Mexico_City');
 class Miscelaneus
 {
     public $ruta_reporte;
+    public $arrowUp = '<span style="display: inline-block; position: relative; width: 0; height: 0;">
+    <span style="border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 7px solid black; position: absolute; top: -7px;"></span>
+  </span>';
+    public $arrowDown = '<span style="display: inline-block; position: relative; width: 0; height: 0;">
+    <span style="border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid black; position: absolute; bottom: 1px;"></span>
+  </span>';
+    public $asterisk = '<span style="font-size:15px">*</span>';
 
     function getFormValues($values)
     {
@@ -1113,6 +1120,33 @@ class Miscelaneus
         return array('global' => $arrayGlobal, 'clave' => $clave);
     }
 
+    private function determinarTipo($parametro, $resultado)
+    {
+        $parametro = trim($parametro);
+        $resultado = trim($resultado);
+
+        // Comprobar si el parámetro contiene un rango de valores
+        if (strpos($parametro, '-') !== false) {
+            $rango = explode('-', $parametro);
+            $minimo = trim($rango[0]);
+            $maximo = trim($rango[1]);
+
+            if ($resultado < $minimo) {
+                return $this->arrowDown;
+            } elseif ($resultado > $maximo) {
+                return $this->arrowUp;
+            } else {
+                return "";
+            }
+        }
+
+        // Si no es un rango, comparar con el parámetro
+        if ($resultado != $parametro) {
+            return $this->asterisk;
+        } else {
+            return "";
+        }
+    }
     private function ordernarBodyLab($servicios, $clasificacion, $turno, $area_id)
     {
         #obtener los valores absolutos
@@ -1138,9 +1172,10 @@ class Miscelaneus
             });
 
             foreach ($abs as $current) {
+                $demonMark = $this->determinarTipo($current['VALOR_REFERENCIA_ABS'], $current['VALOR_ABSOLUTO']);
                 $absoluto_array[] = array(
                     "analito" => $current['DESCRIPCION_SERVICIO'],
-                    "valor_abosluto" => $current['VALOR_ABSOLUTO'],
+                    "valor_abosluto" => $current['VALOR_ABSOLUTO'] . (trim($current['VALOR_ABSOLUTO']) === "N/A" ? "" : $demonMark),
                     "referencia" => $current['VALOR_REFERENCIA_ABS'],
                     "unidad" => $current['MEDIDA_ABS']
                 );
@@ -1172,7 +1207,7 @@ class Miscelaneus
                     $item = array(
                         "nombre"            => $current['DESCRIPCION_SERVICIO'],
                         "unidad"            => $current['MEDIDA'],
-                        "resultado"         => $current['RESULTADO'],
+                        "resultado"         => $current['RESULTADO'] . $current['DEMONMARK'],
                         "referencia"        => $current['VALOR_DE_REFERENCIA'],
                         # "observaciones"     => isset($id_grupo) ? null : $current['OBSERVACIONES'],
                         "observaciones"     => $nombre_grupo != "OTROS SERVICIOS" ? null : $current['OBSERVACIONES'],
