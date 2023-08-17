@@ -943,10 +943,25 @@ class Miscelaneus
         $arrayimg = [];
         $arrayNuevascapturas = [];
 
+        // print_r($response2[0]['CAPTURAS']);
+
+
+
         for ($i = 0; $i < count($response2); $i++) {
-            $decodedResponse2 = $master->decodeJsonRecursively($response2);
-            array_push($arrayNuevascapturas, $decodedResponse2);
+            // print_r($decodedResponse2);
+            $decodedResponse2 = $master->decodeJsonRecursively($response2[$i]);
+            array_push($arrayNuevascapturas, $decodedResponse2['CAPTURAS']);
         }
+
+
+
+
+
+
+
+
+
+
 
         for ($i = 0; $i < count($response1[1]); $i++) {
 
