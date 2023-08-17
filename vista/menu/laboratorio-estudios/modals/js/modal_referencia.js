@@ -62,21 +62,26 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         {
             data : null, render:function(meta){
 
-                let html = `<i class="bi bi-check-circle-fill text-success"></i>`
-
-                return html
-            }
-        },
-        {
-            data: 'ID_VALORES_REFERENCIA', render: function (data) {
+                if (meta.VALOR_NORMALIDAD == "1"){
+                   html = `<i class="bi bi-check-circle-fill text-success"></i>`
+               } else {
+                html = `<i class="bi bi-x-circle-fill text-danger"></i>`
+                }
 
 
-                return `<i class="bi bi-trash" data-id = "${data}" style = "cursor: pointer"
-                onclick="desactivarTablaReferencia.call(this)"></i>`;
-
-            }
+            return html
         }
-        ],
+    },
+    {
+        data: 'ID_VALORES_REFERENCIA', render: function (data) {
+
+
+            return `<i class="bi bi-trash" data-id = "${data}" style = "cursor: pointer"
+            onclick="desactivarTablaReferencia.call(this)"></i>`;
+
+        }
+    }
+    ],
     columnDefs: [
         { target: 0, title: '#', className: 'all' },
         { target: 1, title: 'Servicio', className: 'desktop' },
