@@ -317,15 +317,15 @@ function ValidarPresentacion(meta) {
     // Entra al case donde evalua cada opcion que tiene para mostrar la presentación
     if (sexo !== "AMBOS") {
         if (edad !== null) {
-            res = `${ifnull(meta, 'null ', ['DESCRIPCION_DIRIGIDO_A'])} ${ifnull(meta, '0', ['EDAD_MINIMA'])} - ${ifnull(meta, '+100', ['EDAD_MAXIMA'])} AÑOS ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+            res = `${ifnull(meta, 'null ', ['DESCRIPCION_DIRIGIDO_A'])} ${ifnull(meta, '0', ['EDAD_MINIMA'])} - ${ifnull(meta, '+100', ['EDAD_MAXIMA'])} AÑOS ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
         } else {
-            res = `${ifnull(meta, '', ['DESCRIPCION_DIRIGIDO_A'])} ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+            res = `${ifnull(meta, '', ['DESCRIPCION_DIRIGIDO_A'])} ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
         }
     } else {
         if (edad !== null) {
-            res = `${ifnull(meta, '0', ['EDAD_MINIMA'])} - ${ifnull(meta, '+100', ['EDAD_MAXIMA'])} AÑOS ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+            res = `${ifnull(meta, '0', ['EDAD_MINIMA'])} - ${ifnull(meta, '+100', ['EDAD_MAXIMA'])} AÑOS ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
         } else {
-            res = `${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+            res = `${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
         }
     }
 
