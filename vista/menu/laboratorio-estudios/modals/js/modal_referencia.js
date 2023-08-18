@@ -1,6 +1,9 @@
 select2('#select-operador-referencia', 'modalReferencia')
 rellenarSelect("#select-operador-referencia", "valores_referencia_api", 2, "ID_OPERADORES_LOGICOS", "DESCRIPCION");
 
+var minimaReferencia = $('#edad-minima-referencia');
+var maximaReferencia = $('#edad-maxima-referencia');
+
 // Variables que solo se usan una vez, no tocar
 var DataReferencia = {
     api: 3
@@ -37,7 +40,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
     columns: [
         { data: 'COUNT' },
         { data: 'SERVICIO' },
-        { data: 'SEXO' },
+        { data: 'DESCRIPCION_DIRIGIDO_A' },
         {
             data: 'PRESENTACION', render: function (data) {
                 // body...
@@ -122,8 +125,7 @@ $(document).ready(function () {
 
 //Desactiva los imput de maximo y minimo de edad
 $('#SinEdad').on('click', function (e) {
-    var minimaReferencia = $('#edad-minima-referencia');
-    var maximaReferencia = $('#edad-maxima-referencia');
+
 
     if ($(this).prop('checked')) {
         minimaReferencia.addClass('disable-element');
@@ -185,6 +187,9 @@ $(document).on('click', '#btn-guardar-referencia', function (e) {
             // $('#valor_referencia').val('')
 
             $('#formGuardarReferencia').trigger("reset");
+            $('#SinEdad').prop('checked', false);
+            minimaReferencia.removeClass('disable-element');
+            maximaReferencia.removeClass('disable-element');
         })
     }, 1)
 
@@ -211,19 +216,39 @@ function limpiarInputs(elementID, isChecked) {
 
 
 
-const myModal = document.getElementById('modalReferencia')
+// const myModal = document.getElementById('modalReferencia')
+
+// myModal.addEventListener('shown.bs.modal', () => {
+//     setTimeout(function () {
+//         $.fn.dataTable
+//             .tables({
+//                 visible: true,
+//                 api: true
+//             })
+//             .columns.adjust();
+
+//     }, 250)
+// })
+const myModal = document.getElementById('modalReferencia');
 
 myModal.addEventListener('shown.bs.modal', () => {
     setTimeout(function () {
+        // Ajustar las columnas de la tabla DataTable después de mostrar el modal
         $.fn.dataTable
             .tables({
                 visible: true,
                 api: true
             })
             .columns.adjust();
+        // Reiniciar el formulario con el ID formGuardarReferencia
+        const formulario = document.getElementById('formGuardarReferencia');
+        if (formulario) {
+            console.log(1)
+            formulario.reset();
+        }
+    }, 250);
+});
 
-    }, 250)
-})
 
 function desactivarTablaReferencia() {
 
