@@ -51,7 +51,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
                 if (meta['PRESENTACION'] == null) {
                     presentacion = ValidarPresentacion(meta)
                 } else {
-                    presentacion = `${ifnull(meta, 'Indefinido', ['PRESENTACION'])} ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])} ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+                    presentacion = `${ifnull(meta, 'Indefinido', ['PRESENTACION'])} ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
                 }
 
 
