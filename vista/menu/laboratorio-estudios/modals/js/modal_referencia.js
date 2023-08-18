@@ -42,9 +42,21 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
         { data: 'SERVICIO' },
         { data: 'DESCRIPCION_DIRIGIDO_A' },
         {
-            data: 'PRESENTACION', render: function (data) {
+            data: null, render: function (meta) {
                 // body...
-                return ifnull(data,)
+                // return ifnull(data,)
+
+                let presentacion;
+
+                if (meta['PRESENTACION'] == null) {
+                    presentacion = ValidarPresentacion(meta)
+                } else {
+                    presentacion = `${ifnull(meta, 'Indefinido', ['PRESENTACION'])} ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+                }
+
+
+
+                return insertarSaltosDeLinea(presentacion, 25);
             }
         },
         {
@@ -215,7 +227,6 @@ function limpiarInputs(elementID, isChecked) {
 }
 
 
-
 // const myModal = document.getElementById('modalReferencia')
 
 // myModal.addEventListener('shown.bs.modal', () => {
@@ -230,6 +241,7 @@ function limpiarInputs(elementID, isChecked) {
 //     }, 250)
 // })
 const myModal = document.getElementById('modalReferencia');
+
 
 myModal.addEventListener('shown.bs.modal', () => {
     setTimeout(function () {
@@ -285,4 +297,53 @@ $(document).on('click', '#btn-VisualizarPDFReferencia', function (e) {
 
     win.focus();
 })
+
+// Function para validar la presentación y como se vera en el front
+function ValidarPresentacion(meta) {
+
+    // Se declaran las variables a evaluar en el caso de sexo, si no viene se setea la variable a null en caso contrario guarda el genero en la variable sexo
+    var res;
+    var edad = null;
+    var sexo = meta.DESCRIPCION_DIRIGIDO_A == null ? null : meta.DESCRIPCION_DIRIGIDO_A;
+
+    // Validar si las edades vienen null, si es asi setear el valor de edad a null en caso contrario guardar las edades en la variables 
+    if (meta.EDAD_MINIMA !== null && meta.EDAD_MAXIMA !== null)
+        edad = {
+            "EDAD_MINIMA": meta.EDAD_MINIMA,
+            "EDAD_MAXIMA": meta.EDAD_MAXIMA
+        }
+
+
+    // Entra al case donde evalua cada opcion que tiene para mostrar la presentación
+    if (sexo !== "AMBOS") {
+        if (edad !== null) {
+            res = `${ifnull(meta, 'null ', ['DESCRIPCION_DIRIGIDO_A'])} ${ifnull(meta, '0', ['EDAD_MINIMA'])} - ${ifnull(meta, '+100', ['EDAD_MAXIMA'])} AÑOS ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+        } else {
+            res = `${ifnull(meta, '', ['DESCRIPCION_DIRIGIDO_A'])} ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+        }
+    } else {
+        if (edad !== null) {
+            res = `${ifnull(meta, '0', ['EDAD_MINIMA'])} - ${ifnull(meta, '+100', ['EDAD_MAXIMA'])} AÑOS ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+        } else {
+            res = `${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+        }
+    }
+
+
+
+
+
+    return res;
+}
+
+function insertarSaltosDeLinea(texto, caracteresPorLinea) {
+    let resultado = "";
+
+    for (let i = 0; i < texto.length; i += caracteresPorLinea) {
+        const segmento = texto.slice(i, i + caracteresPorLinea);
+        resultado += segmento + "<br>";
+    }
+
+    return resultado;
+}
 
