@@ -52,10 +52,11 @@ var tablaServicio = $('#TablaEstudioServicio').DataTable({
         }
 
 
-  
+
 
         TablaValoresReferencia.clear().draw()
         TablaValoresReferencia.ajax.reload()
+        $(myModal).trigger("reset");
 
         $('#titleValoresReferencia').html(`Asignar valores de referencia al servicio: (<b>${array_selected['DESCRIPCION']}</b>)`);
 
