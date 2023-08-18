@@ -71,7 +71,7 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
 
 
                 // Calcular si esta llegando el minmo y maximo, si no llega no es un rango es una referencia, operador logico y referencia juntos
-                return `${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}, ${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
+                return `${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
             }
         },
         {
