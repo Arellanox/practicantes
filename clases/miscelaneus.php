@@ -223,7 +223,7 @@ class Miscelaneus
         echo "Hello World!";
     }
 
-    function generarQRURL($tipo, $codeContents, $nombre, $frame = QR_ECLEVEL_M, $size = 10)
+    function generarQRURL($tipo, $codeContents, $nombre, $frame = QR_ECLEVEL_H, $size = 10)
     {
         # URL carpeta
         $tempDir = 'archivos/sistema/temp/qr/' . $tipo . '/';
@@ -235,7 +235,6 @@ class Miscelaneus
 
         # retorna la URL donde se ubica el archivo
         return 'https://bimo-lab.com/nuevo_checkup/' . $tempDir . $nombre . '.png';
-        #return 'http://localhost/practicantes/' . $tempDir . $nombre . '.png';
     }
 
     function guardarFiles($files, $posicion = 'default', $dir/*, $carpetas = ['temp/']*/, $nombre)
@@ -261,6 +260,7 @@ class Miscelaneus
 
                 # Nueva ubicacion del archivo.
                 $ubicacion = $dir . $nombre . "_$next." . $extension;
+
                 #cambiamos de lugar el archivo
                 try {
                     move_uploaded_file($tmp_name, $ubicacion);
@@ -330,23 +330,17 @@ class Miscelaneus
 
     public function reportador($master, $turno_id, $area_id, $reporte, $tipo = 'url', $preview = 0, $lab = 0, $id_consulta = 0, $cliente_id = 1, $id_cotizacion = 8)
     {
-
         #Recupera la información personal del paciente
         $infoPaciente = $master->getByProcedure('sp_informacion_paciente', [$turno_id]);
         $infoPaciente = [$infoPaciente[count($infoPaciente) - 1]];
 
+        // $infoPaciente = $master->getByNext("sp_cotizaciones_b", [$id_cotizacion, $cliente_id]);
+
         $nombre_paciente = $infoPaciente[0]['NOMBRE'];
-
-        #Recupera la informacion del cliente
-        $infoCliente = $master->getByProcedure("sp_cotizaciones_gral", [$cliente_id]);
-        $infoCliente = [$infoCliente[count($infoCliente) - 1]];
-
-        $nombre_cliente = $infoCliente[0]['CLIENTE'];
 
         #Recuperamos el cuerpo y asignamos titulo si es necesario
         switch ($area_id) {
             case 0:
-            case '0':
                 # para las etiquetas
                 $arregloPaciente = $this->getBodyInfoLabels2($master, $turno_id);
                 $fecha_resultado = $infoPaciente[0]['FECHA_CARPETA'];
@@ -379,8 +373,6 @@ class Miscelaneus
                 $fecha_resultado = $infoPaciente[0]['FECHA_CARPETA_IMAGEN'];
                 $infoPaciente[0]['TITULO'] = 'Reporte de Rayos X';
                 $carpeta_guardado = 'rayosx';
-                // print_r($arregloPaciente);
-                // exit;
 
                 //Folio
                 $infoPaciente[0]['FOLIO_IMAGEN'] = $infoPaciente[0]['FOLIO_IMAGEN_US'];
@@ -446,8 +438,8 @@ class Miscelaneus
                 $infoPaciente[0]['CLAVE_IMAGEN'] = $infoPaciente[0]['CLAVE_SOMA'];
                 break;
 
-            case 13:
-            case "13":
+            case 15:
+            case "15":
                 # COTIZACIONES
                 $arregloPaciente = $this->getBodyInfoCotizacion($master, $id_cotizacion, $cliente_id);
                 $fecha_resultado = $arregloPaciente['FECHA_CREACION'];
@@ -459,6 +451,32 @@ class Miscelaneus
                 // print_r($arregloPaciente);
                 // exit;
                 break;
+            case 16:
+            case "16":
+                # TICKET
+                $arregloPaciente = $this->getBodyInfoTicket($master, $turno_id);
+                $fecha_resultado = $infoPaciente[0]['FECHA_TICKET'];
+                $carpeta_guardado = "ticket";
+                $folio = $infoPaciente[0]['FOLIO_TICKET'];
+                // print_r($arregloPaciente);
+                break;
+            case 17:
+                #FAST CHECKUP
+                $arregloPaciente = $this->getBodyInfoFast($master, $turno_id);
+                $fecha_resultado = $infoPaciente[0]['FECHA_CARPETA_FASTCK'];
+                $carpeta_guardado = "fast_checkup";
+                $folio = $infoPaciente[0]['FOLIO_FASTCK'];
+
+                break;
+            case 18:
+                #FAST CHECKUP
+                $arregloPaciente = $this->getBodyInfoCorte($master, $turno_id);
+                $fecha_resultado = $infoPaciente[0]['FECHA_CARPETA_FASTCK'];
+                $carpeta_guardado = "fast_checkup";
+                $folio = $infoPaciente[0]['FOLIO_FASTCK'];
+
+                break;
+
             case 5:
             case "5":
                 #ESPIROMETRIA
@@ -471,6 +489,7 @@ class Miscelaneus
 
                 break;
 
+
             case 19:
             case "19":
                 #CONSULTORIO2
@@ -479,7 +498,6 @@ class Miscelaneus
                 $fecha_resultado = $infoPaciente[array_key_last($infoPaciente)]['FECHA_CARPETA_CONSULTA2'];
                 $carpeta_guardado = "consulta_medica";
                 break;
-
 
             case -1: #Formato de temperatura de equipos
                 // echo "si entro";
@@ -505,6 +523,8 @@ class Miscelaneus
         }
 
 
+
+
         if ($area_id == 0) {
             $area_id = 6;
         }
@@ -516,7 +536,6 @@ class Miscelaneus
             "_",
             $nombre_paciente
         );
-
 
         switch ($area_id) {
 
@@ -537,7 +556,7 @@ class Miscelaneus
                     $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
                 } else {
 
-                    echo "Imposible crear la ruta del archivo";
+                    $this->setLog("Imposible crear la ruta del archivo", "[cotizaciones, reportador]");
                     exit;
                 }
 
@@ -556,17 +575,25 @@ class Miscelaneus
                 $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
         }
 
-        // print_r($arregloPaciente);
+
+
+        # Seteamos la ruta del reporte para poder recuperarla despues con el atributo $ruta_reporte.
+        $this->setRutaReporte($ruta_saved);
+
+        # Crear el directorio si no existe
+        $r = $master->createDir("../" . $ruta_saved);
+        $archivo = array("ruta" => $ruta_saved, "nombre_archivo" => $nombre . "-" . $infoPaciente[0]['ETIQUETA_TURNO'] . '-' . $fecha_resultado);
+        $pie_pagina = array("clave" => $infoPaciente[0]['CLAVE_IMAGEN'], "folio" => $folio, "modulo" => $area_id, "datos_medicos" => $datos_medicos);
+
+        // print_r(json_encode($arregloPaciente));
+        // // print_r(json_encode($infoPaciente[0]));
         // exit;
+
         $pdf = new Reporte(json_encode($arregloPaciente), json_encode($infoPaciente[0]), $pie_pagina, $archivo, $reporte, $tipo, $preview, $area_id);
-
-        // $pdf = '';
-
         $renderpdf = $pdf->build();
 
         if ($lab == 1 && $tipo == 'url') {
-
-            $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, 6, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
+            $master->insertByProcedure('sp_reportes_areas_g', [null, $turno_id, $area_id, $infoPaciente[0]['CLAVE_IMAGEN'], $renderpdf, null]);
         }
         return $renderpdf;
     }
@@ -645,6 +672,8 @@ class Miscelaneus
             'ESTUDIOS_DETALLE' => $arrayDetalle,
             'CLIENTE' => $infoCliente[0]['CLIENTE'],
             "RAZON_SOCIAL" => $infoCliente[0]['RAZON_SOCIAL'],
+            "OBSERVACIONES" => $infoCliente[0]['OBSERVACIONES'],
+            "DOMICILIO_FISCAL" => $infoCliente[0]['DOMICILIO_FISCAL'],
             'TELEFONO' => $infoCliente[0]['TELEFONO'],
             'RFC' => $infoCliente[0]['RFC'],
             'CREADO_POR' => $infoCliente[0]['CREADO_POR'],
@@ -665,6 +694,8 @@ class Miscelaneus
         return $arregloCotizaciones;
     }
 
+
+    //Consultorio
     private function getBodyInfoConsultorio2($master, $turno_id)
     {
         $response = $master->getByNext('sp_consultorio2', [$turno_id]);
@@ -685,6 +716,91 @@ class Miscelaneus
         return $response;
     }
 
+
+
+    private function getBodyInfoTicket($master, $id_turno)
+    {
+        # recuperamos los datos del paciente
+        $infoPaciente = $master->getByProcedure('sp_informacion_paciente', [$id_turno]);
+        $infoPaciente = [$infoPaciente[count($infoPaciente) - 1]];
+        $response = $master->getByProcedure("sp_cargos_turnos_b", [$id_turno]);
+        $infoDetalle = $master->getByNext('sp_cargos_turnos_b', [$id_turno]);
+        //print_r($infoDetalle);
+
+        $arrayServicios = [];
+        for ($i = 0; $i < count($response); $i++) {
+
+            $cargosT = [
+                "PRODUCTO" => $response[$i]['PAQUETES'] == "" ? $response[$i]['SERVICIOS'] : $response[$i]['PAQUETES'],
+                "PRECIO" => $response[$i]['PRECIO'],
+                "CANTIDAD" => $response[$i]['CANTIDAD'],
+                "TOTAL" => (($response[$i]['CANTIDAD'] * $response[$i]['PRECIO']) - (($infoDetalle[1][0]['DESCUENTO']) / ($response[$i]['CANTIDAD'] * $response[$i]['PRECIO']) * 100))
+            ];
+
+            array_push($arrayServicios, $cargosT);
+        }
+
+        // $arrayTckt = array_merge($locales, $subroga);
+        # declaramos el array final 
+        //echo "Aquiiiii " . $infoDetalle[1][0]['SUBTOTAL'];
+        $arregloTicket = array(
+            'NOMBRE' => $infoPaciente[0]['NOMBRE'],
+            "FOLIO" => $infoPaciente[0]['FOLIO_TICKET'],
+            "FECHA_TICKET" => $infoDetalle[1][0]['FECHA_IMPRESION'],
+            "FECHA_NACIMIENTO" => $infoPaciente[0]['NACIMIENTO'],
+            'CELULAR' => $infoPaciente[0]['CELULAR'],
+            'RFC' => $infoPaciente[0]['RFC'],
+            'ESTUDIOS_DETALLE' => $arrayServicios,
+            "SUBTOTAL" => $infoDetalle[1][0]['SUBTOTAL'],
+            "DESCUENTO" => $infoDetalle[1][0]['DESCUENTO'],
+            "IVA" => $infoDetalle[1][0]['IVA'],
+            "TOTAL_DETALLE" => $infoDetalle[1][0]['TOTAL'],
+            "USUARIO" => $infoDetalle[1][0]['USUARIO'],
+            'FOLIO_TICKET' => $infoPaciente[0][0]['FOLIO_TICKET']
+        );
+
+        return $arregloTicket;
+    }
+
+    private function getBodyInfoFast($master, $id_turno)
+    {
+        # recuperamos los datos del paciente
+        $infoPaciente = $master->getByProcedure('sp_informacion_paciente', [$id_turno]);
+        $infoPaciente = [$infoPaciente[count($infoPaciente) - 1]];
+        $response = $master->getByProcedure('sp_fastck_tipo_riesgo', [$id_turno]);
+
+        $arregloFast = array(
+            'NOMBRE' => $infoPaciente[0]['NOMBRE'],
+            "FOLIO" => $infoPaciente[0]['FOLIO_FASTCK'],
+            "EDAD" => $infoPaciente[0]['EDAD'],
+            "SEXO" => $infoPaciente[0]['SEXO'],
+            "FECHA_RESULTADO" => $infoPaciente[0]["FECHA_RESULTADO_FASTCK"],
+            'TIPO_RIESGO' => $response[0]['TIPO_RIESGO'],
+            "SCORE" => $response[0]['SCORE']
+        );
+
+        return $arregloFast;
+    }
+
+    private function getBodyInfoCorte($master, $id_turno)
+    {
+        # recuperamos los datos del paciente
+        $infoPaciente = $master->getByProcedure('sp_informacion_paciente', [$id_turno]);
+        $infoPaciente = [$infoPaciente[count($infoPaciente) - 1]];
+        $response = $master->getByProcedure('sp_fastck_tipo_riesgo', [$id_turno]);
+
+        $arregloFast = array(
+            'NOMBRE' => $infoPaciente[0]['NOMBRE'],
+            "FOLIO" => $infoPaciente[0]['FOLIO_FASTCK'],
+            "EDAD" => $infoPaciente[0]['EDAD'],
+            "SEXO" => $infoPaciente[0]['SEXO'],
+            "FECHA_RESULTADO" => $infoPaciente[0]["FECHA_RESULTADO_FASTCK"],
+            'TIPO_RIESGO' => $response[0]['TIPO_RIESGO'],
+            "SCORE" => $response[0]['SCORE']
+        );
+
+        return $arregloFast;
+    }
 
     private function getBodyInfoConsultorio($master, $id_turno, $id_consulta)
     {
@@ -828,7 +944,6 @@ class Miscelaneus
 
 
         $arrayEtiqueta = array_merge($locales, $subroga);
-
         $arregloPaciente = array(
             'NOMBRE' => $infoPaciente[0]['NOMBRE'],
             'FECHA_TOMA' => $infoPaciente[0]['FECHA_TOMA'],
@@ -838,7 +953,6 @@ class Miscelaneus
             'PREFOLIO' => $infoPaciente[0]['PREFOLIO'],
             'BARRAS' => $infoPaciente[0]['CODIGO_BARRAS'],
             'CONTENEDORES' => $arrayEtiqueta,
-
 
         );
 
@@ -952,15 +1066,6 @@ class Miscelaneus
             $decodedResponse2 = $master->decodeJsonRecursively($response2[$i]);
             array_push($arrayNuevascapturas, $decodedResponse2['CAPTURAS']);
         }
-
-
-
-
-
-
-
-
-
 
 
         for ($i = 0; $i < count($response1[1]); $i++) {
@@ -1132,6 +1237,8 @@ class Miscelaneus
             $arrayGlobal['areas'][] = $aux;
         }
 
+        // var_dump($arrayGlobal);
+
         return array('global' => $arrayGlobal, 'clave' => $clave);
     }
 
@@ -1186,12 +1293,18 @@ class Miscelaneus
                 return $r;
             });
 
+            // var_dump($abs);
+            // exit;
+
             foreach ($abs as $current) {
+                # dibujar flechas o astericos a lado del resultado de los resultados de los valores absolutos.
                 $demonMark = $this->determinarTipo($current['VALOR_REFERENCIA_ABS'], $current['VALOR_ABSOLUTO']);
+
                 $absoluto_array[] = array(
                     "analito" => $current['DESCRIPCION_SERVICIO'],
                     "valor_abosluto" => $current['VALOR_ABSOLUTO'] . (trim($current['VALOR_ABSOLUTO']) === "N/A" ? "" : $demonMark),
                     "referencia" => $current['VALOR_REFERENCIA_ABS'],
+                    "grupo_id" => $current['GRUPO_ID'],
                     "unidad" => $current['MEDIDA_ABS']
                 );
             }
@@ -1241,7 +1354,14 @@ class Miscelaneus
                     case 1:
                         $last_position = count($analitos) - 1;
                         $aux = $analitos[$last_position];
-                        $analitos[$last_position] = $absoluto_array;
+
+                        //Filtra por grupo_id, ya que se mezclavan
+                        $absoluto_array_b = array_filter($absoluto_array, function ($obj) {
+                            $r = $obj['grupo_id'] == 1;
+                            return $r;
+                        });
+
+                        $analitos[$last_position] = $absoluto_array_b;
                         $analitos[] = $aux;
                         break;
                         #perfil reumatico
@@ -1251,7 +1371,20 @@ class Miscelaneus
                             # Solo la hematoloigia debe mandar los valores absolutos                        
                             $last_position = count($analitos) - 2;
                             $aux = $analitos[$last_position];
-                            $analitos[$last_position] = $absoluto_array;
+                            // echo "<br/>";
+                            // var_dump($absoluto_array);
+
+                            //Filtra por grupo_id, ya que se mezclavan
+                            $absoluto_array_b = array_filter($absoluto_array, function ($obj) {
+                                $r = $obj['grupo_id'] == 35;
+                                return $r;
+                            });
+
+
+                            // echo "<br/>";
+                            // var_dump($absoluto_array_b);
+
+                            $analitos[$last_position] = $absoluto_array_b;
 
                             $last_position++;
                             while (!empty($analitos[$last_position])) {
@@ -1315,8 +1448,8 @@ class Miscelaneus
 
                 $aux = $value;
             }
-            $aux = json_decode($value, true);
-            $s = 0;
+            // $aux = json_decode($value, true);
+            // $s = 0;
             if (is_array($aux)) {
                 foreach ($aux as $a) {
                     if (is_string($a)) {
@@ -1335,6 +1468,7 @@ class Miscelaneus
 
         return $decoded;
     }
+
 
     function decodeJsonRecursively($jsonArray)
     {
@@ -1359,6 +1493,7 @@ class Miscelaneus
 
         return $decodedArray;
     }
+
 
 
     function str_ends_with($haystack, $needle)
@@ -1492,7 +1627,7 @@ class Miscelaneus
 
         switch ($domain) {
             case "localhost":
-                $preUrl = "http://localhost/nuevo_checkup/";
+                $preUrl = "http://localhost/practicantes/";
                 break;
             case "bimo-lab.com":
                 $preUrl = "https://bimo-lab.com/nuevo_checkup/";
@@ -1537,6 +1672,28 @@ class Miscelaneus
         return $formattedParams;
     }
 
+    public function getEmailMedico($master, $id_turno)
+    {
+        $response = $master->getByProcedure("sp_correo_medico_tratante", [$id_turno]);
+
+        # el response trae el correo2 del paciente y el correo del medico
+        # en el mismo row, asi que solo tenemos que acceder al indice 0 del $response
+
+        # declaramos un contenedor de los correos
+        $correos = array();
+
+        #le agregamos los correos al controlador
+        $correos[] = $response[0]['CORREO2'];
+        $correos[] = $response[0]['CORREO_MEDICO'];
+
+        # probablemente alguno de los correos no se haya rellenado en recepcion,
+        # entonces enviamos un arreglo filtrado de aquellos elementos que tengan
+        # algo escrito en dichos campos.
+        return array_filter($correos, function ($item) {
+            return strlen($item) > 0;
+        });
+    }
+
     public function getBodyEspiro($master, $turno_id)
     {
         # json para el reporte de espirometria.
@@ -1576,6 +1733,7 @@ class Miscelaneus
 
         return $cuestionario;
     }
+
 
     public function getBodyTemperatura($master, $turno_id)
     {

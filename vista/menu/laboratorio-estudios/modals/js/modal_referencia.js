@@ -283,18 +283,35 @@ function desactivarTablaReferencia() {
 }
 
 
+let delayKeyup = false
+$('#formGuardarReferencia').on('change keyup click', 'input, select, input[type="checkbox"]', function (event) {
+    if (event.type === 'keyup') {
+        clearTimeout(delayKeyup);  // Limpiamos el timeout anterior
+        delayKeyup = setTimeout(mostrarResultadoFinal, 500);  // medio segundo de delay
+    } else {
+        mostrarResultadoFinal();
+    }
+});
 
-$(document).on('click', '#btn-VisualizarPDFReferencia', function (e) {
-    e.preventDefault();
 
-    api = encodeURIComponent(window.btoa('laboratorio'));
-    area = encodeURIComponent(window.btoa(-1));
-    turno = encodeURIComponent(window.btoa(FolioMesEquipo));
+function mostrarResultadoFinal() {
+    // Lógica para calcular algo después de que se detecta un cambio
+    console.log("FEMENINO....");
+}
 
-    var win = window.open(`http://localhost/practicantes/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, '_blank')
 
-    win.focus();
-})
+
+// $(document).on('click', '#btn-VisualizarPDFReferencia', function (e) {
+//     e.preventDefault();
+
+//     api = encodeURIComponent(window.btoa('laboratorio'));
+//     area = encodeURIComponent(window.btoa(-1));
+//     turno = encodeURIComponent(window.btoa(FolioMesEquipo));
+
+//     var win = window.open(`http://localhost/practicantes/visualizar_reporte/?api=${api}&turno=${turno}&area=${area}`, '_blank')
+
+//     win.focus();
+// })
 
 // Function para validar la presentación y como se vera en el front
 function ValidarPresentacion(meta) {

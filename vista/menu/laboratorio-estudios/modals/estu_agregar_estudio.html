@@ -10,8 +10,8 @@
           <p class="text-center">Rellene todos los datos necesarios para un nuevo <strong>Estudio</strong> </p>
           <div class="row">
             <!-- Información servicio -->
-            <div class="col-4">
-              <div class="card p-3">
+            <div class="col-12 col-xl-4">
+              <div class="rounded p-3 shadow my-1">
                 <div class="row">
                   <h5>Información del estudios</h5>
                   <p>Rellene la información basica del estudio</p>
@@ -111,8 +111,8 @@
               </div>
             </div>
             <!-- Información clasificación equipo /  -->
-            <div class="col-4">
-              <div class="card p-3">
+            <div class="col-12 col-xl-4">
+              <div class="rounded p-3 shadow my-1">
                 <div class="row">
                   <h5>Grupo de examen</h5>
                   <p>Seleccione o agregue los grupo de examen del estudio</p>
@@ -156,6 +156,7 @@
                     </div>
                   </div>
 
+                  <hr>
 
                   <h5>Método</h5>
                   <p>Seleccione o agregue los metodos del estudio</p>
@@ -180,52 +181,11 @@
                       </button>
                     </div>
                   </div>
-
-                  <h5>Muestra</h5>
-                  <p>Seleccione los contenedores que necesite esté estudio</p>
-                  <div class="" id="div-select-contenedores">
-                    <div class="row">
-                      <div class="col-5 col-md-5">
-                        <label for="contenedores[2]" class="form-label select-contenedor">Contenedor</label>
-                        <select name="contenedores[2][contenedor]" id="registrar-contenedor2-estudio" class="input-form" required="">
-                          <option value="1">Frasco</option>
-                          <option value="2">Tubo azul</option>
-                          <option value="3">Tubo lila</option>
-                          <option value="4">Tubo rojo</option>
-                          <option value="5">Tubo negro</option>
-                          <option value="6">Tubo verde</option>
-                          <option value="7">Transcult</option>
-                          <option value="8">TUBO AMARILLO</option>
-                        </select>
-                      </div>
-                      <div class="col-5 col-md-5">
-                        <label for="contenedores[2]" class="form-label select-contenedor">Tipo o muestra</label>
-                        <select name="contenedores[2][muestra]" id="registrar-muestraCont2-estudio" class="input-form" required="" placeholder="Seleccione un contenedor">
-                          <option value="1">EXPECTORACIÓN</option>
-                          <option value="2">EXUDADO</option>
-                          <option value="3">HECES</option>
-                          <option value="4">LÍQUIDO</option>
-                          <option value="5">ORINA</option>
-                          <option value="6">SANGRE</option>
-                          <option value="7">SEMEN</option>
-                          <option value="8">UÑAS</option>
-                        </select>
-                      </div>
-                      <div class="col-2 d-flex justify-content-start align-items-center"><button type="button" class="btn btn-hover eliminarContenerMuestra1" data-bs-contenedor="2" style="margin-top: 20px;"><i class="bi bi-trash"></i></button></div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12">
-                      <button type="button" class="btn btn-hover" id="nuevo-contenedor-muestra">
-                        <i class="bi bi-plus"></i> Agregar
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-4">
-              <div class="card p-3">
+            <div class="col-12 col-xl-4">
+              <div class="rounded p-3 shadow my-1">
                 <h5>Equipo de laboratorio</h5>
                 <p>Seleccione o agregue los equipos del estudio</p>
                 <div class="" id="div-select-equipo">
@@ -250,50 +210,50 @@
                     </button>
                   </div>
                 </div>
-                <h5>Informacion Valores de referencia</h5>
-                <p>Escriba el valor de referencia para el reporte...</p>
-                <div class="row" style="zoom:100%;">
-                  <div class="col-6">
-                    <label for="">¿Mostrar valores de referencia? </label>
-                  </div>
-                  <div class="col-3">
-                    <input type="radio" name="muestra_valores" id="registrar-varepoSi" value="1" checked required>
-                    <label for="registrar-varepoSi">Si</label>
-                  </div>
-                  <div class="col-3">
-                    <input type="radio" name="muestra_valores" id="registrar-varepoNo" value="0" required>
-                    <label for="registrar-varepoNo">No</label>
+
+                <hr>
+
+                <h5>Muestra</h5>
+                <p>Seleccione los contenedores que necesite esté estudio</p>
+                <div class="" id="div-select-contenedores">
+                  <div class="row">
+                    <div class="col-5 col-md-5">
+                      <label for="contenedores[2]" class="form-label select-contenedor">Contenedor</label>
+                      <select name="contenedores[2][contenedor]" id="registrar-contenedor2-estudio" class="input-form" required="">
+                        <option value="1">Frasco</option>
+                        <option value="2">Tubo azul</option>
+                        <option value="3">Tubo lila</option>
+                        <option value="4">Tubo rojo</option>
+                        <option value="5">Tubo negro</option>
+                        <option value="6">Tubo verde</option>
+                        <option value="7">Transcult</option>
+                        <option value="8">TUBO AMARILLO</option>
+                      </select>
+                    </div>
+                    <div class="col-5 col-md-5">
+                      <label for="contenedores[2]" class="form-label select-contenedor">Tipo o muestra</label>
+                      <select name="contenedores[2][muestra]" id="registrar-muestraCont2-estudio" class="input-form" required="" placeholder="Seleccione un contenedor">
+                        <option value="1">EXPECTORACIÓN</option>
+                        <option value="2">EXUDADO</option>
+                        <option value="3">HECES</option>
+                        <option value="4">LÍQUIDO</option>
+                        <option value="5">ORINA</option>
+                        <option value="6">SANGRE</option>
+                        <option value="7">SEMEN</option>
+                        <option value="8">UÑAS</option>
+                      </select>
+                    </div>
+                    <div class="col-2 d-flex justify-content-start align-items-center"><button type="button" class="btn btn-hover eliminarContenerMuestra1" data-bs-contenedor="2" style="margin-top: 20px;"><i class="bi bi-trash"></i></button></div>
                   </div>
                 </div>
-                <!-- <div id="super-nota">
-                  <textarea id="summernote-estudios" name="editordata"></textarea>
-                </div> -->
                 <div class="row">
                   <div class="col-12">
-                    <label for="valor_minimo" class="form-label">Valor minimo</label>
-                    <textarea name="valor_minimo" class="input-form" rows="2" cols="20" id="valor_minimo_referencia"></textarea>
-                  </div>
-                  <div class="col-12">
-                    <label for="valor_maximo" class="form-label">Valor maximo</label>
-                    <textarea name="valor_maximo" class="input-form" rows="2" cols="20" id="valor_maximo_referencia"></textarea>
-                  </div>
-                  <div class="col-4">
-                    <label for="sexo_enum" class="form-label select-contenedor">Dirigido a:</label>
-                    <select name="sexo_enum" class="input-form" required="" id="input-dirigido-sexo-referencia">
-                      <option value="3" selected>AMBOS</option>
-                      <option value="1">HOMBRE</option>
-                      <option value="2">MUJER</option>
-                    </select>
-                  </div>
-                  <div class="col-4">
-                    <label for="edad_inicial" class="form-label">Edad inicial:</label>
-                    <input type="text" name="edad_inicial" class="form-control input-form" id="input-edad-inicial-referencia">
-                  </div>
-                  <div class="col-4">
-                    <label for="edad_final" class="form-label">Edad final</label>
-                    <input type="text" name="edad_final" class="form-control input-form" id="input-edad-final-referencia">
+                    <button type="button" class="btn btn-hover" id="nuevo-contenedor-muestra">
+                      <i class="bi bi-plus"></i> Agregar
+                    </button>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>

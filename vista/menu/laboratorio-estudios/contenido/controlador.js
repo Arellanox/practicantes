@@ -17,7 +17,7 @@ var infoServicioEdit = false;
 
 function obtenerContenidoEstudios(titulo) {
   obtenerTitulo(titulo); //Aqui mandar el nombre de la area
-  $.post("contenido/estudios.php", function (html) {
+  $.post("contenido/estudios.html", function (html) {
     var idrow;
     $("#body-js").html(html);
     // Datatable
@@ -28,7 +28,7 @@ function obtenerContenidoEstudios(titulo) {
 
 function obtenerContenidoGrupos(titulo) {
   obtenerTitulo(titulo); //Aqui mandar el nombre de la area
-  $.post("contenido/grupos.php", function (html) {
+  $.post("contenido/grupos.html", function (html) {
     var idrow;
     $("#body-js").html(html);
     // Datatable
