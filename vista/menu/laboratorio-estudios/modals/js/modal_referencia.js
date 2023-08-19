@@ -54,8 +54,6 @@ TablaValoresReferencia = $('#TablaValoresReferencia').DataTable({
                     presentacion = `${ifnull(meta, 'Indefinido', ['PRESENTACION'])} ${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
                 }
 
-
-
                 return insertarSaltosDeLinea(presentacion, 25);
             }
         },
@@ -313,7 +311,6 @@ function ValidarPresentacion(meta) {
             "EDAD_MAXIMA": meta.EDAD_MAXIMA
         }
 
-
     // Entra al case donde evalua cada opcion que tiene para mostrar la presentación
     if (sexo !== "AMBOS") {
         if (edad !== null) {
@@ -328,10 +325,6 @@ function ValidarPresentacion(meta) {
             res = `${ifnull(meta, 'Indefinido', ['VALOR_MINIMO', 'CODIGO'])}-${ifnull(meta, 'Indefinido', ['VALOR_MAXIMO', 'VALOR_REFERENCIA'])}`
         }
     }
-
-
-
-
 
     return res;
 }
